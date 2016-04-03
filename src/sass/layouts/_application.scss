@@ -1,0 +1,40 @@
+//
+// Application
+// ---------------------------
+
+.app {
+    min-height: 100%;
+    background-color: #eeeeee;
+    background-position: center center;
+    font-size: 1em;
+}
+
+@include mobile {
+    .app {
+        font-size: 1.05em;
+    }
+}
+
+@include largeMobile {
+    .app {
+        font-size: 1.2em;
+    }
+}
+
+@include tablet {
+    .app {
+        font-size: 1.3em;
+    }
+}
+
+@include desktop {
+    .app {
+        font-size: 1.4em;
+    }
+}
+
+@include largeDesktop {
+    .app {
+        font-size: 1.25em;
+    }
+}

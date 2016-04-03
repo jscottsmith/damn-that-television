@@ -1,0 +1,17 @@
+//
+// Buttons
+// ---------------------------
+
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.btn {
+    display: inline-block;
+    &:hover {}
+    &:focus {}
+    &.active, &:active {}
+    &.disabled, &[disabled] {}
+}
