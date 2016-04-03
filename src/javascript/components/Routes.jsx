@@ -1,14 +1,15 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Application from 'components/Application';
-import Home from 'components/Home';
-import About from 'components/About';
+import Project from 'components/Project';
+import Projects from 'components/Projects';
 import NotFound from 'components/NotFound';
 
 export default (
     <Route path="/" component={Application}>
-        <IndexRoute component={Home}/>
-        <Route path="about" component={About}/>
+        <IndexRoute component={Projects}/>
+        <Route path="projects" component={Projects}/>
+        <Route path="projects/:project" component={Project}/>
         <Route path="*" component={NotFound}/>
     </Route>
 );

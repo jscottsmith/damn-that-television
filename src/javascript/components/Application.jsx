@@ -6,6 +6,7 @@ class Application extends React.Component {
 
     static propTypes = {
         appState: PropTypes.object.isRequired,
+        projects: PropTypes.array.isRequired,
         children: PropTypes.node.isRequired,
     };
 
@@ -16,7 +17,10 @@ class Application extends React.Component {
                     <Navigation />
                 </nav>
                 <main>
-                    {React.cloneElement(this.props.children, { appState: this.props.appState })}
+                    {React.cloneElement(this.props.children, {
+                        appState: this.props.appState,
+                        projects: this.props.projects,
+                    })}
                 </main>
             </div>
         );
@@ -24,8 +28,9 @@ class Application extends React.Component {
 
 }
 
-Application = connectToStores(Application, ['ApplicationStore'], (context) => ({
+Application = connectToStores(Application, ['ApplicationStore', 'ProjectsStore'], (context) => ({
     appState: context.getStore('ApplicationStore').getState(),
+    projects: context.getStore('ProjectsStore').getState(),
 }));
 
 export default Application;
