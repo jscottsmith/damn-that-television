@@ -9,7 +9,7 @@ export default (
     <Route path="/" component={Application}>
         <IndexRoute component={Projects}/>
         <Route path="projects" component={Projects}/>
-        <Route path="projects/:project" component={Project}/>
+        <Route path="projects/:slug" component={Project}/>
         <Route path="*" component={NotFound}/>
     </Route>
 );

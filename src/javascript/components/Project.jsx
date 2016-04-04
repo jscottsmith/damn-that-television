@@ -10,12 +10,14 @@ class Project extends React.Component {
 
     constructor(props) {
         super(props);
-        this.project = this.getProject();
+        this.state = {
+            project: this.getProject(),
+        };
     }
 
     getProject() {
-        const { slug } = this.props.routeParams;
-        const project = _.find(this.props.projects, slug);
+        const slug = this.props.routeParams.slug;
+        const project = _.find(this.props.projects, { slug });
         return project;
     }
 
@@ -23,7 +25,7 @@ class Project extends React.Component {
         return (
             <div>
                 <p>Projects/</p>
-                <h4>{this.project.title}</h4>
+                <h4>{this.state.project.title}</h4>
             </div>
         );
     }
