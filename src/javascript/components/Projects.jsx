@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-export default class Home extends React.Component {
+export default class Projects extends React.Component {
     static propTypes = {
         projects: PropTypes.array,
     };
