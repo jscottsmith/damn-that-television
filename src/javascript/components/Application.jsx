@@ -13,9 +13,7 @@ class Application extends React.Component {
     render() {
         return (
             <div>
-                <nav>
-                    <Navigation />
-                </nav>
+                <Navigation />
                 <main>
                     {React.cloneElement(this.props.children, {
                         appState: this.props.appState,
