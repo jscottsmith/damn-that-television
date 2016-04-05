@@ -69,7 +69,7 @@ server.use((req, res) => {
                     const html =
                         ReactDOMServer.renderToStaticMarkup(
                             React.createElement(HtmlComponent, {
-                                title: 'react-flux-gulp-starter - madeinhaus.com',
+                                title: 'J / Work',
                                 context: context.getComponentContext(),
                                 state: res.locals.state,
                                 markup,
