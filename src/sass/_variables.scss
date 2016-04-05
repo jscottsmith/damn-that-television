@@ -4,10 +4,12 @@
 
 // Colors
 // -------------------------
-$white:                     #ffffff !default;
+$white:                     #f3f3f3 !default;
+$gray:                      #d3d3d3 !default;
 $black:                     #222222 !default;
 $green:                     #8bd5a1 !default;
 $gold:                      #9F8548 !default;
+$mint:                      #2de8b2;
 
 
 // Scaffolding
@@ -19,8 +21,8 @@ $hrBorder:                  $black !default;
 
 // Links
 // -------------------------
-$linkColor:                 $gold !default;
-$linkColorHover:            darken($linkColor, 10%) !default;
+$linkColor:                 $black !default;
+$linkColorHover:            $mint !default;
 
 
 // Typography
@@ -105,3 +107,9 @@ $transTimeSlow:             $transTime * 1.5;
 $transTimeSuperSlow:        $transTime * 2;
 $easeDefault:               $ease;
 
+// Shared Size
+// -------------------------
+
+$sitePadding:               1em;
+$sitePaddingMobile:         2em;
+$sitePaddingDesktop:        3em;

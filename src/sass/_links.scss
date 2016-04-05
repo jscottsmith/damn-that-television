@@ -6,7 +6,9 @@ a {
     color: $linkColor;
     text-transform: uppercase;
     text-decoration: none;
+    padding: 0 0 0.5em;
+    border-bottom: 0.12em solid transparent;
     &:hover {
-        color: $linkColorHover;
+        border-bottom-color: $linkColor;
     }
 }

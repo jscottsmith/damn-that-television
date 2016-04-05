@@ -4,9 +4,8 @@
 
 .app {
     min-height: 100%;
-    background-color: #eeeeee;
-    background-position: center center;
     font-size: 1em;
+    background-color: $white;
 }
 
 @include mobile {
@@ -35,6 +34,6 @@
 
 @include largeDesktop {
     .app {
-        font-size: 1.25em;
+        font-size: 1.5em;
     }
 }

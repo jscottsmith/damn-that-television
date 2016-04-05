@@ -1,0 +1,15 @@
+//
+// Page: Projects
+// ---------------------------
+
+.page-projects {
+    .project-listing {
+        li {
+            @extend h1;
+        }
+        a {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+    }
+}

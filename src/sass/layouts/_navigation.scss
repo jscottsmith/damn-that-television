@@ -2,12 +2,15 @@
 // Navigation
 // ---------------------------
 
-nav {
-    padding: 2em;
+.top-nav {
+    @extend .wrapper;
+    @extend .container;
+    padding-top: $sitePadding;
+    padding-bottom: $sitePadding;
     a {
         flex: 0 0 auto;
         align-self: center;
-        padding: 0.5em 1em;
+        margin-right: 1em;
         font-size: 1.5em;
     }
     .selected {
@@ -18,4 +21,18 @@ nav {
         }
     }
     .logo {}
+}
+
+@include mobile {
+    .top-nav {
+        padding-top: $sitePaddingMobile;
+        padding-bottom: $sitePaddingMobile;
+    }
+}
+
+@include desktop {
+    .top-nav {
+        padding-top: $sitePaddingDesktop;
+        padding-bottom: $sitePaddingDesktop;
+    }
 }

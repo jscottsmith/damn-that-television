@@ -27,18 +27,19 @@ strong {
 // Headings
 // ---------
 h1, h2, h3, h4, h5, h6 {
-    margin: 0.5em 0;
+    margin: 0 0 0.5em 0;
     font-weight: $headingsFontWeight;
     font-family: $headingsFontFamily;
     font-style: italic;
-    line-height: 1;
+    line-height: 0.7;
+    letter-spacing: -0.06em;
     color: $headingsColor;
     text-rendering: optimizelegibility;
     text-transform: uppercase;
 }
 
 h1 {
-    font-size: 4.0em;
+    font-size: 10vw;
 }
 
 h2 {

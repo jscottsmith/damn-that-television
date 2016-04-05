@@ -10,3 +10,22 @@
     display: flex;
     justify-content: flex-start;
 }
+
+.wrapper {
+    padding-right: $sitePadding;
+    padding-left: $sitePadding;
+}
+
+@include mobile {
+    .wrapper {
+        padding-right: $sitePaddingMobile;
+        padding-left: $sitePaddingMobile;
+    }
+}
+
+@include desktop {
+    .wrapper {
+        padding-right: $sitePaddingDesktop;
+        padding-left: $sitePaddingDesktop;
+    }
+}

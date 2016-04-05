@@ -3,5 +3,6 @@
 // ---------------------------
 
 main {
-    padding: 2.5em;
+    @extend .wrapper;
+    @extend .container;
 }
