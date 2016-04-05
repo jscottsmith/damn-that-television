@@ -9,15 +9,15 @@ export default class Projects extends React.Component {
     render() {
         const { projects } = this.props;
         return (
-            <article>
-                <h1>Projects/</h1>
-                <ul>
+            <article className="page-projects">
+                <h2>Projects/</h2>
+                <ul className="project-listing">
                     {projects.map((project) => {
                         const url = `/projects/${project.slug}`;
                         const title = project.title;
                         const key = project.slug;
 
-                        return <li key={key}><Link to={url}>{title}</Link></li>;
+                        return <li key={key}><Link to={url} className="big-link">{title}</Link></li>;
                     })}
                 </ul>
             </article>
