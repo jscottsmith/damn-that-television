@@ -26,6 +26,7 @@ class Project extends React.Component {
             <div>
                 <p>Projects/</p>
                 <h4>{this.state.project.title}</h4>
+                <p>{this.state.project.description}</p>
             </div>
         );
     }
