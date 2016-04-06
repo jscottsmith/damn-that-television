@@ -20,7 +20,21 @@
             cursor: default;
         }
     }
-    .logo {}
+    .logo {
+        span {
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            @include hide-text;
+        }
+        svg {
+            margin-top: 0.3em;
+            width: 50px;
+            height: 25px;
+            fill: $textColor;
+        }
+    }
 }
 
 @include mobile {
