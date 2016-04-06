@@ -6,7 +6,7 @@ class Application extends React.Component {
 
     static propTypes = {
         appState: PropTypes.object.isRequired,
-        projects: PropTypes.array.isRequired,
+        projects: PropTypes.object.isRequired,
         children: PropTypes.node.isRequired,
     };
 
@@ -23,7 +23,6 @@ class Application extends React.Component {
             </div>
         );
     }
-
 }
 
 Application = connectToStores(Application, ['ApplicationStore', 'ProjectsStore'], (context) => ({

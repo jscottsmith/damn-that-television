@@ -1,6 +1,6 @@
 import BaseStore from 'fluxible/addons/BaseStore';
 
-const projects = require('../../content/projects.json');
+const projects = require('../../../build/content/json/projects.json');
 
 class ProjectsStore extends BaseStore {
 

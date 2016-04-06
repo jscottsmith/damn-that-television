@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 export default class Projects extends React.Component {
     static propTypes = {
-        projects: PropTypes.array,
+        projects: PropTypes.objects,
     };
 
     render() {
@@ -12,7 +12,8 @@ export default class Projects extends React.Component {
             <article className="page-projects">
                 <h2>Projects/</h2>
                 <ul className="project-listing">
-                    {projects.map((project) => {
+                    {Object.keys(projects).map((objKey) => {
+                        const project = projects[objKey];
                         const url = `/projects/${project.slug}`;
                         const title = project.title;
                         const key = project.slug;
