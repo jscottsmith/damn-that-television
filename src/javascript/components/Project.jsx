@@ -23,11 +23,16 @@ class Project extends React.Component {
 
     render() {
         return (
-            <div>
-                <p>Projects/</p>
-                <h4>{this.state.project.title}</h4>
-                <p>{this.state.project.description}</p>
-            </div>
+            <article className="page-project-detail">
+                <section className="intro">
+                    <p>Projects /</p>
+                    <h4>{this.state.project.title}</h4>
+                    <p>{this.state.project.description}</p>
+                </section>
+                <section className="link">
+                    <a href={this.state.project.url} target="_blank" >GO</a>
+                </section>
+            </article>
         );
     }
 }
