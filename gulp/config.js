@@ -39,6 +39,10 @@ module.exports = {
         src: src + "/html/**/*.html",
         dest: dest
     },
+    markdown: {
+        src: src + "/content/markdown/*.md",
+        dest: dest + "/content/json/",
+    },
     staticAssets: {
         // Put an array of folder globs, such as src + '/**/fonts/**/*', 
         // src + '/**/html/**/*'
