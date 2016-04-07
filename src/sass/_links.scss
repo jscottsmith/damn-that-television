@@ -6,9 +6,16 @@ a {
     color: $linkColor;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 0 0 0.5em;
+    padding: 0 0 0.2em;
     border-bottom: 0.12em solid transparent;
+
     &:hover {
         border-bottom-color: $linkColor;
+        border-bottom-style: dotted;
+    }
+
+    &:visited {
+        // color: blue;
+        // border-bottom-color: blue;
     }
 }
