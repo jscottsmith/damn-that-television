@@ -4,7 +4,7 @@
 
 .page-projects {
     .project-listing {
-        li {
+        .big-link {
             @extend h1;
         }
         a {
