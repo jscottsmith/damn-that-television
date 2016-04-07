@@ -5,8 +5,10 @@
 .top-nav {
     @extend .wrapper;
     @extend .container;
+    position: relative;
     padding-top: $sitePadding;
     padding-bottom: $sitePadding;
+    z-index: 100;
     a {
         flex: 0 0 auto;
         align-self: center;
