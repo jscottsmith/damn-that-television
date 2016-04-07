@@ -1,6 +1,6 @@
 import { Paper, Path, Point, Size, Shape } from './Paper';
 
-export default class Waves {
+export default class Starter {
     constructor(canvas) {
         this.paper = Paper;
         this.canvas = canvas;
