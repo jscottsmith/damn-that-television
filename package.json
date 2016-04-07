@@ -38,6 +38,7 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "minimist": "^1.2.0",
+    "paper": "^0.9.25",
     "pretty-hrtime": "^1.0.1",
     "q": "^1.4.1",
     "require-dir": "^0.3.0",
