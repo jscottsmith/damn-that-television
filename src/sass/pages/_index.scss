@@ -1,0 +1,9 @@
+//
+// Page: Index
+// ---------------------------
+
+.page-index {
+    #paper-canvas {
+        @extend %spread;
+    }
+}
