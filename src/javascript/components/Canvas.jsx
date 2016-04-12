@@ -10,6 +10,7 @@ export default class Paper extends React.Component {
         const canvas = this.refs.paperCanvas;
         // add resize attribute
         canvas.setAttribute('resize', 'true');
+        canvas.setAttribute('hidpi', 'true');
 
         const starter = new Starter(canvas);
         starter.init();

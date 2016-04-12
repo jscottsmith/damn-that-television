@@ -31,12 +31,9 @@ export default class Starter {
     }
 
     setSize() {
-        // set the size of the canvas/view to the window
+        // set the size of the View to the window
         const w = window.innerWidth;
         const h = window.innerHeight;
-
-        this.canvas.width = w;
-        this.canvas.height = h;
 
         Paper.view.viewSize = new Size(w, h);
     }
