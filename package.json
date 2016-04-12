@@ -1,11 +1,11 @@
 {
-  "name": "work",
+  "name": "damn-that-television",
   "version": "0.0.1",
   "engines": {
     "node": ">=5.0.0"
   },
   "private": false,
-  "description": "Projects by J Scott Smith",
+  "description": "Work by J Scott Smith",
   "scripts": {
     "postinstall": "gulp production",
     "start": "node server.js"
