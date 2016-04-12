@@ -1,3 +1,2 @@
-#### Primary Development ####
-- HAUS Team
-
+J Scott Smith
+jscsmith@gmail.com
