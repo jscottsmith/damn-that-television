@@ -1,5 +1,5 @@
 import React from 'react';
-import Starter from './paper/Starter';
+import Diamonds from './paper/Diamonds';
 
 export default class Paper extends React.Component {
     componentDidMount() {
@@ -12,8 +12,8 @@ export default class Paper extends React.Component {
         canvas.setAttribute('resize', 'true');
         canvas.setAttribute('hidpi', 'true');
 
-        const starter = new Starter(canvas);
-        starter.init();
+        const diamonds = new Diamonds(canvas);
+        diamonds.init();
     }
 
     render() {
