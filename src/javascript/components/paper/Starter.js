@@ -1,4 +1,5 @@
 import { Paper, Path, Point, Size, Shape } from './Paper';
+import _ from 'lodash';
 
 export default class Starter {
     constructor(canvas) {
@@ -9,17 +10,28 @@ export default class Starter {
 
     init() {
         this.setSize();
+        this.addListeners();
         this.drawBg();
 
         Paper.view.draw();
 
-        Paper.view.onResize = (event) => {
-            this.drawBg();
-            this.init();
-        };
-
-        // Draw frames
         this.render();
+    }
+
+    addListeners() {
+        this.handleResize = this.handleResize.bind(this);
+        this.handleMouse = this.handleMouse.bind(this);
+        Paper.view.onResize = _.throttle(this.handleResize, 50);
+        Paper.view.on('mousemove', _.throttle(this.handleMouse, 50));
+    }
+
+    handleResize() {
+        Paper.project.clear();
+        this.drawBg();
+    }
+
+    handleMouse(event) {
+
     }
 
     drawBg() {
