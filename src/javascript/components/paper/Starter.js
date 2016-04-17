@@ -18,6 +18,13 @@ export default class Starter {
         this.render();
     }
 
+    teardown() {
+        console.warn('teardown');
+        Paper.project.clear();
+        Paper.project.remove();
+        this.tool.remove();
+    }
+
     addListeners() {
         this.handleResize = this.handleResize.bind(this);
         this.handleMouse = this.handleMouse.bind(this);
@@ -26,15 +33,16 @@ export default class Starter {
 
         Paper.view.onResize = _.throttle(this.handleResize, 50);
 
-        const tool = new Tool();
-        tool.onMouseMove = _.throttle(this.handleMouse, 5);
-        tool.onMouseDown = this.handleMouseDown;
-        tool.onKeyUp = this.handleKeyUp;
+        this.tool = new Tool();
+        this.tool.onMouseMove = _.throttle(this.handleMouse, 5);
+        this.tool.onMouseDown = this.handleMouseDown;
+        this.tool.onKeyUp = this.handleKeyUp;
     }
 
     handleResize() {
         Paper.project.clear();
         this.drawBg();
+        console.warn('resized');
     }
 
     handleMouse(event) {
