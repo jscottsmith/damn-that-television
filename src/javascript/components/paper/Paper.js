@@ -1,5 +1,6 @@
 // Paper and Paper class references
 let Paper = null;
+let Tool = null;
 let Group = null;
 let Size = null;
 let Path = null;
@@ -13,6 +14,7 @@ if (typeof window !== 'undefined') {
     Paper = require('paper/dist/paper-core');
 
     // Aliases
+    Tool = Paper.Tool;
     Group = Paper.Group;
     Size = Paper.Size;
     Path = Paper.Path;
@@ -21,4 +23,4 @@ if (typeof window !== 'undefined') {
     Rectangle = Paper.Rectangle;
 }
 
-export { Paper, Group, Path, Point, Size, Shape, Rectangle };
+export { Paper, Tool, Group, Path, Point, Size, Shape, Rectangle };
