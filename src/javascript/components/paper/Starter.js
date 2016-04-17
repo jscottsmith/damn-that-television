@@ -1,4 +1,4 @@
-import { Paper, Path, Point, Size, Shape } from './Paper';
+import { Paper, Tool, Path, Point, Size, Shape } from './Paper';
 import _ from 'lodash';
 
 export default class Starter {
@@ -21,8 +21,15 @@ export default class Starter {
     addListeners() {
         this.handleResize = this.handleResize.bind(this);
         this.handleMouse = this.handleMouse.bind(this);
+        this.handleMouseDown = this.handleMouseDown.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
+
         Paper.view.onResize = _.throttle(this.handleResize, 50);
-        Paper.view.on('mousemove', _.throttle(this.handleMouse, 50));
+
+        const tool = new Tool();
+        tool.onMouseMove = _.throttle(this.handleMouse, 5);
+        tool.onMouseDown = this.handleMouseDown;
+        tool.onKeyUp = this.handleKeyUp;
     }
 
     handleResize() {
@@ -31,7 +38,18 @@ export default class Starter {
     }
 
     handleMouse(event) {
+        console.warn('mouse moved');
+    }
 
+    handleMouseDown() {
+        console.warn('mouse pressed');
+    }
+
+    handleKeyUp(event) {
+        console.warn('key pressed');
+        if (event.key === 'space') {
+            console.warn('space pressed');
+        }
     }
 
     drawBg() {
