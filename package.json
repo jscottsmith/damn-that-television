@@ -61,6 +61,7 @@
     "fluxible": "^1.0.3",
     "fluxible-action-utils": "^0.2.4",
     "fluxible-addons-react": "^0.2.0",
+    "gsap": "^1.18.2",
     "lodash": "^4.3.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",

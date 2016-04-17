@@ -7,5 +7,12 @@
     },
     "globals": {
         "Promise": true,
+        "TweenLite": true,
+        "Power0": true,
+        "Power1": true,
+        "Power2": true,
+        "Elastic": true,
+        "Circ": true,
+        "Linear": true
     }
 }

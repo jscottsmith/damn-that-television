@@ -8,6 +8,7 @@ import routes from 'components/Routes';
 import app from './app';
 import fetchRouteData from 'utils/fetchRouteData';
 import { provideContext } from 'fluxible-addons-react';
+import 'libs/gsap';
 
 const debug = d('App');
 
