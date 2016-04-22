@@ -22,15 +22,18 @@ class Project extends React.Component {
     }
 
     render() {
+        const { project } = this.state;
+        const style = {
+            backgroundColor: project.colors.primary,
+        };
         return (
             <article className="page-project-detail">
                 <section className="intro">
-                    <p>Projects /</p>
-                    <h4>{this.state.project.title}</h4>
-                    <p>{this.state.project.description}</p>
+                    <h4>{project.title}</h4>
+                    <p>{project.description}</p>
                 </section>
-                <section className="link">
-                    <a href={this.state.project.url} target="_blank" >GO</a>
+                <section className="link" style={style}>
+                    <a href={project.url} target="_blank" >GO</a>
                 </section>
             </article>
         );
