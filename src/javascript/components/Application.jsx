@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
-import Navigation from 'components/Navigation';
+import ReactTransitionGroup from 'react/lib/ReactTransitionGroup';
+import Navigation from './Navigation';
+import Transition from './Transition';
 import { connectToStores } from 'fluxible-addons-react';
 
 class Application extends React.Component {
@@ -10,15 +12,25 @@ class Application extends React.Component {
         children: PropTypes.node.isRequired,
     };
 
+    static contextTypes = {
+        router: PropTypes.object.isRequired
+    };
+
     render() {
+        const key = this.context.router.createKey();
+
         return (
             <div>
                 <Navigation />
                 <main>
-                    {React.cloneElement(this.props.children, {
-                        appState: this.props.appState,
-                        projects: this.props.projects,
-                    })}
+                    <ReactTransitionGroup component="div">
+                        <Transition key={key}>
+                            {React.cloneElement(this.props.children, {
+                                appState: this.props.appState,
+                                projects: this.props.projects,
+                            })}
+                        </Transition>
+                    </ReactTransitionGroup>
                 </main>
             </div>
         );
