@@ -4,9 +4,11 @@
 
 .page-project-detail {
     width: 100%;
+
     .intro {
-        max-width: 640px;
+        @extend .wrapper;
     }
+
     .link {
         padding: 15% 0;
         width: 100%;

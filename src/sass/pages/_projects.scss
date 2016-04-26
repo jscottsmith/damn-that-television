@@ -3,7 +3,10 @@
 // ---------------------------
 
 .page-projects {
+    @extend .wrapper;
+
     .project-listing {
+
         .big-link {
             @extend h1;
         }
