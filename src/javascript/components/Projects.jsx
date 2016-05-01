@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 export default class Projects extends React.Component {
     static propTypes = {
-        projects: PropTypes.objects,
+        projects: PropTypes.object,
     };
 
     render() {
