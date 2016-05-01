@@ -6,37 +6,49 @@ class Transition extends React.Component {
     constructor() {
         super();
         this.state = {
-            isEntering: null,
+            isEntering: false,
         };
     }
+
+    // componentWillAppear(callback) {}
+    // componentDidAppear() {}
 
     componentWillEnter(callback) {
         this.setState({
             isEntering: true,
         });
 
-        callback();
-    }
-
-    componentDidEnter() {
-        this.setState({
-            isEntering: null,
-        });
-    }
-
-    componentWillLeave(callback) {
-        this.setState({
-            isEntering: false,
-        });
         setTimeout(() => {
             callback();
         }, 4000);
     }
 
+    componentDidEnter() {
+        this.setState({
+            isEntering: false,
+        });
+    }
+
+    componentWillLeave(callback) {
+        this.setState({
+            isLeaving: true,
+        });
+
+        setTimeout(() => {
+            callback();
+        }, 4000);
+    }
+
+    componentDidLeave() {
+        this.setState({
+            isLeaving: false,
+        });
+    }
+
     render() {
-        const className = cx({
+        const className = cx('transition-group', {
             'is-entering': this.state.isEntering,
-            'is-leaving': this.state.isEntering === false,
+            'is-leaving': this.state.isLeaving,
         });
 
         return (
