@@ -13,25 +13,23 @@ class Application extends React.Component {
     };
 
     static contextTypes = {
-        router: PropTypes.object.isRequired
+        router: PropTypes.object.isRequired,
     };
 
     render() {
-        const key = this.context.router.createKey();
+        const key = this.props.location.pathname;
 
         return (
             <div>
                 <Navigation />
-                <main>
-                    <ReactTransitionGroup component="div">
-                        <Transition key={key}>
-                            {React.cloneElement(this.props.children, {
-                                appState: this.props.appState,
-                                projects: this.props.projects,
-                            })}
-                        </Transition>
-                    </ReactTransitionGroup>
-                </main>
+                <ReactTransitionGroup component="main">
+                    <Transition key={key}>
+                        {React.cloneElement(this.props.children, {
+                            appState: this.props.appState,
+                            projects: this.props.projects,
+                        })}
+                    </Transition>
+                </ReactTransitionGroup>
             </div>
         );
     }

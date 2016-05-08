@@ -1,0 +1,25 @@
+//
+// Transition
+// ---------------------------
+
+.transition {
+    &.is-wiping {
+        overflow: hidden;
+        .wipe {
+            @extend %spread;
+            z-index: 10000; // covers all the things!
+        }
+    }
+
+    .transition-group {
+        &.is-entering {
+            display: none;
+        }
+        &.is-leaving {}
+    }
+}
+
+.transition,
+.transition-group {
+    width: 100%;
+}
