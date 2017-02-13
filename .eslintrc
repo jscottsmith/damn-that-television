@@ -222,13 +222,8 @@
     "no-plusplus": 1,
 
     /* Babel */
-    // "babel/block-scoped-var": 1,
-    // "babel/object-shorthand": [1, "always"],  // deprecated
-    // "babel/generator-star": 1, // deprecated
-    // "babel/generator-star-spacing": [1, "after"],  // deprecated
     "babel/new-cap": 1,
     "babel/object-curly-spacing": [1, "always"],
-    // "babel/space-in-brackets": 1, // deprecated
 
     /* React */
     "jsx-quotes": [1, "prefer-double"],
