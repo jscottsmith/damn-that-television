@@ -31,7 +31,7 @@ class Transition extends React.Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // load the image for canvas and saves to state
         this.loadImage(this.props.pattern)
             .then(result => {
@@ -42,9 +42,7 @@ class Transition extends React.Component {
             .catch(url => {
                 console.error(`Error loading ${url}`);
             });
-    }
 
-    componentDidMount() {
         this.setupCanvas();
     }
 
