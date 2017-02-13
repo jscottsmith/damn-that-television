@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import ReactTransitionGroup from 'react/lib/ReactTransitionGroup';
+import ReactTransitionGroup from 'react-addons-transition-group';
 import Navigation from './Navigation';
 import Transition from './Transition';
 import { connectToStores } from 'fluxible-addons-react';
