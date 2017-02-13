@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import Helmet from 'react-helmet';
 
 export default class Projects extends React.Component {
     static propTypes = {
@@ -10,6 +11,7 @@ export default class Projects extends React.Component {
         const { projects } = this.props;
         return (
             <article className="page-projects">
+                <Helmet title="Projects" />
                 <h2>Projects/</h2>
                 <ul className="project-listing">
                     {Object.keys(projects).map((objKey) => {

@@ -4,9 +4,9 @@ import cx from 'classnames';
 class Transition extends React.Component {
 
     static propTypes = {
-        time: PropTypes.number.isRequired,
         color: PropTypes.string.isRequired,
         pattern: PropTypes.string.isRequired,
+        time: PropTypes.number.isRequired,
     };
 
     static defaultProps = {

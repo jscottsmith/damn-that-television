@@ -2,14 +2,13 @@ import React, { PropTypes } from 'react';
 
 class Html extends React.Component {
     static propTypes = {
-        title: PropTypes.string.isRequired,
+        head: PropTypes.object.isRequired,
         markup: PropTypes.string.isRequired,
         state: PropTypes.object.isRequired,
     };
 
     static contextTypes = {
         assetUrl: PropTypes.func.isRequired,
-        siteUrl: PropTypes.func.isRequired,
     };
 
     render() {
@@ -18,14 +17,11 @@ class Html extends React.Component {
                 <head>
                     <meta charSet="utf-8" />
                     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-                    <title>{this.props.title}</title>
-                    <meta name="description" content="" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <meta property="og:title" content={this.props.title} />
-                    <meta property="og:type" content="article" />
-                    <meta property="og:url" content={this.context.siteUrl()} />
-                    <meta property="og:image" content={this.context.assetUrl('/image.jpg')} />
-                    <meta property="og:description" content="Description Here" />
+
+                    {this.props.head.title.toComponent()}
+                    {this.props.head.meta.toComponent()}
+
                     <link rel="shortcut icon" href={this.context.assetUrl('/images/favicon.png')} />
                     <link rel="stylesheet" href={this.context.assetUrl('/css/styles.css')} />
                     <script src="https://use.typekit.net/bwo5nqc.js" />

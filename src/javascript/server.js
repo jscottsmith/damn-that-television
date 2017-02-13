@@ -4,6 +4,7 @@ import express from 'express';
 import expressState from 'express-state';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import Helmet from 'react-helmet';
 import { provideContext } from 'fluxible-addons-react';
 import app from './app';
 import Html from 'components/Html.jsx';
@@ -62,18 +63,20 @@ server.use((req, res) => {
                     const RouterComponent = provideContext(RouterContext, app.customContexts);
                     const HtmlComponent = provideContext(Html, app.customContexts);
 
+                    const head = Helmet.rewind();
+
                     const markup = ReactDOMServer.renderToString(
-                                        React.createElement(RouterComponent, props)
-                                    );
+                        React.createElement(RouterComponent, props)
+                    );
 
                     const html =
                         ReactDOMServer.renderToStaticMarkup(
                             React.createElement(HtmlComponent, {
-                                title: 'J / Work',
                                 context: context.getComponentContext(),
                                 state: res.locals.state,
                                 markup,
                                 location,
+                                head,
                             }
                         ));
 
