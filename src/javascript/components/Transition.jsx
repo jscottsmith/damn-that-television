@@ -65,8 +65,12 @@ class Transition extends React.Component {
             if (img.naturalWidth && img.naturalHeight && img.complete) {
                 resolve(img);
             } else {
-                img.onload = () => { resolve(img); };
-                img.onerror = () => { reject(url); };
+                img.onload = () => {
+                    resolve(img);
+                };
+                img.onerror = () => {
+                    reject(url);
+                };
             }
         });
     }
@@ -178,6 +182,5 @@ class Transition extends React.Component {
         );
     }
 }
-
 
 export default Transition;

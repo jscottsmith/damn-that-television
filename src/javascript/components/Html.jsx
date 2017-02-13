@@ -28,8 +28,8 @@ class Html extends React.Component {
                     <meta property="og:description" content="Description Here" />
                     <link rel="shortcut icon" href={this.context.assetUrl('/images/favicon.png')} />
                     <link rel="stylesheet" href={this.context.assetUrl('/css/styles.css')} />
-                    <script src="https://use.typekit.net/bwo5nqc.js"></script>
-                    <script dangerouslySetInnerHTML={{ __html: 'try{Typekit.load({ async: true });}catch(e){}'}}/>
+                    <script src="https://use.typekit.net/bwo5nqc.js" />
+                    <script dangerouslySetInnerHTML={{ __html: 'try{Typekit.load({ async: true });}catch(e){}' }}/>
                 </head>
                 <body>
                     <div

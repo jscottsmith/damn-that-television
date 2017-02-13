@@ -28,7 +28,9 @@ export default class Starter {
 
     teardown() {
         console.warn('teardown');
-        if (this.target) TweenLite.killTweensOf(this.target);
+        if (this.target) {
+            TweenLite.killTweensOf(this.target);
+        }
         Paper.project.clear();
         Paper.project.remove();
         this.tool.remove();
@@ -125,15 +127,14 @@ export default class Starter {
     }
 
     generateBeeHivePoints(size, loose) {
-        let points = [];
+        const points = [];
         const col = Paper.view.size.divide(size);
         for (let i = -1; i < size.width + 1; i++) {
             for (let j = -1; j < size.height + 1; j++) {
-                let point = new Point(i, j);
+                const point = new Point(i, j);
                 point.divide(new Point(size));
                 point.multiply(Paper.view.size.add(col / 2));
                 // debugger;
-
 
                 if (j % 2) {
                     point.add(new Point(col.width / 2, 0));
