@@ -9,6 +9,7 @@
 
         .big-link {
             @extend h1;
+            word-wrap: break-word;
         }
         a {
             padding-bottom: 0;
