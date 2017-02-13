@@ -11,8 +11,8 @@ class Transition extends React.Component {
 
     static defaultProps = {
         time: 0.7,
-        color: 'salmon',
-        pattern: '/images/pattern_3.png',
+        color: '#ECBAB4',
+        pattern: '/images/pattern_4.svg',
     }
 
     constructor() {
@@ -83,8 +83,8 @@ class Transition extends React.Component {
 
         // draw the rectangle with pattern fill to wipe on the screen
 
-        // this.context.fillStyle = this.props.color;
-        // this.context.fillRect(x, y, w, h);
+        this.context.fillStyle = this.props.color;
+        this.context.fillRect(x, y, w, h);
         const pattern = this.context.createPattern(this.state.pattern, 'repeat');
         this.context.fillStyle = pattern;
         this.context.fillRect(x, y, w, h);
@@ -103,7 +103,7 @@ class Transition extends React.Component {
             x: -this.canvas.width,
         }, {
             x: 0,
-            ease: Power3.easeIn,
+            ease: Power3.easeOut,
             onUpdate: () => {
                 this.drawWipe();
             },
@@ -122,7 +122,7 @@ class Transition extends React.Component {
             x: 0,
         }, {
             x: this.canvas.width,
-            ease: Power3.easeIn,
+            ease: Power3.easeOut,
             delay: 0.5,
             onUpdate: () => {
                 this.drawWipe();
