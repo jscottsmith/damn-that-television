@@ -8,7 +8,9 @@
   "description": "Work by J Scott Smith",
   "scripts": {
     "postinstall": "gulp production",
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "eslint -c .eslintrc src/javascript --ext .js,.jsx",
+    "lint-autofix": "eslint -c .eslintrc --fix src/javascript --ext .js,.jsx"
   },
   "repository": {
     "type": "git",
