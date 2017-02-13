@@ -22,6 +22,11 @@ export default class Diamonds {
         this.render();
     }
 
+    teardown() {
+        Paper.project.clear();
+        Paper.project.remove();
+    }
+
     addListeners() {
         this.handleResize = this.handleResize.bind(this);
         this.handleMouse = this.handleMouse.bind(this);
