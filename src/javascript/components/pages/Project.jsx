@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
+import Hero from 'components/project/Hero';
+import Intro from 'components/project/Intro';
 
 class Project extends React.Component {
 
@@ -23,17 +25,29 @@ class Project extends React.Component {
 
     render() {
         const { project } = this.state;
+
+        const {
+            colors,
+            title,
+            description,
+            url,
+        } = project;
+
         const style = {
-            backgroundColor: project.colors.primary,
+            backgroundColor: colors.primary,
         };
+
         return (
             <article className="page-project-detail">
-                <section className="intro">
-                    <h4>{project.title}</h4>
-                    <p>{project.description}</p>
-                </section>
+                <Hero
+                    title={title}
+                    color={colors.primary}
+                />
+                <Intro
+                    description={description}
+                />
                 <section className="link" style={style}>
-                    <a href={project.url} target="_blank" >GO</a>
+                    <a href={url} target="_blank" >GO</a>
                 </section>
             </article>
         );
