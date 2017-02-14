@@ -17,9 +17,24 @@ export default class Navigation extends React.Component {
                             C159.3,59.7,150,67.7,139.3,73.5z" />
                     </svg>
                 </IndexLink>
-                <Link to="/projects" activeClassName="is-current">Projects</Link>
-                <Link to="/makejavascriptgreatagain" activeClassName="is-current">Outside</Link>
-                <Link to="https://github.com/jscottsmith" target="_blank">Github</Link>
+                <Link
+                    to="/projects"
+                    activeClassName="is-current"
+                >
+                    Projects
+                </Link>
+                <Link
+                    to="/makejavascriptgreatagain"
+                    activeClassName="is-current"
+                >
+                    Outside
+                </Link>
+                <Link
+                    to="https://github.com/jscottsmith"
+                    target="_blank"
+                >
+                    Github
+                </Link>
             </nav>
         );
     }
