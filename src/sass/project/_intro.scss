@@ -1,0 +1,16 @@
+//
+// Intro
+// ---------------------------
+
+.project-intro {
+    @extend .wrapper;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    p {
+        margin: 0 auto;
+        max-width: 16em;
+        font-size: 8vmin;
+    }
+}

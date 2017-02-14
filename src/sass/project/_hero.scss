@@ -1,0 +1,20 @@
+//
+// Hero
+// ---------------------------
+
+.project-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 200vh;
+
+    h1 {
+        margin: 0;
+        font-size: 20vmin;
+    }
+
+    .bg {
+        @extend %spread;
+        z-index: -1;
+    }
+}

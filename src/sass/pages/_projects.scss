@@ -4,9 +4,9 @@
 
 .page-projects {
     @extend .wrapper;
+    padding-top: 6em;
 
     .project-listing {
-
         .big-link {
             @extend h1;
             word-wrap: break-word;
