@@ -15,21 +15,13 @@ class Transition extends React.Component {
         pattern: '/images/pattern_4.svg',
     }
 
-    constructor() {
-        super();
-        this.drawWipe = this.drawWipe.bind(this);
-        this.state = {
-            isEntering: false,
-            isLeaving: false,
-            wipeIsVisible: false,
-            pattern: null,
-        };
-
-        // object to store canvas wipe tweens
-        this.wipe = {
-            x: 0,
-        };
-    }
+    state = {
+        isEntering: false,
+        isLeaving: false,
+        pattern: null,
+        transitionComplete: false,
+        wipeIsVisible: false,
+    };
 
     componentDidMount() {
         // load the image for canvas and saves to state
@@ -45,6 +37,11 @@ class Transition extends React.Component {
 
         this.setupCanvas();
     }
+
+    // object to store canvas wipe tweens
+    wipe = {
+        x: 0,
+    };
 
     setupCanvas() {
         const devicePixelRatio = window.devicePixelRatio || 1;
@@ -73,7 +70,7 @@ class Transition extends React.Component {
         });
     }
 
-    drawWipe() {
+    drawWipe = () => {
         // clear previous drawings
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -99,6 +96,7 @@ class Transition extends React.Component {
         this.setState({
             isEntering: true,
             wipeIsVisible: true,
+            transitionComplete: false,
         });
 
         TweenLite.fromTo(this.wipe, this.props.time, {
@@ -132,6 +130,7 @@ class Transition extends React.Component {
             onComplete: () => {
                 this.setState({
                     wipeIsVisible: false,
+                    transitionComplete: true,
                 });
             },
         });
@@ -140,6 +139,7 @@ class Transition extends React.Component {
     componentWillLeave(callback) {
         this.setState({
             isLeaving: true,
+            transitionComplete: false,
         });
 
         const time = this.props.time * 1000;
@@ -156,25 +156,33 @@ class Transition extends React.Component {
     }
 
     render() {
+        const {
+            isEntering,
+            isLeaving,
+            transitionComplete,
+            wipeIsVisible,
+        } = this.state;
 
         const transClass = cx('transition', {
-            'is-wiping': this.state.wipeIsVisible,
+            'is-wiping': wipeIsVisible,
         });
 
         const style = {
-            display: this.state.wipeIsVisible ? 'block' : 'none',
+            display: wipeIsVisible ? 'block' : 'none',
         };
 
         const className = cx('transition-group', {
-            'is-entering': this.state.isEntering,
-            'is-leaving': this.state.isLeaving,
+            'is-entering': isEntering,
+            'is-leaving': isLeaving,
         });
 
         return (
             <div className={transClass}>
                 <canvas ref="wipe" className="wipe" style={style} />
                 <div className={className}>
-                    {this.props.children}
+                    {React.cloneElement(this.props.children, {
+                        transitionComplete,
+                    })}
                 </div>
             </div>
         );
