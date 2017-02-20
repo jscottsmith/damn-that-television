@@ -12,5 +12,5 @@ export default function Intro(props) {
 }
 
 Intro.propTypes = {
-    prop: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
 };
