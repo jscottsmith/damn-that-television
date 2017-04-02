@@ -1,5 +1,5 @@
 ---
-title: David&Goliath
+title: David & Goliath
 slug: david-and-goliath
 role: Front-end Developer
 url: http://www.dng.com
