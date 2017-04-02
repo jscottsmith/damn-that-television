@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Split from 'components/utility/Split';
 
 export default class Hero extends Component {
 
@@ -13,7 +14,9 @@ export default class Hero extends Component {
         return (
             <header className="project-hero">
                 <div className="wrapper">
-                    <h1>{title}</h1>
+                    <h1>
+                        <Split>{title}</Split>
+                    </h1>
                 </div>
                 <div className="bg" style={{ backgroundColor: color }}/>
             </header>

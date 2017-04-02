@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 0.7;
     letter-spacing: -0.06em;
     color: $headingsColor;
-    text-rendering: optimizelegibility;
+    // text-rendering: optimizelegibility;
     text-transform: uppercase;
     word-break: keep-all;
 }
