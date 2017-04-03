@@ -4,18 +4,18 @@ import Helmet from 'react-helmet';
 
 export default class Projects extends React.Component {
     static propTypes = {
-        projects: PropTypes.object,
+        projects: PropTypes.array.isRequired,
     };
 
     render() {
         const { projects } = this.props;
+
         return (
             <article className="page-projects">
                 <Helmet title="Projects" />
                 <h2>Projects/</h2>
                 <ul className="project-listing">
-                    {Object.keys(projects).map((objKey) => {
-                        const project = projects[objKey];
+                    {projects.map(project => {
                         const url = `/projects/${project.slug}`;
                         const title = project.title;
                         const key = project.slug;
