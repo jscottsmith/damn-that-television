@@ -5,13 +5,15 @@ import Navigation from './Navigation';
 import Transition from './Transition';
 import { connectToStores } from 'fluxible-addons-react';
 
+import 'sass/styles';
+
 class Application extends React.Component {
 
     static propTypes = {
         appState: PropTypes.object.isRequired,
         children: PropTypes.node.isRequired,
         location: PropTypes.object.isRequired,
-        projects: PropTypes.object.isRequired,
+        projects: PropTypes.array.isRequired,
     };
 
     static contextTypes = {

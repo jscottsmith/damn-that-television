@@ -7,7 +7,7 @@ class Project extends React.Component {
 
     static propTypes = {
         routeParams: PropTypes.object.isRequired,
-        projects: PropTypes.object,
+        projects: PropTypes.array.isRequired,
     };
 
     constructor(props) {
