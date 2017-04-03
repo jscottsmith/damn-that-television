@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 
-export default class Projects extends React.Component {
+export default class Projects extends PureComponent {
     static propTypes = {
         projects: PropTypes.array.isRequired,
     };

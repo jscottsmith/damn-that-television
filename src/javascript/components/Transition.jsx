@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import cx from 'classnames';
 
-class Transition extends React.Component {
+class Transition extends PureComponent {
 
     static propTypes = {
         color: PropTypes.string.isRequired,

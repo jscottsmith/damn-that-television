@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import _ from 'lodash';
 import Hero from 'components/project/Hero';
 import Intro from 'components/project/Intro';
 
-class Project extends React.Component {
+class Project extends PureComponent {
 
     static propTypes = {
         routeParams: PropTypes.object.isRequired,

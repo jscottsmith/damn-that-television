@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import Canvas from 'components/Canvas';
 
-export default class Index extends React.Component {
+export default class Index extends PureComponent {
     render() {
         return (
             <article className="page-index">

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import Helmet from 'react-helmet';
 import Navigation from './Navigation';
@@ -7,7 +7,7 @@ import { connectToStores } from 'fluxible-addons-react';
 
 import 'sass/styles';
 
-class Application extends React.Component {
+class Application extends PureComponent {
 
     static propTypes = {
         appState: PropTypes.object.isRequired,

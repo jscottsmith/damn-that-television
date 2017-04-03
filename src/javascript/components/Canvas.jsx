@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import Starter from './paper/Starter';
 
-export default class Paper extends React.Component {
+export default class Paper extends PureComponent {
     componentDidMount() {
         this.setupPaperCanvas();
     }

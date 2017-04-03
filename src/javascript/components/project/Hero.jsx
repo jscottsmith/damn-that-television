@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import Split from 'components/utility/Split';
 
-export default class Hero extends Component {
+export default class Hero extends PureComponent {
 
     static propTypes = {
         color: PropTypes.string.isRequired,

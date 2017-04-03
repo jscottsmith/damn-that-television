@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 
 const PUSH = 0.08;
 
-export default class Split extends Component {
+export default class Split extends PureComponent {
 
     static propTypes = {
         children: PropTypes.string.isRequired,
