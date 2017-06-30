@@ -1,8 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
-import Split from 'components/utility/Split';
+import Split from 'atoms/Split';
 
 export default class Hero extends PureComponent {
-
     static propTypes = {
         color: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
@@ -18,9 +17,8 @@ export default class Hero extends PureComponent {
                         <Split>{title}</Split>
                     </h1>
                 </div>
-                <div className="bg" style={{ backgroundColor: color }}/>
+                <div className="bg" style={{ backgroundColor: color }} />
             </header>
         );
     }
-
 }
