@@ -2,7 +2,6 @@ import BaseStore from 'fluxible/addons/BaseStore';
 import { projects } from '../../content/projects';
 
 class ProjectsStore extends BaseStore {
-
     static storeName = 'ProjectsStore';
 
     constructor(dispatcher) {
@@ -21,7 +20,6 @@ class ProjectsStore extends BaseStore {
     rehydrate(state) {
         this.projects = state.projects;
     }
-
 }
 
 export default ProjectsStore;

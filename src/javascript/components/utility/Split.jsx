@@ -3,7 +3,6 @@ import React, { PureComponent, PropTypes } from 'react';
 const PUSH = 0.08;
 
 export default class Split extends PureComponent {
-
     static propTypes = {
         children: PropTypes.string.isRequired,
     };
@@ -20,8 +19,10 @@ export default class Split extends PureComponent {
                 <span
                     key={i}
                     style={style}
-                    ref={ref => this[`ref${i}`] = ref}
-                >{c}</span>
+                    ref={ref => (this[`ref${i}`] = ref)}
+                >
+                    {c}
+                </span>
             );
         });
     }
@@ -37,5 +38,4 @@ export default class Split extends PureComponent {
             </div>
         );
     }
-
 }

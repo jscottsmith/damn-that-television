@@ -77,7 +77,7 @@ export default class Starter {
     }
 
     render() {
-        Paper.view.onFrame = (event) => {
+        Paper.view.onFrame = event => {
             // Animate things
         };
     }

@@ -32,9 +32,11 @@ module.exports = function(devServer = () => {}) {
     server.use('/', express.static(path.resolve('./build/client')));
     server.use(cookieParser());
     server.use(bodyParser.json());
-    server.use(csrf({
-        cookie: true,
-    }));
+    server.use(
+        csrf({
+            cookie: true,
+        })
+    );
 
     // Trailing Slash, 301 Redirect
     server.use((req, res, next) => {
@@ -59,10 +61,15 @@ module.exports = function(devServer = () => {}) {
         const context = app.createContext({
             req,
             env: process.env.NODE_ENV || 'local',
-            siteUrl: process.env.SITE_URL || `${req.protocol}://${process.env.VIRTUAL_HOST}` || `${req.protocol}://${req.hostname}`,
-            staticAssetsBase: process.env.STATIC_ASSETS_BASE ? process.env.STATIC_ASSETS_BASE : '',
+            siteUrl: process.env.SITE_URL ||
+                `${req.protocol}://${process.env.VIRTUAL_HOST}` ||
+                `${req.protocol}://${req.hostname}`,
+            staticAssetsBase: process.env.STATIC_ASSETS_BASE
+                ? process.env.STATIC_ASSETS_BASE
+                : '',
             aws: {
-                useS3: process.env.USE_S3 && process.env.USE_S3 !== 'false' || false,
+                useS3: (process.env.USE_S3 && process.env.USE_S3 !== 'false') ||
+                    false,
                 bucket: process.env.S3_BUCKET || 'madeinhaus',
                 prefix: process.env.S3_PREFIX || '',
                 folder: process.env.S3_PATH || process.env.NODE_ENV || '',
@@ -77,7 +84,10 @@ module.exports = function(devServer = () => {}) {
 
         match({ routes, location }, (error, redirectLocation, renderProps) => {
             if (redirectLocation) {
-                res.redirect(301, redirectLocation.pathname + redirectLocation.search);
+                res.redirect(
+                    301,
+                    redirectLocation.pathname + redirectLocation.search
+                );
             } else if (error) {
                 res.status(500).send(error.message);
             } else {
@@ -89,13 +99,14 @@ module.exports = function(devServer = () => {}) {
                 appState.env = process.env.NODE_ENV || 'local';
                 res.expose(appState, 'App');
 
-                const props = Object.assign(
-                    {},
-                    renderProps,
-                    { context: context.getComponentContext() }
-                );
+                const props = Object.assign({}, renderProps, {
+                    context: context.getComponentContext(),
+                });
 
-                const RouterComponent = provideContext(RouterContext, app.customContexts);
+                const RouterComponent = provideContext(
+                    RouterContext,
+                    app.customContexts
+                );
                 const HtmlComponent = provideContext(Html, app.customContexts);
 
                 const head = Helmet.rewind();
@@ -112,8 +123,8 @@ module.exports = function(devServer = () => {}) {
                         markup,
                         location,
                         head,
-                    }
-                ));
+                    })
+                );
 
                 res.send(`<!DOCTYPE html>${html}`);
             }
@@ -133,10 +144,9 @@ module.exports = function(devServer = () => {}) {
             });
 
             setTimeout(() => {
-                debug('Server didn\'t stop in top, terminating');
+                debug("Server didn't stop in top, terminating");
                 process.exit(0);
             }, 9.9 * 1000);
         });
     });
-
 };

@@ -32,7 +32,7 @@ export default class Waves {
         // Draw the view now:
         Paper.view.draw();
 
-        Paper.view.onResize = (event) => {
+        Paper.view.onResize = event => {
             this.drawBg();
             this.init();
         };
@@ -79,12 +79,11 @@ export default class Waves {
     }
 
     render() {
-
         let scale = 1;
-        Paper.view.onFrame = (event) => {
+        Paper.view.onFrame = event => {
             // On each frame, rotate the path by 3 degrees:
             this.path.rotate(1);
-            this.circle.scale(scale += 0.0001);
+            this.circle.scale((scale += 0.0001));
 
             if (!this.circle.bounds.topLeft.isInside(Paper.view.bounds)) {
                 scale = 0.1;

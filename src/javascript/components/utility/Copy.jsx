@@ -10,15 +10,16 @@ export default function Copy(props) {
 
     const textarray = text.split(' ');
     const lastWord = textarray.length - props.orphans;
-    const joinedText = textarray.slice(0, lastWord).join(' ') + ' ' + textarray.slice(lastWord).join('&nbsp;');
+    const joinedText =
+        textarray.slice(0, lastWord).join(' ') +
+        ' ' +
+        textarray.slice(lastWord).join('&nbsp;');
 
     function renderText() {
         return { __html: joinedText };
     }
 
-    return (
-        <Tag className="copy-html" dangerouslySetInnerHTML={renderText()} />
-    );
+    return <Tag className="copy-html" dangerouslySetInnerHTML={renderText()} />;
 }
 
 Copy.propTypes = {

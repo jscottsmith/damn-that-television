@@ -140,7 +140,7 @@ export default class PixyStix {
     }
 
     render() {
-        Paper.view.onFrame = (event) => {
+        Paper.view.onFrame = event => {
             this.lines.map(line => {
                 line.rotate(this.ROTATION_SPEED);
             });

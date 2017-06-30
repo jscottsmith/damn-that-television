@@ -85,8 +85,12 @@ export default class Diamonds {
         let amount = rows * columns;
 
         // take the remainder after adding all the diamonds
-        const xPadding = (Paper.view.bounds.width - (rows * size + (rows - 1) * gutter)) / 2;
-        const yPadding = (Paper.view.bounds.height - (columns * size + (columns - 1) * gutter)) / 2;
+        const xPadding =
+            (Paper.view.bounds.width - (rows * size + (rows - 1) * gutter)) / 2;
+        const yPadding =
+            (Paper.view.bounds.height -
+                (columns * size + (columns - 1) * gutter)) /
+            2;
 
         // diamond position
         let x = xPadding + size / 2;
@@ -106,10 +110,10 @@ export default class Diamonds {
 
             // Layout
             if (x + gutter + size <= maxX) {
-                x += (gutter + size);
+                x += gutter + size;
             } else {
                 x = xPadding + size / 2;
-                y += (gutter + size);
+                y += gutter + size;
             }
 
             // increment degrees
@@ -149,7 +153,7 @@ export default class Diamonds {
     }
 
     render() {
-        Paper.view.onFrame = (event) => {
+        Paper.view.onFrame = event => {
             // Animate things
             this.diamond.definition.rotate(this.rotateDelta);
         };
