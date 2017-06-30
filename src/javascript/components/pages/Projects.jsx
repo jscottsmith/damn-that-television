@@ -1,4 +1,5 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 
@@ -20,7 +21,13 @@ export default class Projects extends PureComponent {
                         const title = project.title;
                         const key = project.slug;
 
-                        return <li key={key}><Link to={url} className="big-link">{title}</Link></li>;
+                        return (
+                            <li key={key}>
+                                <Link to={url} className="big-link">
+                                    {title}
+                                </Link>
+                            </li>
+                        );
                     })}
                 </ul>
             </article>

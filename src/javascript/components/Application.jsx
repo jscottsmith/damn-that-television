@@ -1,4 +1,5 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import Helmet from 'react-helmet';
 import Navigation from './Navigation';
@@ -8,7 +9,6 @@ import { connectToStores } from 'fluxible-addons-react';
 import 'sass/styles';
 
 class Application extends PureComponent {
-
     static propTypes = {
         appState: PropTypes.object.isRequired,
         children: PropTypes.node.isRequired,
@@ -39,7 +39,11 @@ class Application extends PureComponent {
                     { name: 'twitter:description', content: pageDescription },
                     { name: 'twitter:image', content: pageThumb },
                     // Facebook OG
-                    { property: 'og:url', content: this.context.siteUrl() + this.props.location.pathname },
+                    {
+                        property: 'og:url',
+                        content: this.context.siteUrl() +
+                            this.props.location.pathname,
+                    },
                     { property: 'og:description', content: pageDescription },
                     { property: 'og:image', content: pageThumb },
                     { property: 'og:type', content: 'website' },
@@ -68,9 +72,13 @@ class Application extends PureComponent {
     }
 }
 
-Application = connectToStores(Application, ['ApplicationStore', 'ProjectsStore'], (context) => ({
-    appState: context.getStore('ApplicationStore').getState(),
-    projects: context.getStore('ProjectsStore').getState(),
-}));
+Application = connectToStores(
+    Application,
+    ['ApplicationStore', 'ProjectsStore'],
+    context => ({
+        appState: context.getStore('ApplicationStore').getState(),
+        projects: context.getStore('ProjectsStore').getState(),
+    })
+);
 
 export default Application;

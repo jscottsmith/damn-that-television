@@ -90,9 +90,10 @@
     "fluxible-addons-react": "^0.2.0",
     "gsap": "^1.18.2",
     "lodash": "^4.3.0",
-    "react": "15.4.2",
+    "prop-types": "^15.5.10",
+    "react": "15.6.1",
     "react-addons-transition-group": "15.4.2",
-    "react-dom": "15.4.2",
+    "react-dom": "15.6.1",
     "react-helmet": "^4.0.0",
     "react-router": "3.0.2"
   }
