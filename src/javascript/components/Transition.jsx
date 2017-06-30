@@ -1,8 +1,8 @@
 import React, { PropTypes, PureComponent } from 'react';
+import loadImage from '../utils/loadImage';
 import cx from 'classnames';
 
 class Transition extends PureComponent {
-
     static propTypes = {
         color: PropTypes.string.isRequired,
         pattern: PropTypes.string.isRequired,
@@ -13,7 +13,7 @@ class Transition extends PureComponent {
         time: 0.7,
         color: '#ECBAB4',
         pattern: '/images/pattern_4.svg',
-    }
+    };
 
     state = {
         isEntering: false,
@@ -25,7 +25,7 @@ class Transition extends PureComponent {
 
     componentDidMount() {
         // load the image for canvas and saves to state
-        this.loadImage(this.props.pattern)
+        loadImage(this.props.pattern)
             .then(result => {
                 this.setState({
                     pattern: result,
@@ -53,23 +53,6 @@ class Transition extends PureComponent {
         this.refs.wipe.height = window.innerHeight * devicePixelRatio;
     }
 
-    loadImage(url) {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.src = url;
-            if (img.naturalWidth && img.naturalHeight && img.complete) {
-                resolve(img);
-            } else {
-                img.onload = () => {
-                    resolve(img);
-                };
-                img.onerror = () => {
-                    reject(url);
-                };
-            }
-        });
-    }
-
     drawWipe = () => {
         // clear previous drawings
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -84,10 +67,13 @@ class Transition extends PureComponent {
 
         this.context.fillStyle = this.props.color;
         this.context.fillRect(x, y, w, h);
-        const pattern = this.context.createPattern(this.state.pattern, 'repeat');
+        const pattern = this.context.createPattern(
+            this.state.pattern,
+            'repeat'
+        );
         this.context.fillStyle = pattern;
         this.context.fillRect(x, y, w, h);
-    }
+    };
 
     // componentWillAppear(callback) {}
     // componentDidAppear() {}
@@ -99,18 +85,23 @@ class Transition extends PureComponent {
             transitionComplete: false,
         });
 
-        TweenLite.fromTo(this.wipe, this.props.time, {
-            x: -this.canvas.width,
-        }, {
-            x: 0,
-            ease: Power3.easeOut,
-            onUpdate: () => {
-                this.drawWipe();
+        TweenLite.fromTo(
+            this.wipe,
+            this.props.time,
+            {
+                x: -this.canvas.width,
             },
-            onComplete() {
-                callback();
-            },
-        });
+            {
+                x: 0,
+                ease: Power3.easeOut,
+                onUpdate: () => {
+                    this.drawWipe();
+                },
+                onComplete() {
+                    callback();
+                },
+            }
+        );
     }
 
     componentDidEnter() {
@@ -118,22 +109,27 @@ class Transition extends PureComponent {
             isEntering: false,
         });
 
-        TweenLite.fromTo(this.wipe, this.props.time, {
-            x: 0,
-        }, {
-            x: this.canvas.width,
-            ease: Power3.easeOut,
-            delay: 0.5,
-            onUpdate: () => {
-                this.drawWipe();
+        TweenLite.fromTo(
+            this.wipe,
+            this.props.time,
+            {
+                x: 0,
             },
-            onComplete: () => {
-                this.setState({
-                    wipeIsVisible: false,
-                    transitionComplete: true,
-                });
-            },
-        });
+            {
+                x: this.canvas.width,
+                ease: Power3.easeOut,
+                delay: 0.5,
+                onUpdate: () => {
+                    this.drawWipe();
+                },
+                onComplete: () => {
+                    this.setState({
+                        wipeIsVisible: false,
+                        transitionComplete: true,
+                    });
+                },
+            }
+        );
     }
 
     componentWillLeave(callback) {
