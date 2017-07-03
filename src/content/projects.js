@@ -12,4 +12,4 @@ const projects = [
     zillowHomeis,
 ];
 
-export { projects };
+export default projects;
