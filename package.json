@@ -7,10 +7,10 @@
   "private": false,
   "description": "Work by J Scott Smith",
   "scripts": {
-    "start": "npm run production",
+    "start": "npm run prod",
     "postinstall": "npm run build",
-    "development": "NODE_PATH=./src NODE_ENV=development node ./src/server/server.babel.js",
-    "production": "NODE_PATH=./src NODE_ENV=production node ./src/server/server.babel.js",
+    "dev": "NODE_PATH=./src NODE_ENV=development node ./src/server/server.babel.js",
+    "prod": "NODE_PATH=./src NODE_ENV=production node ./src/server/server.babel.js",
     "build": "npm run build:client && npm run build:server",
     "build:server": "NODE_ENV=production webpack --config ./webpack/server.babel.js",
     "build:client": "NODE_ENV=production webpack --config ./webpack/client.babel.js",
