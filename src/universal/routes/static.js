@@ -1,4 +1,3 @@
-export { default as Index } from 'universal/components/pages/Index.js';
 export { default as Home } from 'universal/components/pages/Home.js';
 export {
     default as CounterContainer,
