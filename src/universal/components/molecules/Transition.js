@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import loadImage from '../../../client/utils/loadImage';
+import loadImage from '../../utils/LoadImage';
 import cx from 'classnames';
 import pattern from '../../../images/pattern_4.svg';
 

@@ -11,7 +11,7 @@ import createStore from '../universal/redux/createStore.js';
 import createHistory from 'history/createBrowserHistory';
 
 // Gsap
-import './libs/gsap';
+import '../universal/libs/gsap';
 
 const history = createHistory();
 const store = createStore(history);
