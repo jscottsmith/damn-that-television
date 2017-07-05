@@ -24,6 +24,7 @@ class Html extends Component {
         const state = store.getState();
 
         const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`;
+
         const Layout = PROD ? require('../../build/prerender.js') : () => {};
 
         const root =
@@ -31,7 +32,7 @@ class Html extends Component {
             renderToString(
                 <Provider store={store}>
                     <StaticRouter location={url} context={context}>
-                        <Layout />
+                        <Layout location={url} />
                     </StaticRouter>
                 </Provider>
             );
