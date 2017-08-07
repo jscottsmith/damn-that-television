@@ -1,4 +1,5 @@
 export { default as Home } from 'universal/components/pages/Home.js';
+export { default as NotFound } from 'universal/components/pages/NotFound.js';
 export {
     default as CounterContainer,
 } from 'universal/modules/counter/containers/Counter/CounterContainer';
@@ -8,3 +9,4 @@ export {
 export {
     default as ProjectContainer,
 } from 'universal/modules/project/ProjectContainer';
+

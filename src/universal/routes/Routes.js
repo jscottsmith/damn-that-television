@@ -52,6 +52,16 @@ class Routes extends Component {
                             <RouteMap.CounterContainer {...this.props} />
                         )}
                     />
+                    <Route
+                        location={location}
+                        path="*"
+                        render={({ staticContext }) => {
+                            if (staticContext) {
+                                staticContext.status = 404;
+                            }
+                            return <RouteMap.NotFound />;
+                        }}
+                    />
                 </div>
             </AppContainer>
         );
