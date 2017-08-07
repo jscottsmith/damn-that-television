@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
 // Components
-// AppContainer aka Main
 import App from './containers/AppContainer.js';
 
 // Redux

@@ -1,6 +1,6 @@
 // Libraries
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect, Switch } from 'react-router';
 
 // Routes
 // For Development only
@@ -10,15 +10,15 @@ import * as RouteMap from './static.js';
 // import * as RouteMap from 'universal/routes/async.js';
 
 // Containers
-import AppContainer from 'universal/containers/App/AppContainer.js';
+import Main from 'universal/components/organisms/Main';
 // import PrivateRouteContainer from 'universal/containers/PrivateRoute/PrivateRouteContainer.js';
 
 class Routes extends Component {
     render() {
         const { location } = this.props;
         return (
-            <AppContainer location={location}>
-                <div>
+            <Main location={location}>
+                <Switch>
                     <Route
                         exact
                         location={location}
@@ -54,7 +54,6 @@ class Routes extends Component {
                     />
                     <Route
                         location={location}
-                        path="*"
                         render={({ staticContext }) => {
                             if (staticContext) {
                                 staticContext.status = 404;
@@ -62,8 +61,8 @@ class Routes extends Component {
                             return <RouteMap.NotFound />;
                         }}
                     />
-                </div>
-            </AppContainer>
+                </Switch>
+            </Main>
         );
     }
 }
