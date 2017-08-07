@@ -8,7 +8,7 @@ import Transition from '../molecules/Transition';
 // Global styles
 import '../../../sass/styles.scss';
 
-class App extends Component {
+class Main extends Component {
     static propTypes = {
         children: PropTypes.element.isRequired,
         location: PropTypes.object.isRequired,
@@ -59,4 +59,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Main;

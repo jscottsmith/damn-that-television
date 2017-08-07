@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import App from 'universal/components/organisms/App';
+import Main from 'universal/components/organisms/Main';
 
 class AppContainer extends Component {
     static propTypes = {
@@ -7,7 +7,7 @@ class AppContainer extends Component {
     };
 
     render() {
-        return <App {...this.props} />;
+        return <Main {...this.props} />;
     }
 }
 
