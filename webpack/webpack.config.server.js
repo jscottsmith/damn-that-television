@@ -34,6 +34,7 @@ export default {
         new ExtractTextPlugin('styles.css'),
         new webpack.optimize.UglifyJsPlugin({
             compressor: { warnings: false },
+            output: { comments: false },
         }),
         new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
         new webpack.DefinePlugin({

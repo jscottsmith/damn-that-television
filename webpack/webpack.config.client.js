@@ -56,7 +56,7 @@ export default {
         new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 10 }),
         new webpack.optimize.UglifyJsPlugin({
             compressor: { warnings: false },
-            comments: /(?:)/,
+            output: { comments: false },
         }),
         new AssetsPlugin({ path: build, filename: 'assets.json' }),
         new webpack.NoEmitOnErrorsPlugin(),
