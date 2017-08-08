@@ -2,6 +2,7 @@ import http from 'http';
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
+import compression from 'compression';
 import 'colors';
 
 // // Redux Dev Tools server
@@ -28,6 +29,7 @@ const app = express();
 // ];
 
 app.use(bodyParser.json());
+app.use(compression());
 
 // commonMiddleware.forEach(ware => {
 //     app.use(ware);
