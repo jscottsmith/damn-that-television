@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import ReactTransitionGroup from 'react-addons-transition-group';
 import Helmet from 'react-helmet';
-
+import RouteTransition from '../molecules/RouteTransition';
 import Navigation from '../organisms/Navigation';
-import Transition from '../molecules/Transition';
 
 // Global styles
 import '../../../sass/styles.scss';
@@ -44,16 +42,14 @@ class Main extends Component {
     }
 
     render() {
-        const key = this.props.location.pathname;
+        const { children, location } = this.props;
 
         return (
             <main>
                 <Navigation />
-                <ReactTransitionGroup component="div">
-                    <Transition key={key}>
-                        {this.props.children}
-                    </Transition>
-                </ReactTransitionGroup>
+                <RouteTransition location={location}>
+                    {children}
+                </RouteTransition>
             </main>
         );
     }
