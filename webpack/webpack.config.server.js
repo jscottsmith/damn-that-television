@@ -1,7 +1,9 @@
 import path from 'path';
 import webpack from 'webpack';
+import merge from 'webpack-merge';
 import qs from 'querystring';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import base from './webpack.config.base.js';
 
 // Paths
 const root = process.cwd();
@@ -12,8 +14,7 @@ const server = path.join(src, 'server');
 
 const serverInclude = [server, universal];
 
-export default {
-    context: src,
+export default merge(base, {
     entry: {
         prerender: './universal/routes/Routes.js',
     },
@@ -24,10 +25,6 @@ export default {
         filename: '[name].js',
         libraryTarget: 'commonjs2',
         publicPath: '/static/',
-    },
-    resolve: {
-        extensions: ['.js'],
-        modules: [src, 'node_modules'],
     },
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),
@@ -90,4 +87,4 @@ export default {
             },
         ],
     },
-};
+});

@@ -1,6 +1,8 @@
 import path from 'path';
 import webpack from 'webpack';
+import merge from 'webpack-merge';
 import qs from 'querystring';
+import base from './webpack.config.base.js';
 
 import autoprefixer from 'autoprefixer';
 import AssetsPlugin from 'assets-webpack-plugin';
@@ -18,8 +20,7 @@ const clientInclude = [clientSrc, universalSrc];
 // Cache vendor && client javascript on CDN...
 const vendor = ['react', 'react-dom', 'react-router', 'react-redux', 'redux'];
 
-export default {
-    context: src,
+export default merge(base, {
     entry: {
         app: ['babel-polyfill/dist/polyfill.js', './client/client.js'],
         vendor,
@@ -31,8 +32,6 @@ export default {
         publicPath: '/static/',
     },
     resolve: {
-        extensions: ['.js'],
-        modules: [src, 'node_modules'],
         unsafeCache: true,
     },
     node: {
@@ -113,4 +112,4 @@ export default {
             },
         ],
     },
-};
+});

@@ -1,6 +1,8 @@
 import path from 'path';
 import webpack from 'webpack';
+import merge from 'webpack-merge';
 import qs from 'querystring';
+import base from './webpack.config.base.js';
 
 const root = process.cwd();
 const src = path.join(root, 'src');
@@ -15,9 +17,8 @@ const babelQuery = {
     plugins: ['transform-decorators-legacy', 'react-hot-loader/babel'],
 };
 
-export default {
+export default merge(base, {
     devtool: 'eval',
-    context: src,
     entry: {
         app: [
             'babel-polyfill/dist/polyfill.js',
@@ -42,10 +43,6 @@ export default {
             'process.env.NODE_ENV': JSON.stringify('development'),
         }),
     ],
-    resolve: {
-        extensions: ['.js'],
-        modules: [src, 'node_modules'],
-    },
     module: {
         loaders: [
             {
@@ -90,4 +87,4 @@ export default {
             },
         ],
     },
-};
+});
