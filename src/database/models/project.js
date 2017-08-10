@@ -3,12 +3,14 @@ module.exports = function(sequelize, DataTypes) {
     const Project = sequelize.define(
         'Project',
         {
-            title: DataTypes.STRING,
-            allowNull: false,
-        },
-        {
-            content: DataTypes.STRING,
-            allowNull: false,
+            title: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            content: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
         },
         {
             classMethods: {

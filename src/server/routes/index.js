@@ -1,6 +1,6 @@
 const { projects } = require('../controllers');
 
-export default function routes(app) {
+export default function apiRoutes(app) {
     app.get('/api', (req, res) =>
         res.status(200).send({
             message: 'Welcome to the API!',
@@ -8,4 +8,5 @@ export default function routes(app) {
     );
 
     app.post('/api/projects', projects.create);
+    app.get('/api/projects', projects.list);
 }
