@@ -3,6 +3,7 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import routes from './routes';
 import 'colors';
 
 // // Redux Dev Tools server
@@ -42,11 +43,15 @@ app.use(compression());
 
 if (PROD) {
     app.use('/static', express.static('build'));
+
+    routes(app);
     app.get('*', renderPage);
 } else {
-    const HMR = require('./hmr.js');
     // Hot Module Reloading
+    const HMR = require('./hmr.js');
     HMR(app);
+
+    routes(app);
     app.get('*', renderDevPage);
 }
 

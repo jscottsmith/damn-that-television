@@ -15,7 +15,8 @@
     "build:server": "NODE_ENV=production webpack --config ./webpack/server.babel.js",
     "build:client": "NODE_ENV=production webpack --config ./webpack/client.babel.js",
     "lint": "eslint -c .eslintrc src --ext .js,.jsx",
-    "lint-autofix": "eslint -c .eslintrc --fix src --ext .js,.jsx"
+    "lint-autofix": "eslint -c .eslintrc --fix src --ext .js,.jsx",
+    "db:migrate": "./node_modules/.bin/sequelize --config ./src/database/config/config.js db:migrate"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,7 @@
     "colors": "^1.1.2",
     "compression": "^1.7.0",
     "connect-session-sequelize": "^4.1.0",
+    "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "express-session": "^1.15.3",
     "gsap": "^1.20.2",
