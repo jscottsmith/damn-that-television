@@ -33,9 +33,7 @@ const Paths = {
 
 const Entries = {
     client: join(client, 'client.js'),
-    server: join(server, 'server.js'),
     routes: join(universal, 'routes/Routes.js'),
-    static: join(universal, 'routes/static.js'),
 };
 
 export { Entries };

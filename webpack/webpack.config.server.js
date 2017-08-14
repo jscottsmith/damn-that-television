@@ -10,7 +10,6 @@ const serverInclude = [Paths.src];
 export default merge(base, {
     entry: {
         routes: Entries.routes,
-        static: Entries.static,
     },
     target: 'node',
     externals: [nodeExternals()],
