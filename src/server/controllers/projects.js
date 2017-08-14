@@ -1,9 +1,9 @@
-const { Project } = require('Database/models/index');
+import { Project } from 'Database/models/index';
 
-module.exports = {
+export default {
     // Example to create
     create(req, res) {
-        // console.log('REQUEST', req.body.title, req.body.content);
+        console.log('CREATE REQUEST');
         return Project.create({
             title: req.body.title,
             content: req.body.content,
@@ -13,8 +13,9 @@ module.exports = {
     },
 
     list(req, res) {
+        console.log('LIST REQUEST');
         return Project.all()
-            .then(todos => res.status(200).send(todos))
+            .then(projects => res.status(200).send(projects))
             .catch(error => res.status(400).send(error));
     },
 };

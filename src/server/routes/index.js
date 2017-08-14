@@ -1,4 +1,4 @@
-const { projects } = require('../controllers');
+import { projects } from '../controllers';
 
 export default function apiRoutes(app) {
     app.get('/api', (req, res) =>

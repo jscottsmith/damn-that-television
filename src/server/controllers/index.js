@@ -1,4 +1,4 @@
-const projects = require('./projects');
+import projects from './projects';
 
 export default {
     projects,

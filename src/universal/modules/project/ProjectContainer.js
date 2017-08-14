@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Components
-import Project from 'universal/components/templates/Project';
+import Project from 'Universal/components/templates/Project';
 
 @connect(mapStateToProps)
 class ProjectContainer extends Component {
@@ -16,7 +17,7 @@ class ProjectContainer extends Component {
 }
 
 function mapStateToProps(state, props) {
-    const projects = state.projects.toArray();
+    const projects = state.project.toArray();
     return {
         projects,
     };
