@@ -4,6 +4,7 @@ const root = process.cwd();
 const src = join(root, 'src');
 const build = join(root, 'build');
 const client = join(src, 'client');
+const server = join(src, 'server');
 const sass = join(src, 'sass');
 const universal = join(src, 'universal');
 const content = join(src, 'content');
@@ -29,5 +30,14 @@ const Paths = {
     pages,
     templates,
 };
+
+const Entries = {
+    client: join(client, 'client.js'),
+    server: join(server, 'server.js'),
+    routes: join(universal, 'routes/Routes.js'),
+    static: join(universal, 'routes/static.js'),
+};
+
+export { Entries };
 
 export default Paths;

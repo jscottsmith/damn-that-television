@@ -3,15 +3,14 @@ import merge from 'webpack-merge';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import base from './webpack.config.base.js';
 import nodeExternals from 'webpack-node-externals';
-import Paths from './paths';
-import { join } from 'path';
+import Paths, { Entries } from './paths';
 
 const serverInclude = [Paths.src];
 
 export default merge(base, {
     entry: {
-        routes: join(Paths.universal, 'routes/Routes.js'),
-        static: join(Paths.universal, 'routes/static.js'),
+        routes: Entries.routes,
+        static: Entries.static,
     },
     target: 'node',
     externals: [nodeExternals()],

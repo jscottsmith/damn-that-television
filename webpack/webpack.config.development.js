@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import base from './webpack.config.base.js';
-import Paths from './paths';
+import Paths, { Entries } from './paths';
 
 const devInclude = [Paths.client, Paths.universal];
 
@@ -17,7 +17,7 @@ export default merge(base, {
             'babel-polyfill/dist/polyfill.js',
             'react-hot-loader/patch',
             'webpack-hot-middleware/client?noInfo=false',
-            './client/client.js',
+            Entries.client,
         ],
     },
     output: {

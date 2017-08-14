@@ -3,7 +3,7 @@ import merge from 'webpack-merge';
 import base from './webpack.config.base.js';
 import AssetsPlugin from 'assets-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import Paths from './paths';
+import Paths, { Entries } from './paths';
 
 const clientInclude = [Paths.client, Paths.universal];
 
@@ -12,7 +12,7 @@ const vendor = ['react', 'react-dom', 'react-router', 'react-redux', 'redux'];
 
 export default merge(base, {
     entry: {
-        app: ['babel-polyfill/dist/polyfill.js', './client/client.js'],
+        app: ['babel-polyfill/dist/polyfill.js', Entries.client],
         vendor,
     },
     output: {
