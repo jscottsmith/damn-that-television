@@ -1,5 +1,6 @@
 // Libraries
-import React, { Component, PropTypes } from 'react';
+import React, { Componet } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Components
