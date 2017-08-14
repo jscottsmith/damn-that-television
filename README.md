@@ -4,15 +4,16 @@ Work by J Scott Smith.
 
 ## Development
 
-Stack:
+Notable Dependencies:
 
-- React
+- React 15
 - Redux
-- React Router 4
+- React Router v4
 - Webpack 3
 - Babel
 - Express
 - Immutable JS
+- SSR and Fetch with Axios
 
 Start webpack and dev server on `localhost:3000`:
 
