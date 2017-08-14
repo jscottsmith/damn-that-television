@@ -67,14 +67,14 @@ app.use(function(req, res, next) {
 
 // development error handler
 if (!PROD) {
-    app.use(function(err, req, res, next) {
+    app.use((err, req, res, next) => {
         console.error('error : ', err);
         res.status(err.status || 500);
     });
 }
 
 // production error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
     console.error('error : ', err.message);
     res.status(err.status || 500);
 });
