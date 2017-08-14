@@ -14,6 +14,7 @@
     "build": "npm run build:client && npm run build:server",
     "build:server": "NODE_ENV=production webpack --config ./webpack/server.babel.js --display-modules",
     "build:client": "NODE_ENV=production webpack --config ./webpack/client.babel.js --display-modules",
+    "build:dev": "NODE_ENV=development webpack --config ./webpack/development.babel.js --display-modules",
     "lint": "eslint -c .eslintrc src --ext .js,.jsx",
     "lint-autofix": "eslint -c .eslintrc --fix src --ext .js,.jsx",
     "db:migrate": "./node_modules/.bin/sequelize --config ./src/database/config/config.js db:migrate"
