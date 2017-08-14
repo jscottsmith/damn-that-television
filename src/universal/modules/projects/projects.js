@@ -1,8 +1,55 @@
 import { List } from 'immutable';
-import projects from '../../../content/projects.js';
+import 'isomorphic-fetch';
+import tempProjects from '../../../content/projects.js';
+import axios from 'axios';
 
-const initialState = List(projects);
+const initialState = List(tempProjects);
 
+// Event Constant
+export const PROJECTS_LOADED = 'PROJECTS_LOADED';
+
+// Reducer
 export default function reducer(state = initialState, action = {}) {
-    return state;
+    switch (action.type) {
+        case PROJECTS_LOADED:
+            // const projects = List(action.projects);
+            // const projects = initialState;
+            console.log('ACTION DATA', action.projects);
+        // return Object.assign({}, state, {
+        //     projects,
+        // });
+
+
+        default:
+            return state;
+    }
 }
+
+// Fetcher
+// NOTE: only absolute urls are supported
+export const fetchProjects = () => dispatch => {
+    const domain = process.env.DOMAIN_NAME;
+    const port = process.env.API_PORT;
+    const path = '/api/projects';
+    const url = `${domain}:${port}${path}`;
+
+    const TEMP_URL = `http://localhost:3000${path}`;
+    console.log('GET URL', url);
+
+    return axios
+        .get(TEMP_URL)
+        .then(response => {
+            // console.log(response.data);
+            // console.log(response.status);
+            // console.log(response.statusText);
+            // console.log(response.headers);
+            // console.log(response.config);
+            dispatch({
+                type: PROJECTS_LOADED,
+                projects: response.data,
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};

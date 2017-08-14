@@ -1,14 +1,18 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import RouteTransition from '../molecules/RouteTransition';
 import Navigation from '../organisms/Navigation';
+import { renderRoutes } from 'react-router-config';
 
-// Global styles
-import '../../../sass/styles.scss';
+// Global styles imported on dev only
+// Html on server gets extracted text stylesheet in production
+const PROD = process.env.NODE_ENV === 'production';
+if (!PROD) require('Styles/styles.scss');
 
 class Main extends Component {
     static propTypes = {
-        children: PropTypes.element.isRequired,
+        route: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
     };
 
@@ -42,13 +46,13 @@ class Main extends Component {
     }
 
     render() {
-        const { children, location } = this.props;
+        const { location, route } = this.props;
 
         return (
             <main>
                 <Navigation />
                 <RouteTransition location={location}>
-                    {children}
+                    {renderRoutes(route.routes)}
                 </RouteTransition>
             </main>
         );

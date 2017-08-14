@@ -1,24 +1,27 @@
 import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import qs from 'querystring';
+// import qs from 'querystring';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import base from './webpack.config.base.js';
+import nodeExternals from 'webpack-node-externals';
 
 // Paths
 const root = process.cwd();
 const src = path.join(root, 'src');
 const build = path.join(root, 'build');
 const universal = path.join(src, 'universal');
-const server = path.join(src, 'server');
+// const server = path.join(src, 'server');
 
-const serverInclude = [server, universal];
+const serverInclude = [src];
 
 export default merge(base, {
     entry: {
-        prerender: './universal/routes/Routes.js',
+        routes: path.join(universal, 'routes/Routes.js'),
+        static: path.join(universal, 'routes/static.js'),
     },
     target: 'node',
+    externals: [nodeExternals()],
     output: {
         path: build,
         chunkFilename: '[name]_[chunkhash].js',

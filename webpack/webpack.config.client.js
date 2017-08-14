@@ -1,10 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import qs from 'querystring';
 import base from './webpack.config.base.js';
-
-import autoprefixer from 'autoprefixer';
 import AssetsPlugin from 'assets-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
@@ -14,6 +11,8 @@ const build = path.join(root, 'build');
 
 const clientSrc = path.join(src, 'client');
 const universalSrc = path.join(src, 'universal');
+const contentSrc = path.join(src, 'content');
+const databaseSrc = path.join(src, 'database');
 
 const clientInclude = [clientSrc, universalSrc];
 
@@ -41,10 +40,6 @@ export default merge(base, {
     plugins: [
         new webpack.NamedModulesPlugin(),
         new ExtractTextPlugin('styles.css'),
-        new webpack.NormalModuleReplacementPlugin(
-            /\.\.\/routes\/static/,
-            '../routes/async'
-        ),
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor', 'manifest'],
             minChunks: Infinity,
@@ -82,12 +77,13 @@ export default merge(base, {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 include: clientInclude,
+                exclude: [databaseSrc, contentSrc, /node_modules/],
             },
 
             // Sass
             {
                 test: /\.scss$/,
-                include: [src, 'sass'],
+                include: path.join(src, 'sass'),
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [

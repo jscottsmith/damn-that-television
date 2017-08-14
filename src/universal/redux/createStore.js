@@ -1,10 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-
-import {
-    // ConnectedRouter,
-    routerReducer,
-    routerMiddleware,
-} from 'react-router-redux';
+import { routerReducer, routerMiddleware } from 'react-router-redux';
+import thunk from 'redux-thunk';
 
 import * as Reducers from './reducers/index.js';
 
@@ -33,7 +29,7 @@ export default history => {
     const store = createStore(
         reducers,
         // initialState,
-        composeEnhancers(applyMiddleware(middleware), ...enhancers)
+        composeEnhancers(applyMiddleware(middleware, thunk), ...enhancers)
     );
 
     if (module.hot) {

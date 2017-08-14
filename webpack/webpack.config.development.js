@@ -1,7 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import qs from 'querystring';
 import base from './webpack.config.base.js';
 
 const root = process.cwd();
