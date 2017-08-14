@@ -1,41 +1,21 @@
-import path from 'path';
 import webpack from 'webpack';
-import merge from 'webpack-merge';
-
-const root = process.cwd();
-const src = path.join(root, 'src');
-const universalSrc = path.join(src, 'universal');
+import Paths from './paths';
 
 export default {
-    context: src,
+    context: Paths.src,
     resolve: {
         extensions: ['.js'],
-        modules: [src, 'node_modules'],
+        modules: [Paths.src, 'node_modules'],
         unsafeCache: true,
         alias: {
-            Styles: path.resolve(__dirname, path.join(src, 'sass')),
-            Atoms: path.resolve(
-                __dirname,
-                path.join(universalSrc, 'components/atoms')
-            ),
-            Molecules: path.resolve(
-                __dirname,
-                path.join(universalSrc, 'components/molecules')
-            ),
-            Organisms: path.resolve(
-                __dirname,
-                path.join(universalSrc, 'components/organisms')
-            ),
-            Pages: path.resolve(
-                __dirname,
-                path.join(universalSrc, 'components/pages')
-            ),
-            Templates: path.resolve(
-                __dirname,
-                path.join(universalSrc, 'components/templates')
-            ),
-            Universal: path.resolve(__dirname, path.join(universalSrc)),
-            Database: path.resolve(__dirname, path.join(src, 'database')),
+            Styles: Paths.sass,
+            Atoms: Paths.atoms,
+            Molecules: Paths.molecules,
+            Organisms: Paths.organisms,
+            Pages: Paths.pages,
+            Templates: Paths.templates,
+            Universal: Paths.universal,
+            Database: Paths.database,
         },
     },
 };

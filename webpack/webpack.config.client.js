@@ -1,20 +1,11 @@
-import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import base from './webpack.config.base.js';
 import AssetsPlugin from 'assets-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import Paths from './paths';
 
-const root = process.cwd();
-const src = path.join(root, 'src');
-const build = path.join(root, 'build');
-
-const clientSrc = path.join(src, 'client');
-const universalSrc = path.join(src, 'universal');
-const contentSrc = path.join(src, 'content');
-const databaseSrc = path.join(src, 'database');
-
-const clientInclude = [clientSrc, universalSrc];
+const clientInclude = [Paths.client, Paths.universal];
 
 // Cache vendor && client javascript on CDN...
 const vendor = ['react', 'react-dom', 'react-router', 'react-redux', 'redux'];
@@ -27,7 +18,7 @@ export default merge(base, {
     output: {
         filename: '[name]_[chunkhash].js',
         chunkFilename: '[name]_[chunkhash].js',
-        path: build,
+        path: Paths.build,
         publicPath: '/static/',
     },
     resolve: {
@@ -52,7 +43,7 @@ export default merge(base, {
             compressor: { warnings: false },
             output: { comments: false },
         }),
-        new AssetsPlugin({ path: build, filename: 'assets.json' }),
+        new AssetsPlugin({ path: Paths.build, filename: 'assets.json' }),
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
             __CLIENT__: true,
@@ -77,20 +68,20 @@ export default merge(base, {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 include: clientInclude,
-                exclude: [databaseSrc, contentSrc, /node_modules/],
+                exclude: [Paths.database, Paths.content, /node_modules/],
             },
 
             // Sass
             {
                 test: /\.scss$/,
-                include: path.join(src, 'sass'),
+                include: Paths.sass,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
                         {
                             loader: 'css-loader',
                             options: {
-                                root: src,
+                                root: Paths.src,
                                 localIdentName: '[name]_[local]_[hash:base64:3]',
                                 sourceMap: false,
                                 importLoaders: 1,

@@ -1,15 +1,9 @@
-import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import base from './webpack.config.base.js';
+import Paths from './paths';
 
-const root = process.cwd();
-const src = path.join(root, 'src');
-
-const clientSrc = path.join(src, 'client');
-const universalSrc = path.join(src, 'universal');
-
-const clientInclude = [clientSrc, universalSrc];
+const devInclude = [Paths.client, Paths.universal];
 
 const babelQuery = {
     presets: ['react', ['es2015', { modules: false }], 'stage-0'],
@@ -29,7 +23,7 @@ export default merge(base, {
     output: {
         filename: 'app.js',
         chunkFilename: '[name]_[chunkhash].js',
-        path: path.join(root, 'build'),
+        path: Paths.build,
         publicPath: '/static/',
     },
     plugins: [
@@ -59,13 +53,13 @@ export default merge(base, {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: babelQuery,
-                include: clientInclude,
+                include: devInclude,
             },
 
             // Sass
             {
                 test: /\.scss$/,
-                include: [src, 'sass'],
+                include: Paths.sass,
                 loaders: [
                     'style-loader',
                     {

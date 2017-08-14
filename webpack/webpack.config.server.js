@@ -1,29 +1,22 @@
-import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-// import qs from 'querystring';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import base from './webpack.config.base.js';
 import nodeExternals from 'webpack-node-externals';
+import Paths from './paths';
+import { join } from 'path';
 
-// Paths
-const root = process.cwd();
-const src = path.join(root, 'src');
-const build = path.join(root, 'build');
-const universal = path.join(src, 'universal');
-// const server = path.join(src, 'server');
-
-const serverInclude = [src];
+const serverInclude = [Paths.src];
 
 export default merge(base, {
     entry: {
-        routes: path.join(universal, 'routes/Routes.js'),
-        static: path.join(universal, 'routes/static.js'),
+        routes: join(Paths.universal, 'routes/Routes.js'),
+        static: join(Paths.universal, 'routes/static.js'),
     },
     target: 'node',
     externals: [nodeExternals()],
     output: {
-        path: build,
+        path: Paths.build,
         chunkFilename: '[name]_[chunkhash].js',
         filename: '[name].js',
         libraryTarget: 'commonjs2',
@@ -58,14 +51,14 @@ export default merge(base, {
             // Sass
             {
                 test: /\.scss$/,
-                include: [src, 'sass'],
+                include: Paths.src,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
                         {
                             loader: 'css-loader',
                             options: {
-                                root: src,
+                                root: Paths.src,
                                 localIdentName: '[name]_[local]_[hash:base64:3]',
                                 sourceMap: false,
                                 importLoaders: 1,
