@@ -34,6 +34,7 @@ export default {
                 __dirname,
                 path.join(universalSrc, 'components/templates')
             ),
+            Universal: path.resolve(__dirname, path.join(universalSrc)),
             Database: path.resolve(__dirname, path.join(src, 'database')),
         },
     },
