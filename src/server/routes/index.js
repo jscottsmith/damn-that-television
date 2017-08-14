@@ -1,4 +1,4 @@
-import { projects } from '../controllers';
+import { projects as projectController } from '../controllers';
 
 export default function apiRoutes(app) {
     app.get('/api', (req, res) =>
@@ -7,6 +7,7 @@ export default function apiRoutes(app) {
         })
     );
 
-    app.post('/api/projects', projects.create);
-    app.get('/api/projects', projects.list);
+    app.post('/api/projects', projectController.create);
+    app.get('/api/projects', projectController.list);
+    app.get('/api/projects/:projectId', projectController.retrieve);
 }

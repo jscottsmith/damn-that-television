@@ -18,4 +18,18 @@ export default {
             .then(projects => res.status(200).send(projects))
             .catch(error => res.status(400).send(error));
     },
+
+    retrieve(req, res) {
+        console.log('RETRIEVE REQUEST');
+        return Project.findById(req.params.projectId)
+            .then(project => {
+                if (!project) {
+                    return res.status(404).send({
+                        message: 'Project Not Found',
+                    });
+                }
+                return res.status(200).send(project);
+            })
+            .catch(error => res.status(400).send(error));
+    },
 };
