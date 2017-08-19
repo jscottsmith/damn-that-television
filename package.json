@@ -17,7 +17,9 @@
     "build:dev": "NODE_ENV=development webpack --config ./webpack/development.babel.js --display-modules",
     "lint": "eslint -c .eslintrc src --ext .js,.jsx",
     "lint-autofix": "eslint -c .eslintrc --fix src --ext .js,.jsx",
-    "db:migrate": "./node_modules/.bin/sequelize --config ./src/database/config/config.js db:migrate"
+    "db:migrate": "./node_modules/.bin/sequelize --config ./src/database/config/config.js db:migrate",
+    "db:seed:all": "./node_modules/.bin/sequelize --config ./src/database/config/config.js db:seed:all",
+    "docker:dev": "docker-compose --verbose up -d"
   },
   "repository": {
     "type": "git",
