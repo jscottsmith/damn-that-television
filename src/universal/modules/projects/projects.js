@@ -9,16 +9,13 @@ const initialState = List(tempProjects);
 export const PROJECTS_LOADED = 'PROJECTS_LOADED';
 
 // Reducer
-export default function reducer(state = initialState, action = {}) {
+export default function reducer(state = [], action = {}) {
     switch (action.type) {
         case PROJECTS_LOADED:
-            // const projects = List(action.projects);
+            const projects = List(action.projects);
             // const projects = initialState;
             console.log('ACTION DATA', action.projects);
-        // return Object.assign({}, state, {
-        //     projects,
-        // });
-
+            return projects;
 
         default:
             return state;
@@ -28,13 +25,13 @@ export default function reducer(state = initialState, action = {}) {
 // Fetcher
 // NOTE: only absolute urls are supported
 export const fetchProjects = () => dispatch => {
-    const domain = process.env.DOMAIN_NAME;
-    const port = process.env.API_PORT;
+    // const domain = process.env.DOMAIN_NAME;
+    // const port = process.env.API_PORT;
     const path = '/api/projects';
-    const url = `${domain}:${port}${path}`;
+    // const url = `${domain}:${port}${path}`;
 
     const TEMP_URL = `http://localhost:3000${path}`;
-    console.log('GET URL', url);
+    console.log('GET URL', TEMP_URL);
 
     return axios
         .get(TEMP_URL)
