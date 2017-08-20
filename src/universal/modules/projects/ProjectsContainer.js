@@ -30,7 +30,7 @@ class ProjectsContainer extends Component {
 function mapStateToProps(state, props) {
     // this will be unnecessary with SSR fetching but for
     // now i'm gaurding against not have an immutable array.
-    const projects = (state.projects.toArray && state.projects.toArray()) || [];
+    const projects = state.projects.toArray();
     return {
         projects,
     };
