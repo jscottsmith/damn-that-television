@@ -33,7 +33,6 @@ const renderApp = LatestContainer => {
 renderApp(AppContainer);
 
 if (module.hot) {
-    console.log('Changed!');
     module.hot.accept('./containers/AppContainer.js', () => {
         const NextAppContainer = require('./containers/AppContainer.js');
         renderApp(NextAppContainer);
