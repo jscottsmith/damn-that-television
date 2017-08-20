@@ -16,6 +16,30 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
+            slug: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            agency: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            role: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            site_url: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            description: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            color_primary: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
