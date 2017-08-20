@@ -7,6 +7,12 @@ export default {
         return Project.create({
             title: req.body.title,
             content: req.body.content,
+            slug: req.body.slug,
+            agency: req.body.agency,
+            role: req.body.role,
+            site_url: req.body.site_url,
+            description: req.body.description,
+            color_primary: req.body.color_primary,
         })
             .then(project => res.status(201).send(project))
             .catch(error => res.status(400).send(error));
