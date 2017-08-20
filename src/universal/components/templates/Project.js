@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Hero from '../organisms/Hero';
 import Intro from '../organisms/Intro';
+import waitForIt from '../../hoc/waitForIt';
 
 class Project extends PureComponent {
     static propTypes = {
@@ -29,4 +30,5 @@ class Project extends PureComponent {
     }
 }
 
-export default Project;
+export default waitForIt(Project, 'project');
+
