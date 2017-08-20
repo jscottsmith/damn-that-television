@@ -5,7 +5,6 @@ import Intro from '../organisms/Intro';
 
 class Project extends PureComponent {
     static propTypes = {
-        slug: PropTypes.string.isRequired,
         project: PropTypes.object.isRequired,
     };
 

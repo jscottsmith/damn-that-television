@@ -20,7 +20,7 @@ class ProjectContainer extends Component {
     }
 
     static propTypes = {
-        projects: PropTypes.array.isRequired,
+        project: PropTypes.object.isRequired,
         fetchProjects: PropTypes.func.isRequired,
     };
 
