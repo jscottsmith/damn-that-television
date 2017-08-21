@@ -19,7 +19,7 @@ logger();
 // import session from './session.js';
 
 // Server Side Rendering
-import { renderPage, renderDevPage } from './ssr.js';
+import renderPage from './ssr.js';
 
 const PROD = process.env.NODE_ENV === 'production';
 
@@ -32,9 +32,6 @@ const app = express();
 //     passport.session()
 // ];
 
-app.use(bodyParser.json());
-app.use(compression());
-
 // commonMiddleware.forEach(ware => {
 //     app.use(ware);
 // });
@@ -44,19 +41,18 @@ app.use(compression());
 // passport.serializeUser(serializeUser);
 // passport.deserializeUser(deserializeUser);
 
-if (PROD) {
-    app.use('/static', express.static('build'));
+app.use(bodyParser.json());
+app.use(compression());
+app.use('/static', express.static('build'));
 
-    apiRoutes(app);
-    app.get('*', renderPage);
-} else {
-    // Hot Module Reloading
-    const HMR = require('./hmr.js');
-    HMR(app);
-
-    apiRoutes(app);
-    app.get('*', renderDevPage);
+// Hot Module Reloading
+if (!PROD) {
+    const hotModuleReloading = require('./hmr.js');
+    hotModuleReloading(app);
 }
+
+apiRoutes(app);
+app.get('*', renderPage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

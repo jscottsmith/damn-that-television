@@ -23,7 +23,7 @@ class Html extends Component {
         const state = store.getState();
         const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`;
 
-        const Routes = PROD ? require('../../build/routes.js') : () => {};
+        const Routes = require('../../build/routes.js');
 
         // WARNING: This is kinda ghetto.
         // Don't put anything sensitive here.
@@ -38,15 +38,13 @@ class Html extends Component {
             },
         })}`;
 
-        const root =
-            PROD &&
-            renderToString(
-                <Provider store={store}>
-                    <StaticRouter location={url} context={context}>
-                        <Routes location={url} />
-                    </StaticRouter>
-                </Provider>
-            );
+        const root = renderToString(
+            <Provider store={store}>
+                <StaticRouter location={url} context={context}>
+                    <Routes location={url} />
+                </StaticRouter>
+            </Provider>
+        );
 
         return (
             <html>
@@ -75,18 +73,12 @@ class Html extends Component {
                         dangerouslySetInnerHTML={{ __html: initialState }}
                     />
                     <script dangerouslySetInnerHTML={{ __html: env }} />
-                    {PROD
-                        ? <div
-                              id="root"
-                              dangerouslySetInnerHTML={{ __html: root }}
-                          />
-                        : <div id="root" />}
-                    {PROD &&
-                        <script
-                            dangerouslySetInnerHTML={{ __html: manifest.text }}
-                        />}
-                    {PROD && <script src={vendor.js} />}
-                    <script src={PROD ? app.js : '/static/app.js'} />
+                    <div id="root" dangerouslySetInnerHTML={{ __html: root }} />
+                    <script
+                        dangerouslySetInnerHTML={{ __html: manifest.text }}
+                    />
+                    <script src={vendor.js} />
+                    <script src={app.js} />
                 </body>
             </html>
         );

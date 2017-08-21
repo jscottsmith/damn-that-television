@@ -5,10 +5,12 @@ import RouteTransition from '../molecules/RouteTransition';
 import Navigation from '../organisms/Navigation';
 import { renderRoutes } from 'react-router-config';
 
-// Global styles imported on dev only
-// Html on server gets extracted text stylesheet in production
-const PROD = process.env.NODE_ENV === 'production';
-if (!PROD) require('Styles/styles.scss');
+// Global styles imported on the dev client
+// Html on server gets extracted text
+// stylesheet in production
+const DEV = process.env.NODE_ENV === 'development';
+const CLIENT = typeof window !== 'undefined';
+if (DEV && CLIENT) require('Styles/styles.scss');
 
 class Main extends Component {
     static propTypes = {
