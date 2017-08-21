@@ -1,16 +1,21 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import base from './webpack.config.base.js';
+import { devBase } from './webpack.config.base.js';
+import AssetsPlugin from 'assets-webpack-plugin';
 import Paths, { Entries } from './paths';
 
 const devInclude = [Paths.client, Paths.universal];
 
+// Cache vendor && client javascript on CDN...
+const vendor = ['react', 'react-dom', 'react-router', 'react-redux', 'redux'];
+
+// Custom babel qquery for HMR
 const babelQuery = {
     presets: ['react', ['es2015', { modules: false }], 'stage-0'],
     plugins: ['transform-decorators-legacy', 'react-hot-loader/babel'],
 };
 
-export default merge(base, {
+export default merge(devBase, {
     devtool: 'eval',
     entry: {
         app: [
@@ -19,17 +24,23 @@ export default merge(base, {
             'webpack-hot-middleware/client?noInfo=false',
             Entries.client,
         ],
+        vendor,
     },
     output: {
-        filename: 'app.js',
+        filename: '[name].js',
         chunkFilename: '[name]_[chunkhash].js',
         path: Paths.build,
         publicPath: '/static/',
     },
     plugins: [
+        new webpack.NamedModulesPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor', 'manifest'],
+            minChunks: Infinity,
+        }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
+        new AssetsPlugin({ path: Paths.build, filename: 'assets.json' }),
         new webpack.DefinePlugin({
             __CLIENT__: true,
             __PRODUCTION__: false,
@@ -38,45 +49,12 @@ export default merge(base, {
     ],
     module: {
         loaders: [
-            {
-                test: /\.(png|j|jpeg|gif|svg|woff|woff2)$/,
-                use: {
-                    loader: 'url-loader',
-                    options: {
-                        limit: 10000,
-                    },
-                },
-            },
-
             // Javascript
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: babelQuery,
                 include: devInclude,
-            },
-
-            // Sass
-            {
-                test: /\.scss$/,
-                include: Paths.sass,
-                loaders: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        query: {
-                            localIdentName: '[name]_[local]_[hash:base64:3]',
-                            importLoaders: 1,
-                        },
-                    },
-                    'postcss-loader',
-                    {
-                        loader: 'sass-loader',
-                        query: {
-                            outputStyle: 'expanded',
-                        },
-                    },
-                ],
             },
         ],
     },

@@ -1,13 +1,12 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import base from './webpack.config.base.js';
+import { prodBase } from './webpack.config.base.js';
 import nodeExternals from 'webpack-node-externals';
 import Paths, { Entries } from './paths';
 
 const serverInclude = [Paths.src];
 
-export default merge(base, {
+export default merge(prodBase, {
     entry: {
         routes: Entries.routes,
     },
@@ -21,8 +20,6 @@ export default merge(base, {
         publicPath: '/static/',
     },
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin(),
-        new ExtractTextPlugin('styles.css'),
         new webpack.optimize.UglifyJsPlugin({
             compressor: { warnings: false },
             output: { comments: false },
@@ -36,44 +33,6 @@ export default merge(base, {
     ],
     module: {
         loaders: [
-            {
-                test: /\.(png|j|jpeg|gif|svg|woff|woff2)$/,
-                use: {
-                    loader: 'url-loader',
-                    options: {
-                        limit: 10000,
-                    },
-                },
-            },
-
-            // Sass
-            {
-                test: /\.scss$/,
-                include: Paths.src,
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                root: Paths.src,
-                                localIdentName: '[name]_[local]_[hash:base64:3]',
-                                sourceMap: false,
-                                importLoaders: 1,
-                            },
-                        },
-                        'postcss-loader',
-                        {
-                            loader: 'sass-loader',
-                            query: {
-                                outputStyle: 'compressed',
-                            },
-                        },
-                    ],
-                    // publicPath: '../',
-                }),
-            },
-
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
