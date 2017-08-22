@@ -1,4 +1,4 @@
-import { Project } from 'Database/models/index';
+import { Project } from 'database/models/index';
 
 export default {
     // Example to create
