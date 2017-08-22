@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # with console output
-docker-compose up
+# docker-compose up
 
 # Run in the backround
-# docker-compose up -d
+docker-compose up -d
 
 # Migrate and seed the database by running setup-db.sh
 CURRENT_DIR=${PWD##*/}
