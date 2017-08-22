@@ -20,16 +20,17 @@ export default function reducer(state = initialState, action = {}) {
 
 // Server and client fetch using Axios
 export const fetchProjects = () => dispatch => {
-    // const domain = process.env.DOMAIN_NAME;
-    // const port = process.env.API_PORT;
+    // debugger;
+    const domain = process.env.DOMAIN_NAME;
+    const port = process.env.PORT;
     const path = '/api/projects';
-    // const url = `${domain}:${port}${path}`;
+    const url = `${domain}:${port}${path}`;
 
-    const TEMP_URL = `http://localhost:3000${path}`;
+    // const TEMP_URL = `http://localhost:3000${path}`;
     // console.log('GET URL', TEMP_URL);
 
     return axios
-        .get(TEMP_URL)
+        .get(url)
         .then(response => {
             dispatch({
                 type: PROJECTS_LOADED,
