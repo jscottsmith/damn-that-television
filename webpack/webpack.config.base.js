@@ -17,7 +17,6 @@ const base = {
             Pages: Paths.pages,
             Templates: Paths.templates,
             Universal: Paths.universal,
-            Database: Paths.database,
         },
     },
 
