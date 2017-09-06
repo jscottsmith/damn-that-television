@@ -22,9 +22,9 @@ export default class Navigation extends PureComponent {
                 <Link to="/makejavascriptgreatagain">
                     Outside
                 </Link>
-                <Link to="https://github.com/jscottsmith" target="_blank">
+                <a href="https://github.com/jscottsmith" target="_blank">
                     Github
-                </Link>
+                </a>
             </nav>
         );
     }

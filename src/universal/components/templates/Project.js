@@ -1,47 +1,34 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import Hero from '../organisms/Hero';
 import Intro from '../organisms/Intro';
+import waitForIt from '../../hoc/waitForIt';
 
 class Project extends PureComponent {
     static propTypes = {
-        slug: PropTypes.string.isRequired,
-        projects: PropTypes.array.isRequired,
+        project: PropTypes.object.isRequired,
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            project: this.getProject(),
-        };
-    }
-
-    getProject() {
-        const slug = this.props.slug;
-        const project = _.find(this.props.projects, { slug });
-        return project;
-    }
-
     render() {
-        const { project } = this.state;
+        const { project } = this.props;
 
-        const { colors, title, description, url } = project;
+        const { color_primary, title, description, site_url } = project;
 
         const style = {
-            backgroundColor: colors.primary,
+            backgroundColor: color_primary,
         };
 
         return (
             <article className="page-project-detail">
-                <Hero title={title} color={colors.primary} />
+                <Hero title={title} color={color_primary} />
                 <Intro description={description} />
                 <section className="link" style={style}>
-                    <a href={url} target="_blank">GO</a>
+                    <a href={site_url} target="_blank">GO</a>
                 </section>
             </article>
         );
     }
 }
 
-export default Project;
+export default waitForIt(Project, 'project');
+

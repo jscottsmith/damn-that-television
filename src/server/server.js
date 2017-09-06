@@ -1,9 +1,13 @@
 import http from 'http';
 import express from 'express';
-import path from 'path';
+// import path from 'path';
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import apiRoutes from './routes';
 import 'colors';
+import logger from './logger.js';
+
+logger();
 
 // // Redux Dev Tools server
 // var remotedev = require('remotedev-server');
@@ -42,11 +46,15 @@ app.use(compression());
 
 if (PROD) {
     app.use('/static', express.static('build'));
+
+    apiRoutes(app);
     app.get('*', renderPage);
 } else {
-    const HMR = require('./hmr.js');
     // Hot Module Reloading
+    const HMR = require('./hmr.js');
     HMR(app);
+
+    apiRoutes(app);
     app.get('*', renderDevPage);
 }
 
@@ -59,14 +67,14 @@ app.use(function(req, res, next) {
 
 // development error handler
 if (!PROD) {
-    app.use(function(err, req, res, next) {
+    app.use((err, req, res, next) => {
         console.error('error : ', err);
         res.status(err.status || 500);
     });
 }
 
 // production error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
     console.error('error : ', err.message);
     res.status(err.status || 500);
 });
@@ -75,22 +83,10 @@ app.use(function(err, req, res, next) {
 const server = http.createServer(app);
 
 const port = process.env.PORT || 3000;
+
 const instance = server.listen(port, () => {
     const address = server.address();
-    console.log(
-        `${'>>>'.cyan} ${'Listening on:'.rainbow} ${`${address.address}`.magenta}${`${address.port}`.green}`
+    log(
+        `${'Listening on:'.rainbow} ${`${process.env.DOMAIN_NAME}`.cyan}:${`${address.port}`.cyan}`
     );
-    process.on('SIGTERM', () => {
-        console.log('Received SIGTERM, shutting down'.yellow);
-
-        instance.close(() => {
-            console.log('Server stopped successfully'.green);
-            process.exit(0);
-        });
-
-        setTimeout(() => {
-            console.log("Server didn't stop in top, terminating".red);
-            process.exit(0);
-        }, 9.9 * 1000);
-    });
 });

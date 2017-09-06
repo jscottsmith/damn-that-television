@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Main from 'universal/components/organisms/Main';
 
 // Currently unused because is it was confusing

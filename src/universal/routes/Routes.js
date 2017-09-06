@@ -1,80 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router';
+import React from 'react';
+// import PropTypes from 'prop-types';
+// import { Route, Switch } from 'react-router';
+import { routes } from './static.js';
+import { renderRoutes } from 'react-router-config';
 
-// Routes
-// For Development only
-import * as RouteMap from './static.js';
+// NOTE: This is rendered on the server then the client.
+//
+// On the server a prerendered wepacked version of Routes
+// is required on Prod and rendered via the server/Html.js
+//
+// On the client this is rendered in the client/AppContainer
 
-// This is used in production for code splitting via `wepback.config.server.js`
-// import * as RouteMap from 'universal/routes/async.js';
-
-// Containers
-import Main from 'universal/components/organisms/Main';
-// import PrivateRouteContainer from 'universal/containers/PrivateRoute/PrivateRouteContainer.js';
-
-class Routes extends Component {
-    static propTypes = {
-        location: PropTypes.object.isRequired,
-    };
-
-    render() {
-        const { location } = this.props;
-
-        // NOTE: At some point in the near future I will ask myself why i did this.
-        // Well, in order for SSR to properly render the right route and NOT a 404
-        // the Switch  must NOT be passed the location prop. However on the client
-        // the Switch DOES need this prop for Transition. So know you remember.
-        // Is there a better way? Most likely but I don't know what way that is yet.
-        const props = {};
-        if (typeof window !== 'undefined') {
-            props.location = location;
-        }
-
-        return (
-            <Main location={location}>
-                <Switch {...props}>
-                    <Route
-                        exact
-                        path="/"
-                        render={props => <RouteMap.Home {...this.props} />}
-                    />
-                    <Route
-                        exact
-                        path="/projects"
-                        render={props => (
-                            <RouteMap.ProjectsContainer {...this.props} />
-                        )}
-                    />
-                    <Route
-                        path="/projects/:slug"
-                        render={({ match }) => {
-                            return (
-                                <RouteMap.ProjectContainer
-                                    slug={match.params.slug}
-                                />
-                            );
-                        }}
-                    />
-                    <Route
-                        exact
-                        path="/counter"
-                        render={props => (
-                            <RouteMap.CounterContainer {...this.props} />
-                        )}
-                    />
-                    <Route
-                        render={({ staticContext }) => {
-                            if (staticContext) {
-                                staticContext.status = 404;
-                            }
-                            return <RouteMap.NotFound />;
-                        }}
-                    />
-                </Switch>
-            </Main>
-        );
-    }
-}
+const Routes = () => renderRoutes(routes);
 
 export default Routes;

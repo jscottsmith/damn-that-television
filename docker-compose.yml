@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+    web:
+        image: "node:6"
+        build: .
+        links:
+            - db
+        depends_on:
+            - db
+        ports:
+            - "3000:3000"
+        expose:
+            - "3000"
+        volumes:
+            - .:/usr/src/app/:rw
+        environment:
+            - NODE_ENV=development
+            # - DATABASE_URL=postgres://[db_username]:[db_password]@[hostname]:[port]/[db_name]
+            - DATABASE_URL=postgres://user:password@db:5432/db
+            - API_PORT=3000
+        command: 'npm run dev'
+    db:
+        image: postgres:9.6.3-alpine
+        expose:
+            - 5432
+        environment:
+            POSTGRES_PASSWORD: password
+            POSTGRES_USER: user
+            POSTGRES_DB: db
+
