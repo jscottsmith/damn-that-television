@@ -4,14 +4,14 @@
 
 a {
     color: $linkColor;
-    text-transform: uppercase;
+    font-weight: $bold;
     text-decoration: none;
-    padding: 0 0 0.2em;
-    border-bottom: 0.12em solid transparent;
+    // padding: 0 0 0.1em;
+    border-bottom: 3px solid currentColor;
 
     &:hover {
         border-bottom-color: $linkColor;
-        border-bottom-style: dotted;
+        border-bottom-style: solid;
     }
 
     &:visited {
