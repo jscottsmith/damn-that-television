@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 export default function Copy(props) {
     const Tag = props.tag;
@@ -20,17 +21,25 @@ export default function Copy(props) {
         return { __html: joinedText };
     }
 
-    return <Tag className="copy-html" dangerouslySetInnerHTML={renderText()} />;
+    return (
+        <Tag
+            className={cx('copy-html', {
+                [props.className]: props.className,
+            })}
+            dangerouslySetInnerHTML={renderText()}
+        />
+    );
 }
 
 Copy.propTypes = {
     children: PropTypes.string.isRequired,
+    className: PropTypes.string,
     orphans: PropTypes.number.isRequired,
     tag: PropTypes.string.isRequired,
 };
 
 Copy.defaultProps = {
-    orphans: 2, // Default to two words
-    tag: 'span',
     children: '',
+    orphans: 0,
+    tag: 'span',
 };
