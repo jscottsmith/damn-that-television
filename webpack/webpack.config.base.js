@@ -33,6 +33,18 @@ const base = {
                     },
                 },
             },
+            {
+                test: /\.md$/,
+                use: [
+                    {
+                        loader: 'html-loader',
+                    },
+                    {
+                        loader: 'markdown-loader',
+                        // options: {}
+                    },
+                ],
+            },
         ],
     },
 };
@@ -89,7 +101,8 @@ const prodBase = merge(base, {
                             loader: 'css-loader',
                             options: {
                                 root: Paths.src,
-                                localIdentName: '[name]_[local]_[hash:base64:3]',
+                                localIdentName:
+                                    '[name]_[local]_[hash:base64:3]',
                                 sourceMap: false,
                                 importLoaders: 1,
                             },
