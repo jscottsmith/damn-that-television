@@ -4,18 +4,12 @@
 
 a {
     color: $linkColor;
-    font-weight: $bold;
     text-decoration: none;
-    // padding: 0 0 0.1em;
     border-bottom: 3px solid currentColor;
 
     &:hover {
-        border-bottom-color: $linkColor;
-        border-bottom-style: solid;
     }
 
     &:visited {
-        // color: blue;
-        // border-bottom-color: blue;
     }
 }
