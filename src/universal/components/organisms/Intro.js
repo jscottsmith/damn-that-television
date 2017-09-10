@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Copy from '../atoms/Copy';
+import Copy from 'Atoms/Copy';
 
 export default function Intro(props) {
     const { description } = props;
