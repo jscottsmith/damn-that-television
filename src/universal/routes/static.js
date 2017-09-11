@@ -1,8 +1,9 @@
 import React from 'react';
 import Home from 'universal/components/pages/Home.js';
+import Resume from 'universal/components/pages/Resume.js';
 import NotFound from 'universal/components/pages/NotFound.js';
-import ProjectsContainer from 'universal/modules/projects/ProjectsContainer';
-import ProjectContainer from 'universal/modules/project/ProjectContainer';
+// import ProjectsContainer from 'universal/modules/projects/ProjectsContainer';
+// import ProjectContainer from 'universal/modules/project/ProjectContainer';
 import Main from 'universal/components/organisms/Main';
 
 const routes = [
@@ -14,16 +15,22 @@ const routes = [
                 exact: true,
                 component: Home,
             },
+
             {
-                path: '/projects',
+                path: '/resume',
                 exact: true,
-                component: ProjectsContainer,
+                component: Resume,
             },
-            {
-                path: '/projects/:slug',
-                exact: true,
-                component: ProjectContainer,
-            },
+            // {
+            //     path: '/projects',
+            //     exact: true,
+            //     component: ProjectsContainer,
+            // },
+            // {
+            //     path: '/projects/:slug',
+            //     exact: true,
+            //     component: ProjectContainer,
+            // },
             {
                 path: '*',
                 component: NotFound,
