@@ -6,6 +6,7 @@ const build = join(root, 'build');
 const client = join(src, 'client');
 const server = join(src, 'server');
 const sass = join(src, 'sass');
+const images = join(src, 'images');
 const universal = join(src, 'universal');
 const content = join(src, 'content');
 const database = join(src, 'database');
@@ -17,18 +18,19 @@ const templates = join(universal, 'components/templates');
 
 const Paths = {
     root,
-    src,
+    atoms,
     build,
     client,
-    sass,
-    universal,
     content,
     database,
-    atoms,
+    images,
     molecules,
     organisms,
     pages,
+    sass,
+    src,
     templates,
+    universal,
 };
 
 const Entries = {
