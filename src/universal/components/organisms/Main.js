@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import RouteTransition from '../molecules/RouteTransition';
-import Navigation from '../organisms/Navigation';
+// import RouteTransition from '../molecules/RouteTransition';
+// import Navigation from '../organisms/Navigation';
 import { renderRoutes } from 'react-router-config';
 
 // Global styles imported on dev only
@@ -48,14 +48,7 @@ class Main extends Component {
     render() {
         const { location, route } = this.props;
 
-        return (
-            <main>
-                <Navigation />
-                <RouteTransition location={location}>
-                    {renderRoutes(route.routes)}
-                </RouteTransition>
-            </main>
-        );
+        return <main>{renderRoutes(route.routes)}</main>;
     }
 }
 
