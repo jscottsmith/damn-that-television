@@ -24,7 +24,7 @@ function renderApp(req, res, store, assets) {
         // routing
         // Only require on Production
         const { matchRoutes } = require('react-router-config');
-        const { routes } = require('universal/routes/static.js');
+        const { routes } = require('../../build/static.js');
 
         // get the route branch by matching the url from the routes config
         const branch = matchRoutes(routes, req.url);
