@@ -21,22 +21,11 @@ class Html extends Component {
         const { title, store, assets, url, context } = this.props;
         const { manifest, app, vendor } = assets || {};
         const state = store.getState();
-        const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`;
+        const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(
+            state
+        )}`;
 
         const Routes = PROD ? require('../../build/routes.js') : () => {};
-
-        // WARNING: This is kinda ghetto.
-        // Don't put anything sensitive here.
-        // Why is this here? Because fetches are handled
-        // on the server and client and need to use env variable
-        // to confgure the url. There may be a better way then
-        // dumping them here but I've hit a wall.
-        const env = `var process = ${JSON.stringify({
-            env: {
-                DOMAIN_NAME: process.env.DOMAIN_NAME,
-                API_PORT: process.env.API_PORT,
-            },
-        })}`;
 
         const root =
             PROD &&
@@ -60,31 +49,35 @@ class Html extends Component {
                     <script src="https://use.typekit.net/bwo5nqc.js" />
                     <script
                         dangerouslySetInnerHTML={{
-                            __html: 'try{Typekit.load({ async: true });}catch(e){}',
+                            __html:
+                                'try{Typekit.load({ async: true });}catch(e){}',
                         }}
                     />
-                    {PROD &&
+                    {PROD && (
                         <link
                             rel="stylesheet"
                             href="/static/styles.css"
                             type="text/css"
-                        />}
+                        />
+                    )}
                 </head>
                 <body>
+                    {PROD ? (
+                        <div
+                            id="root"
+                            dangerouslySetInnerHTML={{ __html: root }}
+                        />
+                    ) : (
+                        <div id="root" />
+                    )}
                     <script
                         dangerouslySetInnerHTML={{ __html: initialState }}
                     />
-                    <script dangerouslySetInnerHTML={{ __html: env }} />
-                    {PROD
-                        ? <div
-                              id="root"
-                              dangerouslySetInnerHTML={{ __html: root }}
-                          />
-                        : <div id="root" />}
-                    {PROD &&
+                    {PROD && (
                         <script
                             dangerouslySetInnerHTML={{ __html: manifest.text }}
-                        />}
+                        />
+                    )}
                     {PROD && <script src={vendor.js} />}
                     <script src={PROD ? app.js : '/static/app.js'} />
                 </body>
