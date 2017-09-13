@@ -214,6 +214,19 @@ export default class LevelView {
         this.ctx.drawImage(sCanvas, sx, sy, sw, sh);
     }
 
+    drawBackground() {
+        const gradient = this.ctx.createLinearGradient(
+            this.x,
+            0,
+            this.canvas.width / 2,
+            this.canvas.height
+        );
+        gradient.addColorStop(0, '#ea839b');
+        gradient.addColorStop(1, '#587FED');
+        this.ctx.fillStyle = gradient;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
     clear() {
         const { width, height } = this.canvas;
         this.ctx.clearRect(0, 0, width, height);
@@ -225,6 +238,7 @@ export default class LevelView {
 
     draw() {
         this.clear();
+        this.drawBackground();
         this.drawProjectiles();
         this.drawPlayer();
         this.drawParticles();
