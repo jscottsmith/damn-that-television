@@ -21,7 +21,6 @@ export default class Crosshairs {
         this.drawState = {
             [GameEvents.MOUSE_UP]: this.drawIdle,
             [GameEvents.MOUSE_DOWN]: this.drawFiring,
-            [GameEvents.OVER_TARGET]: this.drawTargeting,
         };
 
         this.draw();
@@ -30,7 +29,6 @@ export default class Crosshairs {
     subscribe(eventPublisher) {
         eventPublisher.subscribe(GameEvents.MOUSE_DOWN, this.setState);
         eventPublisher.subscribe(GameEvents.MOUSE_UP, this.setState);
-        eventPublisher.subscribe(GameEvents.OVER_TARGET, this.setState);
     }
 
     setState = state => {
@@ -39,11 +37,12 @@ export default class Crosshairs {
     };
 
     drawLines(color) {
-        const { x, y, w } = this;
+        const { x, y, w, h } = this;
 
         const lineLength = w / 2; // size of lines, not size of whole thing
         const inner = w / 3; // inner size, space between lines and center
 
+        this.ctx.clearRect(0, 0, w, h);
         this.ctx.strokeStyle = color;
         this.ctx.lineWidth = 2 * this.dpr;
         this.ctx.beginPath();
@@ -67,10 +66,6 @@ export default class Crosshairs {
 
     drawFiring = () => {
         this.drawLines('red');
-    };
-
-    drawTargeting = () => {
-        this.drawLines('blue');
     };
 
     draw() {
