@@ -34,7 +34,7 @@ export default class Particle extends Box {
 
     draw(ctx) {
         const { x, y, w, h } = this;
-        ctx.fillStyle = 'hotpink';
+        ctx.fillStyle = 'white';
         ctx.fillRect(x, y, w, h);
     }
 }

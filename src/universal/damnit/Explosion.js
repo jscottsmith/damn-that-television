@@ -38,7 +38,7 @@ export default class Eplosion {
     }
 
     draw(ctx) {
-        this.drawShockWave(ctx, 'tomato', this.r1);
+        this.drawShockWave(ctx, '#5a41bb', this.r1);
         // this.drawShockWave(ctx, 'black', this.r2);
         // this.drawShockWave(ctx, 'black', this.r3);
     }
