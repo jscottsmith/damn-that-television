@@ -22,3 +22,7 @@ export function movePointAtAngle(point, radian, distance) {
         y: point.y - Math.sin(radian) * distance,
     };
 }
+
+export function clamp(number, min, max) {
+    return Math.max(min, Math.min(number, max));
+}

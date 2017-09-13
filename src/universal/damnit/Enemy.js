@@ -13,19 +13,24 @@ export const allEnemies = [
 ];
 
 export default class Enemy extends Box {
-    constructor(size = 40, type = EnemyTypes.DUNCE, x, y) {
+    constructor(image, size = 40, type = EnemyTypes.DUNCE, x, y) {
         super();
 
         this.dpr = window.devicePixelRatio || 1;
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
 
+        this.image = image;
         this.type = type;
 
         this.w = size * this.dpr;
         this.h = size * this.dpr;
         this.x = x - this.w / 2;
         this.y = y - this.h / 2;
+
+        // for follower types
+        this.vx = 0;
+        this.vy = 0;
 
         this.canvas.width = this.w;
         this.canvas.height = this.h;
@@ -51,11 +56,14 @@ export default class Enemy extends Box {
     };
 
     updateFollower = player => {
-        // as it moves closer to the player on the y axis,
-        // the more it moves horizontally. Should also
-        // require some clamping to limit the speed
-        const vx = (player.x - this.x) / ((player.y - this.y) * 0.25);
-        this.x += vx;
+        if (player) {
+            // as it moves closer to the player on the y axis,
+            // the more it moves horizontally. Should also
+            // require some clamping to limit the speed
+            this.vx = (player.x - this.x) / ((player.y - this.y) * 0.25);
+        }
+
+        this.x += this.vx;
         this.y += this.speed;
     };
 
@@ -77,8 +85,8 @@ export default class Enemy extends Box {
     }
 
     draw() {
-        const { w, h } = this;
+        const { image, w, h } = this;
         this.ctx.fillStyle = 'hotpink';
-        this.ctx.fillRect(0, 0, w, h);
+        this.ctx.drawImage(image, 0, 0, w, h);
     }
 }

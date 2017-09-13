@@ -21,11 +21,11 @@ export default class GameInterface {
     }
 
     drawPower() {
-        const { hitPower, maxPower } = this.gameController.state;
+        const { hitPower, maxHitPower } = this.gameController.state;
         const fullW = 300 * this.dpr;
         const x = 20 * this.dpr;
         const y = 50 * this.dpr;
-        const w = hitPower / maxPower * fullW;
+        const w = hitPower / maxHitPower * fullW;
         const h = 10 * this.dpr;
 
         this.ctx.fillStyle = 'white';
@@ -34,8 +34,23 @@ export default class GameInterface {
         this.ctx.fillRect(x, y, w, h);
     }
 
+    drawShield() {
+        const { shieldPower, maxShieldPower } = this.gameController.state;
+        const fullW = 300 * this.dpr;
+        const x = 20 * this.dpr;
+        const y = 70 * this.dpr;
+        const w = shieldPower / maxShieldPower * fullW;
+        const h = 10 * this.dpr;
+
+        this.ctx.fillStyle = 'white';
+        this.ctx.fillRect(x, y, fullW, h);
+        this.ctx.fillStyle = 'lightblue';
+        this.ctx.fillRect(x, y, w, h);
+    }
+
     run() {
         this.drawLives();
         this.drawPower();
+        this.drawShield();
     }
 }

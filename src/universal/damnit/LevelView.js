@@ -1,7 +1,7 @@
 import Crosshairs from './Crosshairs.js';
 import Player from './Player.js';
 import Projectile from './Projectile.js';
-import Enemy, { allEnemies } from './Enemy.js';
+import Enemy, { EnemyTypes, allEnemies } from './Enemy.js';
 import Explosion from './Explosion.js';
 import Particle from './Particle.js';
 import { GameEvents } from './GameEvents.js';
@@ -12,14 +12,27 @@ import {
 } from './gameUtils.js';
 
 export default class LevelView {
-    constructor(canvas, ctx) {
+    constructor(canvas, ctx, gameController, gameAssets) {
         this.canvas = canvas;
         this.ctx = ctx;
+        this.gameController = gameController;
+        this.gameAssets = gameAssets;
         this.dpr = window.devicePixelRatio;
 
         // Game Instances
         this.crosshairs = new Crosshairs(50 * this.dpr);
-        this.player = new Player(75 * this.dpr);
+
+        const ps = 75 * this.dpr;
+        const px = (window.innerWidth / 2 - ps / 2) * this.dpr;
+        const py = (window.innerHeight - 200) * this.dpr;
+
+        this.playerConfig = {
+            ps,
+            px,
+            py,
+        };
+
+        this.player = new Player(this.gameAssets, ps, px, py);
 
         // Game objects
         this.projectiles = [];
@@ -29,8 +42,8 @@ export default class LevelView {
 
         this.tick = 0;
 
-        this.x = 0;
-        this.y = 0;
+        this.x = px;
+        this.y = py / 2;
     }
 
     subscribe(eventPublisher) {
@@ -40,13 +53,12 @@ export default class LevelView {
 
         eventPublisher.subscribe(GameEvents.MOUSE_DOWN, this.handleMouseDown);
         eventPublisher.subscribe(GameEvents.MOUSE_MOVE, this.handleMouseMove);
-        eventPublisher.subscribe(GameEvents.PLAYER_DEAD, this.handleMouseMove);
 
         this.eventPublisher = eventPublisher;
     }
 
     handleMouseDown = () => {
-        this.firePlayer();
+        this.fireProjectile();
     };
 
     handleMouseMove = (topic, mouse) => {
@@ -66,25 +78,69 @@ export default class LevelView {
         this.y = y;
     }
 
-    firePlayer() {
+    fireProjectile() {
+        if (!this.player) return;
+
         const { x: x0, y: y0 } = this;
         const { cx: x1, cy: y1 } = this.player;
 
         const radian = getAngleRadians(x0, y0, x1, y1);
-        const velocity = movePointAtAngle({ x: 0, y: 0 }, radian, 20);
+        const { x: vx, y: vy } = movePointAtAngle({ x: 0, y: 0 }, radian, 20);
+        const image = this.gameAssets.images.fist;
+        const size = 50 * this.dpr;
 
-        const p = new Projectile(10, x1, y1, velocity.x, velocity.y);
+        const p = new Projectile(image, size, x1, y1, vx, vy);
 
         this.projectiles.push(p);
     }
 
+    killPlayer() {
+        const { cx, cy } = this.player;
+        this.createExplosion(2, cx, cy);
+        this.player = null;
+
+        if (this.gameController.state.lives > 0) {
+            this.newPlayerTimer();
+        }
+    }
+
+    newPlayerTimer() {
+        const time = 2000;
+        setTimeout(() => this.createNewPlayer(), time);
+    }
+
+    createNewPlayer() {
+        const { ps, px, py } = this.playerConfig;
+        this.player = new Player(this.gameAssets, ps, px, py);
+        this.eventPublisher.publish(GameEvents.RESET_PLAYER_STATE);
+        this.player.subscribe(this.eventPublisher);
+    }
+
     createRandomEnemy() {
-        const size = 40;
-        const type = allEnemies[getRandomInt(0, allEnemies.length)];
+        // get a random type
+        const type = allEnemies[getRandomInt(0, allEnemies.length - 1)];
+
+        // config based on type
+        const typeMap = {
+            [EnemyTypes.DUNCE]: {
+                image: this.gameAssets.images.bomb,
+                size: 60 * this.dpr,
+            },
+            [EnemyTypes.FOLLOWER]: {
+                image: this.gameAssets.images.tv,
+                size: 70 * this.dpr,
+            },
+            [EnemyTypes.SNEK]: {
+                image: this.gameAssets.images.pill,
+                size: 50 * this.dpr,
+            },
+        };
+
+        const { image, size } = typeMap[type];
         const x = getRandomInt(0, this.canvas.width);
         const y = size / 2 * -1; // adjust for dpr
 
-        const e = new Enemy(size, type, x, y);
+        const e = new Enemy(image, size, type, x, y);
 
         this.enemies.push(e);
     }
@@ -141,8 +197,19 @@ export default class LevelView {
     }
 
     drawPlayer() {
+        if (!this.player) return;
+
         const { canvas, w, h, x, y } = this.player;
         this.ctx.drawImage(canvas, x, y, w, h);
+
+        const {
+            canvas: sCanvas,
+            w: sw,
+            h: sh,
+            x: sx,
+            y: sy,
+        } = this.player.shield;
+        this.ctx.drawImage(sCanvas, sx, sy, sw, sh);
     }
 
     clear() {
@@ -174,70 +241,102 @@ export default class LevelView {
         }
     }
 
-    updatePlayerPosition() {
-        const { w, h } = this.player;
-        this.player.updatePosition(this.x - w / 2, this.canvas.height - h);
+    removeDeadInstances(items, key) {
+        this[key] = items.filter(x => !x.dead);
+    }
+
+    updatePlayer() {
+        if (!this.player) return;
+
+        const { w, h, dead } = this.player;
+
+        if (dead) {
+            this.killPlayer();
+        } else {
+            this.player.updatePosition(this.x - w / 2, this.playerConfig.py);
+        }
     }
 
     updateProjectiles() {
         // update positions
-        this.projectiles.forEach(p => p.update(this.gameBounds));
-        // remove dead
-        this.projectiles = this.projectiles.filter(p => !p.dead);
+        this.projectiles.forEach(x => x.update(this.gameBounds));
+        this.removeDeadInstances(this.projectiles, 'projectiles');
     }
 
     updateParticles() {
         // update positions
-        this.particles.forEach(p => p.update(this.gameBounds));
-        // remove dead
-        this.particles = this.particles.filter(p => !p.dead);
+        this.particles.forEach(x => x.update(this.gameBounds));
+        this.removeDeadInstances(this.particles, 'particles');
     }
 
     updateExplosions() {
         // update positions
-        this.explosions.forEach(e => e.update());
-        // remove dead
-        this.explosions = this.explosions.filter(p => !p.dead);
+        this.explosions.forEach(x => x.update());
+        this.removeDeadInstances(this.explosions, 'explosions');
     }
 
     updateEnemies() {
         // update enemy positions, Player required for following
-        this.enemies.forEach(e => e.update(this.gameBounds, this.player));
-        // Meaty hit test, should use broad phase but should work with limited enemies
-        this.enemies.forEach(enemy => {
-            const p = this.projectiles;
+        this.enemies.forEach(x => x.update(this.gameBounds, this.player));
 
-            // check for hit against Player first
-            const hitPlayer = enemy.hitTest(this.player);
-            if (hitPlayer) {
+        // Meaty hit test for now -- should use broad/narrow phase
+        this.enemies.forEach(enemy => {
+            this.hitTestEnemy(enemy);
+        });
+        // remove dead
+        this.removeDeadInstances(this.enemies, 'enemies');
+        this.removeDeadInstances(this.particles, 'particles');
+    }
+
+    /*----------------------------------------------------------*\
+    |* Hit Tests
+    \*----------------------------------------------------------*/
+
+    hitTestEnemy(enemy) {
+        const projectile = this.projectiles;
+
+        // hit shield
+        const hitShield =
+            this.player &&
+            !this.player.shield.dead &&
+            this.player.shield.hitTest(enemy);
+        if (hitShield) {
+            const x = enemy.x + enemy.w / 2;
+            const y = enemy.y + enemy.h / 2;
+
+            this.createExplosion(0.5, x, y);
+
+            this.eventPublisher.publish(GameEvents.SHIELD_HIT);
+            return (enemy.dead = true);
+        }
+
+        // check for hit against Player
+        const hitPlayer = this.player && enemy.hitTest(this.player);
+        if (hitPlayer) {
+            const x = enemy.x + enemy.w / 2;
+            const y = enemy.y + enemy.h / 2;
+
+            this.createExplosion(1, x, y);
+            this.eventPublisher.publish(GameEvents.PLAYER_HIT);
+            return (enemy.dead = true);
+        }
+
+        // hit projectile with for loop to break
+        for (let i = 0; i < projectile.length; i++) {
+            // test enemy against each projectile
+            const isHit = enemy.hitTest(projectile[i]);
+            if (isHit) {
+                // set dead and break the loop
+                enemy.dead = true;
+                projectile[i].dead = true;
+
                 const x = enemy.x + enemy.w / 2;
                 const y = enemy.y + enemy.h / 2;
 
                 this.createExplosion(1, x, y);
-                this.eventPublisher.publish(GameEvents.PLAYER_HIT);
-                return (enemy.dead = true);
+                break;
             }
-
-            // hit projectile
-            for (let i = 0; i < p.length; i++) {
-                // test enemy against each projectile
-                const isHit = enemy.hitTest(p[i]);
-                if (isHit) {
-                    // set dead and break the loop
-                    enemy.dead = true;
-                    p[i].dead = true;
-
-                    const x = enemy.x + enemy.w / 2;
-                    const y = enemy.y + enemy.h / 2;
-
-                    this.createExplosion(1, x, y);
-                    break;
-                }
-            }
-        });
-        // remove dead
-        this.enemies = this.enemies.filter(e => !e.dead);
-        this.particles = this.particles.filter(p => !p.dead);
+        }
     }
 
     /*----------------------------------------------------------*\
@@ -245,7 +344,7 @@ export default class LevelView {
     \*----------------------------------------------------------*/
 
     update() {
-        this.updatePlayerPosition();
+        this.updatePlayer();
         this.updateProjectiles();
         this.updateEnemies();
         this.updateParticles();

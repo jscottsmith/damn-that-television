@@ -1,17 +1,19 @@
 import { GameEvents } from './GameEvents.js';
+import Shield from './Shield.js';
 
 export default class Player {
-    constructor(size) {
+    constructor(assets, size, x, y) {
         this.dpr = window.devicePixelRatio || 1;
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
+        this.assets = assets;
 
         this.w = size;
         this.h = size;
 
         // global positioning
-        this.x = 0;
-        this.y = 0;
+        this.x = x;
+        this.y = y;
 
         this.cx = this.x + this.w / 2;
         this.cy = this.y + this.h / 2;
@@ -21,6 +23,9 @@ export default class Player {
 
         // Initial state
         this.state = GameEvents.MOUSE_UP;
+
+        this.dead = false;
+        this.shield = new Shield(size);
 
         // Draw state based on events
         this.drawState = {
@@ -34,10 +39,12 @@ export default class Player {
     }
 
     subscribe(eventPublisher) {
+        this.shield.subscribe(eventPublisher);
+
         eventPublisher.subscribe(GameEvents.MOUSE_DOWN, this.setState);
         eventPublisher.subscribe(GameEvents.MOUSE_UP, this.setState);
         eventPublisher.subscribe(GameEvents.PLAYER_HIT, this.handleHit);
-        // eventPublisher.subscribe(GameEvents.PLAYER_DEAD, this.handleDead);
+        eventPublisher.subscribe(GameEvents.PLAYER_DEAD, this.handleDead);
     }
 
     setState = nextState => {
@@ -54,11 +61,14 @@ export default class Player {
     };
 
     handleDead = nextState => {
-        this.setState(nextState);
+        if (this.state === nextState) return; // so timer doesn't keep reseting if hit again
+
         this.clearTimer();
+        this.setState(nextState);
+
         this.timer = setTimeout(() => {
-            this.setState(GameEvents.MOUSE_UP);
-        }, 3000);
+            this.dead = true;
+        }, 100);
     };
 
     clearTimer() {
@@ -74,28 +84,36 @@ export default class Player {
 
         this.cx = this.x + this.w / 2;
         this.cy = this.y + this.h / 2;
+
+        if (this.shield) {
+            this.shield.updatePosition(this.cx, this.cy);
+        }
     }
 
-    drawRect(color) {
+    drawRect(image) {
         const { w, h } = this;
-        this.ctx.fillStyle = color;
-        this.ctx.fillRect(0, 0, w, h);
+        this.ctx.clearRect(0, 0, w, h);
+        this.ctx.drawImage(image, 0, 0, w, h);
     }
 
     drawIdle = () => {
-        this.drawRect('pink');
+        const image = this.assets.images.life;
+        this.drawRect(image);
     };
 
     drawFiring = () => {
-        this.drawRect('tomato');
+        const image = this.assets.images.shoot;
+        this.drawRect(image);
     };
 
     drawHit = () => {
-        this.drawRect('blue');
+        const image = this.assets.images.hit;
+        this.drawRect(image);
     };
 
     drawDead = () => {
-        this.drawRect('black');
+        const image = this.assets.images.damnit;
+        this.drawRect(image);
     };
 
     draw() {

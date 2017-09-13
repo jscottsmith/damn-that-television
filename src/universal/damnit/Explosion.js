@@ -6,7 +6,7 @@ export default class Eplosion {
         this.x = x;
         this.y = y;
         this.power = power; // should be from 1 - 0
-        this.r1 = 1;
+        this.r1 = 1 * this.dpr;
         // this.r2 = 1;
         // this.r3 = 1;
         this.pi = Math.PI;
@@ -31,7 +31,7 @@ export default class Eplosion {
         ctx.strokeStyle = color;
         ctx.lineWidth = this.multiplier * this.power * this.dpr * 2;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, r * this.dpr, 0, this.pi2, true);
+        ctx.arc(this.x, this.y, r, 0, this.pi2, true);
         ctx.closePath();
         ctx.stroke();
         ctx.globalAlpha = 1;

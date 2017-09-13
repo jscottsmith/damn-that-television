@@ -3,6 +3,7 @@ import EventPublisher from './EventPublisher.js';
 import LevelView from './LevelView.js';
 import GameController from './GameController.js';
 import GameInterface from './GameInterface.js';
+import GameAssets from './GameAssets.js';
 
 export default class DamnGame {
     static init(canvas) {
@@ -22,25 +23,36 @@ export default class DamnGame {
         // Event Pub/Sub
         this.eventPublisher = new EventPublisher();
 
+        // Game Assets
+        this.gameAssets = new GameAssets(this.handleAssetsLoaded);
+    }
+
+    handleAssetsLoaded = () => {
         // Game controller
         this.gameController = new GameController();
         this.gameController.subscribe(this.eventPublisher);
 
         // Level view
-        this.levelView = new LevelView(this.canvas, this.ctx);
+        this.levelView = new LevelView(
+            this.canvas,
+            this.ctx,
+            this.gameController,
+            this.gameAssets
+        );
         this.levelView.subscribe(this.eventPublisher);
 
         // Game Interface View
         this.gameInterface = new GameInterface(
             this.canvas,
             this.ctx,
-            this.gameController
+            this.gameController,
+            this.gameAssets
         );
 
         this.addListeners();
         this.setupCanvas();
         this.run();
-    }
+    };
 
     setState(nextState) {
         return (this.state = Object.assign({}, this.state, nextState));
