@@ -24,15 +24,17 @@ export default class LevelView {
 
         const ps = 75 * this.dpr;
         const px = (window.innerWidth / 2 - ps / 2) * this.dpr;
-        const py = (window.innerHeight - 200) * this.dpr;
+        const py = window.innerHeight * this.dpr;
+        const bottomOffset = 200 * this.dpr;
 
         this.playerConfig = {
             ps,
             px,
             py,
+            bottomOffset,
         };
 
-        this.player = new Player(this.gameAssets, ps, px, py);
+        this.player = new Player(this.gameAssets, ps, px, py - bottomOffset);
 
         // Game objects
         this.projectiles = [];
@@ -110,8 +112,8 @@ export default class LevelView {
     }
 
     createNewPlayer() {
-        const { ps, px, py } = this.playerConfig;
-        this.player = new Player(this.gameAssets, ps, px, py);
+        const { ps, px, py, bottomOffset } = this.playerConfig;
+        this.player = new Player(this.gameAssets, ps, px, py - bottomOffset);
         this.eventPublisher.publish(GameEvents.RESET_PLAYER_STATE);
         this.player.subscribe(this.eventPublisher);
     }
@@ -253,7 +255,9 @@ export default class LevelView {
         if (dead) {
             this.killPlayer();
         } else {
-            this.player.updatePosition(this.x - w / 2, this.playerConfig.py);
+            const x = this.x - w / 2;
+            const y = this.canvas.height - this.playerConfig.bottomOffset;
+            this.player.updatePosition(x, y);
         }
     }
 
