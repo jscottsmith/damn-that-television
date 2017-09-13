@@ -25,8 +25,8 @@ export default class Projectile extends Box {
     }
 
     update(gameBounds) {
-        this.x += this.vx;
-        this.y += this.vy;
+        this.x += this.vx * this.dpr;
+        this.y += this.vy * this.dpr;
 
         if (gameBounds) {
             // if it intersects with the game bounds it's not dead

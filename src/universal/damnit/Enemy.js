@@ -63,8 +63,8 @@ export default class Enemy extends Box {
             this.vx = (player.x - this.x) / ((player.y - this.y) * 0.25);
         }
 
-        this.x += this.vx;
-        this.y += this.speed;
+        this.x += this.vx * this.dpr;
+        this.y += this.speed * this.dpr;
     };
 
     updateDunce = () => {

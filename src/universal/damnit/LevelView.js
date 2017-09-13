@@ -87,7 +87,7 @@ export default class LevelView {
         const radian = getAngleRadians(x0, y0, x1, y1);
         const { x: vx, y: vy } = movePointAtAngle({ x: 0, y: 0 }, radian, 20);
         const image = this.gameAssets.images.fist;
-        const size = 50 * this.dpr;
+        const size = 50;
 
         const p = new Projectile(image, size, x1, y1, vx, vy);
 
@@ -124,15 +124,15 @@ export default class LevelView {
         const typeMap = {
             [EnemyTypes.DUNCE]: {
                 image: this.gameAssets.images.bomb,
-                size: 60 * this.dpr,
+                size: 60,
             },
             [EnemyTypes.FOLLOWER]: {
                 image: this.gameAssets.images.tv,
-                size: 70 * this.dpr,
+                size: 70,
             },
             [EnemyTypes.SNEK]: {
                 image: this.gameAssets.images.pill,
-                size: 50 * this.dpr,
+                size: 50,
             },
         };
 
@@ -223,12 +223,12 @@ export default class LevelView {
 
     draw() {
         this.clear();
-        this.drawCrosshairs();
-        this.drawPlayer();
         this.drawProjectiles();
+        this.drawPlayer();
         this.drawParticles();
         this.drawExplosions();
         this.drawEnemies();
+        this.drawCrosshairs();
     }
 
     /*----------------------------------------------------------*\
