@@ -26,6 +26,19 @@ export default class Shield extends Circle {
 
         this.dead = false;
 
+        this.gradient = this.ctx.createRadialGradient(
+            this.cx,
+            this.cy,
+            this.r,
+            this.cx,
+            this.cy,
+            0
+        );
+
+        this.gradient.addColorStop(0, 'rgba(100, 120, 218, 0.5');
+        this.gradient.addColorStop(0.2, 'rgba(30, 156, 215, 0.2');
+        this.gradient.addColorStop(1, 'rgba(204, 224, 244, 0.0');
+
         this.draw();
     }
 
@@ -55,13 +68,11 @@ export default class Shield extends Circle {
     }
 
     drawCircle(color, r) {
-        this.ctx.globalAlpha = this.opacity;
-        this.ctx.fillStyle = color;
+        this.ctx.fillStyle = this.gradient;
         this.ctx.beginPath();
         this.ctx.arc(r, r, r, 0, this.pi2, true);
         this.ctx.closePath();
         this.ctx.fill();
-        this.ctx.globalAlpha = 1;
     }
 
     draw() {

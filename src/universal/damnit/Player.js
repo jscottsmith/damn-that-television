@@ -25,7 +25,7 @@ export default class Player {
         this.state = GameEvents.MOUSE_UP;
 
         this.dead = false;
-        this.shield = new Shield(size);
+        this.shield = new Shield(size * 1.4);
 
         // Draw state based on events
         this.drawState = {
