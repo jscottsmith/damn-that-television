@@ -132,8 +132,12 @@ export default class DamnGame {
         }
     };
 
-    start() {
+    play() {
         this.setState({ isPlaying: true });
+    }
+
+    stop() {
+        this.setState({ isPlaying: false });
     }
 
     /*----------------------------------------------------------*\

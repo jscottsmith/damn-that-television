@@ -2,11 +2,40 @@
 // Damnit
 // ---------------------------
 
+:local(.gameContainer) {
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.is-playing {
+        opacity: 1;
+        cursor: none;
+    }
+}
+
 :local(.canvas) {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    cursor: none;
+}
+
+:local(.pauseBtn) {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+
+    display: block;
+    border: 2px solid white;
+    color: white;
+    font-size: 1.4rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    z-index: 10;
+
+    &:hover {
+        color: #667eea;
+        border: 2px solid #90f9c4;
+        background: #90f9c4;
+    }
 }

@@ -7,13 +7,15 @@ import content from 'content/home/home.md';
 
 export default class Home extends PureComponent {
     state = {
-        startGame: false,
+        isPlaying: false,
     };
 
     handlePlay = () => {
-        this.setState(() => ({
-            startGame: true,
-        }));
+        this.setState({ isPlaying: true });
+    };
+
+    handleStop = () => {
+        this.setState({ isPlaying: false });
     };
 
     render() {
@@ -21,7 +23,7 @@ export default class Home extends PureComponent {
             <article className={cx('page-index', styles.index)}>
                 <div
                     className={cx(styles.welcome, {
-                        'is-hidden': this.state.startGame,
+                        'is-hidden': this.state.isPlaying,
                     })}
                 >
                     <Copy>{content}</Copy>
@@ -29,7 +31,10 @@ export default class Home extends PureComponent {
                         Start
                     </button>
                 </div>
-                <Damnit startGame={this.state.startGame} />
+                <Damnit
+                    isPlaying={this.state.isPlaying}
+                    handleStop={this.handleStop}
+                />
             </article>
         );
     }
