@@ -221,8 +221,8 @@ export default class LevelView {
             this.canvas.width / 2,
             this.canvas.height
         );
-        gradient.addColorStop(0, '#ea839b');
-        gradient.addColorStop(1, '#587FED');
+        gradient.addColorStop(0, '#587FED');
+        gradient.addColorStop(1, '#ea839b');
         this.ctx.fillStyle = gradient;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
