@@ -1,8 +1,10 @@
-# Who
+Who
+===
 
-@TODO Summary here
+Creative turned Developer working to make the web more interactive, user-friendly, and accessible. Excited by all things Javascript. Focused on building high-quality, DRY, and maintainable web apps primarily with React and the greater ReactJS ecosystem.
 
-# Experience
+Experience
+==========
 
 ### HAUS
 
@@ -34,7 +36,35 @@
 
 2006–2008
 
-# Education
+Technologies/Skills
+===================
+
+A non-exhaustive list of technologies or software I've worked with:
+
+<ul class="two-column">
+    <li>React</li>
+    <li>Redux</li>
+    <li>Node</li>
+    <li>Webpack/Gulp</li>
+    <li>Git</li>
+    <li>Javascript ES6+</li>
+    <li>Docker</li>
+    <li>Canvas</li>
+    <li>GreenSock</li>
+    <li>HTML</li>
+    <li>SCSS/SASS</li>
+    <li>Backbone</li>
+    <li>PHP</li>
+    <li>UX/UI Design</li>
+    <li>Sketch</li>
+    <li>Illustrator</li>
+    <li>Photoshop</li>
+    <li>After Effects</li>
+    <li>InDesign</li>
+</ul>
+
+Education
+=========
 
 ### California State University, Long Beach
 
@@ -58,11 +88,12 @@
 
 2004–2007
 
-# Awards & Honors
-
-***Magna Cum Laude*** - 2012
+Awards & Honors
+===============
 
 ***Young Ones Advertising Competition Finalists in Client Pitch*** - 2012
+
+***Magna Cum Laude*** - 2012
 
 ***Fine Arts Affliates Scholarship*** - 2010
 

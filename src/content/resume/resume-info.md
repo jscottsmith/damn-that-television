@@ -1,6 +1,7 @@
 ## J Scott Smith
 
-Creative Web Developer making the internet more fun, accessible, and interactive [@HAUS](https://madeinhaus.com/).
+Creative Web Developer</br>
+[@HAUS](https://madeinhaus.com/)
 
 #### Contact
 

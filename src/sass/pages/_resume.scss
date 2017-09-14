@@ -67,6 +67,10 @@ $salmon: #ce8284;
             color: $plum;
         }
     }
+    ul {
+        margin: 2rem 0;
+        padding-left: 2rem;
+    }
     a {
         color: $teal;
 
@@ -125,6 +129,12 @@ $salmon: #ce8284;
         p {
             font-size: 1.4rem;
         }
+        .two-column {
+            margin: 2rem 0;
+            columns: 2;
+            column-gap: 3rem;
+            list-style-type: disc;
+        }
     }
 
     :local(.content) {
@@ -133,6 +143,10 @@ $salmon: #ce8284;
 
         > *:first-child {
             margin-top: 0;
+        }
+
+        > p:first-of-type {
+            font-size: 1.6rem;
         }
     }
 
