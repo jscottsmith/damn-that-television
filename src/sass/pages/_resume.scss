@@ -82,6 +82,10 @@ $salmon: #ce8284;
 
 :local(.content) {
     width: 100%;
+
+    > p:first-of-type {
+        font-size: 1.6rem;
+    }
 }
 
 :local(.avatar) {
@@ -143,10 +147,6 @@ $salmon: #ce8284;
 
         > *:first-child {
             margin-top: 0;
-        }
-
-        > p:first-of-type {
-            font-size: 1.6rem;
         }
     }
 
