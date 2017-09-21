@@ -4,6 +4,6 @@ Hi there 👋🏻, I'm J Scott Smith. Currently, I've been heads down making thi
 
 Or jump over to some experiments on [CodePen](https://codepen.io/jscottsmith/). Here's a few of my favorites: [Fluid Image](https://codepen.io/jscottsmith/pen/NgVapp), [Theremin Oscillator](https://codepen.io/jscottsmith/pen/dRBOzE), and [Confetti Cannon](https://codepen.io/jscottsmith/pen/VjPaLO).
 
-Or just hang out here and kill some TVs with emojis 📺✊🏼💥. Oh right -- why the domain *Damn that TV*? Because TV has been attempting to kill my creativity. Plus it happens to be the greatest intro to one of the greatest songs by the [Talking Heads](https://www.youtube.com/watch?v=i6ZVEMzvZIY).
+Or just hang out here and kill some TVs with emojis 📺✊🏻💥. Oh right -- why the domain *Damn that TV*? Because TV has been attempting to kill my creativity. Plus it happens to be the greatest intro to one of the greatest songs by the [Talking Heads](https://www.youtube.com/watch?v=i6ZVEMzvZIY).
 
 Ok, later.
