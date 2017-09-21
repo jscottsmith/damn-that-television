@@ -43,7 +43,7 @@ function renderApp(req, res, store, assets) {
             .then(() => {
                 const html = renderToString(
                     <Html
-                        title="💥"
+                        title="Damn That TV | J Scott Smith"
                         store={store}
                         url={url}
                         context={context}
