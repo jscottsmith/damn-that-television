@@ -67,10 +67,6 @@ $salmon: #ce8284;
             color: $plum;
         }
     }
-    ul {
-        margin: 2rem 0;
-        padding-left: 2rem;
-    }
     a {
         color: $teal;
 
@@ -82,9 +78,12 @@ $salmon: #ce8284;
 
 :local(.content) {
     width: 100%;
-
     > p:first-of-type {
         font-size: 1.6rem;
+    }
+    ul {
+        margin: 2rem 0;
+        padding-left: 2rem;
     }
 }
 
