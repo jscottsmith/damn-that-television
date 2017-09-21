@@ -22,7 +22,7 @@ class Main extends Component {
 
         return (
             <Helmet
-                titleTemplate="%s | J"
+                titleTemplate="%s | J Scott Smith"
                 defaultTitle="Damn That Television"
                 meta={[
                     { name: 'description', content: pageDescription },
