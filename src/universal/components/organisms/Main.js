@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 // import RouteTransition from '../molecules/RouteTransition';
 // import Navigation from '../organisms/Navigation';
 import { renderRoutes } from 'react-router-config';
+import avatar from 'Images/avatar.jpg';
 
 // Global styles imported on dev only
 // Html on server gets extracted text stylesheet in production
@@ -18,7 +19,6 @@ class Main extends Component {
 
     getHelmet() {
         const pageDescription = 'Work by J Scott Smith';
-        const pageThumb = '/images/haus-friend.png';
 
         return (
             <Helmet
@@ -31,14 +31,14 @@ class Main extends Component {
                     { name: 'twitter:site', content: '@spacebang' },
                     { name: 'twitter:creator', content: '@spacebang' },
                     { name: 'twitter:description', content: pageDescription },
-                    { name: 'twitter:image', content: pageThumb },
+                    { name: 'twitter:image', content: avatar },
                     // Facebook OG
                     {
                         property: 'og:url',
                         content: this.props.location.pathname,
                     },
                     { property: 'og:description', content: pageDescription },
-                    { property: 'og:image', content: pageThumb },
+                    { property: 'og:image', content: avatar },
                     { property: 'og:type', content: 'website' },
                 ]}
             />
