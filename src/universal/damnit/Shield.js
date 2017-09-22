@@ -25,8 +25,16 @@ export default class Shield extends Circle {
         this.canvas.height = this.h;
 
         this.dead = false;
+        this.hit = false;
 
-        this.gradient = this.ctx.createRadialGradient(
+        this.setGradient1();
+        this.setGradient2();
+
+        this.draw();
+    }
+
+    setGradient1() {
+        this.gradient1 = this.ctx.createRadialGradient(
             this.cx,
             this.cy,
             this.r,
@@ -35,11 +43,24 @@ export default class Shield extends Circle {
             0
         );
 
-        this.gradient.addColorStop(0, 'rgba(100, 120, 218, 0.5');
-        this.gradient.addColorStop(0.2, 'rgba(30, 156, 215, 0.2');
-        this.gradient.addColorStop(1, 'rgba(204, 224, 244, 0.0');
+        this.gradient1.addColorStop(0, 'rgba(100, 120, 218, 0.5');
+        this.gradient1.addColorStop(0.2, 'rgba(30, 156, 215, 0.2');
+        this.gradient1.addColorStop(1, 'rgba(204, 224, 244, 0.0');
+    }
 
-        this.draw();
+    setGradient2() {
+        this.gradient2 = this.ctx.createRadialGradient(
+            this.cx,
+            this.cy,
+            this.r,
+            this.cx,
+            this.cy,
+            0
+        );
+
+        this.gradient2.addColorStop(0, 'rgba(120, 218, 100, 0.5');
+        this.gradient2.addColorStop(0.2, 'rgba(156, 215, 30, 0.2');
+        this.gradient2.addColorStop(1, 'rgba(224, 244, 204, 0.0');
     }
 
     subscribe(eventPublisher) {
@@ -47,18 +68,19 @@ export default class Shield extends Circle {
         eventPublisher.subscribe(GameEvents.SHIELD_DOWN, this.handleShieldDown);
     }
 
-    handleHit() {}
+    handleHit = () => {
+        this.hit = true;
+        this.draw();
+        setTimeout(() => {
+            this.hit = false;
+            this.draw();
+        }, 200);
+    };
 
     handleShieldDown = () => {
         this.dead = true;
         this.draw();
     };
-
-    shieldTimeout() {
-        setTimeout(() => {
-            this.shield = false;
-        }, 300);
-    }
 
     updatePosition(cx, cy) {
         this.x = cx - this.r;
@@ -68,7 +90,7 @@ export default class Shield extends Circle {
     }
 
     drawCircle(color, r) {
-        this.ctx.fillStyle = this.gradient;
+        this.ctx.fillStyle = color;
         this.ctx.beginPath();
         this.ctx.arc(r, r, r, 0, this.pi2, true);
         this.ctx.closePath();
@@ -76,10 +98,14 @@ export default class Shield extends Circle {
     }
 
     draw() {
-        if (this.dead) {
-            this.ctx.clearRect(0, 0, this.w, this.h);
+        this.ctx.clearRect(0, 0, this.w, this.h);
+
+        if (this.dead) return;
+
+        if (this.hit) {
+            this.drawCircle(this.gradient2, this.r);
         } else {
-            this.drawCircle('skyblue', this.r);
+            this.drawCircle(this.gradient1, this.r);
         }
     }
 }
