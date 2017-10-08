@@ -1,14 +1,46 @@
 Who
 ===
 
-Creative turned Developer working to make the web more interactive, user-friendly, and accessible. Excited by all things Javascript. Focused on building high-quality, DRY, and maintainable web apps primarily with React and the greater ReactJS ecosystem.
+Creative turned developer working to make the web more user-friendly, interactive, and accessible. Leading the front-end development of highly customized, DRY, and maintainable web apps primarily built with React and the greater ReactJS ecosystem. Excited by all things JavaScript.
 
-Experience
-==========
+Experience Highlights
+=====================
+
+**3+ years working with React to build SSR Node apps with Flux/Redux.**
+
+- Utilized the latest JavaScript via Babel, ES6 (ES2015) and beyond
+- Configured build systems like Webpack and Gulp to  t custom project needs - Worked with Docker and continuous integration via Jenkins
+- Optimized apps for client-side performance
+- Crafted animated experiences with the Canvas, SVG and WebGL APIs
+
+**5+ years working with JavaScript and JavaScript libraries to build modern web apps and interactive experiences.**
+
+- Using OOP and functional paradigms to build DRY maintainable programs
+- Built accessible custom interfaces to ARIA standards
+- Always mobile first and responsive, adapted to best serve all devices
+
+**7+ years experience in creative primarily for (but not limited to) web.**
+
+- Designing websites and user interfaces
+- Creating annotated wireframes and fows for web apps
+- Building brand identities, developing logos, and designing custom typefaces
+- Background as a 3D artist specializing in animation and character rigging
+
+**10+ years working with web technologies like HTML/CSS.**
+
+- Complete knowledge of fundamentals
+- Familiar with all browser quirks, past and present
+- Utilized graceful degradations or progressive enhancements to broaden client support
+
+
+Work History
+============
 
 ### HAUS
 
 ***Lead Front-end Developer***
+
+Front-end developer leading the production of ReactJS web apps from end-to-end while managing other team members and coordinating with producers to ship projects with tight deadlines. Applied the latest JavaScript patterns to architect rich animated experiences with the latest browser APIs. Focused on building organised, DRY, maintainable codebases with accessible presentation layers.
 
 2015–Present
 

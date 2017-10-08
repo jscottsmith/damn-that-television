@@ -58,7 +58,12 @@ $salmon: #ce8284;
     h4 {
         font-size: 1.4rem;
     }
-    p {
+    li {
+        list-style-type: disc;
+    }
+
+    p,
+    li {
         color: $night;
         font-size: 1.3rem;
         font-weight: 400;
