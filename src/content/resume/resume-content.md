@@ -74,17 +74,20 @@ Technologies/Skills
 A non-exhaustive list of technologies or software I've worked with:
 
 <ul class="two-column">
+    <li>Javascript ES6+</li>
     <li>React</li>
-    <li>Redux</li>
+    <li>Flux/Redux</li>
     <li>Node</li>
+    <li>Jest</li>
+    <li>RESTful APIs</li>
     <li>Webpack/Gulp</li>
     <li>Git</li>
-    <li>Javascript ES6+</li>
     <li>Docker</li>
     <li>Canvas</li>
     <li>GreenSock</li>
-    <li>HTML</li>
+    <li>Bodymovin</li>
     <li>SCSS/SASS</li>
+    <li>HTML5/CSS3</li>
     <li>Backbone</li>
     <li>PHP</li>
     <li>UX/UI Design</li>
