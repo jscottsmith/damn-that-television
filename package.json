@@ -1,0 +1,32 @@
+{
+  "name": "damn-that-television",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jscottsmith/damn-that-television.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jscottsmith/damn-that-television/issues"
+  },
+  "homepage": "https://github.com/jscottsmith/damn-that-television#readme",
+  "dependencies": {
+    "@zeit/next-sass": "^0.1.2",
+    "classnames": "^2.2.5",
+    "html-loader": "^0.5.5",
+    "markdown-loader": "^2.0.2",
+    "next": "^5.1.0",
+    "node-sass": "^4.8.3",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1"
+  }
+}
