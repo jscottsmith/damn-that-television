@@ -1,13 +1,11 @@
-// This file is not going through babel transformation.
-// So, we write it in vanilla JS
-// (But you could use ES2015 features supported by your Node.js version)
-
 const withSass = require('@zeit/next-sass');
-// module.exports = withSass({
-//     cssModules: true,
-// });
 
 module.exports = withSass({
+    cssModules: true,
+    cssLoaderOptions: {
+        importLoaders: 1,
+        localIdentName: '[local]___[hash:base64:5]',
+    },
     webpack(config, options) {
         config.module.rules.push({
             test: /\.md$/,
