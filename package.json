@@ -20,13 +20,13 @@
   },
   "homepage": "https://github.com/jscottsmith/damn-that-television#readme",
   "dependencies": {
-    "@zeit/next-sass": "^0.1.2",
+    "@zeit/next-sass": "^0.2.0",
     "autoprefixer": "^8.2.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "classnames": "^2.2.5",
     "html-loader": "^0.5.5",
     "markdown-loader": "^2.0.2",
-    "next": "^6.0.3",
+    "next": "^6.1.1",
     "node-sass": "^4.8.3",
     "react": "^16.3.1",
     "react-dom": "^16.3.1"

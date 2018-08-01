@@ -8,10 +8,7 @@ export default class Home extends PureComponent {
     render() {
         return (
             <article className={cx('page-index', styles.index)}>
-                <div className={cx(styles.welcome)}>
-                    <Copy>{content}</Copy>
-                    <button className={styles.play}>Go!</button>
-                </div>
+                <Copy>{content}</Copy>
             </article>
         );
     }

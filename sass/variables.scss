@@ -4,55 +4,36 @@
 
 // Colors
 // -------------------------
-$white: #f3f3f3 !default;
-$gray: #d3d3d3 !default;
-$black: #222222 !default;
-$green: #8bd5a1 !default;
-$gold: #9f8548 !default;
-$mint: #2de8b2;
 
-// Scaffolding
-// -------------------------
-$bodyBackground: $white !default;
-$textColor: $black !default;
-$hrBorder: $black !default;
-
-// Links
-// -------------------------
-$linkColor: $black !default;
-$linkColorHover: $mint !default;
+// theme
+$softy: #f5b8b5;
+$fab: #fffb74;
+$club: #6574ff;
+$miami: #72dbde;
+$lit: #ff714c;
+$lunar: #665b85;
+$deep: #2c2f34;
 
 // Typography
 // -------------------------
+$thin: 100;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$bold: 600;
+$ultraBold: 800;
 
-$sans: sans-serif !default;
-$serif: serif !default;
-$futura: 'futura-pt', $sans !default;
+$sans: sans-serif;
+$serif: serif;
+$futura: 'futura-pt', $sans;
 
-$thin: 100 !default;
-$light: 300 !default;
-$regular: 400 !default;
-$medium: 500 !default;
-$bold: 600 !default;
-$ultraBold: 800 !default;
+$baseFontSize: 10px;
+$baseFontFamily: $futura;
+$baseLineHeight: 20px;
 
-$baseFontSize: 10px !default;
-$baseFontFamily: $futura !default;
-$baseLineHeight: 20px !default;
-
-$headingsFontWeight: $bold !default;
-$headingsFontFamily: inherit !default;
-$headingsColor: inherit !default;
-
-// Borders
-// -------------------------
-$borderColor: $black !default;
-
-// Buttons
-// -------------------------
-$btnBackground: $white !default;
-$btnBackgroundHighlight: darken($white, 10%) !default;
-$btnBorder: darken($white, 10%) !default;
+$headingsFontWeight: normal;
+$headingsFontFamily: inherit;
+$headingsColor: inherit;
 
 // Breakpoints
 // -------------------------
@@ -91,17 +72,9 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 $easeInOutExpo: cubic-bezier(1, 0, 0, 1);
 $easeInOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-// Animation
-// -------------------------
-$transTime: 0.3s;
-$transTimeFast: $transTime * 0.5;
-$transTimeSlow: $transTime * 1.5;
-$transTimeSuperSlow: $transTime * 2;
-$easeDefault: $ease;
-
 // Shared Size
 // -------------------------
 
-$sitePadding: 2em;
-$sitePaddingMobile: 3em;
-$sitePaddingDesktop: 4em;
+$p: 2em;
+$p: 3em;
+$p: 4em;

@@ -1,0 +1,14 @@
+@import './normalize';
+@import './variables';
+
+:global {
+    body {
+        font-family: $baseFontFamily;
+        font-size: 16px;
+        background-color: $softy;
+        color: $deep;
+    }
+    p {
+        font-size: 1.7rem;
+    }
+}
