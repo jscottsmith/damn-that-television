@@ -1,15 +1,14 @@
-import React, { PureComponent } from 'react';
-import cx from 'classnames';
-import styles from './index.scss';
-import Copy from 'components/atoms/Copy';
-import content from 'markdown/home.md';
+import React, { PureComponent, Fragment } from 'react';
+import HomeLanding from '../../components/sections/HomeLanding/HomeLanding';
+import WhatsUp from '../../components/sections/WhatsUp/WhatsUp';
 
 export default class Home extends PureComponent {
     render() {
         return (
-            <article className={cx('page-index', styles.index)}>
-                <Copy>{content}</Copy>
-            </article>
+            <Fragment>
+                <HomeLanding />
+                <WhatsUp />
+            </Fragment>
         );
     }
 }

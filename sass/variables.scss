@@ -27,14 +27,6 @@ $sans: sans-serif;
 $serif: serif;
 $futura: 'futura-pt', $sans;
 
-$baseFontSize: 10px;
-$baseFontFamily: $futura;
-$baseLineHeight: 20px;
-
-$headingsFontWeight: normal;
-$headingsFontFamily: inherit;
-$headingsColor: inherit;
-
 // Breakpoints
 // -------------------------
 $mobileWidth: '480px';
@@ -74,7 +66,7 @@ $easeInOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
 // Shared Size
 // -------------------------
-
-$p: 2em;
-$p: 3em;
-$p: 4em;
+$p1: 1rem;
+$p2: 2rem;
+$p3: 3rem;
+$p4: 4rem;

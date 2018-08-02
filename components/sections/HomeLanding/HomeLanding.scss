@@ -1,0 +1,27 @@
+//
+// Page: Index
+// ---------------------------
+
+@import '../../../sass/variables';
+@import '../../../sass/mixins';
+
+.index {
+    height: 100vh;
+}
+
+.inner {
+    @include spread;
+}
+
+.copy {
+    @include center;
+    text-align: center;
+    z-index: 100;
+    font-size: 2vw;
+    letter-spacing: 0.1em;
+}
+
+.container {
+    @include spread;
+    background-color: #fff;
+}

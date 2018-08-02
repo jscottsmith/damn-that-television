@@ -1,1 +1,1 @@
-Hey there 👋🏻, I'm J
+# Hey there, I'm J.
