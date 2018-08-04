@@ -8,7 +8,7 @@
     body {
         font-family: $futura;
         font-size: 16px;
-        background-color: $softy;
+        background-color: $lunar;
         color: $deep;
     }
     p {
@@ -19,6 +19,6 @@
     h2,
     h3 {
         color: $lunar;
-        font-weight: normal;
+        font-weight: $regular;
     }
 }

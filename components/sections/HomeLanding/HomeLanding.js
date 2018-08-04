@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
+import Observed from 'react-observed';
+
 // import cx from 'classnames';
 import styles from './HomeLanding.scss';
 import Copy from 'components/atoms/Copy';
 import content from 'markdown/home.md';
 
-import { Canvas, Pointer, Point } from '@gush/candybar';
+import { Canvas, Point } from '@gush/candybar';
 
 import WavingArm from '../../../canvas/waving-arm/WavingArm';
 import Background from '../../../canvas/waving-arm/Background';
@@ -14,6 +16,12 @@ const color = {
     teal: '#72dbde',
     blue: '#6574ff',
     purple: '#665b85',
+};
+
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: [0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
 };
 
 export default class HomeLanding extends PureComponent {
@@ -39,10 +47,10 @@ export default class HomeLanding extends PureComponent {
             force: new Point(-0.02, -0.2 * DPR),
         };
 
-        const canvas = new Canvas({
+        this.canvas = new Canvas({
             canvas: this._canvas,
             container: this._container,
-            pointer: new Pointer(),
+            hasPointer: true,
             entities: [
                 new Background(),
                 new WavingArm({
@@ -63,19 +71,35 @@ export default class HomeLanding extends PureComponent {
         });
     }
 
+    handleChange = (isInView) => {
+        isInView ? this.canvas.start() : this.canvas.stop();
+    };
+
     render() {
         return (
-            <article
-                className={styles.index}
-                ref={(ref) => (this._container = ref)}
+            <Observed
+                onChange={this.handleChange}
+                initialViewState={true}
+                intersectionRatio={0}
+                options={observerOptions}
             >
-                <div className={styles.inner}>
-                    <div className={styles.container}>
-                        <canvas ref={(ref) => (this._canvas = ref)} />
-                    </div>
-                    <Copy className={styles.copy}>{content}</Copy>
-                </div>
-            </article>
+                {({ isInView, mapRef }) => (
+                    <article
+                        className={styles.index}
+                        ref={(ref) => {
+                            this._container = ref;
+                            mapRef(ref);
+                        }}
+                    >
+                        <div className={styles.inner}>
+                            <div className={styles.container}>
+                                <canvas ref={(ref) => (this._canvas = ref)} />
+                            </div>
+                            <Copy className={styles.copy}>{content}</Copy>
+                        </div>
+                    </article>
+                )}
+            </Observed>
         );
     }
 }

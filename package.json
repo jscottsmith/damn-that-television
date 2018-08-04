@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/jscottsmith/damn-that-television#readme",
   "dependencies": {
-    "@gush/candybar": "0.0.0-alpha9",
+    "@gush/candybar": "0.0.0-alpha15",
     "@zeit/next-sass": "^0.2.0",
     "autoprefixer": "^8.2.0",
     "babel-plugin-module-resolver": "^3.1.1",
@@ -30,6 +30,7 @@
     "next": "^6.1.1",
     "node-sass": "^4.8.3",
     "react": "^16.3.1",
-    "react-dom": "^16.3.1"
+    "react-dom": "^16.3.1",
+    "react-observed": "^1.0.2"
   }
 }

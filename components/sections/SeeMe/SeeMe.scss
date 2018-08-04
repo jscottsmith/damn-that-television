@@ -1,0 +1,16 @@
+@import '../../../sass/variables';
+@import '../../../sass/mixins';
+
+.root {
+    position: relative;
+    height: 100vh;
+    background-color: $softy;
+}
+
+.inner {
+    @include spread;
+}
+
+.container {
+    @include spread;
+}
