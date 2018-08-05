@@ -67,7 +67,7 @@ export default class SeeMe extends Component {
             <Observed
                 onChange={this.handleChange}
                 initialViewState={true}
-                intersectionRatio={0}
+                intersectionRatio={0.01}
                 options={observerOptions}
             >
                 {({ mapRef }) => (

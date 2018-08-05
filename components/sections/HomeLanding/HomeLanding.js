@@ -80,7 +80,7 @@ export default class HomeLanding extends PureComponent {
             <Observed
                 onChange={this.handleChange}
                 initialViewState={true}
-                intersectionRatio={0}
+                intersectionRatio={0.01}
                 options={observerOptions}
             >
                 {({ isInView, mapRef }) => (

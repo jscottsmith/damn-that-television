@@ -2,6 +2,15 @@
 @import '../../../sass/mixins';
 
 .root {
+    position: relative;
     height: 100vh;
     background-color: $club;
+}
+
+.inner {
+    @include spread;
+}
+
+.container {
+    @include spread;
 }
