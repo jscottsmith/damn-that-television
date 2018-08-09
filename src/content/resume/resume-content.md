@@ -1,12 +1,12 @@
 # Who
 
-Creative turned developer working to create modern web products. Focused on making apps more user-friendly, performant, and accessible while writing code that is tested, scalable and maintainable. Love all things web, especially JavaScript.
+Creative turned developer working to create modern web products. Focused on making apps more user-friendly, performant, and accessible while writing code that is tested, scalable and maintainable. Love for all things web, especially JavaScript.
 
 # Experience Highlights
 
 **4+ years working with React to build SSR Node apps with Flux/Redux.**
 
--   Utilized modern JavaScript via Babel, ES6 (ES2015) and beyond
+-   Utilized modern JavaScript via Babel, ES6 and beyond
 -   Tested server APIs and client side code with Jest and Mocha
 -   Created database migrations to create new features or deprecate old
 -   Customized build systems like Webpack and Gulp to fit project needs
@@ -39,7 +39,7 @@ Creative turned developer working to create modern web products. Focused on maki
 
 **_Senior Web Engineer_**
 
-Full-stack test driven React development for GumGum's core products to support their computer vision advertising business. Working in an agile environment developing and deploying new features each sprint, managing product releases or hotfixes, providing mentoring and guidance to team contributors, and reviewing all downstream code through PR workflows. Additionally, contributing in the development of Gumdrops, GumGum's open sourced React component UI library that is shared across products to streamline development.
+Full-stack test-driven React development for GumGum's core products to support their computer vision advertising business. Working in an agile environment developing and deploying new features each sprint, managing product releases or hotfixes, providing mentoring and guidance to team contributors, and reviewing all downstream code through PR workflows. Additionally, contributing in the development of Gumdrops, GumGum's open sourced React component UI library that is shared across products to streamline development.
 
 2017–Present
 

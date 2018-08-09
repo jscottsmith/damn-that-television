@@ -2,8 +2,8 @@
 // Page: Resume
 // ---------------------------
 
-@import '../variables';
-@import '../mixins';
+@import "../variables";
+@import "../mixins";
 
 $plum: #403b4f;
 $night: #635e7f;
@@ -106,7 +106,7 @@ $salmon: #ce8284;
     width: 100%;
 
     ul {
-        margin: 1rem 0 2rem;
+        margin: 1rem 0 2rem 1.5rem;
         li {
             font-size: 1.3rem;
         }
