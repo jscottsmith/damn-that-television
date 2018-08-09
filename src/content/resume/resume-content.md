@@ -9,13 +9,14 @@ Creative turned developer working to create modern web products. Focused on maki
 -   Utilized the latest modern JavaScript via Babel, ES6 and beyond
 -   Tested server APIs and user interfaces with Jest, Enzyme and Mocha
 -   Created database migrations to support new features or deprecate old
+-   Implemented server-side rendering with server and client-side fetching
 -   Customized build systems like Webpack and Gulp to fit project needs
--   Familiar with Docker and continuous integration systems like Jenkins/Travis CI
 -   Optimized apps for client-side performance on mobile and desktop
--   Crafted animated experiences with HTML Canvas, SVG and WebGL APIs
+-   Familiar with Docker and continuous integration systems like Jenkins/Travis CI
 
 **6+ years working with JavaScript and libraries to build websites and interactive experiences.**
 
+-   Crafted animated experiences with HTML Canvas, SVG and WebGL APIs
 -   Used functional and OOP paradigms to build DRY maintainable programs
 -   Built accessible custom interfaces to ARIA standards
 -   Configured, adapted, and utilized numerous content management systems
