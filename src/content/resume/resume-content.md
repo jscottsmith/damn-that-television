@@ -4,28 +4,31 @@ Creative turned developer working to create modern web products. Focused on maki
 
 # Experience Highlights
 
-**4+ years working with React to build SSR Node apps with Flux/Redux.**
+**4+ years working with React and Node to build modern web apps with Redux/Flux.**
 
--   Utilized modern JavaScript via Babel, ES6 and beyond
--   Tested server APIs and client side code with Jest and Mocha
--   Created database migrations to create new features or deprecate old
+-   Utilized the latest modern JavaScript via Babel, ES6 and beyond
+-   Tested server APIs and user interfaces with Jest, Enzyme and Mocha
+-   Created database migrations to support new features or deprecate old
 -   Customized build systems like Webpack and Gulp to fit project needs
--   Worked with Docker and continuous integration systems like Jenkins/Travis CI
+-   Familiar with Docker and continuous integration systems like Jenkins/Travis CI
 -   Optimized apps for client-side performance on mobile and desktop
 -   Crafted animated experiences with HTML Canvas, SVG and WebGL APIs
 
-**6+ years working with JavaScript and JavaScript libraries to build modern web apps and interactive experiences.**
+**6+ years working with JavaScript and libraries to build websites and interactive experiences.**
 
--   Used OOP and functional paradigms to build DRY maintainable programs
+-   Used functional and OOP paradigms to build DRY maintainable programs
 -   Built accessible custom interfaces to ARIA standards
--   Always developed mobile first and responsive, adapted to best serve all devices
+-   Configured, adapted, and utilized numerous content management systems
+-   Always built mobile first, responsive, adaptive front-ends to best serve all devices
+-   Developed style systems utilizing modern tooling for creating robust on brand interfaces
 
 **8+ years experience in creative primarily for (but not limited to) web.**
 
 -   Designed websites, web apps, and user interfaces with style guides
--   Created annotated wireframes and user flows for web apps
+-   Created annotated wireframes and user flows for websites and web apps
 -   Built brand identities, developed logos, and designed custom typefaces
--   Background as a 3D artist specialized in animation and character rigging
+-   Background as a 3D artist specialized in character animation and rigging
+-   Skilled with motion graphics and animation design
 
 **10+ years working with web technologies like HTML/CSS.**
 
