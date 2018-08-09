@@ -1,36 +1,37 @@
 # Who
 
-Creative turned developer working to make the web more user-friendly, interactive, and accessible. Leading the development of highly customized, DRY, and maintainable web apps primarily built with React and the greater ReactJS ecosystem. Excited by all things JavaScript.
+Creative turned developer working to create modern web products. Focused on making apps more user-friendly, performant, and accessible while writing code that is tested, scalable and maintainable. Love all things web, especially JavaScript.
 
 # Experience Highlights
 
-**3+ years working with React to build SSR Node apps with Flux/Redux.**
+**4+ years working with React to build SSR Node apps with Flux/Redux.**
 
-* Utilized modern JavaScript via Babel, ES6 (ES2015) and beyond
-* Configured build systems like Webpack and Gulp to fit project needs
-* Worked with Docker and continuous integration via Jenkins
-* Tested server APIs and client side code with Jest and Mocha
-* Optimized apps for client-side performance on mobile and desktop
-* Crafted animated experiences with the HTML Canvas, SVG and WebGL APIs
+-   Utilized modern JavaScript via Babel, ES6 (ES2015) and beyond
+-   Tested server APIs and client side code with Jest and Mocha
+-   Created database migrations to create new features or deprecate old
+-   Customized build systems like Webpack and Gulp to fit project needs
+-   Worked with Docker and continuous integration systems like Jenkins/Travis CI
+-   Optimized apps for client-side performance on mobile and desktop
+-   Crafted animated experiences with HTML Canvas, SVG and WebGL APIs
 
-**5+ years working with JavaScript and JavaScript libraries to build modern web apps and interactive experiences.**
+**6+ years working with JavaScript and JavaScript libraries to build modern web apps and interactive experiences.**
 
-* Using OOP and functional paradigms to build DRY maintainable programs
-* Built accessible custom interfaces to ARIA standards
-* Always mobile first and responsive, adapted to best serve all devices
+-   Used OOP and functional paradigms to build DRY maintainable programs
+-   Built accessible custom interfaces to ARIA standards
+-   Always developed mobile first and responsive, adapted to best serve all devices
 
-**7+ years experience in creative primarily for (but not limited to) web.**
+**8+ years experience in creative primarily for (but not limited to) web.**
 
-* Designing websites and user interfaces
-* Creating annotated wireframes and flows for web apps
-* Building brand identities, developing logos, and designing custom typefaces
-* Background as a 3D artist specializing in animation and character rigging
+-   Designed websites, web apps, and user interfaces with style guides
+-   Created annotated wireframes and user flows for web apps
+-   Built brand identities, developed logos, and designed custom typefaces
+-   Background as a 3D artist specialized in animation and character rigging
 
 **10+ years working with web technologies like HTML/CSS.**
 
-* Complete knowledge of fundamentals
-* Familiar with all browser quirks, past and present
-* Utilized graceful degradations or progressive enhancements to broaden client support
+-   Complete knowledge of web fundamentals
+-   Familiar with all browser quirks, past (IE) and present (Safari)
+-   Utilized graceful degradations or progressive enhancements to best serve users
 
 # Work History
 
@@ -38,7 +39,7 @@ Creative turned developer working to make the web more user-friendly, interactiv
 
 **_Senior Web Engineer_**
 
-Developing and maintaining a full-stack React app used in house to create custom and proprietary ads. Includes creating database migrations to support new features, writing unit tests for new features/changes to maintain/improve coverage, refactoring and upgrading major dependencies to minimize future tech-debt, reviewing PRs from team members, and generally working to improve and build upon the existing codebase. Additionally developing a new React component UI library to share across GumGum's numerous React apps.
+Full-stack test driven React development for GumGum's core products to support their computer vision advertising business. Working in an agile environment developing and deploying new features each sprint, managing product releases or hotfixes, providing mentoring and guidance to team contributors, and reviewing all downstream code through PR workflows. Additionally, contributing in the development of Gumdrops, GumGum's open sourced React component UI library that is shared across products to streamline development.
 
 2017–Present
 
