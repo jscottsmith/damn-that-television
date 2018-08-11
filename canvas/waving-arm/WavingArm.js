@@ -1,4 +1,4 @@
-import { Entity } from '@gush/candybar';
+import { Entity, Point } from '@gush/candybar';
 import Arm from './Arm';
 import Hand from './Hand';
 import Hole from './Hole';
@@ -8,19 +8,41 @@ import Hole from './Hole';
 //*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
 
 class WavingArm extends Entity {
-    constructor({ position, width, height, color, force, isLeft, holeColor }) {
+    constructor(config) {
         super();
+        this.color = config.color;
+        this.force = config.force;
+        this.isLeft = config.isLeft;
+        this.holeColor = config.holeColor;
+        this.getPosition = config.getPosition;
+    }
 
-        this.resolution = this.toValue(window.innerHeight / 60);
+    updateFade(canvas) {
+        if (this.fade < 1) {
+            this.fade += 0.1;
+        } else {
+            this.fade = 1;
+        }
+        canvas.style.opacity = this.fade;
+    }
+
+    setupArm = (context) => {
+        const { color, force, isLeft, holeColor, getPosition } = this;
+
+        const resolution = this.toValue(window.innerHeight / 60);
+
+        const { x, y, w, h } = this.getPosition(context);
+
+        this.fade = 0;
 
         this.arm = new Arm({
             color,
             holeColor,
-            width,
-            height,
-            position,
+            width: w,
+            height: h,
+            position: new Point(x, y),
             force,
-            resolution: this.resolution,
+            resolution,
         });
 
         const i = this.arm.spine.length - 1;
@@ -29,17 +51,21 @@ class WavingArm extends Entity {
             p1: this.arm.spine[i],
             p2: this.arm.spine[i - 1],
             isLeft,
-            width: width * 3.2,
+            width: w * 3.2,
         });
 
         this.hole = new Hole({
             p1: this.arm.spine[0],
             p2: this.arm.spine[1],
             color: holeColor,
-            width: width * 2,
-            height: width / 2,
+            width: w * 2,
+            height: w / 2,
         });
-    }
+    };
+
+    setup = (context) => this.setupArm(context);
+
+    resize = (context) => this.setupArm(context);
 
     draw = ({ ctx }) => {
         this.hole.draw({ ctx });
@@ -48,6 +74,7 @@ class WavingArm extends Entity {
     };
 
     update = (context) => {
+        this.updateFade(context.canvas);
         this.arm.update(context);
         this.hand.update();
     };

@@ -584,9 +584,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@gush/candybar@0.0.0-alpha16":
-  version "0.0.0-alpha16"
-  resolved "https://registry.yarnpkg.com/@gush/candybar/-/candybar-0.0.0-alpha16.tgz#6eacd223127416c743922d48a819f482eccce5f9"
+"@gush/candybar@0.0.0-alpha20":
+  version "0.0.0-alpha20"
+  resolved "https://registry.yarnpkg.com/@gush/candybar/-/candybar-0.0.0-alpha20.tgz#99072df2b50058cf508101e6534d4e79ddef375f"
 
 "@zeit/next-css@0.2.0":
   version "0.2.0"

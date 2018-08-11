@@ -31,15 +31,28 @@ export default class HomeLanding extends PureComponent {
 
     runIt() {
         const DPR = window.devicePixelRatio || 1;
-        const mw = Math.max(window.innerWidth, window.innerHeight);
-        const w1 = (mw / 60) * DPR;
-        const w2 = (mw / 40) * DPR;
-        const h1 = window.innerHeight * 0.4 * DPR;
-        const h2 = window.innerHeight * 0.5 * DPR;
-        const x1 = this._container.clientWidth * 0.25 * DPR;
-        const y1 = this._container.clientHeight * 0.65 * DPR;
-        const x2 = this._container.clientWidth * 0.75 * DPR;
-        const y2 = this._container.clientHeight * 0.85 * DPR;
+
+        const getPositionRight = ({ canvas, dpr }) => {
+            const cw = canvas.clientWidth;
+            const ch = canvas.clientHeight;
+            const mw = Math.min(cw, ch);
+            const w = (mw / 40) * dpr;
+            const h = window.innerHeight * 0.4 * dpr;
+            const x = cw * 0.25 * dpr;
+            const y = ch * 0.65 * dpr;
+            return { x, y, w, h };
+        };
+
+        const getPositionLeft = ({ canvas, dpr }) => {
+            const cw = canvas.clientWidth;
+            const ch = canvas.clientHeight;
+            const mw = Math.min(cw, ch);
+            const w = (mw / 30) * dpr;
+            const h = window.innerHeight * 0.5 * dpr;
+            const x = cw * 0.75 * dpr;
+            const y = ch * 0.85 * dpr;
+            return { x, y, w, h };
+        };
 
         const armOptions = {
             holeColor: color.purple,
@@ -55,17 +68,13 @@ export default class HomeLanding extends PureComponent {
                 new Background(),
                 new WavingArm({
                     ...armOptions,
-                    width: w1,
-                    height: h1,
-                    position: new Point(x1, y1),
                     isLeft: false,
+                    getPosition: getPositionRight,
                 }),
                 new WavingArm({
                     ...armOptions,
-                    width: w2,
-                    height: h2,
-                    position: new Point(x2, y2),
                     isLeft: true,
+                    getPosition: getPositionLeft,
                 }),
             ],
         });
