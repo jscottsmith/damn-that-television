@@ -7,8 +7,14 @@ const { lerp, scaleBetween, clamp } = utils;
  *------------------------------*/
 
 class Eye extends Entity {
-    constructor({ radius, x, y }) {
+    constructor({ getProps }) {
         super();
+        this.getProps = getProps;
+    }
+
+    setupEye = (context) => {
+        const { x, y, radius } = this.getProps(context);
+
         this.r = radius;
         this.d = this.r * 2;
         this.x = x;
@@ -52,7 +58,7 @@ class Eye extends Entity {
         this.setupCanvas();
         this.addListeners();
         this.drawLocal();
-    }
+    };
 
     addListeners() {
         window.addEventListener('mousedown', this.handleMouse('down'), false);
@@ -297,6 +303,10 @@ class Eye extends Entity {
         this.pupil = this.pupil.lerp(this.pupilDest, 0.1);
         this.iris = this.iris.lerp(this.irisDest, 0.1);
     }
+
+    setup = (context) => this.setupEye(context);
+
+    resize = (context) => this.setupEye(context);
 
     draw = ({ ctx }) => {
         this.drawLocal();

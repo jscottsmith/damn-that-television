@@ -1,6 +1,5 @@
 import Stick from './Stick';
-import PointPhysics from './PointPhysics';
-import { Entity } from '@gush/candybar';
+import { Entity, PointPhysics } from '@gush/candybar';
 
 function lerp(a, b, n) {
     return (1 - n) * a + n * b;
@@ -71,7 +70,7 @@ class Arm extends Entity {
 
         const dist = Math.floor(g1.distance(g2) / 2);
         const rad = g1.angleRadians(g2);
-        const [dx, dy] = g1.delta(g2);
+        const [dx, dy] = g2.delta(g1);
 
         let i = dist;
         while (i >= 0) {

@@ -101,10 +101,10 @@ export default class HomeLanding extends PureComponent {
                         }}
                     >
                         <div className={styles.inner}>
-                            <div className={styles.container}>
-                                <canvas ref={(ref) => (this._canvas = ref)} />
-                            </div>
                             <Copy className={styles.copy}>{content}</Copy>
+                        </div>
+                        <div className={styles.container}>
+                            <canvas ref={(ref) => (this._canvas = ref)} />
                         </div>
                     </article>
                 )}

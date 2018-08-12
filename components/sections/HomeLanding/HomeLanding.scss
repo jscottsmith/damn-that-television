@@ -8,10 +8,17 @@
 .index {
     position: relative;
     height: 110vh;
+    background-image: url(/static/pattern-0.svg);
+    background-size: 200px auto;
 }
 
 .inner {
-    @include spread;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    left: 2rem;
+    bottom: 0;
+    background-color: white;
 }
 
 .copy {
@@ -24,5 +31,4 @@
 
 .container {
     @include spread;
-    background-color: #fff;
 }

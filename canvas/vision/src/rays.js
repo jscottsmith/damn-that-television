@@ -65,10 +65,24 @@ export default function getSightPolygon(
     const norm = pi + spread;
     const normMax = pi + spread * 2;
 
+    // get unique points
+    const uniquePoints = ((points) => {
+        const set = {};
+        return points.filter((p) => {
+            const key = `${p.x},${p.y}`;
+            if (key in set) {
+                return false;
+            } else {
+                set[key] = true;
+                return true;
+            }
+        });
+    })(points);
+
     // include min and max so the entire range is illuminated
     const uniqueAngles = [normMin, normMax];
 
-    points.forEach((point) => {
+    uniquePoints.forEach((point) => {
         const angle = Math.atan2(point.y - sightY, point.x - sightX);
         // point.angle = angle;
 
@@ -126,17 +140,3 @@ export default function getSightPolygon(
 
     return [sightOrigin, ...sorted];
 }
-
-// get unique points
-// const uniquePoints = ((points) => {
-//     const set = {};
-//     return points.filter((p) => {
-//         const key = `${p.x},${p.y}`;
-//         if (key in set) {
-//             return false;
-//         } else {
-//             set[key] = true;
-//             return true;
-//         }
-//     });
-// })(points);

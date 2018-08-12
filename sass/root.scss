@@ -1,5 +1,6 @@
 @import './normalize';
 @import './variables';
+@import './fonts';
 
 :global {
     * {
@@ -13,7 +14,7 @@
     body {
         font-family: $futura;
         font-size: 16px;
-        background-color: $lunar;
+        background-color: $deep;
         color: $deep;
     }
     p {

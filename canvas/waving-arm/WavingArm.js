@@ -67,7 +67,7 @@ class WavingArm extends Entity {
 
     resize = (context) => this.setupArm(context);
 
-    draw = ({ ctx }) => {
+    draw = ({ ctx, bounds }) => {
         this.hole.draw({ ctx });
         this.arm.draw({ ctx });
         this.hand.draw({ ctx });

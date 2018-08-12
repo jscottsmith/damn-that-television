@@ -21,7 +21,7 @@ class Stick extends Entity {
         iterations.forEach(() => {
             // console.log(restingDist);
             const currentDist = p1.distance(p2);
-            const [diffX, diffY] = p1.delta(p2);
+            const [diffX, diffY] = p2.delta(p1);
 
             // difference scalar
             const diff = restingDist - currentDist;

@@ -1,67 +1,29 @@
-import { Entity } from '@gush/candybar';
+import { Entity, Bounds, utils } from '@gush/candybar';
 import getSightPolygon from './src/rays';
 import Projector from './Projector';
+import Shape from './Shape';
+import SceneBounds from './SceneBounds';
+import pointGenerator from './pointGenerator';
 
 export default class Vision extends Entity {
-    constructor() {
+    constructor(config) {
         super();
-        const w = this.toValue(window.innerWidth) * 1.1;
-        const h = this.toValue(window.innerHeight) * 1.1;
+        this.getSize = config.getSize;
+    }
+
+    setupScene(context) {
+        const { width: w, height: h } = this.getSize(context);
+        this.w = w;
+        this.h = h;
+
         this.projector = new Projector({
             width: w / 20,
             x: w / 2,
             y: h - h * 0.6,
         });
-        this.w = w;
-        this.h = h;
-        this.segments = [
-            // Border
-            { a: { x: 0, y: 0 }, b: { x: w, y: 0 } },
-            { a: { x: w, y: 0 }, b: { x: w, y: h } },
-            { a: { x: w, y: h }, b: { x: 0, y: h } },
-            { a: { x: 0, y: h }, b: { x: 0, y: 0 } },
-            // Polygon #1
-            { a: { x: 100, y: 150 }, b: { x: 120, y: 50 } },
-            { a: { x: 120, y: 50 }, b: { x: 200, y: 80 } },
-            { a: { x: 200, y: 80 }, b: { x: 140, y: 210 } },
-            { a: { x: 140, y: 210 }, b: { x: 100, y: 150 } },
-            // Polygon #2
-            { a: { x: 100, y: 200 }, b: { x: 120, y: 250 } },
-            { a: { x: 120, y: 250 }, b: { x: 60, y: 300 } },
-            { a: { x: 60, y: 300 }, b: { x: 100, y: 200 } },
 
-            // Polygon #2
-            { a: { x: 100, y: h - 200 }, b: { x: 120, y: h - 250 } },
-            { a: { x: 120, y: h - 250 }, b: { x: 60, y: h - 300 } },
-            { a: { x: 60, y: h - 300 }, b: { x: 100, y: h - 200 } },
-            // Polygon #3
-            { a: { x: 200, y: 260 }, b: { x: 220, y: 150 } },
-            { a: { x: 220, y: 150 }, b: { x: 300, y: 200 } },
-            { a: { x: 300, y: 200 }, b: { x: 350, y: 320 } },
-            { a: { x: 350, y: 320 }, b: { x: 200, y: 260 } },
-            // Polygon #4
-            { a: { x: 540, y: 60 }, b: { x: 560, y: 40 } },
-            { a: { x: 560, y: 40 }, b: { x: 570, y: 70 } },
-            { a: { x: 570, y: 70 }, b: { x: 540, y: 60 } },
-            // Polygon #5
-            { a: { x: 650, y: 190 }, b: { x: 760, y: 170 } },
-            { a: { x: 760, y: 170 }, b: { x: 740, y: 270 } },
-            { a: { x: 740, y: 270 }, b: { x: 630, y: 290 } },
-            { a: { x: 630, y: 290 }, b: { x: 650, y: 190 } },
-            // Polygon #6
-            { a: { x: 600, y: 95 }, b: { x: 780, y: 50 } },
-            { a: { x: 780, y: 50 }, b: { x: 680, y: 150 } },
-            { a: { x: 680, y: 150 }, b: { x: 600, y: 95 } },
-
-            { a: { x: w - 600, y: h - 95 }, b: { x: w - 780, y: h - 50 } },
-            { a: { x: w - 780, y: h - 50 }, b: { x: w - 680, y: h - 150 } },
-            { a: { x: w - 680, y: h - 150 }, b: { x: w - 600, y: h - 95 } },
-
-            { a: { x: w - 650, y: h - 190 }, b: { x: w - 760, y: h - 170 } },
-            { a: { x: w - 760, y: h - 170 }, b: { x: w - 740, y: h - 270 } },
-            { a: { x: w - 740, y: h - 270 }, b: { x: w - 630, y: h - 290 } },
-            { a: { x: w - 630, y: h - 290 }, b: { x: w - 650, y: h - 190 } },
-        ];
+        this.bounds = new Bounds(0, 0, w, h);
+        this.shapes = [new SceneBounds(0, 0, w, h)];
     }
 
     getGradient(ctx, center, norm) {
@@ -75,59 +37,67 @@ export default class Vision extends Entity {
         return gradient;
     }
 
-    drawSegments(ctx) {
+    drawLight(ctx) {
         const mouse = this.projector.source;
         const angle = this.projector.angle;
         const norm = this.projector.norm || 0;
         const spread = (Math.PI / 3) * (1 - norm) + 0.1;
 
+        const segments = this.shapes.reduce((a, c) => a.concat(c.segments), []);
+
         // Sight Polygons
         var polygon = getSightPolygon(
             mouse.x,
             mouse.y,
-            this.segments,
+            segments,
             angle,
             spread,
         );
-        // console.log(polygon);
-        if (polygon.length) {
-            drawPolygon(polygon, ctx, this.getGradient(ctx, mouse, norm));
-        }
 
-        this.segments.forEach((seg) => {
-            ctx.strokeStyle = '#72dbde';
+        if (polygon.length) {
+            ctx.fillStyle = this.getGradient(ctx, mouse, norm);
             ctx.beginPath();
-            ctx.moveTo(seg.a.x, seg.a.y);
-            ctx.lineTo(seg.b.x, seg.b.y);
-            ctx.stroke();
-        });
+            ctx.moveTo(polygon[0].x, polygon[0].y);
+            polygon.forEach((p) => {
+                ctx.lineTo(p.x, p.y);
+            });
+            ctx.fill();
+        }
     }
+
+    addShape() {
+        const point = pointGenerator(this.bounds);
+        this.shapes.push(
+            new Shape({
+                type: Shape.types.ZIGZAG,
+                x: point.x,
+                y: point.y,
+                vx: utils.getRandomFloat(-2, 2),
+                vy: utils.getRandomFloat(-2, 2),
+                color: '#fffb74',
+            }),
+        );
+    }
+
+    setup = (context) => this.setupScene(context);
+
+    resize = (context) => this.setupScene(context);
 
     draw = ({ ctx, pointer: { position: Mouse } }) => {
         this.projector.draw({ ctx });
-        this.drawSegments(ctx);
+        this.drawLight(ctx);
+        this.shapes.forEach((shape) => shape.draw({ ctx }));
     };
 
-    update = ({ pointer }) => {
-        this.projector.update({ pointer });
+    update = (context) => {
+        this.projector.update(context);
+        this.shapes.forEach((shape) =>
+            shape.update({ ...context, bounds: this.bounds }),
+        );
+        this.shapes = this.shapes.filter(({ dead }) => !dead);
+
+        if (this.shapes.length < 10) {
+            this.addShape();
+        }
     };
-}
-
-function drawPolygon(polygon, ctx, fillStyle) {
-    ctx.fillStyle = fillStyle;
-
-    ctx.beginPath();
-    ctx.moveTo(polygon[0].x, polygon[0].y);
-    for (var i = 1; i < polygon.length; i++) {
-        var intersect = polygon[i];
-        ctx.lineTo(intersect.x, intersect.y);
-    }
-    ctx.fill();
-
-    // polygon.forEach((point) => {
-    //     ctx.fillStyle = 'red';
-    //     ctx.beginPath();
-    //     ctx.arc(point.x, point.y, 2, 0, 2 * Math.PI, false);
-    //     ctx.fill();
-    // });
 }

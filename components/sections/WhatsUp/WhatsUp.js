@@ -26,7 +26,16 @@ export default class WhatsUp extends Component {
             canvas: this._canvas,
             container: this._container,
             hasPointer: true,
-            entities: [new Background(), new Vision({})],
+            entities: [
+                new Background(),
+                new Vision({
+                    getSize({ canvas }) {
+                        const cw = canvas.clientWidth;
+                        const ch = canvas.clientHeight;
+                        return { width: cw, height: ch };
+                    },
+                }),
+            ],
         });
     }
 

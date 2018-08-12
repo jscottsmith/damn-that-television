@@ -19,24 +19,27 @@ export default class SeeMe extends Component {
     }
 
     runIt() {
-        // const DPR = window.devicePixelRatio || 1;
-        // const mw = Math.max(window.innerWidth, window.innerHeight);
-        // const w1 = (mw / 60) * DPR;
-        // const w2 = (mw / 40) * DPR;
-        // const h1 = window.innerHeight * 0.4 * DPR;
-        // const h2 = window.innerHeight * 0.5 * DPR;
-        // const x1 = this._container.clientWidth * 0.25 * DPR;
-        // const y1 = this._container.clientHeight * 0.65 * DPR;
-        // const x2 = this._container.clientWidth * 0.75 * DPR;
-        // const y2 = this._container.clientHeight * 0.85 * DPR;
-        // const armOptions = {
-        //     holeColor: color.purple,
-        //     color: color.pink,
-        //     force: new Point(-0.02, -0.2 * DPR),
-        // };
+        const getPropsRight = ({ canvas, dpr }) => {
+            const cw = canvas.clientWidth;
+            const ch = canvas.clientHeight;
+            const radius = (Math.max(cw, ch) / 20) * dpr;
+            return {
+                radius,
+                x: (cw / 2) * dpr - radius * 2,
+                y: (ch / 4) * dpr,
+            };
+        };
 
-        const DPR = window.devicePixelRatio || 1;
-        const radius = (window.innerWidth / 20) * DPR;
+        const getPropsLeft = ({ canvas, dpr }) => {
+            const cw = canvas.clientWidth;
+            const ch = canvas.clientHeight;
+            const radius = (Math.max(cw, ch) / 20) * dpr;
+            return {
+                radius,
+                x: (cw / 2) * dpr + radius * 2,
+                y: (ch / 4) * dpr,
+            };
+        };
 
         this.canvas = new Canvas({
             canvas: this._canvas,
@@ -45,14 +48,10 @@ export default class SeeMe extends Component {
             entities: [
                 new Background(),
                 new Eye({
-                    radius,
-                    x: (window.innerWidth / 2) * DPR - radius * 2,
-                    y: (window.innerHeight / 4) * DPR,
+                    getProps: getPropsRight,
                 }),
                 new Eye({
-                    radius,
-                    x: (window.innerWidth / 2) * DPR + radius * 2,
-                    y: (window.innerHeight / 4) * DPR,
+                    getProps: getPropsLeft,
                 }),
             ],
         });
@@ -79,6 +78,9 @@ export default class SeeMe extends Component {
                         }}
                     >
                         <div className={styles.inner}>
+                            <p className={styles.ok}>
+                                <strong>OK</strong>
+                            </p>
                             <div className={styles.container}>
                                 <canvas ref={(ref) => (this._canvas = ref)} />
                             </div>
