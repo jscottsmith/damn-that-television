@@ -21,9 +21,9 @@ export default class SceneBounds extends Bounds {
                 ctx.lineTo(...seg.p2.position);
             }
         });
-        ctx.strokeStyle = 'red';
-        ctx.lineWidth = 2;
-        ctx.stroke();
+        // ctx.strokeStyle = 'red';
+        // ctx.lineWidth = 2;
+        // ctx.stroke();
     };
 
     update = () => {};

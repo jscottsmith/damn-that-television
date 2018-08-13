@@ -1,9 +1,15 @@
 import { Entity, Bounds, utils } from '@gush/candybar';
-import getSightPolygon from './src/rays';
 import Projector from './Projector';
 import Shape from './Shape';
+import getSightPolygon from './src/rays';
 import SceneBounds from './SceneBounds';
+import randomPositionOutsideBounds from './randomPositionOutsideBounds';
 import pointGenerator from './pointGenerator';
+
+const { getRandomInt } = utils;
+const MAX_SHAPES = 20;
+const types = [Shape.types.TRIANGLE, Shape.types.ZIGZAG, Shape.types.RING];
+const colors = ['#72dbde', '#fffb74', '#ff714c', '#ea94ba'];
 
 export default class Vision extends Entity {
     constructor(config) {
@@ -12,7 +18,9 @@ export default class Vision extends Entity {
     }
 
     setupScene(context) {
-        const { width: w, height: h } = this.getSize(context);
+        const { width, height } = this.getSize(context);
+        const w = this.toValue(width);
+        const h = this.toValue(height);
         this.w = w;
         this.h = h;
 
@@ -24,6 +32,11 @@ export default class Vision extends Entity {
 
         this.bounds = new Bounds(0, 0, w, h);
         this.shapes = [new SceneBounds(0, 0, w, h)];
+        let i = 0;
+        while (i < MAX_SHAPES) {
+            this.addShape(true);
+            i++;
+        }
     }
 
     getGradient(ctx, center, norm) {
@@ -65,18 +78,68 @@ export default class Vision extends Entity {
         }
     }
 
-    addShape() {
-        const point = pointGenerator(this.bounds);
-        this.shapes.push(
-            new Shape({
-                type: Shape.types.ZIGZAG,
-                x: point.x,
-                y: point.y,
-                vx: utils.getRandomFloat(-2, 2),
-                vy: utils.getRandomFloat(-2, 2),
-                color: '#fffb74',
-            }),
-        );
+    addShape(inside) {
+        const shape = new Shape({
+            type: types[getRandomInt(0, types.length - 1)],
+            x: 0,
+            y: 0,
+            vx: 0,
+            vy: 0,
+            color: colors[getRandomInt(0, colors.length - 1)], //
+        });
+
+        let startPosition = null;
+        if (!inside) {
+            startPosition = randomPositionOutsideBounds(
+                this.bounds,
+                shape.bounds,
+            );
+        } else {
+            startPosition = pointGenerator(this.bounds);
+        }
+
+        const destPosition = pointGenerator(this.bounds);
+        const [vx, vy] = startPosition.delta(destPosition);
+
+        // move to the randomized position
+        shape.moveTo(startPosition.x, startPosition.y);
+
+        const speed =
+            Math.max(shape.bounds.w, shape.bounds.h) /
+            Math.max(this.bounds.w, this.bounds.h);
+
+        shape.vx = vx * 0.02 * speed;
+        shape.vy = vy * 0.02 * speed;
+
+        this.shapes.push(shape);
+    }
+
+    updateShapes(context) {
+        this.shapes.forEach((shape) => {
+            // shapes also includs scenebounds which doens't move...
+            // ignore that here
+            if (shape.bounds) {
+                const doesIntersectsBounds = this.bounds.intersectsWith(
+                    shape.bounds,
+                );
+                // on first entersect mark as entered the scene
+                if (doesIntersectsBounds) {
+                    shape.entered = true;
+                }
+                // mark dead when it has left
+                if (!doesIntersectsBounds && shape.entered) {
+                    shape.dead = true;
+                }
+            }
+
+            shape.update(context);
+        });
+
+        this.shapes = this.shapes.filter(({ dead }) => !dead);
+
+        if (this.shapes.length < MAX_SHAPES) {
+            this.addShape();
+        }
     }
 
     setup = (context) => this.setupScene(context);
@@ -91,13 +154,6 @@ export default class Vision extends Entity {
 
     update = (context) => {
         this.projector.update(context);
-        this.shapes.forEach((shape) =>
-            shape.update({ ...context, bounds: this.bounds }),
-        );
-        this.shapes = this.shapes.filter(({ dead }) => !dead);
-
-        if (this.shapes.length < 10) {
-            this.addShape();
-        }
+        this.updateShapes(context);
     };
 }

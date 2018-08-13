@@ -26,6 +26,7 @@ export default class WhatsUp extends Component {
             canvas: this._canvas,
             container: this._container,
             hasPointer: true,
+            pauseInBackground: true,
             entities: [
                 new Background(),
                 new Vision({
@@ -40,6 +41,7 @@ export default class WhatsUp extends Component {
     }
 
     handleChange = (isInView) => {
+        if (this.canvas.paused && !isInView) return;
         isInView ? this.canvas.start() : this.canvas.stop();
     };
 
