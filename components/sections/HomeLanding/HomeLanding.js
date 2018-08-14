@@ -1,27 +1,19 @@
 import React, { PureComponent } from 'react';
 import Observed from 'react-observed';
-
 // import cx from 'classnames';
 import styles from './HomeLanding.scss';
 import Copy from 'components/atoms/Copy';
 import content from 'markdown/home.md';
-
 import { Canvas, Point } from '@gush/candybar';
-
 import WavingArm from '../../../canvas/waving-arm/WavingArm';
 import Background from '../../../canvas/waving-arm/Background';
+import { observerOptions } from '../../constants/app';
 
 const color = {
     pink: '#EA94BA',
     teal: '#72dbde',
     blue: '#6574ff',
     purple: '#665b85',
-};
-
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: [0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
 };
 
 export default class HomeLanding extends PureComponent {
