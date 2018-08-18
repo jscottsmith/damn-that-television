@@ -5,7 +5,8 @@ import { Canvas } from '@gush/candybar';
 import Vision from '../../../canvas/vision/Vision';
 import Background from '../../../canvas/waving-arm/Background';
 import { observerOptions } from '../../constants/app';
-
+import Copy from 'components/atoms/Copy';
+import content from 'markdown/whats-up.md';
 export default class WhatsUp extends Component {
     componentDidMount() {
         this.runIt();
@@ -55,9 +56,10 @@ export default class WhatsUp extends Component {
                         }}
                     >
                         <div className={styles.inner}>
-                            <div className={styles.container}>
-                                <canvas ref={(ref) => (this._canvas = ref)} />
-                            </div>
+                            <Copy className={styles.copy}>{content}</Copy>
+                        </div>
+                        <div className={styles.container}>
+                            <canvas ref={(ref) => (this._canvas = ref)} />
                         </div>
                     </article>
                 )}

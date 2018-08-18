@@ -3,11 +3,11 @@ import { Entity, Point, utils } from '@gush/candybar';
 const { scaleBetween, clamp, lerp } = utils;
 
 export default class Projector extends Entity {
-    constructor({ width = 100, x, y }) {
+    constructor({ radius = 100, x, y }) {
         super();
         this.x = x;
         this.y = y;
-        this.r = width;
+        this.r = radius;
         this.innerR = this.r / 7;
         this.angle = 0;
 
@@ -21,7 +21,7 @@ export default class Projector extends Entity {
         this.moveDist = this.r - this.innerR - this.r / 10;
     }
 
-    getGradient(ctx, center = this.source, radius = this.r) {
+    getWhiteGradient(ctx, center = this.source, radius = this.r) {
         const rx = center.x;
         const ry = center.y;
         const gradient = ctx.createRadialGradient(rx, ry, radius, rx, ry, 0);
@@ -31,20 +31,33 @@ export default class Projector extends Entity {
         return gradient;
     }
 
-    draw = ({ ctx }) => {
-        ctx.fillStyle = 'red';
-        const { x, y } = this.source;
-        ctx.fillRect(x - 5, y - 5, 10, 10);
-        ctx.beginPath();
-        ctx.moveTo(...this.center.position);
-        ctx.lineTo(...this.source.position);
-        ctx.stroke();
+    getPinkGradient(ctx, x, y, width) {
+        const gradient = ctx.createLinearGradient(x, y, x + width, y);
+        gradient.addColorStop(1, '#f4c8db');
+        gradient.addColorStop(0, '#ea94ba');
+        return gradient;
+    }
 
-        ctx.fillStyle = this.getGradient(ctx);
+    drawBase(ctx) {
+        const h = this.toValue(ctx.canvas.height / 3);
+        ctx.strokeStyle = '#ea94ba';
+        ctx.lineWidth = this.r / 2;
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x, this.y + h);
+        ctx.stroke();
+    }
+
+    drawWhites(ctx) {
+        ctx.fillStyle = this.getWhiteGradient(ctx);
         ctx.beginPath();
         ctx.arc(this.center.x, this.center.y, this.r, 0, 2 * Math.PI, false);
         ctx.closePath();
         ctx.fill();
+    }
+
+    drawPupil(ctx) {
+        const { x, y } = this.source;
 
         ctx.strokeStyle = '#665b85';
         ctx.lineWidth = this.innerR / 3;
@@ -54,6 +67,22 @@ export default class Projector extends Entity {
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
+    }
+
+    drawBaseTop(ctx) {
+        const w = this.r;
+        const h = this.r / 4;
+        const x2 = this.center.x - w / 2;
+        const y2 = this.center.y + this.r - h * 0.55;
+        ctx.fillStyle = this.getPinkGradient(ctx, x2, y2, w);
+        ctx.fillRect(x2, y2, w, h);
+    }
+
+    draw = ({ ctx, bounds }) => {
+        this.drawBase(ctx, bounds);
+        this.drawWhites(ctx);
+        this.drawPupil(ctx);
+        this.drawBaseTop(ctx);
     };
 
     update = ({ pointer }) => {

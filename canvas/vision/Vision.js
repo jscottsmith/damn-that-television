@@ -7,7 +7,7 @@ import randomPositionOutsideBounds from './randomPositionOutsideBounds';
 import pointGenerator from './pointGenerator';
 
 const { getRandomInt } = utils;
-const MAX_SHAPES = 20;
+
 const types = [Shape.types.TRIANGLE, Shape.types.ZIGZAG, Shape.types.RING];
 const colors = ['#72dbde', '#fffb74', '#ff714c', '#ea94ba'];
 
@@ -24,18 +24,34 @@ export default class Vision extends Entity {
         this.w = w;
         this.h = h;
 
+        this.numberOfShapes = Math.ceil(Math.max(width, height) / 100);
+
         this.projector = new Projector({
-            width: w / 20,
+            radius: w / 20,
             x: w / 2,
-            y: h - h * 0.6,
+            y: h - h * 0.25,
         });
 
         this.bounds = new Bounds(0, 0, w, h);
-        this.shapes = [new SceneBounds(0, 0, w, h)];
-        let i = 0;
-        while (i < MAX_SHAPES) {
-            this.addShape(true);
-            i++;
+
+        const sceneShape = new SceneBounds(0, 0, w, h);
+        sceneShape.replaceMe = true; // flag so it will be updated on resize
+
+        if (!this.shapes) {
+            // add shapes on init
+
+            this.shapes = [sceneShape];
+            let i = 0;
+            while (i < this.numberOfShapes) {
+                this.addShape(true);
+                i++;
+            }
+        } else {
+            // remove old scene bounds, replace with new
+            this.shapes = [
+                ...this.shapes.filter((s) => !s.replaceMe),
+                sceneShape,
+            ];
         }
     }
 
@@ -137,7 +153,7 @@ export default class Vision extends Entity {
 
         this.shapes = this.shapes.filter(({ dead }) => !dead);
 
-        if (this.shapes.length < MAX_SHAPES) {
+        if (this.shapes.length < this.numberOfShapes) {
             this.addShape();
         }
     }

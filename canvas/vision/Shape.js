@@ -106,13 +106,15 @@ export default class Shape extends Entity {
         const turns = getRandomInt(2, 7);
         const sa = getRandomFloat(-pi, pi);
         const ta = getRandomFloat(pi / 6, pi / 4);
-        const dist = this.toValue(getRandomFloat(20, 30));
+        const dist1 = this.toValue(getRandomFloat(15, 30));
+        const dist2 = this.toValue(getRandomFloat(10, 25));
 
         const start = new Point(this.x, this.y);
 
         let i = 0;
         while (i < turns) {
             const even = i % 2 === 0;
+            const dist = even ? dist1 : dist2;
             const angle = even ? sa - ta : sa + ta; // alternate
             const prevPoint = i === 0 ? start : this.segments[i - 1].p2;
             const nextPoint = prevPoint.clone().moveAtAngle(angle, dist);

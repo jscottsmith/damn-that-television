@@ -8,6 +8,7 @@
     }
 
     *::selection {
+        color: $lunar;
         background: rgba($miami, 0.8);
     }
 
@@ -19,6 +20,7 @@
     }
     p {
         font-size: 1.7rem;
+        line-height: 1.55;
     }
 
     h1,

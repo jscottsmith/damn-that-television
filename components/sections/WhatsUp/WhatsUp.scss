@@ -3,12 +3,23 @@
 
 .root {
     position: relative;
-    height: 110vh;
+    height: 140vh;
     background-color: $club;
 }
 
 .inner {
     @include spread;
+    z-index: 1;
+}
+
+.copy {
+    display: block;
+    margin: 10% auto 0 auto;
+    width: 60%;
+    color: $ghost;
+    p {
+        font-size: 2rem;
+    }
 }
 
 .container {
