@@ -1,5 +1,4 @@
-import Stick from './Stick';
-import { Entity, PointPhysics } from '@gush/candybar';
+import { Entity, PointPhysics, Stick } from '@gush/candybar';
 
 function lerp(a, b, n) {
     return (1 - n) * a + n * b;

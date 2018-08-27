@@ -3,10 +3,11 @@ import styles from './WhatsUp.scss';
 import Observed from 'react-observed';
 import { Canvas } from '@gush/candybar';
 import Vision from '../../../canvas/vision/Vision';
-import Background from '../../../canvas/waving-arm/Background';
+import Background from '../../../canvas/common/Background';
 import { observerOptions } from '../../constants/app';
 import Copy from 'components/atoms/Copy';
 import content from 'markdown/whats-up.md';
+
 export default class WhatsUp extends Component {
     componentDidMount() {
         this.runIt();

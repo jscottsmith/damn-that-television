@@ -6,7 +6,7 @@ import Copy from 'components/atoms/Copy';
 import content from 'markdown/home.md';
 import { Canvas, Point } from '@gush/candybar';
 import WavingArm from '../../../canvas/waving-arm/WavingArm';
-import Background from '../../../canvas/waving-arm/Background';
+import Background from '../../../canvas/common/Background';
 import { observerOptions } from '../../constants/app';
 
 const color = {

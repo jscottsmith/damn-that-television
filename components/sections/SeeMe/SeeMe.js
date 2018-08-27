@@ -3,7 +3,7 @@ import styles from './SeeMe.scss';
 import Observed from 'react-observed';
 import { Canvas } from '@gush/candybar';
 import Eye from '../../../canvas/eyes/Eye';
-import Background from '../../../canvas/waving-arm/Background';
+import Background from '../../../canvas/common/Background';
 import { observerOptions } from '../../constants/app';
 
 export default class SeeMe extends Component {
