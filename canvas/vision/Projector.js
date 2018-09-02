@@ -3,18 +3,26 @@ import { Entity, Point, utils } from '@gush/candybar';
 const { scaleBetween, clamp, lerp } = utils;
 
 export default class Projector extends Entity {
-    constructor({ radius = 100, x, y }) {
+    constructor({ radius = 100, p1, p2 }) {
         super();
-        this.x = x;
-        this.y = y;
+        this.x = p1.x;
+        this.y = p1.y;
         this.r = radius;
-        this.innerR = this.r / 7;
+        this.baseWidth = this.r / 2;
+        this.shadowWidth = this.r * 2;
+        this.innerR = this.r * 0.2;
         this.angle = 0;
 
         // origin
-        this.center = new Point(x, y);
+        this.center = p1.clone();
         // current light source position
-        this.source = new Point(x, y);
+        this.source = p1.clone();
+        // base of projector
+        this.base = p2;
+        this.baseLeft = p2.clone().move(-this.baseWidth / 2, 0);
+        this.baseRight = p2.clone().move(this.baseWidth / 2, 0);
+        // pointer to lerp
+        this.pointer = p1.clone();
 
         // max dist is center to a corner
         this.maxDist = this.center.distance({ x: 0, y: 0 });
@@ -39,13 +47,25 @@ export default class Projector extends Entity {
     }
 
     drawBase(ctx) {
-        const h = this.toValue(ctx.canvas.height / 3);
         ctx.strokeStyle = '#ea94ba';
-        ctx.lineWidth = this.r / 2;
+        ctx.lineWidth = this.baseWidth;
         ctx.beginPath();
         ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x, this.y + h);
+        ctx.lineTo(this.base.x, this.base.y);
         ctx.stroke();
+    }
+
+    drawBaseShadow(ctx) {
+        const h = this.toValue(ctx.canvas.height);
+        const x = this.center.x - this.pointer.x;
+        ctx.fillStyle = '#665b85';
+        ctx.beginPath();
+        ctx.moveTo(this.baseLeft.x, this.baseLeft.y);
+        ctx.lineTo(this.baseRight.x, this.baseRight.y);
+        ctx.lineTo(this.baseRight.x + x + this.shadowWidth, h);
+        ctx.lineTo(this.baseLeft.x + x - this.shadowWidth, h);
+        ctx.closePath();
+        ctx.fill();
     }
 
     drawWhites(ctx) {
@@ -58,7 +78,6 @@ export default class Projector extends Entity {
 
     drawPupil(ctx) {
         const { x, y } = this.source;
-
         ctx.strokeStyle = '#665b85';
         ctx.lineWidth = this.innerR / 3;
         ctx.fillStyle = '#72dbde';
@@ -79,18 +98,25 @@ export default class Projector extends Entity {
     }
 
     draw = ({ ctx, bounds }) => {
-        this.drawBase(ctx, bounds);
+        this.drawBaseShadow(ctx);
+        this.drawBase(ctx);
         this.drawWhites(ctx);
         this.drawPupil(ctx);
         this.drawBaseTop(ctx);
     };
 
     update = ({ pointer }) => {
-        this.angle = this.center.angleRadians(pointer.position);
-        const dist = pointer.position.distance(this.center);
+        const lerp = 0.05;
+        this.pointer = this.pointer.lerp(pointer.position, lerp);
+        this.angle = this.center.angleRadians(this.pointer);
+
+        const dist = this.pointer.distance(this.center);
+
         this.norm = clamp(scaleBetween(dist, 0, 1, 0, this.maxDist), 0, 1);
+
         const moveDist = this.norm * this.moveDist;
         const dest = this.center.clone().moveAtAngle(this.angle, moveDist);
-        this.source = this.source.lerp(dest, 0.1);
+
+        this.source = this.source.lerp(dest, lerp);
     };
 }

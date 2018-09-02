@@ -95,8 +95,6 @@ class PolyWave extends Entity {
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
 
-        console.log('d');
-
         ctx.fill();
     };
 

@@ -1,4 +1,4 @@
-import { Entity, Bounds, utils } from '@gush/candybar';
+import { Entity, Bounds, Point, utils } from '@gush/candybar';
 import Projector from './Projector';
 import Shape from './Shape';
 import getSightPolygon from './src/rays';
@@ -24,17 +24,18 @@ export default class Vision extends Entity {
         this.w = w;
         this.h = h;
 
-        this.numberOfShapes = Math.ceil(Math.max(width, height) / 100);
+        this.numberOfShapes = Math.ceil(Math.max(width, height) / 200);
 
         this.projector = new Projector({
             radius: w / 20,
-            x: w / 2,
-            y: h - h * 0.25,
+            p1: new Point(w / 2, h - h * 0.5),
+            p2: new Point(w / 2, h - h * 0.25),
         });
 
         this.bounds = new Bounds(0, 0, w, h);
 
         const sceneShape = new SceneBounds(0, 0, w, h);
+
         sceneShape.replaceMe = true; // flag so it will be updated on resize
 
         if (!this.shapes) {
@@ -70,7 +71,7 @@ export default class Vision extends Entity {
         const mouse = this.projector.source;
         const angle = this.projector.angle;
         const norm = this.projector.norm || 0;
-        const spread = (Math.PI / 3) * (1 - norm) + 0.1;
+        const spread = (Math.PI / 6) * (1 - norm) + 0.05;
 
         const segments = this.shapes.reduce((a, c) => a.concat(c.segments), []);
 
