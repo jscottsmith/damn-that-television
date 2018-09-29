@@ -56,7 +56,7 @@ export default class Letter {
     };
 
     update = (context) => {
-        this.point.update();
+        this.point.update(context);
         const [dx, dy] = this.point.delta();
         this.bounds.move(dx, dy);
     };

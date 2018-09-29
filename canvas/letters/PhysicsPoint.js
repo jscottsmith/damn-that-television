@@ -25,7 +25,7 @@ export default class PointPhysics extends Point {
         this.fy += y;
     }
 
-    solveVelocity() {
+    solveVelocity(dpr) {
         this.oldX = this.x;
         this.oldY = this.y;
 
@@ -38,7 +38,7 @@ export default class PointPhysics extends Point {
         this.vy += ay;
 
         // velocity from gravity
-        this.vy += this.g;
+        this.vy = this.vy + this.g * dpr;
 
         this.x += this.vx;
         this.y += this.vy;
@@ -48,9 +48,9 @@ export default class PointPhysics extends Point {
         this.fy = 0;
     }
 
-    update = () => {
+    update = ({ dpr }) => {
         if (this.isFixed) return;
-        this.solveVelocity();
+        this.solveVelocity(dpr);
     };
 
     draw = ({ ctx }) => {
