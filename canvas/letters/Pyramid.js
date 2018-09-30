@@ -1,4 +1,5 @@
 import { Entity, Spring, utils } from '@gush/candybar';
+import { COLORS } from 'constants/app';
 
 const { getRandomInt, getRandomFloat } = utils;
 
@@ -54,7 +55,7 @@ class Pyramid extends Entity {
         ctx.closePath();
         ctx.fill();
 
-        ctx.fillStyle = '#f7e7b3';
+        ctx.fillStyle = COLORS.cream;
         // ctx.lineWidth = 100;
         ctx.beginPath();
         ctx.moveTo(x1, y1);

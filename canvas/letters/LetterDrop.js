@@ -3,6 +3,7 @@ import PolyWave from './PolyWave';
 import Pyramid from './Pyramid';
 import PhysicsPoint from './PhysicsPoint';
 import Letter from './Letter';
+import { COLORS } from 'constants/app';
 
 const MOUSE_RADIUS = 100;
 const MOUSE_STRENGTH = 4;
@@ -29,10 +30,10 @@ export default class LetterDrop {
             verts,
             elasticity: 0.24,
             damping: 0.84,
-            color: '#2c2f34',
+            color: COLORS.deep,
         });
 
-        this.pyramid = new Pyramid({ color: '#d6f1d1' });
+        this.pyramid = new Pyramid({ color: COLORS.club });
     };
 
     queueWord = (word) => {

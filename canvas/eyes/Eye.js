@@ -1,6 +1,7 @@
 import { Point, Entity } from '@gush/candybar';
 import { utils } from '@gush/candybar';
 const { lerp, scaleBetween, clamp } = utils;
+import { COLORS } from 'constants/app';
 
 /*------------------------------*
  * Eye Canvas
@@ -95,8 +96,8 @@ class Eye extends Entity {
             ry,
             0,
         );
-        whiteGradient.addColorStop(0, '#f5b8b5');
-        whiteGradient.addColorStop(1, '#c68eab');
+        whiteGradient.addColorStop(0, COLORS.softy);
+        whiteGradient.addColorStop(1, COLORS.softyShade);
         return whiteGradient;
     }
 
@@ -184,7 +185,7 @@ class Eye extends Entity {
         // drawing to a tmp canvas
         this.tmpCtx.lineWidth = this.lidWidth;
         this.tmpCtx.lineCap = 'round';
-        this.tmpCtx.strokeStyle = upper ? '#c68eab' : '#f5b8b5';
+        this.tmpCtx.strokeStyle = upper ? COLORS.softyShade : COLORS.softy;
         this.tmpCtx.beginPath();
         this.tmpCtx.moveTo(this.lidLeft.x, this.lidLeft.y);
         this.tmpCtx.quadraticCurveTo(...this.getCurve1Params());
@@ -230,9 +231,9 @@ class Eye extends Entity {
             ry,
             0,
         );
-        gradient.addColorStop(1, 'white');
-        gradient.addColorStop(0.5, '#edf8ff');
-        gradient.addColorStop(0, '#dce6fa');
+        gradient.addColorStop(1, COLORS.white);
+        gradient.addColorStop(0.5, COLORS.ghost);
+        gradient.addColorStop(0, COLORS.ghostShade);
 
         this.ctx.fillStyle = gradient;
         this.ctx.fillRect(0, 0, this.w, this.h);
@@ -240,7 +241,7 @@ class Eye extends Entity {
 
     drawIris() {
         // color
-        this.ctx.fillStyle = '#4eb1b6';
+        this.ctx.fillStyle = COLORS.miamiDeep;
         this.ctx.beginPath();
         this.ctx.arc(this.iris.x, this.iris.y, this.irisRad, 0, 2 * Math.PI);
         this.ctx.fill();
@@ -248,7 +249,7 @@ class Eye extends Entity {
 
     drawPupil() {
         // pupil
-        this.ctx.fillStyle = '#2c2f34';
+        this.ctx.fillStyle = COLORS.deep;
         this.ctx.beginPath();
         this.ctx.arc(this.pupil.x, this.pupil.y, this.pupilRad, 0, 2 * Math.PI);
         this.ctx.fill();

@@ -1,4 +1,5 @@
 import { Entity, Point, utils } from '@gush/candybar';
+import { COLORS } from 'constants/app';
 
 const { scaleBetween, clamp, lerp } = utils;
 
@@ -33,21 +34,21 @@ export default class Projector extends Entity {
         const rx = center.x;
         const ry = center.y;
         const gradient = ctx.createRadialGradient(rx, ry, radius, rx, ry, 0);
-        gradient.addColorStop(1, 'white');
-        gradient.addColorStop(0.5, '#edf8ff');
-        gradient.addColorStop(0, '#dce6fa');
+        gradient.addColorStop(1, COLORS.white);
+        gradient.addColorStop(0.5, COLORS.ghost);
+        gradient.addColorStop(0, COLORS.ghostShade);
         return gradient;
     }
 
     getPinkGradient(ctx, x, y, width) {
         const gradient = ctx.createLinearGradient(x, y, x + width, y);
-        gradient.addColorStop(1, '#f4c8db');
-        gradient.addColorStop(0, '#ea94ba');
+        gradient.addColorStop(1, COLORS.softy);
+        gradient.addColorStop(0, COLORS.pepto);
         return gradient;
     }
 
     drawBase(ctx) {
-        ctx.strokeStyle = '#ea94ba';
+        ctx.strokeStyle = COLORS.pepto;
         ctx.lineWidth = this.baseWidth;
         ctx.beginPath();
         ctx.moveTo(this.x, this.y);
@@ -58,7 +59,7 @@ export default class Projector extends Entity {
     drawBaseShadow(ctx) {
         const h = this.toValue(ctx.canvas.height);
         const x = this.center.x - this.pointer.x;
-        ctx.fillStyle = '#665b85';
+        ctx.fillStyle = COLORS.lunar;
         ctx.beginPath();
         ctx.moveTo(this.baseLeft.x, this.baseLeft.y);
         ctx.lineTo(this.baseRight.x, this.baseRight.y);
@@ -78,9 +79,9 @@ export default class Projector extends Entity {
 
     drawPupil(ctx) {
         const { x, y } = this.source;
-        ctx.strokeStyle = '#665b85';
+        ctx.strokeStyle = COLORS.lunar;
         ctx.lineWidth = this.innerR / 3;
-        ctx.fillStyle = '#72dbde';
+        ctx.fillStyle = COLORS.miami;
         ctx.beginPath();
         ctx.arc(x, y, this.innerR, 0, 2 * Math.PI, false);
         ctx.closePath();

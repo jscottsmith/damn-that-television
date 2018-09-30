@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './LinksToClick.scss';
 import Observed from 'react-observed';
 import { Canvas } from '@gush/candybar';
-import { observerOptions } from '../../constants/app';
+import { OBSERVER_OPTIONS } from 'constants/app';
 import content from 'markdown/links.md';
 import Copy from 'components/atoms/Copy';
 
@@ -40,7 +40,7 @@ export default class LinksToClick extends Component {
                 onChange={this.handleChange}
                 initialViewState={true}
                 intersectionRatio={0.01}
-                options={observerOptions}
+                options={OBSERVER_OPTIONS}
             >
                 {({ mapRef }) => (
                     <article

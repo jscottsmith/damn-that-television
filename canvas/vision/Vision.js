@@ -5,11 +5,12 @@ import getSightPolygon from './src/rays';
 import SceneBounds from './SceneBounds';
 import randomPositionOutsideBounds from './randomPositionOutsideBounds';
 import pointGenerator from './pointGenerator';
+import { COLORS } from 'constants/app';
 
 const { getRandomInt } = utils;
 
 const types = [Shape.types.TRIANGLE, Shape.types.ZIGZAG, Shape.types.RING];
-const colors = ['#72dbde', '#fffb74', '#ff714c', '#ea94ba'];
+const colors = [COLORS.miami, COLORS.fab, COLORS.lit, COLORS.pepto];
 
 export default class Vision extends Entity {
     constructor(config) {

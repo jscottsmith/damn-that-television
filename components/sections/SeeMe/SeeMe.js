@@ -4,7 +4,7 @@ import Observed from 'react-observed';
 import { Canvas } from '@gush/candybar';
 import Eye from '../../../canvas/eyes/Eye';
 import Background from '../../../canvas/common/Background';
-import { observerOptions } from '../../constants/app';
+import { OBSERVER_OPTIONS } from 'constants/app';
 
 export default class SeeMe extends Component {
     componentDidMount() {
@@ -62,7 +62,7 @@ export default class SeeMe extends Component {
                 onChange={this.handleChange}
                 initialViewState={true}
                 intersectionRatio={0.01}
-                options={observerOptions}
+                options={OBSERVER_OPTIONS}
             >
                 {({ mapRef }) => (
                     <article

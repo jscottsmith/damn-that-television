@@ -1,4 +1,5 @@
 import { Point, Bounds, utils } from '@gush/candybar';
+import { COLORS } from 'constants/app';
 
 export default class Letter {
     constructor({ point, letter, radius }) {
@@ -30,7 +31,7 @@ export default class Letter {
     drawLocal = () => {
         const { ctx, radius } = this;
 
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = COLORS.deep;
         // ctx.fillRect(0, 0, 100, 100);
 
         ctx.save();
@@ -42,14 +43,14 @@ export default class Letter {
         // ctx.closePath();
         // ctx.fill();
         ctx.shadowBlur = 0;
-        ctx.shadowColor = '#665b85';
+        ctx.shadowColor = COLORS.lunar;
         ctx.shadowOffsetX = this.radius / 6;
         ctx.shadowOffsetY = this.radius / 6;
 
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.font = `900 ${radius * 1.3}px futura-pt `;
-        ctx.fillStyle = '#72dbde';
+        ctx.fillStyle = COLORS.miami;
         ctx.fillText(this.letter, 0, 0);
 
         ctx.restore();

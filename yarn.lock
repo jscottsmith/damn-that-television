@@ -657,10 +657,10 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@gush/candybar@0.0.0-alpha34":
-  version "0.0.0-alpha34"
-  resolved "https://registry.yarnpkg.com/@gush/candybar/-/candybar-0.0.0-alpha34.tgz#4bc11aaca2fdd68934c3f33500af4005e7b44735"
-  integrity sha512-qVP7yQPG/ka9BeTcK7ot9gPqBaJCvEa8G2toqVStnn0Zb+A61Dz/ewoIZUDAyPGaeEYWWQuBGk+sQ3unlFgYIw==
+"@gush/candybar@0.0.0-alpha35":
+  version "0.0.0-alpha35"
+  resolved "https://registry.yarnpkg.com/@gush/candybar/-/candybar-0.0.0-alpha35.tgz#b8133e40172d55bf809085eea13b9e6a2371d1c5"
+  integrity sha512-ST651YWOXC8XNIySEC4QQTTgpHXCfq1C1RNeP+xjm6brZrk0H3qnNz/uwoPcuIYcmI0qxVKy4KoVD3DQIWcmGg==
 
 "@zeit/next-css@0.2.0":
   version "0.2.0"

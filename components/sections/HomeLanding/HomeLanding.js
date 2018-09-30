@@ -7,13 +7,13 @@ import content from 'markdown/home.md';
 import { Canvas, Point } from '@gush/candybar';
 import WavingArm from '../../../canvas/waving-arm/WavingArm';
 import Background from '../../../canvas/common/Background';
-import { observerOptions } from '../../constants/app';
+import { OBSERVER_OPTIONS, COLORS } from 'constants/app';
 
 const color = {
-    pink: '#EA94BA',
-    teal: '#72dbde',
-    blue: '#6574ff',
-    purple: '#665b85',
+    pink: COLORS.pepto,
+    teal: COLORS.miami,
+    blue: COLORS.club,
+    purple: COLORS.lunar,
 };
 
 export default class HomeLanding extends PureComponent {
@@ -84,7 +84,7 @@ export default class HomeLanding extends PureComponent {
                 onChange={this.handleChange}
                 initialViewState={true}
                 intersectionRatio={0.01}
-                options={observerOptions}
+                options={OBSERVER_OPTIONS}
             >
                 {({ isInView, mapRef }) => (
                     <article

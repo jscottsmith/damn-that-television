@@ -4,7 +4,7 @@ import Observed from 'react-observed';
 import { Canvas } from '@gush/candybar';
 import Vision from '../../../canvas/vision/Vision';
 import Background from '../../../canvas/common/Background';
-import { observerOptions } from '../../constants/app';
+import { OBSERVER_OPTIONS } from 'constants/app';
 import Copy from 'components/atoms/Copy';
 import content from 'markdown/whats-up.md';
 
@@ -46,7 +46,7 @@ export default class WhatsUp extends Component {
                 onChange={this.handleChange}
                 initialViewState={true}
                 intersectionRatio={0.01}
-                options={observerOptions}
+                options={OBSERVER_OPTIONS}
             >
                 {({ mapRef }) => (
                     <article
