@@ -3,8 +3,8 @@
 
 .root {
     position: relative;
-    height: 110vh;
-    background-color: #ffc89e;
+    height: 120vh;
+    background-color: $cream;
 }
 
 .inner {
@@ -37,10 +37,12 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     background-color: $fab;
+
+    @include extrude(16, $deep);
     transition: transform 300ms $easeOutQuint;
 
     &:hover {
-        transform: scale(1.1);
+        transform: translate(-5px, -5px);
         // color: $deep;
         // background-color: $club;
     }

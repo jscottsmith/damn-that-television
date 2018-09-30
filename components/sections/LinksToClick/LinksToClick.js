@@ -19,7 +19,7 @@ export default class LinksToClick extends Component {
         this.canvas = new Canvas({
             canvas: this._canvas,
             container: this._container,
-            // hasPointer: true,
+            hasPointer: false,
             pauseInBackground: true,
             entities: [new Background(), this.letterDrop],
         });

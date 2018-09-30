@@ -1,6 +1,8 @@
 import { Entity, Spring, utils } from '@gush/candybar';
 import { COLORS } from 'constants/app';
 
+const PATTERN_IMG = '/static/pattern-1.svg';
+
 const { getRandomInt, getRandomFloat } = utils;
 
 function circleInOut(t) {
@@ -19,6 +21,8 @@ export function cubicInOut(t) {
     return ((t *= 2) <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
 }
 
+const SPEED = 0.002;
+
 class Pyramid extends Entity {
     constructor({ color, setupCanvas }) {
         super();
@@ -27,11 +31,25 @@ class Pyramid extends Entity {
         this.t = 0;
         this.u = 0;
         this.x = 0;
+        this.pattern = null;
     }
 
-    setup = (context) => {
-        // const position = setupCanvas(context);
-    };
+    loadPattern({ ctx }) {
+        const img = document.createElement('img');
+        const canvas = document.createElement('canvas');
+        canvas.width = 200;
+        canvas.height = 200;
+        const context = canvas.getContext('2d');
+
+        img.onload = () => {
+            context.drawImage(img, 0, 0, 200, 200);
+            this.pattern = ctx.createPattern(canvas, 'repeat');
+        };
+
+        img.src = PATTERN_IMG;
+    }
+
+    setup = (context) => this.loadPattern(context);
 
     drawBaseLayer({ bounds, ctx }) {
         const height = bounds.h / 2;
@@ -46,8 +64,8 @@ class Pyramid extends Entity {
         const x4 = x3 + this.x * width * 2;
         const x5 = x3 + this.z * width * 2;
 
-        ctx.fillStyle = this.color;
-        // ctx.lineWidth = 100;
+        ctx.fillStyle = this.pattern;
+
         ctx.beginPath();
         ctx.moveTo(x1, y1);
         ctx.lineTo(x2, y2);
@@ -55,24 +73,22 @@ class Pyramid extends Entity {
         ctx.closePath();
         ctx.fill();
 
-        ctx.fillStyle = COLORS.cream;
-        // ctx.lineWidth = 100;
+        ctx.fillStyle = COLORS.club;
+
         ctx.beginPath();
         ctx.moveTo(x1, y1);
         ctx.lineTo(x5, y2);
         ctx.lineTo(x4, y3);
         ctx.closePath();
         ctx.fill();
-        // ctx.stroke();
-        // ctx.fillRect(x1, y1, 1000, 500);
     }
 
     updateTime() {
-        this.t += 0.005;
+        this.t += SPEED;
 
         if (this.t >= 1) {
             this.t = 1;
-            this.u += 0.005;
+            this.u += SPEED;
             if (this.u >= 1) {
                 this.t = 0;
                 this.u = 0;

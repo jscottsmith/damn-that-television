@@ -14,7 +14,7 @@ export default class LetterDrop {
         this.letters = [];
     }
 
-    createWave = ({ bounds, dpr }) => {
+    createWave = ({ bounds, dpr, ctx }) => {
         const { w, h } = bounds;
         const x = 0;
         const y = h - h / 4;
@@ -34,6 +34,7 @@ export default class LetterDrop {
         });
 
         this.pyramid = new Pyramid({ color: COLORS.club });
+        this.pyramid.setup({ ctx });
     };
 
     queueWord = (word) => {

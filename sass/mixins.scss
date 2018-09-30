@@ -12,3 +12,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+@mixin extrude($depth: 16, $color: black) {
+    $shadow: ();
+    @for $i from 0 to $depth {
+        $shadow: append($shadow, #{$i + px} #{$i + px} 0 $color, comma);
+    }
+    box-shadow: $shadow;
+}
