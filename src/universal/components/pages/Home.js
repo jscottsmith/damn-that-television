@@ -28,7 +28,7 @@ export default class Home extends PureComponent {
                 >
                     <Copy>{content}</Copy>
                     <button className={styles.play} onClick={this.handlePlay}>
-                        Go!
+                        Kill TV!
                     </button>
                 </div>
                 <Damnit

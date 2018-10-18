@@ -27,7 +27,7 @@ $linkColorHover: $mint !default;
 
 $sans: sans-serif !default;
 $serif: serif !default;
-$futura: 'futura-pt', $sans !default;
+$futura: "futura-pt", $sans !default;
 
 $thin: 100 !default;
 $light: 300 !default;
@@ -40,7 +40,7 @@ $baseFontSize: 14px !default;
 $baseFontFamily: $futura !default;
 $baseLineHeight: 20px !default;
 
-$headingsFontWeight: $bold !default;
+$headingsFontWeight: $medium !default;
 $headingsFontFamily: inherit !default;
 $headingsColor: inherit !default;
 
@@ -56,11 +56,11 @@ $btnBorder: darken($white, 10%) !default;
 
 // Breakpoints
 // -------------------------
-$mobileWidth: '480px';
-$largeMobileWidth: '600px';
-$tabletWidth: '768px';
-$desktopWidth: '992px';
-$largeDesktopWidth: '1392px';
+$mobileWidth: "480px";
+$largeMobileWidth: "600px";
+$tabletWidth: "768px";
+$desktopWidth: "992px";
+$largeDesktopWidth: "1392px";
 
 // Easing presets
 // --------------------------
