@@ -13,7 +13,7 @@
 }
 
 :local(.canvas) {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -21,7 +21,7 @@
 }
 
 :local(.pauseBtn) {
-    position: absolute;
+    position: fixed;
     right: 2rem;
     top: 2rem;
 
