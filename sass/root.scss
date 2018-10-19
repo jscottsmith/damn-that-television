@@ -1,10 +1,13 @@
 @import './normalize';
 @import './variables';
+@import './mixins';
 @import './fonts';
 
 :global {
-    * {
-        box-sizing: border-box;
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
     }
 
     *::selection {
@@ -18,6 +21,27 @@
         background-color: $deep;
         color: $deep;
     }
+
+    html,
+    body {
+        height: 100%;
+        font-size: 13px;
+    }
+
+    @include tablet {
+        html,
+        body {
+            font-size: 14px;
+        }
+    }
+
+    @include largeDesktop {
+        html,
+        body {
+            font-size: 16px;
+        }
+    }
+
     p {
         font-size: 1.7rem;
         line-height: 1.55;
@@ -28,5 +52,12 @@
     h3 {
         color: $lunar;
         font-weight: $regular;
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        outline: none;
     }
 }

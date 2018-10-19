@@ -12,7 +12,6 @@ export default class MyDocument extends Document {
                                 'try{Typekit.load({ async: true });}catch(e){}',
                         }}
                     />
-                    <link rel="stylesheet" href="/_next/static/style.css" />
                 </Head>
                 <body>
                     <Main />

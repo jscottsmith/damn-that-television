@@ -1,0 +1,40 @@
+@import '../../../sass/variables';
+
+:local(.gameContainer) {
+    opacity: 0;
+    transition: opacity 1s;
+    pointer-events: none;
+
+    &:local(.playing) {
+        opacity: 1;
+        cursor: none;
+        pointer-events: initial;
+    }
+}
+
+:local(.canvas) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+:local(.pauseBtn) {
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+
+    display: block;
+    border: 2px solid $deep;
+    color: $deep;
+    font-size: 1.4rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    z-index: 10;
+
+    &:hover {
+        color: $pepto;
+        background: $deep;
+    }
+}

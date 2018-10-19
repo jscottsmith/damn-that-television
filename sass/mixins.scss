@@ -1,3 +1,9 @@
+$mobileWidth: '480px';
+$largeMobileWidth: '600px';
+$tabletWidth: '768px';
+$desktopWidth: '992px';
+$largeDesktopWidth: '1392px';
+
 @mixin spread {
     position: absolute;
     top: 0;
@@ -19,4 +25,34 @@
         $shadow: append($shadow, #{$i + px} #{$i + px} 0 $color, comma);
     }
     box-shadow: $shadow;
+}
+
+@mixin mobile {
+    @media (min-width: #{$mobileWidth}) {
+        @content;
+    }
+}
+
+@mixin largeMobile {
+    @media (min-width: #{$largeMobileWidth}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$tabletWidth}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktopWidth}) {
+        @content;
+    }
+}
+
+@mixin largeDesktop {
+    @media (min-width: #{$largeDesktopWidth}) {
+        @content;
+    }
 }

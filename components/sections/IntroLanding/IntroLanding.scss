@@ -1,0 +1,82 @@
+@import '../../../sass/variables';
+@import '../../../sass/mixins';
+
+:local(.index) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: absolute;
+    padding: 1rem;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $softy;
+
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    // background-image: url("/static/pattern_5.svg");
+    // background-repeat: repeat;
+    // background-size: 100px;
+}
+
+:local(.play) {
+    display: block;
+    margin: 1rem auto 0 auto;
+    background-color: $deep;
+    color: $pepto;
+    font-size: 1.8rem;
+    padding: 0.6rem 3rem;
+    cursor: pointer;
+
+    &:hover {
+        color: #fffb74;
+        background: $deep;
+    }
+}
+
+:local(.welcome) {
+    position: relative;
+    margin: auto 0;
+    padding: 3rem;
+    max-width: 46rem;
+    // max-height: 100%;
+    background-color: $ghost;
+    color: #665b85;
+    z-index: 100;
+    overflow: hidden;
+
+    transition: opacity 400ms, transform 400ms $easeOut;
+    box-shadow: 1rem 1rem 0 0 $deep;
+
+    &:local(.playing) {
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+
+    // background-image: linear-gradient(-225deg, #DFFFCD 0%, $pepto 48%, #39F3BB 100%);
+    // background: -webkit-linear-gradient(#72dbde, #5143a0);
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
+
+    h2 {
+        font-size: 2.8rem;
+        font-style: normal;
+        margin-bottom: 3rem;
+    }
+    a {
+        color: $miamiOld;
+
+        &:hover {
+            color: $club;
+        }
+    }
+}
+
+@include tablet {
+    :local(.index) {
+        padding: 2rem;
+    }
+}
