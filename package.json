@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next",
     "build": "./node_modules/next/dist/bin/next build",
-    "start": "./node_modules/next/dist/bin/next start",
+    "start": "./node_modules/next/dist/bin/next start -p $PORT",
     "heroku-postbuild": "./node_modules/next/dist/bin/next build"
   },
   "repository": {
