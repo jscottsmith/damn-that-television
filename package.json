@@ -1,7 +1,7 @@
 {
   "name": "damn-that-television",
   "version": "1.0.0",
-  "description": "",
+  "description": "Damn that television. The personal website of J Scott Smith",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -13,13 +13,12 @@
     "type": "git",
     "url": "git+https://github.com/jscottsmith/damn-that-television.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "J Scott Smith",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jscottsmith/damn-that-television/issues"
   },
-  "homepage": "https://github.com/jscottsmith/damn-that-television#readme",
+  "homepage": "https://damnthat.tv/",
   "dependencies": {
     "@gush/candybar": "0.0.0-alpha35",
     "@zeit/next-sass": "^1.0.1",
