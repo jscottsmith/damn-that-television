@@ -1,0 +1,64 @@
+:global {
+    p,
+    li {
+        font-size: 1.5rem;
+        line-height: 1.45;
+    }
+
+    p {
+        margin: 0 0 1em;
+    }
+
+    // Emphasis & Misc
+    // -----------------
+    em {
+        font-style: italic;
+    }
+
+    strong {
+        font-weight: $bold;
+    }
+
+    // Headings
+    // ---------
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0.5em 0;
+        font-weight: normal;
+        font-family: $futura;
+        font-style: normal;
+        line-height: 1.1;
+        color: $lunar;
+        // text-rendering: optimizelegibility;
+        // text-transform: uppercase;
+        word-break: keep-all;
+    }
+
+    h1 {
+        font-size: 4.8rem;
+    }
+
+    h2 {
+        font-size: 2.6rem;
+    }
+
+    h3 {
+        font-size: 2.4rem;
+    }
+
+    h4 {
+        font-size: 2.1rem;
+    }
+
+    h5 {
+        font-size: 1.8rem;
+    }
+
+    h6 {
+        font-size: 1.6rem;
+    }
+}

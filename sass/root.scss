@@ -2,6 +2,7 @@
 @import './variables';
 @import './mixins';
 @import './fonts';
+@import './typography';
 
 :global {
     *,
@@ -42,22 +43,53 @@
         }
     }
 
-    p {
-        font-size: 1.7rem;
-        line-height: 1.55;
+    figure {
+        margin: 0;
     }
 
-    h1,
-    h2,
-    h3 {
-        color: $lunar;
-        font-weight: $regular;
+    hr {
+        margin: 1rem 0;
+        border: 0;
+        border-top: 1px solid $deep;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-width: 0;
+        vertical-align: middle;
+        -ms-interpolation-mode: bicubic;
+    }
+
+    ul,
+    ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
 
     button {
-        background-color: transparent;
-        border: none;
-        padding: 0;
-        outline: none;
+        &:focus {
+            outline: none;
+        }
     }
+
+    // p {
+    //     font-size: 1.7rem;
+    //     line-height: 1.55;
+    // }
+
+    // h1,
+    // h2,
+    // h3 {
+    //     color: $lunar;
+    //     font-weight: $regular;
+    // }
+
+    // button {
+    //     background-color: transparent;
+    //     border: none;
+    //     padding: 0;
+    //     outline: none;
+    // }
 }

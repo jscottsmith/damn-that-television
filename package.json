@@ -31,6 +31,7 @@
     "node-sass": "^4.9.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-helmet": "^5.2.0",
     "react-observed": "^1.0.2"
   }
 }
