@@ -3,6 +3,7 @@ import { COLORS } from 'constants/app';
 import loadImage from 'utils/loadImage';
 
 const PATTERN_OK = '/static/pattern-ok.svg';
+const ERASER = '/static/eraser.svg';
 
 function loadAll(images) {
     const all = images.map((src) => loadImage(src));
@@ -17,6 +18,13 @@ class Eraser {
         this.isDrawing = false;
     }
 
+    createLocal({ bounds }) {
+        this.canvas = document.createElement('canvas');
+        this.canvas.width = bounds.w;
+        this.canvas.height = bounds.h;
+        this.ctx = this.canvas.getContext('2d');
+    }
+
     createPattern(ctx, img, w, h) {
         const canvas = document.createElement('canvas');
         canvas.width = w;
@@ -28,33 +36,47 @@ class Eraser {
         return ctx.createPattern(canvas, 'repeat');
     }
 
-    handleMousemove({ pointer: { position, lastPosition }, ctx, dpr }) {
+    handleMousemove({ pointer: { position, lastPosition }, ctx, dpr, bounds }) {
         if (!position || !lastPosition || !this.pattern) return;
 
         const currentPoint = new Point(position.x, position.y);
         const dist = lastPosition.distance(currentPoint);
         const angle = lastPosition.angleRadians(currentPoint);
-        const r = dpr * 50;
+        const r = dpr * 40;
         const hs = r / 2;
         // ctx.globalCompositeOperation = 'source-over';
-
         for (var i = 0; i < dist; i += 5) {
             let x = lastPosition.x + Math.cos(angle) * i - 25;
             let y = lastPosition.y + Math.sin(angle) * i - 25;
-            ctx.beginPath();
-            ctx.arc(x + hs, y + hs, r, false, Math.PI * 2, false);
-            ctx.closePath();
-            ctx.fillStyle = this.pattern;
-            ctx.fill();
+            this.ctx.beginPath();
+            this.ctx.arc(x + hs, y + hs, r, false, Math.PI * 2, false);
+            this.ctx.closePath();
+            this.ctx.fillStyle = this.pattern;
+            this.ctx.fill();
         }
+
+        const w = 112 * 4.5 * dpr;
+        const h = 150 * 4.5 * dpr;
+        const ox = r;
+        const oy = h * 0.7;
+        ctx.clearRect(...bounds.params);
+        ctx.drawImage(this.canvas, ...bounds.params);
+        ctx.drawImage(this.eraser, position.x - ox, position.y - oy, w, h);
     }
 
-    setup = ({ canvas, dpr, ctx }) => {
+    resize = (context) => this.setup(context);
+
+    setup = ({ canvas, dpr, ctx, bounds }) => {
         this.setupCanvas();
+        this.createLocal({ bounds });
         loadImage(PATTERN_OK).then((image) => {
             const w = 300 * dpr;
             const h = 300 * dpr;
             this.pattern = this.createPattern(ctx, image, w, h);
+        });
+
+        loadImage(ERASER).then((image) => {
+            this.eraser = image;
         });
     };
 

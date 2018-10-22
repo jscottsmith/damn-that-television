@@ -10,7 +10,19 @@ import content from 'markdown/landing-intro.md';
 export default class Home extends PureComponent {
     state = {
         isPlaying: false,
+        isWaiting: true,
     };
+
+    componentDidMount() {
+        this.wait = setTimeout(() => {
+            this.setState({ isWaiting: false });
+            this.wait = null;
+        }, 3000);
+    }
+
+    componentWillUnmount() {
+        this.wait && clearTimeout(this.wait);
+    }
 
     handlePlay = () => {
         this.setState({ isPlaying: true });
@@ -26,6 +38,7 @@ export default class Home extends PureComponent {
                 <div
                     className={cx(styles.welcome, {
                         [styles.playing]: this.state.isPlaying,
+                        [styles.waiting]: this.state.isWaiting,
                     })}
                 >
                     <Copy>{content}</Copy>
@@ -33,11 +46,11 @@ export default class Home extends PureComponent {
                         Kill TV!
                     </button>
                 </div>
+                <EraserBackground isPaused={this.state.isPlaying} />
                 <Damnit
                     isPlaying={this.state.isPlaying}
                     handleStop={this.handleStop}
                 />
-                <EraserBackground isPaused={this.state.isPlaying} />
             </article>
         );
     }
