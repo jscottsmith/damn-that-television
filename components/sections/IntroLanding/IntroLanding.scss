@@ -6,7 +6,7 @@
     align-items: flex-start;
     justify-content: center;
     position: absolute;
-    padding: 5rem 1.5rem;
+    padding: 5rem 1rem;
 
     top: 0;
     left: 0;
@@ -39,7 +39,7 @@
 :local(.welcome) {
     position: relative;
     margin: auto 0;
-    padding: 3rem;
+    padding: 2rem;
     max-width: 46rem;
     // max-height: 100%;
     background-color: $ghost;
@@ -48,7 +48,7 @@
     overflow: hidden;
 
     transition: opacity 800ms, transform 800ms $easeOut;
-    box-shadow: 1rem 1rem 0 0 $deep;
+    box-shadow: 0.5rem 0.5rem 0 0 $deep;
 
     &:local(.playing) {
         pointer-events: none;
@@ -82,6 +82,9 @@
 }
 
 @include tablet {
+    :local(.welcome) {
+        padding: 3rem;
+    }
     :local(.index) {
         padding: 10rem 2rem;
     }
