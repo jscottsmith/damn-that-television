@@ -69,27 +69,11 @@
     }
 
     button {
+        padding: 0;
+        background-color: transparent;
+
         &:focus {
             outline: none;
         }
     }
-
-    // p {
-    //     font-size: 1.7rem;
-    //     line-height: 1.55;
-    // }
-
-    // h1,
-    // h2,
-    // h3 {
-    //     color: $lunar;
-    //     font-weight: $regular;
-    // }
-
-    // button {
-    //     background-color: transparent;
-    //     border: none;
-    //     padding: 0;
-    //     outline: none;
-    // }
 }

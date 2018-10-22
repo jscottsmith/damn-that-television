@@ -4,6 +4,7 @@ import Observed from 'react-observed';
 import styles from './IntroLanding.scss';
 import Copy from 'components/atoms/Copy';
 import Damnit from 'components/sections/Damnit/Damnit';
+import EraserBackground from 'components/molecules/EraserBackground/EraserBackground';
 import content from 'markdown/landing-intro.md';
 
 export default class Home extends PureComponent {
@@ -36,6 +37,7 @@ export default class Home extends PureComponent {
                     isPlaying={this.state.isPlaying}
                     handleStop={this.handleStop}
                 />
+                <EraserBackground isPaused={this.state.isPlaying} />
             </article>
         );
     }
