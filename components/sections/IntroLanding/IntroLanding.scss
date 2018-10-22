@@ -47,13 +47,19 @@
     z-index: 100;
     overflow: hidden;
 
-    transition: opacity 400ms, transform 400ms $easeOut;
+    transition: opacity 800ms, transform 800ms $easeOut;
     box-shadow: 1rem 1rem 0 0 $deep;
 
     &:local(.playing) {
         pointer-events: none;
         opacity: 0;
         transform: translateY(-10%);
+        transition: opacity 400ms, transform 400ms $easeOut;
+    }
+
+    &:local(.waiting) {
+        pointer-events: none;
+        opacity: 0;
     }
 
     // background-image: linear-gradient(-225deg, #DFFFCD 0%, $pepto 48%, #39F3BB 100%);
