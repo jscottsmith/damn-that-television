@@ -1,12 +1,6 @@
 @import '../../sass/variables';
 @import '../../sass/mixins';
 
-$plum: #403b4f;
-$night: #635e7f;
-$teal: #32aba8;
-$peach: #f6d0d0;
-$salmon: #ce8284;
-
 :local(.pageResume) {
     padding: 1rem;
     background-color: #f3f3f3;
@@ -48,6 +42,7 @@ $salmon: #ce8284;
     }
 
     h3 {
+        margin-top: 3rem;
         font-size: 1.6rem;
     }
 

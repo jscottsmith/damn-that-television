@@ -6,7 +6,7 @@
     align-items: flex-start;
     justify-content: center;
     position: absolute;
-    padding: 1rem;
+    padding: 5rem 1.5rem;
 
     top: 0;
     left: 0;
@@ -77,6 +77,6 @@
 
 @include tablet {
     :local(.index) {
-        padding: 2rem;
+        padding: 10rem 2rem;
     }
 }
