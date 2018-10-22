@@ -15,6 +15,7 @@ class Eraser {
         this.color = COLORS.softy;
         this.setupCanvas = setupCanvas;
         this.pattern = null;
+        this.eraser = null;
         this.isDrawing = false;
     }
 
@@ -37,7 +38,7 @@ class Eraser {
     }
 
     handleMousemove({ pointer: { position, lastPosition }, ctx, dpr, bounds }) {
-        if (!position || !lastPosition || !this.pattern) return;
+        if (!position || !lastPosition || !this.pattern || !this.eraser) return;
 
         const currentPoint = new Point(position.x, position.y);
         const dist = lastPosition.distance(currentPoint);
