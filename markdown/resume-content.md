@@ -1,18 +1,20 @@
 # Who
 
-Creative turned developer working to create modern web products. Focused on making apps more user-friendly, performant, and accessible while writing code that is tested, scalable and maintainable. Love for all things web, especially JavaScript.
+Creative turned developer working to develop modern web products. Focused on making apps more user-friendly, performant, and accessible while writing code that is tested, scalable and maintainable. Love for all things web, especially JavaScript.
 
 # Experience Highlights
 
 **4+ years working with React and Node to build modern web apps with Redux/Flux.**
 
 -   Utilized the latest modern JavaScript via Babel, ES6 and beyond
+-   Shipped production code often and managed releases with Git Flow
+-   Reviewed and approved all downstream code through PRs before releasing
 -   Tested server APIs and user interfaces with Jest, Enzyme and Mocha
--   Created database migrations to support new features or deprecate old
+-   Managed database migrations to support new features or deprecate old
 -   Implemented server-side rendering with server and client-side fetching
 -   Customized build systems like Webpack and Gulp to fit project needs
 -   Optimized apps for client-side performance on mobile and desktop
--   Familiar with Docker and continuous integration systems like Jenkins/Travis CI
+-   Worked with Docker and continuous integration systems like Jenkins/Travis
 
 **6+ years working with JavaScript and libraries to build websites and interactive experiences.**
 
@@ -21,23 +23,24 @@ Creative turned developer working to create modern web products. Focused on maki
 -   Built accessible custom interfaces to ARIA standards
 -   Configured, adapted, and utilized numerous content management systems
 -   Always built mobile first, responsive, adaptive front-ends to best serve all devices
--   Developed style systems utilizing modern tooling for creating robust on brand interfaces
+-   Developed style systems with modern scss tooling for creating robust brand interfaces
 
-**8+ years experience in creative primarily for (but not limited to) web.**
+**8+ years experience in creative primarily for web.**
 
 -   Designed websites, web apps, and user interfaces with style guides
 -   Created annotated wireframes and user flows for websites and web apps
 -   Built brand identities, developed logos, and designed custom typefaces
+-   Skilled with motion graphics, animation design, and typography
 -   Background as a 3D artist specialized in character animation and rigging
--   Skilled with motion graphics and animation design
 
 **10+ years working with web technologies like HTML/CSS.**
 
 -   Complete knowledge of web fundamentals
 -   Familiar with all browser quirks, past (IE) and present (Safari)
--   Utilized graceful degradations or progressive enhancements to best serve users
+-   Utilized graceful degradations or progressive enhancements
+-   Created semantic HTML documents optimized for SEO and accessibility
 
-# Work History
+# Recent Work History
 
 ### GumGum
 
@@ -45,7 +48,7 @@ Creative turned developer working to create modern web products. Focused on maki
 
 Full-stack test-driven React development for GumGum's core products to support their computer vision advertising business. Working in an agile environment developing and deploying new features each sprint, managing product releases or hotfixes, providing mentoring and guidance to team contributors, and reviewing all downstream code through PR workflows. Additional responsibilities include demoing products to the company and stakeholders, interviewing engineer and design candidates, writing and contributing to GumGum's tech blog, attending meetups or community events, and contributing to the development of Gumdrops, GumGum's open sourced React component UI library.
 
-2017–Present
+November 2017 to Present
 
 ### HAUS
 
@@ -53,7 +56,9 @@ Full-stack test-driven React development for GumGum's core products to support t
 
 Front-end developer leading the production of ReactJS web apps from end-to-end while managing other team members and coordinating with producers to ship projects with tight deadlines. Applied the latest JavaScript patterns to architect rich animated experiences with the latest browser APIs. Focused on building organized, DRY, maintainable codebases with accessible presentation layers.
 
-2015–2017
+April 2015 to November 2017
+
+# Work History
 
 ### Big Storm Creative Studio
 
@@ -83,32 +88,36 @@ Front-end developer leading the production of ReactJS web apps from end-to-end w
 
 A non-exhaustive list of technologies or software I've worked with:
 
-<ul class="two-column">
-    <li>JavaScript ES6+</li>
-    <li>React</li>
-    <li>Flux/Redux</li>
-    <li>Node</li>
-    <li>Jest/Mocha/Enzyme</li>
-    <li>RESTful APIs</li>
-    <li>SQL/Sequelize</li>
-    <li>Webpack/Gulp/Parcel</li>
-    <li>Git/GitFlow</li>
-    <li>Agile/Scrum</li>
-    <li>Docker</li>
-    <li>Canvas</li>
-    <li>GreenSock</li>
-    <li>Bodymovin</li>
-    <li>SCSS/SASS</li>
-    <li>HTML5/CSS3</li>
-    <li>Backbone</li>
-    <li>PHP</li>
-    <li>UX/UI Design</li>
-    <li>Sketch</li>
-    <li>Illustrator</li>
-    <li>Photoshop</li>
-    <li>After Effects</li>
-    <li>InDesign</li>
-</ul>
+<div class="two-column">
+
+-   JavaScript ES6+
+-   React
+-   Flux/Redux
+-   Node JS
+-   Flow
+-   Jest/Mocha/Enzyme
+-   REST APIs
+-   SQL/Sequelize
+-   Webpack/Gulp/Parcel/Rollup
+-   Babel
+-   Git/GitFlow
+-   Agile/Scrum
+-   Docker
+-   Canvas
+-   GreenSock
+-   Bodymovin
+-   SCSS/SASS
+-   HTML5/CSS3
+-   Backbone MVC
+-   PHP
+-   UX/UI Design
+-   Sketch
+-   Illustrator
+-   Photoshop
+-   After Effects
+-   InDesign
+
+</div>
 
 # Education
 
