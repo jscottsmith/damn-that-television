@@ -38,17 +38,18 @@ class Eraser {
     }
 
     handleMousemove({ pointer: { position, lastPosition }, ctx, dpr, bounds }) {
-        if (!position || !lastPosition || !this.pattern || !this.eraser) return;
-
-        const currentPoint = new Point(position.x, position.y);
-        const dist = lastPosition.distance(currentPoint);
-        const angle = lastPosition.angleRadians(currentPoint);
+        if (!this.pattern || !this.eraser) return;
+        const tempPoint = new Point(bounds.w / 2, bounds.h / 2);
+        const currentPoint = position || tempPoint;
+        const prevPoint = lastPosition || tempPoint;
+        const dist = prevPoint.distance(currentPoint);
+        const angle = prevPoint.angleRadians(currentPoint);
         const r = dpr * 40;
         const hs = r / 2;
         // ctx.globalCompositeOperation = 'source-over';
         for (var i = 0; i < dist; i += 5) {
-            let x = lastPosition.x + Math.cos(angle) * i - 25;
-            let y = lastPosition.y + Math.sin(angle) * i - 25;
+            let x = prevPoint.x + Math.cos(angle) * i - 25;
+            let y = prevPoint.y + Math.sin(angle) * i - 25;
             this.ctx.beginPath();
             this.ctx.arc(x + hs, y + hs, r, false, Math.PI * 2, false);
             this.ctx.closePath();
@@ -62,7 +63,7 @@ class Eraser {
         const oy = h * 0.7;
         ctx.clearRect(...bounds.params);
         ctx.drawImage(this.canvas, ...bounds.params);
-        ctx.drawImage(this.eraser, position.x - ox, position.y - oy, w, h);
+        ctx.drawImage(this.eraser, prevPoint.x - ox, prevPoint.y - oy, w, h);
     }
 
     resize = (context) => this.setup(context);
