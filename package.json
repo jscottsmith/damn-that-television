@@ -7,7 +7,9 @@
     "dev": "next",
     "build": "./node_modules/next/dist/bin/next build",
     "start": "./node_modules/next/dist/bin/next start -p $PORT",
-    "heroku-postbuild": "./node_modules/next/dist/bin/next build"
+    "heroku-postbuild": "./node_modules/next/dist/bin/next build",
+    "lint": "eslint .",
+    "prettier": "prettier --config ./.prettierrc --write \"./**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -33,5 +35,11 @@
     "react-dom": "^16.5.2",
     "react-helmet": "^5.2.0",
     "react-observed": "^1.0.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.3",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-react": "^7.12.4"
   }
 }

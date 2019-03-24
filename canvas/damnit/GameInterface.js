@@ -5,15 +5,13 @@ const BAR_WIDTH = 200;
 const BAR_HEIGHT = 6;
 
 export default class GameInterface {
-    constructor(canvas, ctx, gameController, gameAssets) {
+    constructor(gameController, gameAssets) {
         this.dpr = window.devicePixelRatio;
-        this.canvas = canvas;
-        this.ctx = ctx;
         this.gameController = gameController;
         this.gameAssets = gameAssets;
     }
 
-    drawLives() {
+    drawLives({ ctx }) {
         const { pizza } = this.gameAssets.images;
         const { lives } = this.gameController.state;
 
@@ -22,19 +20,19 @@ export default class GameInterface {
         while (i > 0) {
             const x = ((i - 1) * IMAGE_WIDTH + X_OFFSET) * this.dpr;
             const y = Y_OFFSET * this.dpr;
-            this.ctx.fillStyle = 'slategray';
-            this.ctx.drawImage(
+            ctx.fillStyle = 'slategray';
+            ctx.drawImage(
                 pizza,
                 x,
                 y,
                 IMAGE_WIDTH * this.dpr,
-                IMAGE_WIDTH * this.dpr
+                IMAGE_WIDTH * this.dpr,
             );
             i--;
         }
     }
 
-    drawPowerImage() {
+    drawPowerImage({ ctx }) {
         // const { hitPower } = this.gameController.state;
         // if (!hitPower) return;
 
@@ -43,25 +41,25 @@ export default class GameInterface {
         const y = (Y_OFFSET * 2 + IMAGE_WIDTH) * this.dpr;
         const w = IMAGE_WIDTH * this.dpr;
         const h = IMAGE_WIDTH * this.dpr;
-        this.ctx.drawImage(life, x, y, w, h);
+        ctx.drawImage(life, x, y, w, h);
     }
 
-    drawPower() {
+    drawPower({ ctx }) {
         const { hitPower, maxHitPower } = this.gameController.state;
         const fullW = BAR_WIDTH * this.dpr;
         const x = (X_OFFSET * 2 + IMAGE_WIDTH) * this.dpr;
         const y = (Y_OFFSET * 2 + IMAGE_WIDTH * 1.5) * this.dpr;
-        const w = hitPower / maxHitPower * fullW;
+        const w = (hitPower / maxHitPower) * fullW;
         const h = BAR_HEIGHT * this.dpr;
 
-        this.ctx.fillStyle = 'white';
-        this.ctx.fillRect(x, y, w, h);
+        ctx.fillStyle = 'white';
+        ctx.fillRect(x, y, w, h);
 
-        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-        this.ctx.fillRect(x, y, fullW, h);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.fillRect(x, y, fullW, h);
     }
 
-    drawShieldImage() {
+    drawShieldImage({ ctx }) {
         // const { shieldPower } = this.gameController.state;
         // if (!shieldPower) return;
 
@@ -70,30 +68,29 @@ export default class GameInterface {
         const y = (Y_OFFSET * 3 + IMAGE_WIDTH * 2) * this.dpr;
         const w = IMAGE_WIDTH * this.dpr;
         const h = IMAGE_WIDTH * this.dpr;
-        this.ctx.drawImage(shield, x, y, w, h);
+        ctx.drawImage(shield, x, y, w, h);
     }
 
-    drawShield() {
+    drawShield({ ctx }) {
         const { shieldPower, maxShieldPower } = this.gameController.state;
         const fullW = BAR_WIDTH * this.dpr;
         const x = (X_OFFSET * 2 + IMAGE_WIDTH) * this.dpr;
         const y = (Y_OFFSET * 3 + IMAGE_WIDTH * 2.5) * this.dpr;
-        const w = shieldPower / maxShieldPower * fullW;
+        const w = (shieldPower / maxShieldPower) * fullW;
         const h = BAR_HEIGHT * this.dpr;
 
-        this.ctx.fillStyle = 'white';
-        this.ctx.fillRect(x, y, w, h);
+        ctx.fillStyle = 'white';
+        ctx.fillRect(x, y, w, h);
 
-        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-        this.ctx.fillRect(x, y, fullW, h);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.fillRect(x, y, fullW, h);
     }
 
-    run() {
-        this.drawLives();
-        this.drawPowerImage();
-        this.drawPower();
-
-        this.drawShieldImage();
-        this.drawShield();
-    }
+    draw = (context) => {
+        this.drawLives(context);
+        this.drawPowerImage(context);
+        this.drawPower(context);
+        this.drawShieldImage(context);
+        this.drawShield(context);
+    };
 }

@@ -12,6 +12,7 @@ export default class Damnit extends Component {
 
     componentDidMount() {
         this.game = DamnitGame.init(this.canvas);
+        this.props.isPlaying && this.play();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -51,10 +52,9 @@ export default class Damnit extends Component {
                 >
                     Escape
                 </button>
-                <canvas
-                    className={styles.canvas}
-                    ref={(ref) => (this.canvas = ref)}
-                />
+                <div className={styles.canvas}>
+                    <canvas ref={(ref) => (this.canvas = ref)} />
+                </div>
             </div>
         );
     }

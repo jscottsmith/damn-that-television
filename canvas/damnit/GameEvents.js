@@ -1,7 +1,6 @@
 export const GameEvents = {
     MOUSE_DOWN: 'MOUSE_DOWN',
     MOUSE_UP: 'MOUSE_UP',
-    MOUSE_MOVE: 'MOUSE_MOVE',
 
     RESET_PLAYER_STATE: 'RESET_PLAYER_STATE',
     PLAYER_HIT: 'PLAYER_HIT',

@@ -12,9 +12,7 @@ import {
 } from './gameUtils.js';
 
 export default class LevelView {
-    constructor(canvas, ctx, gameController, gameAssets) {
-        this.canvas = canvas;
-        this.ctx = ctx;
+    constructor(gameController, gameAssets) {
         this.gameController = gameController;
         this.gameAssets = gameAssets;
         this.dpr = window.devicePixelRatio;
@@ -54,31 +52,17 @@ export default class LevelView {
         this.player.subscribe(eventPublisher);
 
         eventPublisher.subscribe(GameEvents.MOUSE_DOWN, this.handleMouseDown);
-        eventPublisher.subscribe(GameEvents.MOUSE_MOVE, this.handleMouseMove);
 
         this.eventPublisher = eventPublisher;
     }
 
-    handleMouseDown = () => {
+    handleMouseDown = (event, payload) => {
         this.fireProjectile();
-    };
-
-    handleMouseMove = (topic, mouse) => {
-        this.updateMouse(mouse);
-    };
-
-    handleMouseMove = (topic, mouse) => {
-        this.updateMouse(mouse);
     };
 
     /*----------------------------------------------------------*\
     |* Level methods
     \*----------------------------------------------------------*/
-
-    updateMouse({ x, y }) {
-        this.x = x;
-        this.y = y;
-    }
 
     fireProjectile() {
         if (!this.player) return;
@@ -118,7 +102,7 @@ export default class LevelView {
         this.player.subscribe(this.eventPublisher);
     }
 
-    createRandomEnemy() {
+    createRandomEnemy(bounds) {
         // get a random type
         const type = allEnemies[getRandomInt(0, allEnemies.length - 1)];
 
@@ -139,8 +123,8 @@ export default class LevelView {
         };
 
         const { image, size } = typeMap[type];
-        const x = getRandomInt(0, this.canvas.width);
-        const y = size / 2 * -1; // adjust for dpr
+        const x = getRandomInt(0, bounds.w);
+        const y = (size / 2) * -1; // adjust for dpr
 
         const e = new Enemy(image, size, type, x, y);
 
@@ -163,46 +147,46 @@ export default class LevelView {
     |* Draw methods
     \*----------------------------------------------------------*/
 
-    drawProjectiles() {
-        this.projectiles.forEach(p => {
+    drawProjectiles({ ctx }) {
+        this.projectiles.forEach((p) => {
             const { canvas, w, h, x, y } = p;
-            this.ctx.drawImage(canvas, x, y, w, h);
+            ctx.drawImage(canvas, x, y, w, h);
         });
     }
 
-    drawEnemies() {
-        this.enemies.forEach(p => {
+    drawEnemies({ ctx }) {
+        this.enemies.forEach((p) => {
             const { canvas, w, h, x, y } = p;
-            this.ctx.drawImage(canvas, x, y, w, h);
+            ctx.drawImage(canvas, x, y, w, h);
         });
     }
 
-    drawParticles() {
-        this.particles.forEach(p => {
-            p.draw(this.ctx);
+    drawParticles({ ctx }) {
+        this.particles.forEach((p) => {
+            p.draw(ctx);
         });
     }
 
-    drawExplosions() {
-        this.explosions.forEach(e => {
-            e.draw(this.ctx);
+    drawExplosions({ ctx }) {
+        this.explosions.forEach((e) => {
+            e.draw(ctx);
         });
     }
 
-    drawCrosshairs() {
+    drawCrosshairs({ ctx, pointer }) {
         const { canvas, w, h } = this.crosshairs;
-        let { x, y } = this;
+        let { x, y } = pointer.position;
         x = x - w / 2;
         y = y - h / 2;
 
-        this.ctx.drawImage(canvas, x, y, w, h);
+        ctx.drawImage(canvas, x, y, w, h);
     }
 
-    drawPlayer() {
+    drawPlayer({ ctx }) {
         if (!this.player) return;
 
-        const { canvas, w, h, x, y } = this.player;
-        this.ctx.drawImage(canvas, x, y, w, h);
+        const { canvas: playerCanvas, w, h, x, y } = this.player;
+        ctx.drawImage(playerCanvas, x, y, w, h);
 
         const {
             canvas: sCanvas,
@@ -211,57 +195,47 @@ export default class LevelView {
             x: sx,
             y: sy,
         } = this.player.shield;
-        this.ctx.drawImage(sCanvas, sx, sy, sw, sh);
+        ctx.drawImage(sCanvas, sx, sy, sw, sh);
     }
 
-    drawBackground() {
-        const gradient = this.ctx.createLinearGradient(
-            this.x,
+    drawBackground({ ctx, bounds, pointer }) {
+        const gradient = ctx.createLinearGradient(
+            pointer.position.x,
             0,
-            this.canvas.width / 2,
-            this.canvas.height
+            bounds.w / 2,
+            bounds.h,
         );
-        gradient.addColorStop(0, "#f5b8b5");
-        gradient.addColorStop(1, "#ea94ba");
-        this.ctx.fillStyle = gradient;
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        gradient.addColorStop(0, '#f5b8b5');
+        gradient.addColorStop(1, '#ea94ba');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, bounds.w, bounds.h);
     }
 
-    clear() {
-        const { width, height } = this.canvas;
-        this.ctx.clearRect(0, 0, width, height);
-    }
-
-    /*----------------------------------------------------------*\
-    |* Draw Stack
-    \*----------------------------------------------------------*/
-
-    draw() {
-        this.clear();
-        this.drawBackground();
-        this.drawProjectiles();
-        this.drawPlayer();
-        this.drawParticles();
-        this.drawExplosions();
-        this.drawEnemies();
-        this.drawCrosshairs();
+    clear({ ctx, bounds }) {
+        const { w, h } = bounds;
+        ctx.clearRect(0, 0, w, h);
     }
 
     /*----------------------------------------------------------*\
     |* Update methods
     \*----------------------------------------------------------*/
 
-    enemyGenerator() {
+    enemyGenerator({ bounds }) {
         if (this.tick % 20 === 0) {
-            this.createRandomEnemy();
+            this.createRandomEnemy(bounds);
         }
     }
 
     removeDeadInstances(items, key) {
-        this[key] = items.filter(x => !x.dead);
+        this[key] = items.filter((x) => !x.dead);
     }
 
-    updatePlayer() {
+    setMousePosition({ pointer }) {
+        this.x = pointer.position.x;
+        this.y = pointer.position.y;
+    }
+
+    updatePlayer({ bounds, pointer }) {
         if (!this.player) return;
 
         const { w, h, dead } = this.player;
@@ -269,36 +243,36 @@ export default class LevelView {
         if (dead) {
             this.killPlayer();
         } else {
-            const x = this.x - w / 2;
-            const y = this.canvas.height - this.playerConfig.bottomOffset;
+            const x = pointer.position.x - w / 2;
+            const y = bounds.h - this.playerConfig.bottomOffset;
             this.player.updatePosition(x, y);
         }
     }
 
     updateProjectiles() {
         // update positions
-        this.projectiles.forEach(x => x.update(this.gameBounds));
+        this.projectiles.forEach((x) => x.update(this.gameBounds));
         this.removeDeadInstances(this.projectiles, 'projectiles');
     }
 
     updateParticles() {
         // update positions
-        this.particles.forEach(x => x.update(this.gameBounds));
+        this.particles.forEach((x) => x.update(this.gameBounds));
         this.removeDeadInstances(this.particles, 'particles');
     }
 
     updateExplosions() {
         // update positions
-        this.explosions.forEach(x => x.update());
+        this.explosions.forEach((x) => x.update());
         this.removeDeadInstances(this.explosions, 'explosions');
     }
 
     updateEnemies() {
         // update enemy positions, Player required for following
-        this.enemies.forEach(x => x.update(this.gameBounds, this.player));
+        this.enemies.forEach((x) => x.update(this.gameBounds, this.player));
 
         // Meaty hit test for now -- should use broad/narrow phase
-        this.enemies.forEach(enemy => {
+        this.enemies.forEach((enemy) => {
             this.hitTestEnemy(enemy);
         });
         // remove dead
@@ -357,22 +331,25 @@ export default class LevelView {
         }
     }
 
-    /*----------------------------------------------------------*\
-    |* Update Stack
-    \*----------------------------------------------------------*/
+    update = (context) => {
+        this.updatePlayer(context);
+        this.updateProjectiles(context);
+        this.updateEnemies(context);
+        this.updateParticles(context);
+        this.updateExplosions(context);
+        this.enemyGenerator(context);
+        this.setMousePosition(context);
+    };
 
-    update() {
-        this.updatePlayer();
-        this.updateProjectiles();
-        this.updateEnemies();
-        this.updateParticles();
-        this.updateExplosions();
-        this.enemyGenerator();
-    }
-
-    run() {
-        this.draw();
-        this.update();
+    draw = (context) => {
+        this.clear(context);
+        this.drawBackground(context);
+        this.drawProjectiles(context);
+        this.drawPlayer(context);
+        this.drawParticles(context);
+        this.drawExplosions(context);
+        this.drawEnemies(context);
+        this.drawCrosshairs(context);
         this.tick++;
-    }
+    };
 }

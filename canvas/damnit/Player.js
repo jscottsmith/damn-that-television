@@ -47,12 +47,12 @@ export default class Player {
         eventPublisher.subscribe(GameEvents.PLAYER_DEAD, this.handleDead);
     }
 
-    setState = nextState => {
+    setState = (nextState) => {
         this.state = nextState;
         this.draw();
     };
 
-    handleHit = nextState => {
+    handleHit = (nextState) => {
         this.setState(nextState);
         this.clearTimer();
         this.timer = setTimeout(() => {
@@ -60,7 +60,7 @@ export default class Player {
         }, 300);
     };
 
-    handleDead = nextState => {
+    handleDead = (nextState) => {
         if (this.state === nextState) return; // so timer doesn't keep reseting if hit again
 
         this.clearTimer();
