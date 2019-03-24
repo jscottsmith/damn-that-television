@@ -9,6 +9,7 @@
     "start": "./node_modules/next/dist/bin/next start -p $PORT",
     "heroku-postbuild": "./node_modules/next/dist/bin/next build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prettier": "prettier --config ./.prettierrc --write \"./**/*.js\""
   },
   "repository": {

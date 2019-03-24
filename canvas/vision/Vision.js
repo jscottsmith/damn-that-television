@@ -77,7 +77,7 @@ export default class Vision extends Entity {
         const segments = this.shapes.reduce((a, c) => a.concat(c.segments), []);
 
         // Sight Polygons
-        var polygon = getSightPolygon(
+        const polygon = getSightPolygon(
             mouse.x,
             mouse.y,
             segments,

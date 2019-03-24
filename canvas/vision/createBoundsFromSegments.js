@@ -19,13 +19,13 @@ export default function createBoundsFromSegments(segments) {
 }
 
 function getMinFromPoints(p1, p2) {
-    let x = Math.min(p1.x, p2.x);
-    let y = Math.min(p1.y, p2.y);
+    const x = Math.min(p1.x, p2.x);
+    const y = Math.min(p1.y, p2.y);
     return new Point(x, y);
 }
 
 function getMaxFromPoints(p1, p2) {
-    let x = Math.max(p1.x, p2.x);
-    let y = Math.max(p1.y, p2.y);
+    const x = Math.max(p1.x, p2.x);
+    const y = Math.max(p1.y, p2.y);
     return new Point(x, y);
 }

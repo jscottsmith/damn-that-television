@@ -7,9 +7,9 @@ const { getRandomInt, getRandomFloat } = utils;
 
 function circleInOut(t) {
     return (
-        ((t *= 2) <= 1
+        ((t = t * 2) <= 1
             ? 1 - Math.sqrt(1 - t * t)
-            : Math.sqrt(1 - (t -= 2) * t) + 1) / 2
+            : Math.sqrt(1 - (t = t - 2) * t) + 1) / 2
     );
 }
 
@@ -18,7 +18,7 @@ function circleOut(t) {
 }
 
 export function cubicInOut(t) {
-    return ((t *= 2) <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
+    return ((t = t * 2) <= 1 ? t * t * t : (t = t - 2) * t * t + 2) / 2;
 }
 
 const SPEED = 0.002;

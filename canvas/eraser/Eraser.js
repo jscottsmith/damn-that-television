@@ -47,9 +47,9 @@ class Eraser {
         const r = dpr * 40;
         const hs = r / 2;
         // ctx.globalCompositeOperation = 'source-over';
-        for (var i = 0; i < dist; i += 5) {
-            let x = prevPoint.x + Math.cos(angle) * i - 25;
-            let y = prevPoint.y + Math.sin(angle) * i - 25;
+        for (let i = 0; i < dist; i = i + 5) {
+            const x = prevPoint.x + Math.cos(angle) * i - 25;
+            const y = prevPoint.y + Math.sin(angle) * i - 25;
             this.ctx.beginPath();
             this.ctx.arc(x + hs, y + hs, r, false, Math.PI * 2, false);
             this.ctx.closePath();
