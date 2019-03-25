@@ -1,9 +1,17 @@
-import { GameEvents } from './GameEvents.js';
 import Shield from './Shield.js';
+import GameStore from './store/GameStore.js';
+import connect from './store/connect';
+
+export const playerStates = {
+    IDLE: 'IDLE',
+    FIRING: 'FIRING',
+    HIT: 'HIT',
+    DEAD: 'DEAD',
+};
 
 export default class Player {
     constructor(assets, size, x, y) {
-        this.dpr = window.devicePixelRatio || 1;
+        // local player canvas
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.assets = assets;
@@ -11,65 +19,78 @@ export default class Player {
         this.w = size;
         this.h = size;
 
-        // global positioning
-        this.x = x;
-        this.y = y;
-
-        this.cx = this.x + this.w / 2;
-        this.cy = this.y + this.h / 2;
-
         this.canvas.width = this.w;
         this.canvas.height = this.h;
 
-        // Initial state
-        this.state = GameEvents.MOUSE_UP;
+        // global positioning
+        this.x = x;
+        this.y = y;
+        this.cx = this.x + this.w / 2;
+        this.cy = this.y + this.h / 2;
 
         this.dead = false;
         this.shield = new Shield(size * 1.4);
 
+        // Initial state
+        this.drawState = playerStates.IDLE;
+
         // Draw state based on events
-        this.drawState = {
-            [GameEvents.MOUSE_UP]: this.drawIdle,
-            [GameEvents.MOUSE_DOWN]: this.drawFiring,
-            [GameEvents.PLAYER_HIT]: this.drawHit,
-            [GameEvents.PLAYER_DEAD]: this.drawDead,
+        this.drawStates = {
+            [playerStates.IDLE]: this.drawIdle,
+            [playerStates.FIRING]: this.drawFiring,
+            [playerStates.HIT]: this.drawHit,
+            [playerStates.DEAD]: this.drawDead,
         };
 
+        const selectHitPower = (state) => state.player.hitPower;
+
+        connect(
+            GameStore,
+            selectHitPower,
+        )(this.handleHitPowerChange);
+
         this.draw();
     }
 
-    subscribe(eventPublisher) {
-        this.shield.subscribe(eventPublisher);
-
-        eventPublisher.subscribe(GameEvents.MOUSE_DOWN, this.setState);
-        eventPublisher.subscribe(GameEvents.MOUSE_UP, this.setState);
-        eventPublisher.subscribe(GameEvents.PLAYER_HIT, this.handleHit);
-        eventPublisher.subscribe(GameEvents.PLAYER_DEAD, this.handleDead);
-    }
-
-    setState = nextState => {
-        this.state = nextState;
+    setState = (nextState) => {
+        this.drawState = nextState;
         this.draw();
     };
 
-    handleHit = nextState => {
-        this.setState(nextState);
+    setHit = () => this.setState(playerStates.HIT);
+
+    setIdle = () => this.setState(playerStates.IDLE);
+
+    setFiring = () => this.setState(playerStates.FIRING);
+
+    setDead = () => this.setState(playerStates.DEAD);
+
+    handleHitPowerChange = (hitPower) => {
+        if (hitPower > 0) {
+            this.handleHit();
+        } else {
+            this.handleDead();
+        }
+    };
+
+    handleHit() {
+        this.setHit();
         this.clearTimer();
         this.timer = setTimeout(() => {
-            this.setState(GameEvents.MOUSE_UP);
+            this.setIdle();
         }, 300);
-    };
+    }
 
-    handleDead = nextState => {
-        if (this.state === nextState) return; // so timer doesn't keep reseting if hit again
+    handleDead() {
+        if (this.drawState === playerStates.DEAD) return; // so timer doesn't keep reseting if hit again
 
         this.clearTimer();
-        this.setState(nextState);
+        this.setDead();
 
         this.timer = setTimeout(() => {
             this.dead = true;
         }, 100);
-    };
+    }
 
     clearTimer() {
         if (this.timer) {
@@ -117,7 +138,7 @@ export default class Player {
     };
 
     draw() {
-        const drawState = this.drawState[this.state];
+        const drawState = this.drawStates[this.drawState];
         drawState();
     }
 }

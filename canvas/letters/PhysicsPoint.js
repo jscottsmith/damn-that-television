@@ -1,4 +1,4 @@
-import { Point, utils } from '@gush/candybar';
+import { Point } from '@gush/candybar';
 
 export default class PointPhysics extends Point {
     constructor({ x, y, vx = 0, vy = 0, mass = 1, isFixed = false }) {

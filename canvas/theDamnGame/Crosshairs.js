@@ -1,4 +1,7 @@
-import { GameEvents } from './GameEvents.js';
+const crosshairStates = {
+    IDLE: 'IDLE',
+    FIRING: 'FIRING',
+};
 
 export default class Crosshairs {
     constructor(size) {
@@ -15,24 +18,19 @@ export default class Crosshairs {
         this.canvas.height = this.h;
 
         // Initial state
-        this.state = GameEvents.MOUSE_UP;
+        this.drawState = crosshairStates.IDLE;
 
         // Draws the current state based on event
-        this.drawState = {
-            [GameEvents.MOUSE_UP]: this.drawIdle,
-            [GameEvents.MOUSE_DOWN]: this.drawFiring,
+        this.drawStates = {
+            [crosshairStates.IDLE]: this.drawIdle,
+            [crosshairStates.FIRING]: this.drawFiring,
         };
 
         this.draw();
     }
 
-    subscribe(eventPublisher) {
-        eventPublisher.subscribe(GameEvents.MOUSE_DOWN, this.setState);
-        eventPublisher.subscribe(GameEvents.MOUSE_UP, this.setState);
-    }
-
-    setState = state => {
-        this.state = state;
+    setState = (state) => {
+        this.drawState = state;
         this.draw();
     };
 
@@ -69,8 +67,7 @@ export default class Crosshairs {
     };
 
     draw() {
-        const drawState = this.drawState[this.state];
-
+        const drawState = this.drawStates[this.drawState];
         drawState();
     }
 }

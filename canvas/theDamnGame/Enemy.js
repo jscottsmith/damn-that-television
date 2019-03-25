@@ -55,7 +55,7 @@ export default class Enemy extends Box {
         this.x += Math.sin(this.sine) * this.speed;
     };
 
-    updateFollower = player => {
+    updateFollower = (player) => {
         if (player) {
             // as it moves closer to the player on the y axis,
             // the more it moves horizontally. Should also

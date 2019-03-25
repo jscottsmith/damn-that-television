@@ -1,14 +1,9 @@
-import { Entity, Spring, utils, Point } from '@gush/candybar';
+import { Point } from '@gush/candybar';
 import { COLORS } from 'constants/app';
 import loadImage from 'utils/loadImage';
 
 const PATTERN_OK = '/static/pattern-ok.svg';
 const ERASER = '/static/eraser.svg';
-
-function loadAll(images) {
-    const all = images.map((src) => loadImage(src));
-    return Promise.all(all);
-}
 
 class Eraser {
     constructor({ setupCanvas }) {
@@ -47,9 +42,9 @@ class Eraser {
         const r = dpr * 40;
         const hs = r / 2;
         // ctx.globalCompositeOperation = 'source-over';
-        for (var i = 0; i < dist; i += 5) {
-            let x = prevPoint.x + Math.cos(angle) * i - 25;
-            let y = prevPoint.y + Math.sin(angle) * i - 25;
+        for (let i = 0; i < dist; i = i + 5) {
+            const x = prevPoint.x + Math.cos(angle) * i - 25;
+            const y = prevPoint.y + Math.sin(angle) * i - 25;
             this.ctx.beginPath();
             this.ctx.arc(x + hs, y + hs, r, false, Math.PI * 2, false);
             this.ctx.closePath();
@@ -68,7 +63,7 @@ class Eraser {
 
     resize = (context) => this.setup(context);
 
-    setup = ({ canvas, dpr, ctx, bounds }) => {
+    setup = ({ dpr, ctx, bounds }) => {
         this.setupCanvas();
         this.createLocal({ bounds });
         loadImage(PATTERN_OK).then((image) => {

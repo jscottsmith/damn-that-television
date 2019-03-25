@@ -1,6 +1,4 @@
-import { Entity, Spring, utils } from '@gush/candybar';
-
-const { getRandomInt, getRandomFloat } = utils;
+import { Entity, Spring } from '@gush/candybar';
 
 class PolyWave extends Entity {
     constructor({ verts, color, elasticity, damping }) {
@@ -80,7 +78,7 @@ class PolyWave extends Entity {
         });
     }
 
-    draw = ({ ctx, bounds }) => {
+    draw = ({ ctx }) => {
         ctx.beginPath();
 
         this.points.forEach((point) => {

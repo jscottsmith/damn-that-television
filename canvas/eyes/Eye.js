@@ -3,7 +3,7 @@ import { utils } from '@gush/candybar';
 const { lerp, scaleBetween, clamp } = utils;
 import { COLORS } from 'constants/app';
 
-/*------------------------------*
+/* ------------------------------*
  * Eye Canvas
  *------------------------------*/
 
@@ -253,7 +253,7 @@ class Eye extends Entity {
         this.ctx.beginPath();
         this.ctx.arc(this.pupil.x, this.pupil.y, this.pupilRad, 0, 2 * Math.PI);
         this.ctx.fill();
-        //glare
+        // glare
         const off = this.r / 4;
         const x = this.center.x - off;
         const y = this.center.y - off;

@@ -1,10 +1,10 @@
 import Circle from './Circle.js';
-import { GameEvents } from './GameEvents.js';
+import GameStore from './store/GameStore.js';
+import connect from './store/connect';
 
 export default class Shield extends Circle {
     constructor(r) {
         super();
-        this.dpr = window.devicePixelRatio || 1;
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
 
@@ -29,6 +29,7 @@ export default class Shield extends Circle {
 
         this.setGradient1();
         this.setGradient2();
+        this.subscribe();
 
         this.draw();
     }
@@ -40,7 +41,7 @@ export default class Shield extends Circle {
             this.r,
             this.cx,
             this.cy,
-            0
+            0,
         );
 
         this.gradient1.addColorStop(0, 'rgba(100, 120, 218, 0.5');
@@ -55,7 +56,7 @@ export default class Shield extends Circle {
             this.r,
             this.cx,
             this.cy,
-            0
+            0,
         );
 
         this.gradient2.addColorStop(0, 'rgba(120, 218, 100, 0.5');
@@ -63,10 +64,21 @@ export default class Shield extends Circle {
         this.gradient2.addColorStop(1, 'rgba(224, 244, 204, 0.0');
     }
 
-    subscribe(eventPublisher) {
-        eventPublisher.subscribe(GameEvents.SHIELD_HIT, this.handleHit);
-        eventPublisher.subscribe(GameEvents.SHIELD_DOWN, this.handleShieldDown);
+    subscribe() {
+        const selectShieldPower = (state) => state.player.shieldPower;
+        connect(
+            GameStore,
+            selectShieldPower,
+        )(this.handleShieldPowerChange);
     }
+
+    handleShieldPowerChange = (shieldPower) => {
+        if (shieldPower > 0) {
+            this.handleHit();
+        } else {
+            this.handleShieldDown();
+        }
+    };
 
     handleHit = () => {
         this.hit = true;

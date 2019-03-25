@@ -10,18 +10,20 @@ class Hand extends Entity {
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.image = document.createElement('img');
-        this.image.onload = ({ target: { height, width } }) => {
-            const ratio = width / height;
-            const w = this.width;
-            const h = this.width / ratio;
-            // set sizes
-            this.h = this.canvas.height = this.image.height = h;
-            this.w = this.canvas.width = this.image.width = w;
-            this.drawHand();
-        };
+        this.image.onload = this.handleLoad;
         this.image.src = '/static/hand.svg';
         this.setAngle();
     }
+
+    handleLoad = ({ target: { height, width } }) => {
+        const ratio = width / height;
+        const w = this.width;
+        const h = this.width / ratio;
+        // set sizes
+        this.h = this.canvas.height = this.image.height = h;
+        this.w = this.canvas.width = this.image.width = w;
+        this.drawHand();
+    };
 
     setAngle() {
         this.theta = this.p1.angleRadians(this.p2) - Math.PI / 2;

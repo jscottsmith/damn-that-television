@@ -27,6 +27,7 @@ export default function Copy(props) {
 
 Copy.propTypes = {
     children: PropTypes.string.isRequired,
+    className: PropTypes.string,
     orphans: PropTypes.number.isRequired,
     tag: PropTypes.string.isRequired,
 };
