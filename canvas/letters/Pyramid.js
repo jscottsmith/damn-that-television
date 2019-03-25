@@ -1,21 +1,19 @@
-import { Entity, Spring, utils } from '@gush/candybar';
+import { Entity } from '@gush/candybar';
 import { COLORS } from 'constants/app';
 
 const PATTERN_IMG = '/static/pattern-1.svg';
 
-const { getRandomInt, getRandomFloat } = utils;
+// function circleInOut(t) {
+//     return (
+//         ((t = t * 2) <= 1
+//             ? 1 - Math.sqrt(1 - t * t)
+//             : Math.sqrt(1 - (t = t - 2) * t) + 1) / 2
+//     );
+// }
 
-function circleInOut(t) {
-    return (
-        ((t = t * 2) <= 1
-            ? 1 - Math.sqrt(1 - t * t)
-            : Math.sqrt(1 - (t = t - 2) * t) + 1) / 2
-    );
-}
-
-function circleOut(t) {
-    return Math.sqrt(1 - --t * t);
-}
+// function circleOut(t) {
+//     return Math.sqrt(1 - --t * t);
+// }
 
 export function cubicInOut(t) {
     return ((t = t * 2) <= 1 ? t * t * t : (t = t - 2) * t * t + 2) / 2;

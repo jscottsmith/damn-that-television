@@ -32,7 +32,7 @@ class Hole extends Entity {
         ctx.fill();
     };
 
-    update = (context) => {};
+    update = () => {};
 }
 
 export default Hole;

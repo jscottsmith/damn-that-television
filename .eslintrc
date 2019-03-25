@@ -77,7 +77,7 @@
         "no-native-reassign": 1,
         "no-new-func": 1,
         "no-new-wrappers": 1,
-        "no-new": 1,
+        "no-new": 0,
         "no-octal-escape": 1,
         "no-octal": 1,
         "no-param-reassign": 0,
@@ -155,7 +155,7 @@
         "no-unneeded-ternary": 1,
         "object-curly-spacing": 0, // see Babel section
         "one-var": [1, "never"],
-        "operator-assignment": [1, "never"],
+        "operator-assignment": 0,
         "padded-blocks": [0, "never"],
         "quote-props": [0, "as-needed"],
         "quotes": 0,

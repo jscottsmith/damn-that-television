@@ -86,7 +86,7 @@ export default class HomeLanding extends PureComponent {
                 intersectionRatio={0.01}
                 options={OBSERVER_OPTIONS}
             >
-                {({ isInView, mapRef }) => (
+                {({ mapRef }) => (
                     <article
                         className={styles.index}
                         ref={(ref) => {

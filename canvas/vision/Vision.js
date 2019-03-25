@@ -164,7 +164,7 @@ export default class Vision extends Entity {
 
     resize = (context) => this.setupScene(context);
 
-    draw = ({ ctx, pointer: { position: Mouse } }) => {
+    draw = ({ ctx }) => {
         this.projector.draw({ ctx });
         this.drawLight(ctx);
         this.shapes.forEach((shape) => shape.draw({ ctx }));

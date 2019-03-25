@@ -5,7 +5,6 @@ import PhysicsPoint from './PhysicsPoint';
 import Letter from './Letter';
 import { COLORS } from 'constants/app';
 
-const MOUSE_RADIUS = 100;
 const MOUSE_STRENGTH = 4;
 
 export default class LetterDrop {
@@ -14,7 +13,7 @@ export default class LetterDrop {
         this.letters = [];
     }
 
-    createWave = ({ bounds, dpr, ctx }) => {
+    createWave = ({ bounds, ctx }) => {
         const { w, h } = bounds;
         const x = 0;
         const y = h - h / 4;
@@ -78,8 +77,6 @@ export default class LetterDrop {
     }
 
     applyForceToWavePoints(letter, p2) {
-        const { x, y } = letter.point;
-
         const distance = p2.distance(letter.point);
         const maxDist = letter.radius / 2;
 

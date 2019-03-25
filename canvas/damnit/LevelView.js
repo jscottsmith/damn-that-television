@@ -56,7 +56,7 @@ export default class LevelView {
         this.eventPublisher = eventPublisher;
     }
 
-    handleMouseDown = (event, payload) => {
+    handleMouseDown = () => {
         this.fireProjectile();
     };
 
@@ -238,7 +238,7 @@ export default class LevelView {
     updatePlayer({ bounds, pointer }) {
         if (!this.player) return;
 
-        const { w, h, dead } = this.player;
+        const { w, dead } = this.player;
 
         if (dead) {
             this.killPlayer();
@@ -299,7 +299,8 @@ export default class LevelView {
             this.createExplosion(0.5, x, y);
 
             this.eventPublisher.publish(GameEvents.SHIELD_HIT);
-            return (enemy.dead = true);
+            enemy.dead = true;
+            return enemy.dead;
         }
 
         // check for hit against Player
@@ -310,7 +311,8 @@ export default class LevelView {
 
             this.createExplosion(1, x, y);
             this.eventPublisher.publish(GameEvents.PLAYER_HIT);
-            return (enemy.dead = true);
+            enemy.dead = true;
+            return enemy.dead;
         }
 
         // hit projectile with for loop to break
@@ -329,6 +331,8 @@ export default class LevelView {
                 break;
             }
         }
+
+        return enemy.dead;
     }
 
     update = (context) => {

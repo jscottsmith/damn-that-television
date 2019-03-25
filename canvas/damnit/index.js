@@ -81,11 +81,11 @@ export default class DamnGame {
         this.eventPublisher.publish(GameEvents.MOUSE_DOWN);
     };
 
-    handleInteractEnd = (event) => {
+    handleInteractEnd = () => {
         this.eventPublisher.publish(GameEvents.MOUSE_UP);
     };
 
-    handleKeydown = (event) => {
+    handleKeydown = () => {
         this.eventPublisher.publish(GameEvents.MOUSE_DOWN);
     };
 

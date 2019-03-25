@@ -27,7 +27,7 @@ class WavingArm extends Entity {
     }
 
     setupArm = (context) => {
-        const { color, force, isLeft, holeColor, getPosition } = this;
+        const { color, force, isLeft, holeColor } = this;
 
         const resolution = this.toValue(window.innerHeight / 60);
 
@@ -67,7 +67,7 @@ class WavingArm extends Entity {
 
     resize = (context) => this.setupArm(context);
 
-    draw = ({ ctx, bounds }) => {
+    draw = ({ ctx }) => {
         this.hole.draw({ ctx });
         this.arm.draw({ ctx });
         this.hand.draw({ ctx });
