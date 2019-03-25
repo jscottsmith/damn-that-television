@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './Damnit.scss';
-import DamnitGame from '../../../canvas/damnit/index.js';
+import TheDamnGame from '../../../canvas/theDamnGame/TheDamnGame.js';
 
 export default class Damnit extends Component {
     static propTypes = {
-        isPlaying: PropTypes.bool.isRequired,
         handleStop: PropTypes.func.isRequired,
+        isPlaying: PropTypes.bool.isRequired,
     };
 
     componentDidMount() {
-        this.game = DamnitGame.init(this.canvas);
+        this.game = TheDamnGame.init(this.canvas);
+        this.props.isPlaying && this.play();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -51,10 +52,9 @@ export default class Damnit extends Component {
                 >
                     Escape
                 </button>
-                <canvas
-                    className={styles.canvas}
-                    ref={(ref) => (this.canvas = ref)}
-                />
+                <div className={styles.canvas}>
+                    <canvas ref={(ref) => (this.canvas = ref)} />
+                </div>
             </div>
         );
     }

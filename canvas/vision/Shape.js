@@ -1,6 +1,4 @@
-import { Entity, Point, Bounds, Segment, utils } from '@gush/candybar';
-import getSightPolygon from './src/rays';
-import Projector from './Projector';
+import { Entity, Point, Segment, utils } from '@gush/candybar';
 import createBoundsFromSegments from './createBoundsFromSegments';
 
 const { getRandomFloat, getRandomInt } = utils;
@@ -35,6 +33,9 @@ export default class Shape extends Entity {
             }
             case this.constructor.types.RING: {
                 return this.createRing();
+            }
+            default: {
+                return new Error('Unknown shape type provided');
             }
         }
     }
@@ -176,15 +177,14 @@ export default class Shape extends Entity {
         ctx.stroke();
     }
 
-    drawBounds(ctx) {
-        ctx.strokeStyle = 'red';
-        ctx.lineWidth = 2;
-        ctx.strokeRect(...this.bounds.params);
-    }
+    // drawBounds(ctx) {
+    //     ctx.strokeStyle = 'red';
+    //     ctx.lineWidth = 2;
+    //     ctx.strokeRect(...this.bounds.params);
+    // }
 
     draw = ({ ctx }) => {
         // this.drawBounds(ctx);
-
         switch (this.type) {
             case this.constructor.types.ZIGZAG: {
                 return this.drawZigZag(ctx);
@@ -195,10 +195,13 @@ export default class Shape extends Entity {
             case this.constructor.types.RING: {
                 return this.drawRing(ctx);
             }
+            default: {
+                return null;
+            }
         }
     };
 
-    update = (context) => {
+    update = () => {
         this.bounds.move(this.vx, this.vy);
         this.segments.forEach((seg) => {
             seg.move(this.vx, this.vy);

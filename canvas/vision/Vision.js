@@ -77,7 +77,7 @@ export default class Vision extends Entity {
         const segments = this.shapes.reduce((a, c) => a.concat(c.segments), []);
 
         // Sight Polygons
-        var polygon = getSightPolygon(
+        const polygon = getSightPolygon(
             mouse.x,
             mouse.y,
             segments,
@@ -164,7 +164,7 @@ export default class Vision extends Entity {
 
     resize = (context) => this.setupScene(context);
 
-    draw = ({ ctx, pointer: { position: Mouse } }) => {
+    draw = ({ ctx }) => {
         this.projector.draw({ ctx });
         this.drawLight(ctx);
         this.shapes.forEach((shape) => shape.draw({ ctx }));

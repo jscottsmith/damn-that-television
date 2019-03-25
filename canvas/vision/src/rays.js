@@ -1,3 +1,4 @@
+/* eslint-disable */
 // https://github.com/ncase/sight-and-light
 
 // Find intersection of RAY & SEGMENT
@@ -72,10 +73,9 @@ export default function getSightPolygon(
             const key = `${p.x},${p.y}`;
             if (key in set) {
                 return false;
-            } else {
-                set[key] = true;
-                return true;
             }
+            set[key] = true;
+            return true;
         });
     })(points);
 

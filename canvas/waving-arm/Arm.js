@@ -4,9 +4,9 @@ function lerp(a, b, n) {
     return (1 - n) * a + n * b;
 }
 
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡/
+//* ‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡/
 // Body
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
+//* ‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
 
 class Arm extends Entity {
     constructor({
@@ -59,8 +59,9 @@ class Arm extends Entity {
                         p2: this.spine[i + 1],
                     });
                 }
+                return null;
             })
-            .filter((x) => x);
+            .filter((stick) => stick);
     }
 
     drawShade = ({ ctx }) => {
@@ -68,8 +69,8 @@ class Arm extends Entity {
         const g2 = this.spine[1];
 
         const dist = Math.floor(g1.distance(g2) / 2);
-        const rad = g1.angleRadians(g2);
-        const [dx, dy] = g2.delta(g1);
+        // const rad = g1.angleRadians(g2);
+        // const [dx, dy] = g2.delta(g1);
 
         let i = dist;
         while (i >= 0) {

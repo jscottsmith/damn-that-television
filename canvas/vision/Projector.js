@@ -1,7 +1,7 @@
-import { Entity, Point, utils } from '@gush/candybar';
+import { Entity, utils } from '@gush/candybar';
 import { COLORS } from 'constants/app';
 
-const { scaleBetween, clamp, lerp } = utils;
+const { scaleBetween, clamp } = utils;
 
 export default class Projector extends Entity {
     constructor({ radius = 100, p1, p2 }) {
@@ -98,7 +98,7 @@ export default class Projector extends Entity {
         ctx.fillRect(x2, y2, w, h);
     }
 
-    draw = ({ ctx, bounds }) => {
+    draw = ({ ctx }) => {
         this.drawBaseShadow(ctx);
         this.drawBase(ctx);
         this.drawWhites(ctx);

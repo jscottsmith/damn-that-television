@@ -14,9 +14,6 @@ export default class WhatsUp extends Component {
     }
 
     runIt() {
-        const DPR = window.devicePixelRatio || 1;
-        const radius = (window.innerWidth / 20) * DPR;
-
         this.canvas = new Canvas({
             canvas: this._canvas,
             container: this._container,
@@ -44,7 +41,7 @@ export default class WhatsUp extends Component {
         return (
             <Observed
                 onChange={this.handleChange}
-                initialViewState={true}
+                initialViewState
                 intersectionRatio={0.01}
                 options={OBSERVER_OPTIONS}
             >

@@ -22,24 +22,62 @@
 }
 
 :local(.play) {
-    display: block;
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
     margin: 1rem auto 0 auto;
-    background-color: $deep;
-    color: $pepto;
-    font-size: 1.8rem;
-    padding: 0.6rem 3rem;
+    background-color: $plum;
     cursor: pointer;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 2.5rem;
+    font-weight: $bold;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 1;
+    transition: opacity 300ms, transform 300ms $easeOut;
+
+    z-index: 100;
 
     &:hover {
-        color: #fffb74;
         background: $deep;
+        transform: scale(1.05);
     }
+}
+
+:local(.playHidden) {
+    opacity: 0;
+    transform: translateY(20%);
+    &:hover {
+        transform: scale(1.05) translateY(20%);
+    }
+}
+
+:local(.playKill) {
+    display: block;
+    width: 100%;
+    font-size: 1.2rem;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.16rem;
+    color: $pepto;
+}
+
+:local(.playTv) {
+    display: block;
+    line-height: 0.9;
+    font-size: 2rem;
+    color: $fab;
 }
 
 :local(.welcome) {
     position: relative;
     margin: auto 0;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 46rem;
     // max-height: 100%;
     background-color: $ghost;
