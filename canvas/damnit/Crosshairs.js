@@ -31,7 +31,7 @@ export default class Crosshairs {
         eventPublisher.subscribe(GameEvents.MOUSE_UP, this.setState);
     }
 
-    setState = state => {
+    setState = (state) => {
         this.state = state;
         this.draw();
     };

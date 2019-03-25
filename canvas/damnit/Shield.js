@@ -40,7 +40,7 @@ export default class Shield extends Circle {
             this.r,
             this.cx,
             this.cy,
-            0
+            0,
         );
 
         this.gradient1.addColorStop(0, 'rgba(100, 120, 218, 0.5');
@@ -55,7 +55,7 @@ export default class Shield extends Circle {
             this.r,
             this.cx,
             this.cy,
-            0
+            0,
         );
 
         this.gradient2.addColorStop(0, 'rgba(120, 218, 100, 0.5');

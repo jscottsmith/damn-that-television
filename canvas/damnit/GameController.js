@@ -20,7 +20,7 @@ export default class GameController {
         eventPublisher.subscribe(GameEvents.SHIELD_HIT, this.handleShieldHit);
         eventPublisher.subscribe(
             GameEvents.RESET_PLAYER_STATE,
-            this.handleResetPlayer
+            this.handleResetPlayer,
         );
         this.eventPublisher = eventPublisher;
     }
