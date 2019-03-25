@@ -4,16 +4,17 @@ import Projectile from './Projectile.js';
 import Enemy, { EnemyTypes, allEnemies } from './Enemy.js';
 import Explosion from './Explosion.js';
 import Particle from './Particle.js';
-import { GameEvents } from './GameEvents.js';
+import GameStore from './store/GameStore.js';
+import * as playerActions from './actions/playerActions';
 import {
     getAngleRadians,
     movePointAtAngle,
     getRandomInt,
 } from './gameUtils.js';
+import connect from './store/connect.js';
 
 export default class LevelView {
-    constructor(gameController, gameAssets) {
-        this.gameController = gameController;
+    constructor(gameAssets) {
         this.gameAssets = gameAssets;
         this.dpr = window.devicePixelRatio;
 
@@ -44,20 +45,24 @@ export default class LevelView {
 
         this.x = px;
         this.y = py / 2;
+
+        const selectShieldPower = (state) => state.event.pointerDown;
+
+        connect(
+            GameStore,
+            selectShieldPower,
+        )(this.handlePointerDown);
     }
 
-    subscribe(eventPublisher) {
-        // subscribe to events
-        this.crosshairs.subscribe(eventPublisher);
-        this.player.subscribe(eventPublisher);
+    handlePointerDown = (pointerDown) => {
+        if (!this.player) return;
 
-        eventPublisher.subscribe(GameEvents.MOUSE_DOWN, this.handleMouseDown);
-
-        this.eventPublisher = eventPublisher;
-    }
-
-    handleMouseDown = () => {
-        this.fireProjectile();
+        if (pointerDown) {
+            this.fireProjectile();
+            this.player.setFiring();
+        } else {
+            this.player.setIdle();
+        }
     };
 
     /* ----------------------------------------------------------*\
@@ -85,7 +90,7 @@ export default class LevelView {
         this.createExplosion(2, cx, cy);
         this.player = null;
 
-        if (this.gameController.state.lives > 0) {
+        if (GameStore.getState().player.lives > 0) {
             this.newPlayerTimer();
         }
     }
@@ -98,8 +103,7 @@ export default class LevelView {
     createNewPlayer() {
         const { ps, px, py, bottomOffset } = this.playerConfig;
         this.player = new Player(this.gameAssets, ps, px, py - bottomOffset);
-        this.eventPublisher.publish(GameEvents.RESET_PLAYER_STATE);
-        this.player.subscribe(this.eventPublisher);
+        GameStore.dispatch(playerActions.resetPlayerState);
     }
 
     createRandomEnemy(bounds) {
@@ -298,7 +302,7 @@ export default class LevelView {
 
             this.createExplosion(0.5, x, y);
 
-            this.eventPublisher.publish(GameEvents.SHIELD_HIT);
+            GameStore.dispatch(playerActions.hitShield);
             enemy.dead = true;
             return enemy.dead;
         }
@@ -310,7 +314,7 @@ export default class LevelView {
             const y = enemy.y + enemy.h / 2;
 
             this.createExplosion(1, x, y);
-            this.eventPublisher.publish(GameEvents.PLAYER_HIT);
+            GameStore.dispatch(playerActions.hitPlayer);
             enemy.dead = true;
             return enemy.dead;
         }

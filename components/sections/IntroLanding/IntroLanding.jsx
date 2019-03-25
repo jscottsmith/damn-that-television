@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import cx from 'classnames';
-import Observed from 'react-observed';
 import styles from './IntroLanding.scss';
 import Copy from 'components/atoms/Copy';
 import Damnit from 'components/sections/Damnit/Damnit';
@@ -42,15 +41,21 @@ export default class Home extends PureComponent {
                     })}
                 >
                     <Copy>{content}</Copy>
-                    <button className={styles.play} onClick={this.handlePlay}>
-                        Kill TV!
-                    </button>
                 </div>
                 <EraserBackground isPaused={this.state.isPlaying} />
                 <Damnit
                     isPlaying={this.state.isPlaying}
                     handleStop={this.handleStop}
                 />
+                <button
+                    className={cx(styles.play, {
+                        [styles.playHidden]: this.state.isPlaying,
+                    })}
+                    onClick={this.handlePlay}
+                >
+                    <span className={styles.playKill}>Kill</span>{' '}
+                    <span className={styles.playTv}>TV!</span>
+                </button>
             </article>
         );
     }

@@ -4,7 +4,7 @@
   "description": "Damn that television. The personal website of J Scott Smith",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "NODE_ENV=development next",
     "build": "./node_modules/next/dist/bin/next build",
     "start": "./node_modules/next/dist/bin/next start -p $PORT",
     "heroku-postbuild": "./node_modules/next/dist/bin/next build",
@@ -35,7 +35,8 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-helmet": "^5.2.0",
-    "react-observed": "^1.0.2"
+    "react-observed": "^1.0.2",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

@@ -1,0 +1,10 @@
+export const actionTypes = {
+    // Player
+    RESET_PLAYER_STATE_AFTER_DEATH: 'RESET_PLAYER_STATE_AFTER_DEATH',
+    PLAYER_HIT: 'PLAYER_HIT',
+    PLAYER_SHIELD_HIT: 'PLAYER_SHIELD_HIT',
+
+    // Events
+    POINTER_DOWN: 'POINTER_DOWN',
+    POINTER_UP: 'POINTER_UP',
+};
