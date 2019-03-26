@@ -6,6 +6,7 @@ import Explosion from './Explosion.js';
 import Particle from './Particle.js';
 import GameStore from './store/GameStore.js';
 import * as playerActions from './actions/playerActions';
+import * as scoreActions from './actions/scoreActions';
 import {
     getAngleRadians,
     movePointAtAngle,
@@ -332,6 +333,7 @@ export default class LevelView {
                 const y = enemy.y + enemy.h / 2;
 
                 this.createExplosion(1, x, y);
+                GameStore.dispatch(scoreActions.updateScore(100));
                 break;
             }
         }
