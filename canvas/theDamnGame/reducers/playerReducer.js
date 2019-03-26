@@ -30,6 +30,10 @@ export default function playerReducer(state = initialPlayerState, action) {
             };
         }
 
+        case actionTypes.RESET_GAME_STATE: {
+            return initialPlayerState;
+        }
+
         default:
             return state;
     }

@@ -11,20 +11,6 @@ export default class HomeLanding extends PureComponent {
     };
 
     componentDidMount() {
-        this.runIt();
-    }
-
-    componentDidUpdate = (prevProps) => {
-        if (prevProps.isPaused !== this.props.isPaused) {
-            if (this.props.isPaused) {
-                this.canvas.stop();
-            } else {
-                this.canvas.start();
-            }
-        }
-    };
-
-    runIt() {
         const setupCanvas = () => {};
 
         this.canvas = new Canvas({
@@ -34,6 +20,20 @@ export default class HomeLanding extends PureComponent {
             pauseInBackground: true,
             entities: [new Eraser({ setupCanvas })],
         });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.isPaused !== this.props.isPaused) {
+            if (this.props.isPaused) {
+                this.canvas.stop();
+            } else {
+                this.canvas.start();
+            }
+        }
+    }
+
+    componentWillUnmount() {
+        this.canvas.destroy();
     }
 
     render() {
