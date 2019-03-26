@@ -1,6 +1,6 @@
 {
   "name": "damn-that-television",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Damn that television. The personal website of J Scott Smith",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://damnthat.tv/",
   "dependencies": {
-    "@gush/candybar": "0.0.0-alpha35",
+    "@gush/candybar": "^0.0.0-alpha37",
     "@zeit/next-sass": "^1.0.1",
     "autoprefixer": "^8.2.0",
     "babel-plugin-module-resolver": "^3.1.1",

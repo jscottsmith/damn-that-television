@@ -4,32 +4,42 @@ import Events from './Events';
 import GameInterface from './GameInterface.js';
 import GameAssets from './GameAssets.js';
 
+const images = {
+    bomb: '/static/damnit/bomb.png',
+    damnit: '/static/damnit/damnit.png',
+    fist: '/static/damnit/fist.png',
+    hit: '/static/damnit/hit.png',
+    life: '/static/damnit/life.png',
+    pill: '/static/damnit/pill.png',
+    pizza: '/static/damnit/pizza.png',
+    shield: '/static/damnit/shield.png',
+    shoot: '/static/damnit/shoot.png',
+    tv: '/static/damnit/tv.png',
+};
+
 export default class TheDamnGame {
     static init(canvas) {
         const game = new TheDamnGame(canvas);
-        new Canvas({
+
+        return new Canvas({
             canvas,
             hasPointer: true,
             pauseInBackground: true,
             entities: [game],
         });
-        return game;
     }
 
     constructor(canvas) {
         this.canvas = canvas;
-        this.state = {
-            isPlaying: false,
-            hasLoaded: false,
-        };
+        this.hasLoaded = false;
 
         // Game Assets
-        this.gameAssets = new GameAssets(this.handleAssetsLoaded);
+        this.gameAssets = new GameAssets(images, this.handleAssetsLoaded);
     }
 
     handleAssetsLoaded = () => {
         // Game controller
-        this.setState({ hasLoaded: true });
+        this.hasLoaded = true;
 
         // Level view
         this.levelView = new LevelView(this.gameAssets);
@@ -40,36 +50,21 @@ export default class TheDamnGame {
         this.events = new Events(this.canvas);
     };
 
-    setState(nextState) {
-        return (this.state = Object.assign({}, this.state, nextState));
-    }
-
-    play() {
-        this.setState({ isPlaying: true });
-    }
-
-    stop() {
-        this.setState({ isPlaying: false });
-    }
-
     /* ----------------------------------------------------------*\
     |* Main Loop
     \*----------------------------------------------------------*/
 
-    update = (context) => {
-        if (!this.state.hasLoaded) return;
+    destroy = () => {};
 
-        if (this.state.isPlaying) {
-            this.levelView.update(context);
-        }
+    update = (context) => {
+        if (!this.hasLoaded) return;
+
+        this.levelView.update(context);
     };
 
     draw = (context) => {
-        if (!this.state.hasLoaded) return;
-
-        if (this.state.isPlaying) {
-            this.levelView.draw(context);
-            this.gameInterface.draw(context);
-        }
+        if (!this.hasLoaded) return;
+        this.levelView.draw(context);
+        this.gameInterface.draw(context);
     };
 }

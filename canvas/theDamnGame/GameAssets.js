@@ -1,35 +1,27 @@
-const images = {
-    bomb: '/static/damnit/bomb.png',
-    damnit: '/static/damnit/damnit.png',
-    fist: '/static/damnit/fist.png',
-    hit: '/static/damnit/hit.png',
-    life: '/static/damnit/life.png',
-    pill: '/static/damnit/pill.png',
-    pizza: '/static/damnit/pizza.png',
-    shield: '/static/damnit/shield.png',
-    shoot: '/static/damnit/shoot.png',
-    tv: '/static/damnit/tv.png',
-};
-
 import loadImage from 'utils/loadImage';
 
+const logErr = (err) => console.log(err);
+
 export default class GameAssets {
-    constructor(callback) {
-        this.images = images;
-        this.preload().then(callback);
+    constructor(images, callback) {
+        this.images = {};
+        this.preload(images)
+            .then(callback)
+            .catch(logErr);
     }
 
-    preload() {
+    preload(images) {
         const allImages = [];
-        for (const key in this.images) {
-            if (this.images.hasOwnProperty(key)) {
-                const image = this.images[key];
-                const promise = loadImage(image).then((img) => {
+
+        Object.keys(images).map((key) => {
+            const promise = loadImage(images[key]);
+            promise
+                .then((img) => {
                     this.images[key] = img;
-                });
-                allImages.push(promise);
-            }
-        }
+                })
+                .catch(logErr);
+            allImages.push(promise);
+        });
 
         return Promise.all(allImages);
     }
