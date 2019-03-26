@@ -16,9 +16,6 @@
 
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    // background-image: url("/static/pattern_5.svg");
-    // background-repeat: repeat;
-    // background-size: 100px;
 }
 
 :local(.play) {
@@ -32,15 +29,14 @@
     height: 5rem;
     border-radius: 2.5rem;
     font-weight: $bold;
+    text-decoration: none;
 
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
 
-    opacity: 1;
-    transition: opacity 300ms, transform 300ms $easeOut;
-
+    transition: transform 300ms $easeOut;
     z-index: 100;
 
     &:hover {
@@ -49,17 +45,8 @@
     }
 }
 
-:local(.playHidden) {
-    opacity: 0;
-    transform: translateY(20%);
-    &:hover {
-        transform: scale(1.05) translateY(20%);
-    }
-}
-
 :local(.playKill) {
     display: block;
-    width: 100%;
     font-size: 1.2rem;
     line-height: 0.9;
     text-transform: uppercase;
@@ -79,31 +66,18 @@
     margin: auto 0;
     padding: 1rem;
     max-width: 46rem;
-    // max-height: 100%;
     background-color: $ghost;
     color: #665b85;
     z-index: 100;
     overflow: hidden;
-
-    transition: opacity 800ms, transform 800ms $easeOut;
     box-shadow: 0.5rem 0.5rem 0 0 $deep;
 
-    &:local(.playing) {
-        pointer-events: none;
-        opacity: 0;
-        transform: translateY(-10%);
-        transition: opacity 400ms, transform 400ms $easeOut;
-    }
+    transition: opacity 800ms;
 
     &:local(.waiting) {
         pointer-events: none;
         opacity: 0;
     }
-
-    // background-image: linear-gradient(-225deg, #DFFFCD 0%, $pepto 48%, #39F3BB 100%);
-    // background: -webkit-linear-gradient(#72dbde, #5143a0);
-    // -webkit-background-clip: text;
-    // -webkit-text-fill-color: transparent;
 
     h2 {
         font-size: 2.8rem;

@@ -700,10 +700,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@gush/candybar@0.0.0-alpha35":
-  version "0.0.0-alpha35"
-  resolved "https://registry.yarnpkg.com/@gush/candybar/-/candybar-0.0.0-alpha35.tgz#b8133e40172d55bf809085eea13b9e6a2371d1c5"
-  integrity sha512-ST651YWOXC8XNIySEC4QQTTgpHXCfq1C1RNeP+xjm6brZrk0H3qnNz/uwoPcuIYcmI0qxVKy4KoVD3DQIWcmGg==
+"@gush/candybar@^0.0.0-alpha37":
+  version "0.0.0-alpha37"
+  resolved "https://registry.yarnpkg.com/@gush/candybar/-/candybar-0.0.0-alpha37.tgz#0745eb24f72ae643dadbe9484276eedd0db13125"
+  integrity sha512-OmYMa0CD9KNiuA1ytUtU6fencR/Yp3+lG86UY/kdxCiMZHY08Wh6nobbGz/CZUh224ATedF69YFe9R2UWEu87g==
 
 "@webassemblyjs/ast@1.7.8":
   version "1.7.8"
