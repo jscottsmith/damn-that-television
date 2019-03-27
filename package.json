@@ -1,6 +1,6 @@
 {
   "name": "damn-that-television",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "Damn that television. The personal website of J Scott Smith",
   "main": "index.js",
   "scripts": {
@@ -36,6 +36,7 @@
     "react-dom": "^16.5.2",
     "react-helmet": "^5.2.0",
     "react-observed": "^1.0.2",
+    "react-redux": "^6.0.1",
     "redux": "^4.0.1"
   },
   "devDependencies": {

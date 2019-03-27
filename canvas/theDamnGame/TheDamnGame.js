@@ -1,7 +1,6 @@
 import { Canvas } from '@gush/candybar';
 import LevelView from './LevelView.js';
 import Events from './Events';
-import GameInterface from './GameInterface.js';
 import GameAssets from './GameAssets.js';
 
 const images = {
@@ -44,9 +43,6 @@ export default class TheDamnGame {
         // Level view
         this.levelView = new LevelView(this.gameAssets);
 
-        // Game Interface View
-        this.gameInterface = new GameInterface(this.gameAssets);
-
         this.events = new Events(this.canvas);
     };
 
@@ -58,13 +54,11 @@ export default class TheDamnGame {
 
     update = (context) => {
         if (!this.hasLoaded) return;
-
         this.levelView.update(context);
     };
 
     draw = (context) => {
         if (!this.hasLoaded) return;
         this.levelView.draw(context);
-        this.gameInterface.draw(context);
     };
 }

@@ -29,7 +29,7 @@ export default class Player {
         this.cy = this.y + this.h / 2;
 
         this.dead = false;
-        this.shield = new Shield(size * 1.4);
+        this.shield = new Shield(size * 1.3);
 
         // Initial state
         this.drawState = playerStates.IDLE;
