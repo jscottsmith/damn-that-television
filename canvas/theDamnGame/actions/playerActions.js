@@ -11,7 +11,3 @@ export const hitShield = {
 export const resetPlayerState = {
     type: actionTypes.RESET_PLAYER_STATE_AFTER_DEATH,
 };
-
-export const resetGameState = {
-    type: actionTypes.RESET_GAME_STATE,
-};

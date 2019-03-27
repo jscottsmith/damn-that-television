@@ -8,4 +8,7 @@ export const actionTypes = {
     // Events
     POINTER_DOWN: 'POINTER_DOWN',
     POINTER_UP: 'POINTER_UP',
+
+    // Score
+    ENEMY_KILLED: 'ENEMY_KILLED',
 };

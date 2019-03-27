@@ -1,0 +1,12 @@
+@import 'sass/variables';
+.bar {
+    width: 100px;
+    height: 0.3rem;
+    background-color: $deep;
+
+    .amount {
+        position: relative;
+        background-color: $club;
+        height: 0.3rem;
+    }
+}
