@@ -22,8 +22,8 @@ export default class LevelView {
         // Game Instances
         this.crosshairs = new Crosshairs(50 * this.dpr);
 
-        const ps = 75 * this.dpr;
-        const px = (window.innerWidth / 2 - ps / 2) * this.dpr;
+        const ps = 80 * this.dpr;
+        const px = (window.innerWidth / 2) * this.dpr;
         const py = window.innerHeight * this.dpr;
         const bottomOffset = 200 * this.dpr;
 
@@ -235,12 +235,22 @@ export default class LevelView {
         this[key] = items.filter((x) => !x.dead);
     }
 
-    setMousePosition({ pointer }) {
-        this.x = pointer.position.x;
-        this.y = pointer.position.y;
+    setMousePosition({
+        pointer: {
+            position: { x, y },
+        },
+        bounds,
+    }) {
+        if (x === null || y === null) {
+            this.x = bounds.w / 2;
+            this.y = bounds.h / 2;
+            return;
+        }
+        this.x = x;
+        this.y = y;
     }
 
-    updatePlayer({ bounds, pointer }) {
+    updatePlayer({ bounds }) {
         if (!this.player) return;
 
         const { w, dead } = this.player;
@@ -248,7 +258,7 @@ export default class LevelView {
         if (dead) {
             this.killPlayer();
         } else {
-            const x = pointer.position.x - w / 2;
+            const x = this.x - w / 2;
             const y = bounds.h - this.playerConfig.bottomOffset;
             this.player.updatePosition(x, y);
         }
