@@ -226,7 +226,7 @@ export default class LevelView {
     \*----------------------------------------------------------*/
 
     enemyGenerator({ bounds }) {
-        if (this.tick % 20 === 0) {
+        if (this.tick % 40 === 0) {
             this.createRandomEnemy(bounds);
         }
     }
