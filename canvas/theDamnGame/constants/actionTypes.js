@@ -8,7 +8,14 @@ export const actionTypes = {
     // Events
     POINTER_DOWN: 'POINTER_DOWN',
     POINTER_UP: 'POINTER_UP',
+    ARROW_LEFT_DOWN: 'ARROW_LEFT_DOWN',
+    ARROW_LEFT_UP: 'ARROW_LEFT_UP',
+    ARROW_RIGHT_DOWN: 'ARROW_RIGHT_DOWN',
+    ARROW_RIGHT_UP: 'ARROW_RIGHT_UP',
 
     // Score
     ENEMY_KILLED: 'ENEMY_KILLED',
+
+    // Levels
+    NEXT_LEVEL: 'NEXT_LEVEL',
 };

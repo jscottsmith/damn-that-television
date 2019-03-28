@@ -2,7 +2,7 @@ import loadImage from 'utils/loadImage';
 
 const logErr = (err) => console.log(err);
 
-export default class GameAssets {
+export default class assets {
     constructor(images, callback) {
         this.images = {};
         this.preload(images)

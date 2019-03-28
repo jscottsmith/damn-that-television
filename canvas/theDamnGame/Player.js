@@ -2,14 +2,15 @@ import Shield from './Shield.js';
 import GameStore from './store/GameStore.js';
 import connect from './store/connect';
 
-export const playerStates = {
-    IDLE: 'IDLE',
-    FIRING: 'FIRING',
-    HIT: 'HIT',
-    DEAD: 'DEAD',
-};
-
 export default class Player {
+    static states = {
+        IDLE: 'IDLE',
+        FIRING: 'FIRING',
+        HIT: 'HIT',
+        DEAD: 'DEAD',
+        INVINCIBLE: 'INVINCIBLE',
+    };
+
     constructor(assets, size, x, y) {
         // local player canvas
         this.canvas = document.createElement('canvas');
@@ -32,14 +33,15 @@ export default class Player {
         this.shield = new Shield(size * 1.3);
 
         // Initial state
-        this.drawState = playerStates.IDLE;
+        this.drawState = Player.states.INVINCIBLE;
 
         // Draw state based on events
         this.drawStates = {
-            [playerStates.IDLE]: this.drawIdle,
-            [playerStates.FIRING]: this.drawFiring,
-            [playerStates.HIT]: this.drawHit,
-            [playerStates.DEAD]: this.drawDead,
+            [Player.states.IDLE]: this.drawIdle,
+            [Player.states.FIRING]: this.drawFiring,
+            [Player.states.HIT]: this.drawHit,
+            [Player.states.DEAD]: this.drawDead,
+            [Player.states.INVINCIBLE]: this.drawInvincible,
         };
 
         const selectHitPower = (state) => state.player.hitPower;
@@ -57,13 +59,15 @@ export default class Player {
         this.draw();
     };
 
-    setHit = () => this.setState(playerStates.HIT);
+    setHit = () => this.setState(Player.states.HIT);
 
-    setIdle = () => this.setState(playerStates.IDLE);
+    setIdle = () => this.setState(Player.states.IDLE);
 
-    setFiring = () => this.setState(playerStates.FIRING);
+    setFiring = () => this.setState(Player.states.FIRING);
 
-    setDead = () => this.setState(playerStates.DEAD);
+    setDead = () => this.setState(Player.states.DEAD);
+
+    setInvincible = () => this.setState(Player.states.INVINCIBLE);
 
     handleHitPowerChange = (hitPower) => {
         if (hitPower > 0) {
@@ -82,7 +86,7 @@ export default class Player {
     }
 
     handleDead() {
-        if (this.drawState === playerStates.DEAD) return; // so timer doesn't keep reseting if hit again
+        if (this.drawState === Player.states.DEAD) return; // so timer doesn't keep reseting if hit again
 
         this.clearTimer();
         this.setDead();
@@ -137,8 +141,12 @@ export default class Player {
         this.drawRect(image);
     };
 
+    drawInvincible = () => {
+        const image = this.assets.images.shoot;
+        this.drawRect(image);
+    };
+
     draw() {
-        const drawState = this.drawStates[this.drawState];
-        drawState();
+        this.drawStates[this.drawState]();
     }
 }

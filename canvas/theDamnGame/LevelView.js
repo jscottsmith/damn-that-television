@@ -1,7 +1,7 @@
 import Crosshairs from './Crosshairs.js';
 import Player from './Player.js';
 import Projectile from './Projectile.js';
-import Enemy, { EnemyTypes, allEnemies } from './Enemy.js';
+import Enemy, { EnemyMovementTypes, allEnemyMovements } from './Enemy.js';
 import Explosion from './Explosion.js';
 import Particle from './Particle.js';
 import GameStore from './store/GameStore.js';
@@ -15,8 +15,9 @@ import {
 import connect from './store/connect.js';
 
 export default class LevelView {
-    constructor(gameAssets) {
-        this.gameAssets = gameAssets;
+    constructor({ assets, config }) {
+        this.config = config;
+        this.assets = assets;
         this.dpr = window.devicePixelRatio;
 
         // Game Instances
@@ -34,7 +35,7 @@ export default class LevelView {
             bottomOffset,
         };
 
-        this.player = new Player(this.gameAssets, ps, px, py - bottomOffset);
+        this.player = new Player(this.assets, ps, px, py - bottomOffset);
 
         // Game objects
         this.projectiles = [];
@@ -78,7 +79,7 @@ export default class LevelView {
 
         const radian = getAngleRadians(x0, y0, x1, y1);
         const { x: vx, y: vy } = movePointAtAngle({ x: 0, y: 0 }, radian, 20);
-        const image = this.gameAssets.images.fist;
+        const image = this.assets.images.fist;
         const size = 50;
 
         const p = new Projectile(image, size, x1, y1, vx, vy);
@@ -103,26 +104,27 @@ export default class LevelView {
 
     createNewPlayer() {
         const { ps, px, py, bottomOffset } = this.playerConfig;
-        this.player = new Player(this.gameAssets, ps, px, py - bottomOffset);
+        this.player = new Player(this.assets, ps, px, py - bottomOffset);
         GameStore.dispatch(playerActions.resetPlayerState);
     }
 
     createRandomEnemy(bounds) {
         // get a random type
-        const type = allEnemies[getRandomInt(0, allEnemies.length - 1)];
+        const type =
+            allEnemyMovements[getRandomInt(0, allEnemyMovements.length - 1)];
 
         // config based on type
         const typeMap = {
-            [EnemyTypes.DUNCE]: {
-                image: this.gameAssets.images.bomb,
+            [EnemyMovementTypes.DUNCE]: {
+                image: this.assets.images.bomb,
                 size: 60,
             },
-            [EnemyTypes.FOLLOWER]: {
-                image: this.gameAssets.images.tv,
+            [EnemyMovementTypes.FOLLOWER]: {
+                image: this.assets.images.tv,
                 size: 70,
             },
-            [EnemyTypes.SNEK]: {
-                image: this.gameAssets.images.pill,
+            [EnemyMovementTypes.SNEK]: {
+                image: this.assets.images.pill,
                 size: 50,
             },
         };
@@ -210,8 +212,8 @@ export default class LevelView {
             bounds.w / 2,
             bounds.h,
         );
-        gradient.addColorStop(0, '#f5b8b5');
-        gradient.addColorStop(1, '#ea94ba');
+        gradient.addColorStop(0, this.config.backgroundColors[0]);
+        gradient.addColorStop(1, this.config.backgroundColors[1]);
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, bounds.w, bounds.h);
     }
