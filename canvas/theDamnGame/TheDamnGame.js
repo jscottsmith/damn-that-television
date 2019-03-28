@@ -3,22 +3,9 @@ import LevelView from './LevelView.js';
 import Events from './Events';
 import GameAssets from './GameAssets.js';
 
-const images = {
-    bomb: '/static/damnit/bomb.png',
-    damnit: '/static/damnit/damnit.png',
-    fist: '/static/damnit/fist.png',
-    hit: '/static/damnit/hit.png',
-    life: '/static/damnit/life.png',
-    pill: '/static/damnit/pill.png',
-    pizza: '/static/damnit/pizza.png',
-    shield: '/static/damnit/shield.png',
-    shoot: '/static/damnit/shoot.png',
-    tv: '/static/damnit/tv.png',
-};
-
 export default class TheDamnGame {
-    static init(canvas) {
-        const game = new TheDamnGame(canvas);
+    static init({ canvas, config }) {
+        const game = new TheDamnGame({ canvas, config });
 
         return new Canvas({
             canvas,
@@ -28,12 +15,13 @@ export default class TheDamnGame {
         });
     }
 
-    constructor(canvas) {
+    constructor({ canvas, config }) {
         this.canvas = canvas;
+        this.config = config;
         this.hasLoaded = false;
 
         // Game Assets
-        this.gameAssets = new GameAssets(images, this.handleAssetsLoaded);
+        this.assets = new GameAssets(config.assets, this.handleAssetsLoaded);
     }
 
     handleAssetsLoaded = () => {
@@ -41,7 +29,10 @@ export default class TheDamnGame {
         this.hasLoaded = true;
 
         // Level view
-        this.levelView = new LevelView(this.gameAssets);
+        this.levelView = new LevelView({
+            assets: this.assets,
+            config: this.config,
+        });
 
         this.events = new Events(this.canvas);
     };

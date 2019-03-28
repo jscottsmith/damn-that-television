@@ -1,19 +1,19 @@
 import Box from './Box.js';
 
-export const EnemyTypes = {
+export const EnemyMovementTypes = {
     SNEK: 'SNEK', // sine movment
     FOLLOWER: 'FOLLOWER', // moves toward player
     DUNCE: 'DUNCE', // just falls
 };
 
-export const allEnemies = [
-    EnemyTypes.DUNCE,
-    EnemyTypes.FOLLOWER,
-    EnemyTypes.SNEK,
+export const allEnemyMovements = [
+    EnemyMovementTypes.DUNCE,
+    EnemyMovementTypes.FOLLOWER,
+    EnemyMovementTypes.SNEK,
 ];
 
 export default class Enemy extends Box {
-    constructor(image, size = 40, type = EnemyTypes.DUNCE, x, y) {
+    constructor(image, size = 40, type = EnemyMovementTypes.DUNCE, x, y) {
         super();
 
         this.dpr = window.devicePixelRatio || 1;
@@ -41,9 +41,9 @@ export default class Enemy extends Box {
         this.speed = 5;
 
         this.updateMap = {
-            [EnemyTypes.SNEK]: this.updateSnek,
-            [EnemyTypes.FOLLOWER]: this.updateFollower,
-            [EnemyTypes.DUNCE]: this.updateDunce,
+            [EnemyMovementTypes.SNEK]: this.updateSnek,
+            [EnemyMovementTypes.FOLLOWER]: this.updateFollower,
+            [EnemyMovementTypes.DUNCE]: this.updateDunce,
         };
 
         this.draw();

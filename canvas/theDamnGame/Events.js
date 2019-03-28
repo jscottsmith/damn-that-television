@@ -34,21 +34,30 @@ export default class Events {
     };
 
     handleKeydown = (event) => {
-        switch (event.keyCode) {
-            // space
-            case 32:
+        switch (event.code) {
+            case 'Space':
                 GameStore.dispatch(eventActions.pointerDown);
                 break;
+            case 'ArrowLeft':
+                GameStore.dispatch(eventActions.arrowLeftDown);
+                break;
+            case 'ArrowRight':
+                GameStore.dispatch(eventActions.arrowRightDown);
+                break;
+            default:
         }
     };
 
     handleKeyup = (event) => {
-        // key events
-        switch (event.keyCode) {
-            // space
-            case 32:
+        switch (event.code) {
+            case 'Space':
                 GameStore.dispatch(eventActions.pointerUp);
                 break;
+            case 'ArrowLeft':
+                GameStore.dispatch(eventActions.arrowLeftUp);
+                break;
+            case 'ArrowRight':
+                GameStore.dispatch(eventActions.arrowRightUp);
         }
     };
 }
