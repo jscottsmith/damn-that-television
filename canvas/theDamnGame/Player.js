@@ -11,11 +11,12 @@ export default class Player {
         INVINCIBLE: 'INVINCIBLE',
     };
 
-    constructor(assets, size, x, y) {
+    constructor({ config, assets, size, x, y }) {
         // local player canvas
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.assets = assets;
+        this.config = config;
 
         this.w = size;
         this.h = size;
@@ -44,6 +45,17 @@ export default class Player {
             [Player.states.INVINCIBLE]: this.drawInvincible,
         };
 
+        this.subscribeToStore();
+
+        this.draw();
+    }
+
+    /* ----------------------------------------------------------*\
+    |* Redux Subscriptions
+    \*----------------------------------------------------------*/
+
+    subscribeToStore() {
+        const selectScore = (state) => state.score;
         const selectHitPower = (state) => state.player.hitPower;
 
         connect(
@@ -51,8 +63,24 @@ export default class Player {
             selectHitPower,
         )(this.handleHitPowerChange);
 
-        this.draw();
+        connect(
+            GameStore,
+            selectScore,
+        )(this.handleScoreChange);
     }
+
+    handleScoreChange = ({ kills }, { kills: prevKills }) => {
+        if (kills > prevKills && kills >= this.config.killsToAdvance) {
+        }
+    };
+
+    handleHitPowerChange = (hitPower) => {
+        if (hitPower > 0) {
+            this.handleHit();
+        } else {
+            this.handleDead();
+        }
+    };
 
     setState = (nextState) => {
         this.drawState = nextState;
@@ -68,14 +96,6 @@ export default class Player {
     setDead = () => this.setState(Player.states.DEAD);
 
     setInvincible = () => this.setState(Player.states.INVINCIBLE);
-
-    handleHitPowerChange = (hitPower) => {
-        if (hitPower > 0) {
-            this.handleHit();
-        } else {
-            this.handleDead();
-        }
-    };
 
     handleHit() {
         this.setHit();

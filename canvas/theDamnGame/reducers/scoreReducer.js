@@ -8,14 +8,19 @@ const initialState = {
 export default function playerReducer(state = initialState, action) {
     switch (action.type) {
         case actionTypes.ENEMY_KILLED: {
+            const { score } = action.payload;
+
             return {
+                ...state,
                 kills: state.kills + 1,
-                points: state.points + action.payload,
+                points: state.points + score,
             };
         }
+
         case actionTypes.RESET_GAME_STATE: {
             return initialState;
         }
+
         default:
             return state;
     }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import TheDamnGame from '../TheDamnGame';
 
-import GameStore from '../store/GameStore';
-import { resetGameState } from '../actions/globalActions';
 import styles from './TheDamnGameContainer.scss';
 
 export default class Level extends Component {
@@ -16,7 +14,6 @@ export default class Level extends Component {
     componentWillUnmount() {
         this.game.stop();
         this.game.destroy();
-        // GameStore.dispatch(resetGameState);
     }
 
     render() {

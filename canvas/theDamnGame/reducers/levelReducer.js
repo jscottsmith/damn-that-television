@@ -7,7 +7,10 @@ const initialState = {
 export default function levelReducer(state = initialState, action) {
     switch (action.type) {
         case actionTypes.NEXT_LEVEL: {
-            return { ...state, currentLevel: state.currentLevel + 1 };
+            return {
+                ...state,
+                currentLevel: state.currentLevel + 1,
+            };
         }
 
         default:

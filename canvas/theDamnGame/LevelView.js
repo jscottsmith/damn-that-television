@@ -35,7 +35,13 @@ export default class LevelView {
             bottomOffset,
         };
 
-        this.player = new Player(this.assets, ps, px, py - bottomOffset);
+        this.player = new Player({
+            config: this.config,
+            assets: this.assets,
+            size: ps,
+            x: px,
+            y: py - bottomOffset,
+        });
 
         // Game objects
         this.projectiles = [];
@@ -48,6 +54,14 @@ export default class LevelView {
         this.x = px;
         this.y = py / 2;
 
+        this.subscribeToStore();
+    }
+
+    /* ----------------------------------------------------------*\
+    |* Redux Subscriptions
+    \*----------------------------------------------------------*/
+
+    subscribeToStore() {
         const selectShieldPower = (state) => state.event.pointerDown;
 
         connect(
@@ -104,7 +118,13 @@ export default class LevelView {
 
     createNewPlayer() {
         const { ps, px, py, bottomOffset } = this.playerConfig;
-        this.player = new Player(this.assets, ps, px, py - bottomOffset);
+        this.player = new Player({
+            config: this.config,
+            assets: this.assets,
+            size: ps,
+            x: px,
+            y: py - bottomOffset,
+        });
         GameStore.dispatch(playerActions.resetPlayerState);
     }
 
@@ -133,9 +153,9 @@ export default class LevelView {
         const x = getRandomInt(0, bounds.w);
         const y = (size / 2) * -1; // adjust for dpr
 
-        const e = new Enemy(image, size, type, x, y);
+        const enemy = new Enemy({ image, size, type, x, y });
 
-        this.enemies.push(e);
+        this.enemies.push(enemy);
     }
 
     createExplosion(power, x, y) {
@@ -345,7 +365,9 @@ export default class LevelView {
                 const y = enemy.y + enemy.h / 2;
 
                 this.createExplosion(1, x, y);
-                GameStore.dispatch(scoreActions.updateScore(100));
+                GameStore.dispatch(
+                    scoreActions.updateScore(100, this.config.level),
+                );
                 break;
             }
         }
