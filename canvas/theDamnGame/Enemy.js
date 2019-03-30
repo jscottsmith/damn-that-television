@@ -13,7 +13,7 @@ export const allEnemyMovements = [
 ];
 
 export default class Enemy extends Box {
-    constructor(image, size = 40, type = EnemyMovementTypes.DUNCE, x, y) {
+    constructor({ image, size = 40, type = EnemyMovementTypes.DUNCE, x, y }) {
         super();
 
         this.dpr = window.devicePixelRatio || 1;
@@ -86,7 +86,6 @@ export default class Enemy extends Box {
 
     draw() {
         const { image, w, h } = this;
-        this.ctx.fillStyle = 'hotpink';
         this.ctx.drawImage(image, 0, 0, w, h);
     }
 }

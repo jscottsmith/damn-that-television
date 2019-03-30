@@ -1,0 +1,15 @@
+@import 'sass/variables';
+@import 'sass/mixins';
+
+.gameIntro {
+    @include spread;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $fab;
+}
+
+.start {
+    margin: 0 auto;
+    @include button;
+}

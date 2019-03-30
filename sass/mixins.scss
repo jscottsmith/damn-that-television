@@ -56,3 +56,31 @@ $largeDesktopWidth: '1392px';
         @content;
     }
 }
+
+@mixin spread {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+@mixin button {
+    display: block;
+    padding: 0.6rem 1rem;
+
+    background: $deep;
+    color: $ghost;
+    font-size: 1.2rem;
+    font-weight: $bold;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    &:hover {
+        color: $pepto;
+        background: $deep;
+    }
+}

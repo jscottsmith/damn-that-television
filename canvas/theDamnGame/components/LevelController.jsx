@@ -10,6 +10,7 @@ import Level from './Level';
 class LevelController extends Component {
     static propTypes = {
         currentLevel: PropTypes.number.isRequired,
+        handleComplete: PropTypes.func.isRequired,
         kills: PropTypes.number.isRequired,
         nextLevel: PropTypes.func.isRequired,
     };
@@ -19,9 +20,14 @@ class LevelController extends Component {
             this.props.kills > prevProps.kills &&
             this.props.kills >= this.config.killsToAdvance
         ) {
-            this.props.nextLevel();
+            this.levelComplete();
         }
     }
+
+    levelComplete = () => {
+        this.props.nextLevel();
+        this.props.handleComplete();
+    };
 
     get config() {
         return levelConfigs[this.props.currentLevel];

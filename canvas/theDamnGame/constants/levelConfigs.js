@@ -14,6 +14,7 @@ const assets = {
 
 const levelConfigs = {
     0: {
+        level: 1,
         killsToAdvance: 10,
         backgroundColors: ['#f5b8b5', '#ea94ba'],
         winBonus: 360,
@@ -21,6 +22,7 @@ const levelConfigs = {
         assets,
     },
     1: {
+        level: 2,
         killsToAdvance: 20,
         backgroundColors: ['#8d98fc', '#72dbde'],
         winBonus: 720,
