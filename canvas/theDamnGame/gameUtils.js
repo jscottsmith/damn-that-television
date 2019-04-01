@@ -26,3 +26,34 @@ export function movePointAtAngle(point, radian, distance) {
 export function clamp(number, min, max) {
     return Math.max(min, Math.min(number, max));
 }
+
+export function aabb2DIntersection(a, b) {
+    if (
+        a.x < b.x + b.w &&
+        a.x + a.w > b.x &&
+        a.y < b.y + b.h &&
+        a.h + a.y > b.y
+    ) {
+        return true;
+    }
+    return false;
+}
+
+export function circleRectIntersection(a, b) {
+    // this.cx = 0;
+    // this.cy = 0;
+    // this.r = 0;
+    // https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
+    // Find the closest point to the circle B within the Rect A
+    const closestX = clamp(b.cx, a.x, a.x + a.w);
+    const closestY = clamp(b.cy, a.y, a.y + a.h);
+
+    // Calculate the distance between the circle's center and this closest point
+    const distanceX = b.cx - closestX;
+    const distanceY = b.cy - closestY;
+
+    // If the distance is less than the circle's radius, an intersection occurs
+    const distanceSquared = distanceX * distanceX + distanceY * distanceY;
+
+    return distanceSquared < b.r * b.r;
+}

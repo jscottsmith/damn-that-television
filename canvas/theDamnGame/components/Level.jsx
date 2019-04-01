@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import TheDamnGame from '../TheDamnGame';
+import LevelView from '../LevelView';
 
 import styles from './TheDamnGameContainer.scss';
 
 export default class Level extends Component {
     componentDidMount() {
-        this.game = TheDamnGame.init({
+        this.game = LevelView.init({
             canvas: this.canvas,
             config: this.props.config,
+            assets: this.props.assets,
         });
     }
 

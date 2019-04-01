@@ -1,5 +1,5 @@
 import { EnemyMovementTypes } from '../Enemy.js';
-const assets = {
+const assetUrls = {
     bomb: '/static/damnit/bomb.png',
     damnit: '/static/damnit/damnit.png',
     fist: '/static/damnit/fist.png',
@@ -19,15 +19,15 @@ const levelConfigs = {
         backgroundColors: ['#f5b8b5', '#ea94ba'],
         winBonus: 360,
         // EnemyMovementTypes: EnemyMovementTypes.DUNCE,
-        assets,
+        assetUrls,
     },
     1: {
         level: 2,
-        killsToAdvance: 20,
+        killsToAdvance: 200,
         backgroundColors: ['#8d98fc', '#72dbde'],
         winBonus: 720,
         // EnemyMovementTypes: EnemyMovementTypes.DUNCE,
-        assets,
+        assetUrls,
     },
 };
 

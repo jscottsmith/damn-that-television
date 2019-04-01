@@ -1,14 +1,12 @@
 import { getRandomInt } from './gameUtils.js';
 
-export default class Eplosion {
+export default class Explosion {
     constructor(power, x, y) {
         this.dpr = window.devicePixelRatio || 1;
         this.x = x;
         this.y = y;
         this.power = power; // should be from 1 - 0
         this.r1 = 1 * this.dpr;
-        // this.r2 = 1;
-        // this.r3 = 1;
         this.pi = Math.PI;
         this.pi2 = this.pi * 2;
         this.dead = false;
@@ -17,9 +15,7 @@ export default class Eplosion {
 
     update() {
         this.r1 += this.power * this.multiplier;
-        // this.r2 *= this.power * this.multiplier * 0.1;
-        // this.r3 *= this.power * this.multiplier * 0.2;
-        this.power *= 0.95;
+        this.power *= 0.93;
 
         if (this.power < 0.01) {
             this.dead = true;
@@ -39,7 +35,5 @@ export default class Eplosion {
 
     draw(ctx) {
         this.drawShockWave(ctx, '#f7e7b3', this.r1);
-        // this.drawShockWave(ctx, 'black', this.r2);
-        // this.drawShockWave(ctx, 'black', this.r3);
     }
 }

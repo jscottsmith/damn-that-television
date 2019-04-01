@@ -30,8 +30,19 @@ export default class Player {
         this.cx = this.x + this.w / 2;
         this.cy = this.y + this.h / 2;
 
+        this.bounds = {
+            x: this.x,
+            y: this.y,
+            w: this.w,
+            h: this.h,
+        };
+
         this.dead = false;
-        this.shield = new Shield(size * 1.3);
+        this.shield = new Shield({
+            r: size * 1.3,
+            x: this.x,
+            y: this.y,
+        });
 
         // Initial state
         this.drawState = Player.states.INVINCIBLE;
@@ -130,7 +141,15 @@ export default class Player {
         this.cx = this.x + this.w / 2;
         this.cy = this.y + this.h / 2;
 
-        if (this.shield) {
+        this.bounds = {
+            x: this.x,
+            y: this.y,
+            w: this.w,
+            h: this.h,
+        };
+
+        if (!this.shield.dead) {
+            this.bounds = this.shield.bounds;
             this.shield.updatePosition(this.cx, this.cy);
         }
     }
