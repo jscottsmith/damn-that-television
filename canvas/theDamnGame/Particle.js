@@ -1,9 +1,7 @@
-import Box from './Box.js';
-import { getRandomInt } from './gameUtils.js';
+import { getRandomInt, aabb2DIntersection } from './gameUtils.js';
 
-export default class Particle extends Box {
+export default class Particle {
     constructor(x, y) {
-        super();
         this.dpr = window.devicePixelRatio || 1;
         this.gravity = 0.25 * this.dpr;
         this.w = 5 * this.dpr;
@@ -27,7 +25,7 @@ export default class Particle extends Box {
 
         if (gameBounds) {
             // if it intersects with the game bounds it's not dead
-            const doesIntersect = this.hitTest(gameBounds, this);
+            const doesIntersect = aabb2DIntersection(gameBounds, this);
             this.dead = !doesIntersect;
         }
     }

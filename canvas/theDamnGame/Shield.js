@@ -1,10 +1,8 @@
-import Circle from './Circle.js';
 import GameStore from './store/GameStore.js';
 import connect from './store/connect';
 
-export default class Shield extends Circle {
-    constructor(r) {
-        super();
+export default class Shield {
+    constructor({ r, x, y }) {
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
 
@@ -17,6 +15,12 @@ export default class Shield extends Circle {
         this.y = 0;
         this.cx = r;
         this.cy = r;
+        this.bounds = {
+            x: this.x,
+            y: this.y,
+            w: this.w,
+            h: this.h,
+        };
 
         this.pi2 = Math.PI * 2;
         this.opacity = 0.3;
@@ -99,6 +103,12 @@ export default class Shield extends Circle {
         this.y = cy - this.r;
         this.cx = cx;
         this.cy = cy;
+        this.bounds = {
+            x: this.x,
+            y: this.y,
+            w: this.w,
+            h: this.h,
+        };
     }
 
     drawCircle(color, r) {

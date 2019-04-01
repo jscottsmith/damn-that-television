@@ -1,4 +1,4 @@
-import Box from './Box.js';
+import { aabb2DIntersection } from './gameUtils.js';
 
 export const EnemyMovementTypes = {
     SNEK: 'SNEK', // sine movment
@@ -12,10 +12,8 @@ export const allEnemyMovements = [
     EnemyMovementTypes.SNEK,
 ];
 
-export default class Enemy extends Box {
+export default class Enemy {
     constructor({ image, size = 40, type = EnemyMovementTypes.DUNCE, x, y }) {
-        super();
-
         this.dpr = window.devicePixelRatio || 1;
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
@@ -27,6 +25,13 @@ export default class Enemy extends Box {
         this.h = size * this.dpr;
         this.x = x - this.w / 2;
         this.y = y - this.h / 2;
+
+        this.bounds = {
+            w: this.w,
+            h: this.h,
+            x: this.x,
+            y: this.y,
+        };
 
         // for follower types
         this.vx = 0;
@@ -49,10 +54,18 @@ export default class Enemy extends Box {
         this.draw();
     }
 
+    setPosition(x, y) {
+        this.x = x;
+        this.y = y;
+        this.bounds.x = x;
+        this.bounds.y = y;
+    }
+
     updateSnek = () => {
         this.sine += 0.1;
-        this.y += this.speed;
-        this.x += Math.sin(this.sine) * this.speed;
+        const y = this.y + this.speed;
+        const x = this.x + Math.sin(this.sine) * this.speed;
+        this.setPosition(x, y);
     };
 
     updateFollower = (player) => {
@@ -63,13 +76,16 @@ export default class Enemy extends Box {
             this.vx = (player.x - this.x) / ((player.y - this.y) * 0.25);
         }
 
-        this.x += this.vx * this.dpr;
-        this.y += this.speed * this.dpr;
+        const x = this.x + this.vx * this.dpr;
+        const y = this.y + this.speed * this.dpr;
+        this.setPosition(x, y);
     };
 
     updateDunce = () => {
         this.speed += 0.05;
-        this.y += this.speed;
+        const x = this.x;
+        const y = this.y + this.speed;
+        this.setPosition(x, y);
     };
 
     update(gameBounds, player) {
@@ -79,7 +95,7 @@ export default class Enemy extends Box {
 
         if (gameBounds) {
             // if it intersects with the game bounds it's not dead
-            const doesIntersect = this.hitTest(gameBounds, this);
+            const doesIntersect = aabb2DIntersection(gameBounds, this);
             this.dead = !doesIntersect;
         }
     }
@@ -87,5 +103,8 @@ export default class Enemy extends Box {
     draw() {
         const { image, w, h } = this;
         this.ctx.drawImage(image, 0, 0, w, h);
+        // this.ctx.strokeStyle = 'red';
+        // this.ctx.lineWidth = 1;
+        // this.ctx.strokeRect(0, 0, w, h);
     }
 }

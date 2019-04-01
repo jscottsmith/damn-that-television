@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import levelConfigs from '../constants/levelConfigs';
 import { nextLevel } from '../actions/levelActions';
 import LevelInterface from './LevelInterface';
+import LoadGameAssets from './LoadGameAssets';
 import Level from './Level';
 
 class LevelController extends Component {
@@ -27,6 +28,7 @@ class LevelController extends Component {
     levelComplete = () => {
         this.props.nextLevel();
         this.props.handleComplete();
+        this.setState({ hasLoaded: true });
     };
 
     get config() {
@@ -35,21 +37,44 @@ class LevelController extends Component {
 
     _getLevel() {
         const { currentLevel } = this.props;
+
         switch (currentLevel) {
             case 0: {
                 return (
-                    <Fragment key="0">
-                        <LevelInterface />
-                        <Level config={this.config} />
-                    </Fragment>
+                    <LoadGameAssets assetUrls={this.config.assetUrls}>
+                        {({ hasLoaded, assets }) =>
+                            hasLoaded ? (
+                                <Fragment key="0">
+                                    <LevelInterface />
+                                    <Level
+                                        config={this.config}
+                                        assets={assets}
+                                    />
+                                </Fragment>
+                            ) : (
+                                <p>Loading...</p>
+                            )
+                        }
+                    </LoadGameAssets>
                 );
             }
             case 1: {
                 return (
-                    <Fragment key="1">
-                        <LevelInterface />
-                        <Level config={this.config} />
-                    </Fragment>
+                    <LoadGameAssets assetUrls={this.config.assetUrls}>
+                        {({ hasLoaded, assets }) =>
+                            hasLoaded ? (
+                                <Fragment key="1">
+                                    <LevelInterface />
+                                    <Level
+                                        config={this.config}
+                                        assets={assets}
+                                    />
+                                </Fragment>
+                            ) : (
+                                <p>Loading...</p>
+                            )
+                        }
+                    </LoadGameAssets>
                 );
             }
         }
