@@ -1,7 +1,8 @@
 @import 'sass/variables';
+@import 'sass/mixins';
 
-$scoreWidth: 200px;
-$playerWidth: 320px;
+$scoreWidth: 190px;
+$playerWidth: 240px;
 
 .scoreInterface,
 .playerInterface {
@@ -12,6 +13,12 @@ $playerWidth: 320px;
     background-color: rgba($plum, 0.8);
     right: 50%;
     z-index: 1000;
+
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: $bold;
+    letter-spacing: 0.05rem;
+    color: $ghost;
 }
 
 .playerInterface {
@@ -40,12 +47,16 @@ $playerWidth: 320px;
     }
 }
 
-.kills,
-.points,
-.hitPower,
-.lives,
-.shieldPower {
-    font-weight: $bold;
-    color: $ghost;
-    text-transform: uppercase;
+@include tablet {
+    $scoreWidth: 260px;
+    $playerWidth: 340px;
+    .playerInterface {
+        width: $playerWidth;
+        margin-right: -$playerWidth / 2;
+    }
+
+    .scoreInterface {
+        width: $scoreWidth;
+        margin-right: -$scoreWidth / 2;
+    }
 }

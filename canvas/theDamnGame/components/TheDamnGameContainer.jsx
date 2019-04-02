@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { TransitionGroup } from 'react-transition-group';
 import Link from 'next/link';
 import LevelController from './LevelController';
 import LevelComplete from './LevelComplete';
 import GameIntro from './GameIntro';
+import Fade from './Fade';
 
 import GameStore from '../store/GameStore';
 import { Provider } from 'react-redux';
@@ -23,16 +25,44 @@ export default class TheDamnGameContainer extends Component {
     _getComponent() {
         switch (this.state.gameState) {
             case gameStates.GAME_START:
-                return <GameIntro handleStart={this.handleStart} />;
+                return (
+                    <Fade
+                        key="1"
+                        // in={gameStates.GAME_START === this.state.gameState}
+                    >
+                        <GameIntro handleStart={this.handleStart} />
+                    </Fade>
+                );
 
             case gameStates.GAME_END:
-                return <div>End</div>;
+                return (
+                    <Fade
+                        key="2"
+                        // in={gameStates.GAME_END === this.state.gameState}
+                    >
+                        <div>End</div>
+                    </Fade>
+                );
 
             case gameStates.LEVEL_COMPLETE:
-                return <LevelComplete handleStart={this.handleStart} />;
+                return (
+                    <Fade
+                        key="3"
+                        // in={gameStates.LEVEL_COMPLETE === this.state.gameState}
+                    >
+                        <LevelComplete handleStart={this.handleStart} />
+                    </Fade>
+                );
 
             case gameStates.PLAYING:
-                return <LevelController handleComplete={this.handleComplete} />;
+                return (
+                    <Fade
+                        key="4"
+                        // in={gameStates.PLAYING === this.state.gameState}
+                    >
+                        <LevelController handleComplete={this.handleComplete} />
+                    </Fade>
+                );
 
             default:
                 return null;
@@ -46,12 +76,14 @@ export default class TheDamnGameContainer extends Component {
 
     render() {
         return (
-            <Provider store={GameStore}>
-                <Link href="/">
-                    <a className={styles.pauseBtn}>Escape</a>
-                </Link>
-                {this._getComponent()}
-            </Provider>
+            <Fade in>
+                <Provider store={GameStore}>
+                    <Link href="/">
+                        <a className={styles.escBtn}>ESC</a>
+                    </Link>
+                    <TransitionGroup>{this._getComponent()}</TransitionGroup>
+                </Provider>
+            </Fade>
         );
     }
 }
