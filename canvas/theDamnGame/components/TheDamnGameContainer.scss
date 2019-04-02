@@ -8,23 +8,34 @@
     height: auto;
 }
 
-:local(.pauseBtn) {
+:local(.escBtn) {
     display: block;
     position: fixed;
-    right: 2rem;
-    top: 2rem;
-    padding: 0.6rem 1rem;
+    right: 1rem;
+    top: 1rem;
 
-    border: 2px solid $deep;
-    color: $deep;
-    font-size: 1.4rem;
-    text-decoration: none;
-
+    background-color: rgba($plum, 0.8);
     cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+
+    font-size: 1rem;
+    font-weight: $bold;
+    text-decoration: none;
+    letter-spacing: 0.1rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    justify-content: center;
+
+    transition: transform 300ms $easeOut;
     z-index: 100;
+    color: rgba($ghost, 0.8);
 
     &:hover {
-        color: $pepto;
         background: $deep;
+        transform: scale(1.05);
     }
 }

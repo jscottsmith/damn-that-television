@@ -37,6 +37,7 @@
     "react-helmet": "^5.2.0",
     "react-observed": "^1.0.2",
     "react-redux": "^6.0.1",
+    "react-transition-group": "^2.7.1",
     "redux": "^4.0.1"
   },
   "devDependencies": {

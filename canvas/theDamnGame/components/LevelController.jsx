@@ -44,7 +44,7 @@ class LevelController extends Component {
                     <LoadGameAssets assetUrls={this.config.assetUrls}>
                         {({ hasLoaded, assets }) =>
                             hasLoaded ? (
-                                <Fragment key="0">
+                                <Fragment>
                                     <LevelInterface />
                                     <Level
                                         config={this.config}
@@ -63,7 +63,7 @@ class LevelController extends Component {
                     <LoadGameAssets assetUrls={this.config.assetUrls}>
                         {({ hasLoaded, assets }) =>
                             hasLoaded ? (
-                                <Fragment key="1">
+                                <Fragment>
                                     <LevelInterface />
                                     <Level
                                         config={this.config}

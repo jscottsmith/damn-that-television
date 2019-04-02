@@ -1,7 +1,7 @@
 @import '../../../sass/variables';
 @import '../../../sass/mixins';
 
-:local(.index) {
+.index {
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -18,7 +18,7 @@
     -webkit-overflow-scrolling: touch;
 }
 
-:local(.play) {
+.play {
     position: fixed;
     right: 2rem;
     bottom: 2rem;
@@ -45,7 +45,7 @@
     }
 }
 
-:local(.playKill) {
+.playKill {
     display: block;
     font-size: 1.2rem;
     line-height: 0.9;
@@ -54,14 +54,14 @@
     color: $pepto;
 }
 
-:local(.playTv) {
+.playTv {
     display: block;
     line-height: 0.9;
     font-size: 2rem;
     color: $fab;
 }
 
-:local(.welcome) {
+.welcome {
     position: relative;
     margin: auto 0;
     padding: 1rem;
@@ -74,7 +74,7 @@
 
     transition: opacity 800ms;
 
-    &:local(.waiting) {
+    &.waiting {
         pointer-events: none;
         opacity: 0;
     }
@@ -94,10 +94,10 @@
 }
 
 @include tablet {
-    :local(.welcome) {
+    .welcome {
         padding: 3rem;
     }
-    :local(.index) {
+    .index {
         padding: 10rem 2rem;
     }
 }

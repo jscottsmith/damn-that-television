@@ -7,6 +7,13 @@ export default class GameIntro extends Component {
             <div className={styles.gameIntro}>
                 <div>
                     <h1>Damn TV!</h1>
+                    <p>
+                        Space, Click or Tap to shoot.
+                        <br />
+                        Mouse or Touch to move.
+                        <br />
+                        Kill TVs to win.
+                    </p>
                     <button
                         className={styles.start}
                         onClick={this.props.handleStart}

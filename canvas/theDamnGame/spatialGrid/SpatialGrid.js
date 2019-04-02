@@ -210,8 +210,6 @@ export default class SpatialGrid {
             }
         }
 
-        console.log(checked);
-
         pairs.map((pair) => {
             pair[0].hit = true;
             pair[1].hit = true;
@@ -249,11 +247,11 @@ export default class SpatialGrid {
             ctx.lineTo(this.max.x, y);
             ctx.stroke();
         }
-
         ctx.restore();
+
         ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
         const size = 12 * dpr;
-        ctx.font = `${size}px "Lucida Console", Monaco, monospace`;
+        ctx.font = `${size}px "Menlo", "Lucida Console", Monaco, monospace`;
         ctx.fillText(
             'Total Cells _________ ' + this.totalCells,
             20 * dpr,
