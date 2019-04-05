@@ -4,7 +4,7 @@ import Link from 'next/link';
 import LevelController from './LevelController';
 import LevelComplete from './LevelComplete';
 import GameIntro from './GameIntro';
-import Fade from './Fade';
+import Fade from 'components/Fade';
 
 import gameStore from '../store/gameStore';
 import { Provider } from 'react-redux';
