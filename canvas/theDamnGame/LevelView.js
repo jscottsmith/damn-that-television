@@ -12,7 +12,9 @@ import SpatialGrid from './spatialGrid/SpatialGrid.js';
 import gameStore from './store/gameStore.js';
 import * as playerActions from './actions/playerActions';
 import * as scoreActions from './actions/scoreActions';
-import connect from './store/connect.js';
+
+import gameEvents from './events/gameEvents';
+import eventTypes from './constants/eventTypes';
 
 // Helpers
 import {
@@ -74,7 +76,7 @@ export default class LevelView {
         this.spatialGrid = new SpatialGrid(0, 0, bounds.w, bounds.h, 100 * dpr);
 
         this.createNewPlayer();
-        this.subscribeToStore();
+        this.subscribeToEvents();
     };
 
     resize = ({ bounds, dpr }) => {
@@ -99,24 +101,20 @@ export default class LevelView {
     |* Redux Subscriptions
     \*----------------------------------------------------------*/
 
-    subscribeToStore() {
-        const selectShieldPower = (state) => state.event.pointerDown;
-
-        connect(
-            gameStore,
-            selectShieldPower,
-        )(this.handlePointerDown);
+    subscribeToEvents() {
+        gameEvents.subscribe(eventTypes.POINTER_DOWN, this.handlePointerDown);
+        gameEvents.subscribe(eventTypes.POINTER_UP, this.handlePointerUp);
     }
 
-    handlePointerDown = (pointerDown) => {
+    handlePointerDown = () => {
         if (!this.player) return;
+        this.createProjectile();
+        this.player.setFiring();
+    };
 
-        if (pointerDown) {
-            this.createProjectile();
-            this.player.setFiring();
-        } else {
-            this.player.setIdle();
-        }
+    handlePointerUp = () => {
+        if (!this.player) return;
+        this.player.setIdle();
     };
 
     /* ----------------------------------------------------------*\

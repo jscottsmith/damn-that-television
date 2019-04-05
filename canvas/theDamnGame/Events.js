@@ -1,5 +1,5 @@
-import gameStore from './store/gameStore.js';
-import * as eventActions from './actions/eventActions';
+import eventTypes from './constants/eventTypes';
+import gameEvents from './events/gameEvents';
 
 export default class Events {
     constructor(el) {
@@ -26,23 +26,23 @@ export default class Events {
 
     handleInteractStart = (event) => {
         event.preventDefault();
-        gameStore.dispatch(eventActions.pointerDown);
+        gameEvents.publish(eventTypes.POINTER_DOWN);
     };
 
     handleInteractEnd = () => {
-        gameStore.dispatch(eventActions.pointerUp);
+        gameEvents.publish(eventTypes.POINTER_UP);
     };
 
     handleKeydown = (event) => {
         switch (event.code) {
             case 'Space':
-                gameStore.dispatch(eventActions.pointerDown);
+                gameEvents.publish(eventTypes.POINTER_DOWN);
                 break;
             case 'ArrowLeft':
-                gameStore.dispatch(eventActions.arrowLeftDown);
+                gameEvents.publish(eventTypes.ARROW_LEFT_DOWN);
                 break;
             case 'ArrowRight':
-                gameStore.dispatch(eventActions.arrowRightDown);
+                gameEvents.publish(eventTypes.ARROW_RIGHT_DOWN);
                 break;
             default:
         }
@@ -51,13 +51,13 @@ export default class Events {
     handleKeyup = (event) => {
         switch (event.code) {
             case 'Space':
-                gameStore.dispatch(eventActions.pointerUp);
+                gameEvents.publish(eventTypes.POINTER_UP);
                 break;
             case 'ArrowLeft':
-                gameStore.dispatch(eventActions.arrowLeftUp);
+                gameEvents.publish(eventTypes.ARROW_LEFT_UP);
                 break;
             case 'ArrowRight':
-                gameStore.dispatch(eventActions.arrowRightUp);
+                gameEvents.publish(eventTypes.ARROW_RIGHT_UP);
         }
     };
 }
