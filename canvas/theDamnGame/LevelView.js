@@ -9,7 +9,7 @@ import Enemy, { EnemyMovementTypes, allEnemyMovements } from './Enemy.js';
 import SpatialGrid from './spatialGrid/SpatialGrid.js';
 
 // Store and Actions
-import GameStore from './store/GameStore.js';
+import gameStore from './store/gameStore.js';
 import * as playerActions from './actions/playerActions';
 import * as scoreActions from './actions/scoreActions';
 import connect from './store/connect.js';
@@ -103,7 +103,7 @@ export default class LevelView {
         const selectShieldPower = (state) => state.event.pointerDown;
 
         connect(
-            GameStore,
+            gameStore,
             selectShieldPower,
         )(this.handlePointerDown);
     }
@@ -144,7 +144,7 @@ export default class LevelView {
         this.createExplosion(2, cx, cy);
         this.player = null;
 
-        if (GameStore.getState().player.lives > 0) {
+        if (gameStore.getState().player.lives > 0) {
             this.newPlayerTimer();
         }
     }
@@ -164,7 +164,7 @@ export default class LevelView {
             y: py - bottomOffset,
         });
         this.spatialGrid.addEntity(this.player);
-        GameStore.dispatch(playerActions.resetPlayerState);
+        gameStore.dispatch(playerActions.resetPlayerState);
     }
 
     createRandomEnemy(bounds) {
@@ -341,9 +341,9 @@ export default class LevelView {
             if (a instanceof Player && b instanceof Enemy) {
                 this.createExplosion(0.5, b.x, b.y);
                 if (a.shield.dead) {
-                    GameStore.dispatch(playerActions.hitPlayer);
+                    gameStore.dispatch(playerActions.hitPlayer);
                 } else {
-                    GameStore.dispatch(playerActions.hitShield);
+                    gameStore.dispatch(playerActions.hitShield);
                 }
 
                 b.dead = true;
@@ -352,9 +352,9 @@ export default class LevelView {
             if (a instanceof Enemy && b instanceof Player) {
                 this.createExplosion(0.5, a.x, a.y);
                 if (b.shield.dead) {
-                    GameStore.dispatch(playerActions.hitPlayer);
+                    gameStore.dispatch(playerActions.hitPlayer);
                 } else {
-                    GameStore.dispatch(playerActions.hitShield);
+                    gameStore.dispatch(playerActions.hitShield);
                 }
                 a.dead = true;
                 return;
@@ -363,7 +363,7 @@ export default class LevelView {
             // projectile to enemy
             if (a instanceof Enemy && b instanceof Projectile) {
                 this.createExplosion(1, a.x, a.y);
-                GameStore.dispatch(
+                gameStore.dispatch(
                     scoreActions.updateScore(100, this.config.level),
                 );
                 a.dead = true;
@@ -372,7 +372,7 @@ export default class LevelView {
             }
             if (a instanceof Projectile && b instanceof Enemy) {
                 this.createExplosion(1, b.x, b.y);
-                GameStore.dispatch(
+                gameStore.dispatch(
                     scoreActions.updateScore(100, this.config.level),
                 );
                 a.dead = true;

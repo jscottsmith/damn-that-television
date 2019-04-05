@@ -1,4 +1,4 @@
-import GameStore from './store/GameStore.js';
+import gameStore from './store/gameStore.js';
 import * as eventActions from './actions/eventActions';
 
 export default class Events {
@@ -26,23 +26,23 @@ export default class Events {
 
     handleInteractStart = (event) => {
         event.preventDefault();
-        GameStore.dispatch(eventActions.pointerDown);
+        gameStore.dispatch(eventActions.pointerDown);
     };
 
     handleInteractEnd = () => {
-        GameStore.dispatch(eventActions.pointerUp);
+        gameStore.dispatch(eventActions.pointerUp);
     };
 
     handleKeydown = (event) => {
         switch (event.code) {
             case 'Space':
-                GameStore.dispatch(eventActions.pointerDown);
+                gameStore.dispatch(eventActions.pointerDown);
                 break;
             case 'ArrowLeft':
-                GameStore.dispatch(eventActions.arrowLeftDown);
+                gameStore.dispatch(eventActions.arrowLeftDown);
                 break;
             case 'ArrowRight':
-                GameStore.dispatch(eventActions.arrowRightDown);
+                gameStore.dispatch(eventActions.arrowRightDown);
                 break;
             default:
         }
@@ -51,13 +51,13 @@ export default class Events {
     handleKeyup = (event) => {
         switch (event.code) {
             case 'Space':
-                GameStore.dispatch(eventActions.pointerUp);
+                gameStore.dispatch(eventActions.pointerUp);
                 break;
             case 'ArrowLeft':
-                GameStore.dispatch(eventActions.arrowLeftUp);
+                gameStore.dispatch(eventActions.arrowLeftUp);
                 break;
             case 'ArrowRight':
-                GameStore.dispatch(eventActions.arrowRightUp);
+                gameStore.dispatch(eventActions.arrowRightUp);
         }
     };
 }

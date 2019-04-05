@@ -1,5 +1,5 @@
 import Shield from './Shield.js';
-import GameStore from './store/GameStore.js';
+import gameStore from './store/gameStore.js';
 import connect from './store/connect';
 
 export default class Player {
@@ -70,12 +70,12 @@ export default class Player {
         const selectHitPower = (state) => state.player.hitPower;
 
         connect(
-            GameStore,
+            gameStore,
             selectHitPower,
         )(this.handleHitPowerChange);
 
         connect(
-            GameStore,
+            gameStore,
             selectScore,
         )(this.handleScoreChange);
     }
