@@ -1,5 +1,5 @@
-import React, { PureComponent, Fragment } from 'react';
-import Fade from '../../canvas/theDamnGame/components/Fade';
+import React, { PureComponent } from 'react';
+import Fade from '../../components/Fade';
 import IntroLanding from '../../components/sections/IntroLanding/IntroLanding';
 // Old Sections
 // import HomeLanding from '../../components/sections/HomeLanding/HomeLanding';
