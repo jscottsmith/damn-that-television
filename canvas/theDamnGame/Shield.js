@@ -33,7 +33,7 @@ export default class Shield {
 
         this.setGradient1();
         this.setGradient2();
-        this.subscribe();
+        this.subscribeToStore();
 
         this.draw();
     }
@@ -68,7 +68,7 @@ export default class Shield {
         this.gradient2.addColorStop(1, 'rgba(224, 244, 204, 0.0');
     }
 
-    subscribe() {
+    subscribeToStore() {
         const selectShieldPower = (state) => state.player.shieldPower;
         connect(
             gameStore,
