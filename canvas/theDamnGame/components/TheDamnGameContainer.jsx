@@ -6,7 +6,7 @@ import LevelComplete from './LevelComplete';
 import GameIntro from './GameIntro';
 import Fade from './Fade';
 
-import GameStore from '../store/GameStore';
+import gameStore from '../store/gameStore';
 import { Provider } from 'react-redux';
 import styles from './TheDamnGameContainer.scss';
 
@@ -77,7 +77,7 @@ export default class TheDamnGameContainer extends Component {
     render() {
         return (
             <Fade in>
-                <Provider store={GameStore}>
+                <Provider store={gameStore}>
                     <Link href="/">
                         <a className={styles.escBtn}>ESC</a>
                     </Link>

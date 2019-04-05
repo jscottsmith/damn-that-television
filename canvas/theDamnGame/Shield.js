@@ -1,4 +1,4 @@
-import GameStore from './store/GameStore.js';
+import gameStore from './store/gameStore.js';
 import connect from './store/connect';
 
 export default class Shield {
@@ -71,7 +71,7 @@ export default class Shield {
     subscribe() {
         const selectShieldPower = (state) => state.player.shieldPower;
         connect(
-            GameStore,
+            gameStore,
             selectShieldPower,
         )(this.handleShieldPowerChange);
     }
