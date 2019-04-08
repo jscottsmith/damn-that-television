@@ -248,7 +248,7 @@ export default class SpatialGrid {
             ctx.stroke();
         }
         ctx.restore();
-
+        ctx.textAlign = 'left';
         ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
         const size = 12 * dpr;
         ctx.font = `${size}px "Menlo", "Lucida Console", Monaco, monospace`;
