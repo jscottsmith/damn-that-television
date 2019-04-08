@@ -1,0 +1,41 @@
+@import 'sass/variables';
+
+:local(.canvas) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+:local(.escBtn) {
+    display: block;
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+
+    background-color: rgba($plum, 0.8);
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+
+    font-size: 1rem;
+    font-weight: $bold;
+    text-decoration: none;
+    letter-spacing: 0.1rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    justify-content: center;
+
+    transition: transform 300ms $easeOut;
+    z-index: 100;
+    color: rgba($ghost, 0.8);
+
+    &:hover {
+        background: $deep;
+        transform: scale(1.05);
+    }
+}

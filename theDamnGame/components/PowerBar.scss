@@ -1,0 +1,21 @@
+@import 'sass/variables';
+@import 'sass/mixins';
+
+$width: 70px;
+.bar {
+    width: $width;
+    height: 0.3rem;
+    background-color: $deep;
+    .amount {
+        position: relative;
+        background-color: $club;
+        height: 0.3rem;
+    }
+}
+
+@include tablet {
+    $width: 100px;
+    .bar {
+        width: $width;
+    }
+}

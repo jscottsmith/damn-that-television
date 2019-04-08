@@ -1,4 +1,5 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
+import Fade from '../../components/Fade';
 import IntroLanding from '../../components/sections/IntroLanding/IntroLanding';
 // Old Sections
 // import HomeLanding from '../../components/sections/HomeLanding/HomeLanding';
@@ -9,9 +10,9 @@ import IntroLanding from '../../components/sections/IntroLanding/IntroLanding';
 export default class Home extends PureComponent {
     render() {
         return (
-            <Fragment>
+            <Fade in>
                 <IntroLanding />
-            </Fragment>
+            </Fade>
         );
     }
 }
