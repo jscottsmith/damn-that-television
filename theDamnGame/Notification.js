@@ -1,7 +1,6 @@
 const DECAY = 0.95;
 export default class Notification {
     constructor(message, x, y, vx = 0, vy = -3) {
-        this.dpr = window.devicePixelRatio || 1;
         this.message = message;
         this.x = x;
         this.y = y;
@@ -25,11 +24,11 @@ export default class Notification {
         }
     }
 
-    draw(ctx) {
+    draw({ dpr, ctx }) {
         ctx.globalAlpha = this.power;
         ctx.fillStyle = '#f7e7b3';
         ctx.textAlign = 'center';
-        ctx.font = '32px "futura-pt", sans-serif';
+        ctx.font = `${32 * dpr}px "futura-pt", sans-serif`;
         ctx.fillText(this.message, this.x, this.y);
         ctx.globalAlpha = 1;
     }

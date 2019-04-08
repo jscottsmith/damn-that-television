@@ -13,16 +13,23 @@ export const allEnemyMovements = [
 ];
 
 export default class Enemy {
-    constructor({ image, size = 40, type = EnemyMovementTypes.DUNCE, x, y }) {
-        this.dpr = window.devicePixelRatio || 1;
+    constructor({
+        image,
+        size = 40,
+        type = EnemyMovementTypes.DUNCE,
+        x,
+        y,
+        dpr,
+    }) {
+        this.dpr = dpr;
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
 
         this.image = image;
         this.type = type;
 
-        this.w = size * this.dpr;
-        this.h = size * this.dpr;
+        this.w = size;
+        this.h = size;
         this.x = x - this.w / 2;
         this.y = y - this.h / 2;
 
@@ -35,15 +42,13 @@ export default class Enemy {
 
         // for follower types
         this.vx = 0;
-        this.vy = 0;
+        this.vy = 5 * dpr;
 
         this.canvas.width = this.w;
         this.canvas.height = this.h;
 
         this.dead = false;
-
         this.sine = 1;
-        this.speed = 5;
 
         this.updateMap = {
             [EnemyMovementTypes.SNEK]: this.updateSnek,
@@ -63,8 +68,8 @@ export default class Enemy {
 
     updateSnek = () => {
         this.sine += 0.1;
-        const y = this.y + this.speed;
-        const x = this.x + Math.sin(this.sine) * this.speed;
+        const y = this.y + this.vy;
+        const x = this.x + Math.sin(this.sine) * this.vy;
         this.setPosition(x, y);
     };
 
@@ -76,15 +81,15 @@ export default class Enemy {
             this.vx = (player.x - this.x) / ((player.y - this.y) * 0.25);
         }
 
-        const x = this.x + this.vx * this.dpr;
-        const y = this.y + this.speed * this.dpr;
+        const x = this.x + this.vx;
+        const y = this.y + this.vy;
         this.setPosition(x, y);
     };
 
     updateDunce = () => {
-        this.speed += 0.05;
+        this.vy += 0.05;
         const x = this.x;
-        const y = this.y + this.speed;
+        const y = this.y + this.vy;
         this.setPosition(x, y);
     };
 
@@ -97,6 +102,7 @@ export default class Enemy {
             // if it intersects with the game bounds it's not dead
             const doesIntersect = aabb2DIntersection(gameBounds, this);
             this.dead = !doesIntersect;
+            // console.log('dead');
         }
     }
 

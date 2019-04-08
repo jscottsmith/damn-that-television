@@ -1,16 +1,15 @@
 import { aabb2DIntersection } from './gameUtils.js';
 
 export default class PowerUp {
-    constructor({ image, type, size = 40, x, y }) {
-        this.dpr = window.devicePixelRatio || 1;
+    constructor({ image, type, size = 40, x, y, dpr }) {
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
 
         this.image = image;
         this.type = type;
 
-        this.w = size * this.dpr;
-        this.h = size * this.dpr;
+        this.w = size;
+        this.h = size;
         this.x = x - this.w / 2;
         this.y = y - this.h / 2;
 
@@ -21,17 +20,13 @@ export default class PowerUp {
             y: this.y,
         };
 
-        // for follower types
         this.vx = 0;
-        this.vy = 0;
+        this.vy = 5 * dpr;
 
         this.canvas.width = this.w;
         this.canvas.height = this.h;
 
         this.dead = false;
-
-        this.sine = 1;
-        this.speed = 5;
 
         this.draw();
     }
@@ -45,9 +40,9 @@ export default class PowerUp {
 
     update(gameBounds) {
         // call update method based on type
-        this.speed += 0.1;
+        this.vy += 0.1;
         const x = this.x;
-        const y = this.y + this.speed;
+        const y = this.y + this.vy;
         this.setPosition(x, y);
 
         if (gameBounds) {
