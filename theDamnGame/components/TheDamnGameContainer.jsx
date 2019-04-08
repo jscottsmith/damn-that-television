@@ -26,40 +26,28 @@ export default class TheDamnGameContainer extends Component {
         switch (this.state.gameState) {
             case gameStates.GAME_START:
                 return (
-                    <Fade
-                        key="1"
-                        // in={gameStates.GAME_START === this.state.gameState}
-                    >
+                    <Fade key="1">
                         <GameIntro handleStart={this.handleStart} />
                     </Fade>
                 );
 
             case gameStates.GAME_END:
                 return (
-                    <Fade
-                        key="2"
-                        // in={gameStates.GAME_END === this.state.gameState}
-                    >
+                    <Fade key="2">
                         <div>End</div>
                     </Fade>
                 );
 
             case gameStates.LEVEL_COMPLETE:
                 return (
-                    <Fade
-                        key="3"
-                        // in={gameStates.LEVEL_COMPLETE === this.state.gameState}
-                    >
+                    <Fade key="3">
                         <LevelComplete handleStart={this.handleStart} />
                     </Fade>
                 );
 
             case gameStates.PLAYING:
                 return (
-                    <Fade
-                        key="4"
-                        // in={gameStates.PLAYING === this.state.gameState}
-                    >
+                    <Fade key="4">
                         <LevelController handleComplete={this.handleComplete} />
                     </Fade>
                 );

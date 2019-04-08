@@ -38,6 +38,7 @@ export default class Player {
         };
 
         this.dead = false;
+        this.weapon = gameStore.getState().player.weapon;
         this.shield = new Shield({
             r: size * 1.3,
             x: this.x,
@@ -66,7 +67,6 @@ export default class Player {
     \*----------------------------------------------------------*/
 
     subscribeToStore() {
-        const selectScore = (state) => state.score;
         const selectHitPower = (state) => state.player.hitPower;
 
         connect(
@@ -74,15 +74,16 @@ export default class Player {
             selectHitPower,
         )(this.handleHitPowerChange);
 
+        const selectWeapon = (state) => state.player.weapon;
+
         connect(
             gameStore,
-            selectScore,
-        )(this.handleScoreChange);
+            selectWeapon,
+        )(this.handleWeaponChange);
     }
 
-    handleScoreChange = ({ kills }, { kills: prevKills }) => {
-        if (kills > prevKills && kills >= this.config.killsToAdvance) {
-        }
+    handleWeaponChange = (weapon) => {
+        this.weapon = weapon;
     };
 
     handleHitPowerChange = (hitPower) => {

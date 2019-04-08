@@ -16,11 +16,18 @@
         background: rgba($miami, 0.8);
     }
 
+    .wf-active body {
+        opacity: 1;
+    }
+
     body {
         font-family: $futura;
         font-size: 16px;
         background-color: $deep;
         color: $deep;
+        // wait for webfont
+        opacity: 0;
+        transition: opacity 200ms;
     }
 
     html,
