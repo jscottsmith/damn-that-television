@@ -1,8 +1,8 @@
 import { getRandomInt, aabb2DIntersection } from './gameUtils.js';
 
 export default class Particle {
-    constructor(x, y) {
-        this.dpr = window.devicePixelRatio || 1;
+    constructor({ x, y, dpr }) {
+        this.dpr = dpr;
         this.gravity = 0.25 * this.dpr;
         this.w = 5 * this.dpr;
         this.h = 5 * this.dpr;
@@ -30,7 +30,7 @@ export default class Particle {
         }
     }
 
-    draw(ctx) {
+    draw({ ctx }) {
         const { x, y, w, h } = this;
         ctx.fillStyle = '#fffb74';
         ctx.fillRect(x, y, w, h);

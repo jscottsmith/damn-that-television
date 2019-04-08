@@ -1,14 +1,13 @@
 import { aabb2DIntersection } from './gameUtils';
 
 export default class Projectile {
-    constructor(image, size = 5, x, y, vx, vy) {
-        this.dpr = window.devicePixelRatio || 1;
+    constructor({ image, size = 5, x, y, vx, vy }) {
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
 
         this.image = image;
-        this.w = size * this.dpr;
-        this.h = size * this.dpr;
+        this.w = size;
+        this.h = size;
         this.x = x - this.w / 2;
         this.y = y - this.h / 2;
         this.vx = vx;
@@ -29,8 +28,8 @@ export default class Projectile {
     }
 
     update(gameBounds) {
-        this.x += this.vx * this.dpr;
-        this.y += this.vy * this.dpr;
+        this.x += this.vx;
+        this.y += this.vy;
         this.bounds = {
             x: this.x,
             y: this.y,

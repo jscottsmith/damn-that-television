@@ -5,12 +5,16 @@ const crosshairStates = {
 
 export default class Crosshairs {
     constructor(size) {
-        this.dpr = window.devicePixelRatio || 1;
+        this.size = size;
+    }
+
+    setup({ dpr }) {
+        this.dpr = dpr;
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
 
-        this.w = size;
-        this.h = size;
+        this.w = this.size;
+        this.h = this.size;
         this.x = this.w / 2;
         this.y = this.h / 2;
 

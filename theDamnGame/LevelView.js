@@ -39,6 +39,7 @@ export default class LevelView {
             hasPointer: true,
             pauseInBackground: true,
             entities: [game],
+            dpr: 1,
         });
     }
 
@@ -76,6 +77,7 @@ export default class LevelView {
 
         // Game Instances
         this.crosshairs = new Crosshairs(50 * dpr);
+        this.crosshairs.setup({ dpr });
 
         // spatial collision grid
         this.spatialGrid = new SpatialGrid(0, 0, bounds.w, bounds.h, 100 * dpr);
@@ -137,14 +139,13 @@ export default class LevelView {
         const { cx: x1, cy: y1 } = this.player;
 
         const radian = getAngleRadians(x0, y0, x1, y1);
-        const { x: vx, y: vy } = movePointAtAngle({ x: 0, y: 0 }, radian, 20);
         const image = this.assets.images.fist;
-        const size = 50;
+        const size = 50 * this.dpr;
 
         if (this.player.weapon === weaponTypes.SPRAY) {
             let i = 0;
-            const amount = 7;
-            const spread = Math.PI / 4;
+            const amount = 3;
+            const spread = Math.PI / 6;
             const rx = spread / amount;
             const startRad = radian - Math.floor(amount / 2) * rx;
 
@@ -155,7 +156,14 @@ export default class LevelView {
                     curRad,
                     20,
                 );
-                const projectile = new Projectile(image, size, x1, y1, vx, vy);
+                const projectile = new Projectile({
+                    image,
+                    size,
+                    x: x1,
+                    y: y1,
+                    vx: vx * this.dpr,
+                    vy: vy * this.dpr,
+                });
                 this.spatialGrid.addEntity(projectile);
                 this.projectiles.push(projectile);
                 i++;
@@ -163,7 +171,16 @@ export default class LevelView {
             return;
         }
 
-        const projectile = new Projectile(image, size, x1, y1, vx, vy);
+        const { x: vx, y: vy } = movePointAtAngle({ x: 0, y: 0 }, radian, 20);
+
+        const projectile = new Projectile({
+            image,
+            size,
+            x: x1,
+            y: y1,
+            vx: vx * this.dpr,
+            vy: vy * this.dpr,
+        });
         this.spatialGrid.addEntity(projectile);
         this.projectiles.push(projectile);
     }
@@ -198,7 +215,7 @@ export default class LevelView {
         this.spatialGrid.addEntity(this.player);
     }
 
-    createRandomEnemy(bounds) {
+    createRandomEnemy({ bounds, dpr }) {
         // get a random type
         const type =
             allEnemyMovements[getRandomInt(0, allEnemyMovements.length - 1)];
@@ -207,55 +224,56 @@ export default class LevelView {
         const typeMap = {
             [EnemyMovementTypes.DUNCE]: {
                 image: this.assets.images.bomb,
-                size: 60,
+                size: 60 * dpr,
             },
             [EnemyMovementTypes.FOLLOWER]: {
                 image: this.assets.images.tv,
-                size: 70,
+                size: 70 * dpr,
             },
             [EnemyMovementTypes.SNEK]: {
                 image: this.assets.images.pill,
-                size: 50,
+                size: 50 * dpr,
             },
         };
 
         const { image, size } = typeMap[type];
         const x = getRandomInt(0, bounds.w);
-        const y = (size / 2) * -1; // adjust for dpr
+        const y = (size / 2) * -1;
 
-        const enemy = new Enemy({ image, size, type, x, y });
+        const enemy = new Enemy({ image, size, type, x, y, dpr });
 
         this.enemies.push(enemy);
         this.spatialGrid.addEntity(enemy);
     }
 
-    createWeaponPowerUp(bounds) {
+    createWeaponPowerUp({ bounds, dpr }) {
         // get a random type
         const type = weaponPowerUps[getRandomInt(0, weaponPowerUps.length - 1)];
-        const size = 60;
+        const size = 60 * dpr;
 
         const x = getRandomInt(0, bounds.w);
-        const y = (size / 2) * -1; // adjust for dpr
+        const y = (size / 2) * -1;
         const powerUp = new PowerUp({
             image: this.assets.images.handPeace,
             size,
             type,
             x,
             y,
+            dpr,
         });
         this.enemies.push(powerUp);
         this.spatialGrid.addEntity(powerUp);
     }
 
     createExplosion = (power, x, y) => {
-        const explosion = new Explosion(power, x, y);
+        const explosion = new Explosion({ power, x, y, dpr: this.dpr });
 
         this.explosions.push(explosion);
 
         const amount = getRandomInt(5, 15);
         const particles = new Array(amount)
             .fill(null)
-            .map(() => new Particle(x, y));
+            .map(() => new Particle({ x, y, dpr: this.dpr }));
 
         this.particles.push(...particles);
     };
@@ -283,15 +301,15 @@ export default class LevelView {
         });
     }
 
-    drawParticles({ ctx }) {
+    drawParticles(context) {
         this.particles.forEach((p) => {
-            p.draw(ctx);
+            p.draw(context);
         });
     }
 
-    drawExplosions({ ctx }) {
+    drawExplosions(context) {
         this.explosions.forEach((e) => {
-            e.draw(ctx);
+            e.draw(context);
         });
     }
 
@@ -342,12 +360,12 @@ export default class LevelView {
     |* Update methods
     \*----------------------------------------------------------*/
 
-    enemyGenerator({ bounds }) {
+    enemyGenerator(context) {
         if (this.tick % 40 === 0) {
-            this.createRandomEnemy(bounds);
+            this.createRandomEnemy(context);
         }
         if (this.tick % 1000 === 0) {
-            this.createWeaponPowerUp(bounds);
+            this.createWeaponPowerUp(context);
         }
     }
 
@@ -384,11 +402,11 @@ export default class LevelView {
         }
     }
 
-    updateViewEntities({ bounds }) {
-        this.projectiles.forEach((x) => x.update(bounds));
-        this.particles.forEach((x) => x.update(bounds));
-        this.explosions.forEach((x) => x.update());
-        this.enemies.forEach((x) => x.update(bounds, this.player));
+    updateViewEntities(context) {
+        this.projectiles.forEach((x) => x.update(context.bounds));
+        this.particles.forEach((x) => x.update(context.bounds));
+        this.explosions.forEach((x) => x.update(context));
+        this.enemies.forEach((x) => x.update(context.bounds, this.player));
     }
 
     removeDead() {
@@ -399,6 +417,8 @@ export default class LevelView {
     }
 
     update = (context) => {
+        this.dpr = context.dpr;
+
         this.updatePlayer(context);
         this.updateViewEntities(context);
 
