@@ -39,9 +39,9 @@ class Eraser {
         const prevPoint = lastPosition || tempPoint;
         const dist = prevPoint.distance(currentPoint);
         const angle = prevPoint.angleRadians(currentPoint);
-        const r = dpr * 40;
+        const r = dpr * 45;
         const hs = r / 2;
-        // ctx.globalCompositeOperation = 'source-over';
+
         for (let i = 0; i < dist; i = i + 5) {
             const x = prevPoint.x + Math.cos(angle) * i - 25;
             const y = prevPoint.y + Math.sin(angle) * i - 25;
@@ -54,8 +54,8 @@ class Eraser {
 
         const w = 112 * 4.5 * dpr;
         const h = 150 * 4.5 * dpr;
-        const ox = r;
-        const oy = h * 0.7;
+        const ox = r * 0.8;
+        const oy = h * 0.664;
         ctx.clearRect(...bounds.params);
         ctx.drawImage(this.canvas, ...bounds.params);
         ctx.drawImage(this.eraser, prevPoint.x - ox, prevPoint.y - oy, w, h);
