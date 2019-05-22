@@ -1,6 +1,6 @@
 import { Point, utils } from '@gush/candybar';
 import PolyWave from './PolyWave';
-import Pyramid from './Pyramid';
+// import Pyramid from './Pyramid';
 import PhysicsPoint from './PhysicsPoint';
 import Letter from './Letter';
 import { COLORS } from 'constants/app';
@@ -29,11 +29,11 @@ export default class LetterDrop {
             verts,
             elasticity: 0.24,
             damping: 0.84,
-            color: COLORS.deep,
+            color: COLORS.lunar,
         });
 
-        this.pyramid = new Pyramid({ color: COLORS.club });
-        this.pyramid.setup({ ctx });
+        // this.pyramid = new Pyramid({ color: COLORS.club });
+        // this.pyramid.setup({ ctx });
     };
 
     queueWord = (word) => {
@@ -96,12 +96,17 @@ export default class LetterDrop {
     resize = (context) => this.createWave(context);
 
     draw = (context) => {
-        this.pyramid.draw(context);
+        context.ctx.fillStyle = COLORS.softy;
+        context.ctx.fillRect(...context.bounds.params);
+        // this.pyramid.draw(context);
         this.letters.forEach((letter) => letter.draw(context));
         this.polywave.draw(context);
     };
 
     update = (context) => {
+        if (context.tick % 30 === 0) {
+            this.queueWord('ok');
+        }
         if (this.drop && this.words.length) {
             this.dropWord(context);
         }
@@ -124,6 +129,6 @@ export default class LetterDrop {
 
         this.letters = this.letters.filter((letter) => !letter.dead);
 
-        this.pyramid.update();
+        // this.pyramid.update();
     };
 }

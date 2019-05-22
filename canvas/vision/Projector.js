@@ -107,7 +107,7 @@ export default class Projector extends Entity {
     };
 
     update = ({ pointer }) => {
-        const lerp = 0.05;
+        const lerp = 0.3;
         this.pointer = this.pointer.lerp(pointer.position, lerp);
         this.angle = this.center.angleRadians(this.pointer);
 

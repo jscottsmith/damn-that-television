@@ -1,4 +1,4 @@
-import { Entity, Bounds, Point, utils } from '@gush/candybar';
+import { Bounds, Point, utils } from '@gush/candybar';
 import Projector from './Projector';
 import Shape from './Shape';
 import getSightPolygon from './src/rays';
@@ -12,25 +12,23 @@ const { getRandomInt } = utils;
 const types = [Shape.types.TRIANGLE, Shape.types.ZIGZAG, Shape.types.RING];
 const colors = [COLORS.miami, COLORS.fab, COLORS.lit, COLORS.pepto];
 
-export default class Vision extends Entity {
-    constructor(config) {
-        super();
-        this.getSize = config.getSize;
-    }
-
+export default class Vision {
     setupScene(context) {
-        const { width, height } = this.getSize(context);
-        const w = this.toValue(width);
-        const h = this.toValue(height);
+        const width = context.canvas.clientWidth;
+        const height = context.canvas.clientHeight;
+        const w = width * context.dpr;
+        const h = height * context.dpr;
         this.w = w;
         this.h = h;
 
-        this.numberOfShapes = Math.ceil(Math.max(width, height) / 200);
+        this.numberOfShapes = Math.ceil(Math.max(width, height) / 100);
+
+        const r = Math.max(width, height);
 
         this.projector = new Projector({
-            radius: w / 20,
+            radius: r / 20,
             p1: new Point(w / 2, h - h * 0.5),
-            p2: new Point(w / 2, h - h * 0.25),
+            p2: new Point(w / 2, h - h * 0.15),
         });
 
         this.bounds = new Bounds(0, 0, w, h);
@@ -45,7 +43,7 @@ export default class Vision extends Entity {
             this.shapes = [sceneShape];
             let i = 0;
             while (i < this.numberOfShapes) {
-                this.addShape(true);
+                this.addShape(context, true);
                 i++;
             }
         } else {
@@ -96,18 +94,19 @@ export default class Vision extends Entity {
         }
     }
 
-    addShape(inside) {
+    addShape(context, isInsideBounds) {
         const shape = new Shape({
             type: types[getRandomInt(0, types.length - 1)],
             x: 0,
             y: 0,
             vx: 0,
             vy: 0,
-            color: colors[getRandomInt(0, colors.length - 1)], //
+            color: colors[getRandomInt(0, colors.length - 1)],
+            dpr: context.dpr,
         });
 
         let startPosition = null;
-        if (!inside) {
+        if (!isInsideBounds) {
             startPosition = randomPositionOutsideBounds(
                 this.bounds,
                 shape.bounds,
@@ -156,7 +155,7 @@ export default class Vision extends Entity {
         this.shapes = this.shapes.filter(({ dead }) => !dead);
 
         if (this.shapes.length < this.numberOfShapes) {
-            this.addShape();
+            this.addShape(context);
         }
     }
 
@@ -164,7 +163,9 @@ export default class Vision extends Entity {
 
     resize = (context) => this.setupScene(context);
 
-    draw = ({ ctx }) => {
+    draw = ({ ctx, bounds }) => {
+        ctx.fillStyle = COLORS.club;
+        ctx.fillRect(...bounds.params);
         this.projector.draw({ ctx });
         this.drawLight(ctx);
         this.shapes.forEach((shape) => shape.draw({ ctx }));
