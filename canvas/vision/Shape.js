@@ -1,9 +1,9 @@
-import { Entity, Point, Segment, utils } from '@gush/candybar';
+import { Point, Segment, utils } from '@gush/candybar';
 import createBoundsFromSegments from './createBoundsFromSegments';
 
 const { getRandomFloat, getRandomInt } = utils;
 
-export default class Shape extends Entity {
+export default class Shape {
     static types = {
         ZIGZAG: 'ZIGZAG',
         TRIANGLE: 'TRIANGLE',
@@ -11,15 +11,17 @@ export default class Shape extends Entity {
     };
 
     constructor(config) {
-        super();
         this.type = config.type;
-        this.x = this.toValue(config.x);
-        this.y = this.toValue(config.y);
-        this.vx = this.toValue(config.vx);
-        this.vy = this.toValue(config.vy);
+        this.x = config.x;
+        this.y = config.y;
+        this.vx = config.vx;
+        this.vy = config.vy;
         this.color = config.color;
+        this.dpr = config.dpr;
+
         this.segments = [];
         this.bounds = null;
+
         this.createShapes();
     }
 
@@ -60,7 +62,7 @@ export default class Shape extends Entity {
         const pi = Math.PI;
         const turns = 6;
         const rad = (2 * pi) / turns;
-        const dist = this.toValue(getRandomFloat(5, 30));
+        const dist = getRandomFloat(5, 30) * this.dpr;
         const start = new Point(this.x, this.y);
         let i = 0;
         while (i < turns) {
@@ -84,7 +86,7 @@ export default class Shape extends Entity {
         const turns = 3; // getRandomInt(2, 7);
         const sa = getRandomFloat(-pi, pi); // start angle
         const rad = (pi * 2) / 3; // 60deg
-        const dist = this.toValue(getRandomFloat(10, 40));
+        const dist = getRandomFloat(10, 40) * this.dpr;
         const start = new Point(this.x, this.y);
         let i = 0;
         while (i < turns) {
@@ -107,8 +109,8 @@ export default class Shape extends Entity {
         const turns = getRandomInt(2, 7);
         const sa = getRandomFloat(-pi, pi);
         const ta = getRandomFloat(pi / 6, pi / 4);
-        const dist1 = this.toValue(getRandomFloat(15, 30));
-        const dist2 = this.toValue(getRandomFloat(10, 25));
+        const dist1 = getRandomFloat(15, 30) * this.dpr;
+        const dist2 = getRandomFloat(10, 25) * this.dpr;
 
         const start = new Point(this.x, this.y);
 
@@ -131,7 +133,7 @@ export default class Shape extends Entity {
         this.updateBoundsFromSegments();
     }
 
-    drawZigZag(ctx) {
+    drawZigZag({ ctx, dpr }) {
         ctx.beginPath();
         this.segments.forEach((seg, i) => {
             if (i === 0) {
@@ -142,11 +144,11 @@ export default class Shape extends Entity {
             }
         });
         ctx.strokeStyle = this.color;
-        ctx.lineWidth = this.toValue(5);
+        ctx.lineWidth = 5 * dpr;
         ctx.stroke();
     }
 
-    drawPoly(ctx) {
+    drawPoly({ ctx }) {
         ctx.beginPath();
         this.segments.forEach((seg, i) => {
             if (i === 0) {
@@ -161,9 +163,9 @@ export default class Shape extends Entity {
         ctx.fill();
     }
 
-    drawRing(ctx) {
+    drawRing({ ctx, dpr }) {
         ctx.strokeStyle = this.color;
-        ctx.lineWidth = this.toValue(6);
+        ctx.lineWidth = 6 * dpr;
         ctx.beginPath();
         ctx.arc(
             this.bounds.center.x,
@@ -183,17 +185,17 @@ export default class Shape extends Entity {
     //     ctx.strokeRect(...this.bounds.params);
     // }
 
-    draw = ({ ctx }) => {
+    draw = (context) => {
         // this.drawBounds(ctx);
         switch (this.type) {
             case this.constructor.types.ZIGZAG: {
-                return this.drawZigZag(ctx);
+                return this.drawZigZag(context);
             }
             case this.constructor.types.TRIANGLE: {
-                return this.drawPoly(ctx);
+                return this.drawPoly(context);
             }
             case this.constructor.types.RING: {
-                return this.drawRing(ctx);
+                return this.drawRing(context);
             }
             default: {
                 return null;

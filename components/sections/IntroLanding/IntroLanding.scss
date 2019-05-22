@@ -1,18 +1,14 @@
 @import '../../../sass/variables';
 @import '../../../sass/mixins';
 
-.index {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+.root {
     position: absolute;
-    padding: 5rem 1rem;
+    padding: 8rem 1rem 4rem;
 
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: $softy;
 
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -97,7 +93,10 @@
     .welcome {
         padding: 3rem;
     }
-    .index {
+    .root {
         padding: 10rem 2rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
     }
 }

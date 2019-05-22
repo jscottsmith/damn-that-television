@@ -6,9 +6,8 @@ const PATTERN_OK = '/static/pattern-ok.svg';
 const ERASER = '/static/eraser.svg';
 
 class Eraser {
-    constructor({ setupCanvas }) {
+    constructor() {
         this.color = COLORS.softy;
-        this.setupCanvas = setupCanvas;
         this.pattern = null;
         this.eraser = null;
         this.isDrawing = false;
@@ -64,7 +63,6 @@ class Eraser {
     resize = (context) => this.setup(context);
 
     setup = ({ dpr, ctx, bounds }) => {
-        this.setupCanvas();
         this.createLocal({ bounds });
         loadImage(PATTERN_OK).then((image) => {
             const w = 300 * dpr;
