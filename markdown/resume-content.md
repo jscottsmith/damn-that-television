@@ -42,13 +42,21 @@ Creative turned developer working to develop modern web products. Focused on mak
 
 # Recent Work History
 
+### Fair
+
+**_Senior Frontend Engineer_**
+
+A FinTech company that provides a new way to shop, get approved and pay for your next car—all on your phone.
+
+May 2019 to Present
+
 ### GumGum
 
 **_Senior Web Engineer_**
 
 Full-stack test-driven React development for GumGum's core products to support their computer vision advertising business. Working in an agile environment developing and deploying new features each sprint, managing product releases or hotfixes, providing mentoring and guidance to team contributors, and reviewing all downstream code through PR workflows. Additional responsibilities include demoing products to the company and stakeholders, interviewing engineer and design candidates, writing and contributing to GumGum's tech blog, attending meetups or community events, and contributing to the development of Gumdrops, GumGum's open sourced React component UI library.
 
-November 2017 to Present
+November 2017 to May 2019
 
 ### HAUS
 
