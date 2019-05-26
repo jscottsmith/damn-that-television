@@ -1,7 +1,7 @@
 ## J Scott Smith
 
-Senior Web Engineer</br>
-<small>[@GumGum](https://gumgum.com/) in Santa Monica 🌴</small>
+Senior Frontend Engineer</br>
+<small>[@Fair](https://fair.com/) in Santa Monica 🌴</small>
 
 <div class="list">
 
