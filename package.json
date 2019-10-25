@@ -1,6 +1,6 @@
 {
   "name": "damn-that-television",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Damn that television. The personal website of J Scott Smith",
   "main": "index.js",
   "scripts": {
@@ -30,15 +30,15 @@
     "classnames": "^2.2.5",
     "html-loader": "^0.5.5",
     "markdown-loader": "^4.0.0",
-    "next": "^7.0.2",
-    "node-sass": "^4.9.4",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "next": "^9.1.1",
+    "node-sass": "^4.13.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-helmet": "^5.2.0",
     "react-observed": "^1.0.2",
     "react-redux": "^6.0.1",
     "react-transition-group": "^2.7.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.4"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
