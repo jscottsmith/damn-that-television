@@ -1,6 +1,6 @@
 # Who
 
-Creative turned developer working to develop modern web products. Focused on making apps more user-friendly, performant, and accessible while writing code that is tested, scalable and maintainable. Love for all things web, especially JavaScript.
+Software engineer working to develop modern user interfaces for web products. Intent on building user-friendly applications that are performant and accessible while writing code that is tested, scalable and maintainable. Love for all things creative on the web.
 
 # Experience Highlights
 
@@ -46,7 +46,7 @@ Creative turned developer working to develop modern web products. Focused on mak
 
 **_Senior Frontend Engineer_**
 
-A FinTech company that provides a new way to shop, get approved and pay for your next car—all on your phone.
+Working with executive leadership to rapidly prototype and concept new products that would expand Fair's consumer vehicle offerings. Fair is an automotive fintech company that provides a new way to get access to a vehicle, all on your phone.
 
 May 2019 to Present
 

@@ -1,6 +1,6 @@
 {
   "name": "damn-that-television",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Damn that television. The personal website of J Scott Smith",
   "main": "index.js",
   "scripts": {
