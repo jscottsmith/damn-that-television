@@ -19,6 +19,7 @@ Senior Frontend Engineer</br>
 -   [GitHub](https://github.com/jscottsmith/)
 -   [CodePen](https://codepen.io/jscottsmith/)
 -   [Twitter](https://twitter.com/damntelevision)
+-   [LinkedIn](https://www.linkedin.com/in/jscsmith/)
 -   [GitHub Pages](http://jscottsmith.github.io/)
 
 </div>
