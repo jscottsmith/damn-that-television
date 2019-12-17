@@ -92,17 +92,16 @@ April 2015 to November 2017
 
 2006–2008
 
-# Technologies/Skills
+# Technologies
 
 A non-exhaustive list of technologies or software I've worked with:
 
 <div class="two-column">
 
 -   JavaScript ES6+
--   React
--   Flux/Redux
+-   React JS
+-   Flux/Redux/MobX
 -   Node JS
--   Flow
 -   Jest/Mocha/Enzyme
 -   REST APIs
 -   SQL/Sequelize
@@ -113,17 +112,39 @@ A non-exhaustive list of technologies or software I've worked with:
 -   Docker
 -   Canvas
 -   GreenSock
--   Bodymovin
+-   Lottie/Bodymovin
 -   SCSS/SASS
 -   HTML5/CSS3
 -   Backbone MVC
 -   PHP
--   UX/UI Design
 -   Sketch
 -   Illustrator
 -   Photoshop
 -   After Effects
 -   InDesign
+
+</div>
+
+# Interests
+
+<div class="two-column">
+
+-   TypeScript
+-   GraphQL
+-   Electron
+-   React Native
+-   WebGL
+-   Open source
+-   A11y/ARIA
+-   Web performance
+-   Typography
+-   Web accessibility
+-   Functional programming
+-   Unit testing
+-   UI design
+-   UX concepting
+-   Rapid prototyping
+-   Animation
 
 </div>
 
