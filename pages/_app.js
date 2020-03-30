@@ -1,4 +1,4 @@
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import React from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import '../sass/root.scss';
@@ -17,11 +17,9 @@ export default class MyApp extends App {
     render() {
         const { Component, pageProps } = this.props;
         return (
-            <Container>
-                <TransitionGroup>
-                    <Component {...pageProps} />
-                </TransitionGroup>
-            </Container>
+            <TransitionGroup>
+                <Component {...pageProps} />
+            </TransitionGroup>
         );
     }
 }

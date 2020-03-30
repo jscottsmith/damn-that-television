@@ -18,7 +18,9 @@ const AVATAR_PATH = '/static/avatar.jpg';
 export default withRouter(
     class Resume extends PureComponent {
         static propTypes = {
-            pathname: PropTypes.string.isRequired,
+            router: PropTypes.shape({
+                pathname: PropTypes.string.isRequired,
+            }).isRequired,
         };
 
         getMeta() {
@@ -36,7 +38,7 @@ export default withRouter(
                 // Facebook OG
                 {
                     property: 'og:url',
-                    content: this.props.pathname,
+                    content: this.props.router.pathname,
                 },
                 { property: 'og:description', content: desc },
                 { property: 'og:image', content: AVATAR_PATH },
