@@ -10,7 +10,7 @@
     "heroku-postbuild": "./node_modules/next/dist/bin/next build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prettier": "prettier --config ./.prettierrc --write \"./**/*.js\""
+    "prettier": "prettier --config ./.prettierrc --write \"./**/*.?(js|jsx)\""
   },
   "repository": {
     "type": "git",
