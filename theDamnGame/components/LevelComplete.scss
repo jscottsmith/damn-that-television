@@ -2,18 +2,18 @@
 @import 'sass/mixins';
 
 .levelComplete {
-    @include spread;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $teal;
+  @include spread;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $teal;
 }
 
 .details {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .start {
-    margin: 0 auto;
-    @include button;
+  margin: 0 auto;
+  @include button;
 }

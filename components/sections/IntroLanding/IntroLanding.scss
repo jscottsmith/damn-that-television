@@ -2,101 +2,101 @@
 @import '../../../sass/mixins';
 
 .root {
-    position: absolute;
-    padding: 8rem 1rem 4rem;
+  position: absolute;
+  padding: 8rem 1rem 4rem;
 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .play {
-    position: fixed;
-    right: 2rem;
-    bottom: 2rem;
-    margin: 1rem auto 0 auto;
-    background-color: $plum;
-    cursor: pointer;
-    width: 5rem;
-    height: 5rem;
-    border-radius: 2.5rem;
-    font-weight: $bold;
-    text-decoration: none;
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  margin: 1rem auto 0 auto;
+  background-color: $plum;
+  cursor: pointer;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 2.5rem;
+  font-weight: $bold;
+  text-decoration: none;
 
-    display: flex;
-    flex-flow: row wrap;
-    align-content: center;
-    justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: center;
 
-    transition: transform 300ms $easeOut;
-    z-index: 100;
+  transition: transform 300ms $easeOut;
+  z-index: 100;
 
-    &:hover {
-        background: $deep;
-        transform: scale(1.05);
-    }
+  &:hover {
+    background: $deep;
+    transform: scale(1.05);
+  }
 }
 
 .playKill {
-    display: block;
-    font-size: 1.2rem;
-    line-height: 0.9;
-    text-transform: uppercase;
-    letter-spacing: 0.16rem;
-    color: $pepto;
+  display: block;
+  font-size: 1.2rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.16rem;
+  color: $pepto;
 }
 
 .playTv {
-    display: block;
-    line-height: 0.9;
-    font-size: 2rem;
-    color: $fab;
+  display: block;
+  line-height: 0.9;
+  font-size: 2rem;
+  color: $fab;
 }
 
 .welcome {
-    position: relative;
-    margin: auto 0;
-    padding: 1rem;
-    max-width: 46rem;
-    background-color: $ghost;
-    color: #665b85;
-    z-index: 100;
-    overflow: hidden;
-    box-shadow: 0.5rem 0.5rem 0 0 $deep;
+  position: relative;
+  margin: auto 0;
+  padding: 1rem;
+  max-width: 46rem;
+  background-color: $ghost;
+  color: #665b85;
+  z-index: 100;
+  overflow: hidden;
+  box-shadow: 0.5rem 0.5rem 0 0 $deep;
 
-    transition: opacity 800ms;
+  transition: opacity 800ms;
 
-    &.waiting {
-        pointer-events: none;
-        opacity: 0;
+  &.waiting {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+    font-style: normal;
+    margin-bottom: 3rem;
+  }
+  a {
+    color: $miamiOld;
+
+    &:hover {
+      color: $club;
     }
-
-    h2 {
-        font-size: 2.8rem;
-        font-style: normal;
-        margin-bottom: 3rem;
-    }
-    a {
-        color: $miamiOld;
-
-        &:hover {
-            color: $club;
-        }
-    }
+  }
 }
 
 @include tablet {
-    .welcome {
-        padding: 3rem;
-    }
-    .root {
-        padding: 10rem 2rem;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-    }
+  .welcome {
+    padding: 3rem;
+  }
+  .root {
+    padding: 10rem 2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
 }

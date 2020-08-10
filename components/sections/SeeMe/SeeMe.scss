@@ -2,30 +2,30 @@
 @import '../../../sass/mixins';
 
 .root {
-    position: relative;
-    height: 110vh;
-    background-color: $softy;
+  position: relative;
+  height: 110vh;
+  background-color: $softy;
 }
 
 .inner {
-    @include spread;
-    overflow: hidden;
+  @include spread;
+  overflow: hidden;
 }
 
 .container {
-    @include spread;
+  @include spread;
 }
 
 .ok {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-    width: 100%;
-    font-size: 40vmax;
-    color: $fab;
-    text-shadow: -5vmax 0 0 $deep;
-    line-height: 0.67;
-    text-align: center;
-    z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  font-size: 40vmax;
+  color: $fab;
+  text-shadow: -5vmax 0 0 $deep;
+  line-height: 0.67;
+  text-align: center;
+  z-index: 1;
 }

@@ -6,29 +6,29 @@
 @import '../../../sass/mixins';
 
 .index {
-    position: relative;
-    height: 110vh;
-    background-image: url(/static/pattern-0.svg);
-    background-size: 200px auto;
+  position: relative;
+  height: 110vh;
+  background-image: url(/static/pattern-0.svg);
+  background-size: 200px auto;
 }
 
 .inner {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    left: 2rem;
-    bottom: 0;
-    background-color: white;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  left: 2rem;
+  bottom: 0;
+  background-color: white;
 }
 
 .copy {
-    @include center;
-    text-align: center;
-    z-index: 100;
-    font-size: 2vw;
-    letter-spacing: 0.1em;
+  @include center;
+  text-align: center;
+  z-index: 100;
+  font-size: 2vw;
+  letter-spacing: 0.1em;
 }
 
 .container {
-    @include spread;
+  @include spread;
 }
