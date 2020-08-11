@@ -1,19 +1,16 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useImperativeHandle } from 'react';
 
 import styles from './index.scss';
 import { Canvas } from '@gush/candybar';
 
 // import Eraser from 'canvas/eraser/Eraser';
-import Vision from 'canvas/vision/Vision';
-// import Letters from 'canvas/letters/LetterDrop';
-// import WavingArm from 'canvas/waving-arm/WavingArm';
-
+import Letters from 'canvas/letters/LetterDrop';
 export default class CanvasBackground extends PureComponent {
   componentDidMount() {
-    const entity = new Vision();
+    const entity = new Letters();
 
     this.canvas = new Canvas({
-      dpr: 1,
+      dpr: window.devicePixelRatio || 1,
       canvas: this._canvas,
       container: this._container,
       hasPointer: true,

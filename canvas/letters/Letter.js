@@ -14,6 +14,7 @@ export default class Letter {
     this.canvas.width = this.width;
     this.canvas.height = this.height;
     this.rotation = utils.getRandomFloat(-Math.PI, Math.PI);
+    this.spin = utils.getRandomFloat(-0.1, 0.1);
     // state for scene
     this.entered = false;
     this.dead = false;
@@ -33,7 +34,7 @@ export default class Letter {
 
     // ctx.fillStyle = COLORS.deep;
     // ctx.fillRect(0, 0, 100, 100);
-
+    ctx.clearRect(0, 0, this.width, this.height);
     ctx.save();
     ctx.translate(radius, radius);
     ctx.rotate(this.rotation);
@@ -57,12 +58,16 @@ export default class Letter {
   };
 
   update = (context) => {
+    this.rotation += this.spin;
+
     this.point.update(context);
     const [dx, dy] = this.point.delta();
     this.bounds.move(dx, dy);
   };
 
   draw = ({ ctx }) => {
+    this.drawLocal();
+
     ctx.save();
     ctx.translate(-this.radius, -this.radius);
     ctx.drawImage(

@@ -1,15 +1,13 @@
-import { Entity, Spring } from '@gush/candybar';
+import { Spring } from '@gush/candybar';
 
-class PolyWave extends Entity {
-  constructor({ verts, color, elasticity, damping }) {
-    super();
+class PolyWave {
+  constructor({ dpr, verts, color, elasticity, damping }) {
     this.verts = verts; // corners
     this.color = color;
-    this.resolution = this.toValue(10);
     this.elasticity = elasticity;
     this.damping = damping;
-
     this.points = []; // spring points
+    this.resolution = 20 * dpr;
     this.constructPolyWave();
     this.setAttractors();
   }
@@ -78,7 +76,7 @@ class PolyWave extends Entity {
     });
   }
 
-  draw = ({ ctx }) => {
+  draw = ({ ctx, dpr }) => {
     ctx.beginPath();
 
     this.points.forEach((point) => {
@@ -89,7 +87,7 @@ class PolyWave extends Entity {
 
     ctx.fillStyle = this.color;
 
-    ctx.lineWidth = this.toValue(2);
+    ctx.lineWidth = dpr * 2;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
 

@@ -5,7 +5,7 @@ import PhysicsPoint from './PhysicsPoint';
 import Letter from './Letter';
 import { COLORS } from 'constants/app';
 
-const MOUSE_STRENGTH = 4;
+const LETTER_WAVE_STRENGTH = 2;
 
 export default class LetterDrop {
   constructor() {
@@ -13,7 +13,7 @@ export default class LetterDrop {
     this.letters = [];
   }
 
-  createWave = ({ bounds, ctx }) => {
+  createWave = ({ bounds, ctx, dpr }) => {
     const { w, h } = bounds;
     const x = 0;
     const y = h - h / 4;
@@ -26,6 +26,7 @@ export default class LetterDrop {
     ];
 
     this.polywave = new PolyWave({
+      dpr,
       verts,
       elasticity: 0.24,
       damping: 0.84,
@@ -47,7 +48,7 @@ export default class LetterDrop {
     const word = this.words.pop();
     const letters = word.split('');
     const off = bounds.w / (letters.length + 1);
-    const rw = w / 38;
+    const rw = w / 20;
     const vh = -h * 0.03;
 
     const points = letters.map((letter, i) => {
@@ -60,8 +61,8 @@ export default class LetterDrop {
       const y = bounds.h - radius;
       // velocity
       const vx = utils.getRandomFloat(-5 * dpr, 5 * dpr);
-      const vy1 = vh;
-      const vy2 = vh;
+      const vy1 = vh * 0.8;
+      const vy2 = vh * 1.05;
       const vy = utils.getRandomFloat(vy1, vy2);
 
       const point = new PhysicsPoint({ x, y, vx, vy });
@@ -78,12 +79,12 @@ export default class LetterDrop {
 
   applyForceToWavePoints(letter, p2) {
     const distance = p2.distance(letter.point);
-    const maxDist = letter.radius / 2;
+    const maxDist = letter.radius;
 
     if (distance < maxDist) {
       const [dx, dy] = letter.point.delta();
       const mass = letter.radius;
-      const power = (1 - distance / mass) * MOUSE_STRENGTH;
+      const power = (1 - distance / mass) * LETTER_WAVE_STRENGTH;
 
       p2.applyForce(dx * power, dy * power);
     }
@@ -104,8 +105,8 @@ export default class LetterDrop {
   };
 
   update = (context) => {
-    if (context.tick % 30 === 0) {
-      this.queueWord('ok');
+    if (context.tick % 90 === 0) {
+      this.queueWord('OKAY');
     }
     if (this.drop && this.words.length) {
       this.dropWord(context);
