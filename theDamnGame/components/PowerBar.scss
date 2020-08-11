@@ -3,19 +3,19 @@
 
 $width: 70px;
 .bar {
-    width: $width;
+  width: $width;
+  height: 0.3rem;
+  background-color: $deep;
+  .amount {
+    position: relative;
+    background-color: $club;
     height: 0.3rem;
-    background-color: $deep;
-    .amount {
-        position: relative;
-        background-color: $club;
-        height: 0.3rem;
-    }
+  }
 }
 
 @include tablet {
-    $width: 100px;
-    .bar {
-        width: $width;
-    }
+  $width: 100px;
+  .bar {
+    width: $width;
+  }
 }

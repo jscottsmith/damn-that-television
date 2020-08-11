@@ -5,82 +5,82 @@ $desktopWidth: '992px';
 $largeDesktopWidth: '1392px';
 
 @mixin spread {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 
 @mixin center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @mixin extrude($depth: 16, $color: black) {
-    $shadow: ();
-    @for $i from 0 to $depth {
-        $shadow: append($shadow, #{$i + px} #{$i + px} 0 $color, comma);
-    }
-    box-shadow: $shadow;
+  $shadow: ();
+  @for $i from 0 to $depth {
+    $shadow: append($shadow, #{$i + px} #{$i + px} 0 $color, comma);
+  }
+  box-shadow: $shadow;
 }
 
 @mixin mobile {
-    @media (min-width: #{$mobileWidth}) {
-        @content;
-    }
+  @media (min-width: #{$mobileWidth}) {
+    @content;
+  }
 }
 
 @mixin largeMobile {
-    @media (min-width: #{$largeMobileWidth}) {
-        @content;
-    }
+  @media (min-width: #{$largeMobileWidth}) {
+    @content;
+  }
 }
 
 @mixin tablet {
-    @media (min-width: #{$tabletWidth}) {
-        @content;
-    }
+  @media (min-width: #{$tabletWidth}) {
+    @content;
+  }
 }
 
 @mixin desktop {
-    @media (min-width: #{$desktopWidth}) {
-        @content;
-    }
+  @media (min-width: #{$desktopWidth}) {
+    @content;
+  }
 }
 
 @mixin largeDesktop {
-    @media (min-width: #{$largeDesktopWidth}) {
-        @content;
-    }
+  @media (min-width: #{$largeDesktopWidth}) {
+    @content;
+  }
 }
 
 @mixin spread {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 @mixin button {
-    display: block;
-    padding: 0.6rem 1rem;
+  display: block;
+  padding: 0.6rem 1rem;
 
+  background: $deep;
+  color: $ghost;
+  font-size: 1.2rem;
+  font-weight: $bold;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  &:hover {
+    color: $pepto;
     background: $deep;
-    color: $ghost;
-    font-size: 1.2rem;
-    font-weight: $bold;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
-    text-decoration: none;
-
-    cursor: pointer;
-
-    &:hover {
-        color: $pepto;
-        background: $deep;
-    }
+  }
 }

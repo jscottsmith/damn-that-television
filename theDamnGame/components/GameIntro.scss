@@ -2,19 +2,19 @@
 @import 'sass/mixins';
 
 .gameIntro {
-    @include spread;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $club;
-    color: $fab;
+  @include spread;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $club;
+  color: $fab;
 
-    p {
-        color: $ghost;
-    }
+  p {
+    color: $ghost;
+  }
 }
 
 .start {
-    margin: 0 auto;
-    @include button;
+  margin: 0 auto;
+  @include button;
 }

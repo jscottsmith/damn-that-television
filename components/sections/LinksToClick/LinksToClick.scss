@@ -2,52 +2,52 @@
 @import '../../../sass/mixins';
 
 .root {
-    position: relative;
-    height: 120vh;
-    background-color: $cream;
+  position: relative;
+  height: 120vh;
+  background-color: $cream;
 }
 
 .inner {
-    @include spread;
-    overflow: hidden;
+  @include spread;
+  overflow: hidden;
 }
 
 .copy {
-    display: block;
-    margin: 10% auto 0 auto;
-    width: 60%;
-    color: $deep;
-    p {
-        font-size: 2rem;
-    }
+  display: block;
+  margin: 10% auto 0 auto;
+  width: 60%;
+  color: $deep;
+  p {
+    font-size: 2rem;
+  }
 }
 
 .links {
-    text-align: center;
+  text-align: center;
 }
 
 .button {
-    margin: 0 1rem;
-    padding: 0.8rem 4rem;
-    display: inline-block;
-    border: 0;
-    color: $deep;
-    text-transform: uppercase;
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    background-color: $fab;
+  margin: 0 1rem;
+  padding: 0.8rem 4rem;
+  display: inline-block;
+  border: 0;
+  color: $deep;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background-color: $fab;
 
-    @include extrude(16, $deep);
-    transition: transform 300ms $easeOutQuint;
+  @include extrude(16, $deep);
+  transition: transform 300ms $easeOutQuint;
 
-    &:hover {
-        transform: translate(-5px, -5px);
-        // color: $deep;
-        // background-color: $club;
-    }
+  &:hover {
+    transform: translate(-5px, -5px);
+    // color: $deep;
+    // background-color: $club;
+  }
 }
 
 .container {
-    @include spread;
+  @include spread;
 }

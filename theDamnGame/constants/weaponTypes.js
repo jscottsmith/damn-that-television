@@ -1,6 +1,6 @@
 const weaponTypes = {
-    FIST: 'FIST',
-    SPRAY: 'SPRAY',
+  FIST: 'FIST',
+  SPRAY: 'SPRAY',
 };
 
 const weaponPowerUps = [weaponTypes.SPRAY];

@@ -9,93 +9,87 @@ import LoadGameAssets from './LoadGameAssets';
 import Level from './Level';
 
 class LevelController extends Component {
-    static propTypes = {
-        currentLevel: PropTypes.number.isRequired,
-        handleComplete: PropTypes.func.isRequired,
-        kills: PropTypes.number.isRequired,
-        nextLevel: PropTypes.func.isRequired,
-    };
+  static propTypes = {
+    currentLevel: PropTypes.number.isRequired,
+    handleComplete: PropTypes.func.isRequired,
+    kills: PropTypes.number.isRequired,
+    nextLevel: PropTypes.func.isRequired,
+  };
 
-    componentDidUpdate(prevProps) {
-        if (
-            this.props.kills > prevProps.kills &&
-            this.props.kills >= this.config.killsToAdvance
-        ) {
-            this.levelComplete();
-        }
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.kills > prevProps.kills &&
+      this.props.kills >= this.config.killsToAdvance
+    ) {
+      this.levelComplete();
     }
+  }
 
-    levelComplete = () => {
-        this.props.nextLevel();
-        this.props.handleComplete();
-        this.setState({ hasLoaded: true });
-    };
+  levelComplete = () => {
+    this.props.nextLevel();
+    this.props.handleComplete();
+    this.setState({ hasLoaded: true });
+  };
 
-    get config() {
-        return levelConfigs[this.props.currentLevel];
-    }
+  get config() {
+    return levelConfigs[this.props.currentLevel];
+  }
 
-    _getLevel() {
-        const { currentLevel } = this.props;
+  _getLevel() {
+    const { currentLevel } = this.props;
 
-        switch (currentLevel) {
-            case 0: {
-                return (
-                    <LoadGameAssets assetUrls={this.config.assetUrls}>
-                        {({ hasLoaded, assets }) =>
-                            hasLoaded ? (
-                                <Fragment>
-                                    <LevelInterface />
-                                    <Level
-                                        config={this.config}
-                                        assets={assets}
-                                    />
-                                </Fragment>
-                            ) : (
-                                <p>Loading...</p>
-                            )
-                        }
-                    </LoadGameAssets>
-                );
+    switch (currentLevel) {
+      case 0: {
+        return (
+          <LoadGameAssets assetUrls={this.config.assetUrls}>
+            {({ hasLoaded, assets }) =>
+              hasLoaded ? (
+                <Fragment>
+                  <LevelInterface />
+                  <Level config={this.config} assets={assets} />
+                </Fragment>
+              ) : (
+                <p>Loading...</p>
+              )
             }
-            case 1: {
-                return (
-                    <LoadGameAssets assetUrls={this.config.assetUrls}>
-                        {({ hasLoaded, assets }) =>
-                            hasLoaded ? (
-                                <Fragment>
-                                    <LevelInterface />
-                                    <Level
-                                        config={this.config}
-                                        assets={assets}
-                                    />
-                                </Fragment>
-                            ) : (
-                                <p>Loading...</p>
-                            )
-                        }
-                    </LoadGameAssets>
-                );
+          </LoadGameAssets>
+        );
+      }
+      case 1: {
+        return (
+          <LoadGameAssets assetUrls={this.config.assetUrls}>
+            {({ hasLoaded, assets }) =>
+              hasLoaded ? (
+                <Fragment>
+                  <LevelInterface />
+                  <Level config={this.config} assets={assets} />
+                </Fragment>
+              ) : (
+                <p>Loading...</p>
+              )
             }
-        }
-        return null;
+          </LoadGameAssets>
+        );
+      }
     }
+    return null;
+  }
 
-    render() {
-        return this._getLevel();
-    }
+  render() {
+    return this._getLevel();
+  }
 }
 
 const mapStateToProps = ({ level: { currentLevel }, score: { kills } }) => ({
-    currentLevel,
-    kills,
+  currentLevel,
+  kills,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    nextLevel: bindActionCreators(nextLevel, dispatch),
+  nextLevel: bindActionCreators(nextLevel, dispatch),
 });
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(LevelController);

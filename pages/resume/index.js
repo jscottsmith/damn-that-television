@@ -16,53 +16,55 @@ const desc = 'Résumé of J Scott Smith, a creative web developer.';
 const AVATAR_PATH = '/static/avatar.jpg';
 
 export default withRouter(
-    class Resume extends PureComponent {
-        static propTypes = {
-            pathname: PropTypes.string.isRequired,
-        };
+  class Resume extends PureComponent {
+    static propTypes = {
+      router: PropTypes.shape({
+        pathname: PropTypes.string.isRequired,
+      }).isRequired,
+    };
 
-        getMeta() {
-            return [
-                {
-                    name: 'description',
-                    content: desc,
-                },
-                // Twitter Meta
-                { name: 'twitter:description', content: desc },
-                {
-                    name: 'twitter:image',
-                    content: AVATAR_PATH,
-                },
-                // Facebook OG
-                {
-                    property: 'og:url',
-                    content: this.props.pathname,
-                },
-                { property: 'og:description', content: desc },
-                { property: 'og:image', content: AVATAR_PATH },
-            ];
-        }
+    getMeta() {
+      return [
+        {
+          name: 'description',
+          content: desc,
+        },
+        // Twitter Meta
+        { name: 'twitter:description', content: desc },
+        {
+          name: 'twitter:image',
+          content: AVATAR_PATH,
+        },
+        // Facebook OG
+        {
+          property: 'og:url',
+          content: this.props.router.pathname,
+        },
+        { property: 'og:description', content: desc },
+        { property: 'og:image', content: AVATAR_PATH },
+      ];
+    }
 
-        render() {
-            return (
-                <article className={cx('page-resume', styles.pageResume)}>
-                    <Helmet title="Résumé" meta={this.getMeta()} />
-                    <div className={styles.resume}>
-                        <header className={styles.info}>
-                            <div className={styles.avatar}>
-                                <img src={AVATAR_PATH} alt="J Scott Smith" />
-                            </div>
-                            <Copy>{info}</Copy>
-                        </header>
-                        <Copy tag="div" className={styles.content}>
-                            {content}
-                        </Copy>
-                    </div>
-                    <footer className={styles.footer}>
-                        <Eye className={styles.eye} />
-                    </footer>
-                </article>
-            );
-        }
-    },
+    render() {
+      return (
+        <article className={cx('page-resume', styles.pageResume)}>
+          <Helmet title="Résumé" meta={this.getMeta()} />
+          <div className={styles.resume}>
+            <header className={styles.info}>
+              <div className={styles.avatar}>
+                <img src={AVATAR_PATH} alt="J Scott Smith" />
+              </div>
+              <Copy>{info}</Copy>
+            </header>
+            <Copy tag="div" className={styles.content}>
+              {content}
+            </Copy>
+          </div>
+          <footer className={styles.footer}>
+            <Eye className={styles.eye} />
+          </footer>
+        </article>
+      );
+    }
+  },
 );
