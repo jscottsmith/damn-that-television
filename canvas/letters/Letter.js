@@ -15,6 +15,8 @@ export default class Letter {
     this.canvas.height = this.height;
     this.rotation = utils.getRandomFloat(-Math.PI, Math.PI);
     this.spin = utils.getRandomFloat(-0.1, 0.1);
+    this.depth = utils.getRandomFloat(-0.5, 0.8);
+    this.shadowOffset = this.radius / 6;
     // state for scene
     this.entered = false;
     this.dead = false;
@@ -45,13 +47,13 @@ export default class Letter {
     // ctx.fill();
     ctx.shadowBlur = 0;
     ctx.shadowColor = COLORS.deep;
-    ctx.shadowOffsetX = this.radius / 6;
-    ctx.shadowOffsetY = this.radius / 6;
+    ctx.shadowOffsetX = this.shadowOffset;
+    ctx.shadowOffsetY = this.shadowOffset;
 
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.font = `900 ${radius * 1.3}px futura-pt `;
-    ctx.fillStyle = COLORS.fab;
+    ctx.fillStyle = COLORS.cream;
     ctx.fillText(this.letter, 0, 0);
 
     ctx.restore();
@@ -59,6 +61,7 @@ export default class Letter {
 
   update = (context) => {
     this.rotation += this.spin;
+    this.shadowOffset += this.depth;
 
     this.point.update(context);
     const [dx, dy] = this.point.delta();

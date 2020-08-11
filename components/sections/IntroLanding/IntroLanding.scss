@@ -1,6 +1,36 @@
 @import '../../../sass/variables';
 @import '../../../sass/mixins';
 
+@keyframes playIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  80% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tvIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  80% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .play {
   position: fixed;
   right: 2rem;
@@ -19,8 +49,10 @@
   align-content: center;
   justify-content: center;
 
-  transition: transform 300ms $easeOut;
   z-index: 100;
+
+  transition: transform 300ms $easeOut;
+  animation: playIn 2s $easeOutQuint 0s 1 forwards;
 
   &:hover {
     background: $deep;
@@ -35,6 +67,7 @@
   text-transform: uppercase;
   letter-spacing: 0.16rem;
   color: $pepto;
+  animation: tvIn 2s $easeOutQuint 0s 1 forwards;
 }
 
 .playTv {
@@ -42,6 +75,7 @@
   line-height: 0.9;
   font-size: 2rem;
   color: $fab;
+  animation: tvIn 2s $easeOutCubic 0s 1 forwards;
 }
 
 .welcome {
@@ -52,7 +86,7 @@
   min-height: 100vh;
   padding: 1rem;
 
-  background-color: $lunar;
+  background-color: $miami;
 
   .copy {
     padding: 2rem;

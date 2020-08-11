@@ -3,9 +3,11 @@ import PolyWave from './PolyWave';
 // import Pyramid from './Pyramid';
 import PhysicsPoint from './PhysicsPoint';
 import Letter from './Letter';
+import loadImage from 'utils/loadImage';
 import { COLORS } from 'constants/app';
 
 const LETTER_WAVE_STRENGTH = 2;
+const PATTERN_OK = '/static/pattern-0.svg';
 
 export default class LetterDrop {
   constructor() {
@@ -30,7 +32,7 @@ export default class LetterDrop {
       verts,
       elasticity: 0.24,
       damping: 0.84,
-      color: COLORS.lunar,
+      color: COLORS.miami,
     });
 
     // this.pyramid = new Pyramid({ color: COLORS.club });
@@ -90,14 +92,32 @@ export default class LetterDrop {
     }
   }
 
+  createPattern(ctx, img, w, h) {
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const context = canvas.getContext('2d');
+
+    context.drawImage(img, 0, 0, w, h);
+
+    return ctx.createPattern(canvas, 'repeat');
+  }
+
   // lifecycles
 
-  setup = (context) => this.createWave(context);
+  setup = (context) => {
+    loadImage(PATTERN_OK).then((image) => {
+      const w = 90 * context.dpr;
+      const h = 90 * context.dpr;
+      this.pattern = this.createPattern(context.ctx, image, w, h);
+    });
+    this.createWave(context);
+  };
 
   resize = (context) => this.createWave(context);
 
   draw = (context) => {
-    context.ctx.fillStyle = COLORS.softy;
+    context.ctx.fillStyle = this.pattern;
     context.ctx.fillRect(...context.bounds.params);
     // this.pyramid.draw(context);
     this.letters.forEach((letter) => letter.draw(context));
