@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import styles from './CanvasBackground.scss';
+import styles from './index.scss';
 import { Canvas } from '@gush/candybar';
 
 // import Eraser from 'canvas/eraser/Eraser';
@@ -28,7 +28,7 @@ export default class CanvasBackground extends PureComponent {
 
   render() {
     return (
-      <div className={styles.container}>
+      <div className={styles.container} ref={(ref) => (this._container = ref)}>
         <canvas ref={(ref) => (this._canvas = ref)} />
       </div>
     );

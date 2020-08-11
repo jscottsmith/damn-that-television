@@ -1,19 +1,6 @@
 @import '../../../sass/variables';
 @import '../../../sass/mixins';
 
-.root {
-  position: absolute;
-  padding: 8rem 1rem 4rem;
-
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-
 .play {
   position: fixed;
   right: 2rem;
@@ -59,20 +46,19 @@
 
 .welcome {
   position: relative;
-  margin: auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   padding: 1rem;
-  max-width: 46rem;
-  background-color: $ghost;
-  color: #665b85;
-  z-index: 100;
-  overflow: hidden;
-  box-shadow: 0.5rem 0.5rem 0 0 $deep;
 
-  transition: opacity 800ms;
+  background-color: $lunar;
 
-  &.waiting {
-    pointer-events: none;
-    opacity: 0;
+  .copy {
+    padding: 2rem;
+    background-color: $ghost;
+    max-width: 46rem;
+    box-shadow: 0.5rem 0.5rem 0 0 $deep;
   }
 
   h2 {
@@ -92,11 +78,9 @@
 @include tablet {
   .welcome {
     padding: 3rem;
-  }
-  .root {
-    padding: 10rem 2rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+
+    .copy {
+      padding: 1rem 2rem;
+    }
   }
 }

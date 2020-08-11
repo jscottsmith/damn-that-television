@@ -5,45 +5,24 @@ import cx from 'classnames';
 // components
 import Copy from 'components/atoms/Copy';
 import HeaderNav from 'components/molecules/HeaderNav/HeaderNav';
-import CanvasBackground from 'components/molecules/CanvasBackground/CanvasBackground';
+import CanvasHero from 'components/molecules/CanvasHero';
 
 import styles from './IntroLanding.scss';
 import content from 'markdown/landing-intro.md';
 
 export default class Home extends PureComponent {
-  state = {
-    isWaiting: true,
+  onEyeClick = () => {
+    window.scrollTo(0, window.innerHeight);
   };
-
-  componentDidMount() {
-    this.wait = setTimeout(() => {
-      this.setState({ isWaiting: false });
-      this.wait = null;
-    }, 3000);
-  }
-
-  componentWillUnmount() {
-    this.wait && clearTimeout(this.wait);
-  }
-
-  toggleInfo = () =>
-    this.setState(({ isWaiting }) => ({ isWaiting: !isWaiting }));
 
   render() {
     return (
-      <article className={cx('page-index', styles.root)}>
-        <HeaderNav
-          onEyeClick={this.toggleInfo}
-          isEyeActive={!this.state.isWaiting}
-        />
-        <div
-          className={cx(styles.welcome, {
-            [styles.waiting]: this.state.isWaiting,
-          })}
-        >
-          <Copy>{content}</Copy>
+      <article>
+        <HeaderNav onEyeClick={this.onEyeClick} isEyeActive={false} />
+        <CanvasHero />
+        <div className={cx(styles.welcome)}>
+          <Copy className={styles.copy}>{content}</Copy>
         </div>
-        <CanvasBackground />
         <Link href="/the-damn-game">
           <a className={cx(styles.play)}>
             <span className={styles.playKill}>Kill</span>{' '}
