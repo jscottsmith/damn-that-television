@@ -6,49 +6,57 @@ Software engineer working to develop modern user interfaces for web products. In
 
 **4+ years working with React and Node to build modern web apps with Redux/Flux.**
 
--   Utilized the latest modern JavaScript via Babel, ES6 and beyond
--   Shipped production code often and managed releases with Git Flow
--   Reviewed and approved all downstream code through PRs before releasing
--   Tested server APIs and user interfaces with Jest, Enzyme and Mocha
--   Managed database migrations to support new features or deprecate old
--   Implemented server-side rendering with server and client-side fetching
--   Customized build systems like Webpack and Gulp to fit project needs
--   Optimized apps for client-side performance on mobile and desktop
--   Worked with Docker and continuous integration systems like Jenkins/Travis
+- Utilized the latest modern JavaScript via Babel, ES6 and beyond
+- Shipped production code often and managed releases with Git Flow
+- Reviewed and approved all downstream code through PRs before releasing
+- Tested server APIs and user interfaces with Jest, Enzyme and Mocha
+- Managed database migrations to support new features or deprecate old
+- Implemented server-side rendering with server and client-side fetching
+- Customized build systems like Webpack and Gulp to fit project needs
+- Optimized apps for client-side performance on mobile and desktop
+- Worked with Docker and continuous integration systems like Jenkins/Travis
 
 **6+ years working with JavaScript and libraries to build websites and interactive experiences.**
 
--   Crafted animated experiences with HTML Canvas, SVG and WebGL APIs
--   Used functional and OOP paradigms to build DRY maintainable programs
--   Built accessible custom interfaces to ARIA standards
--   Configured, adapted, and utilized numerous content management systems
--   Always built mobile first, responsive, adaptive front-ends to best serve all devices
--   Developed style systems with modern scss tooling for creating robust brand interfaces
+- Crafted animated experiences with HTML Canvas, SVG and WebGL APIs
+- Used functional and OOP paradigms to build DRY maintainable programs
+- Built accessible custom interfaces to ARIA standards
+- Configured, adapted, and utilized numerous content management systems
+- Always built mobile first, responsive, adaptive front-ends to best serve all devices
+- Developed style systems with modern scss tooling for creating robust brand interfaces
 
 **8+ years experience in creative primarily for web.**
 
--   Designed websites, web apps, and user interfaces with style guides
--   Created annotated wireframes and user flows for websites and web apps
--   Built brand identities, developed logos, and designed custom typefaces
--   Skilled with motion graphics, animation design, and typography
--   Background as a 3D artist specialized in character animation and rigging
+- Designed websites, web apps, and user interfaces with style guides
+- Created annotated wireframes and user flows for websites and web apps
+- Built brand identities, developed logos, and designed custom typefaces
+- Skilled with motion graphics, animation design, and typography
+- Background as a 3D artist specialized in character animation and rigging
 
 **10+ years working with web technologies like HTML/CSS.**
 
--   Complete knowledge of web fundamentals
--   Familiar with all browser quirks, past (IE) and present (Safari)
--   Utilized graceful degradations or progressive enhancements
--   Created semantic HTML documents optimized for SEO and accessibility
+- Complete knowledge of web fundamentals
+- Familiar with all browser quirks, past (IE) and present (Safari)
+- Utilized graceful degradations or progressive enhancements
+- Created semantic HTML documents optimized for SEO and accessibility
 
 # Recent Work History
 
+### HMBradley
+
+**_Senior Software Engineer_**
+
+Building a new banking experience rewarding high interest rate returns for customers who save.
+
+March 2020 to Present
+
 ### Fair
 
-**_Senior Frontend Engineer_**
+**_Senior Software Engineer_**
 
-Working with executive leadership to rapidly prototype and concept new products that would expand Fair's consumer vehicle offerings. Fair is an automotive fintech company that provides a new way to get access to a vehicle, all on your phone.
+Working with executive leadership to rapidly prototype and concept new products that would expand Fair's consumer vehicle offerings. Focused on frontend technologies by contributing to internal tooling utilized by the operations team, developing and testing shared libraries for UI with storybook and React, and releasing new features to Fair.com for business needs. As an automotive fintech company, Fair provides a new way to get access to a vehicle all on your phone.
 
-May 2019 to Present
+May 2019 to March 2020
 
 ### GumGum
 
@@ -98,30 +106,30 @@ A non-exhaustive list of technologies or software I've worked with:
 
 <div class="two-column">
 
--   JavaScript ES6+
--   React JS
--   Flux/Redux/MobX
--   Node JS
--   Jest/Mocha/Enzyme
--   REST APIs
--   SQL/Sequelize
--   Webpack/Gulp/Parcel/Rollup
--   Babel
--   Git/GitFlow
--   Agile/Scrum
--   Docker
--   Canvas
--   GreenSock
--   Lottie/Bodymovin
--   SCSS/SASS
--   HTML5/CSS3
--   Backbone MVC
--   PHP
--   Sketch
--   Illustrator
--   Photoshop
--   After Effects
--   InDesign
+- JavaScript ES6+
+- React JS
+- Flux/Redux/MobX
+- Node JS
+- Jest/Mocha/Enzyme
+- REST APIs
+- SQL/Sequelize
+- Webpack/Gulp/Parcel/Rollup
+- Babel
+- Git/GitFlow
+- Agile/Scrum
+- Docker
+- Canvas
+- GreenSock
+- Lottie/Bodymovin
+- SCSS/SASS
+- HTML5/CSS3
+- Backbone MVC
+- PHP
+- Sketch
+- Illustrator
+- Photoshop
+- After Effects
+- InDesign
 
 </div>
 
@@ -129,22 +137,22 @@ A non-exhaustive list of technologies or software I've worked with:
 
 <div class="two-column">
 
--   TypeScript
--   GraphQL
--   Electron
--   React Native
--   WebGL
--   Open source
--   A11y/ARIA
--   Web performance
--   Typography
--   Web accessibility
--   Functional programming
--   Unit testing
--   UI design
--   UX concepting
--   Rapid prototyping
--   Animation
+- TypeScript
+- GraphQL
+- Electron
+- React Native
+- WebGL
+- Open source
+- A11y/ARIA
+- Web performance
+- Typography
+- Web accessibility
+- Functional programming
+- Unit testing
+- UI design
+- UX concepting
+- Rapid prototyping
+- Animation
 
 </div>
 
