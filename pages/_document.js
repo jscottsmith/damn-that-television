@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-        <script src="https://use.typekit.net/bwo5nqc.js" />
+        <script async src="https://use.typekit.net/bwo5nqc.js" />
         <script
           dangerouslySetInnerHTML={{
             __html: 'try{Typekit.load({ async: true });}catch(e){}',
