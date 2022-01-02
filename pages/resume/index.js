@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import Helmet from 'react-helmet';
@@ -10,7 +11,7 @@ import Eye from 'components/atoms/Eye';
 import content from 'markdown/resume-content.md';
 import info from 'markdown/resume-info.md';
 
-import styles from './Resume.scss';
+import styles from './Resume.module.scss';
 
 const desc = 'Résumé of J Scott Smith, a creative web developer.';
 const AVATAR_PATH = '/static/avatar.jpg';
@@ -52,7 +53,13 @@ export default withRouter(
           <div className={styles.resume}>
             <header className={styles.info}>
               <div className={styles.avatar}>
-                <img src={AVATAR_PATH} alt="J Scott Smith" />
+                <Image
+                  src={AVATAR_PATH}
+                  alt="J Scott Smith"
+                  width={300}
+                  height={300}
+                  layout="responsive"
+                />
               </div>
               <Copy>{info}</Copy>
             </header>

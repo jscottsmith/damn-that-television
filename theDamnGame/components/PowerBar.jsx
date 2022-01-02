@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './PowerBar.scss';
+import styles from './PowerBar.module.scss';
 
 const PowerBar = ({ amount, max, color }) => (
   <div className={styles.bar}>

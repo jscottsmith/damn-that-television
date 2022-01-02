@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LevelView from '../LevelView';
 
-import styles from './TheDamnGameContainer.scss';
+import styles from './TheDamnGameContainer.module.scss';
 
 export default class Level extends Component {
   componentDidMount() {

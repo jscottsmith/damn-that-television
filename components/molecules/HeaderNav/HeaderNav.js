@@ -3,7 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import Eye from 'components/atoms/Eye';
 
-import styles from './HeaderNav.scss';
+import styles from './HeaderNav.module.scss';
 
 const HeaderNav = ({ onEyeClick, isEyeActive }) => (
   <header className={styles.root}>

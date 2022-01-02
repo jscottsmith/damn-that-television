@@ -8,7 +8,7 @@ import Fade from 'components/Fade';
 
 import gameStore from '../store/gameStore';
 import { Provider } from 'react-redux';
-import styles from './TheDamnGameContainer.scss';
+import styles from './TheDamnGameContainer.module.scss';
 
 const gameStates = {
   PLAYING: 'PLAYING',

@@ -7,7 +7,7 @@ import Copy from 'components/atoms/Copy';
 import HeaderNav from 'components/molecules/HeaderNav/HeaderNav';
 import CanvasHero from 'components/molecules/CanvasHero';
 
-import styles from './IntroLanding.scss';
+import styles from './IntroLanding.module.scss';
 import content from 'markdown/landing-intro.md';
 
 export default class Home extends PureComponent {

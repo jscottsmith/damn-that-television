@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './SeeMe.scss';
+import styles from './SeeMe.module.scss';
 import Observed from 'react-observed';
 import { Canvas } from '@gush/candybar';
 import Eye from '../../../canvas/eyes/Eye';
