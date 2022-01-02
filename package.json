@@ -1,13 +1,12 @@
 {
   "name": "damn-that-television",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Damn that television. The personal website of J Scott Smith",
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development next",
     "build": "./node_modules/next/dist/bin/next build",
     "start": "./node_modules/next/dist/bin/next start -p $PORT",
-    "heroku-postbuild": "./node_modules/next/dist/bin/next build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --config ./.prettierrc --write \"./**/*.?(js|jsx|scss)\""
@@ -25,16 +24,15 @@
   "dependencies": {
     "@gush/candybar": "0.0.0-alpha38",
     "autoprefixer": "^10.4.1",
-    "babel-plugin-module-resolver": "^3.1.1",
     "classnames": "^2.2.5",
     "html-loader": "^0.5.5",
     "markdown-loader": "^4.0.0",
     "next": "^12.0.0",
-    "node-sass": "^5.0.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "node-sass": "^6.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "react-observed": "^1.0.2",
+    "react-observed": "^1.0.3",
     "react-redux": "^6.0.1",
     "react-transition-group": "^2.7.1",
     "redux": "^4.0.4"
