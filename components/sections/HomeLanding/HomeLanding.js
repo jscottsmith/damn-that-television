@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import Observed from 'react-observed';
 // import cx from 'classnames';
-import styles from './HomeLanding.scss';
+import styles from './HomeLanding.module.scss';
 import Copy from 'components/atoms/Copy';
 import content from 'markdown/home.md';
 import { Canvas, Point } from '@gush/candybar';

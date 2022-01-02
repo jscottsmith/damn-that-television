@@ -1,0 +1,186 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.pageResume {
+  padding: 7rem 0.5rem 0.5rem 0.5rem;
+  background-color: #f3f3f3;
+}
+
+.footer {
+  padding: 2rem;
+  text-align: center;
+}
+
+.eye {
+  display: inline-block;
+  width: 3rem;
+  fill: $plum;
+}
+
+.resume {
+  position: relative;
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 76rem;
+  background-color: #ffffff;
+  color: $plum;
+
+  h1 {
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    color: $teal;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid $peach;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    margin-top: 3rem;
+    font-size: 1.6rem;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+  }
+  li {
+    list-style-type: disc;
+  }
+
+  small {
+    font-size: 1.1rem;
+  }
+
+  p,
+  li {
+    color: $night;
+    font-size: 1.3rem;
+    font-weight: 400;
+
+    strong {
+      color: $plum;
+    }
+  }
+  a {
+    color: $teal;
+
+    &:hover {
+      color: $salmon;
+    }
+  }
+}
+
+.content {
+  width: 100%;
+  > p:first-of-type {
+    font-size: 1.6rem;
+  }
+  ul {
+    margin: 2rem 0;
+    padding-left: 2rem;
+  }
+}
+
+.avatar {
+  margin-top: -5.5rem;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  border: 3px solid white;
+  box-shadow: 0 4px 4px 0px #f3f3f3;
+  img {
+    display: block;
+  }
+}
+
+.info {
+  text-align: center;
+  width: 100%;
+
+  h2 {
+    font-size: 2.3rem;
+  }
+
+  h4 {
+    width: 33%;
+    text-align: left;
+    margin-right: 4%;
+  }
+
+  ul {
+    width: 65%;
+    text-align: left;
+    margin: 0.5rem 0 0 1rem;
+
+    li {
+      font-size: 1.3rem;
+      list-style-type: none;
+    }
+  }
+}
+
+@include tablet {
+  .pageResume {
+    padding: 4%;
+  }
+
+  .resume {
+    padding: 4%;
+    display: flex;
+    flex-flow: row nowrap;
+    h1 {
+      font-size: 2.2rem;
+    }
+    h2 {
+      font-size: 1.9rem;
+    }
+    h3 {
+      font-size: 1.8rem;
+    }
+    h4 {
+      font-size: 1.6rem;
+    }
+    p {
+      font-size: 1.4rem;
+    }
+  }
+
+  .content {
+    width: 66%;
+    flex-shrink: 0;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    h1:first-of-type {
+      margin-top: 6%;
+    }
+  }
+
+  .info {
+    width: 33%;
+    margin-right: 2rem;
+
+    h4 {
+      margin-left: 20%;
+    }
+    ul {
+      width: auto;
+      margin-left: 1.7rem;
+      margin-bottom: 2rem;
+      padding-left: 25%;
+    }
+  }
+
+  .avatar {
+    margin-top: 0;
+  }
+}

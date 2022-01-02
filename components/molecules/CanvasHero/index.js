@@ -1,6 +1,6 @@
 import React, { PureComponent, useImperativeHandle } from 'react';
 
-import styles from './index.scss';
+import styles from './index.module.scss';
 import { Canvas } from '@gush/candybar';
 
 // import Eraser from 'canvas/eraser/Eraser';

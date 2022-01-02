@@ -10,7 +10,7 @@ import Eye from 'components/atoms/Eye';
 import content from 'markdown/resume-content.md';
 import info from 'markdown/resume-info.md';
 
-import styles from './Resume.scss';
+import styles from './Resume.module.scss';
 
 const desc = 'Résumé of J Scott Smith, a creative web developer.';
 const AVATAR_PATH = '/static/avatar.jpg';

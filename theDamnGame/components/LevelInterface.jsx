@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import styles from './LevelInterface.scss';
+import styles from './LevelInterface.module.scss';
 import PowerBar from './PowerBar';
 
 const LevelInterface = ({

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './GameIntro.scss';
+import styles from './GameIntro.module.scss';
 
 export default class GameIntro extends Component {
   render() {

@@ -1,6 +1,6 @@
 @import 'sass/variables';
 
-:local(.canvas) {
+.canvas {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,7 +8,7 @@
   height: auto;
 }
 
-:local(.escBtn) {
+.escBtn {
   display: block;
   position: fixed;
   right: 1rem;

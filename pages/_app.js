@@ -2,7 +2,7 @@ import App from 'next/app';
 import React from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import '../sass/root.scss';
-
+import './resume/Resume.scss';
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
