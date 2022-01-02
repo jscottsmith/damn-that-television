@@ -53,7 +53,13 @@ export default withRouter(
           <div className={styles.resume}>
             <header className={styles.info}>
               <div className={styles.avatar}>
-                <Image src={AVATAR_PATH} alt="J Scott Smith" />
+                <Image
+                  src={AVATAR_PATH}
+                  alt="J Scott Smith"
+                  width={300}
+                  height={300}
+                  layout="responsive"
+                />
               </div>
               <Copy>{info}</Copy>
             </header>
