@@ -1,6 +1,5 @@
 import App from 'next/app';
 import Head from 'next/head';
-import Script from 'next/script';
 import React from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import '../sass/root.scss';
@@ -25,16 +24,14 @@ export default class MyApp extends App {
             name="viewport"
             content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
           />
+          <link
+            rel="stylesheet"
+            href="https://use.typekit.net/bwo5nqc.css"
+          ></link>
         </Head>
         <TransitionGroup>
           <Component {...pageProps} />
         </TransitionGroup>
-        <Script src="https://use.typekit.net/bwo5nqc.js" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: 'try{Typekit.load({ async: true });}catch(e){}',
-          }}
-        />
       </>
     );
   }
