@@ -7,7 +7,6 @@
     "dev": "NODE_ENV=development next",
     "build": "./node_modules/next/dist/bin/next build",
     "start": "./node_modules/next/dist/bin/next start -p $PORT",
-    "heroku-postbuild": "./node_modules/next/dist/bin/next build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --config ./.prettierrc --write \"./**/*.?(js|jsx|scss)\""
@@ -25,12 +24,11 @@
   "dependencies": {
     "@gush/candybar": "0.0.0-alpha38",
     "autoprefixer": "^10.4.1",
-    "babel-plugin-module-resolver": "^3.1.1",
     "classnames": "^2.2.5",
     "html-loader": "^0.5.5",
     "markdown-loader": "^4.0.0",
     "next": "^12.0.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^6.0.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^6.1.0",
