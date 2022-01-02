@@ -1,4 +1,5 @@
 import App from 'next/app';
+import Head from 'next/head';
 import React from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import '../sass/root.scss';
@@ -17,9 +18,17 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <TransitionGroup>
-        <Component {...pageProps} />
-      </TransitionGroup>
+      <>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          />
+        </Head>
+        <TransitionGroup>
+          <Component {...pageProps} />
+        </TransitionGroup>
+      </>
     );
   }
 }
