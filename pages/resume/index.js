@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import Helmet from 'react-helmet';
@@ -52,7 +53,7 @@ export default withRouter(
           <div className={styles.resume}>
             <header className={styles.info}>
               <div className={styles.avatar}>
-                <img src={AVATAR_PATH} alt="J Scott Smith" />
+                <Image src={AVATAR_PATH} alt="J Scott Smith" />
               </div>
               <Copy>{info}</Copy>
             </header>
