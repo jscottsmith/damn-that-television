@@ -3,6 +3,7 @@ import Head from 'next/head';
 import React from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import '../sass/root.scss';
+import '../sass/globals.css';
 import './resume/Resume.scss';
 export default class MyApp extends App {
   render() {
