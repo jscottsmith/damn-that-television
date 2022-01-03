@@ -17,6 +17,9 @@
   fill: $plum;
 }
 
+.job {
+  margin-bottom: 3rem;
+}
 .resume {
   position: relative;
   margin: 0 auto;
@@ -50,10 +53,6 @@
   }
   li {
     list-style-type: disc;
-  }
-
-  small {
-    font-size: 1.1rem;
   }
 
   p,

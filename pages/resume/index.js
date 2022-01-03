@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { RichText } from 'prismic-reactjs';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
@@ -7,14 +8,25 @@ import cx from 'classnames';
 
 import Copy from 'components/atoms/Copy';
 import Eye from 'components/atoms/Eye';
+import { Links } from 'slices/links';
+import Client from '../../utils/prismicHelpers';
 
 import content from 'markdown/resume-content.md';
-import info from 'markdown/resume-info.md';
 
 import styles from './Resume.module.scss';
 
-const desc = 'Résumé of J Scott Smith, a creative web developer.';
+const DESC = 'Résumé of J Scott Smith, a creative web developer.';
 const AVATAR_PATH = '/static/avatar.jpg';
+
+export async function getStaticProps({ params }) {
+  const document = await Client().getSingle('resume');
+
+  return {
+    props: {
+      document,
+    },
+  };
+}
 
 export default withRouter(
   class Resume extends PureComponent {
@@ -28,10 +40,10 @@ export default withRouter(
       return [
         {
           name: 'description',
-          content: desc,
+          content: DESC,
         },
         // Twitter Meta
-        { name: 'twitter:description', content: desc },
+        { name: 'twitter:description', content: DESC },
         {
           name: 'twitter:image',
           content: AVATAR_PATH,
@@ -41,7 +53,7 @@ export default withRouter(
           property: 'og:url',
           content: this.props.router.pathname,
         },
-        { property: 'og:description', content: desc },
+        { property: 'og:description', content: DESC },
         { property: 'og:image', content: AVATAR_PATH },
       ];
     }
@@ -61,7 +73,21 @@ export default withRouter(
                   layout="responsive"
                 />
               </div>
-              <Copy>{info}</Copy>
+              <div className={styles.job}>
+                <RichText render={this.props.document.data.name} />
+                <RichText render={this.props.document.data.current_job_title} />
+                <div className="small">
+                  <RichText
+                    render={this.props.document.data.current_role_location}
+                  />
+                </div>
+              </div>
+              {this.props.document.data.body.map((slice, i) => {
+                if (slice.slice_type === 'links') {
+                  return <Links links={slice} key={i} />;
+                }
+                return null;
+              })}
             </header>
             <Copy tag="div" className={styles.content}>
               {content}
