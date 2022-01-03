@@ -4,6 +4,9 @@
     display: flex;
     margin-bottom: 2rem;
   }
+  .small p {
+    font-size: 1.1rem;
+  }
 }
 
 @include tablet {
