@@ -33,32 +33,52 @@ class Eraser {
 
   handleMousemove({ pointer: { position, lastPosition }, ctx, dpr, bounds }) {
     if (!this.pattern || !this.eraser) return;
+
     const tempPoint = new Point(bounds.w / 2, bounds.h / 2);
     const currentPoint = position || tempPoint;
-    const prevPoint = lastPosition || tempPoint;
-    const dist = prevPoint.distance(currentPoint);
-    const angle = prevPoint.angleRadians(currentPoint);
+    this.prevPoint = lastPosition || tempPoint;
+    const dist = this.prevPoint.distance(currentPoint);
+    const angle = this.prevPoint.angleRadians(currentPoint);
+
     const r = dpr * 45;
     const hs = r / 2;
 
-    for (let i = 0; i < dist; i = i + 5) {
-      const x = prevPoint.x + Math.cos(angle) * i - 25;
-      const y = prevPoint.y + Math.sin(angle) * i - 25;
-      this.ctx.beginPath();
-      this.ctx.arc(x + hs, y + hs, r, false, Math.PI * 2, false);
-      this.ctx.closePath();
-      this.ctx.fillStyle = this.pattern;
-      this.ctx.fill();
+    if (this.isDrawing) {
+      for (let i = 0; i < dist; i = i + 5) {
+        const x = this.prevPoint.x + Math.cos(angle) * i - 25;
+        const y = this.prevPoint.y + Math.sin(angle) * i - 25;
+        this.ctx.beginPath();
+        this.ctx.arc(x + hs, y + hs, r, false, Math.PI * 2, false);
+        this.ctx.closePath();
+        this.ctx.fillStyle = this.pattern;
+        this.ctx.fill();
+      }
     }
-
-    const w = 112 * 4.5 * dpr;
-    const h = 150 * 4.5 * dpr;
-    const ox = r * 0.8;
-    const oy = h * 0.664;
-    ctx.clearRect(...bounds.params);
     ctx.drawImage(this.canvas, ...bounds.params);
-    ctx.drawImage(this.eraser, prevPoint.x - ox, prevPoint.y - oy, w, h);
   }
+
+  drawPencil({ ctx, dpr, bounds }) {
+    if (!this.pattern || !this.eraser) return;
+    const r = dpr * 45;
+    const w = 112 * 4.5 * dpr * (this.isDrawing ? 0.95 : 1);
+    const h = 150 * 4.5 * dpr * (this.isDrawing ? 0.95 : 1);
+    const ox = r;
+    const oy = h * 0.685;
+    ctx.drawImage(
+      this.eraser,
+      this.prevPoint.x - ox,
+      this.prevPoint.y - oy,
+      w,
+      h,
+    );
+  }
+
+  handleMouseDown = () => {
+    this.isDrawing = true;
+  };
+  handleMouseUp = () => {
+    this.isDrawing = false;
+  };
 
   resize = (context) => this.setup(context);
 
@@ -73,11 +93,22 @@ class Eraser {
     loadImage(ERASER).then((image) => {
       this.eraser = image;
     });
+
+    window.addEventListener('mousedown', this.handleMouseDown);
+    window.addEventListener('mouseup', this.handleMouseUp);
+  };
+
+  destroy = () => {
+    window.removeEventListener('mousedown', this.handleMouseDown);
+    window.removeEventListener('mouseup', this.handleMouseUp);
   };
 
   draw = (context) => {
+    context.ctx.clearRect(...context.bounds.params);
+
     this.handleMousemove(context);
+    this.drawPencil(context);
   };
 }
 
-export default Eraser;
+export { Eraser };

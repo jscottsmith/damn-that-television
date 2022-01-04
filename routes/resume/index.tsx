@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import Eye from 'components/atoms/Eye';
+import Eye from 'components/eye';
 import { ResumeHeader } from './components/resume-header';
 import { ResumeContent } from './components/resume-content';
 import { ResumeWorkHistory } from './components/resume-work-history';

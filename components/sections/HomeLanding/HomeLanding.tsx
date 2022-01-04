@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import Observed from 'react-observed';
 // import cx from 'classnames';
+
 import styles from './HomeLanding.module.scss';
-import Copy from 'components/atoms/Copy';
 import content from 'markdown/home.md';
 import { Canvas, Point } from '@gush/candybar';
+import { Copy } from '@/components/copy';
 import WavingArm from '../../../canvas/waving-arm/WavingArm';
 import Background from '../../../canvas/common/Background';
 import { OBSERVER_OPTIONS, COLORS } from 'constants/app';

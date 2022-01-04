@@ -1,13 +1,4 @@
-@import '../../../sass/mixins';
-@import '../../../sass/variables';
-
-.root {
-  padding: 1rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-}
+@import 'sass/variables';
 
 .eyeButton {
   width: 3.8rem;
@@ -33,15 +24,10 @@
   &.eyeActive {
     background-color: $peach;
   }
-}
 
-.headerEye {
-  display: inline-block;
-  width: 2.6rem;
-  fill: $plum;
-}
-
-@include tablet {
-  .root {
+  .headerEye {
+    display: inline-block;
+    width: 2.6rem;
+    // fill: $plum;
   }
 }

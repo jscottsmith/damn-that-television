@@ -1,0 +1,15 @@
+@import 'sass/mixins';
+@import 'sass/variables';
+
+.root {
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+@include tablet {
+  .root {
+  }
+}
