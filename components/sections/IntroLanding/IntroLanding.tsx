@@ -4,8 +4,8 @@ import cx from 'classnames';
 
 // components
 import { Copy } from '@/components/copy';
-import HeaderNav from 'components/molecules/HeaderNav/HeaderNav';
-import CanvasHero from 'components/molecules/CanvasHero';
+import HeaderNav from 'routes/home/components/header-nav/HeaderNav';
+import CanvasHero from 'routes/home/components/canvas-hero';
 
 import styles from './IntroLanding.module.scss';
 import content from 'markdown/landing-intro.md';

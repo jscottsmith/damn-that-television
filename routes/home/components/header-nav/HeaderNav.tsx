@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import Eye from 'components/atoms/Eye';
+import Eye from 'components/eye';
 
 import styles from './HeaderNav.module.scss';
 
