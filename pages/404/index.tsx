@@ -9,7 +9,9 @@ export default function Custom404() {
   return (
     <div className="bg-peach">
       <Link href="/" passHref>
-        <HeaderNav isEyeActive={false} />
+        <a>
+          <HeaderNav isEyeActive={false} />
+        </a>
       </Link>
       <h1
         className="text-lunar font-medium absolute inset-0 top-0 left-0 flex items-center justify-center"
