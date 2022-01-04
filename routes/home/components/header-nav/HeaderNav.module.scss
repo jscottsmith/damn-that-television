@@ -1,5 +1,5 @@
-@import '../../../sass/mixins';
-@import '../../../sass/variables';
+@import 'sass/mixins';
+@import 'sass/variables';
 
 .root {
   padding: 1rem;
@@ -7,38 +7,6 @@
   top: 0;
   left: 0;
   z-index: 100;
-}
-
-.eyeButton {
-  width: 3.8rem;
-  height: 3.8rem;
-  line-height: 0;
-  // border-radius: 2rem;
-  // border: 2px solid transparent;
-  box-shadow: 0 0 0 0 transparent;
-  transition: background 150ms $easeIn, box-shadow 150ms $easeIn,
-    transform 300ms $easeOut;
-
-  &.eyeActive,
-  &:hover {
-    // border-color: $plum;
-    background-color: $cream;
-    box-shadow: 0.5rem 0.5rem 0 0 $deep;
-    transform: scale(1.05);
-
-    .headerEye {
-      fill: $deep;
-    }
-  }
-  &.eyeActive {
-    background-color: $peach;
-  }
-}
-
-.headerEye {
-  display: inline-block;
-  width: 2.6rem;
-  fill: $plum;
 }
 
 @include tablet {

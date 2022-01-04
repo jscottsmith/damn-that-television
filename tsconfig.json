@@ -6,7 +6,8 @@
       "@/routes/*": ["routes/*"],
       "@/constants/*": ["constants/*"],
       "@/pages/*": ["pages/*"],
-      "@/helpers/*": ["helpers/*"]
+      "@/helpers/*": ["helpers/*"],
+      "@/sass/*": ["sass/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
