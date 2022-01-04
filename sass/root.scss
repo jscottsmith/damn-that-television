@@ -1,8 +1,5 @@
-@import './normalize';
 @import './variables';
 @import './mixins';
-@import './fonts';
-@import './typography';
 
 *,
 *:before,
@@ -15,65 +12,12 @@
   background: rgba($miami, 0.8);
 }
 
+html {
+}
+
 body {
   font-family: $futura;
-  font-size: 16px;
   background-color: $deep;
   color: $deep;
   transition: opacity 200ms;
-}
-
-html,
-body {
-  height: 100%;
-  font-size: 12px;
-}
-
-@include tablet {
-  html,
-  body {
-    font-size: 14px;
-  }
-}
-
-@include largeDesktop {
-  html,
-  body {
-    font-size: 16px;
-  }
-}
-
-figure {
-  margin: 0;
-}
-
-hr {
-  margin: 1rem 0;
-  border: 0;
-  border-top: 1px solid $deep;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  border-width: 0;
-  vertical-align: middle;
-  -ms-interpolation-mode: bicubic;
-}
-
-ul,
-ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-button {
-  padding: 0;
-  border: none;
-  background-color: transparent;
-
-  &:focus {
-    outline: none;
-  }
 }

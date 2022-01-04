@@ -5,8 +5,8 @@ export default class GameIntro extends Component {
   render() {
     return (
       <div className={styles.gameIntro}>
-        <div>
-          <h1>Damn TV!</h1>
+        <div className="prose">
+          <h2>Damn TV!</h2>
           <p>
             Space, Click or Tap to shoot.
             <br />

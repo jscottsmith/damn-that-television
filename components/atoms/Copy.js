@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 
 export default function Copy(props) {
   const Tag = props.tag;
@@ -18,10 +17,7 @@ export default function Copy(props) {
   }
 
   return (
-    <Tag
-      className={cx('copy-html', props.className)}
-      dangerouslySetInnerHTML={renderText()}
-    />
+    <Tag className={props.className} dangerouslySetInnerHTML={renderText()} />
   );
 }
 
