@@ -3,7 +3,7 @@ import Link from 'next/link';
 import cx from 'classnames';
 
 // components
-import Copy from 'components/atoms/Copy';
+import { Copy } from '@/components/copy';
 import HeaderNav from 'components/molecules/HeaderNav/HeaderNav';
 import CanvasHero from 'components/molecules/CanvasHero';
 

@@ -1,10 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PropsWithChildren } from 'react';
 
-export default function Copy(props) {
+type Props = PropsWithChildren<{
+  className?: string;
+  tag?: string;
+  orphans?: number;
+}>;
+
+export function Copy(props: Props) {
   const Tag = props.tag;
   const text = props.children;
 
+  // @ts-expect-error
   const textarray = text.split(' ');
   const lastWord = textarray.length - props.orphans;
   const joinedText =
@@ -17,16 +23,10 @@ export default function Copy(props) {
   }
 
   return (
+    // @ts-expect-error
     <Tag className={props.className} dangerouslySetInnerHTML={renderText()} />
   );
 }
-
-Copy.propTypes = {
-  children: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  orphans: PropTypes.number.isRequired,
-  tag: PropTypes.string.isRequired,
-};
 
 Copy.defaultProps = {
   orphans: 2, // Default to two words

@@ -3,8 +3,8 @@ import styles from './LinksToClick.scss';
 import Observed from 'react-observed';
 import { Canvas } from '@gush/candybar';
 import { OBSERVER_OPTIONS } from 'constants/app';
+import { Copy } from '@/components/copy';
 import content from 'markdown/links.md';
-import Copy from 'components/atoms/Copy';
 
 import LetterDrop from '../../../canvas/letters/LetterDrop';
 import Background from '../../../canvas/common/Background';
