@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Links = (props) => {
   return (
-    <>
+    <div className="prose">
       <RichText render={props.links.primary.title} />
       <ul>
         {props.links.items.map((item, i) => (
@@ -12,6 +12,6 @@ export const Links = (props) => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
