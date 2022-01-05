@@ -55,7 +55,7 @@ class Eraser {
 
     const erase = (x: number, y: number) => {
       this.ctx.beginPath();
-      this.ctx.arc(position.x, position.y, r, false, Math.PI * 2, false);
+      this.ctx.arc(x, y, r, false, Math.PI * 2, false);
       this.ctx.closePath();
       this.ctx.fillStyle = this.pattern;
       this.ctx.fill();
@@ -63,9 +63,9 @@ class Eraser {
 
     if (this.isDrawing) {
       erase(position.x, position.y);
-      for (let i = 0; i < dist; i = i + 5) {
-        const x = this.prevPoint.x + Math.cos(angle) * i - 25;
-        const y = this.prevPoint.y + Math.sin(angle) * i - 25;
+      for (let i = 0; i < dist; i = i + 2) {
+        const x = this.prevPoint.x + Math.cos(angle) * i;
+        const y = this.prevPoint.y + Math.sin(angle) * i;
         erase(x, y);
       }
     }
