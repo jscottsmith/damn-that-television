@@ -3,10 +3,12 @@ import { COLORS } from 'constants/app';
 import loadImage from 'utils/loadImage';
 
 const PATTERN_OK = '/static/pattern-ok.svg';
-const ERASER = '/static/eraser.svg';
+const ERASER_PENCIL = '/static/eraser.svg';
+const ERASER_SHADOW = '/static/eraser-shadow.svg';
 
 class Eraser {
-  eraser: unknown;
+  eraser: any;
+  shadow: any;
   color: string;
   pattern: unknown;
   canvas: any;
@@ -48,30 +50,47 @@ class Eraser {
     const dist = this.prevPoint.distance(currentPoint);
     const angle = this.prevPoint.angleRadians(currentPoint);
 
-    const r = dpr * 45;
-    const hs = r / 2;
+    const scale = bounds.w / (1300 * dpr);
+    const r = dpr * 50 * scale;
+
+    const erase = (x: number, y: number) => {
+      this.ctx.beginPath();
+      this.ctx.arc(position.x, position.y, r, false, Math.PI * 2, false);
+      this.ctx.closePath();
+      this.ctx.fillStyle = this.pattern;
+      this.ctx.fill();
+    };
 
     if (this.isDrawing) {
+      erase(position.x, position.y);
       for (let i = 0; i < dist; i = i + 5) {
         const x = this.prevPoint.x + Math.cos(angle) * i - 25;
         const y = this.prevPoint.y + Math.sin(angle) * i - 25;
-        this.ctx.beginPath();
-        this.ctx.arc(x + hs, y + hs, r, false, Math.PI * 2, false);
-        this.ctx.closePath();
-        this.ctx.fillStyle = this.pattern;
-        this.ctx.fill();
+        erase(x, y);
       }
     }
     ctx.drawImage(this.canvas, ...bounds.params);
   }
 
-  drawPencil({ ctx, dpr }) {
+  drawPencil({ ctx, dpr, bounds }) {
     if (!this.pattern || !this.eraser) return;
-    const r = dpr * 45;
-    const w = 112 * 4.5 * dpr * (this.isDrawing ? 0.95 : 1);
-    const h = 150 * 4.5 * dpr * (this.isDrawing ? 0.95 : 1);
+    const scale = bounds.w / (1300 * dpr);
+    const r = dpr * 50 * scale;
+    const w = this.eraser.width * dpr * scale;
+    const h = this.eraser.height * dpr * scale;
+    const w2 = this.shadow.width * dpr * scale;
+    const h2 = this.shadow.height * dpr * scale;
     const ox = r;
-    const oy = h * 0.685;
+    const oy = h - r + (this.isDrawing ? 0 : h * 0.1);
+    const oy2 = -r + (this.isDrawing ? 0 : h2 * 0.1);
+    ctx.drawImage(
+      this.shadow,
+      this.prevPoint.x - ox,
+      this.prevPoint.y + oy2,
+      w2,
+      h2,
+    );
+
     ctx.drawImage(
       this.eraser,
       this.prevPoint.x - ox,
@@ -98,8 +117,11 @@ class Eraser {
       this.pattern = this.createPattern(ctx, image, w, h);
     });
 
-    loadImage(ERASER).then((image) => {
+    loadImage(ERASER_PENCIL).then((image) => {
       this.eraser = image;
+    });
+    loadImage(ERASER_SHADOW).then((image) => {
+      this.shadow = image;
     });
 
     window.addEventListener('mousedown', this.handleMouseDown);
