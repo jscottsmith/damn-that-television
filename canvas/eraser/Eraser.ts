@@ -6,6 +6,14 @@ const PATTERN_OK = '/static/pattern-ok.svg';
 const ERASER = '/static/eraser.svg';
 
 class Eraser {
+  eraser: unknown;
+  color: string;
+  pattern: unknown;
+  canvas: any;
+  ctx: any;
+  isDrawing: boolean;
+  prevPoint: Point;
+
   constructor() {
     this.color = COLORS.softy;
     this.pattern = null;
@@ -57,7 +65,7 @@ class Eraser {
     ctx.drawImage(this.canvas, ...bounds.params);
   }
 
-  drawPencil({ ctx, dpr, bounds }) {
+  drawPencil({ ctx, dpr }) {
     if (!this.pattern || !this.eraser) return;
     const r = dpr * 45;
     const w = 112 * 4.5 * dpr * (this.isDrawing ? 0.95 : 1);

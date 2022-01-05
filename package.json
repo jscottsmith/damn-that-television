@@ -9,6 +9,7 @@
     "start": "./node_modules/next/dist/bin/next start -p $PORT",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "typeCheck": "tsc --noEmit",
     "prettier": "prettier --config ./.prettierrc --write \"./**/*.?(js|jsx|scss)\""
   },
   "repository": {

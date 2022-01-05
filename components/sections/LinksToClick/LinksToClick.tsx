@@ -10,6 +10,10 @@ import LetterDrop from '../../../canvas/letters/LetterDrop';
 import Background from '../../../canvas/common/Background';
 
 export default class LinksToClick extends Component {
+  letterDrop: any;
+  canvas: any;
+  _canvas: any;
+  _container: any;
   componentDidMount() {
     this.runIt();
   }

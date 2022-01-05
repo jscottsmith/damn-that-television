@@ -1,3 +1,5 @@
+import { Client } from './prismicHelpers';
+
 // ~/utils/queries.js
 async function fetchDocs(page = 1, routes = []) {
   const response = await Client().query('', { pageSize: 100, lang: '*', page });
@@ -5,6 +7,7 @@ async function fetchDocs(page = 1, routes = []) {
   if (response.results_size + routes.length < response.total_results_size) {
     return fetchDocs(page + 1, allRoutes);
   }
+  // @ts-expect-error
   return [...new Set(allRoutes)];
 }
 

@@ -1,7 +1,25 @@
-import gameStore from './store/gameStore.js';
+import gameStore from './store/gameStore';
 import connect from './store/connect';
+import { Bounds } from './types';
 
 export default class Shield {
+  canvas: any;
+  ctx: any;
+  r: number;
+  w: number;
+  h: number;
+  x: number;
+  y: number;
+  cx: number;
+  cy: number;
+  opacity: number;
+  pi2: number;
+  dead: boolean;
+  hit: boolean;
+  bounds: Bounds;
+  gradient1: any;
+  gradient2: any;
+
   constructor({ r, x, y }) {
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
@@ -70,10 +88,7 @@ export default class Shield {
 
   subscribeToStore() {
     const selectShieldPower = (state) => state.player.shieldPower;
-    connect(
-      gameStore,
-      selectShieldPower,
-    )(this.handleShieldPowerChange);
+    connect(gameStore, selectShieldPower)(this.handleShieldPowerChange);
   }
 
   handleShieldPowerChange = (shieldPower) => {

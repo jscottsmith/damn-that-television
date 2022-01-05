@@ -9,6 +9,8 @@ import LoadGameAssets from './LoadGameAssets';
 import Level from './Level';
 
 class LevelController extends Component {
+  props: any;
+
   static propTypes = {
     currentLevel: PropTypes.number.isRequired,
     handleComplete: PropTypes.func.isRequired,
@@ -89,7 +91,4 @@ const mapDispatchToProps = (dispatch) => ({
   nextLevel: bindActionCreators(nextLevel, dispatch),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LevelController);
+export default connect(mapStateToProps, mapDispatchToProps)(LevelController);

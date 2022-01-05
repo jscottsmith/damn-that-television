@@ -1,6 +1,7 @@
-import Shield from './Shield.js';
-import gameStore from './store/gameStore.js';
+import Shield from './Shield';
+import gameStore from './store/gameStore';
 import connect from './store/connect';
+import { Bounds } from './types';
 
 export default class Player {
   static states = {
@@ -10,6 +11,25 @@ export default class Player {
     DEAD: 'DEAD',
     INVINCIBLE: 'INVINCIBLE',
   };
+
+  canvas: any;
+  ctx: any;
+  assets: { images: any };
+  config: unknown;
+  w: number;
+  h: number;
+  x: number;
+  y: number;
+  cx: number;
+  cy: number;
+  dead: boolean;
+  weapon: unknown;
+  shield: Shield;
+  drawState: string;
+  drawStates: unknown;
+  timer: any;
+  bounds: Bounds;
+  type: string;
 
   constructor({ config, assets, size, x, y }) {
     // local player canvas
@@ -69,17 +89,11 @@ export default class Player {
   subscribeToStore() {
     const selectHitPower = (state) => state.player.hitPower;
 
-    connect(
-      gameStore,
-      selectHitPower,
-    )(this.handleHitPowerChange);
+    connect(gameStore, selectHitPower)(this.handleHitPowerChange);
 
     const selectWeapon = (state) => state.player.weapon;
 
-    connect(
-      gameStore,
-      selectWeapon,
-    )(this.handleWeaponChange);
+    connect(gameStore, selectWeapon)(this.handleWeaponChange);
   }
 
   handleWeaponChange = (weapon) => {

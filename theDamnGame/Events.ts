@@ -2,6 +2,8 @@ import eventTypes from './constants/eventTypes';
 import gameEvents from './events/gameEvents';
 
 export default class Events {
+  el: HTMLElement;
+
   constructor(el) {
     this.el = el;
     this.addListeners();

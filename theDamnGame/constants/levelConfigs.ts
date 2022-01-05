@@ -1,4 +1,4 @@
-import { EnemyMovementTypes } from '../Enemy.js';
+import { EnemyMovementTypes } from '../Enemy';
 const assetUrls = {
   bomb: '/static/damnit/bomb.png',
   damnit: '/static/damnit/damnit.png',

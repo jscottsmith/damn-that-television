@@ -2,12 +2,24 @@
  * Spatial Grid Class
  * =========================== */
 
-import { aabb2DIntersection } from '../gameUtils.js';
+import { aabb2DIntersection } from '../gameUtils';
 
 // adapted with slight modifications from
 // https://github.com/kirbysayshi/broad-phase-bng/blob/master/lib/ro.coltech.spatial-grid.js
 
 export default class SpatialGrid {
+  idCounter: number;
+  entities: any[];
+  min: { x: number; y: number };
+  max: { x: number; y: number };
+  pxCellSize: number;
+  grid: any[];
+  debug: boolean;
+  totalCells: number;
+  collisionChecks: number;
+  allocatedCells: number;
+  hashChecks: number;
+
   constructor(minX, minY, maxX, maxY, cellSize) {
     this.idCounter = 0;
     this.entities = [];

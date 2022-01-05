@@ -1,7 +1,6 @@
 import React from 'react';
-
-import styles from './HeaderNav.module.scss';
 import { EyeButton } from 'components/eye-button';
+import styles from './HeaderNav.module.scss';
 
 const HeaderNav = (props: {
   onEyeClick?: () => unknown;
@@ -10,6 +9,7 @@ const HeaderNav = (props: {
 }) => (
   <header className={styles.root}>
     <EyeButton
+      // @ts-expect-error
       onClick={props.onEyeClick}
       isEyeActive={props.isEyeActive}
       className={props.eyeColor}
