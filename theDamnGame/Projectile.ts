@@ -1,6 +1,19 @@
 import { aabb2DIntersection } from './gameUtils';
+import { Bounds } from './types';
 
 export default class Projectile {
+  w: number;
+  h: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  bounds: Bounds;
+  ctx: any;
+  canvas: any;
+  image: any;
+  dead: boolean;
+
   constructor({ image, size = 5, x, y, vx, vy }) {
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');

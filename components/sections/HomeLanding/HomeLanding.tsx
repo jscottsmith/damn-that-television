@@ -18,6 +18,10 @@ const color = {
 };
 
 export default class HomeLanding extends PureComponent {
+  _container: any;
+  _canvas: any;
+  canvas: any;
+
   componentDidMount() {
     this.runIt();
   }

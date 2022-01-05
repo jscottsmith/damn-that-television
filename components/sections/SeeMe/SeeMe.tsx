@@ -7,6 +7,10 @@ import Background from '../../../canvas/common/Background';
 import { OBSERVER_OPTIONS } from 'constants/app';
 
 export default class SeeMe extends Component {
+  canvas: any;
+  _canvas: any;
+  _container: any;
+
   componentDidMount() {
     this.runIt();
   }

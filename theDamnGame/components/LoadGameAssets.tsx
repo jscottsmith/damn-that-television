@@ -1,8 +1,11 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import GameAssets from '../GameAssets.js';
+import GameAssets from '../GameAssets';
 
 export default class LoadGameAssets extends PureComponent {
+  assets: any;
+  props: any;
+
   static propTypes = {
     assetUrls: PropTypes.object.isRequired,
     children: PropTypes.func.isRequired,

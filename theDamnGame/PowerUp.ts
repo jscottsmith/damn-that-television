@@ -1,6 +1,20 @@
-import { aabb2DIntersection } from './gameUtils.js';
+import { aabb2DIntersection } from './gameUtils';
+import { Bounds } from './types';
 
 export default class PowerUp {
+  w: number;
+  h: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  bounds: Bounds;
+  ctx: any;
+  canvas: any;
+  image: any;
+  type: string;
+  dead: boolean;
+
   constructor({ image, type, size = 40, x, y, dpr }) {
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');

@@ -1,9 +1,9 @@
-import gameStore from '../store/gameStore.js';
+import gameStore from '../store/gameStore';
 
-import Player from '../Player.js';
-import Projectile from '../Projectile.js';
-import PowerUp from '../PowerUp.js';
-import Enemy from '../Enemy.js';
+import Projectile from '../Projectile';
+import PowerUp from '../PowerUp';
+import Enemy from '../Enemy';
+import Player from 'theDamnGame/Player';
 
 import * as playerActions from '../actions/playerActions';
 import * as scoreActions from '../actions/scoreActions';
@@ -15,7 +15,7 @@ export default function checkCollisionPairs({
   createNotification,
 }) {
   const pairs = spatialGrid.queryForCollisionPairs();
-  pairs.forEach(([a, b]) => {
+  pairs.forEach(([a, b]: [Player, Player]) => {
     // if anything is already dead return early
     if (a.dead || b.dead) {
       return;

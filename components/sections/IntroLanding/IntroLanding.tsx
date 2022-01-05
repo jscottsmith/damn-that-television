@@ -12,8 +12,9 @@ import styles from './IntroLanding.module.scss';
 import content from 'markdown/landing-intro.md';
 
 export default class Home extends PureComponent {
-  constructor() {
-    super();
+  letters: any;
+  constructor(props) {
+    super(props);
     this.letters = new Letters();
   }
 

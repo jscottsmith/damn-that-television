@@ -1,6 +1,15 @@
-import { getRandomInt } from './gameUtils.js';
+import { getRandomInt } from './gameUtils';
 
 export default class Explosion {
+  x: number;
+  y: number;
+  power: number;
+  r1: number;
+  pi: number;
+  pi2: number;
+  multiplier: number;
+  dead: boolean;
+
   constructor({ power, x, y, dpr }) {
     this.x = x;
     this.y = y;

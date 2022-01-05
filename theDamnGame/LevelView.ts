@@ -1,19 +1,19 @@
 import { Canvas } from '@gush/candybar';
 
-import Crosshairs from './Crosshairs.js';
-import Explosion from './Explosion.js';
-import Notification from './Notification.js';
-import Particle from './Particle.js';
-import Player from './Player.js';
-import Projectile from './Projectile.js';
-import PowerUp from './PowerUp.js';
-import Enemy, { EnemyMovementTypes, allEnemyMovements } from './Enemy.js';
+import Crosshairs from './Crosshairs';
+import Explosion from './Explosion';
+import Notification from './Notification';
+import Particle from './Particle';
+import Player from './Player';
+import Projectile from './Projectile';
+import PowerUp from './PowerUp';
+import Enemy, { EnemyMovementTypes, allEnemyMovements } from './Enemy';
 
 import Events from './Events';
-import SpatialGrid from './spatialGrid/SpatialGrid.js';
+import SpatialGrid from './spatialGrid/SpatialGrid';
 
 // Store and Actions
-import gameStore from './store/gameStore.js';
+import gameStore from './store/gameStore';
 import * as playerActions from './actions/playerActions';
 
 // Constants
@@ -22,15 +22,34 @@ import eventTypes from './constants/eventTypes';
 import weaponTypes, { weaponPowerUps } from './constants/weaponTypes';
 
 // Helpers
-import {
-  getAngleRadians,
-  movePointAtAngle,
-  getRandomInt,
-} from './gameUtils.js';
+import { getAngleRadians, movePointAtAngle, getRandomInt } from './gameUtils';
 import checkCollisionPairs from './utils/checkCollisionPairs';
 import throttle from './utils/throttle';
 
 export default class LevelView {
+  canvas: any;
+  config: any;
+  assets: any;
+  tick: number;
+  x: number;
+  y: number;
+  player: Player;
+  spatialGrid: SpatialGrid;
+  crosshairs: Crosshairs;
+  playerConfig: {
+    ps: number;
+    px: number;
+    py: number;
+    bottomOffset: number;
+  };
+
+  projectiles: any[];
+  enemies: any[];
+  explosions: any[];
+  particles: any[];
+
+  dpr: number;
+
   static init({ canvas, config, assets }) {
     const game = new LevelView({ canvas, config, assets });
 

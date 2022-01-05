@@ -1,6 +1,13 @@
 let instance = null;
 
+type Token = {
+  token: string;
+  func: (string, any) => unknown;
+};
 export default class PubSub {
+  topics: Record<string, Token[]>;
+  subUid: number;
+
   static createPubSub() {
     if (!instance) {
       instance = new PubSub();

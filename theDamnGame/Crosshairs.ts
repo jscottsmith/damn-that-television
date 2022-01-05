@@ -4,6 +4,17 @@ const crosshairStates = {
 };
 
 export default class Crosshairs {
+  canvas: any;
+  ctx: any;
+  size: number;
+  w: number;
+  h: number;
+  x: number;
+  y: number;
+  dpr: number;
+  drawState: string;
+  drawStates: any;
+
   constructor(size) {
     this.size = size;
   }

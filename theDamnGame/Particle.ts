@@ -1,6 +1,16 @@
-import { getRandomInt, aabb2DIntersection } from './gameUtils.js';
+import { getRandomInt, aabb2DIntersection } from './gameUtils';
 
 export default class Particle {
+  w: number;
+  h: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  gravity: number;
+  dead: boolean;
+  dpr: number;
+
   constructor({ x, y, dpr }) {
     this.dpr = dpr;
     this.gravity = 0.25 * this.dpr;

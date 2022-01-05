@@ -1,5 +1,14 @@
 const DECAY = 0.95;
 export default class Notification {
+  message: string;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  power: number;
+  multiplier: number;
+  dead: boolean;
+
   constructor(message, x, y, vx = 0, vy = -3) {
     this.message = message;
     this.x = x;

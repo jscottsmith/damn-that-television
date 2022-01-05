@@ -1,4 +1,5 @@
-import { aabb2DIntersection } from './gameUtils.js';
+import { aabb2DIntersection } from './gameUtils';
+import { Bounds } from './types';
 
 export const EnemyMovementTypes = {
   SNEK: 'SNEK', // sine movment
@@ -13,6 +14,23 @@ export const allEnemyMovements = [
 ];
 
 export default class Enemy {
+  canvas: any;
+  ctx: any;
+  size: number;
+  w: number;
+  h: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  dpr: number;
+  sine: number;
+  dead: boolean;
+  bounds: Bounds;
+  updateMap: any;
+  image: any;
+  type: string;
+
   constructor({
     image,
     size = 40,
