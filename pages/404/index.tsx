@@ -14,7 +14,7 @@ export default function Custom404() {
         </a>
       </Link>
       <h1
-        className="text-lunar font-medium absolute inset-0 top-0 left-0 flex items-center justify-center"
+        className="text-lunar font-medium absolute inset-0 top-0 left-0 flex items-center justify-center select-none"
         style={{ fontSize: '15vw' }}
       >
         404
