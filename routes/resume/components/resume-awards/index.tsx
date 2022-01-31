@@ -14,7 +14,7 @@ export const ResumeAwards = (props) => {
             <div className="text-xl font-regular italic">
               <RichText render={item.title} />
             </div>
-            <Badge>{item.dates}</Badge>
+            <Badge background="bg-peach">{item.dates}</Badge>
           </li>
         ))}
       </ul>

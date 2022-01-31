@@ -10,7 +10,7 @@ type Props = {
 
 export const DateRange = (props: Props) => {
   return (
-    <Badge className="mt-1">
+    <Badge className="mt-1" background="bg-peach">
       {props.startDate && (
         <span>
           {props.dateFormatter.format(new Date(props.startDate))}

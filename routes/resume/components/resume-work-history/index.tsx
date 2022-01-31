@@ -1,3 +1,4 @@
+import { Badge } from '@/components/badge';
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
 import { formatterMonthYear } from 'routes/resume/helpers/format-date';
@@ -26,12 +27,23 @@ export const ResumeWorkHistory = (props) => {
           <div className="prose">
             <RichText render={item.content} />
           </div>
-          <DateRange
-            dateFormatter={formatterMonthYear}
-            startDate={item.start_date}
-            endDate={item.end_date}
-            presentRole={item.present_role}
-          />
+          <footer>
+            <ul>
+              {item.keywords.split(', ').map((keyword) => (
+                <li key={keyword} className="inline-block mr-sm mb-sm">
+                  <Badge className="bg-transparent border-solid border border-gray-200">
+                    {keyword}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+            <DateRange
+              dateFormatter={formatterMonthYear}
+              startDate={item.start_date}
+              endDate={item.end_date}
+              presentRole={item.present_role}
+            />
+          </footer>
         </section>
       ))}
     </div>
