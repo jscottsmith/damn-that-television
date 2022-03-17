@@ -1,42 +1,39 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect, useRef } from 'react';
+
 import Link from 'next/link';
 import cx from 'classnames';
+import { RichText } from 'prismic-reactjs';
 
-// components
-import { Copy } from '@/components/copy';
 import HeaderNav from 'routes/home/components/header-nav/HeaderNav';
 import { CanvasHero } from '@/components/canvas-hero';
 import Letters from 'canvas/letters/LetterDrop';
 
 import styles from './IntroLanding.module.scss';
-import content from 'markdown/landing-intro.md';
 
-export default class Home extends PureComponent {
-  letters: any;
-  constructor(props) {
-    super(props);
-    this.letters = new Letters();
-  }
+function IntroLanding(props) {
+  const letters = useRef(new Letters());
 
-  onEyeClick = () => {
+  const onEyeClick = () => {
     window.scrollTo(0, window.innerHeight);
   };
 
-  render() {
-    return (
-      <article>
-        <HeaderNav onEyeClick={this.onEyeClick} isEyeActive={false} />
-        <CanvasHero entities={[this.letters]} />
-        <div className={cx(styles.welcome)}>
-          <Copy className={styles.copy}>{content}</Copy>
+  return (
+    <article>
+      <HeaderNav onEyeClick={onEyeClick} isEyeActive={false} />
+      <CanvasHero entities={[letters.current]} />
+      <div className={cx(styles.welcome)}>
+        <div className={styles.copy}>
+          <RichText render={props.document?.data?.introduction} />
         </div>
-        <Link href="/the-damn-game">
-          <a className={cx(styles.play)}>
-            <span className={styles.playKill}>Kill</span>{' '}
-            <span className={styles.playTv}>TV!</span>
-          </a>
-        </Link>
-      </article>
-    );
-  }
+      </div>
+      <Link href="/the-damn-game">
+        <a className={cx(styles.play)}>
+          <span className={styles.playKill}>Kill</span>{' '}
+          <span className={styles.playTv}>TV!</span>
+        </a>
+      </Link>
+    </article>
+  );
 }
+
+export default IntroLanding;
