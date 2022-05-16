@@ -7,6 +7,7 @@ import { ResumeWorkHistory } from './components/resume-work-history';
 import { ResumeWorkHistoryCondensed } from './components/resume-work-history-condensed';
 import { ResumeList } from './components/resume-list';
 import { ResumeAwards } from './components/resume-awards';
+import { WorkTogether } from './components/work-together';
 import Link from 'next/link';
 import HeaderNav from 'routes/home/components/header-nav/HeaderNav';
 
@@ -44,8 +45,12 @@ export const Resume = (props) => {
               if (slice.slice_type === 'resume_work_history') {
                 return <ResumeWorkHistory {...slice} key={i} />;
               }
+
               if (slice.slice_type === 'resume_work_history_condensed') {
                 return <ResumeWorkHistoryCondensed {...slice} key={i} />;
+              }
+              if (slice.slice_type === 'work_together') {
+                return <WorkTogether {...slice} key={i} />;
               }
               if (slice.slice_type === 'resume_content') {
                 return <ResumeContent {...slice} key={i} />;
