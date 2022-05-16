@@ -10,6 +10,7 @@ import { ResumeAwards } from './components/resume-awards';
 import { WorkTogether } from './components/work-together';
 import Link from 'next/link';
 import HeaderNav from 'routes/home/components/header-nav/HeaderNav';
+import { ResumeEducation } from './components/resume-education';
 
 const DESC = 'Résumé of J Scott Smith, a creative web developer.';
 export const AVATAR_PATH = '/static/avatar.jpg';
@@ -45,7 +46,9 @@ export const Resume = (props) => {
               if (slice.slice_type === 'resume_work_history') {
                 return <ResumeWorkHistory {...slice} key={i} />;
               }
-
+              if (slice.slice_type === 'resume_education') {
+                return <ResumeEducation {...slice} key={i} />;
+              }
               if (slice.slice_type === 'resume_work_history_condensed') {
                 return <ResumeWorkHistoryCondensed {...slice} key={i} />;
               }

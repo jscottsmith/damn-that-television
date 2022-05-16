@@ -12,6 +12,9 @@
   h6,
   p {
     @apply my-md;
+    &:last-of-type {
+      @apply mb-0;
+    }
   }
   h1 {
     @apply text-3xl md:text-4xl;
