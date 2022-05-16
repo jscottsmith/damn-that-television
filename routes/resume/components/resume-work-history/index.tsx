@@ -4,9 +4,11 @@ import React from 'react';
 import { formatterMonthYear } from 'routes/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 
+export const RECENT_WORK_HISTORY_ID = 'recent-work-history';
+
 export const ResumeWorkHistory = (props) => {
   return (
-    <div>
+    <div id={RECENT_WORK_HISTORY_ID}>
       <span className="prose">
         <RichText render={props.primary.title} />
       </span>
