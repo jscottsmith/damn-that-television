@@ -11,11 +11,11 @@ export const RecruiterBadge = (props) => {
       )}
       {...rest}
     >
-      <span className="absolute inset-0 bg-cream rounded-full scale-75 md:scale-0 md:opacity-0 transition-all duration-200 ease-out group-hover:scale-75 group-hover:opacity-100 "></span>
+      <span className="absolute inset-0 bg-cream rounded-full scale-0 opacity-0 transition-all duration-200 ease-out group-hover:scale-75 group-hover:opacity-100 "></span>
       <span className="absolute inset-0 flex items-center justify-center">
         {props.children}
       </span>
-      <svg viewBox="0 0 500 500" className="z-10">
+      <svg viewBox="0 0 500 500" className="z-10 w-full">
         <title>Employers & Recruiters</title>
         <defs>
           {/* <circle id="textcircle" cx="250" cy="250" r="200" /> */}
@@ -34,12 +34,22 @@ export const RecruiterBadge = (props) => {
             />
           </path>
         </defs>
+        <circle
+          cx={250}
+          cy={250}
+          r={138}
+          strokeWidth="40"
+          stroke="#f7e7b3"
+          fill="none"
+        />
         <text
           dy="70"
-          textLength="1220"
-          className="font-normal uppercase text-deep"
+          fontFamily="futura-pt, sans-serif"
+          fontWeight="600"
+          className="uppercase text-deep"
+          fill="currentColor"
         >
-          <textPath xlinkHref="#textcircle" fill="currentColor">
+          <textPath xlinkHref="#textcircle" textLength="1220">
             {'Employers & Recruiters • Employers & Recruiters • '}
           </textPath>
         </text>
