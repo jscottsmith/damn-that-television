@@ -51,22 +51,22 @@ export const WorkTogether = (props: WorkTogetherProps) => {
         </SelectionButton>
       </div>
       {isInterested && (
-        <div className="w-full mt-lg">
-          <div className={cx('prose')}>
+        <div className="w-full mt-lg text-center">
+          <div className={cx('prose max-w-md mx-auto')}>
             <RichText render={props.primary.body_yes} />
           </div>
-          <div className="flex gap-sm items-center">
+          <div className="flex justify-center my-lg">
             <a href="mailto:jscsmith@gmail.com">
               <Button
-                buttonSize={ButtonSizes.sm}
+                buttonSize={ButtonSizes.default}
                 buttonType={ButtonTypes.pepto}
               >
-                Send me an email
+                Email me!
               </Button>
             </a>
-            <div className="text-xs">
-              <RichText render={props.primary.note} />
-            </div>
+          </div>
+          <div className="text-xs text-lunar">
+            <RichText render={props.primary.note} />
           </div>
         </div>
       )}
