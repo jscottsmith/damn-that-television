@@ -1,8 +1,17 @@
+import { NavLinks } from '@/components/types';
+import { ROUTE_DAMN_GAME, ROUTE_RESUME } from '@/routes/routes.constants';
+
 export const OBSERVER_OPTIONS = {
   root: null,
   rootMargin: '0px',
   threshold: [0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
 };
+
+export const NAVIGATION_LINKS: NavLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Résumé', href: ROUTE_RESUME },
+  { label: 'Damn TV', href: ROUTE_DAMN_GAME },
+];
 
 export const COLORS = {
   white: '#ffffff',

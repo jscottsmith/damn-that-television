@@ -49,7 +49,7 @@
   align-content: center;
   justify-content: center;
 
-  z-index: 100;
+  z-index: 40;
 
   transition: transform 300ms $easeOut;
   animation: playIn 2s $easeOutQuint 0s 1 forwards;
