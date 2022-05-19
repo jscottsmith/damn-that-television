@@ -8,8 +8,7 @@ import { ResumeWorkHistoryCondensed } from './components/resume-work-history-con
 import { ResumeList } from './components/resume-list';
 import { ResumeAwards } from './components/resume-awards';
 import { WorkTogether } from './components/work-together';
-import Link from 'next/link';
-import HeaderNav from 'routes/home/components/header-nav/HeaderNav';
+import { HeaderNav } from '@/routes/home/components/header-nav';
 import { ResumeEducation } from './components/resume-education';
 
 const DESC = 'Résumé of J Scott Smith, a creative web developer.';
@@ -29,11 +28,7 @@ function getMeta(pathname) {
 export const Resume = (props) => {
   return (
     <>
-      <Link href="/" passHref>
-        <a>
-          <HeaderNav isEyeActive={false} />
-        </a>
-      </Link>
+      <HeaderNav />
       <Helmet title="Résumé" meta={getMeta(props.router.pathname)} />
       <article className="bg-gray-100 p-sm pt-4xl md:p-md lg:p-lg xl:p-xl 2xl:p-2xl">
         <div className="max-w-screen-lg mx-auto rounded-md bg-white shadow-xl p-sm md:p-md lg:p-lg xl:p-xl 2xl:p-2xl md:flex md:gap-md lg:gap-lg">

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import cx from 'classnames';
 import { RichText } from 'prismic-reactjs';
 
-import HeaderNav from 'routes/home/components/header-nav/HeaderNav';
+import { HeaderNav } from '@/routes/home/components/header-nav';
 import { CanvasHero } from '@/components/canvas-hero';
 import Letters from 'canvas/letters/LetterDrop';
 
@@ -17,13 +17,9 @@ import { WORK_TOGETHER_ID } from '@/routes/resume/components/work-together';
 function IntroLanding(props) {
   const letters = useRef(new Letters());
 
-  const onEyeClick = () => {
-    window.scrollTo(0, window.innerHeight);
-  };
-
   return (
     <article>
-      <HeaderNav onEyeClick={onEyeClick} isEyeActive={false} />
+      <HeaderNav />
       <CanvasHero entities={[letters.current]} />
       <div className={cx(styles.welcome)}>
         <div className={styles.copy}>

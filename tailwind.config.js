@@ -14,6 +14,10 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      fontFamily: {
+        futura: 'futura-pt, sans-serif',
+        poppins: 'poppins, sans-serif',
+      },
       spacing: {
         '2xs': '0.125rem',
         xs: '0.25rem',

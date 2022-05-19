@@ -7,6 +7,10 @@ export function useToggle(initialToggleState: boolean) {
     setToggled(isToggled);
   }
 
+  function toggle() {
+    setToggled(!isToggled);
+  }
+
   function toggleOff() {
     setToggled(false);
   }
@@ -14,5 +18,5 @@ export function useToggle(initialToggleState: boolean) {
     setToggled(true);
   }
 
-  return { isToggled, setToggleState, toggleOff, toggleOn };
+  return { isToggled, setToggleState, toggleOff, toggleOn, toggle };
 }
