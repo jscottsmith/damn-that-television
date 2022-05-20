@@ -6,8 +6,8 @@ export default class Letter {
     this.point = point;
     this.letter = letter.toUpperCase();
     this.radius = radius;
-    this.width = radius * 2;
-    this.height = radius * 2;
+    this.width = radius * 3 * window.devicePixelRatio;
+    this.height = radius * 3 * window.devicePixelRatio;
     this.center = new Point(radius, radius);
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
