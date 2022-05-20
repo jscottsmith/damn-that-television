@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import cx from 'classnames';
 import Link from 'next/link';
 import { NavLinks } from '../types';
+import { useRouter } from 'next/router';
 // import { Marquee } from '../marquee';
 // import { FOUND_A_JOB_LYRICS } from '@/constants/found-a-job-lyrics';
 
@@ -34,6 +35,7 @@ export const NavigationMenu = (props: {
   closeNavigation: () => unknown;
 }) => {
   const animate = props.isVisible ? 'visible' : 'hidden';
+  const router = useRouter();
   return (
     <motion.div
       initial="hidden"
@@ -47,13 +49,24 @@ export const NavigationMenu = (props: {
           <motion.ul variants={navContainer} initial="hidden" animate={animate}>
             {props.links.map((current, i) => (
               <motion.li
-                style={{ marginLeft: `${props.links.length - i * 1}%` }}
+                className="flex items-center group text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
+                style={{
+                  marginLeft: `${(props.links.length - i - 1) * 0.1}em`,
+                }}
                 variants={navItem}
                 key={i}
                 onClick={() => props.closeNavigation()}
               >
+                <span
+                  className={cx(
+                    'border-t-4 border-solid mr-sm md:mr-md w-6 md:w-24 xl:w-32 inline-block rounded-md',
+                    router.pathname === current.href
+                      ? 'border-pepto'
+                      : 'border-lunar',
+                  )}
+                />
                 <Link href={current.href}>
-                  <a className="whitespace-nowrap text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-futura uppercase italic text-pepto font-black hover:text-cream">
+                  <a className="whitespace-nowrap font-futura uppercase italic text-pepto font-black hover:text-cream">
                     {current.label}
                   </a>
                 </Link>
