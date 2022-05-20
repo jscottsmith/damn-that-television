@@ -2,7 +2,7 @@ import React from 'react';
 import { EyeButton } from 'components/eye-button';
 import { NavigationMenu } from '@/components/navigation-menu';
 import { useToggle } from 'hooks/use-toggle';
-import { NAVIGATION_LINKS } from '@/constants/app';
+import { NAVIGATION_LINKS, SECONDARY_LINKS } from '@/constants/app';
 
 export const HeaderNav = () => {
   const controller = useToggle(false);
@@ -17,6 +17,7 @@ export const HeaderNav = () => {
       />
       <NavigationMenu
         links={NAVIGATION_LINKS}
+        secondaryLinks={SECONDARY_LINKS}
         isVisible={controller.isToggled}
         closeNavigation={controller.toggleOff}
       />

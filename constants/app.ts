@@ -13,6 +13,25 @@ export const NAVIGATION_LINKS: NavLinks = [
   { label: 'Damn TV', href: ROUTE_DAMN_GAME },
 ];
 
+export const SECONDARY_LINKS: NavLinks = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/jscottsmith/',
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/jscsmith/',
+  },
+  {
+    label: 'Codepen',
+    href: 'https://codepen.io/jscottsmith/',
+  },
+  {
+    label: 'Twitter',
+    href: 'https://twitter.com/damntelevision',
+  },
+];
+
 export const COLORS = {
   white: '#ffffff',
   ghost: '#edf8ff',
