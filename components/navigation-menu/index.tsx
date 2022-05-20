@@ -94,12 +94,19 @@ export const NavigationMenu = (props: {
                   className={cx(
                     'border-t-4 border-solid mr-sm md:mr-md w-6 md:w-24 xl:w-32 inline-block rounded-md',
                     router.pathname === current.href
-                      ? 'border-pepto'
+                      ? 'border-cream'
                       : 'border-lunar',
                   )}
                 />
                 <Link href={current.href}>
-                  <a className="whitespace-nowrap font-futura uppercase italic text-pepto font-black hover:text-cream">
+                  <a
+                    className={cx(
+                      router.pathname === current.href
+                        ? 'text-softy'
+                        : 'text-pepto',
+                      'whitespace-nowrap font-futura uppercase italic font-black hover:text-cream',
+                    )}
+                  >
                     {current.label}
                   </a>
                 </Link>
