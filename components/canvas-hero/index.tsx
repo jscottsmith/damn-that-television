@@ -9,7 +9,7 @@ export const CanvasHero = (props: { entities: unknown[] }) => {
 
   useEffect(() => {
     const canvas = new Canvas({
-      dpr: window.devicePixelRatio || 1,
+      dpr: 1,
       canvas: canvasRef.current,
       container: containerRef.current,
       hasPointer: true,

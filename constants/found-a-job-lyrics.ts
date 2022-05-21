@@ -1,3 +1,13 @@
+export const LYRICS_LETTERS = [
+  'Damn',
+  'that',
+  'television',
+  'what',
+  'a',
+  'bad',
+  'picture',
+];
+
 export const FOUND_A_JOB_LYRICS = [
   'Damn that television, what a bad picture',
   "Don't get upset, it's not a major disaster",

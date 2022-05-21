@@ -13,8 +13,8 @@ export default class Letter {
     this.ctx = this.canvas.getContext('2d');
     this.canvas.width = this.width;
     this.canvas.height = this.height;
-    this.rotation = utils.getRandomFloat(-Math.PI, Math.PI);
-    this.spin = utils.getRandomFloat(-0.1, 0.1);
+    this.rotation = utils.getRandomFloat(-Math.PI * 0, Math.PI * 0);
+    this.spin = utils.getRandomFloat(-0.05, 0.05);
     this.depth = utils.getRandomFloat(-0.5, 0.8);
     this.shadowOffset = this.radius / 6;
     // state for scene

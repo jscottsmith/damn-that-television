@@ -5,14 +5,16 @@ import PhysicsPoint from './PhysicsPoint';
 import Letter from './Letter';
 import loadImage from 'utils/loadImage';
 import { COLORS } from 'constants/app';
+import { LYRICS_LETTERS } from '@/constants/found-a-job-lyrics';
 
 const LETTER_WAVE_STRENGTH = 2;
 const PATTERN_OK = '/static/pattern-0.svg';
 
 export default class LetterDrop {
   constructor() {
-    this.words = [];
+    this.words = [...LYRICS_LETTERS];
     this.letters = [];
+    this.drop = true;
   }
 
   createWave = ({ bounds, ctx, dpr }) => {
@@ -39,18 +41,23 @@ export default class LetterDrop {
     // this.pyramid.setup({ ctx });
   };
 
-  queueWord = (word) => {
-    this.words = [word, ...this.words];
+  queueWord = (...args) => {
+    this.words = [...args, ...this.words];
     this.drop = true;
   };
 
   dropWord({ bounds, dpr }) {
     this.drop = false;
+
+    if (!this.words.length) {
+      return;
+    }
+
     const { w, h } = bounds;
-    const word = this.words.pop();
+    const word = this.words.shift();
     const letters = word.split('');
     const off = bounds.w / (letters.length + 1);
-    const rw = w / 20;
+    const rw = w * 0.08;
     const vh = -h * 0.03;
 
     const points = letters.map((letter, i) => {
@@ -60,11 +67,11 @@ export default class LetterDrop {
       const radius = utils.getRandomFloat(r1, r2);
       // position
       const x = off * (i + 1);
-      const y = bounds.h - radius;
+      const y = bounds.h + radius * 2;
       // velocity
       const vx = utils.getRandomFloat(-5 * dpr, 5 * dpr);
-      const vy1 = vh * 0.8;
-      const vy2 = vh * 1.05;
+      const vy1 = vh * 1.1;
+      const vy2 = vh * 1.25;
       const vy = utils.getRandomFloat(vy1, vy2);
 
       const point = new PhysicsPoint({ x, y, vx, vy });
@@ -99,8 +106,9 @@ export default class LetterDrop {
     const context = canvas.getContext('2d');
 
     context.drawImage(img, 0, 0, w, h);
-
-    return ctx.createPattern(canvas, 'repeat');
+    const pattern = ctx.createPattern(canvas, 'repeat');
+    pattern.setTransform(this.matrix);
+    return pattern;
   }
 
   // lifecycles
@@ -111,10 +119,16 @@ export default class LetterDrop {
       const h = 90 * context.dpr;
       this.pattern = this.createPattern(context.ctx, image, w, h);
     });
+    if (document) {
+      this.matrix = new DOMMatrix();
+    }
     this.createWave(context);
   };
 
-  resize = (context) => this.createWave(context);
+  resize = (context) => {
+    this.createWave(context);
+    this.draw(context);
+  };
 
   draw = (context) => {
     context.ctx.fillStyle = this.pattern;
@@ -125,10 +139,18 @@ export default class LetterDrop {
   };
 
   update = (context) => {
-    if (context.tick % 90 === 0) {
-      this.queueWord('OKAY');
+    if (this.pattern && this.pattern.setTransform) {
+      // console.log(context.tick);
+      this.matrix.translateSelf(0.2, 0.5);
+      this.pattern.setTransform(this.matrix);
     }
-    if (this.drop && this.words.length) {
+    if (context.tick % 120 === 0 && this.words.length === 0) {
+      this.queueWord(...LYRICS_LETTERS);
+    }
+    if (context.tick % 120 === 0 && this.words.length !== 0) {
+      this.drop = true;
+    }
+    if (this.drop && this.words.length !== 0) {
       this.dropWord(context);
     }
 
