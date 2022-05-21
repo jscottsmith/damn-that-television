@@ -70,8 +70,8 @@ export default class LetterDrop {
       const y = bounds.h + radius * 2;
       // velocity
       const vx = utils.getRandomFloat(-5 * dpr, 5 * dpr);
-      const vy1 = vh * 1.1;
-      const vy2 = vh * 1.25;
+      const vy1 = vh * 0.9;
+      const vy2 = vh * 1.15;
       const vy = utils.getRandomFloat(vy1, vy2);
 
       const point = new PhysicsPoint({ x, y, vx, vy });
@@ -141,7 +141,10 @@ export default class LetterDrop {
   update = (context) => {
     if (this.pattern && this.pattern.setTransform) {
       // console.log(context.tick);
-      this.matrix.translateSelf(0.2, 0.5);
+      const tx = Math.sin(context.tick * 0.02) * 0.1;
+      const ty = Math.sin(context.tick * 0.01) * 0.1;
+      this.matrix.translateSelf(0.2, 0.5).rotateSelf(tx, ty);
+
       this.pattern.setTransform(this.matrix);
     }
     if (context.tick % 120 === 0 && this.words.length === 0) {
