@@ -57,21 +57,21 @@ export default class LetterDrop {
     const word = this.words.shift();
     const letters = word.split('');
     const off = bounds.w / (letters.length + 1);
-    const rw = w * 0.08;
+    const rw = w * 0.05;
     const vh = -h * 0.03;
 
     const points = letters.map((letter, i) => {
       // radius
       const r1 = rw;
-      const r2 = rw + 30 * dpr;
+      const r2 = rw + 40 * dpr;
       const radius = utils.getRandomFloat(r1, r2);
       // position
       const x = off * (i + 1);
       const y = bounds.h + radius * 2;
       // velocity
       const vx = utils.getRandomFloat(-5 * dpr, 5 * dpr);
-      const vy1 = vh * 0.9;
-      const vy2 = vh * 1.15;
+      const vy1 = vh * 1.05;
+      const vy2 = vh * 1.25;
       const vy = utils.getRandomFloat(vy1, vy2);
 
       const point = new PhysicsPoint({ x, y, vx, vy });
