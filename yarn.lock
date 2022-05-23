@@ -65,10 +65,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@gush/candybar@0.0.0-alpha38":
-  version "0.0.0-alpha38"
-  resolved "https://registry.yarnpkg.com/@gush/candybar/-/candybar-0.0.0-alpha38.tgz#e41a99e88e2b5c52896a3c380da0adff15bb61b4"
-  integrity sha512-/RsBUJUxCdvITgrnWQgm9/vSj7GkxhpWgm9p0Z85vG4WLJbgGLuiZkXMkWHERpZi3Hu+bsdKfDQ++wj8H9w7Mw==
+"@gush/candybar@0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@gush/candybar/-/candybar-0.0.0.tgz#db05ebd477708acba32520d25f9376d9973e38ab"
+  integrity sha512-BsALePpsofnnWHC8Qij+GYi8RQa20RN+kLDHbhImY0aRNN8XU3j2sn0kfVuatawWwb5cPR9bMzlsn1JR0SBZZg==
 
 "@heroicons/react@^1.0.6":
   version "1.0.6"
