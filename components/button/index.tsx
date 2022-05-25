@@ -7,6 +7,7 @@ export enum ButtonTypes {
   'pepto' = 'pepto',
   'blue' = 'blue',
   'gray' = 'gray',
+  'deep' = 'deep',
 }
 
 export enum ButtonSizes {
@@ -18,16 +19,22 @@ export enum ButtonSizes {
 
 export function getButtonSize(buttonSize: keyof typeof ButtonSizes) {
   const styles = {
-    [ButtonSizes.sm]: 'px-3 py-0 md:px-4 md:py-1 rounded text-md',
-    [ButtonSizes.default]: 'px-4 py-1 md:px-6 md:py-2 rounded-md text-xl',
-    [ButtonSizes.md]: 'px-5 py-2 md:px-7 md:py-3 rounded-md text-2xl',
-    [ButtonSizes.lg]: 'px-6 py-3 md:px-9 md:py-4 rounded-md text-3xl',
+    [ButtonSizes.sm]:
+      'px-3 py-0 md:px-4 md:py-1 rounded text-md hover:scale-105 transition-all',
+    [ButtonSizes.default]:
+      'px-4 py-1 md:px-6 md:py-2 rounded-md text-xl hover:scale-105 transition-all',
+    [ButtonSizes.md]:
+      'px-5 py-2 md:px-7 md:py-3 rounded-md text-2xl hover:scale-105 transition-all',
+    [ButtonSizes.lg]:
+      'px-6 py-3 md:px-9 md:py-6 rounded-lg text-2xl md:text-3xl font-bold hover:scale-105 transition-all',
   };
   return styles[buttonSize];
 }
 
 function getButtonStyle(buttonType: keyof typeof ButtonTypes) {
   const styles = {
+    [ButtonTypes.deep]:
+      'bg-deep text-ghost disabled:bg-gray-700 disabled:text-gray-200 hover:text-club',
     [ButtonTypes.gray]:
       'bg-gray-300 text-gray-900 disabled:bg-gray-700 disabled:text-gray-200 hover:text-gray-50 hover:bg-gray-700',
     [ButtonTypes.blue]:
