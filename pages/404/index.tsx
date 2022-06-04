@@ -1,6 +1,6 @@
 import { CanvasHero } from 'components/canvas-hero';
 import { Eraser } from 'canvas/eraser/Eraser';
-import { HeaderNav } from '@/routes/home/components/header-nav';
+import { HeaderNav } from '@/routes/components/header-nav';
 import Link from 'next/link';
 
 const eraser = new Eraser();
