@@ -8,7 +8,7 @@ import { ResumeWorkHistoryCondensed } from './components/resume-work-history-con
 import { ResumeList } from './components/resume-list';
 import { ResumeAwards } from './components/resume-awards';
 import { WorkTogether } from './components/work-together';
-import { HeaderNav } from '@/routes/home/components/header-nav';
+import { HeaderNav } from '@/routes/components/header-nav';
 import { ResumeEducation } from './components/resume-education';
 
 const DESC = 'Résumé of J Scott Smith, a creative web developer.';
