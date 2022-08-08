@@ -29,16 +29,18 @@ export const ResumeWorkHistory = (props) => {
           <div className="prose">
             <RichText render={item.content} />
           </div>
-          <footer>
-            <ul>
-              {item.keywords.split(', ').map((keyword) => (
-                <li key={keyword} className="inline-block mr-sm mb-sm">
-                  <Badge className="bg-transparent border-solid border border-gray-200">
-                    {keyword}
-                  </Badge>
-                </li>
-              ))}
-            </ul>
+          <footer className="mt-md">
+            {item.keywords && (
+              <ul>
+                {item.keywords.split(', ').map((keyword) => (
+                  <li key={keyword} className="inline-block mr-sm mb-sm">
+                    <Badge className="bg-transparent border-solid border border-gray-200">
+                      {keyword}
+                    </Badge>
+                  </li>
+                ))}
+              </ul>
+            )}
             <DateRange
               dateFormatter={formatterMonthYear}
               startDate={item.start_date}
