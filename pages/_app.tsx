@@ -1,7 +1,8 @@
 import Head from 'next/head';
-import React from 'react';
-import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import Router, { useRouter } from 'next/router';
 import { TransitionGroup } from 'react-transition-group';
+import { PageLoader } from '../components/page-loader';
 import '../sass/root.scss';
 import '../sass/globals.scss';
 
@@ -10,6 +11,18 @@ const getGtag = () =>
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    Router.events.on('routeChangeStart', () => setLoading(true));
+    Router.events.on('routeChangeComplete', () => setLoading(false));
+    Router.events.on('routeChangeError', () => setLoading(false));
+    return () => {
+      Router.events.off('routeChangeStart', () => setLoading(true));
+      Router.events.off('routeChangeComplete', () => setLoading(false));
+      Router.events.off('routeChangeError', () => setLoading(false));
+    };
+  }, [Router.events]);
+
   return (
     <>
       <Head>
@@ -49,10 +62,15 @@ function MyApp({ Component, pageProps }) {
         />
         <script dangerouslySetInnerHTML={{ __html: getGtag() }} />
       </Head>
-      <TransitionGroup>
-        <Component {...pageProps} />
-      </TransitionGroup>
+      {!loading ? (
+        <TransitionGroup>
+          <Component {...pageProps} />
+        </TransitionGroup>
+      ) : (
+        <PageLoader />
+      )}
     </>
   );
 }
+
 export default MyApp;
