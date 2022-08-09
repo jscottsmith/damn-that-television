@@ -47,6 +47,7 @@ class LevelController extends Component {
             {({ hasLoaded, assets }) =>
               hasLoaded ? (
                 <Fragment>
+                  {/* @ts-expect-error */}
                   <LevelInterface />
                   <Level config={this.config} assets={assets} />
                 </Fragment>
@@ -63,6 +64,7 @@ class LevelController extends Component {
             {({ hasLoaded, assets }) =>
               hasLoaded ? (
                 <Fragment>
+                  {/* @ts-expect-error */}
                   <LevelInterface />
                   <Level config={this.config} assets={assets} />
                 </Fragment>
@@ -91,4 +93,5 @@ const mapDispatchToProps = (dispatch) => ({
   nextLevel: bindActionCreators(nextLevel, dispatch),
 });
 
+// @ts-expect-error
 export default connect(mapStateToProps, mapDispatchToProps)(LevelController);
