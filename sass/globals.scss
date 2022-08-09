@@ -12,7 +12,7 @@
   h6,
   p {
     @apply my-md;
-    &:last-of-type {
+    &:last-child {
       @apply mb-0;
     }
   }
