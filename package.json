@@ -3,6 +3,9 @@
   "version": "1.13.1",
   "description": "Damn that television. The personal website of J Scott Smith",
   "main": "index.js",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "dev": "NODE_ENV=development next",
     "build": "./node_modules/next/dist/bin/next build",
