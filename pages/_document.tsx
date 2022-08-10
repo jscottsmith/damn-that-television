@@ -1,16 +1,53 @@
 import React from 'react';
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import { Head, Html, Main, NextScript } from 'next/document';
 
-export default class MyDocument extends Document {
-  render() {
-    return (
-      <Html>
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
+const getGtag = () =>
+  `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-DGR8W8P5K3');`;
+
+export default function Document(props) {
+  return (
+    <Html>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <link
+          rel="stylesheet"
+          href="https://use.typekit.net/bwo5nqc.css"
+        ></link>
+        <link
+          rel="canonical"
+          href={`https://damnthat.tv${props.dangerousAsPath}`}
+        ></link>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-DGR8W8P5K3"
+        />
+        <script dangerouslySetInnerHTML={{ __html: getGtag() }} />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
 }
