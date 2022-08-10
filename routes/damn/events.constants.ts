@@ -1,0 +1,1 @@
+export const PLAYER_FIRED_EVENT = 'PLAYER_FIRED_EVENT';

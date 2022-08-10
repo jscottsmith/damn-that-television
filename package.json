@@ -29,6 +29,9 @@
     "@gush/candybar": "0.0.1",
     "@heroicons/react": "^1.0.6",
     "@prismicio/client": "^5.1.0",
+    "@react-three/cannon": "^6.3.0",
+    "@react-three/drei": "^9.19.7",
+    "@react-three/fiber": "^8.3.1",
     "autoprefixer": "^10.4.8",
     "classnames": "^2.3.1",
     "framer-motion": "^7.0.0",
@@ -38,11 +41,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "react-merge-refs": "^2.0.1",
     "react-observed": "^1.0.3",
     "react-redux": "^8.0.2",
     "react-transition-group": "^2.7.1",
     "redux": "^4.0.4",
-    "sass": "^1.54.3"
+    "sass": "^1.54.3",
+    "three": "^0.143.0",
+    "zustand": "^4.0.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.0",

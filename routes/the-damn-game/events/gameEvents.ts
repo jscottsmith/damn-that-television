@@ -1,4 +1,4 @@
-import PubSub from '../PubSub';
+import { PubSub } from '../../../utils/pub-sub';
 
 const gameEvents = PubSub.createPubSub();
 
