@@ -669,10 +669,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/three@npm:^0.143.0":
+  version: 0.143.0
+  resolution: "@types/three@npm:0.143.0"
+  dependencies:
+    "@types/webxr": "*"
+  checksum: 1e4557a844fac4efe6d8af90960322f50f1d26f6394c033bea8868519ce89f36e3b03ce85d2b7320868f11a46b3fe5bd6178e89e750ccd50e68fb5806af58588
+  languageName: node
+  linkType: hard
+
 "@types/use-sync-external-store@npm:^0.0.3":
   version: 0.0.3
   resolution: "@types/use-sync-external-store@npm:0.0.3"
   checksum: 161ddb8eec5dbe7279ac971531217e9af6b99f7783213566d2b502e2e2378ea19cf5e5ea4595039d730aa79d3d35c6567d48599f69773a02ffcff1776ec2a44e
+  languageName: node
+  linkType: hard
+
+"@types/webxr@npm:*":
+  version: 0.5.0
+  resolution: "@types/webxr@npm:0.5.0"
+  checksum: 891af0e96a229f45584d89daa3101232862da2ded14076aa631b2e12deb4e4b91fa35ff8d8d5ab4613aa8adce0870bd32cd61f070c1bc70d37303c515e1ae6ac
   languageName: node
   linkType: hard
 
@@ -1396,7 +1412,9 @@ __metadata:
     "@tailwindcss/typography": ^0.5.0
     "@types/node": ^17.0.33
     "@types/react": ^17.0.38
+    "@types/three": ^0.143.0
     autoprefixer: ^10.4.8
+    cannon-es-debugger: ^1.0.0
     classnames: ^2.3.1
     eslint: 8.6.0
     eslint-config-next: 12.0.7

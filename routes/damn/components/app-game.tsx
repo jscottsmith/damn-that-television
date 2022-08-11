@@ -1,5 +1,5 @@
 import { Sky } from '@react-three/drei';
-import { Physics } from '@react-three/cannon';
+import { Debug, Physics } from '@react-three/cannon';
 import { Canvas } from '@react-three/fiber';
 import { Box } from './../components/box';
 import { CameraControls } from './../components/camera-controls';
@@ -11,21 +11,26 @@ import { Projectile } from './projectile';
 export function AppGame() {
   return (
     <Canvas>
-      <Physics>
-        <GameCamera />
-        <Sky
-          distance={450000}
-          sunPosition={[0, 1, 0]}
-          inclination={0}
-          azimuth={0.25}
-        />
-        <Projectile />
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        {/* <CameraControls /> */}
-        <Player position={[0, -1, 0]} rotation={[-Math.PI / 2, 0, 0]} />
-        <Ground position={[0, -10, 0]} rotation={[-Math.PI / 2, 0, 0]} />
-        <Box position={[-1.2, 0, 0]} />
+      <Physics
+        defaultContactMaterial={{
+          restitution: 0.9,
+        }}
+      >
+        <Debug color={'#eeeeee'} scale={1.05}>
+          <GameCamera />
+          <Sky
+            distance={450000}
+            sunPosition={[0, 1, 0]}
+            inclination={0}
+            azimuth={0.25}
+          />
+          <Projectile />
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
+          {/* <CameraControls /> */}
+          <Player position={[0, -1, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+          <Ground position={[0, -10, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+        </Debug>
       </Physics>
     </Canvas>
   );
