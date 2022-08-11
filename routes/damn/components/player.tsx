@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { useEffect, useRef } from 'react';
-import { MeshProps, useFrame } from '@react-three/fiber';
+import { GroupProps, MeshProps, useFrame } from '@react-three/fiber';
 import { useFireProjectileOnClick } from '../hooks/use-fire-projectile-on-click';
 import { useGameStore } from '../hooks/use-game-store';
 // import { useHelper } from '@react-three/drei';
@@ -8,10 +8,10 @@ import { useGameStore } from '../hooks/use-game-store';
 export const GUN_END_POINT = 'GUN_END_POINT';
 export const GUN_START_POINT = 'GUN_START_POINT';
 
-export function Player(props: MeshProps) {
+export function Player(props: GroupProps) {
   const lookAt = useRef<THREE.Mesh>();
   const lookAtVec3 = useRef<THREE.Vector3>(new THREE.Vector3());
-  const player = useRef<THREE.Object3d>();
+  const player = useRef<THREE.Group>();
   // useHelper(player, THREE.Box3Helper, 'royalblue');
   // useHelper(player, THREE.ArrowHelper, 'royalblue');
 
