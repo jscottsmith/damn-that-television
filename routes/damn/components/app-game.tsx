@@ -6,17 +6,18 @@ import { CameraControls } from './../components/camera-controls';
 import { Ground } from './../components/ground';
 import { Player } from './../components/player';
 import { GameCamera } from './../components/game-camera';
-import { Projectile } from './projectile';
+import { Projectiles } from './projectiles';
+import { Wall } from './wall';
 
 export function AppGame() {
   return (
-    <Canvas>
+    <Canvas shadows>
       <Physics
         defaultContactMaterial={{
           restitution: 0.9,
         }}
       >
-        <Debug color={'#eeeeee'} scale={1.05}>
+        <Debug color={'slateblue'} scale={1.05}>
           <GameCamera />
           <Sky
             distance={450000}
@@ -24,12 +25,25 @@ export function AppGame() {
             inclination={0}
             azimuth={0.25}
           />
-          <Projectile />
+          <Projectiles number={10} />
           <ambientLight />
-          <pointLight position={[10, 10, 10]} />
+          <pointLight
+            intensity={0.7}
+            position={[2, 50, 5]}
+            castShadow
+            shadow-mapSize-height={512}
+            shadow-mapSize-width={512}
+          />
           {/* <CameraControls /> */}
           <Player position={[0, -1, 0]} rotation={[-Math.PI / 2, 0, 0]} />
-          <Ground position={[0, -10, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+          <group>
+            <Wall
+              args={[100, 50, 1]}
+              position={[0, 15, -50]}
+              rotation={[0, 0, 0]}
+            />
+            <Ground position={[0, -10, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+          </group>
         </Debug>
       </Physics>
     </Canvas>

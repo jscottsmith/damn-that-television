@@ -5,7 +5,7 @@ import { useGameStore } from './use-game-store';
 import { useGameEvents } from './use-game-events';
 import { PLAYER_FIRED_EVENT } from '../events.constants';
 
-export function useFireProjectileOnClick() {
+export function useFireProjectileOnClick(maxPower: number) {
   const [down, setDown] = useState<boolean>(false);
   const [power, setPower] = useState<number>(0);
   const player = useGameStore((state) => state.player);
@@ -15,7 +15,7 @@ export function useFireProjectileOnClick() {
   } = useThree();
 
   useFrame(() => {
-    if (down) {
+    if (down && power < maxPower) {
       setPower(power + 1);
     }
   });

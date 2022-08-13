@@ -8,6 +8,7 @@ export function GameCamera() {
   return (
     <PerspectiveCamera
       makeDefault
+      fov={75}
       position={[0, 5, 20]}
       ref={camera}
       scale={10}

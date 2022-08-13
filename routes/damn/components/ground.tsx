@@ -7,7 +7,7 @@ export function Ground(props: PlaneProps) {
   }));
 
   return (
-    <mesh ref={ref}>
+    <mesh ref={ref} receiveShadow>
       <planeGeometry args={[1000, 1000]} />
       <meshStandardMaterial color={'tan'} />
     </mesh>

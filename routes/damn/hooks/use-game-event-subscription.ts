@@ -9,5 +9,5 @@ export function useGameEventSubscription(
   useEffect(() => {
     gameEvents.subscribe(event, callback);
     return () => gameEvents.unsubscribe(event);
-  }, [callback]);
+  }, [callback, event, gameEvents]);
 }

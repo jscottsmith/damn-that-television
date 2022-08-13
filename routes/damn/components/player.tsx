@@ -15,7 +15,7 @@ export function Player(props: GroupProps) {
   // useHelper(player, THREE.Box3Helper, 'royalblue');
   // useHelper(player, THREE.ArrowHelper, 'royalblue');
 
-  const { power } = useFireProjectileOnClick();
+  const { power } = useFireProjectileOnClick(15);
 
   // set player to game state for targeting
   const setPlayer = useGameStore((state) => state.setPlayer);
