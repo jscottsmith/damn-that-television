@@ -12,9 +12,9 @@ export const GUN_START_POINT = 'GUN_START_POINT';
 const byName = (name: string) => (child: THREE.Object3D) => child.name === name;
 
 const findObjectInScene = (scene): THREE.Object3D => {
-  return scene.children
-    .find(byName(SCENE_GROUP_NAME))
-    .children.find(byName(MAIN_WALL_NAME));
+  return scene.children.find(byName(SCENE_GROUP_NAME));
+  // if we want to limit the aiming enable this
+  // .children.find(byName(MAIN_WALL_NAME));
 };
 
 export function Player(props: GroupProps) {
@@ -41,7 +41,7 @@ export function Player(props: GroupProps) {
       // find resulting intersections
       const intersects = raycaster.current.intersectObject(
         objectToRaycast.current,
-        false,
+        true,
       );
       const point = intersects[0]?.point;
 

@@ -20,8 +20,8 @@ export function AppGame() {
           restitution: 0.9,
         }}
       >
-        <Debug color={'slateblue'} scale={1.05}>
           <GameCamera />
+        <Debug color={'slateblue'} scale={1.001}>
           <Sky
             distance={450000}
             sunPosition={[0, 1, 0]}
@@ -42,7 +42,7 @@ export function AppGame() {
           <group name={SCENE_GROUP_NAME}>
             <Wall
               mesh={{ name: MAIN_WALL_NAME }}
-              args={[100, 50, 1]}
+              args={[100, 50, 10]}
               position={[0, 15, -50]}
               rotation={[0, 0, 0]}
             />
