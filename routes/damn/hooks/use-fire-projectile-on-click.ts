@@ -30,6 +30,7 @@ export function useFireProjectileOnClick(maxPower: number) {
   }
 
   useEffect(() => {
+    // TODO: mobile touch events
     if (player) {
       domElement.addEventListener('mousedown', handleMousedown);
       domElement.addEventListener('mouseup', handleMouseup);

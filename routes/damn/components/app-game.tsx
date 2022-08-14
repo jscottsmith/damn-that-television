@@ -9,6 +9,9 @@ import { GameCamera } from './../components/game-camera';
 import { Projectiles } from './projectiles';
 import { Wall } from './wall';
 
+export const SCENE_GROUP_NAME = 'SCENE_GROUP_NAME';
+export const MAIN_WALL_NAME = 'MAIN_WALL_NAME';
+
 export function AppGame() {
   return (
     <Canvas shadows>
@@ -36,8 +39,9 @@ export function AppGame() {
           />
           {/* <CameraControls /> */}
           <Player position={[0, -1, 0]} rotation={[-Math.PI / 2, 0, 0]} />
-          <group>
+          <group name={SCENE_GROUP_NAME}>
             <Wall
+              mesh={{ name: MAIN_WALL_NAME }}
               args={[100, 50, 1]}
               position={[0, 15, -50]}
               rotation={[0, 0, 0]}
