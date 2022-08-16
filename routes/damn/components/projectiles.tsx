@@ -64,7 +64,6 @@ export function Projectiles({ number, ...props }: Props) {
   return (
     <instancedMesh
       castShadow
-      receiveShadow
       ref={meshRef}
       args={[undefined, undefined, number]}
       {...props}
