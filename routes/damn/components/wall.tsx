@@ -3,6 +3,7 @@ import { MeshProps } from '@react-three/fiber';
 
 export function Wall({ mesh, ...props }: BoxProps & { mesh: MeshProps }) {
   const [ref] = useBox<THREE.Mesh>(() => ({
+    type: 'Static',
     ...props,
   }));
 
