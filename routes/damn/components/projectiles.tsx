@@ -1,24 +1,38 @@
 import * as THREE from 'three';
 
-import { useSphere } from '@react-three/cannon';
+import { Triplet, useSphere } from '@react-three/cannon';
 import { useGameEventSubscription } from '../hooks/use-game-event-subscription';
 import { PLAYER_FIRED_EVENT } from '../events.constants';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { GUN_END_POINT } from './player';
 import { InstancedMeshProps, useFrame } from '@react-three/fiber';
 import { InstancedMesh } from 'three';
 
 type Props = InstancedMeshProps & { number: number };
 
+function getInitialProjectilePosition(number: number, index: number): Triplet {
+  const pad = 4;
+  const offset = ((number - 1) / 2) * pad;
+  return [index * pad - offset, 18, 0];
+}
+
 function useFireProjectile(number) {
   const instanceIndex = useRef(0);
-  const [meshRef, { at }] = useSphere(
-    () => ({
+  const [meshRef, api] = useSphere(
+    (i) => ({
       mass: 0.1,
       args: [1],
+      position: getInitialProjectilePosition(number, i),
     }),
     useRef<InstancedMesh>(null),
   );
+
+  // idk how to initialize cannon bodies that are asleep so instead i do so here.
+  useEffect(() => {
+    for (let i = 0; i < number; i++) {
+      api.at(i).sleep();
+    }
+  }, [number, api]);
 
   const impulse = useRef<THREE.Vector3>(new THREE.Vector3(0, 0, 0));
 
@@ -32,7 +46,7 @@ function useFireProjectile(number) {
 
   function fireProjectile(_topic: string, player: THREE.Object3D) {
     // access api for current instance
-    const api = at(instanceIndex.current);
+    const instanceApi = api.at(instanceIndex.current);
     instanceIndex.current = (instanceIndex.current + 1) % number;
 
     player.children
@@ -40,17 +54,21 @@ function useFireProjectile(number) {
       .getWorldPosition(impulse.current);
 
     // reset things
-    api.velocity.set(0, 0, 0);
-    api.angularVelocity.set(0, 0, 0);
+    instanceApi.velocity.set(0, 0, 0);
+    instanceApi.angularVelocity.set(0, 0, 0);
     // copy player pos/rot
-    api.position.copy(player.position);
-    api.rotation.copy(player.rotation);
+    instanceApi.position.copy(player.position);
+    instanceApi.rotation.copy(player.rotation);
 
-    api.applyImpulse(
+    instanceApi.applyImpulse(
       // impulse: Vec3 - The amount of impulse to add.
       [impulse.current.x, impulse.current.y, impulse.current.z],
       // relativePoint: Vec3 - A point relative to the center of mass to apply the force on.
-      [api.position[0], api.position[1], api.position[2]],
+      [
+        instanceApi.position[0],
+        instanceApi.position[1],
+        instanceApi.position[2],
+      ],
     );
   }
 
