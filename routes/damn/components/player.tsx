@@ -23,7 +23,7 @@ export function Player(props: GroupProps) {
   const objectToRaycast = useRef<THREE.Object3D>(null);
   const player = useRef<THREE.Group>();
 
-  const { power } = useFireProjectileOnClick(15);
+  const { power } = useFireProjectileOnClick(20);
 
   // set player to game state for targeting
   const setPlayer = useGameStore((state) => state.setPlayer);

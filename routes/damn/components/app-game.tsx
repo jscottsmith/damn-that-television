@@ -6,8 +6,9 @@ import { CameraControls } from './../components/camera-controls';
 import { Ground } from './../components/ground';
 import { Player } from './../components/player';
 import { GameCamera } from './../components/game-camera';
-import { Projectiles } from './projectiles';
+// import { Projectiles } from './projectiles';
 import { Wall } from './wall';
+import { Floppies } from './floppies';
 
 export const SCENE_GROUP_NAME = 'SCENE_GROUP_NAME';
 export const MAIN_WALL_NAME = 'MAIN_WALL_NAME';
@@ -38,7 +39,7 @@ export function AppGame() {
             inclination={0}
             azimuth={0.25}
           />
-          <Projectiles number={projectiles} key={projectiles} />
+          <Floppies />
           <ambientLight />
           <pointLight
             intensity={0.7}
