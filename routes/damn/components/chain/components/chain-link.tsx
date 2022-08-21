@@ -74,7 +74,7 @@ export function ChainLink({
 
   return (
     <>
-      <mesh ref={ref}>
+      <mesh ref={ref} castShadow>
         <cylinderBufferGeometry args={args} />
         <meshStandardMaterial color={color} />
       </mesh>
