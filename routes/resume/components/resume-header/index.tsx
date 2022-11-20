@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
 import { AVATAR_PATH } from 'routes/resume';
@@ -13,8 +13,11 @@ export const ResumeHeader = (props) => {
           alt="J Scott Smith"
           width={300}
           height={300}
-          layout="responsive"
-        />
+          sizes="100vw"
+          style={{
+            width: "100%",
+            height: "auto"
+          }} />
       </div>
 
       <section className="text-center prose prose-a:text-club-500">
