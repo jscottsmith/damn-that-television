@@ -5,11 +5,11 @@ import styles from './index.module.scss';
 
 export const KillTVButton = () => {
   return (
-    <Link href="/the-damn-game">
-      <a className={cx(styles.play)}>
-        <span className={styles.playKill}>Kill</span>{' '}
-        <span className={styles.playTv}>TV!</span>
-      </a>
-    </Link>
+    (<Link href="/the-damn-game" className={cx(styles.play)}>
+
+      <span className={styles.playKill}>Kill</span>{' '}
+      <span className={styles.playTv}>TV!</span>
+
+    </Link>)
   );
 };

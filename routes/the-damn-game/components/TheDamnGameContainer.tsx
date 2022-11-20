@@ -68,8 +68,8 @@ export default class TheDamnGameContainer extends Component {
     return (
       <Fade in>
         <Provider store={gameStore}>
-          <Link href="/">
-            <a className={styles.escBtn}>ESC</a>
+          <Link href="/" className={styles.escBtn}>
+            ESC
           </Link>
           <TransitionGroup>{this._getComponent()}</TransitionGroup>
         </Provider>

@@ -98,17 +98,17 @@ export const NavigationMenu = (props: {
                       : 'border-lunar',
                   )}
                 />
-                <Link href={current.href}>
-                  <a
-                    className={cx(
-                      router.pathname === current.href
-                        ? 'text-softy'
-                        : 'text-pepto',
-                      'whitespace-nowrap font-futura uppercase italic font-black hover:text-cream',
-                    )}
-                  >
-                    {current.label}
-                  </a>
+                <Link
+                  href={current.href}
+                  className={cx(
+                    router.pathname === current.href
+                      ? 'text-softy'
+                      : 'text-pepto',
+                    'whitespace-nowrap font-futura uppercase italic font-black hover:text-cream',
+                  )}>
+
+                  {current.label}
+
                 </Link>
               </motion.li>
             ))}
@@ -140,10 +140,12 @@ export const NavigationMenu = (props: {
                   key={i}
                   onClick={() => props.closeNavigation()}
                 >
-                  <Link href={current.href}>
-                    <a className="whitespace-nowrap font-futura uppercase italic text-cream font-bold hover:text-ghost">
-                      {current.label}
-                    </a>
+                  <Link
+                    href={current.href}
+                    className="whitespace-nowrap font-futura uppercase italic text-cream font-bold hover:text-ghost">
+
+                    {current.label}
+
                   </Link>
                 </motion.li>
               ))}

@@ -129,7 +129,7 @@ export default function getSightPolygon(
 
   // Sort intersects by angle
   // Polygon is intersects, in order of angle
-  const sorted = intersects.sort(function(a, b) {
+  const sorted = intersects.sort(function (a, b) {
     return a.angle - b.angle;
   });
 
