@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
       Router.events.off('routeChangeComplete', () => setLoading(false));
       Router.events.off('routeChangeError', () => setLoading(false));
     };
-  }, [Router.events]);
+  }, []);
 
   return (
     <>

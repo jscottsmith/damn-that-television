@@ -19,7 +19,7 @@ export const CanvasHero = (props: { entities: unknown[] }) => {
     return () => {
       canvas.destroy();
     };
-  }, []);
+  }, [props.entities]);
 
   return (
     <div className={styles.container} ref={containerRef}>
