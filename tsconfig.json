@@ -2,15 +2,31 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/routes/*": ["routes/*"],
-      "@/constants/*": ["constants/*"],
-      "@/pages/*": ["pages/*"],
-      "@/helpers/*": ["helpers/*"],
-      "@/sass/*": ["sass/*"]
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/routes/*": [
+        "routes/*"
+      ],
+      "@/constants/*": [
+        "constants/*"
+      ],
+      "@/pages/*": [
+        "pages/*"
+      ],
+      "@/helpers/*": [
+        "helpers/*"
+      ],
+      "@/sass/*": [
+        "sass/*"
+      ]
     },
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -22,8 +38,22 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "declaration.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "declaration.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
