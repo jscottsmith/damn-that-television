@@ -23,8 +23,8 @@ export const Client = (req = null) =>
 // Options to be passed to the Client
 const createClientOptions = (
   req = null,
-  prismicAccessToken = null,
-  routes = null,
+  prismicAccessToken: string | null = null,
+  routes: typeof Router | null = null,
 ) => {
   const reqOption = req ? { req } : {};
   const accessTokenOption = prismicAccessToken

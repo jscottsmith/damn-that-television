@@ -25,16 +25,16 @@ export const ResumeEducation = (props: ResumeEducationType) => {
       </span>
 
       {props.items.map((item, i) => {
-        const hasCopy = item.copy.length > 0;
+        const hasCopy = item?.copy?.length ?? 0 > 0;
 
         return (
           <section className="mb-xl" key={i}>
             <div>
-              <span className="inline-block font-medium text-xl">
+              <span className="inline-block text-xl font-medium">
                 <RichText render={item.institution} />
               </span>
               {hasCopy && (
-                <span className="h-4 mx-md border-peach border-solid border-r-2 inline-block" />
+                <span className="mx-md inline-block h-4 border-r-2 border-solid border-peach" />
               )}
               {hasCopy && (
                 <span className="prose inline-block">

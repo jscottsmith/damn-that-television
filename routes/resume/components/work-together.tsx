@@ -16,46 +16,46 @@ type WorkTogetherProps = {
 };
 
 export const WorkTogether = (props: WorkTogetherProps) => {
-  const [showDeets, setDeets] = useState(null);
+  const [showDeets, setDeets] = useState(false);
   const isInterested = showDeets === true;
   const isNotInterested = showDeets === false;
   return (
     <section
       id={WORK_TOGETHER_ID}
       className={cx(
-        ' border-2 rounded-lg p-lg flex flex-row flex-wrap items-center justify-center my-lg',
+        ' my-lg flex flex-row flex-wrap items-center justify-center rounded-lg border-2 p-lg',
         showDeets
-          ? 'border-solid bg-gray-50 border-peach'
-          : 'border-dotted hover:bg-gray-50 border-gray-200',
+          ? 'border-solid border-peach bg-gray-50'
+          : 'border-dotted border-gray-200 hover:bg-gray-50',
       )}
     >
       {/* <div className="flex w-full items-center justify-center -mt-12">
         <QuestionMarkCircleIcon className="w-6 block shrink-0 mx-sm" />
       </div> */}
-      <div className="text-xl md:text-2xl font-normal text-plum">
+      <div className="text-xl font-normal text-plum md:text-2xl">
         <RichText render={props.primary.title} />
       </div>
-      <div className="w-full flex gap-sm justify-center mt-md">
+      <div className="mt-md flex w-full justify-center gap-sm">
         <SelectionButton
           isSelected={showDeets === true}
           onClick={() => setDeets(true)}
         >
-          Yep! <ThumbUpIcon className={cx('w-6 inline-block ml-xs')} />
+          Yep! <ThumbUpIcon className={cx('ml-xs inline-block w-6')} />
         </SelectionButton>
         <SelectionButton
           isSelected={showDeets === false}
           onClick={() => setDeets(false)}
         >
           No thanks.
-          <ThumbDownIcon className={cx('w-6 inline-block ml-xs')} />
+          <ThumbDownIcon className={cx('ml-xs inline-block w-6')} />
         </SelectionButton>
       </div>
       {isInterested && (
-        <div className="w-full mt-lg text-center">
-          <div className={cx('prose max-w-md mx-auto')}>
+        <div className="mt-lg w-full text-center">
+          <div className={cx('prose mx-auto max-w-md')}>
             <RichText render={props.primary.body_yes} />
           </div>
-          <div className="flex justify-center my-lg">
+          <div className="my-lg flex justify-center">
             <a href="mailto:jscsmith@gmail.com">
               <Button
                 buttonSize={ButtonSizes.default}
@@ -71,7 +71,7 @@ export const WorkTogether = (props: WorkTogetherProps) => {
         </div>
       )}
       {isNotInterested && (
-        <div className={cx('w-full mt-lg prose text-center')}>
+        <div className={cx('prose mt-lg w-full text-center')}>
           <p>No worries, carry on.</p>
         </div>
       )}

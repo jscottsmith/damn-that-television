@@ -26,7 +26,7 @@ export default class Player {
   weapon: unknown;
   shield: Shield;
   drawState: string;
-  drawStates: unknown;
+  drawStates: Record<string, () => any>;
   timer: any;
   bounds: Bounds;
   type: string;

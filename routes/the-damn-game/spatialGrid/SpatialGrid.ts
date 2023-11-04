@@ -153,7 +153,7 @@ export default class SpatialGrid {
     const checked = {};
 
     // store collision pairs
-    const pairs = [];
+    const pairs: [{ hit: boolean }, { hit: boolean }][] = [];
 
     // reset counts, for debug/comparison purposes
     this.collisionChecks = 0;

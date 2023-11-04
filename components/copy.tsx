@@ -6,13 +6,13 @@ type Props = PropsWithChildren<{
   orphans?: number;
 }>;
 
-export function Copy(props: Props) {
+export function Copy({ orphans = 0, ...props }: Props) {
   const Tag = props.tag;
   const text = props.children;
 
   // @ts-expect-error
   const textarray = text.split(' ');
-  const lastWord = textarray.length - props.orphans;
+  const lastWord = textarray.length - orphans;
   const joinedText =
     textarray.slice(0, lastWord).join(' ') +
     ' ' +

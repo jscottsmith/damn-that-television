@@ -33,7 +33,7 @@ export default class LevelView {
   tick: number;
   x: number;
   y: number;
-  player: Player;
+  player: Player | null;
   spatialGrid: SpatialGrid;
   crosshairs: Crosshairs;
   playerConfig: {
@@ -195,6 +195,7 @@ export default class LevelView {
   }
 
   killPlayer() {
+    if (!this.player) return;
     const { cx, cy } = this.player;
     this.createExplosion(2, cx, cy);
     this.player = null;

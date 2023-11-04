@@ -11,7 +11,7 @@ export default class assets {
   }
 
   preload(images) {
-    const allImages = [];
+    const allImages: Promise<unknown>[] = [];
 
     Object.keys(images).map((key) => {
       const promise = loadImage(images[key]);

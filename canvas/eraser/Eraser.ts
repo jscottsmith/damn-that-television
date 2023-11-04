@@ -35,7 +35,7 @@ class Eraser {
     canvas.width = w;
     canvas.height = h;
     const context = canvas.getContext('2d');
-
+    if (!context) return;
     context.drawImage(img, 0, 0, w, h);
 
     return ctx.createPattern(canvas, 'repeat');

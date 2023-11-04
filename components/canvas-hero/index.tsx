@@ -4,8 +4,8 @@ import { Canvas } from '@gush/candybar';
 import styles from './index.module.scss';
 
 export const CanvasHero = (props: { entities: unknown[] }) => {
-  const containerRef = useRef();
-  const canvasRef = useRef();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = new Canvas({

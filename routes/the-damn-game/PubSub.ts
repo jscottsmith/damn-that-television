@@ -1,9 +1,10 @@
-let instance = null;
+let instance: null | PubSub = null;
 
 type Token = {
   token: string;
   func: (string, any) => unknown;
 };
+
 export default class PubSub {
   topics: Record<string, Token[]>;
   subUid: number;
@@ -34,7 +35,7 @@ export default class PubSub {
     return token;
   }
 
-  publish(topic, args) {
+  publish(topic: string, args?: unknown) {
     // console.log('PUB', topic);
     if (!this.topics[topic]) {
       return false;
