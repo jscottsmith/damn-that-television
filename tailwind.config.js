@@ -16,6 +16,9 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      animation: {
+        'spin-slow': 'spin 40s linear infinite',
+      },
       fontFamily: {
         futura: 'futura-pt, sans-serif',
         poppins: 'poppins, sans-serif',

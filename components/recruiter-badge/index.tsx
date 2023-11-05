@@ -4,18 +4,18 @@ import cx from 'classnames';
 export const RecruiterBadge = (props) => {
   const { className, ...rest } = props;
   return (
-    <button
+    <div
       className={cx(
         props.className,
-        'flex items-center justify-center group cursor-pointer',
+        'group flex cursor-pointer items-center justify-center',
       )}
       {...rest}
     >
-      <span className="absolute inset-0 bg-cream rounded-full scale-0 opacity-0 transition-all duration-200 ease-out group-hover:scale-75 group-hover:opacity-100 "></span>
+      <span className="absolute inset-0 scale-0 rounded-full bg-cream opacity-0 transition-all duration-200 ease-out group-hover:scale-75 group-hover:opacity-100 "></span>
       <span className="absolute inset-0 flex items-center justify-center">
         {props.children}
       </span>
-      <svg viewBox="0 0 500 500" className="z-10 w-full">
+      <svg viewBox="0 0 500 500" className="z-10 w-full animate-spin-slow">
         <title>Employers & Recruiters</title>
         <defs>
           {/* <circle id="textcircle" cx="250" cy="250" r="200" /> */}
@@ -54,6 +54,6 @@ export const RecruiterBadge = (props) => {
           </textPath>
         </text>
       </svg>
-    </button>
+    </div>
   );
 };
