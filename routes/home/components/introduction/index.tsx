@@ -1,14 +1,15 @@
 import React from 'react';
-import { RichText } from 'prismic-reactjs';
 import clsx from 'clsx';
+import { RichText } from 'prismic-reactjs';
 import styles from './index.module.scss';
+import { Card } from '@/components/card';
 
 export const Introduction = (props) => {
   return (
     <div className={clsx(styles.welcome)}>
-      <div className={styles.copy}>
+      <Card className={clsx(styles.copy, 'p-md md:p-lg')}>
         <RichText render={props.document?.data?.introduction} />
-      </div>
+      </Card>
     </div>
   );
 };

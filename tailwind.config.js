@@ -23,6 +23,9 @@ module.exports = {
         futura: 'futura-pt, sans-serif',
         poppins: 'poppins, sans-serif',
       },
+      boxShadow: {
+        hard: '0.5rem 0.5rem 0 0 currentColor',
+      },
       spacing: {
         '2xs': '0.125rem',
         xs: '0.25rem',

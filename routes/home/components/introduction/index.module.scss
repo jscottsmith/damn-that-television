@@ -12,10 +12,7 @@
 
   .copy {
     margin-top: -25vh;
-    padding: 2rem;
-    background-color: $ghost;
     max-width: 46rem;
-    box-shadow: 0.5rem 0.5rem 0 0 $deep;
   }
 
   p,
@@ -58,9 +55,5 @@
 @include tablet {
   .welcome {
     padding: 3rem;
-
-    .copy {
-      padding: 1rem 2rem;
-    }
   }
 }
