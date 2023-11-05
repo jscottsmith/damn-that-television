@@ -47,7 +47,6 @@ class LevelController extends Component {
             {({ hasLoaded, assets }) =>
               hasLoaded ? (
                 <Fragment>
-                  {/* @ts-expect-error */}
                   <LevelInterface />
                   <Level config={this.config} assets={assets} />
                 </Fragment>
@@ -64,7 +63,6 @@ class LevelController extends Component {
             {({ hasLoaded, assets }) =>
               hasLoaded ? (
                 <Fragment>
-                  {/* @ts-expect-error */}
                   <LevelInterface />
                   <Level config={this.config} assets={assets} />
                 </Fragment>
