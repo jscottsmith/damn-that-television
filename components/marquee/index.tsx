@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { IconButton } from '../icon-button';
-import { XIcon } from '@heroicons/react/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useToggle } from 'hooks/use-toggle';
 import { isServer } from '@/helpers/ssr';
 
@@ -52,7 +52,7 @@ export const Marquee = (props: MarqueeProps) => {
         className="absolute right-2 top-2"
         onClick={() => toggle.setToggleState(true)}
       >
-        <XIcon className="h-4 w-4" />
+        <XMarkIcon className="h-4 w-4" />
       </IconButton>
     </div>
   );

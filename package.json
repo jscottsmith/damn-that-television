@@ -27,7 +27,7 @@
   "homepage": "https://damnthat.tv/",
   "dependencies": {
     "@gush/candybar": "0.0.1",
-    "@heroicons/react": "^1.0.6",
+    "@heroicons/react": "^2.0.18",
     "@prismicio/client": "^5.1.0",
     "autoprefixer": "^10.4.8",
     "clsx": "^2.0.0",

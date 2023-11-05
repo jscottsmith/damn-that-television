@@ -1,11 +1,8 @@
-import Background from 'canvas/common/Background';
 import clsx from 'clsx';
-import React from 'react';
-import { ButtonHTMLAttributes } from 'react';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren,ButtonHTMLAttributes } from 'react';
 
 type IconButtonProps = PropsWithChildren<
-  ButtonHTMLAttributes<{}> & {
+  ButtonHTMLAttributes<HTMLButtonElement> & {
     background?: string;
   }
 >;

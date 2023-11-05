@@ -86,12 +86,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@heroicons/react@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "@heroicons/react@npm:1.0.6"
+"@heroicons/react@npm:^2.0.18":
+  version: 2.0.18
+  resolution: "@heroicons/react@npm:2.0.18"
   peerDependencies:
     react: ">= 16"
-  checksum: 372b1eda3ce735ef069777bc96304f70de585ebb71a6d1cedc121bb695f9bca235619112e3ee14e8779e95a03096813cbbe3b755927a54b7580d1ce084fa4096
+  checksum: 597e8668818623d568a302e343ef06b69f62ce297c14b88c2ebbfed0c0f00cd85ec44fae33ec8a249931b4e7dcf145743ae3198095a9f4682108de5155f5f4c3
   languageName: node
   linkType: hard
 
@@ -1060,7 +1060,7 @@ __metadata:
   resolution: "damn-that-television@workspace:."
   dependencies:
     "@gush/candybar": 0.0.1
-    "@heroicons/react": ^1.0.6
+    "@heroicons/react": ^2.0.18
     "@prismicio/client": ^5.1.0
     "@tailwindcss/typography": ^0.5.0
     "@types/node": ^17.0.33
