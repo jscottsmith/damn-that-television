@@ -1,18 +1,24 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
 import clsx from 'clsx';
+import { DEFAULT_SURFACE_CLASS } from './surface';
 
 type CardProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>> & {
-  backgroundColor?: string;
+  surface?: string;
 };
 
 export function Card({
-  backgroundColor = 'bg-ghost',
+  surface = DEFAULT_SURFACE_CLASS,
   className,
   ...props
 }: CardProps) {
   return (
     <div
-      className={clsx(className, 'text-deep shadow-hard', backgroundColor)}
+      className={clsx(
+        className,
+        // text-color controls shadow color
+        'text-slate-700 dark:text-slate-950 shadow-hard',
+        surface,
+      )}
       {...props}
     >
       {props.children}
@@ -22,4 +28,6 @@ export function Card({
 
 export const CardGhost = Card;
 
-export const CardMiami = (props: CardProps) => <Card backgroundColor="bg-miami" {...props} />;
+export const CardMiami = (props: CardProps) => (
+  <Card surface="bg-miami" {...props} />
+);
