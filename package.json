@@ -13,7 +13,7 @@
     "lint": "next lint",
     "lint:fix": "eslint . --fix",
     "typeCheck": "tsc --noEmit",
-    "prettier": "prettier --config ./.prettierrc --write \"./**/*.?(js|jsx|scss)\""
+    "prettier": "prettier --config ./.prettierrc --write \"./**/*.*\""
   },
   "repository": {
     "type": "git",

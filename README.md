@@ -2,8 +2,8 @@
 
 📺 ✊🏻 💥
 
--   👉🏻 [Production](https://damnthat.tv/)
--   👉🏻 [Develop](https://develop-damn-that-television.herokuapp.com)
+- 👉🏻 [Production](https://damnthat.tv/)
+- 👉🏻 [Develop](https://develop-damn-that-television.herokuapp.com)
 
 ## 🧐 Why?
 

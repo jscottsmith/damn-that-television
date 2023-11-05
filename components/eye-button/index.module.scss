@@ -7,7 +7,9 @@
   // border-radius: 2rem;
   // border: 2px solid transparent;
   box-shadow: 0 0 0 0 transparent;
-  transition: background 150ms $easeIn, box-shadow 150ms $easeIn,
+  transition:
+    background 150ms $easeIn,
+    box-shadow 150ms $easeIn,
     transform 300ms $easeOut;
 
   &.eyeActive,
