@@ -1,10 +1,10 @@
 import { RichText } from 'prismic-reactjs';
-import cx from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 
 export const ResumeContent = (props) => {
   return (
-    <div className={cx('prose', { 'prose-lg': props.primary.large_copy })}>
+    <div className={clsx('prose', { 'prose-lg': props.primary.large_copy })}>
       <RichText render={props.primary.title} />
       <RichText render={props.primary.content} />
     </div>

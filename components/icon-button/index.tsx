@@ -1,5 +1,5 @@
 import Background from 'canvas/common/Background';
-import cx from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 import { ButtonHTMLAttributes } from 'react';
 import { PropsWithChildren } from 'react';
@@ -18,10 +18,10 @@ export const IconButton = (props: IconButtonProps) => {
   } = props;
   return (
     <button
-      className={cx(
+      className={clsx(
         className,
         background,
-        'p-sm flex items-center justify-center rounded-full',
+        'flex items-center justify-center rounded-full p-sm',
       )}
       {...rest}
     >

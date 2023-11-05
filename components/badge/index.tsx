@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 
 type Props = PropsWithChildren<{
   className?: string;
@@ -10,10 +10,10 @@ export const Badge = (props: Props) => {
   const background = props.background || 'bg-gray-100';
   return (
     <p
-      className={cx(
+      className={clsx(
         props.className,
         background,
-        'inline-block px-sm py-0.5 text-sm text-lunar rounded-md font-medium',
+        'inline-block rounded-md px-sm py-0.5 text-sm font-medium text-lunar',
       )}
     >
       {props.children}

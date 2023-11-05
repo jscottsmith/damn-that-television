@@ -1,11 +1,11 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 
 export const RecruiterBadge = (props) => {
   const { className, ...rest } = props;
   return (
     <div
-      className={cx(
+      className={clsx(
         props.className,
         'group flex cursor-pointer items-center justify-center',
       )}

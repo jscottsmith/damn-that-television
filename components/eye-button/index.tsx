@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import Eye from '@/components/eye';
 import styles from './index.module.scss';
 
@@ -11,7 +11,7 @@ export const EyeButton = (props: {
 
   return (
     <button
-      className={cx(props.className, styles.eyeButton, 'px-2.5 text-deep', {
+      className={clsx(props.className, styles.eyeButton, 'px-2.5 text-deep', {
         [styles.eyeActive]: props.isEyeActive,
       })}
       {...rest}

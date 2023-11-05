@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import cx from 'classnames';
+import clsx from 'clsx';
 import Link from 'next/link';
 import { NavLinks } from '../types';
 import { useRouter } from 'next/router';
@@ -71,10 +71,10 @@ export const NavigationMenu = (props: {
       variants={container}
       transition={{ type: 'spring', damping: 25, stiffness: 300 }}
       animate={animate}
-      className={cx('fixed -inset-20 p-20 bg-plum z-40 flex select-none')}
+      className={clsx('fixed -inset-20 z-40 flex select-none bg-plum p-20')}
     >
-      <div className="relative flex items-center justify-center h-full">
-        <nav className="flex-grow max-w-4xl p-lg md:p-2xl">
+      <div className="relative flex h-full items-center justify-center">
+        <nav className="max-w-4xl flex-grow p-lg md:p-2xl">
           <motion.ul
             variants={primaryContainer}
             initial="hidden"
@@ -82,7 +82,7 @@ export const NavigationMenu = (props: {
           >
             {props.links.map((current, i) => (
               <motion.li
-                className="flex items-center group text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
+                className="group flex items-center text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
                 style={{
                   marginLeft: `${(props.links.length - i - 1) * 0.1}em`,
                 }}
@@ -91,8 +91,8 @@ export const NavigationMenu = (props: {
                 onClick={() => props.closeNavigation()}
               >
                 <span
-                  className={cx(
-                    'border-t-4 border-solid mr-sm md:mr-md w-6 md:w-24 xl:w-32 inline-block rounded-md',
+                  className={clsx(
+                    'mr-sm inline-block w-6 rounded-md border-t-4 border-solid md:mr-md md:w-24 xl:w-32',
                     router.pathname === current.href
                       ? 'border-cream'
                       : 'border-lunar',
@@ -100,30 +100,29 @@ export const NavigationMenu = (props: {
                 />
                 <Link
                   href={current.href}
-                  className={cx(
+                  className={clsx(
                     router.pathname === current.href
                       ? 'text-softy'
                       : 'text-pepto',
-                    'whitespace-nowrap font-futura uppercase italic font-black hover:text-cream',
-                  )}>
-
+                    'whitespace-nowrap font-futura font-black uppercase italic hover:text-cream',
+                  )}
+                >
                   {current.label}
-
                 </Link>
               </motion.li>
             ))}
           </motion.ul>
-          <section className="md:flex md:flex-row mt-xl md:mt-2xl lg:mt-3xl xl:mt-4xl">
+          <section className="mt-xl md:mt-2xl md:flex md:flex-row lg:mt-3xl xl:mt-4xl">
             <motion.h3
               variants={secondaryHeadline}
               initial="hidden"
               animate={animate}
-              className="text-xl md:text-2xl font-futura uppercase italic text-lunar font-bold mb-sm md:mb-0"
+              className="mb-sm font-futura text-xl font-bold uppercase italic text-lunar md:mb-0 md:text-2xl"
             >
               Elsewhere{' '}
               <span
-                className={cx(
-                  'border-t-4 border-solid border-lunar mx-sm md:mr-md w-6 md:w-18 xl:w-24 inline-block rounded-md',
+                className={clsx(
+                  'md:w-18 mx-sm inline-block w-6 rounded-md border-t-4 border-solid border-lunar md:mr-md xl:w-24',
                 )}
               />
             </motion.h3>
@@ -135,17 +134,16 @@ export const NavigationMenu = (props: {
             >
               {props.secondaryLinks.map((current, i) => (
                 <motion.li
-                  className="flex items-center group text-xl md:text-2xl"
+                  className="group flex items-center text-xl md:text-2xl"
                   variants={secondaryNavItem}
                   key={i}
                   onClick={() => props.closeNavigation()}
                 >
                   <Link
                     href={current.href}
-                    className="whitespace-nowrap font-futura uppercase italic text-cream font-bold hover:text-ghost">
-
+                    className="whitespace-nowrap font-futura font-bold uppercase italic text-cream hover:text-ghost"
+                  >
                     {current.label}
-
                   </Link>
                 </motion.li>
               ))}

@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import { ButtonHTMLAttributes } from 'react';
 import { PropsWithChildren } from 'react';
 
@@ -62,11 +62,11 @@ export const Button = (
   } = props;
   return (
     <button
-      className={cx(
+      className={clsx(
         className,
         getButtonStyle(buttonType),
         getButtonSize(buttonSize),
-        'font-light leading-loose whitespace-nowrap',
+        'whitespace-nowrap font-light leading-loose',
       )}
       {...rest}
     >

@@ -1075,6 +1075,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "clsx@npm:2.0.0"
+  checksum: a2cfb2351b254611acf92faa0daf15220f4cd648bdf96ce369d729813b85336993871a4bf6978ddea2b81b5a130478339c20d9d0b5c6fc287e5147f0c059276e
+  languageName: node
+  linkType: hard
+
 "color-convert@npm:^1.9.0":
   version: 1.9.3
   resolution: "color-convert@npm:1.9.3"
@@ -1198,6 +1205,7 @@ __metadata:
     "@types/react": latest
     autoprefixer: ^10.4.8
     classnames: ^2.3.1
+    clsx: ^2.0.0
     eslint: 8.6.0
     eslint-config-next: latest
     framer-motion: ^7.0.0

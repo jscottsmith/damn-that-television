@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import clsx from 'clsx';
 import React, { useState } from 'react';
 import { ThumbUpIcon, ThumbDownIcon } from '@heroicons/react/outline';
 import { SelectionButton } from '@/components/selection-button';
@@ -22,7 +22,7 @@ export const WorkTogether = (props: WorkTogetherProps) => {
   return (
     <section
       id={WORK_TOGETHER_ID}
-      className={cx(
+      className={clsx(
         ' my-lg flex flex-row flex-wrap items-center justify-center rounded-lg border-2 p-lg',
         showDeets
           ? 'border-solid border-peach bg-gray-50'
@@ -40,19 +40,19 @@ export const WorkTogether = (props: WorkTogetherProps) => {
           isSelected={showDeets === true}
           onClick={() => setDeets(true)}
         >
-          Yep! <ThumbUpIcon className={cx('ml-xs inline-block w-6')} />
+          Yep! <ThumbUpIcon className={clsx('ml-xs inline-block w-6')} />
         </SelectionButton>
         <SelectionButton
           isSelected={showDeets === false}
           onClick={() => setDeets(false)}
         >
           No thanks.
-          <ThumbDownIcon className={cx('ml-xs inline-block w-6')} />
+          <ThumbDownIcon className={clsx('ml-xs inline-block w-6')} />
         </SelectionButton>
       </div>
       {isInterested && (
         <div className="mt-lg w-full text-center">
-          <div className={cx('prose mx-auto max-w-md')}>
+          <div className={clsx('prose mx-auto max-w-md')}>
             <RichText render={props.primary.body_yes} />
           </div>
           <div className="my-lg flex justify-center">
@@ -71,7 +71,7 @@ export const WorkTogether = (props: WorkTogetherProps) => {
         </div>
       )}
       {isNotInterested && (
-        <div className={cx('prose mt-lg w-full text-center')}>
+        <div className={clsx('prose mt-lg w-full text-center')}>
           <p>No worries, carry on.</p>
         </div>
       )}

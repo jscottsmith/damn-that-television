@@ -1,7 +1,7 @@
-import cx from 'classnames';
+import clsx from 'clsx';
 
 export function proseConfiguration() {
-  return cx(
+  return clsx(
     'prose',
     // 'prose prose-lg md:prose-xl xl:prose-2xl',
     // 'text-lunar-800 prose-h1:text-lunar-800 prose-a:text-club-600 prose-a:hover:text-lunar-600',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import cx from 'classnames';
+import clsx from 'clsx';
 import { IconButton } from '../icon-button';
 import { XIcon } from '@heroicons/react/outline';
 import { useToggle } from 'hooks/use-toggle';
@@ -31,13 +31,13 @@ export const Marquee = (props: MarqueeProps) => {
 
   return (
     <div
-      className={cx('h-12 flex bg-deep text-ghost text-xl', props.className, {
+      className={clsx('flex h-12 bg-deep text-xl text-ghost', props.className, {
         hidden: toggle.isToggled,
       })}
     >
       <motion.div
         key={index}
-        className="flex items-center justify-center w-[200vw] border-b-4 border-t-4 border-b-pepto border-t-fab whitespace-nowrap text-center"
+        className="flex w-[200vw] items-center justify-center whitespace-nowrap border-b-4 border-t-4 border-b-pepto border-t-fab text-center"
         initial={{ x: '100%' }}
         transition={{
           onComplete: handleEnd,
@@ -52,7 +52,7 @@ export const Marquee = (props: MarqueeProps) => {
         className="absolute right-2 top-2"
         onClick={() => toggle.setToggleState(true)}
       >
-        <XIcon className="w-4 h-4" />
+        <XIcon className="h-4 w-4" />
       </IconButton>
     </div>
   );
