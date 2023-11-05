@@ -16,7 +16,7 @@ type WorkTogetherProps = {
 };
 
 export const WorkTogether = (props: WorkTogetherProps) => {
-  const [showDeets, setDeets] = useState(false);
+  const [showDeets, setDeets] = useState<boolean | null>(null);
   const isInterested = showDeets === true;
   const isNotInterested = showDeets === false;
   return (
