@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { NavLinks } from '../types';
 import { useRouter } from 'next/router';
+import { HeroTitle } from '../typography/hero-title';
 // import { Marquee } from '../marquee';
 // import { FOUND_A_JOB_LYRICS } from '@/constants/found-a-job-lyrics';
 
@@ -82,7 +83,7 @@ export const NavigationMenu = (props: {
           >
             {props.links.map((current, i) => (
               <motion.li
-                className="group flex items-center text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
+                className="group flex items-center"
                 style={{
                   marginLeft: `${(props.links.length - i - 1) * 0.1}em`,
                 }}
@@ -98,17 +99,19 @@ export const NavigationMenu = (props: {
                       : 'border-lunar',
                   )}
                 />
-                <Link
-                  href={current.href}
-                  className={clsx(
-                    router.pathname === current.href
-                      ? 'text-softy'
-                      : 'text-pepto',
-                    'whitespace-nowrap font-futura font-black uppercase italic hover:text-cream',
-                  )}
-                >
-                  {current.label}
-                </Link>
+                <HeroTitle asChild>
+                  <Link
+                    href={current.href}
+                    className={clsx(
+                      router.pathname === current.href
+                        ? 'text-softy'
+                        : 'text-pepto',
+                      'whitespace-nowrap hover:text-cream',
+                    )}
+                  >
+                    {current.label}
+                  </Link>
+                </HeroTitle>
               </motion.li>
             ))}
           </motion.ul>

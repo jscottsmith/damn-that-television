@@ -1,15 +1,14 @@
 import clsx from 'clsx';
 import { HTMLAttributes } from 'react';
 import { AsChildProps, Slot } from '../slot';
-import { SHARED_TEXT_CLASSNAME } from './constants';
 
 type HeroTitleProps = AsChildProps<HTMLAttributes<HTMLHeadingElement>> & {
   className?: string;
 };
 
 export const DEFAULT_HERO_TEXT_CLASSNAME = clsx(
-  'font-black italic uppercase text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-lg md:mb-xl',
-  SHARED_TEXT_CLASSNAME,
+  'font-futura font-black italic uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl',
+  'text-deep dark:text-white',
 );
 
 export function HeroTitle({ asChild, className, ...props }: HeroTitleProps) {
