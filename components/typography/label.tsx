@@ -8,7 +8,7 @@ type LabelProps = AsChildProps<HTMLAttributes<HTMLParagraphElement>> & {
 };
 
 export const DEFAULT_TEXT_CLASSNAME = clsx(
-  'font-bold font-poppins uppercase text-base md:text-md',
+  'font-bold font-poppins uppercase text-base',
   SHARED_TEXT_CLASSNAME,
 );
 

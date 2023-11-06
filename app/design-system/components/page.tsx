@@ -6,9 +6,12 @@ import { Surface, SurfaceBackground } from '@/components/surface';
 import { useTheme } from 'next-themes';
 import { Title } from '@/components/typography/title';
 import { HeroTitle } from '@/components/typography/hero-title';
+import { SelectionButton } from '@/components/selection-button';
+import { useState } from 'react';
 
 export default function Components() {
   const theme = useTheme();
+  const [isSelected, setIsSelected] = useState(false);
   return (
     <>
       <Surface>
@@ -16,16 +19,29 @@ export default function Components() {
           <HeroTitle asChild>
             <h1>Components</h1>
           </HeroTitle>
-          <Title asChild>
-            <h2>Toggle</h2>
-          </Title>
-          <InputToggle
-            label="Dark Mode"
-            checked={theme.resolvedTheme === 'dark'}
-            onChange={(e) =>
-              theme.setTheme(e.currentTarget.checked ? 'dark' : 'light')
-            }
-          />
+          <section>
+            <Title asChild>
+              <h2>Toggle</h2>
+            </Title>
+            <InputToggle
+              label="Dark Mode"
+              checked={theme.resolvedTheme === 'dark'}
+              onChange={(e) =>
+                theme.setTheme(e.currentTarget.checked ? 'dark' : 'light')
+              }
+            />
+          </section>
+          <section>
+            <Title asChild>
+              <h2>Selection Button</h2>
+            </Title>
+            <SelectionButton
+              isSelected={isSelected}
+              onClick={() => setIsSelected(!isSelected)}
+            >
+              Click me to select
+            </SelectionButton>
+          </section>
         </SiteWrapper>
       </Surface>
       <SurfaceBackground>

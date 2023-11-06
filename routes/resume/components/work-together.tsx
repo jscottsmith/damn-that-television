@@ -1,6 +1,9 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
-import { HandThumbUpIcon, HandThumbDownIcon } from '@heroicons/react/24/outline';
+import {
+  HandThumbUpIcon,
+  HandThumbDownIcon,
+} from '@heroicons/react/24/outline';
 import { SelectionButton } from '@/components/selection-button';
 import { Button, ButtonSizes, ButtonTypes } from '@/components/button';
 import { RichText, RichTextBlock } from 'prismic-reactjs';
@@ -39,15 +42,16 @@ export const WorkTogether = (props: WorkTogetherProps) => {
         <SelectionButton
           isSelected={showDeets === true}
           onClick={() => setDeets(true)}
+          icon={<HandThumbUpIcon />}
         >
-          Yep! <HandThumbUpIcon className={clsx('ml-xs inline-block w-6')} />
+          Yep!
         </SelectionButton>
         <SelectionButton
           isSelected={showDeets === false}
           onClick={() => setDeets(false)}
+          icon={<HandThumbDownIcon />}
         >
-          No thanks.
-          <HandThumbDownIcon className={clsx('ml-xs inline-block w-6')} />
+          No Thanks
         </SelectionButton>
       </div>
       {isInterested && (

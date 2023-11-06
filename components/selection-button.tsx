@@ -1,20 +1,43 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  JSXElementConstructor,
+  ReactComponentElement,
+  ReactNode,
+} from 'react';
 import clsx from 'clsx';
-type SelectionButton = ButtonHTMLAttributes<{}> & { isSelected: boolean };
+import { Label } from './typography/label';
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
+
+type SelectionButton = ButtonHTMLAttributes<HTMLButtonElement> & {
+  isSelected: boolean;
+  icon?: ReactNode;
+};
 
 export const SelectionButton = (props: SelectionButton) => {
-  const { className, isSelected, ...rest } = props;
+  const { className, isSelected, icon, ...rest } = props;
   return (
-    <button
-      className={clsx(
-        'rounded-md py-sm px-md',
-        isSelected
-          ? 'bg-miami hover:bg-miami-old'
-          : 'bg-transparent hover:bg-gray-100',
-      )}
-      {...rest}
-    >
-      {props.children}
-    </button>
+    <Label asChild>
+      <button
+        className={clsx(
+          'rounded-md py-sm px-md items-center inline-flex gap-sm whitespace-nowrap',
+          isSelected
+            ? 'bg-club hover:bg-club-600 text-white'
+            : 'bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-900',
+        )}
+        {...rest}
+      >
+        {props.children}
+        <span
+          className={clsx(
+            'p-1 rounded-full shrink-0',
+            isSelected && 'bg-club-700',
+          )}
+        >
+          <span className="block w-5 h-5 shrink-0">
+            {isSelected ? <CheckIcon /> : icon ?? <XMarkIcon />}
+          </span>
+        </span>
+      </button>
+    </Label>
   );
 };
