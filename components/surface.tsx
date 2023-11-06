@@ -1,24 +1,50 @@
-import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import React, { HTMLAttributes } from 'react';
 import clsx from 'clsx';
+import { AsChildProps, Slot } from './slot';
 
-type SurfaceProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>;
+export const WHITE_SURFACE_CLASS = 'bg-white dark:bg-slate-900';
+
+type SurfacePrimaryProps = AsChildProps<HTMLAttributes<HTMLDivElement>> & {
+  className?: string;
+};
+
+export function SurfacePrimary({
+  asChild,
+  className,
+  ...props
+}: SurfacePrimaryProps) {
+  const Comp = asChild ? Slot : 'div';
+  return <Comp {...props} className={clsx(WHITE_SURFACE_CLASS, className)} />;
+}
 
 export const DEFAULT_SURFACE_CLASS = 'bg-slate-100 dark:bg-slate-700';
 
-export function Surface({ className, ...props }: SurfaceProps) {
-  return (
-    <div className={clsx(className, DEFAULT_SURFACE_CLASS)} {...props}>
-      {props.children}
-    </div>
-  );
+type SurfaceSecondaryProps = AsChildProps<HTMLAttributes<HTMLDivElement>> & {
+  className?: string;
+};
+
+export function SurfaceSecondary({
+  asChild,
+  className,
+  ...props
+}: SurfaceSecondaryProps) {
+  const Comp = asChild ? Slot : 'div';
+  return <Comp {...props} className={clsx(DEFAULT_SURFACE_CLASS, className)} />;
 }
 
 export const SURFACE_BACKGROUND_CLASS = 'bg-slate-200 dark:bg-slate-800';
 
-export function SurfaceBackground({ className, ...props }: SurfaceProps) {
+type SurfaceBackgroundProps = AsChildProps<HTMLAttributes<HTMLDivElement>> & {
+  className?: string;
+};
+
+export function SurfaceBackground({
+  asChild,
+  className,
+  ...props
+}: SurfaceBackgroundProps) {
+  const Comp = asChild ? Slot : 'div';
   return (
-    <div className={clsx(className, SURFACE_BACKGROUND_CLASS)} {...props}>
-      {props.children}
-    </div>
+    <Comp {...props} className={clsx(SURFACE_BACKGROUND_CLASS, className)} />
   );
 }

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { NavLinks } from '../types';
 import { useRouter } from 'next/router';
 import { HeroTitle } from '../typography/hero-title';
+import { usePathname } from 'next/navigation';
 // import { Marquee } from '../marquee';
 // import { FOUND_A_JOB_LYRICS } from '@/constants/found-a-job-lyrics';
 
@@ -65,7 +66,7 @@ export const NavigationMenu = (props: {
   closeNavigation: () => unknown;
 }) => {
   const animate = props.isVisible ? 'visible' : 'hidden';
-  const router = useRouter();
+  const pathName = usePathname();
   return (
     <motion.div
       initial="hidden"
@@ -94,18 +95,14 @@ export const NavigationMenu = (props: {
                 <span
                   className={clsx(
                     'mr-sm inline-block w-6 rounded-md border-t-4 border-solid md:mr-md md:w-24 xl:w-32',
-                    router.pathname === current.href
-                      ? 'border-cream'
-                      : 'border-lunar',
+                    pathName === current.href ? 'border-cream' : 'border-lunar',
                   )}
                 />
                 <HeroTitle asChild>
                   <Link
                     href={current.href}
                     className={clsx(
-                      router.pathname === current.href
-                        ? 'text-softy'
-                        : 'text-pepto',
+                      pathName === current.href ? 'text-softy' : 'text-pepto',
                       'whitespace-nowrap hover:text-cream',
                     )}
                   >
