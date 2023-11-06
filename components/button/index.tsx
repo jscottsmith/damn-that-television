@@ -47,7 +47,7 @@ function getButtonStyle(buttonType: keyof typeof ButtonTypes) {
 
 export const Button = (
   props: PropsWithChildren<
-    ButtonHTMLAttributes<{}> & {
+    ButtonHTMLAttributes<HTMLButtonElement> & {
       buttonType?: keyof typeof ButtonTypes;
       buttonSize?: keyof typeof ButtonSizes;
     }

@@ -4,6 +4,8 @@ import { SiteWrapper } from '@/components/site-wrapper';
 import { InputToggle } from '@/components/input-toggle';
 import { Surface, SurfaceBackground } from '@/components/surface';
 import { useTheme } from 'next-themes';
+import { Title } from '@/components/typography/title';
+import { HeroTitle } from '@/components/typography/hero-title';
 
 export default function Components() {
   const theme = useTheme();
@@ -11,7 +13,12 @@ export default function Components() {
     <>
       <Surface>
         <SiteWrapper className="min-h-screen" padY>
-          <h1 className="font-bold text-xl mb-base dark:text-ghost">Toggle</h1>
+          <HeroTitle asChild>
+            <h1>Components</h1>
+          </HeroTitle>
+          <Title asChild>
+            <h2>Toggle</h2>
+          </Title>
           <InputToggle
             label="Dark Mode"
             checked={theme.resolvedTheme === 'dark'}
