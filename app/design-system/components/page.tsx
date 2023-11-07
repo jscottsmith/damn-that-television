@@ -14,6 +14,7 @@ import {
   MagnifyingGlassIcon,
   TrashIcon,
 } from '@heroicons/react/24/outline';
+import { ComponentSection } from './components/component-section';
 
 export default function Components() {
   const theme = useTheme();
@@ -40,49 +41,66 @@ export default function Components() {
           </section>
           <section className="py-md">
             <div className="flex flex-col gap-sm">
-              <Title asChild>
-                <h2>Primary/Secondary</h2>
-              </Title>
-              <div className="flex gap-sm items-end">
-                <Button name={ButtonName.primary}>Primary</Button>
-                <Button>Secondary</Button>
-                <Button>Follow</Button>
-                <Button>Like</Button>
-              </div>
-              <Title asChild>
-                <h2>Selection Button</h2>
-              </Title>
-              <div className="flex gap-sm items-end">
-                <SelectionButtonExample size={ButtonSize.sm}>
-                  Filters
-                </SelectionButtonExample>
-                <SelectionButtonExample>Activate</SelectionButtonExample>
-                <SelectionButtonExample size={ButtonSize.md}>
-                  Enable Cookies
-                </SelectionButtonExample>
-              </div>
-              <Title asChild>
-                <h2>Standard Button</h2>
-              </Title>
-              <div className="flex gap-sm items-end">
-                <Button size={ButtonSize.sm}>Hello</Button>
-                <Button size={ButtonSize.base}>Tap Me</Button>
-                <Button size={ButtonSize.md}>Open Menu</Button>
-              </div>
-              <Title asChild>
-                <h2>Icon Button</h2>
-              </Title>
-              <div className="flex gap-sm items-end">
-                <Button size={ButtonSize.sm} icon={<EyeIcon />}>
-                  Reveal
-                </Button>
-                <Button size={ButtonSize.base} icon={<MagnifyingGlassIcon />}>
-                  Search
-                </Button>
-                <Button size={ButtonSize.md} icon={<TrashIcon />}>
-                  Delete
-                </Button>
-              </div>
+              <ComponentSection title="Primary/Secondary">
+                <div className="flex flex-col gap-lg">
+                  <div className="flex gap-sm items-end">
+                    <Button size={ButtonSize.sm} name={ButtonName.primary}>
+                      Primary
+                    </Button>
+                    <Button size={ButtonSize.sm}>Secondary</Button>
+                    <Button size={ButtonSize.sm}>Follow</Button>
+                    <Button size={ButtonSize.sm}>Like</Button>
+                  </div>
+                  <div className="flex gap-sm items-end">
+                    <Button name={ButtonName.primary}>Primary</Button>
+                    <Button>Secondary</Button>
+                    <Button>Follow</Button>
+                    <Button>Like</Button>
+                  </div>
+                  <div className="flex gap-sm items-end">
+                    <Button size={ButtonSize.md} name={ButtonName.primary}>
+                      Primary
+                    </Button>
+                    <Button size={ButtonSize.md}>Secondary</Button>
+                    <Button size={ButtonSize.md}>Follow</Button>
+                    <Button size={ButtonSize.md}>Like</Button>
+                  </div>
+                </div>
+              </ComponentSection>
+
+              <ComponentSection title="Selection Button">
+                <div className="flex gap-sm items-end">
+                  <SelectionButtonExample size={ButtonSize.sm}>
+                    Filters
+                  </SelectionButtonExample>
+                  <SelectionButtonExample>Activate</SelectionButtonExample>
+                  <SelectionButtonExample size={ButtonSize.md}>
+                    Enable Cookies
+                  </SelectionButtonExample>
+                </div>
+              </ComponentSection>
+
+              <ComponentSection title="Standard Button">
+                <div className="flex gap-sm items-end">
+                  <Button size={ButtonSize.sm}>Hello</Button>
+                  <Button size={ButtonSize.base}>Tap Me</Button>
+                  <Button size={ButtonSize.md}>Open Menu</Button>
+                </div>
+              </ComponentSection>
+
+              <ComponentSection title="Icon Button">
+                <div className="flex gap-sm items-end">
+                  <Button size={ButtonSize.sm} icon={<EyeIcon />}>
+                    Reveal
+                  </Button>
+                  <Button size={ButtonSize.base} icon={<MagnifyingGlassIcon />}>
+                    Search
+                  </Button>
+                  <Button size={ButtonSize.md} icon={<TrashIcon />}>
+                    Delete
+                  </Button>
+                </div>
+              </ComponentSection>
             </div>
           </section>
         </SiteWrapper>
