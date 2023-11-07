@@ -25,7 +25,9 @@ module.exports = {
         poppins: 'poppins, sans-serif',
       },
       boxShadow: {
-        hard: '0.5rem 0.5rem 0 0 currentColor',
+        'hard-xs': '0.125rem 0.125rem 0 0 var(--tw-shadow-color)',
+        'hard-sm': '0.25rem 0.25rem 0 0 var(--tw-shadow-color)',
+        hard: '0.5rem 0.5rem 0 0 var(--tw-shadow-color)',
       },
       spacing: {
         '2xs': '0.125rem',

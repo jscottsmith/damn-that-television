@@ -20,8 +20,11 @@ export const SelectionButton = (props: SelectionButton) => {
       <button
         className={clsx(
           'rounded-md py-sm px-md items-center inline-flex gap-sm whitespace-nowrap',
+          'shadow-slate-700 dark:shadow-slate-500',
+          'hover:shadow-hard-sm hover:-translate-x-1 hover:-translate-y-1',
+          'transition-all duration-300',
           isSelected
-            ? 'bg-club hover:bg-club-600 text-white'
+            ? 'bg-club hover:bg-club-600 text-white shadow-hard-sm -translate-x-1 -translate-y-1'
             : 'bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-900',
         )}
         {...rest}

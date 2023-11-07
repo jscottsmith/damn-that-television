@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from '@/helpers/tailwind-merge';
 import * as React from 'react';
 
 // Used instead of Polymorphic components
