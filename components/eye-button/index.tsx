@@ -11,11 +11,11 @@ export const EyeButton = (props: {
     <button
       className={clsx(
         props.className,
-        'px-2.5 w-16 h-16 text-deep [&.is-selected]:bg-peach [&.is-selected]:shadow-hard',
-        'hover:scale-[1.05] hover:shadow-hard hover:bg-cream',
+        'px-2.5 w-16 h-16 text-deep [&.selected]:bg-peach [&.selected]:shadow-hard',
+        'hover:scale-[1.05] hover:shadow-hard shadow-deep hover:bg-cream',
         'transition-all duration-300',
         {
-          ['is-selected']: props.isEyeActive,
+          ['selected']: props.isEyeActive,
         },
       )}
       {...rest}

@@ -8,7 +8,12 @@ import { Title } from '@/components/typography/title';
 import { HeroTitle } from '@/components/typography/hero-title';
 import { HeaderNav } from '@/routes/components/header-nav';
 import { SelectionButtonExample } from './components/selection-button-example';
-import { Button } from '@/components/buttons/button';
+import { Button, ButtonSize } from '@/components/buttons/button';
+import {
+  EyeIcon,
+  MagnifyingGlassIcon,
+  TrashIcon,
+} from '@heroicons/react/24/outline';
 
 export default function Components() {
   const theme = useTheme();
@@ -34,19 +39,49 @@ export default function Components() {
             />
           </section>
           <section className="py-md">
-            <Title asChild>
-              <h2>Selection Button</h2>
-            </Title>
             <div className="flex flex-col gap-sm">
-              <div className="flex gap-sm">
-                <SelectionButtonExample>Filters</SelectionButtonExample>
+              <Title asChild>
+                <h2>Selection Button</h2>
+              </Title>
+              <div className="flex gap-sm items-end">
+                <SelectionButtonExample size={ButtonSize.sm}>
+                  Filters
+                </SelectionButtonExample>
                 <SelectionButtonExample>Activate</SelectionButtonExample>
-                <SelectionButtonExample>Enable Cookies</SelectionButtonExample>
+                <SelectionButtonExample size={ButtonSize.md}>
+                  Enable Cookies
+                </SelectionButtonExample>
               </div>
+              <Title asChild>
+                <h2>Standard Button</h2>
+              </Title>
               <div className="flex gap-sm">
                 <Button>Hello</Button>
                 <Button>Tap Me</Button>
                 <Button>Open Menu</Button>
+              </div>
+              <Title asChild>
+                <h2>Icon Button</h2>
+              </Title>
+              <div className="flex gap-sm">
+                <Button icon={<EyeIcon />}>Reveal</Button>
+                <Button icon={<MagnifyingGlassIcon />}>Search</Button>
+                <Button icon={<TrashIcon />}>Delete</Button>
+              </div>
+
+              <Title asChild>
+                <h2>Button Sizes</h2>
+              </Title>
+              <div className="flex gap-sm items-end">
+                <Button size={ButtonSize.sm} icon={<EyeIcon />}>
+                  Reveal
+                </Button>
+                <Button size={ButtonSize.base} icon={<MagnifyingGlassIcon />}>
+                  Search
+                </Button>
+                <Button size={ButtonSize.md} icon={<TrashIcon />}>
+                  Delete
+                </Button>
               </div>
             </div>
           </section>
