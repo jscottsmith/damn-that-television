@@ -6,13 +6,12 @@ import { SurfaceBackground, SurfaceSecondary } from '@/components/surface';
 import { useTheme } from 'next-themes';
 import { Title } from '@/components/typography/title';
 import { HeroTitle } from '@/components/typography/hero-title';
-import { SelectionButton } from '@/components/selection-button';
-import { useState } from 'react';
 import { HeaderNav } from '@/routes/components/header-nav';
+import { SelectionButtonExample } from './components/selection-button-example';
 
 export default function Components() {
   const theme = useTheme();
-  const [isSelected, setIsSelected] = useState(false);
+
   return (
     <>
       <HeaderNav />
@@ -37,12 +36,11 @@ export default function Components() {
             <Title asChild>
               <h2>Selection Button</h2>
             </Title>
-            <SelectionButton
-              isSelected={isSelected}
-              onClick={() => setIsSelected(!isSelected)}
-            >
-              Click me to select
-            </SelectionButton>
+            <div className="flex gap-sm">
+              <SelectionButtonExample>Filters</SelectionButtonExample>
+              <SelectionButtonExample>Activate</SelectionButtonExample>
+              <SelectionButtonExample>Enable Cookies</SelectionButtonExample>
+            </div>
           </section>
         </SiteWrapper>
       </SurfaceSecondary>
