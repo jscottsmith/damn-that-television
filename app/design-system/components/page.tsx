@@ -8,7 +8,7 @@ import { Title } from '@/components/typography/title';
 import { HeroTitle } from '@/components/typography/hero-title';
 import { HeaderNav } from '@/routes/components/header-nav';
 import { SelectionButtonExample } from './components/selection-button-example';
-import { Button, ButtonSize } from '@/components/buttons/button';
+import { Button, ButtonName, ButtonSize } from '@/components/buttons/button';
 import {
   EyeIcon,
   MagnifyingGlassIcon,
@@ -40,6 +40,15 @@ export default function Components() {
           </section>
           <section className="py-md">
             <div className="flex flex-col gap-sm">
+              <Title asChild>
+                <h2>Primary/Secondary</h2>
+              </Title>
+              <div className="flex gap-sm items-end">
+                <Button name={ButtonName.primary}>Primary</Button>
+                <Button>Secondary</Button>
+                <Button>Follow</Button>
+                <Button>Like</Button>
+              </div>
               <Title asChild>
                 <h2>Selection Button</h2>
               </Title>
