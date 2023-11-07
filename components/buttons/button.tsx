@@ -61,11 +61,15 @@ export const Button = (props: ButtonProps) => {
           className,
           mapSizeToClassName(size),
           'items-center inline-flex whitespace-nowrap',
+          // color
           'shadow-slate-700 dark:shadow-slate-900',
-          'hover:shadow-hard-xs hover:-translate-x-0.5 hover:-translate-y-0.5',
-          'hover:active:shadow-none hover:active:translate-x-0 hover:active:translate-y-0 active:duration-100',
-          'transition-[box-shadow,color,transform] duration-200',
           'bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-600',
+          // hover
+          'hover:shadow-hard-xs hover:-translate-x-0.5 hover:-translate-y-0.5',
+          // active
+          'hover:active:shadow-none hover:active:translate-x-0 hover:active:translate-y-0 active:duration-100',
+          // transition
+          'transition-[box-shadow,color,transform] duration-200',
         )}
         {...rest}
       >

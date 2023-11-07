@@ -55,22 +55,13 @@ export default function Components() {
               <Title asChild>
                 <h2>Standard Button</h2>
               </Title>
-              <div className="flex gap-sm">
-                <Button>Hello</Button>
-                <Button>Tap Me</Button>
-                <Button>Open Menu</Button>
+              <div className="flex gap-sm items-end">
+                <Button size={ButtonSize.sm}>Hello</Button>
+                <Button size={ButtonSize.base}>Tap Me</Button>
+                <Button size={ButtonSize.md}>Open Menu</Button>
               </div>
               <Title asChild>
                 <h2>Icon Button</h2>
-              </Title>
-              <div className="flex gap-sm">
-                <Button icon={<EyeIcon />}>Reveal</Button>
-                <Button icon={<MagnifyingGlassIcon />}>Search</Button>
-                <Button icon={<TrashIcon />}>Delete</Button>
-              </div>
-
-              <Title asChild>
-                <h2>Button Sizes</h2>
               </Title>
               <div className="flex gap-sm items-end">
                 <Button size={ButtonSize.sm} icon={<EyeIcon />}>
