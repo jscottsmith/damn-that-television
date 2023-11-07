@@ -8,6 +8,7 @@ import { Title } from '@/components/typography/title';
 import { HeroTitle } from '@/components/typography/hero-title';
 import { HeaderNav } from '@/routes/components/header-nav';
 import { SelectionButtonExample } from './components/selection-button-example';
+import { Button } from '@/components/buttons/button';
 
 export default function Components() {
   const theme = useTheme();
@@ -36,10 +37,17 @@ export default function Components() {
             <Title asChild>
               <h2>Selection Button</h2>
             </Title>
-            <div className="flex gap-sm">
-              <SelectionButtonExample>Filters</SelectionButtonExample>
-              <SelectionButtonExample>Activate</SelectionButtonExample>
-              <SelectionButtonExample>Enable Cookies</SelectionButtonExample>
+            <div className="flex flex-col gap-sm">
+              <div className="flex gap-sm">
+                <SelectionButtonExample>Filters</SelectionButtonExample>
+                <SelectionButtonExample>Activate</SelectionButtonExample>
+                <SelectionButtonExample>Enable Cookies</SelectionButtonExample>
+              </div>
+              <div className="flex gap-sm">
+                <Button>Hello</Button>
+                <Button>Tap Me</Button>
+                <Button>Open Menu</Button>
+              </div>
             </div>
           </section>
         </SiteWrapper>

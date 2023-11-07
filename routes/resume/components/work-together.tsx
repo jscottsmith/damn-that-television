@@ -4,7 +4,7 @@ import {
   HandThumbUpIcon,
   HandThumbDownIcon,
 } from '@heroicons/react/24/outline';
-import { SelectionButton } from '@/components/selection-button';
+import { SelectionButton } from '@/components/buttons/selection-button';
 import { Button, ButtonSizes, ButtonTypes } from '@/components/button';
 import { RichText, RichTextBlock } from 'prismic-reactjs';
 export const WORK_TOGETHER_ID = 'work-together';

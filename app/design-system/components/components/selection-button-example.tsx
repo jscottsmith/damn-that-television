@@ -1,4 +1,4 @@
-import { SelectionButton } from '@/components/selection-button';
+import { SelectionButton } from '@/components/buttons/selection-button';
 import React, { PropsWithChildren, useState } from 'react';
 
 export function SelectionButtonExample(props: PropsWithChildren) {
