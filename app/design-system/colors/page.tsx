@@ -1,4 +1,6 @@
-import React from 'react';
+import { SiteWrapper } from '@/components/site-wrapper';
+import { SurfaceSecondary } from '@/components/surface';
+import { HeroTitle } from '@/components/typography/hero-title';
 
 const sections = [
   [
@@ -151,23 +153,30 @@ function ColorSwatch(props: { color: string; name: string }) {
   return (
     <div className="inline-flex flex-col items-center">
       <div className={'h-36 w-36 ' + props.color} />
-      <p className="font-poppins text-xs font-bold">{props.name}</p>
+      <p className="font-poppins text-xs dark:text-white font-bold">
+        {props.name}
+      </p>
     </div>
   );
 }
 
 export default function Colors() {
   return (
-    <div className="bg-white">
-      {sections.map((colors, i) => {
-        return (
-          <section key={i}>
-            {colors.map((entry, i) => {
-              return <ColorSwatch key={i} color={entry[1]} name={entry[0]} />;
-            })}
-          </section>
-        );
-      })}
-    </div>
+    <SurfaceSecondary asChild className="pt-24">
+      <SiteWrapper className="min-h-screen" padY>
+        <HeroTitle asChild>
+          <h1>Colors</h1>
+        </HeroTitle>
+        {sections.map((colors, i) => {
+          return (
+            <section key={i}>
+              {colors.map((entry, i) => {
+                return <ColorSwatch key={i} color={entry[1]} name={entry[0]} />;
+              })}
+            </section>
+          );
+        })}
+      </SiteWrapper>
+    </SurfaceSecondary>
   );
 }

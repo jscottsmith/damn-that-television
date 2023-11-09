@@ -3,6 +3,7 @@ import { Providers } from './providers';
 
 import '/sass/root.scss';
 import '/sass/globals.scss';
+import { HeaderNav } from '@/routes/components/header-nav';
 
 export const metadata: Metadata = {
   title: 'Design System',
@@ -39,6 +40,8 @@ export default function RootLayout({
         ></link>
       </head>
       <body>
+        <HeaderNav />
+
         <main>
           <Providers>{children}</Providers>
         </main>

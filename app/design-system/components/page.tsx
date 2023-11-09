@@ -6,7 +6,6 @@ import { SurfaceBackground, SurfaceSecondary } from '@/components/surface';
 import { useTheme } from 'next-themes';
 import { Title } from '@/components/typography/title';
 import { HeroTitle } from '@/components/typography/hero-title';
-import { HeaderNav } from '@/routes/components/header-nav';
 import { SelectionButtonExample } from './components/selection-button-example';
 import { Button, ButtonName, ButtonSize } from '@/components/buttons/button';
 import {
@@ -23,7 +22,6 @@ export default function Components() {
 
   return (
     <>
-      <HeaderNav />
       <SurfaceSecondary asChild className="pt-24">
         <SiteWrapper className="min-h-screen" padY>
           <HeroTitle asChild>

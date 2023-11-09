@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { EyeButton } from 'components/eye-button';
 import { NavigationMenu } from '@/components/navigation-menu';
