@@ -23,7 +23,7 @@ export default function Components() {
   return (
     <>
       <SurfaceSecondary asChild className="pt-24">
-        <SiteWrapper className="min-h-screen" padY>
+        <SiteWrapper className="min-h-screen" padB>
           <HeroTitle asChild>
             <h1>Components</h1>
           </HeroTitle>
