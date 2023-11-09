@@ -5,7 +5,11 @@ import {
   HandThumbDownIcon,
 } from '@heroicons/react/24/outline';
 import { SelectionButton } from '@/components/buttons/selection-button';
-import { Button, ButtonSizes, ButtonTypes } from '@/components/button';
+import {
+  CTAButton,
+  CTAButtonSizes,
+  CTAButtonTypes,
+} from '@/components/buttons/cta-button';
 import { RichText, RichTextBlock } from 'prismic-reactjs';
 export const WORK_TOGETHER_ID = 'work-together';
 
@@ -61,12 +65,12 @@ export const WorkTogether = (props: WorkTogetherProps) => {
           </div>
           <div className="my-lg flex justify-center">
             <a href="mailto:jscsmith@gmail.com">
-              <Button
-                buttonSize={ButtonSizes.default}
-                buttonType={ButtonTypes.pepto}
+              <CTAButton
+                buttonSize={CTAButtonSizes.default}
+                buttonType={CTAButtonTypes.pepto}
               >
                 Email me!
-              </Button>
+              </CTAButton>
             </a>
           </div>
           <div className="text-xs text-lunar">

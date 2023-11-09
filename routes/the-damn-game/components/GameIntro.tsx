@@ -1,4 +1,8 @@
-import { Button, ButtonSizes, ButtonTypes } from '@/components/button';
+import {
+  CTAButton,
+  CTAButtonSizes,
+  CTAButtonTypes,
+} from '@/components/buttons/cta-button';
 import React from 'react';
 
 type Props = { handleStart: () => void };
@@ -32,14 +36,14 @@ export const GameIntro = (props: Props) => {
           </p>
         </div>
         <div className="text-center">
-          <Button
+          <CTAButton
             className="w-10xl"
-            buttonType={ButtonTypes.deep}
-            buttonSize={ButtonSizes.lg}
+            buttonType={CTAButtonTypes.deep}
+            buttonSize={CTAButtonSizes.lg}
             onClick={props.handleStart}
           >
             Hit it!
-          </Button>
+          </CTAButton>
         </div>
       </div>
     </div>
