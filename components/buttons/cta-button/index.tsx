@@ -12,8 +12,8 @@ export enum CTAButtonTypes {
 
 export enum CTAButtonSizes {
   'sm' = 'sm',
-  'md' = 'md',
   'default' = 'default',
+  'md' = 'md',
   'lg' = 'lg',
 }
 

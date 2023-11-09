@@ -16,6 +16,8 @@ import {
 } from '@heroicons/react/24/outline';
 import { ComponentSection } from './components/component-section';
 
+import CTAButtons from './components/cta-buttons';
+
 export default function Components() {
   const theme = useTheme();
 
@@ -41,7 +43,8 @@ export default function Components() {
           </section>
           <section className="py-md">
             <div className="flex flex-col gap-sm">
-              <ComponentSection title="Primary/Secondary">
+              <CTAButtons />
+              <ComponentSection title="Standard Buttons - Primary/Secondary">
                 <div className="flex flex-col gap-lg">
                   <div className="flex gap-sm items-end">
                     <Button size={ButtonSize.sm} name={ButtonName.primary}>
