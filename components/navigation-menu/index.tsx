@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { NavLinks } from '../types';
-import { useRouter } from 'next/router';
-import { HeroTitle } from '../typography/hero-title';
+import { HeroTitle, HeroTitleSize } from '../typography/hero-title';
 import { usePathname } from 'next/navigation';
 // import { Marquee } from '../marquee';
 // import { FOUND_A_JOB_LYRICS } from '@/constants/found-a-job-lyrics';
@@ -98,7 +97,7 @@ export const NavigationMenu = (props: {
                     pathName === current.href ? 'border-cream' : 'border-lunar',
                   )}
                 />
-                <HeroTitle asChild>
+                <HeroTitle size={HeroTitleSize.lg} asChild>
                   <Link
                     href={current.href}
                     className={clsx(
