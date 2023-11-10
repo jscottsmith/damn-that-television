@@ -1,8 +1,7 @@
 import clsx from 'clsx';
-import { HTMLAttributes } from 'react';
-import { AsChildProps, Slot } from '../slot';
+import { SlotComponent, SlotComponentProps } from '../slot';
 
-type HeroTitleProps = AsChildProps<HTMLAttributes<HTMLHeadingElement>> & {
+type HeroTitleProps = SlotComponentProps & {
   className?: string;
   size?: HeroTitleSizes;
 };
@@ -38,19 +37,18 @@ function getHeroTitleSizeStyle(size: HeroTitleSizes) {
 
 export function HeroTitle({
   size = HeroTitleSize.default,
-  asChild,
   className,
   ...props
 }: HeroTitleProps) {
-  const Comp = asChild ? Slot : 'h1';
   return (
-    <Comp
-      {...props}
+    <SlotComponent
+      as="h1"
       className={clsx(
         getHeroTitleSizeStyle(size),
         DEFAULT_HERO_TEXT_CLASSNAME,
         className,
       )}
+      {...props}
     />
   );
 }
