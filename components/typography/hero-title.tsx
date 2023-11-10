@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { SlotComponent, SlotComponentProps } from '../slot';
 
 type HeroTitleProps = SlotComponentProps & {
-  className?: string;
   size?: HeroTitleSizes;
 };
 
