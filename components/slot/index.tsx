@@ -32,12 +32,17 @@ export function Slot({
 }
 
 export type SlotComponentProps = AsChildProps<
-  React.HTMLAttributes<HTMLDivElement>
+  React.HTMLAttributes<HTMLElement>
 > & {
+  as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
   className?: string;
 };
 
-export function SlotComponent({ asChild, ...props }: SlotComponentProps) {
-  const Comp = asChild ? Slot : 'div';
+export function SlotComponent({
+  as = 'div',
+  asChild,
+  ...props
+}: SlotComponentProps) {
+  const Comp = asChild ? Slot : as;
   return <Comp {...props} />;
 }

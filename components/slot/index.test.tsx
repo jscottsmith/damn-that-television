@@ -8,6 +8,17 @@ describe('given a <SlotComponent>', () => {
   });
 
   describe('when {asChild} is true', () => {
+    test('then it renders an h1', () => {
+      render(
+        <SlotComponent as="h1" data-testid="root">
+          test
+        </SlotComponent>,
+      );
+      expect(screen.getByTestId('root').tagName).toBe('H1');
+    });
+  });
+
+  describe('when {asChild} is true', () => {
     test('then it renders the child only', () => {
       render(
         <SlotComponent data-testid="root" asChild>
