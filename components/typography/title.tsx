@@ -15,7 +15,10 @@ export enum TitleSize {
 
 type TitleSizes = keyof typeof TitleSize;
 
-export const DEFAULT_TEXT_CLASSNAME = clsx('font-bold', SHARED_TEXT_CLASSNAME);
+export const DEFAULT_TEXT_CLASSNAME = clsx(
+  'font-bold font-futura',
+  SHARED_TEXT_CLASSNAME,
+);
 
 export const MAP_TITLE_SIZE_CLASSNAME = {
   [TitleSize.xl]: 'text-4xl md:text-5xl',
