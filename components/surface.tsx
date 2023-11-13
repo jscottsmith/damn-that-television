@@ -31,3 +31,17 @@ export function SurfaceBackground({ className, ...props }: SlotComponentProps) {
     />
   );
 }
+
+export function SurfacePattern({ className, ...props }: SlotComponentProps) {
+  return (
+    <SlotComponent
+      style={{ backgroundSize: '5rem 5rem' }}
+      className={clsx(
+        SURFACE_BACKGROUND_CLASS,
+        className,
+        `bg-[url('/static/pattern-1.svg')]`,
+      )}
+      {...props}
+    />
+  );
+}
