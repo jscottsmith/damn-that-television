@@ -17,7 +17,7 @@ export const DateRange = (props: Props) => {
       {props.startDate && (
         <span>
           {props.dateFormatter.format(new Date(props.startDate))}
-          {(props.endDate || props.presentRole) && ' – '}
+          {(!!props.endDate || !!props.presentRole) && ' – '}
         </span>
       )}
       {props.endDate && (
