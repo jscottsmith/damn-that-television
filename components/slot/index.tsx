@@ -34,7 +34,7 @@ export function Slot({
 export type SlotComponentProps = AsChildProps<
   React.HTMLAttributes<HTMLElement>
 > & {
-  as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
+  as?: 'div' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
   className?: string;
   style?: React.CSSProperties;
 };

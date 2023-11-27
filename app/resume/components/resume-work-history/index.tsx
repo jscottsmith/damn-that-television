@@ -3,15 +3,16 @@ import { RichText } from 'prismic-reactjs';
 import React from 'react';
 import { formatterMonthYear } from 'app/resume/helpers/format-date';
 import { DateRange } from '../date-range';
+import { Prose } from '@/components/typography/prose';
 
 export const RECENT_WORK_HISTORY_ID = 'recent-work-history';
 
 export const ResumeWorkHistory = (props) => {
   return (
     <div id={RECENT_WORK_HISTORY_ID}>
-      <span className="prose">
+      <Prose as="span">
         <RichText render={props.primary.title} />
-      </span>
+      </Prose>
 
       {props.items.map((item, i) => (
         <section className="mb-xl relative pl-md md:pl-lg" key={i}>
@@ -26,9 +27,9 @@ export const ResumeWorkHistory = (props) => {
           <span className="text-2xl font-light inline-block italic">
             <RichText render={item.job_title} />
           </span>
-          <div className="prose">
+          <Prose>
             <RichText render={item.content} />
-          </div>
+          </Prose>
           <footer className="mt-md">
             {item.keywords && (
               <ul>

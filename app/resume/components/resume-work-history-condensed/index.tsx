@@ -2,13 +2,14 @@ import { RichText } from 'prismic-reactjs';
 import React from 'react';
 import { formatterYear } from 'app/resume/helpers/format-date';
 import { DateRange } from '../date-range';
+import { Prose } from '@/components/typography/prose';
 
 export const ResumeWorkHistoryCondensed = (props) => {
   return (
     <div>
-      <span className="prose">
+      <Prose as="span">
         <RichText render={props.primary.title} />
-      </span>
+      </Prose>
 
       {props.items.map((item, i) => (
         <section className="mb-xl" key={i}>

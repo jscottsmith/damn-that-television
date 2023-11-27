@@ -11,6 +11,7 @@ import {
   CTAButtonTypes,
 } from '@/components/buttons/cta-button';
 import { RichText, RichTextBlock } from 'prismic-reactjs';
+import { Prose } from '@/components/typography/prose';
 export const WORK_TOGETHER_ID = 'work-together';
 
 type WorkTogetherProps = {
@@ -60,9 +61,9 @@ export const WorkTogether = (props: WorkTogetherProps) => {
       </div>
       {isInterested && (
         <div className="mt-lg w-full text-center">
-          <div className={clsx('prose mx-auto max-w-md')}>
+          <Prose className={clsx('mx-auto max-w-md')}>
             <RichText render={props.primary.body_yes} />
-          </div>
+          </Prose>
           <div className="my-lg flex justify-center">
             <a href="mailto:jscsmith@gmail.com">
               <CTAButton
@@ -79,9 +80,9 @@ export const WorkTogether = (props: WorkTogetherProps) => {
         </div>
       )}
       {isNotInterested && (
-        <div className={clsx('prose mt-lg w-full text-center')}>
+        <Prose className={clsx('mt-lg w-full text-center')}>
           <p>No worries, carry on.</p>
-        </div>
+        </Prose>
       )}
     </section>
   );

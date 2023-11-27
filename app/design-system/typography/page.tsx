@@ -4,6 +4,7 @@ import { SurfacePrimary } from '@/components/surface';
 import { Code } from '@/components/typography/code';
 import { HeroTitle, HeroTitleSize } from '@/components/typography/hero-title';
 import { Title, TitleSize } from '@/components/typography/title';
+import ProseExample from './prose-example';
 
 const heroTitleSizes = Object.values(HeroTitleSize);
 const titleSizes = Object.values(TitleSize);
@@ -42,6 +43,8 @@ export default function Components() {
             </div>
           ))}
         </section>
+
+        <ProseExample />
       </SiteWrapper>
     </SurfacePrimary>
   );

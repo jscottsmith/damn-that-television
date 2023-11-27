@@ -4,84 +4,84 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
-.prose {
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    @apply my-md;
-    &:last-child {
-      @apply mb-0;
-    }
-  }
-  h1 {
-    @apply text-3xl md:text-4xl;
-    @apply text-miami-old;
-    @apply font-medium;
-    @apply italic;
-    @apply mt-xl;
-    @apply mb-lg;
-    @apply pb-1;
-    @apply border-b-2 border-solid border-peach;
-    @apply font-normal;
-  }
-  h2 {
-    @apply text-2xl md:text-3xl;
-    @apply font-normal;
-  }
-  h3 {
-    @apply text-xl md:text-2xl;
-    @apply font-medium;
-  }
-  h4 {
-    @apply text-xl;
-    @apply font-medium;
-  }
-  h5 {
-    @apply text-lg;
-    @apply font-medium;
-  }
-  h6 {
-    @apply text-base;
-    @apply font-medium;
-  }
+// .prose {
+//   h2,
+//   h3,
+//   h4,
+//   h5,
+//   h6,
+//   p {
+//     @apply my-md;
+//     &:last-child {
+//       @apply mb-0;
+//     }
+//   }
+//   h1 {
+//     @apply text-3xl md:text-4xl;
+//     @apply text-miami-old;
+//     @apply font-medium;
+//     @apply italic;
+//     @apply mt-xl;
+//     @apply mb-lg;
+//     @apply pb-1;
+//     @apply border-b-2 border-solid border-peach;
+//     @apply font-normal;
+//   }
+//   h2 {
+//     @apply text-2xl md:text-3xl;
+//     @apply font-normal;
+//   }
+//   h3 {
+//     @apply text-xl md:text-2xl;
+//     @apply font-medium;
+//   }
+//   h4 {
+//     @apply text-xl;
+//     @apply font-medium;
+//   }
+//   h5 {
+//     @apply text-lg;
+//     @apply font-medium;
+//   }
+//   h6 {
+//     @apply text-base;
+//     @apply font-medium;
+//   }
 
-  li {
-    @apply list-disc;
-  }
-  ul,
-  ol {
-    @apply pl-xl md:pl-2xl;
-  }
+//   li {
+//     @apply list-disc;
+//   }
+//   ul,
+//   ol {
+//     @apply pl-xl md:pl-2xl;
+//   }
 
-  a {
-    @apply text-teal;
-    @apply font-normal;
+//   a {
+//     @apply text-teal;
+//     @apply font-normal;
 
-    &:hover {
-      @apply text-salmon;
-    }
-  }
+//     &:hover {
+//       @apply text-salmon;
+//     }
+//   }
 
-  p,
-  li {
-    @apply text-night;
-    @apply text-base;
-    @apply leading-relaxed;
+//   p,
+//   li {
+//     @apply text-night;
+//     @apply text-base;
+//     @apply leading-relaxed;
 
-    strong {
-      @apply text-plum;
-    }
-  }
+//     strong {
+//       @apply text-plum;
+//     }
+//   }
 
-  &.prose-lg {
-    p,
-    li {
-      // @apply font-light;
-      @apply text-xl;
-      @apply leading-loose;
-    }
-  }
-}
+//   &.prose-lg {
+//     p,
+//     li {
+//       // @apply font-light;
+//       @apply text-xl;
+//       @apply leading-loose;
+//     }
+//   }
+// }
