@@ -2,10 +2,12 @@ import React from 'react';
 import { withRouter } from 'next/router';
 import Fade from 'components/Fade';
 import { Home } from '@/routes/home';
-import Client from 'utils/prismicHelpers';
+import * as prismic from '@prismicio/client';
+import { prismicConfiguration, repoName } from 'prismicConfiguration';
 
 export async function getStaticProps({ params }) {
-  const document = await Client().getSingle('homepage', {});
+  const client = prismic.createClient(repoName, prismicConfiguration);
+  const document = await client.getSingle('homepage', {});
 
   return {
     props: {
