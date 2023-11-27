@@ -3,6 +3,7 @@ import { RichText } from 'prismic-reactjs';
 import React from 'react';
 import { AVATAR_PATH } from 'app/resume';
 import { Links } from 'app/resume/components/resume-header/components/links';
+import { Prose } from '@/components/typography/prose';
 
 export const ResumeHeader = (props) => {
   return (
@@ -21,13 +22,15 @@ export const ResumeHeader = (props) => {
         />
       </div>
 
-      <section className="text-center prose prose-a:text-club-500">
-        <RichText render={props.document.data.name} />
-        <RichText render={props.document.data.current_job_title} />
-        <div className="text-xs">
-          <RichText render={props.document.data.current_role_location} />
-        </div>
-      </section>
+      <Prose asChild>
+        <section className="text-center">
+          <RichText render={props.document.data.name} />
+          <RichText render={props.document.data.current_job_title} />
+          <div className="text-xs">
+            <RichText render={props.document.data.current_role_location} />
+          </div>
+        </section>
+      </Prose>
 
       <div className="sm:grid grid-cols-3 md:block">
         {props.document.data.body.map((slice, i) => {

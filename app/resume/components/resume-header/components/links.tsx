@@ -1,9 +1,10 @@
+import { Prose } from '@/components/typography/prose';
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
 
 export const Links = (props) => {
   return (
-    <div className="prose">
+    <Prose>
       <RichText render={props.links.primary.title} />
       <ul>
         {props.links.items.map((item, i) => (
@@ -12,6 +13,6 @@ export const Links = (props) => {
           </li>
         ))}
       </ul>
-    </div>
+    </Prose>
   );
 };

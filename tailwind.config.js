@@ -1,5 +1,13 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+const round = (num) =>
+  num
+    .toFixed(7)
+    .replace(/(\.[0-9]+?)0+$/, '$1')
+    .replace(/\.0$/, '');
+const em = (px, base) => `${round(px / base)}em`;
+const rem = (px) => `${round(px / 16)}rem`;
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -17,6 +25,93 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      // Prose -- see base styles here:
+      // https://github.com/tailwindlabs/tailwindcss-typography/blob/master/src/styles.js
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            lineHeight: round(24 / 16),
+            h1: {
+              fontSize: rem(32),
+              fontFamily: theme('fontFamily.futura'),
+              fontWeight: 700,
+              marginTop: 0,
+              marginBottom: rem(16),
+            },
+            h2: {
+              fontFamily: theme('fontFamily.futura'),
+              fontWeight: 700,
+              marginTop: rem(16),
+              marginBottom: rem(16),
+            },
+            h3: {
+              fontFamily: theme('fontFamily.futura'),
+              fontWeight: 400,
+            },
+            // blockquote: {
+            //   fontSize: em(24, 16),
+            //   fontFamily: theme('fontFamily.futura'),
+            // },
+            li: {
+              // margin: theme('spacing.lg'),
+            },
+          },
+        },
+        base: {
+          css: {
+            h1: {
+              fontSize: em(48, 16),
+            },
+            h2: {
+              fontSize: em(64, 16),
+            },
+            h3: {
+              fontSize: em(64, 16),
+            },
+          },
+        },
+        slate: {
+          css: {
+            '--tw-prose-links': theme('colors.miami-old'),
+            '--tw-prose-body': theme('colors.slate.600'),
+            '--tw-prose-headings': theme('colors.slate.700'),
+            '--tw-prose-lead': theme('colors.slate.500'),
+            '--tw-prose-bold': theme('colors.slate.700'),
+            // '--tw-prose-counters': colors.slate[500],
+            // '--tw-prose-bullets': colors.slate[300],
+            // '--tw-prose-hr': colors.slate[200],
+            // '--tw-prose-quotes': colors.slate[900],
+            // '--tw-prose-quote-borders': colors.slate[200],
+            // '--tw-prose-captions': colors.slate[500],
+            // '--tw-prose-kbd': colors.slate[900],
+            // '--tw-prose-kbd-shadows': hexToRgb(colors.slate[900]),
+            // '--tw-prose-code': colors.slate[900],
+            // '--tw-prose-pre-code': colors.slate[200],
+            // '--tw-prose-pre-bg': colors.slate[800],
+            // '--tw-prose-th-borders': colors.slate[300],
+            // '--tw-prose-td-borders': colors.slate[200],
+            // '--tw-prose-invert-body': colors.slate[300],
+            // '--tw-prose-invert-headings': colors.white,
+            // '--tw-prose-invert-lead': colors.slate[400],
+            // '--tw-prose-invert-links': colors.white,
+            // '--tw-prose-invert-bold': colors.white,
+            // '--tw-prose-invert-counters': colors.slate[400],
+            // '--tw-prose-invert-bullets': colors.slate[600],
+            // '--tw-prose-invert-hr': colors.slate[700],
+            // '--tw-prose-invert-quotes': colors.slate[100],
+            // '--tw-prose-invert-quote-borders': colors.slate[700],
+            // '--tw-prose-invert-captions': colors.slate[400],
+            // '--tw-prose-invert-kbd': colors.white,
+            // '--tw-prose-invert-kbd-shadows': hexToRgb(colors.white),
+            // '--tw-prose-invert-code': colors.white,
+            // '--tw-prose-invert-pre-code': colors.slate[300],
+            // '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
+            // '--tw-prose-invert-th-borders': colors.slate[600],
+            // '--tw-prose-invert-td-borders': colors.slate[700],
+          },
+        },
+      }),
+
       animation: {
         'spin-slow': 'spin 40s linear infinite',
       },
@@ -215,5 +310,5 @@ module.exports = {
       },
     },
   },
-  // plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography')],
 };
