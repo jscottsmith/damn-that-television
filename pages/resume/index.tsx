@@ -1,10 +1,12 @@
 import React from 'react';
 import { Resume } from 'routes/resume';
 import { withRouter } from 'next/router';
-import Client from 'utils/prismicHelpers';
+import * as prismic from '@prismicio/client';
+import { prismicConfiguration, repoName } from 'prismicConfiguration';
 
-export async function getStaticProps({ params }) {
-  const document = await Client().getSingle('resume', {});
+export async function getStaticProps() {
+  const client = prismic.createClient(repoName, prismicConfiguration);
+  const document = await client.getSingle('resume', {});
 
   return {
     props: {
