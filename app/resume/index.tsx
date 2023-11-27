@@ -1,5 +1,5 @@
+'use client';
 import React from 'react';
-import Helmet from 'react-helmet';
 import { ResumeHeader } from './components/resume-header';
 import { ResumeContent } from './components/resume-content';
 import { ResumeWorkHistory } from './components/resume-work-history';
@@ -12,26 +12,24 @@ import { ResumeEducation } from './components/resume-education';
 import { Card, CardPrimary } from '@/components/card';
 import { SurfaceBackground, WHITE_SURFACE_CLASS } from '@/components/surface';
 import { SiteWrapper } from '@/components/site-wrapper';
+import { Metadata } from 'next';
 
 const DESC = 'Résumé of J Scott Smith, a creative web developer.';
 export const AVATAR_PATH = '/static/avatar.jpg';
 
-function getMeta(pathname) {
-  return [
-    { name: 'description', content: DESC },
-    { name: 'twitter:description', content: DESC },
-    { name: 'twitter:image', content: AVATAR_PATH },
-    { property: 'og:url', content: pathname },
-    { property: 'og:description', content: DESC },
-    { property: 'og:image', content: AVATAR_PATH },
-  ];
-}
+export const metadata: Metadata = {
+  title: 'Résumé',
+  description: DESC,
+  openGraph: {
+    url: 'https://damnthat.tv/resume',
+    images: [{ url: AVATAR_PATH }],
+  },
+};
 
 export const Resume = (props) => {
   return (
     <>
       <HeaderNav />
-      <Helmet title="Résumé" meta={getMeta(props.router.pathname)} />
       <SurfaceBackground asChild>
         <SiteWrapper padY>
           <article className="pt-4xl">

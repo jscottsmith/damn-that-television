@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { RecruiterBadge } from '@/components/recruiter-badge';
 import { PointerFinger } from '@/components/pointer-finger';
 import { ROUTE_RESUME } from '@/routes/routes.constants';
-import { WORK_TOGETHER_ID } from '@/routes/resume/components/work-together';
+import { WORK_TOGETHER_ID } from 'app/resume/components/work-together';
 
 export const RecruiterLink = () => {
   return (

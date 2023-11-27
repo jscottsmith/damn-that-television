@@ -1,7 +1,7 @@
 import { Badge } from '@/components/badge';
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
-import { formatterMonthYear } from 'routes/resume/helpers/format-date';
+import { formatterMonthYear } from 'app/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 
 export const RECENT_WORK_HISTORY_ID = 'recent-work-history';

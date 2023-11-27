@@ -1,6 +1,6 @@
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
-import { formatterYear } from 'routes/resume/helpers/format-date';
+import { formatterYear } from 'app/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 
 export const ResumeWorkHistoryCondensed = (props) => {

@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
-import { AVATAR_PATH } from 'routes/resume';
-import { Links } from 'routes/resume/components/resume-header/components/links';
+import { AVATAR_PATH } from 'app/resume';
+import { Links } from 'app/resume/components/resume-header/components/links';
 
 export const ResumeHeader = (props) => {
   return (
