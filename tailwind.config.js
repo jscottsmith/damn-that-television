@@ -73,10 +73,15 @@ module.exports = {
         slate: {
           css: {
             '--tw-prose-links': theme('colors.miami-old'),
+            '--tw-prose-invert-links': theme('colors.miami-old'),
             '--tw-prose-body': theme('colors.slate.600'),
+            '--tw-prose-invert-body': theme('colors.slate.400'),
             '--tw-prose-headings': theme('colors.slate.700'),
+            '--tw-prose-invert-headings': theme('colors.slate.300'),
             '--tw-prose-lead': theme('colors.slate.500'),
+            '--tw-prose-invert-lead': theme('colors.slate.900'),
             '--tw-prose-bold': theme('colors.slate.700'),
+            '--tw-prose-invert-bold': theme('colors.slate.300'),
             // '--tw-prose-counters': colors.slate[500],
             // '--tw-prose-bullets': colors.slate[300],
             // '--tw-prose-hr': colors.slate[200],

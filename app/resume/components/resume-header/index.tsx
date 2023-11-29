@@ -22,15 +22,17 @@ export const ResumeHeader = (props) => {
         />
       </div>
 
-      <Prose asChild>
-        <section className="text-center">
+      <section className="text-center mt-base mb-lg">
+        <div className="font-futura text-4xl mb-base text-slate-700 dark:text-slate-300">
           <RichText render={props.document.data.name} />
+        </div>
+        <div className="font-futura font-medium italic text-xl text-slate-700 dark:text-slate-300 mb-xs">
           <RichText render={props.document.data.current_job_title} />
-          <div className="text-xs">
-            <RichText render={props.document.data.current_role_location} />
-          </div>
-        </section>
-      </Prose>
+        </div>
+        <div className="text-slate-500">
+          <RichText render={props.document.data.current_role_location} />
+        </div>
+      </section>
 
       <div className="sm:grid grid-cols-3 md:block">
         {props.document.data.body.map((slice, i) => {

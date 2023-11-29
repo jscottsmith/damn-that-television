@@ -1,14 +1,13 @@
 import React from 'react';
 import { RichText } from 'prismic-reactjs';
-import { Prose } from '@/components/typography/prose';
 import { Badge, BadgeType } from 'components/badge';
+import { SectionTitle } from '../SectionTitle';
 
 export const ResumeAwards = (props) => {
   return (
     <section>
-      <Prose>
-        <RichText render={props.primary.title} />
-      </Prose>
+      <SectionTitle text={props.primary.title} />
+
       <ul>
         {props.items.map((item, i) => (
           <li key={i} className="mb-md">
