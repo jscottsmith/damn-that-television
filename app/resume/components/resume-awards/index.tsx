@@ -1,7 +1,7 @@
 import React from 'react';
 import { RichText } from 'prismic-reactjs';
-import { Badge } from 'components/badge';
 import { Prose } from '@/components/typography/prose';
+import { Badge, BadgeType } from 'components/badge';
 
 export const ResumeAwards = (props) => {
   return (
@@ -15,7 +15,7 @@ export const ResumeAwards = (props) => {
             <div className="text-xl font-normal italic">
               <RichText render={item.title} />
             </div>
-            <Badge background="bg-peach">{item.dates}</Badge>
+            <Badge type={BadgeType.primary}>{item.dates}</Badge>
           </li>
         ))}
       </ul>

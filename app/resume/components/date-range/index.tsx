@@ -1,4 +1,4 @@
-import { Badge } from 'components/badge';
+import { Badge, BadgeType } from 'components/badge';
 import React from 'react';
 import { formatterYear } from '../../helpers/format-date';
 
@@ -13,7 +13,7 @@ type Props = {
 
 export const DateRange = (props: Props) => {
   return (
-    <Badge className="mt-1" background="bg-peach">
+    <Badge className="mt-1" type={BadgeType.primary}>
       {props.startDate && (
         <span>
           {props.dateFormatter.format(new Date(props.startDate))}
