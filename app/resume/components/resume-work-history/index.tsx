@@ -4,21 +4,20 @@ import React from 'react';
 import { formatterMonthYear } from 'app/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
+import { SectionTitle } from '../SectionTitle';
 
 export const RECENT_WORK_HISTORY_ID = 'recent-work-history';
 
 export const ResumeWorkHistory = (props) => {
   return (
     <div id={RECENT_WORK_HISTORY_ID}>
-      <Prose as="span">
-        <RichText render={props.primary.title} />
-      </Prose>
+      <SectionTitle text={props.primary.title} />
 
       {props.items.map((item, i) => (
         <section className="mb-xl relative pl-md md:pl-lg" key={i}>
-          <span className="border-dotted border-gray-200 border-l-2 absolute top-md bottom-sm left-0">
-            <span className="border-dotted border-gray-200 border-t-2 absolute top-0 left-0 w-2 md:w-3" />
-            <span className="border-dotted border-gray-200 border-t-2 absolute bottom-0 left-0 w-2 md:w-3" />
+          <span className="border-dotted border-slate-200 dark:border-slate-700 border-l-2 absolute top-md bottom-sm left-0">
+            <span className="border-dotted border-slate-200 dark:border-slate-700 border-t-2 absolute top-0 left-0 w-2 md:w-3" />
+            <span className="border-dotted border-slate-200 dark:border-slate-700 border-t-2 absolute bottom-0 left-0 w-2 md:w-3" />
           </span>
           <span className="inline-block font-medium text-2xl">
             <RichText render={item.company} />
@@ -27,7 +26,7 @@ export const ResumeWorkHistory = (props) => {
           <span className="text-2xl font-light inline-block italic">
             <RichText render={item.job_title} />
           </span>
-          <Prose>
+          <Prose className="mt-base mb-lg md:mt-lg md:mb-xl">
             <RichText render={item.content} />
           </Prose>
           <footer className="mt-md">
@@ -35,9 +34,7 @@ export const ResumeWorkHistory = (props) => {
               <ul>
                 {item.keywords.split(', ').map((keyword) => (
                   <li key={keyword} className="inline-block mr-sm mb-sm">
-                    <Badge className="bg-transparent border-solid border border-gray-200">
-                      {keyword}
-                    </Badge>
+                    <Badge>{keyword}</Badge>
                   </li>
                 ))}
               </ul>

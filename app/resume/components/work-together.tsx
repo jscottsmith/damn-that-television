@@ -40,7 +40,7 @@ export const WorkTogether = (props: WorkTogetherProps) => {
       {/* <div className="flex w-full items-center justify-center -mt-12">
         <QuestionMarkCircleIcon className="w-6 block shrink-0 mx-sm" />
       </div> */}
-      <div className="text-xl font-normal text-plum md:text-2xl">
+      <div className="text-xl font-normal md:text-2xl">
         <RichText render={props.primary.title} />
       </div>
       <div className="mt-md flex w-full justify-center gap-sm">
@@ -74,7 +74,7 @@ export const WorkTogether = (props: WorkTogetherProps) => {
               </CTAButton>
             </a>
           </div>
-          <div className="text-xs text-lunar">
+          <div className="text-xs">
             <RichText render={props.primary.note} />
           </div>
         </div>

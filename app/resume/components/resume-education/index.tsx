@@ -3,6 +3,7 @@ import React from 'react';
 import { formatterYear } from 'app/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
+import { SectionTitle } from '../SectionTitle';
 
 type ResumeEducationSliceType = {
   institution: RichTextBlock[];
@@ -21,9 +22,7 @@ type ResumeEducationType = {
 export const ResumeEducation = (props: ResumeEducationType) => {
   return (
     <div>
-      <Prose as="span">
-        <RichText render={props.primary.title} />
-      </Prose>
+      <SectionTitle text={props.primary.title} />
 
       {props.items.map((item, i) => {
         const hasCopy = item?.copy?.length ?? 0 > 0;
