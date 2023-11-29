@@ -90,5 +90,4 @@ const mapDispatchToProps = (dispatch) => ({
   nextLevel: bindActionCreators(nextLevel, dispatch),
 });
 
-// @ts-expect-error
 export default connect(mapStateToProps, mapDispatchToProps)(LevelController);
