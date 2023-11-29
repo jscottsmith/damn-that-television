@@ -4,6 +4,7 @@ import { Providers } from './providers';
 import '/sass/root.scss';
 import '/sass/globals.scss';
 import { HeaderNav } from '@/routes/components/header-nav';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Design System',
@@ -34,10 +35,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link
-          rel="stylesheet"
-          href="https://use.typekit.net/bwo5nqc.css"
-        ></link>
+        <link rel="stylesheet" href="https://use.typekit.net/bwo5nqc.css" />
+        <link rel="manifest" href="/site.webmanifest" />
+        {/* TODO: pathname */}
+        {/* <link rel="canonical" href={`https://damnthat.tv${router.pathname}`} /> */}
+
+        {/* Google Tag */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-DGR8W8P5K3" />
+        <Script id="google-analytics">{`window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-DGR8W8P5K3');`}</Script>
       </head>
       <body>
         <HeaderNav />
