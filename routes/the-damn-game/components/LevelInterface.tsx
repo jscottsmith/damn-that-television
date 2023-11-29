@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from './LevelInterface.module.scss';
 import PowerBar from './PowerBar';
@@ -36,15 +35,15 @@ const LevelInterface = ({
   </Fragment>
 );
 
-LevelInterface.propTypes = {
-  hitPower: PropTypes.number,
-  kills: PropTypes.number,
-  lives: PropTypes.number,
-  maxHitPower: PropTypes.number,
-  maxShieldPower: PropTypes.number,
-  points: PropTypes.number,
-  shieldPower: PropTypes.number,
-};
+// LevelInterface.propTypes = {
+//   hitPower: PropTypes.number,
+//   kills: PropTypes.number,
+//   lives: PropTypes.number,
+//   maxHitPower: PropTypes.number,
+//   maxShieldPower: PropTypes.number,
+//   points: PropTypes.number,
+//   shieldPower: PropTypes.number,
+// };
 
 const mapStateToProps = ({
   score: { kills, points },

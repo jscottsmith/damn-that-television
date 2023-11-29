@@ -1,6 +1,5 @@
 import React, { Fragment, Component } from 'react';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import levelConfigs from '../constants/levelConfigs';
 import { nextLevel } from '../actions/levelActions';
@@ -11,12 +10,12 @@ import Level from './Level';
 class LevelController extends Component {
   props: any;
 
-  static propTypes = {
-    currentLevel: PropTypes.number.isRequired,
-    handleComplete: PropTypes.func.isRequired,
-    kills: PropTypes.number.isRequired,
-    nextLevel: PropTypes.func.isRequired,
-  };
+  // static propTypes = {
+  //   currentLevel: PropTypes.number.isRequired,
+  //   handleComplete: PropTypes.func.isRequired,
+  //   kills: PropTypes.number.isRequired,
+  //   nextLevel: PropTypes.func.isRequired,
+  // };
 
   componentDidUpdate(prevProps) {
     if (
