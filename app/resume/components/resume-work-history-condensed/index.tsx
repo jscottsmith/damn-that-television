@@ -4,6 +4,7 @@ import { formatterYear } from 'app/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
+import { TitleAndSubtitle } from '../TitleAndSubtitle';
 
 export const ResumeWorkHistoryCondensed = (props) => {
   return (
@@ -12,15 +13,11 @@ export const ResumeWorkHistoryCondensed = (props) => {
 
       {props.items.map((item, i) => (
         <section className="mb-xl text-slate-700" key={i}>
-          <div>
-            <span className="inline-block font-medium font-futura text-xl">
-              <RichText render={item.company} />
-            </span>
-            <span className="h-4 mx-md border-peach border-solid border-r-2 inline-block" />
-            <span className="text-xl font-light font-futura inline-block italic">
-              <RichText render={item.job_title} />
-            </span>
-          </div>
+          <TitleAndSubtitle
+            className="text-xl"
+            title={item.company}
+            subtitle={item.job_title}
+          />
           <DateRange
             dateFormatter={formatterYear}
             startDate={item.start_date}

@@ -11,7 +11,7 @@ export const ResumeAwards = (props) => {
       <ul>
         {props.items.map((item, i) => (
           <li key={i} className="mb-md">
-            <div className="text-xl font-normal italic">
+            <div className="text-xl font-normal font-futura italic mb-1">
               <RichText render={item.title} />
             </div>
             <Badge type={BadgeType.primary}>{item.dates}</Badge>

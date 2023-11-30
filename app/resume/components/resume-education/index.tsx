@@ -4,6 +4,7 @@ import { formatterYear } from 'app/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
+import { TitleAndSubtitle } from '../TitleAndSubtitle';
 
 type ResumeEducationSliceType = {
   institution: RichTextBlock[];
@@ -25,23 +26,13 @@ export const ResumeEducation = (props: ResumeEducationType) => {
       <SectionTitle text={props.primary.title} />
 
       {props.items.map((item, i) => {
-        const hasCopy = item?.copy?.length ?? 0 > 0;
-
         return (
           <section className="mb-xl" key={i}>
-            <div>
-              <span className="inline-block text-xl font-medium">
-                <RichText render={item.institution} />
-              </span>
-              {hasCopy && (
-                <span className="mx-md inline-block h-4 border-r-2 border-solid border-peach" />
-              )}
-              {hasCopy && (
-                <Prose as="span" className="inline-block">
-                  <RichText render={item.copy} />
-                </Prose>
-              )}
-            </div>
+            <TitleAndSubtitle
+              className="text-xl"
+              title={item.institution}
+              subtitle={item.copy}
+            />
             <DateRange
               dateFormatter={formatterYear}
               startDate={item.start_date}
