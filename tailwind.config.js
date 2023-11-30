@@ -30,46 +30,34 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            lineHeight: round(24 / 16),
+            a: {
+              textDecoration: 'none',
+            },
+            // lineHeight: round(24 / 16),
             h1: {
-              fontSize: rem(32),
               fontFamily: theme('fontFamily.futura'),
               fontWeight: 700,
-              marginTop: 0,
-              marginBottom: rem(16),
             },
             h2: {
               fontFamily: theme('fontFamily.futura'),
               fontWeight: 700,
-              marginTop: rem(16),
-              marginBottom: rem(16),
             },
             h3: {
               fontFamily: theme('fontFamily.futura'),
               fontWeight: 400,
             },
-            // blockquote: {
-            //   fontSize: em(24, 16),
-            //   fontFamily: theme('fontFamily.futura'),
-            // },
+            blockquote: {
+              fontSize: em(24, 16),
+              fontFamily: theme('fontFamily.futura'),
+              fontWeight: 300,
+              fontStyle: 'normal',
+            },
             li: {
-              // margin: theme('spacing.lg'),
+              margin: em(4, 16),
             },
           },
         },
-        base: {
-          css: {
-            h1: {
-              fontSize: em(48, 16),
-            },
-            h2: {
-              fontSize: em(64, 16),
-            },
-            h3: {
-              fontSize: em(64, 16),
-            },
-          },
-        },
+
         slate: {
           css: {
             '--tw-prose-links': theme('colors.miami-old'),
@@ -78,8 +66,10 @@ module.exports = {
             '--tw-prose-invert-body': theme('colors.slate.400'),
             '--tw-prose-headings': theme('colors.slate.700'),
             '--tw-prose-invert-headings': theme('colors.slate.300'),
-            '--tw-prose-lead': theme('colors.slate.500'),
-            '--tw-prose-invert-lead': theme('colors.slate.900'),
+            // '--tw-prose-lead': theme('colors.slate.500'),
+            // '--tw-prose-invert-lead': theme('colors.slate.900'),
+            '--tw-prose-code': theme('colors.slate.700'),
+            '--tw-prose-invert-code': theme('colors.slate.300'),
             '--tw-prose-bold': theme('colors.slate.700'),
             '--tw-prose-invert-bold': theme('colors.slate.300'),
             // '--tw-prose-counters': colors.slate[500],
