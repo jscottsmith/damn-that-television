@@ -12,19 +12,6 @@ import { ResumeEducation } from './components/resume-education';
 import { CardPrimary } from '@/components/card';
 import { SurfaceBackground } from '@/components/surface';
 import { SiteWrapper } from '@/components/site-wrapper';
-import { Metadata } from 'next';
-
-const DESC = 'Résumé of J Scott Smith, a creative web developer.';
-export const AVATAR_PATH = '/static/avatar.jpg';
-
-export const metadata: Metadata = {
-  title: 'Résumé',
-  description: DESC,
-  openGraph: {
-    url: 'https://damnthat.tv/resume',
-    images: [{ url: AVATAR_PATH }],
-  },
-};
 
 export const Resume = (props) => {
   return (

@@ -1,16 +1,14 @@
 import Image from 'next/image';
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
-import { AVATAR_PATH } from 'app/resume';
 import { Links } from 'app/resume/components/resume-header/components/links';
-import { Prose } from '@/components/typography/prose';
 
 export const ResumeHeader = (props) => {
   return (
     <header className={props.className}>
       <div className="mx-auto w-32 rounded-full overflow-hidden border-4 border-solid border-white shadow-md">
         <Image
-          src={AVATAR_PATH}
+          src="/static/avatar.jpg"
           alt="J Scott Smith"
           width={300}
           height={300}

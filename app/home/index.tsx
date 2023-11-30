@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef } from 'react';
 
 import { HeaderNav } from '@/routes/components/header-nav';
