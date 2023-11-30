@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 import { SlotComponent, SlotComponentProps } from './slot';
 
-export const WHITE_SURFACE_CLASS = 'bg-white dark:bg-slate-900';
-export const DEFAULT_SURFACE_CLASS = 'bg-slate-100 dark:bg-slate-700';
+export const PRIMARY_SURFACE_CLASS = 'bg-white dark:bg-slate-900';
+export const SECONDARY_SURFACE_CLASS = 'bg-slate-100 dark:bg-slate-700';
 export const SURFACE_BACKGROUND_CLASS = 'bg-slate-200 dark:bg-slate-800';
 
 export function SurfacePrimary({ className, ...props }: SlotComponentProps) {
   return (
     <SlotComponent
-      className={clsx(WHITE_SURFACE_CLASS, className)}
+      className={clsx(PRIMARY_SURFACE_CLASS, className)}
       {...props}
     />
   );
@@ -17,7 +17,7 @@ export function SurfacePrimary({ className, ...props }: SlotComponentProps) {
 export function SurfaceSecondary({ className, ...props }: SlotComponentProps) {
   return (
     <SlotComponent
-      className={clsx(DEFAULT_SURFACE_CLASS, className)}
+      className={clsx(SECONDARY_SURFACE_CLASS, className)}
       {...props}
     />
   );
