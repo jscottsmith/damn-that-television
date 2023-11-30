@@ -9,8 +9,8 @@ import { ResumeAwards } from './components/resume-awards';
 import { WorkTogether } from './components/work-together';
 import { HeaderNav } from '@/routes/components/header-nav';
 import { ResumeEducation } from './components/resume-education';
-import { Card, CardPrimary } from '@/components/card';
-import { SurfaceBackground, WHITE_SURFACE_CLASS } from '@/components/surface';
+import { CardPrimary } from '@/components/card';
+import { SurfaceBackground } from '@/components/surface';
 import { SiteWrapper } from '@/components/site-wrapper';
 import { Metadata } from 'next';
 
