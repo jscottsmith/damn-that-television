@@ -20,6 +20,8 @@ import {
 import { ComponentSection } from './components/component-section';
 
 import CTAButtons from './components/cta-buttons';
+import { IconButton } from '@/components/buttons/icon-button';
+import { IconContainerSize } from '@/components/icon-container';
 
 export default function Components() {
   const theme = useTheme();
@@ -93,7 +95,7 @@ export default function Components() {
                 </div>
               </ComponentSection>
 
-              <ComponentSection title="Icon Button">
+              <ComponentSection title="Button with Icon">
                 <div className="flex gap-sm items-end">
                   <Button size={ButtonSize.sm} icon={<EyeIcon />}>
                     Reveal
@@ -104,6 +106,44 @@ export default function Components() {
                   <Button size={ButtonSize.md} icon={<TrashIcon />}>
                     Delete
                   </Button>
+                </div>
+              </ComponentSection>
+
+              <ComponentSection title="IconButton">
+                <div className="flex gap-lg items-center">
+                  <div className="flex gap-sm">
+                    <IconButton size={IconContainerSize.sm}>
+                      <EyeIcon />
+                    </IconButton>
+                    <IconButton size={IconContainerSize.sm}>
+                      <MagnifyingGlassIcon />
+                    </IconButton>
+                    <IconButton size={IconContainerSize.sm}>
+                      <TrashIcon />
+                    </IconButton>
+                  </div>
+                  <div className="flex gap-sm">
+                    <IconButton>
+                      <EyeIcon />
+                    </IconButton>
+                    <IconButton>
+                      <MagnifyingGlassIcon />
+                    </IconButton>
+                    <IconButton>
+                      <TrashIcon />
+                    </IconButton>
+                  </div>
+                  <div className="flex gap-sm">
+                    <IconButton size={IconContainerSize.md}>
+                      <EyeIcon />
+                    </IconButton>
+                    <IconButton size={IconContainerSize.md}>
+                      <MagnifyingGlassIcon />
+                    </IconButton>
+                    <IconButton size={IconContainerSize.md}>
+                      <TrashIcon />
+                    </IconButton>
+                  </div>
                 </div>
               </ComponentSection>
             </div>

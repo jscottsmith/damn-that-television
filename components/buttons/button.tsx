@@ -1,6 +1,7 @@
 import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import clsx from 'clsx';
 import { Label } from '../typography/label';
+import { IconContainer, IconContainerSize } from '../icon-container';
 
 export enum ButtonSize {
   sm = 'sm',
@@ -27,7 +28,7 @@ const BUTTON_NAME_MAP = {
   [ButtonName.primary]: clsx(
     'text-white bg-slate-800 hover:bg-club',
     // dark
-    'dark:text-deep dark:bg-slate-200 dark:hover:bg-club',
+    'dark:text-slate-800 dark:bg-slate-200 dark:hover:bg-club',
   ),
   [ButtonName.secondary]:
     'bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-600',
@@ -40,9 +41,9 @@ const BUTTON_SIZE_MAP = {
 };
 
 const ICON_SIZE_MAP = {
-  [ButtonSize.sm]: 'w-4 h-4',
-  [ButtonSize.base]: 'w-5 h-5',
-  [ButtonSize.md]: 'w-6 h-6',
+  [ButtonSize.sm]: IconContainerSize.sm,
+  [ButtonSize.base]: IconContainerSize.base,
+  [ButtonSize.md]: IconContainerSize.md,
 };
 
 function mapNameToClassName(size: ButtonNames) {
@@ -53,7 +54,7 @@ function mapSizeToClassName(size: ButtonSizes) {
   return BUTTON_SIZE_MAP[size];
 }
 
-function mapSizeToIconClassName(size: ButtonSizes) {
+function mapSizeToIconSize(size: ButtonSizes) {
   return ICON_SIZE_MAP[size];
 }
 
@@ -93,11 +94,7 @@ export const Button = (props: ButtonProps) => {
               iconContainerClassName,
             )}
           >
-            <span
-              className={clsx('block shrink-0', mapSizeToIconClassName(size))}
-            >
-              {icon}
-            </span>
+            <IconContainer size={mapSizeToIconSize(size)}>{icon}</IconContainer>
           </span>
         )}
       </button>
