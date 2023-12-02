@@ -2,6 +2,7 @@ import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import clsx from 'clsx';
 import { Label } from '../typography/label';
 import { IconContainer, IconContainerSize } from '../icon-container';
+import { SURFACE_INTERACTIVE } from '../surface-interactive';
 
 export enum ButtonSize {
   sm = 'sm',
@@ -30,8 +31,7 @@ const BUTTON_NAME_MAP = {
     // dark
     'dark:text-slate-800 dark:bg-slate-200 dark:hover:bg-club',
   ),
-  [ButtonName.secondary]:
-    'bg-slate-200 hover:bg-slate-300 dark:bg-slate-900 dark:hover:bg-slate-600',
+  [ButtonName.secondary]: SURFACE_INTERACTIVE,
 };
 
 const BUTTON_SIZE_MAP = {

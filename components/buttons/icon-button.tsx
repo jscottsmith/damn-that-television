@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 import clsx from 'clsx';
 import { IconContainer } from '../icon-container';
+import { SurfaceInteractive } from '../surface-interactive';
 
 export enum IconButtonSize {
   sm = 'sm',
@@ -43,26 +44,26 @@ export const IconButton = (props: IconButtonProps) => {
     ...rest
   } = props;
   return (
-    <button
-      className={clsx(
-        className,
-        mapSizeToClassName(size),
+    <SurfaceInteractive asChild>
+      <button
+        className={clsx(
+          className,
+          mapSizeToClassName(size),
 
-        'bg-slate-200 hover:bg-slate-300 dark:bg-slate-900 dark:hover:bg-slate-600',
-
-        'items-center inline-flex rounded-full',
-        // color
-        'shadow-slate-700 dark:shadow-slate-950',
-        // hover
-        'hover:shadow-hard-xs hover:-translate-x-0.5 hover:-translate-y-0.5',
-        // active
-        'hover:active:shadow-none hover:active:translate-x-0 hover:active:translate-y-0 active:duration-100',
-        // transition
-        'transition-[box-shadow,color,transform] duration-200',
-      )}
-      {...rest}
-    >
-      <IconContainer>{props.children}</IconContainer>
-    </button>
+          'items-center inline-flex rounded-full',
+          // color
+          'shadow-slate-700 dark:shadow-slate-950',
+          // hover
+          'hover:shadow-hard-xs hover:-translate-x-0.5 hover:-translate-y-0.5',
+          // active
+          'hover:active:shadow-none hover:active:translate-x-0 hover:active:translate-y-0 active:duration-100',
+          // transition
+          'transition-[box-shadow,color,transform] duration-200',
+        )}
+        {...rest}
+      >
+        <IconContainer>{props.children}</IconContainer>
+      </button>
+    </SurfaceInteractive>
   );
 };
