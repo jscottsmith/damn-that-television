@@ -31,7 +31,7 @@ export default function Components() {
       <SurfaceSecondary asChild className="pt-24">
         <SiteWrapper className="min-h-screen" padB>
           <HeroTitle asChild>
-            <h1>Components</h1>
+            <h1 className="pb-lg">Components</h1>
           </HeroTitle>
           <section className="py-md">
             <Title asChild>

@@ -6,13 +6,13 @@ import {
   CTAButtonTypes,
 } from '@/components/buttons/cta-button';
 
-const sizes = Object.values(CTAButtonSizes);
+const sizes = [CTAButtonSizes.default]; // Object.values(CTAButtonSizes);
 const types = Object.values(CTAButtonTypes);
 
 export default function CTAButtons() {
   return (
     <ComponentSection title="CTA Buttons - Primary/Secondary">
-      <div className="flex flex-col gap-lg">
+      <div className="flex flex-row gap-lg">
         {types.map((type) => (
           <div className="flex gap-sm items-end" key={type}>
             {sizes.map((size) => (

@@ -1,6 +1,7 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
 import clsx from 'clsx';
 import { SurfacePrimary, SurfaceSecondary } from './surface';
+import { SlotComponent, SlotComponentProps } from './slot';
 
 type CardProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>;
 
@@ -32,5 +33,20 @@ export function CardSecondary({ children, ...props }: CardProps) {
     <SurfaceSecondary asChild>
       <Card {...props}>{children}</Card>
     </SurfaceSecondary>
+  );
+}
+
+export function CardPadding({
+  children,
+  className,
+  ...props
+}: SlotComponentProps) {
+  return (
+    <SlotComponent
+      className={clsx(className, 'p-base md:p-lg lg:p-xl')}
+      {...props}
+    >
+      {children}
+    </SlotComponent>
   );
 }
