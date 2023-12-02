@@ -31,7 +31,7 @@ const BUTTON_NAME_MAP = {
     'dark:text-slate-800 dark:bg-slate-200 dark:hover:bg-club',
   ),
   [ButtonName.secondary]:
-    'bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-600',
+    'bg-slate-200 hover:bg-slate-300 dark:bg-slate-900 dark:hover:bg-slate-600',
 };
 
 const BUTTON_SIZE_MAP = {
@@ -76,7 +76,7 @@ export const Button = (props: ButtonProps) => {
           mapNameToClassName(name),
           'items-center inline-flex whitespace-nowrap',
           // color
-          'shadow-slate-700 dark:shadow-slate-900',
+          'shadow-slate-700 dark:shadow-slate-950',
           // hover
           'hover:shadow-hard-xs hover:-translate-x-0.5 hover:-translate-y-0.5',
           // active
