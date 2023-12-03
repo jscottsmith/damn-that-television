@@ -1,0 +1,57 @@
+import { AnimatePresence, motion } from 'framer-motion';
+import { PropsWithChildren } from 'react';
+
+const hidden = {
+  height: 0,
+  transition: {
+    type: 'spring',
+    damping: 18,
+    stiffness: 100,
+  },
+};
+const visible = {
+  height: 'auto',
+  transition: {
+    type: 'spring',
+    damping: 15,
+    stiffness: 100,
+  },
+};
+
+export function AnimateHeight(props: PropsWithChildren) {
+  return (
+    <motion.div
+      key="animate-height"
+      className="overflow-hidden"
+      initial={hidden}
+      animate={visible}
+      exit={hidden}
+    >
+      {props.children}
+    </motion.div>
+  );
+}
+
+const flipHidden = { rotateX: -90, opacity: 0 };
+const flipVisible = { rotateX: 0, opacity: 1 };
+
+export function AnimateFlipDown(props: PropsWithChildren) {
+  return (
+    <div style={{ perspective: '700px' }}>
+      <motion.div
+        key="flip"
+        className="origin-top"
+        transition={{
+          type: 'spring',
+          damping: 15,
+          stiffness: 100,
+        }}
+        initial={flipHidden}
+        animate={flipVisible}
+        exit={flipHidden}
+      >
+        {props.children}
+      </motion.div>
+    </div>
+  );
+}

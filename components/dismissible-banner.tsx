@@ -1,17 +1,13 @@
-import clsx from 'clsx';
-import React, { PropsWithChildren, useEffect, useState } from 'react';
-import {
-  useEffectOnce,
-  useIsMounted,
-  useSessionStorage,
-  useToggle,
-} from 'usehooks-ts';
+import React, { PropsWithChildren, useState } from 'react';
+import { useEffectOnce, useSessionStorage } from 'usehooks-ts';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { SurfaceSecondary } from './surface';
 import { CardPadding } from './card';
 import { IconButton } from './buttons/icon-button';
 import { IconContainerSize } from './icon-container';
 import { SlotComponentProps } from './slot';
+import { AnimatePresence } from 'framer-motion';
+import { AnimateHeight, AnimateFlipDown } from './animations/animate-height';
 
 type DismissibleBannerProps = PropsWithChildren<{
   id: string;
@@ -41,20 +37,25 @@ export function DismissibleBanner({
 }: DismissibleBannerProps) {
   const { dismiss, isDismissed } = useDismissStorage(id);
   return (
-    <SurfaceSecondary
-      className={clsx(className, isDismissed && 'hidden')}
-      asChild
-    >
-      <CardPadding className="relative">
-        <IconButton
-          size={IconContainerSize.sm}
-          className="absolute right-base top-base"
-          onClick={() => dismiss()}
-        >
-          <XMarkIcon />
-        </IconButton>
-        {children}
-      </CardPadding>
-    </SurfaceSecondary>
+    <AnimatePresence initial={false}>
+      {!isDismissed && (
+        <AnimateHeight>
+          <AnimateFlipDown>
+            <SurfaceSecondary className={className} asChild>
+              <CardPadding className="relative">
+                <IconButton
+                  size={IconContainerSize.sm}
+                  className="absolute right-base top-base"
+                  onClick={() => dismiss()}
+                >
+                  <XMarkIcon />
+                </IconButton>
+                {children}
+              </CardPadding>
+            </SurfaceSecondary>
+          </AnimateFlipDown>
+        </AnimateHeight>
+      )}
+    </AnimatePresence>
   );
 }
