@@ -39,8 +39,8 @@ export function DismissibleBanner({
   return (
     <AnimatePresence initial={false}>
       {!isDismissed && (
-        <AnimateHeight>
-          <AnimateFlipDown>
+        <AnimateHeight key="height">
+          <AnimateFlipDown key="flip">
             <SurfaceSecondary className={className} asChild>
               <CardPadding className="relative">
                 <IconButton

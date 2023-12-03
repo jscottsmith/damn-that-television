@@ -13,6 +13,8 @@ import {
 import { RichText, RichTextBlock } from 'prismic-reactjs';
 import { Prose } from '@/components/typography/prose';
 import { DismissibleBanner } from '@/components/dismissible-banner';
+import { AnimatePresence } from 'framer-motion';
+import { AnimateHeight } from '@/components/animations/animate-height';
 export const WORK_TOGETHER_ID = 'work-together';
 
 type WorkTogetherProps = {
@@ -53,31 +55,37 @@ export const WorkTogether = (props: WorkTogetherProps) => {
             No Thanks
           </SelectionButton>
         </div>
-        {isInterested && (
-          <div className="mt-lg w-full text-center">
-            <Prose className={clsx('mx-auto max-w-md')}>
-              <RichText render={props.primary.body_yes} />
-            </Prose>
-            <div className="my-lg flex justify-center">
-              <a href="mailto:jscsmith@gmail.com">
-                <CTAButton
-                  buttonSize={CTAButtonSizes.default}
-                  buttonType={CTAButtonTypes.pepto}
-                >
-                  Email me!
-                </CTAButton>
-              </a>
-            </div>
-            <div className="text-xs">
-              <RichText render={props.primary.note} />
-            </div>
-          </div>
-        )}
-        {isNotInterested && (
-          <Prose className={clsx('mt-lg w-full text-center')}>
-            <p>No worries, carry on.</p>
-          </Prose>
-        )}
+        <AnimatePresence initial={false}>
+          {isInterested && (
+            <AnimateHeight key="interested">
+              <div className="mt-lg w-full text-center">
+                <Prose className={clsx('mx-auto max-w-md')}>
+                  <RichText render={props.primary.body_yes} />
+                </Prose>
+                <div className="my-lg flex justify-center">
+                  <a href="mailto:jscsmith@gmail.com">
+                    <CTAButton
+                      buttonSize={CTAButtonSizes.default}
+                      buttonType={CTAButtonTypes.pepto}
+                    >
+                      Email me!
+                    </CTAButton>
+                  </a>
+                </div>
+                <div className="text-xs">
+                  <RichText render={props.primary.note} />
+                </div>
+              </div>
+            </AnimateHeight>
+          )}
+          {isNotInterested && (
+            <AnimateHeight key="not-interested">
+              <Prose className={clsx('mt-lg w-full text-center')}>
+                <p>No worries, carry on.</p>
+              </Prose>
+            </AnimateHeight>
+          )}
+        </AnimatePresence>
       </section>
     </DismissibleBanner>
   );

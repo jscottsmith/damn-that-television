@@ -18,10 +18,10 @@ const visible = {
   },
 };
 
-export function AnimateHeight(props: PropsWithChildren) {
+export function AnimateHeight(props: PropsWithChildren<{ key: string }>) {
   return (
     <motion.div
-      key="animate-height"
+      key={props.key}
       className="overflow-hidden"
       initial={hidden}
       animate={visible}
@@ -35,11 +35,11 @@ export function AnimateHeight(props: PropsWithChildren) {
 const flipHidden = { rotateX: -90, opacity: 0 };
 const flipVisible = { rotateX: 0, opacity: 1 };
 
-export function AnimateFlipDown(props: PropsWithChildren) {
+export function AnimateFlipDown(props: PropsWithChildren<{ key: string }>) {
   return (
     <div style={{ perspective: '700px' }}>
       <motion.div
-        key="flip"
+        key={props.key}
         className="origin-top"
         transition={{
           type: 'spring',
