@@ -1,3 +1,4 @@
+'use client';
 import React, { Component } from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import Link from 'next/link';

@@ -3,7 +3,7 @@ import gameStore from '../store/gameStore';
 import Projectile from '../Projectile';
 import PowerUp from '../PowerUp';
 import Enemy from '../Enemy';
-import Player from '@/routes/the-damn-game/Player';
+import Player from 'app/the-damn-game/game/Player';
 
 import * as playerActions from '../actions/playerActions';
 import * as scoreActions from '../actions/scoreActions';
