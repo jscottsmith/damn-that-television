@@ -15,7 +15,6 @@ import { Prose } from '@/components/typography/prose';
 import { DismissibleBanner } from '@/components/dismissible-banner';
 import { AnimatePresence } from 'framer-motion';
 import { AnimateHeight } from '@/components/animations/animate-height';
-export const WORK_TOGETHER_ID = 'work-together';
 
 type WorkTogetherProps = {
   primary: {
@@ -26,7 +25,7 @@ type WorkTogetherProps = {
   };
 };
 
-const DISMISSED_ID = `${WORK_TOGETHER_ID}_dismissed`;
+export const WORK_TOGETHER_ID = 'work-together';
 
 export const WorkTogether = (props: WorkTogetherProps) => {
   const [showDeets, setDeets] = useState<boolean | null>(null);
@@ -34,7 +33,7 @@ export const WorkTogether = (props: WorkTogetherProps) => {
   const isNotInterested = showDeets === false;
 
   return (
-    <DismissibleBanner id={DISMISSED_ID} className="my-xl rounded-lg">
+    <DismissibleBanner id={WORK_TOGETHER_ID} className="my-xl rounded-lg">
       <section className="flex flex-row flex-wrap items-center justify-center">
         <div className="text-xl font-normal font-futura md:text-2xl">
           <RichText render={props.primary.title} />
