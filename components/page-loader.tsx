@@ -1,3 +1,4 @@
+'use client';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { useHasMounted } from 'hooks/use-has-mounted';
