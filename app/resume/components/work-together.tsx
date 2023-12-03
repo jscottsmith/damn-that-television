@@ -12,7 +12,7 @@ import {
 } from '@/components/buttons/cta-button';
 import { RichText, RichTextBlock } from 'prismic-reactjs';
 import { Prose } from '@/components/typography/prose';
-import { SurfaceSecondary } from '@/components/surface';
+import { DismissibleBanner } from '@/components/dismissible-banner';
 export const WORK_TOGETHER_ID = 'work-together';
 
 type WorkTogetherProps = {
@@ -24,19 +24,16 @@ type WorkTogetherProps = {
   };
 };
 
+const DISMISSED_ID = `${WORK_TOGETHER_ID}_dismissed`;
+
 export const WorkTogether = (props: WorkTogetherProps) => {
   const [showDeets, setDeets] = useState<boolean | null>(null);
   const isInterested = showDeets === true;
   const isNotInterested = showDeets === false;
 
   return (
-    <SurfaceSecondary asChild>
-      <section
-        id={WORK_TOGETHER_ID}
-        className={clsx(
-          ' my-lg flex flex-row flex-wrap items-center justify-center rounded-lg p-lg',
-        )}
-      >
+    <DismissibleBanner id={DISMISSED_ID} className="my-xl rounded-lg">
+      <section className="flex flex-row flex-wrap items-center justify-center">
         <div className="text-xl font-normal font-futura md:text-2xl">
           <RichText render={props.primary.title} />
         </div>
@@ -82,6 +79,6 @@ export const WorkTogether = (props: WorkTogetherProps) => {
           </Prose>
         )}
       </section>
-    </SurfaceSecondary>
+    </DismissibleBanner>
   );
 };
