@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { PropsWithChildren } from 'react';
 
 const hidden = {
@@ -21,7 +21,6 @@ const visible = {
 export function AnimateHeight(props: PropsWithChildren<{ key: string }>) {
   return (
     <motion.div
-      key={props.key}
       className="overflow-hidden"
       initial={hidden}
       animate={visible}
@@ -39,7 +38,6 @@ export function AnimateFlipDown(props: PropsWithChildren<{ key: string }>) {
   return (
     <div style={{ perspective: '700px' }}>
       <motion.div
-        key={props.key}
         className="origin-top"
         transition={{
           type: 'spring',
