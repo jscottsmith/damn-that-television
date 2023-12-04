@@ -7,7 +7,7 @@ import { ResumeWorkHistoryCondensed } from './components/resume-work-history-con
 import { ResumeList } from './components/resume-list';
 import { ResumeAwards } from './components/resume-awards';
 import { WorkTogether } from './components/work-together';
-import { HeaderNav } from '@/routes/components/header-nav';
+import { HeaderNav } from '@/components/header-nav';
 import { ResumeEducation } from './components/resume-education';
 import { CardPrimary } from '@/components/card';
 import { SurfaceBackground } from '@/components/surface';

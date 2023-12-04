@@ -1,5 +1,5 @@
 import { NavLinks } from '@/components/types';
-import { ROUTE_DAMN_GAME, ROUTE_RESUME } from '@/routes/routes.constants';
+import { ROUTE_DAMN_GAME, ROUTE_RESUME } from '@/constants/routes.constants';
 
 export const OBSERVER_OPTIONS = {
   root: null,

@@ -3,7 +3,7 @@ import { Providers } from './providers';
 
 import '/sass/root.scss';
 import '/sass/globals.scss';
-import { HeaderNav } from '@/routes/components/header-nav';
+import { HeaderNav } from '@/components/header-nav';
 import Script from 'next/script';
 import Commands from './commands';
 

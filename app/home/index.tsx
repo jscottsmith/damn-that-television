@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 
-import { HeaderNav } from '@/routes/components/header-nav';
+import { HeaderNav } from '@/components/header-nav';
 import { CanvasHero } from '@/components/canvas-hero';
 import Letters from 'canvas/letters/LetterDrop';
 

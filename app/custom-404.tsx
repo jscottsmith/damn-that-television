@@ -1,7 +1,7 @@
 'use client';
 import { CanvasHero } from 'components/canvas-hero';
 import { Eraser } from 'canvas/eraser/Eraser';
-import { HeaderNav } from '@/routes/components/header-nav';
+import { HeaderNav } from '@/components/header-nav';
 
 const eraser = new Eraser();
 

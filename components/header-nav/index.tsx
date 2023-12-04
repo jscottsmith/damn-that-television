@@ -5,7 +5,7 @@ import { NavigationMenu } from '@/components/navigation-menu';
 import { useToggle } from 'hooks/use-toggle';
 import { NAVIGATION_LINKS, SECONDARY_LINKS } from '@/constants/app';
 import { usePathname } from 'next/navigation';
-import { ROUTE_DAMN_GAME } from '@/routes/routes.constants';
+import { ROUTE_DAMN_GAME } from '@/constants/routes.constants';
 
 export const HeaderNav = () => {
   const controller = useToggle(false);

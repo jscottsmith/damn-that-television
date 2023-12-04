@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { RecruiterBadge } from '@/components/recruiter-badge';
 import { PointerFinger } from '@/components/pointer-finger';
-import { ROUTE_RESUME } from '@/routes/routes.constants';
+import { ROUTE_RESUME } from '@/constants/routes.constants';
 
 export const RecruiterLink = () => {
   return (
