@@ -19,6 +19,7 @@ export const SelectionButton = (props: SelectionButtonProps) => {
       icon={isSelected ? <CheckIcon /> : icon ?? <XMarkIcon />}
       iconContainerClassName={isSelected ? 'bg-club-700' : undefined}
       className={clsx(
+        className,
         { selected: isSelected },
         '[&.selected]:bg-club [&.selected]:hover:bg-club-600 [&.selected]:text-white [&.selected]:shadow-hard-sm [&.selected]:-translate-x-1 [&.selected]:-translate-y-1',
       )}

@@ -22,6 +22,7 @@ import { ComponentSection } from './components/component-section';
 import CTAButtons from './components/cta-buttons';
 import { IconButton } from '@/components/buttons/icon-button';
 import { IconContainerSize } from '@/components/icon-container';
+import { ButtonGroup } from '@/components/buttons/button-group';
 
 export default function Components() {
   const theme = useTheme();
@@ -95,6 +96,21 @@ export default function Components() {
                 </div>
               </ComponentSection>
 
+              <ComponentSection title="Standard Button Group">
+                <div className="flex gap-lg items-center">
+                  <ButtonGroup className="flex gap-sm items-end">
+                    <Button>Hello</Button>
+                    <Button>Tap Me</Button>
+                    <Button>Open Menu</Button>
+                  </ButtonGroup>
+
+                  <ButtonGroup className="flex gap-sm items-end">
+                    <Button>Tap Me</Button>
+                    <Button>Open Menu</Button>
+                  </ButtonGroup>
+                </div>
+              </ComponentSection>
+
               <ComponentSection title="Button with Icon">
                 <div className="flex gap-sm items-end">
                   <Button size={ButtonSize.sm} icon={<EyeIcon />}>
@@ -109,7 +125,7 @@ export default function Components() {
                 </div>
               </ComponentSection>
 
-              <ComponentSection title="IconButton">
+              <ComponentSection title="Icon Button">
                 <div className="flex gap-lg items-center">
                   <div className="flex gap-sm">
                     <IconButton size={IconContainerSize.sm}>
@@ -144,6 +160,31 @@ export default function Components() {
                       <TrashIcon />
                     </IconButton>
                   </div>
+                </div>
+              </ComponentSection>
+
+              <ComponentSection title="Icon Button Group">
+                <div className="flex gap-lg items-center">
+                  <ButtonGroup>
+                    <IconButton>
+                      <EyeIcon />
+                    </IconButton>
+                    <IconButton>
+                      <MagnifyingGlassIcon />
+                    </IconButton>
+                    <IconButton>
+                      <TrashIcon />
+                    </IconButton>
+                  </ButtonGroup>
+
+                  <ButtonGroup>
+                    <IconButton>
+                      <EyeIcon />
+                    </IconButton>
+                    <IconButton>
+                      <TrashIcon />
+                    </IconButton>
+                  </ButtonGroup>
                 </div>
               </ComponentSection>
             </div>

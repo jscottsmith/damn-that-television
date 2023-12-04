@@ -74,7 +74,7 @@ export const Button = (props: ButtonProps) => {
           className,
           mapSizeToClassName(size),
           mapNameToClassName(name),
-          'items-center inline-flex whitespace-nowrap',
+          'items-center inline-flex justify-between whitespace-nowrap',
           // color
           'shadow-slate-700 dark:shadow-slate-950',
           // hover
