@@ -27,11 +27,29 @@ type WorkTogetherProps = {
 
 export const WORK_TOGETHER_ID = 'work-together';
 
-export const WorkTogether = (props: WorkTogetherProps) => {
-  const [showDeets, setDeets] = useState<boolean | null>(null);
-  const isInterested = showDeets === true;
-  const isNotInterested = showDeets === false;
+function useShowInterest() {
+  const [interest, setInterest] = useState<boolean | null>(null);
+  const isInterested = interest === true;
+  const isNotInterested = interest === false;
+  const isNull = interest === null;
 
+  function onClickInterested() {
+    isNull || isNotInterested ? setInterest(true) : setInterest(null);
+  }
+  function onClickNotInterested() {
+    isNull || isInterested ? setInterest(false) : setInterest(null);
+  }
+
+  return {
+    onClickInterested,
+    onClickNotInterested,
+    isInterested,
+    isNotInterested,
+  };
+}
+
+export const WorkTogether = (props: WorkTogetherProps) => {
+  const showInterest = useShowInterest();
   return (
     <DismissibleBanner id={WORK_TOGETHER_ID} className="my-xl rounded-lg">
       <section className="flex flex-row flex-wrap items-center justify-center">
@@ -40,22 +58,24 @@ export const WorkTogether = (props: WorkTogetherProps) => {
         </div>
         <div className="mt-md flex w-full justify-center gap-sm">
           <SelectionButton
-            isSelected={showDeets === true}
-            onClick={() => setDeets(true)}
+            isSelected={showInterest.isInterested}
+            onClick={showInterest.onClickInterested}
             icon={<HandThumbUpIcon />}
+            className="min-w-[9rem]"
           >
             Yep!
           </SelectionButton>
           <SelectionButton
-            isSelected={showDeets === false}
-            onClick={() => setDeets(false)}
+            isSelected={showInterest.isNotInterested}
+            onClick={showInterest.onClickNotInterested}
             icon={<HandThumbDownIcon />}
+            className="min-w-[9rem]"
           >
             No Thanks
           </SelectionButton>
         </div>
         <AnimatePresence initial={false}>
-          {isInterested && (
+          {showInterest.isInterested && (
             <AnimateHeight key="interested">
               <div className="mt-lg w-full text-center">
                 <Prose className={clsx('mx-auto max-w-md')}>
@@ -71,13 +91,13 @@ export const WorkTogether = (props: WorkTogetherProps) => {
                     </CTAButton>
                   </a>
                 </div>
-                <div className="text-xs">
+                <Prose className="text-xs">
                   <RichText render={props.primary.note} />
-                </div>
+                </Prose>
               </div>
             </AnimateHeight>
           )}
-          {isNotInterested && (
+          {showInterest.isNotInterested && (
             <AnimateHeight key="not-interested">
               <Prose className={clsx('mt-lg w-full text-center')}>
                 <p>No worries, carry on.</p>
