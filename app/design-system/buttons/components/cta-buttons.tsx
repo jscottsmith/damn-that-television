@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentSection } from './component-section';
+import { ComponentSection } from '../../component-section';
 import {
   CTAButton,
   CTAButtonSizes,
@@ -11,13 +11,13 @@ const types = Object.values(CTAButtonTypes);
 
 export default function CTAButtons() {
   return (
-    <ComponentSection title="CTA Buttons - Primary/Secondary">
+    <ComponentSection title="CTA Buttons">
       <div className="flex flex-row gap-lg">
         {types.map((type) => (
           <div className="flex gap-sm items-end" key={type}>
             {sizes.map((size) => (
               <CTAButton buttonSize={size} buttonType={type} key={size}>
-                Say Hello
+                Wake Up!
               </CTAButton>
             ))}
           </div>
