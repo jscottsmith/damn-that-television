@@ -77,7 +77,7 @@ export const Button = (props: ButtonProps) => {
           {icon && (
             <span
               className={clsx(
-                'p-1 rounded-full shrink-0',
+                'ml-1 rounded-full shrink-0',
                 iconContainerClassName,
               )}
             >

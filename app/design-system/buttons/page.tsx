@@ -16,7 +16,7 @@ import {
 import { ComponentSection } from '../component-section';
 
 import CTAButtons from './components/cta-buttons';
-import { IconButton } from '@/components/buttons/icon-button';
+import { IconButton, IconButtonName } from '@/components/buttons/icon-button';
 import { IconContainerSize } from '@/components/icon-container';
 import { ButtonGroup } from '@/components/buttons/button-group';
 
@@ -132,15 +132,9 @@ export default function Buttons() {
 
               <ComponentSection title="Button with Icon">
                 <div className="flex gap-sm items-end">
-                  <Button size={ButtonSize.sm} icon={<EyeIcon />}>
-                    Reveal
-                  </Button>
-                  <Button size={ButtonSize.base} icon={<MagnifyingGlassIcon />}>
-                    Search
-                  </Button>
-                  <Button size={ButtonSize.md} icon={<TrashIcon />}>
-                    Delete
-                  </Button>
+                  <Button icon={<EyeIcon />}>Reveal</Button>
+                  <Button icon={<MagnifyingGlassIcon />}>Search</Button>
+                  <Button icon={<TrashIcon />}>Delete</Button>
                 </div>
               </ComponentSection>
 
@@ -210,13 +204,13 @@ export default function Buttons() {
               <ComponentSection title="Icon Button Group Vertical">
                 <div className="flex gap-lg">
                   <ButtonGroup vertical>
-                    <IconButton name={ButtonName.danger}>
+                    <IconButton name={IconButtonName.primary} size="md">
                       <EyeIcon />
                     </IconButton>
-                    <IconButton>
+                    <IconButton name={IconButtonName.secondary} size="md">
                       <MagnifyingGlassIcon />
                     </IconButton>
-                    <IconButton>
+                    <IconButton name={IconButtonName.danger} size="md">
                       <TrashIcon />
                     </IconButton>
                   </ButtonGroup>

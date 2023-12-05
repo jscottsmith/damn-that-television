@@ -1,9 +1,3 @@
-import React, {
-  ButtonHTMLAttributes,
-  JSXElementConstructor,
-  ReactComponentElement,
-  ReactNode,
-} from 'react';
 import clsx from 'clsx';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Button, type ButtonProps } from './button';
