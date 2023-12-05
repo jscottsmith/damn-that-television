@@ -10,9 +10,9 @@ export function SelectionButtonExample(
   const [isSelected, setIsSelected] = useState(false);
   return (
     <SelectionButton
-      size={props.size}
       isSelected={isSelected}
       onClick={() => setIsSelected(!isSelected)}
+      {...props}
     >
       {props.children}
     </SelectionButton>

@@ -139,12 +139,11 @@ module.exports = {
         '12xl': '20rem',
       },
       colors: {
+        // teal: '#32aba8',
         softy: '#f5b8b5',
         'miami-old': '#4eb1b6',
         deep: '#2c2f34',
-
         night: '#635e7f',
-        teal: '#32aba8',
         peach: '#f6d0d0',
 
         slate: {

@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Label } from '../typography/label';
 import { IconContainer, IconContainerSize } from '../icon-container';
 import { SURFACE_INTERACTIVE } from '../surface-interactive';
+import { SystemStatus } from '../types';
 
 export enum ButtonSize {
   sm = 'sm',
@@ -13,6 +14,13 @@ export enum ButtonSize {
 export enum ButtonName {
   primary = 'primary',
   secondary = 'secondary',
+  /**
+   * System Buttons
+   */
+  warning = SystemStatus.warning,
+  success = SystemStatus.success,
+  info = SystemStatus.info,
+  danger = SystemStatus.danger,
 }
 
 export type ButtonSizes = keyof typeof ButtonSize;
@@ -28,10 +36,25 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 const BUTTON_NAME_MAP = {
   [ButtonName.primary]: clsx(
     'text-white bg-slate-800 hover:bg-club',
-    // dark
     'dark:text-slate-800 dark:bg-slate-200 dark:hover:bg-club',
   ),
   [ButtonName.secondary]: SURFACE_INTERACTIVE,
+  [ButtonName.warning]: clsx(
+    'text-white bg-orange-500 hover:bg-orange-600',
+    'dark:text-orange-950 dark:hover:bg-orange-400',
+  ),
+  [ButtonName.danger]: clsx(
+    'text-white bg-rose-500 hover:bg-rose-600',
+    'dark:text-rose-950 dark:hover:bg-rose-400',
+  ),
+  [ButtonName.info]: clsx(
+    'text-white bg-sky-500 hover:bg-sky-600',
+    'dark:text-sky-950 dark:hover:bg-sky-400',
+  ),
+  [ButtonName.success]: clsx(
+    'text-white bg-teal-500 hover:bg-teal-600',
+    'dark:text-teal-950 dark:hover:bg-teal-400',
+  ),
 };
 
 const BUTTON_SIZE_MAP = {

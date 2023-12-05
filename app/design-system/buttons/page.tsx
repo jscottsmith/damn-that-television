@@ -60,8 +60,13 @@ export default function Buttons() {
                   <SelectionButtonExample size={ButtonSize.sm}>
                     Filters
                   </SelectionButtonExample>
-                  <SelectionButtonExample>Activate</SelectionButtonExample>
-                  <SelectionButtonExample size={ButtonSize.md}>
+                  <SelectionButtonExample name={ButtonName.primary}>
+                    Activate
+                  </SelectionButtonExample>
+                  <SelectionButtonExample
+                    size={ButtonSize.md}
+                    name={ButtonName.danger}
+                  >
                     Enable Cookies
                   </SelectionButtonExample>
                 </div>
@@ -75,18 +80,49 @@ export default function Buttons() {
                 </div>
               </ComponentSection>
 
-              <ComponentSection title="Standard Button Group">
-                <div className="flex gap-lg items-center">
-                  <ButtonGroup>
-                    <Button>Hello</Button>
-                    <Button>Tap Me</Button>
-                    <Button>Open Menu</Button>
-                  </ButtonGroup>
+              <ComponentSection title="System Buttons">
+                <div className="flex gap-sm items-end">
+                  <Button name={ButtonName.warning} size={ButtonSize.md}>
+                    Warning Button
+                  </Button>
+                  <Button name={ButtonName.danger} size={ButtonSize.md}>
+                    Danger Button
+                  </Button>
+                  <Button name={ButtonName.info} size={ButtonSize.md}>
+                    Info Button
+                  </Button>
+                  <Button name={ButtonName.success} size={ButtonSize.md}>
+                    Info Button
+                  </Button>
+                </div>
+              </ComponentSection>
 
-                  <ButtonGroup>
-                    <Button>Tap Me</Button>
-                    <Button>Open Menu</Button>
-                  </ButtonGroup>
+              <ComponentSection title="Standard Button Group">
+                <div className="flex flex-col gap-lg">
+                  <div className="flex gap-lg items-center">
+                    <ButtonGroup>
+                      <Button>Hello</Button>
+                      <Button>Tap Me</Button>
+                      <Button>Open Menu</Button>
+                    </ButtonGroup>
+
+                    <ButtonGroup>
+                      <Button>Tap Me</Button>
+                      <Button>Open Menu</Button>
+                    </ButtonGroup>
+                  </div>
+                  <div className="flex gap-lg items-center">
+                    <ButtonGroup>
+                      <Button name={ButtonName.primary}>Hello</Button>
+                      <Button name={ButtonName.primary}>Tap Me</Button>
+                      <Button name={ButtonName.primary}>Open Menu</Button>
+                    </ButtonGroup>
+
+                    <ButtonGroup>
+                      <Button name={ButtonName.primary}>Tap Me</Button>
+                      <Button name={ButtonName.primary}>Open Menu</Button>
+                    </ButtonGroup>
+                  </div>
                 </div>
               </ComponentSection>
 
