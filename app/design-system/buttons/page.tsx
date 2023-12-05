@@ -77,13 +77,13 @@ export default function Buttons() {
 
               <ComponentSection title="Standard Button Group">
                 <div className="flex gap-lg items-center">
-                  <ButtonGroup className="flex gap-sm items-end">
+                  <ButtonGroup>
                     <Button>Hello</Button>
                     <Button>Tap Me</Button>
                     <Button>Open Menu</Button>
                   </ButtonGroup>
 
-                  <ButtonGroup className="flex gap-sm items-end">
+                  <ButtonGroup>
                     <Button>Tap Me</Button>
                     <Button>Open Menu</Button>
                   </ButtonGroup>
