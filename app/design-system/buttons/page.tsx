@@ -5,6 +5,10 @@ import { HeroTitle } from '@/components/typography/hero-title';
 import { SelectionButtonExample } from './components/selection-button-example';
 import { Button, ButtonName, ButtonSize } from '@/components/buttons/button';
 import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
   EyeIcon,
   MagnifyingGlassIcon,
   TrashIcon,
@@ -194,10 +198,35 @@ export default function Buttons() {
 
                   <ButtonGroup>
                     <IconButton>
+                      <ChevronLeftIcon />
+                    </IconButton>
+                    <IconButton>
+                      <ChevronRightIcon />
+                    </IconButton>
+                  </ButtonGroup>
+                </div>
+              </ComponentSection>
+
+              <ComponentSection title="Icon Button Group Vertical">
+                <div className="flex gap-lg">
+                  <ButtonGroup vertical>
+                    <IconButton name={ButtonName.danger}>
                       <EyeIcon />
                     </IconButton>
                     <IconButton>
+                      <MagnifyingGlassIcon />
+                    </IconButton>
+                    <IconButton>
                       <TrashIcon />
+                    </IconButton>
+                  </ButtonGroup>
+
+                  <ButtonGroup vertical>
+                    <IconButton>
+                      <ChevronUpIcon />
+                    </IconButton>
+                    <IconButton>
+                      <ChevronDownIcon />
                     </IconButton>
                   </ButtonGroup>
                 </div>

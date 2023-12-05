@@ -3,19 +3,27 @@ import React, { Children, ReactElement, cloneElement } from 'react';
 import { SlotComponent } from '../slot';
 import { ButtonProps } from './button';
 
-export function ButtonGroup({
-  className,
-  children,
-}: {
+type ButtonGroupProps = {
   children: ReactElement<ButtonProps> | Array<ReactElement<ButtonProps>>;
   className?: string;
-}) {
+  vertical?: boolean;
+};
+
+export function ButtonGroup(props: ButtonGroupProps) {
   return (
-    <SlotComponent className={clsx('flex gap-0.5', className)}>
-      {Children.map(children, (child) => {
+    <SlotComponent
+      className={clsx(
+        'flex gap-0.5',
+        props.className,
+        props.vertical && 'flex-col',
+      )}
+    >
+      {Children.map(props.children, (child) => {
         return cloneElement(child, {
           className: clsx(
-            '[&:not(:last-child)]:rounded-r-none [&:not(:first-child)]:rounded-l-none',
+            props.vertical
+              ? '[&:not(:last-child)]:rounded-b-none [&:not(:first-child)]:rounded-t-none'
+              : '[&:not(:last-child)]:rounded-r-none [&:not(:first-child)]:rounded-l-none',
             child.props.className,
           ),
         });
