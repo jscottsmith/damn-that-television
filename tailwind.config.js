@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 const round = (num) =>
@@ -319,5 +320,10 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    plugin(({ addVariant }) => {
+      addVariant('hocus', ['&:hover', '&:focus']);
+    }),
+  ],
 };
