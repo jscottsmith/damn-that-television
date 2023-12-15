@@ -5,7 +5,6 @@ import '/sass/root.scss';
 import '/sass/globals.scss';
 import { HeaderNav } from '@/components/header-nav';
 import Script from 'next/script';
-import Commands from './commands';
 
 export const metadata: Metadata = {
   title: 'Design System',
