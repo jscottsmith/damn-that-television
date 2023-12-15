@@ -8,8 +8,7 @@
 }
 
 *::selection {
-  color: $lunar;
-  background: rgba($miami, 0.8);
+  @apply bg-club/25;
 }
 
 html {
