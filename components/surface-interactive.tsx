@@ -16,30 +16,32 @@ export enum SurfaceInteractiveName {
 
 export type SurfaceInteractiveNames = keyof typeof SurfaceInteractiveName;
 
-export const SURFACE_INTERACTIVE =
-  'bg-slate-200 hover:bg-slate-300 dark:bg-slate-900 dark:hover:bg-slate-600';
+export const SURFACE_INTERACTIVE = clsx(
+  'bg-slate-200 hocus:bg-slate-300',
+  'dark:bg-slate-900 dark:hocus:bg-slate-600',
+);
 
 const SURFACE_INTERACTIVE_NAME_MAP = {
   [SurfaceInteractiveName.primary]: clsx(
-    'text-white bg-slate-800 hover:bg-club',
-    'dark:text-slate-800 dark:bg-slate-200 dark:hover:bg-club',
+    'text-white bg-slate-800 hocus:bg-club',
+    'dark:text-slate-800 dark:bg-slate-200 dark:hocus:bg-club',
   ),
   [SurfaceInteractiveName.secondary]: SURFACE_INTERACTIVE,
   [SurfaceInteractiveName.warning]: clsx(
-    'text-white bg-orange-500 hover:bg-orange-600',
-    'dark:text-orange-950 dark:hover:bg-orange-400',
+    'text-white bg-orange-500 hocus:bg-orange-600',
+    'dark:text-orange-950 dark:hocus:bg-orange-400',
   ),
   [SurfaceInteractiveName.danger]: clsx(
-    'text-white bg-rose-500 hover:bg-rose-600',
-    'dark:text-rose-950 dark:hover:bg-rose-400',
+    'text-white bg-rose-500 hocus:bg-rose-600',
+    'dark:text-rose-950 dark:hocus:bg-rose-400',
   ),
   [SurfaceInteractiveName.info]: clsx(
-    'text-white bg-sky-500 hover:bg-sky-600',
-    'dark:text-sky-950 dark:hover:bg-sky-400',
+    'text-white bg-sky-500 hocus:bg-sky-600',
+    'dark:text-sky-950 dark:hocus:bg-sky-400',
   ),
   [SurfaceInteractiveName.success]: clsx(
-    'text-white bg-teal-500 hover:bg-teal-600',
-    'dark:text-teal-950 dark:hover:bg-teal-400',
+    'text-white bg-teal-500 hocus:bg-teal-600',
+    'dark:text-teal-950 dark:hocus:bg-teal-400',
   ),
 };
 
@@ -66,6 +68,8 @@ export function SurfaceInteractive({
         'shadow-slate-700 dark:shadow-slate-950',
         // hover
         'hover:shadow-hard-xs hover:-translate-x-0.5 hover:-translate-y-0.5',
+        // focus
+        'focus:outline-none focus:shadow-hard-xs focus:-translate-x-0.5 focus:-translate-y-0.5',
         // active
         'hover:active:shadow-none hover:active:translate-x-0 hover:active:translate-y-0 active:duration-100',
         // transition
