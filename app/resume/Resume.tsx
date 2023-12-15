@@ -7,7 +7,6 @@ import { ResumeWorkHistoryCondensed } from './components/resume-work-history-con
 import { ResumeList } from './components/resume-list';
 import { ResumeAwards } from './components/resume-awards';
 import { WorkTogether } from './components/work-together';
-import { HeaderNav } from '@/components/header-nav';
 import { ResumeEducation } from './components/resume-education';
 import { CardPrimary } from '@/components/card';
 import { SurfaceBackground } from '@/components/surface';
@@ -15,47 +14,44 @@ import { SiteWrapper } from '@/components/site-wrapper';
 
 export const Resume = (props) => {
   return (
-    <>
-      <HeaderNav />
-      <SurfaceBackground asChild>
-        <SiteWrapper padY>
-          <article className="pt-4xl">
-            <CardPrimary className="max-w-screen-lg mx-auto p-sm md:p-md lg:p-lg xl:p-xl 2xl:p-2xl md:flex md:gap-md lg:gap-lg">
-              <ResumeHeader
-                document={props.document}
-                className="-mt-3xl md:mt-0 md:w-1/3 md:sticky md:top-xl md:self-start"
-              />
-              <div className="md:w-2/3">
-                {props.document.data.body.map((slice, i) => {
-                  if (slice.slice_type === 'resume_work_history') {
-                    return <ResumeWorkHistory {...slice} key={i} />;
-                  }
-                  if (slice.slice_type === 'resume_education') {
-                    return <ResumeEducation {...slice} key={i} />;
-                  }
-                  if (slice.slice_type === 'resume_work_history_condensed') {
-                    return <ResumeWorkHistoryCondensed {...slice} key={i} />;
-                  }
-                  if (slice.slice_type === 'work_together') {
-                    return <WorkTogether {...slice} key={i} />;
-                  }
-                  if (slice.slice_type === 'resume_content') {
-                    return <ResumeContent {...slice} key={i} />;
-                  }
-                  if (slice.slice_type === 'resume_list') {
-                    return <ResumeList {...slice} key={i} />;
-                  }
-                  if (slice.slice_type === 'resume_awards') {
-                    return <ResumeAwards {...slice} key={i} />;
-                  }
+    <SurfaceBackground asChild>
+      <SiteWrapper padY>
+        <article className="pt-4xl">
+          <CardPrimary className="max-w-screen-lg mx-auto p-sm md:p-md lg:p-lg xl:p-xl 2xl:p-2xl md:flex md:gap-md lg:gap-lg">
+            <ResumeHeader
+              document={props.document}
+              className="-mt-3xl md:mt-0 md:w-1/3 md:sticky md:top-xl md:self-start"
+            />
+            <div className="md:w-2/3">
+              {props.document.data.body.map((slice, i) => {
+                if (slice.slice_type === 'resume_work_history') {
+                  return <ResumeWorkHistory {...slice} key={i} />;
+                }
+                if (slice.slice_type === 'resume_education') {
+                  return <ResumeEducation {...slice} key={i} />;
+                }
+                if (slice.slice_type === 'resume_work_history_condensed') {
+                  return <ResumeWorkHistoryCondensed {...slice} key={i} />;
+                }
+                if (slice.slice_type === 'work_together') {
+                  return <WorkTogether {...slice} key={i} />;
+                }
+                if (slice.slice_type === 'resume_content') {
+                  return <ResumeContent {...slice} key={i} />;
+                }
+                if (slice.slice_type === 'resume_list') {
+                  return <ResumeList {...slice} key={i} />;
+                }
+                if (slice.slice_type === 'resume_awards') {
+                  return <ResumeAwards {...slice} key={i} />;
+                }
 
-                  return null;
-                })}
-              </div>
-            </CardPrimary>
-          </article>
-        </SiteWrapper>
-      </SurfaceBackground>
-    </>
+                return null;
+              })}
+            </div>
+          </CardPrimary>
+        </article>
+      </SiteWrapper>
+    </SurfaceBackground>
   );
 };

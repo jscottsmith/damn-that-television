@@ -2,7 +2,6 @@
 
 import React, { useRef } from 'react';
 
-import { HeaderNav } from '@/components/header-nav';
 import { CanvasHero } from '@/components/canvas-hero';
 import Letters from 'canvas/letters/LetterDrop';
 
@@ -15,7 +14,6 @@ export function Home(props) {
 
   return (
     <article>
-      <HeaderNav />
       <CanvasHero entities={[letters.current]} />
       <Introduction document={props.document} />
       <RecruiterLink />
