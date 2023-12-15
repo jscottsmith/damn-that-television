@@ -53,7 +53,7 @@ export const WorkTogether = (props: WorkTogetherProps) => {
   return (
     <DismissibleBanner id={WORK_TOGETHER_ID} className="my-xl rounded-lg">
       <section className="flex flex-row flex-wrap items-center justify-center">
-        <div className="text-xl font-normal font-futura md:text-2xl">
+        <div className="font-futura text-xl font-normal md:text-2xl">
           <RichText render={props.primary.title} />
         </div>
         <div className="mt-md flex w-full justify-center gap-sm">

@@ -12,7 +12,7 @@ export function TitleAndSubtitle(props: {
     <div
       className={clsx(
         props.className,
-        'font-futura text-slate-700 dark:text-slate-200 flex flex-wrap',
+        'flex flex-wrap font-futura text-slate-700 dark:text-slate-200',
       )}
     >
       <span className="inline-block font-medium">
@@ -20,8 +20,8 @@ export function TitleAndSubtitle(props: {
       </span>
       {hasSub && (
         <>
-          <span className="my-1 mx-md border-peach dark:border-pepto border-solid border-r-2 inline-block" />
-          <span className="font-light inline-block italic">
+          <span className="mx-md my-1 inline-block border-r-2 border-solid border-peach dark:border-pepto" />
+          <span className="inline-block font-light italic">
             <RichText render={props.subtitle} />
           </span>
         </>

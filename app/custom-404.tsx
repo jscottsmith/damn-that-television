@@ -9,7 +9,7 @@ export function Custom404() {
   return (
     <div className="bg-peach">
       <h1
-        className="text-lunar font-futura font-medium absolute inset-0 top-0 left-0 flex items-center justify-center select-none"
+        className="absolute inset-0 left-0 top-0 flex select-none items-center justify-center font-futura font-medium text-lunar"
         style={{ fontSize: '15vw' }}
       >
         404

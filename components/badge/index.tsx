@@ -54,7 +54,7 @@ export const Badge = ({
       className={clsx(
         className,
         'inline-block rounded-md',
-        'text-xs md:text-sm font-medium',
+        'text-xs font-medium md:text-sm',
 
         getClassByType(type),
         getClassBySize(size),

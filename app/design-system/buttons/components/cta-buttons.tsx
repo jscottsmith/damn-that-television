@@ -14,7 +14,7 @@ export default function CTAButtons() {
     <ComponentSection title="CTA Buttons">
       <div className="flex flex-row gap-lg">
         {types.map((type) => (
-          <div className="flex gap-sm items-end" key={type}>
+          <div className="flex items-end gap-sm" key={type}>
             {sizes.map((size) => (
               <CTAButton buttonSize={size} buttonType={type} key={size}>
                 Wake Up!

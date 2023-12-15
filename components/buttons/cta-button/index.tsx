@@ -63,7 +63,7 @@ export const CTAButton = (
         className,
         getButtonStyle(buttonType),
         getButtonSize(buttonSize),
-        'whitespace-nowrap font-light leading-loose hover:scale-105 transition-all',
+        'whitespace-nowrap font-light leading-loose transition-all hover:scale-105',
       )}
       {...rest}
     >

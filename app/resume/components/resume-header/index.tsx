@@ -6,7 +6,7 @@ import { Links } from 'app/resume/components/resume-header/components/links';
 export const ResumeHeader = (props) => {
   return (
     <header className={props.className}>
-      <div className="mx-auto w-32 rounded-full overflow-hidden border-4 border-solid border-white shadow-md">
+      <div className="mx-auto w-32 overflow-hidden rounded-full border-4 border-solid border-white shadow-md">
         <Image
           src="/static/avatar.jpg"
           alt="J Scott Smith"
@@ -20,11 +20,11 @@ export const ResumeHeader = (props) => {
         />
       </div>
 
-      <section className="text-center mt-base mb-lg">
-        <div className="font-futura text-4xl mb-base text-slate-700 dark:text-slate-300">
+      <section className="mb-lg mt-base text-center">
+        <div className="mb-base font-futura text-4xl text-slate-700 dark:text-slate-300">
           <RichText render={props.document.data.name} />
         </div>
-        <div className="font-futura font-medium italic text-xl text-slate-700 dark:text-slate-300 mb-xs">
+        <div className="mb-xs font-futura text-xl font-medium italic text-slate-700 dark:text-slate-300">
           <RichText render={props.document.data.current_job_title} />
         </div>
         <div className="text-slate-500">
@@ -32,7 +32,7 @@ export const ResumeHeader = (props) => {
         </div>
       </section>
 
-      <div className="sm:grid grid-cols-3 md:block">
+      <div className="grid-cols-3 sm:grid md:block">
         {props.document.data.body.map((slice, i) => {
           if (slice.slice_type === 'links') {
             return <Links links={slice} key={i} />;

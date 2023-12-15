@@ -153,7 +153,7 @@ function ColorSwatch(props: { color: string; name: string }) {
   return (
     <div className="inline-flex flex-col items-center">
       <div className={'h-36 w-36 ' + props.color} />
-      <p className="font-poppins text-xs dark:text-white font-bold">
+      <p className="font-poppins text-xs font-bold dark:text-white">
         {props.name}
       </p>
     </div>

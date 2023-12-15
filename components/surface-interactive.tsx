@@ -71,14 +71,14 @@ export function SurfaceInteractive({
       className={clsx(
         mapNameToClassName(name),
         className,
-        'items-center inline-flex rounded-full',
+        'inline-flex items-center rounded-full',
 
         // hover
-        'hover:shadow-hard-xs hover:-translate-x-0.5 hover:-translate-y-0.5',
+        'hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-xs',
         // focus
-        'focus:outline-none focus:shadow-hard-xs focus:-translate-x-0.5 focus:-translate-y-0.5',
+        'focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-hard-xs focus:outline-none',
         // active
-        'hover:active:shadow-none hover:active:translate-x-0 hover:active:translate-y-0 active:duration-100',
+        'active:duration-100 hover:active:translate-x-0 hover:active:translate-y-0 hover:active:shadow-none',
         // transition
         'transition-[box-shadow,color,transform] duration-200',
       )}

@@ -11,7 +11,7 @@ export function Card({ className, ...props }: CardProps) {
       className={clsx(
         className,
         // text-color controls shadow color
-        'shadow-slate-700 dark:shadow-slate-950 shadow-hard',
+        'shadow-hard shadow-slate-700 dark:shadow-slate-950',
       )}
       {...props}
     >

@@ -25,7 +25,7 @@ export function SideDrawer(props: SideDrawerProps) {
       {props.isOpen && (
         <Dialog
           static
-          className="z-50 relative"
+          className="relative z-50"
           open={props.isOpen}
           onClose={() => props.onClose()}
         >
@@ -38,12 +38,12 @@ export function SideDrawer(props: SideDrawerProps) {
             </SurfaceBackground>
           </AnimateFadeIn>
 
-          <div className="fixed flex justify-end inset-0 w-screen h-screen overflow-hidden pl-base">
+          <div className="fixed inset-0 flex h-screen w-screen justify-end overflow-hidden pl-base">
             <SurfacePrimary asChild>
               <CardPadding asChild>
                 <motion.div
                   key="panel"
-                  className="w-full max-w-2xl min-h-full flex z-10"
+                  className="z-10 flex min-h-full w-full max-w-2xl"
                   initial={{ x: '100%', opacity: 1 }}
                   animate={{ x: '0%', opacity: 1 }}
                   exit={{ x: '100%', opacity: 1 }}
@@ -65,7 +65,7 @@ export function SideDrawer(props: SideDrawerProps) {
                       </Dialog.Description>
                       {props.body}
                     </Prose>
-                    <footer className="mt-auto w-full flex gap-sm">
+                    <footer className="mt-auto flex w-full gap-sm">
                       {props.actions}
                     </footer>
                   </Dialog.Panel>

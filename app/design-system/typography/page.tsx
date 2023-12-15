@@ -12,7 +12,7 @@ const titleSizes = Object.values(TitleSize);
 export default function Components() {
   return (
     <SurfacePrimary asChild className="pt-24">
-      <SiteWrapper className="min-h-screen flex flex-col gap-xl" padB>
+      <SiteWrapper className="flex min-h-screen flex-col gap-xl" padB>
         <section>
           <Code>
             <pre className="my-base">{'<HeroTitle>'}</pre>

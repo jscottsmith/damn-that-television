@@ -17,10 +17,10 @@ export const Resume = (props) => {
     <SurfaceBackground asChild>
       <SiteWrapper padY>
         <article className="pt-4xl">
-          <CardPrimary className="max-w-screen-lg mx-auto p-sm md:p-md lg:p-lg xl:p-xl 2xl:p-2xl md:flex md:gap-md lg:gap-lg">
+          <CardPrimary className="mx-auto max-w-screen-lg p-sm md:flex md:gap-md md:p-md lg:gap-lg lg:p-lg xl:p-xl 2xl:p-2xl">
             <ResumeHeader
               document={props.document}
-              className="-mt-3xl md:mt-0 md:w-1/3 md:sticky md:top-xl md:self-start"
+              className="-mt-3xl md:sticky md:top-xl md:mt-0 md:w-1/3 md:self-start"
             />
             <div className="md:w-2/3">
               {props.document.data.body.map((slice, i) => {

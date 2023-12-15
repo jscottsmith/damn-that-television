@@ -15,24 +15,24 @@ export const ResumeWorkHistory = (props) => {
       <SectionTitle text={props.primary.title} />
 
       {props.items.map((item, i) => (
-        <section className="mb-xl relative pl-md md:pl-lg" key={i}>
-          <span className="border-dotted border-slate-200 dark:border-slate-700 border-l-2 absolute top-md bottom-sm left-0">
-            <span className="border-dotted border-slate-200 dark:border-slate-700 border-t-2 absolute top-0 left-0 w-2 md:w-3" />
-            <span className="border-dotted border-slate-200 dark:border-slate-700 border-t-2 absolute bottom-0 left-0 w-2 md:w-3" />
+        <section className="relative mb-xl pl-md md:pl-lg" key={i}>
+          <span className="absolute bottom-sm left-0 top-md border-l-2 border-dotted border-slate-200 dark:border-slate-700">
+            <span className="absolute left-0 top-0 w-2 border-t-2 border-dotted border-slate-200 dark:border-slate-700 md:w-3" />
+            <span className="absolute bottom-0 left-0 w-2 border-t-2 border-dotted border-slate-200 dark:border-slate-700 md:w-3" />
           </span>
           <TitleAndSubtitle
             className="text-2xl"
             title={item.company}
             subtitle={item.job_title}
           />
-          <Prose className="mt-base mb-lg md:mt-lg md:mb-xl">
+          <Prose className="mb-lg mt-base md:mb-xl md:mt-lg">
             <RichText render={item.content} />
           </Prose>
           <footer className="mt-md">
             {item.keywords && (
               <ul>
                 {item.keywords.split(', ').map((keyword) => (
-                  <li key={keyword} className="inline-block mr-sm mb-sm">
+                  <li key={keyword} className="mb-sm mr-sm inline-block">
                     <Badge>{keyword}</Badge>
                   </li>
                 ))}

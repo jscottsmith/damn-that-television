@@ -69,7 +69,7 @@ export const Button = (props: ButtonProps) => {
           className={clsx(
             className,
             mapSizeToClassName(size),
-            'items-center inline-flex justify-between whitespace-nowrap',
+            'inline-flex items-center justify-between whitespace-nowrap',
           )}
           {...rest}
         >
@@ -77,7 +77,7 @@ export const Button = (props: ButtonProps) => {
           {icon && (
             <span
               className={clsx(
-                'ml-1 rounded-full shrink-0',
+                'ml-1 shrink-0 rounded-full',
                 iconContainerClassName,
               )}
             >

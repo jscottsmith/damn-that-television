@@ -34,7 +34,7 @@ export default function Buttons() {
               <CTAButtons />
               <ComponentSection title="Standard Buttons - Primary/Secondary">
                 <div className="flex flex-col gap-lg">
-                  <div className="flex gap-sm items-end">
+                  <div className="flex items-end gap-sm">
                     <Button size={ButtonSize.sm} name={ButtonName.primary}>
                       Primary
                     </Button>
@@ -42,13 +42,13 @@ export default function Buttons() {
                     <Button size={ButtonSize.sm}>Follow</Button>
                     <Button size={ButtonSize.sm}>Like</Button>
                   </div>
-                  <div className="flex gap-sm items-end">
+                  <div className="flex items-end gap-sm">
                     <Button name={ButtonName.primary}>Primary</Button>
                     <Button>Secondary</Button>
                     <Button>Follow</Button>
                     <Button>Like</Button>
                   </div>
-                  <div className="flex gap-sm items-end">
+                  <div className="flex items-end gap-sm">
                     <Button size={ButtonSize.md} name={ButtonName.primary}>
                       Primary
                     </Button>
@@ -60,7 +60,7 @@ export default function Buttons() {
               </ComponentSection>
 
               <ComponentSection title="Selection Button">
-                <div className="flex gap-sm items-end">
+                <div className="flex items-end gap-sm">
                   <SelectionButtonExample size={ButtonSize.sm}>
                     Filters
                   </SelectionButtonExample>
@@ -77,7 +77,7 @@ export default function Buttons() {
               </ComponentSection>
 
               <ComponentSection title="Standard Button">
-                <div className="flex gap-sm items-end">
+                <div className="flex items-end gap-sm">
                   <Button size={ButtonSize.sm}>Hello</Button>
                   <Button size={ButtonSize.base}>Tap Me</Button>
                   <Button size={ButtonSize.md}>Open Menu</Button>
@@ -85,7 +85,7 @@ export default function Buttons() {
               </ComponentSection>
 
               <ComponentSection title="System Buttons">
-                <div className="flex gap-sm items-end">
+                <div className="flex items-end gap-sm">
                   <Button name={ButtonName.warning} size={ButtonSize.md}>
                     Warning Button
                   </Button>
@@ -103,7 +103,7 @@ export default function Buttons() {
 
               <ComponentSection title="Standard Button Group">
                 <div className="flex flex-col gap-lg">
-                  <div className="flex gap-lg items-center">
+                  <div className="flex items-center gap-lg">
                     <ButtonGroup>
                       <Button>Hello</Button>
                       <Button>Tap Me</Button>
@@ -115,7 +115,7 @@ export default function Buttons() {
                       <Button>Open Menu</Button>
                     </ButtonGroup>
                   </div>
-                  <div className="flex gap-lg items-center">
+                  <div className="flex items-center gap-lg">
                     <ButtonGroup>
                       <Button name={ButtonName.primary}>Hello</Button>
                       <Button name={ButtonName.primary}>Tap Me</Button>
@@ -131,7 +131,7 @@ export default function Buttons() {
               </ComponentSection>
 
               <ComponentSection title="Button with Icon">
-                <div className="flex gap-sm items-end">
+                <div className="flex items-end gap-sm">
                   <Button icon={<EyeIcon />}>Reveal</Button>
                   <Button icon={<MagnifyingGlassIcon />}>Search</Button>
                   <Button icon={<TrashIcon />}>Delete</Button>
@@ -139,7 +139,7 @@ export default function Buttons() {
               </ComponentSection>
 
               <ComponentSection title="Icon Button">
-                <div className="flex gap-lg items-center">
+                <div className="flex items-center gap-lg">
                   <div className="flex gap-sm">
                     <IconButton size={IconContainerSize.sm}>
                       <EyeIcon />
@@ -177,7 +177,7 @@ export default function Buttons() {
               </ComponentSection>
 
               <ComponentSection title="Icon Button Group">
-                <div className="flex gap-lg items-center">
+                <div className="flex items-center gap-lg">
                   <ButtonGroup>
                     <IconButton>
                       <EyeIcon />

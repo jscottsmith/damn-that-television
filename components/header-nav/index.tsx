@@ -15,11 +15,11 @@ export const HeaderNav = () => {
     return null;
   }
   return (
-    <header className="fixed top-4 left-4 z-50">
+    <header className="fixed left-4 top-4 z-50">
       <EyeButton
         onClick={controller.toggle}
         isEyeActive={controller.isToggled}
-        className="z-50 relative"
+        className="relative z-50"
       />
       <NavigationMenu
         links={NAVIGATION_LINKS}
