@@ -1,7 +1,7 @@
 import { Badge } from '@/components/badge';
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
-import { formatterMonthYear } from 'app/resume/helpers/format-date';
+import { formatterMonthYear } from 'app/(main)/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Resume } from 'app/resume/Resume';
+import { Resume } from 'app/(main)/resume/Resume';
 import * as prismic from '@prismicio/client';
 import { prismicConfiguration, repoName } from 'prismicConfiguration';
 import { Metadata } from 'next';

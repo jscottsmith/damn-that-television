@@ -1,7 +1,7 @@
 import React from 'react';
 import * as prismic from '@prismicio/client';
 import { prismicConfiguration, repoName } from 'prismicConfiguration';
-import { Home } from 'app/home';
+import { Home } from 'app/(main)/home';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

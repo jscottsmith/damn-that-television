@@ -1,6 +1,6 @@
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
-import { formatterYear } from 'app/resume/helpers/format-date';
+import { formatterYear } from 'app/(main)/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';

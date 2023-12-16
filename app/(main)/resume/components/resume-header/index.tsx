@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
-import { Links } from 'app/resume/components/resume-header/components/links';
+import { Links } from 'app/(main)/resume/components/resume-header/components/links';
 
 export const ResumeHeader = (props) => {
   return (

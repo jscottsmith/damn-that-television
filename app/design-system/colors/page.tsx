@@ -1,5 +1,3 @@
-import { SiteWrapper } from '@/components/site-wrapper';
-import { SurfaceSecondary } from '@/components/surface';
 import { HeroTitle } from '@/components/typography/hero-title';
 
 const sections = [
@@ -162,21 +160,19 @@ function ColorSwatch(props: { color: string; name: string }) {
 
 export default function Colors() {
   return (
-    <SurfaceSecondary asChild className="pt-24">
-      <SiteWrapper className="min-h-screen" padY>
-        <HeroTitle asChild>
-          <h1>Colors</h1>
-        </HeroTitle>
-        {sections.map((colors, i) => {
-          return (
-            <section key={i}>
-              {colors.map((entry, i) => {
-                return <ColorSwatch key={i} color={entry[1]} name={entry[0]} />;
-              })}
-            </section>
-          );
-        })}
-      </SiteWrapper>
-    </SurfaceSecondary>
+    <>
+      <HeroTitle asChild>
+        <h1>Colors</h1>
+      </HeroTitle>
+      {sections.map((colors, i) => {
+        return (
+          <section key={i}>
+            {colors.map((entry, i) => {
+              return <ColorSwatch key={i} color={entry[1]} name={entry[0]} />;
+            })}
+          </section>
+        );
+      })}
+    </>
   );
 }

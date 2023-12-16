@@ -45,8 +45,6 @@ export default function RootLayout({
         <Script id="google-analytics">{`window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-DGR8W8P5K3');`}</Script>
       </head>
       <body>
-        <HeaderNav />
-
         <main>
           <Providers>{children}</Providers>
         </main>
