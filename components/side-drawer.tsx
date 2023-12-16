@@ -9,6 +9,7 @@ import { CardPadding } from './card';
 import { Title } from './typography/title';
 import { IconButton } from './buttons/icon-button';
 import { Prose } from './typography/prose';
+import BackdropOverlay from './backdrop-overlay';
 
 export type SideDrawerProps = {
   isOpen: boolean;
@@ -30,12 +31,7 @@ export function SideDrawer(props: SideDrawerProps) {
           onClose={() => props.onClose()}
         >
           <AnimateFadeIn key="background">
-            <SurfaceBackground asChild>
-              <div
-                className="fixed inset-0 bg-opacity-90 dark:bg-opacity-90"
-                aria-hidden="true"
-              />
-            </SurfaceBackground>
+            <BackdropOverlay />
           </AnimateFadeIn>
 
           <div className="fixed inset-0 flex h-screen w-screen justify-end overflow-hidden pl-base">
