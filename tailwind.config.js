@@ -121,6 +121,8 @@ module.exports = {
         hard: '0.5rem 0.5rem 0 0 var(--tw-shadow-color)',
       },
       spacing: {
+        sidemenu: '18rem',
+
         '2xs': '0.125rem',
         xs: '0.25rem',
         sm: '0.5rem',
