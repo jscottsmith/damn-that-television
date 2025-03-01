@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@gush/candybar':
-    specifier: 0.0.1
-    version: 0.0.1
+    specifier: 0.0.2
+    version: 0.0.2
   '@headlessui/react':
     specifier: ^1.7.17
     version: 1.7.17(react-dom@18.2.0)(react@18.2.0)
@@ -478,8 +478,8 @@ packages:
       - supports-color
     dev: true
 
-  /@gush/candybar@0.0.1:
-    resolution: {integrity: sha512-NauW0Cz+IEn4SliV/6Bgx8T08/+IddqhgW5q6eCUly5VjDCMVh2ZLGU6pV2Ekk5zgZKzNqBukT9hBPTJgHf2PQ==}
+  /@gush/candybar@0.0.2:
+    resolution: {integrity: sha512-/VgsoOPQKKEvPMHIdJWeIpgpAEnxtBCIF5o6MP/lHSBhcxm2SRtHmSw+A7WPU3znWn5UzoX6QKqnLup1f+7hXQ==}
     dev: false
 
   /@headlessui/react@1.7.17(react-dom@18.2.0)(react@18.2.0):
