@@ -26,10 +26,6 @@ export const SECONDARY_LINKS: NavLinks = [
     label: 'Codepen',
     href: 'https://codepen.io/jscottsmith/',
   },
-  {
-    label: 'Twitter',
-    href: 'https://twitter.com/damntelevision',
-  },
 ];
 
 export const COLORS = {
