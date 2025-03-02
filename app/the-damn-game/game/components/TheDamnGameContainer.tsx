@@ -1,11 +1,9 @@
 'use client';
 import React, { Component } from 'react';
-import { TransitionGroup } from 'react-transition-group';
 import Link from 'next/link';
 import LevelController from './LevelController';
 import LevelComplete from './LevelComplete';
 import GameIntro from './GameIntro';
-import Fade from 'components/Fade';
 
 import gameStore from '../store/gameStore';
 import { Provider } from 'react-redux';
@@ -26,32 +24,16 @@ export default class TheDamnGameContainer extends Component {
   _getComponent() {
     switch (this.state.gameState) {
       case gameStates.GAME_START:
-        return (
-          <Fade key="1">
-            <GameIntro handleStart={this.handleStart} />
-          </Fade>
-        );
+        return <GameIntro key="1" handleStart={this.handleStart} />;
 
       case gameStates.GAME_END:
-        return (
-          <Fade key="2">
-            <div>End</div>
-          </Fade>
-        );
+        return <div key="2">End</div>;
 
       case gameStates.LEVEL_COMPLETE:
-        return (
-          <Fade key="3">
-            <LevelComplete handleStart={this.handleStart} />
-          </Fade>
-        );
+        return <LevelComplete key="3" handleStart={this.handleStart} />;
 
       case gameStates.PLAYING:
-        return (
-          <Fade key="4">
-            <LevelController handleComplete={this.handleComplete} />
-          </Fade>
-        );
+        return <LevelController key="4" handleComplete={this.handleComplete} />;
 
       default:
         return null;
@@ -65,14 +47,12 @@ export default class TheDamnGameContainer extends Component {
 
   render() {
     return (
-      <Fade in>
-        <Provider store={gameStore}>
-          <Link href="/" className={styles.escBtn}>
-            ESC
-          </Link>
-          <TransitionGroup>{this._getComponent()}</TransitionGroup>
-        </Provider>
-      </Fade>
+      <Provider store={gameStore}>
+        <Link href="/" className={styles.escBtn}>
+          ESC
+        </Link>
+        <div>{this._getComponent()}</div>
+      </Provider>
     );
   }
 }

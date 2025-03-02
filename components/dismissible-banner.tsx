@@ -1,5 +1,5 @@
-import React, { PropsWithChildren, useState } from 'react';
-import { useEffectOnce, useSessionStorage } from 'usehooks-ts';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
+import { useSessionStorage } from 'usehooks-ts';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { SurfaceSecondary } from './surface';
 import { CardPadding } from './card';
@@ -18,7 +18,7 @@ function useDismissStorage(id: string) {
   const [isDismissed, setDismissed] = useSessionStorage(id, false);
   const [isMounted, setMounted] = useState(false);
 
-  useEffectOnce(() => setMounted(true));
+  useEffect(() => setMounted(true), []);
 
   function dismiss() {
     setDismissed(true);
