@@ -42,7 +42,6 @@ export default class TheDamnGameContainer extends Component {
       case gameStates.LEVEL_COMPLETE:
         return (
           <Fade key="3">
-            {/* @ts-expect-error */}
             <LevelComplete handleStart={this.handleStart} />
           </Fade>
         );
@@ -50,7 +49,6 @@ export default class TheDamnGameContainer extends Component {
       case gameStates.PLAYING:
         return (
           <Fade key="4">
-            {/* @ts-expect-error */}
             <LevelController handleComplete={this.handleComplete} />
           </Fade>
         );

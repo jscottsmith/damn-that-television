@@ -24,6 +24,7 @@ export default class Level extends Component {
   render() {
     return (
       <div className={styles.canvas}>
+        {/* @ts-expect-error */}
         <canvas ref={(ref) => (this.canvas = ref)} />
       </div>
     );

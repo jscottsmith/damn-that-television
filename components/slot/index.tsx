@@ -17,11 +17,14 @@ export function Slot({
   if (React.isValidElement(children)) {
     return React.cloneElement(children, {
       ...props,
+      // @ts-expect-error
       ...children.props,
       style: {
         ...props.style,
+        // @ts-expect-error
         ...children.props.style,
       },
+      // @ts-expect-error
       className: twMerge(props.className, children.props.className),
     });
   }
