@@ -1,6 +1,6 @@
 import { Dialog } from '@headlessui/react';
 import { ReactNode } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import { SurfaceBackground, SurfacePrimary } from './surface';

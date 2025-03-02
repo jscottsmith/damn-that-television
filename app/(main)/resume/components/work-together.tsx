@@ -13,7 +13,7 @@ import {
 import { RichText, RichTextBlock } from 'prismic-reactjs';
 import { Prose } from '@/components/typography/prose';
 import { DismissibleBanner } from '@/components/dismissible-banner';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'motion/react';
 import { AnimateHeight } from '@/components/animations/animate-height';
 
 type WorkTogetherProps = {

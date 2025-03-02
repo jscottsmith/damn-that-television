@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { PropsWithChildren } from 'react';
 
 export function AnimateFadeIn(props: PropsWithChildren<{ key: string }>) {

@@ -2,7 +2,7 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { SideNavMenuRoutes } from './types';
 import { SurfacePrimary } from '../surface';
 import { useMediaQuery } from 'usehooks-ts';
@@ -113,7 +113,7 @@ export function SideNavMenu(props: SideNavMenuProps) {
           id={SIDE_NAV_ID}
           className={clsx(
             'z-50',
-            'w-sidemenu h-screen flex-shrink',
+            'h-screen w-sidemenu flex-shrink',
             'p-base pt-3xl',
             'fixed left-0 top-0',
             'shadow-lg',

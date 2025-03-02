@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import clsx from 'clsx';
 import { useHasMounted } from 'hooks/use-has-mounted';
 import Eye from './eye';

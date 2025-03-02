@@ -6,7 +6,7 @@ import { CardPadding } from './card';
 import { IconButton } from './buttons/icon-button';
 import { IconContainerSize } from './icon-container';
 import { SlotComponentProps } from './slot';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'motion/react';
 import { AnimateHeight, AnimateFlipDown } from './animations/animate-height';
 
 type DismissibleBannerProps = PropsWithChildren<{
