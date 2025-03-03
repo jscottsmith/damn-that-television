@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Providers } from './providers';
 
 import '/sass/root.scss';
-import '/sass/globals.scss';
+import '/sass/globals.css';
 import { HeaderNav } from '@/components/header-nav';
 import Script from 'next/script';
 
