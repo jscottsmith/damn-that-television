@@ -6,6 +6,7 @@ import { useToggle } from 'hooks/use-toggle';
 import { NAVIGATION_LINKS, SECONDARY_LINKS } from '@/constants/app';
 import { usePathname } from 'next/navigation';
 import { ROUTE_DAMN_GAME } from '@/constants/routes.constants';
+import NavigationBug from './navigation-bug';
 
 export const HeaderNav = () => {
   const controller = useToggle(false);
@@ -15,18 +16,8 @@ export const HeaderNav = () => {
     return null;
   }
   return (
-    <header className="fixed left-4 top-4 z-50">
-      <EyeButton
-        onClick={controller.toggle}
-        isEyeActive={controller.isToggled}
-        className="relative z-50"
-      />
-      <NavigationMenu
-        links={NAVIGATION_LINKS}
-        secondaryLinks={SECONDARY_LINKS}
-        isVisible={controller.isToggled}
-        closeNavigation={controller.toggleOff}
-      />
+    <header className="fixed left-1/2 top-4 z-50 flex justify-center">
+      <NavigationBug />
     </header>
   );
 };
