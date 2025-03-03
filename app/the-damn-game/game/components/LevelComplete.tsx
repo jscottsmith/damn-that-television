@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import styles from './LevelComplete.module.scss';
 import { connect } from 'react-redux';
 
-class LevelComplete extends Component {
-  props: any;
+class LevelComplete extends Component<any> {
   render() {
     return (
       <div className={styles.levelComplete}>

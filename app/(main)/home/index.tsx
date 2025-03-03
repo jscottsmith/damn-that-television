@@ -13,11 +13,11 @@ export function Home(props) {
   const letters = useRef(new Letters());
 
   return (
-    <article>
+    <>
       <CanvasHero entities={[letters.current]} />
       <Introduction document={props.document} />
       <RecruiterLink />
       <KillTVButton />
-    </article>
+    </>
   );
 }

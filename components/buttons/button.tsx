@@ -34,9 +34,9 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const BUTTON_SIZE_MAP = {
-  [ButtonSize.sm]: 'rounded-md py-xs px-sm gap-1 text-sm',
-  [ButtonSize.base]: 'rounded-md py-sm px-md gap-sm',
-  [ButtonSize.md]: 'rounded-lg py-base px-lg gap-base text-lg',
+  [ButtonSize.sm]: 'py-xs px-sm gap-1 text-sm',
+  [ButtonSize.base]: 'py-sm px-md gap-sm',
+  [ButtonSize.md]: 'py-base px-lg gap-base text-lg',
 };
 
 const ICON_SIZE_MAP = {
@@ -69,7 +69,7 @@ export const Button = (props: ButtonProps) => {
           className={clsx(
             className,
             mapSizeToClassName(size),
-            'inline-flex items-center justify-between whitespace-nowrap',
+            'inline-flex items-center justify-between whitespace-nowrap rounded-full',
           )}
           {...rest}
         >
