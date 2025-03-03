@@ -13,7 +13,7 @@ function InputToggleUI({ label, ...props }: InputToggleProps, ref) {
       <div
         className={clsx(
           // sizing
-          'h-11 w-20 rounded-md after:rounded-md',
+          'h-11 w-20 rounded-full after:rounded-full',
           'after:left-[4px] after:top-[4px] after:h-9 after:w-9 after:border-0 after:shadow-slate-900',
           // default
           'bg-slate-300 transition-colors duration-500 hover:bg-slate-400',
