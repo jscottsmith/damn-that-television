@@ -16,7 +16,7 @@ export enum SurfaceInteractiveName {
 
 export type SurfaceInteractiveNames = keyof typeof SurfaceInteractiveName;
 
-const SHARED_SHADOW_COLOR = 'shadow-slate-700 dark:shadow-slate-200';
+const SHARED_SHADOW_COLOR = 'shadow-slate-700 dark:shadow-slate-600';
 
 export const SURFACE_INTERACTIVE = clsx(
   'bg-slate-200 hocus:bg-slate-300',

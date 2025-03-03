@@ -7,9 +7,7 @@ import LevelInterface from './LevelInterface';
 import LoadGameAssets from './LoadGameAssets';
 import Level from './Level';
 
-class LevelController extends Component {
-  props: any;
-
+class LevelController extends Component<any> {
   // static propTypes = {
   //   currentLevel: PropTypes.number.isRequired,
   //   handleComplete: PropTypes.func.isRequired,
