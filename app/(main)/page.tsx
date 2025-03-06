@@ -7,9 +7,6 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Damn that television!',
   description: `What a bad picture! Don't get upset, it's not a major disaster.`,
-  openGraph: {
-    url: 'https://damnthat.tv/',
-  },
 };
 
 export default async function Page() {
