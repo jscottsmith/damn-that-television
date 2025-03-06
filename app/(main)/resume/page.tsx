@@ -6,11 +6,8 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Résumé',
-  description: 'Résumé of J Scott Smith, a creative web developer.',
-  openGraph: {
-    url: 'https://damnthat.tv/resume',
-    images: [{ url: '/static/avatar.jpg' }],
-  },
+  description:
+    'Résumé of J Scott Smith, engineering leader and creative developer.',
 };
 
 async function Page() {
