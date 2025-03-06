@@ -45,3 +45,10 @@ export const COLORS = {
   deep: '#2c2f34',
   pepto: '#ea94ba',
 };
+
+export const METADATA = {
+  title: 'Damn that television!',
+  description: `What a bad picture! Don't get upset, it's not a major disaster.`,
+  siteDomain: 'Damnthat.tv',
+  baseUrl: 'https://damnthat.tv',
+} as const;
