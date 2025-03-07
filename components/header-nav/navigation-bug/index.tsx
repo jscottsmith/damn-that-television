@@ -39,6 +39,7 @@ const NAV_VARIANTS = {
 };
 
 const DELTA = 5;
+const MIN_TO_SHOW = 10;
 
 function useNavScrollVariants() {
   const [navVariant, setNavVariant] = useState(NAV_VARIANTS.visible);
@@ -49,6 +50,11 @@ function useNavScrollVariants() {
   useMotionValueEvent(scrollY, 'change', (current: number) => {
     const prevY = scrollY.getPrevious() ?? 0;
     const deltaY = current - prevY;
+
+    // show at the top of the page always
+    if (navVariant !== NAV_VARIANTS.visible && current <= MIN_TO_SHOW) {
+      return setNavVariant(NAV_VARIANTS.visible);
+    }
 
     if (navVariant !== NAV_VARIANTS.visible && deltaY < -DELTA) {
       setNavVariant(NAV_VARIANTS.visible);
