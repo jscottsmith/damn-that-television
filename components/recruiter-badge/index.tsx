@@ -1,5 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
+import { motion } from 'motion/react';
+
+const BG_VARIANT = {
+  hidden: { scale: 0, opacity: 1 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+  },
+};
 
 export const RecruiterBadge = (props) => {
   const { className, ...rest } = props;
@@ -7,18 +16,21 @@ export const RecruiterBadge = (props) => {
     <div
       className={clsx(
         props.className,
-        'group flex cursor-pointer items-center justify-center',
+        'group flex cursor-pointer items-center justify-center rounded-full',
       )}
       {...rest}
     >
-      <span className="absolute inset-0 scale-0 rounded-full bg-cream opacity-0 transition-all duration-200 ease-out group-hover:scale-75 group-hover:opacity-100 "></span>
-      <span className="absolute inset-0 flex items-center justify-center">
+      <span className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
         {props.children}
       </span>
-      <svg viewBox="0 0 500 500" className="z-10 w-full animate-spin-slow">
+      <motion.svg
+        initial="hidden"
+        whileHover="visible"
+        viewBox="0 0 500 500"
+        className="w-full"
+      >
         <title>Employers & Recruiters</title>
         <defs>
-          {/* <circle id="textcircle" cx="250" cy="250" r="200" /> */}
           <path
             d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250"
             id="textcircle"
@@ -34,13 +46,23 @@ export const RecruiterBadge = (props) => {
             />
           </path>
         </defs>
+
         <circle
           cx={250}
           cy={250}
           r={138}
           strokeWidth="40"
-          stroke="#f7e7b3"
+          className="stroke-cream-400"
           fill="none"
+        />
+
+        <motion.circle
+          cx={250}
+          cy={250}
+          r={158}
+          className="fill-cream-500"
+          transition={{ type: 'spring', bounce: 0.4 }}
+          variants={BG_VARIANT}
         />
         <text
           dy="70"
@@ -49,11 +71,15 @@ export const RecruiterBadge = (props) => {
           className="uppercase text-deep"
           fill="currentColor"
         >
-          <textPath xlinkHref="#textcircle" textLength="1220">
+          <textPath
+            xlinkHref="#textcircle"
+            textLength="1220"
+            className="origin-center animate-spin-slow"
+          >
             {'Employers & Recruiters • Employers & Recruiters • '}
           </textPath>
         </text>
-      </svg>
+      </motion.svg>
     </div>
   );
 };
