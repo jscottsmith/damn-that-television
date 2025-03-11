@@ -1,15 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { Canvas } from '@gush/candybar';
 
-import styles from './index.module.scss';
-
 export const CanvasHero = (props: { entities: unknown[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = new Canvas({
-      dpr: 1,
+      dpr: Math.min(window.devicePixelRatio, 2),
       canvas: canvasRef.current,
       container: containerRef.current,
       hasPointer: true,
@@ -22,7 +20,7 @@ export const CanvasHero = (props: { entities: unknown[] }) => {
   }, [props.entities]);
 
   return (
-    <div className={styles.container} ref={containerRef}>
+    <div className="relative h-svh w-screen" ref={containerRef}>
       <canvas ref={canvasRef} />
     </div>
   );

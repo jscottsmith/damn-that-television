@@ -1,4 +1,5 @@
-import { HeaderNav } from '@/components/header-nav';
+import { Footer } from '@/components/page-globals/footer';
+import { HeaderNav } from '@/components/page-globals/header-nav';
 import { METADATA } from '@/constants/app';
 import React, { PropsWithChildren } from 'react';
 
@@ -24,6 +25,7 @@ export default function Layout(props: PropsWithChildren) {
     <>
       <HeaderNav />
       {props.children}
+      <Footer />
     </>
   );
 }

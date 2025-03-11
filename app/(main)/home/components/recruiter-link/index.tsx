@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import Link from 'next/link';
 import { RecruiterBadge } from '@/components/recruiter-badge';
 import { PointerFinger } from '@/components/pointer-finger';

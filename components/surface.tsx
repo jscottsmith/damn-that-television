@@ -50,7 +50,7 @@ export function SurfacePattern({ className, ...props }: SlotComponentProps) {
       className={clsx(
         SURFACE_BACKGROUND_CLASS,
         className,
-        `bg-[url('/static/pattern-1.svg')]`,
+        `bg-[url('/static/pattern-1.svg')] dark:bg-[url('/static/pattern-0.svg')]`,
       )}
       {...props}
     />
