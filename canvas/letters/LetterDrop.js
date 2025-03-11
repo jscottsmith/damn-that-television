@@ -3,12 +3,10 @@ import PolyWave from './PolyWave';
 // import Pyramid from './Pyramid';
 import PhysicsPoint from './PhysicsPoint';
 import Letter from './Letter';
-import loadImage from 'utils/loadImage';
 import { COLORS } from 'constants/app';
 import { LYRICS_LETTERS } from '@/constants/found-a-job-lyrics';
 
 const LETTER_WAVE_STRENGTH = 2;
-const PATTERN_OK = '/static/pattern-0.svg';
 
 export default class LetterDrop {
   constructor() {
@@ -99,26 +97,9 @@ export default class LetterDrop {
     }
   }
 
-  createPattern(ctx, img, w, h) {
-    const canvas = document.createElement('canvas');
-    canvas.width = w;
-    canvas.height = h;
-    const context = canvas.getContext('2d');
-
-    context.drawImage(img, 0, 0, w, h);
-    const pattern = ctx.createPattern(canvas, 'repeat');
-    pattern.setTransform(this.matrix);
-    return pattern;
-  }
-
   // lifecycles
 
   setup = (context) => {
-    loadImage(PATTERN_OK).then((image) => {
-      const w = 90 * context.dpr;
-      const h = 90 * context.dpr;
-      this.pattern = this.createPattern(context.ctx, image, w, h);
-    });
     if (document) {
       this.matrix = new DOMMatrix();
     }
@@ -131,21 +112,13 @@ export default class LetterDrop {
   };
 
   draw = (context) => {
-    context.ctx.fillStyle = this.pattern;
-    context.ctx.fillRect(...context.bounds.params);
+    context.ctx.clearRect(...context.bounds.params);
     // this.pyramid.draw(context);
     this.letters.forEach((letter) => letter.draw(context));
     this.polywave.draw(context);
   };
 
   update = (context) => {
-    if (this.pattern && this.pattern.setTransform) {
-      // console.log(context.tick);
-      // const tx = Math.sin(context.tick * 0.02) * 0.1;
-      // const ty = Math.sin(context.tick * 0.01) * 0.1;
-      // this.matrix.translateSelf(0.2, 0.5).rotateSelf(tx, ty);
-      // this.pattern.setTransform(this.matrix);
-    }
     if (context.tick % 120 === 0 && this.words.length === 0) {
       this.queueWord(...LYRICS_LETTERS);
     }

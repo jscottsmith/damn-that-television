@@ -48,7 +48,7 @@ export const COLORS = {
 
 export const METADATA = {
   title: 'Damn that television!',
-  description: `What a bad picture! Don't get upset, it's not a major disaster.`,
+  description: `A website by J Scott Smith, engineering leader and creative developer.`,
   siteDomain: 'Damnthat.tv',
   baseUrl: 'https://damnthat.tv',
 } as const;

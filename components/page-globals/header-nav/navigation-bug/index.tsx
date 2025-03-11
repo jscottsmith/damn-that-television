@@ -22,6 +22,7 @@ import {
 import { usePathname } from 'next/navigation';
 import { useMediaQuery } from 'usehooks-ts';
 import { Label } from '@/components/typography/label';
+import { ROUTE_HOME } from '@/constants/routes.constants';
 
 const NAV_VARIANTS = {
   visible: {
@@ -196,12 +197,13 @@ function HomeLink() {
   return (
     <SurfaceInteractive>
       <Link
-        href="/"
+        href={ROUTE_HOME}
         className={clsx(
           'group flex h-16 w-16 items-center justify-center rounded-full p-3.5',
           'text-deep transition-colors duration-150 hover:text-club dark:text-miami',
         )}
       >
+        <span className="sr-only">Go Home</span>
         <EyeMan />
       </Link>
     </SurfaceInteractive>

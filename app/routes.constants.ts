@@ -27,4 +27,4 @@ export const routes: SideNavMenuRoutes = {
       },
     },
   },
-};
+} as const;
