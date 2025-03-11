@@ -42,9 +42,8 @@ export function useMagneticPointer(
     frame.read(() => {
       if (!rect) return;
 
-      const { scrollY, scrollX } = window;
-      let dx = clientX - rect.left - rect.width / 2 + scrollX;
-      let dy = clientY - rect.top - rect.height / 2 + scrollY;
+      let dx = clientX - rect.left - rect.width / 2;
+      let dy = clientY - rect.top - rect.height / 2;
 
       const absDeltaX = Math.abs(dx);
       const absDeltaY = Math.abs(dy);
