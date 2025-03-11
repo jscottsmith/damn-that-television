@@ -1,4 +1,5 @@
 import { useBoundingClientRect } from 'hooks/use-client-bounding-rect';
+import { distance2D } from 'motion';
 import {
   frame,
   motion,
@@ -42,8 +43,14 @@ export function useMagneticPointer(
     frame.read(() => {
       if (!rect) return;
 
-      let dx = clientX - rect.left - rect.width / 2;
-      let dy = clientY - rect.top - rect.height / 2;
+      const a = { x: clientX - rect.width / 2, y: clientY - rect.height / 2 };
+      const b = {
+        x: rect.left,
+        y: rect.top,
+      };
+
+      let dx = a.x - b.x;
+      let dy = a.y - b.y;
 
       const absDeltaX = Math.abs(dx);
       const absDeltaY = Math.abs(dy);
@@ -55,8 +62,13 @@ export function useMagneticPointer(
       let y = dy * powerY;
 
       if (absDeltaX > MAX_DIST || absDeltaY > MAX_DIST) {
-        x = 0;
-        y = 0;
+        // cheaper check
+
+        if (distance2D(a, b) > MAX_DIST) {
+          // more expensive
+          x = 0;
+          y = 0;
+        }
       }
 
       xPoint.set(x);
