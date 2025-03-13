@@ -4,7 +4,7 @@ import { RecruiterBadge } from '@/components/recruiter-badge';
 import { PointerFinger } from '@/components/pointer-finger';
 import { ROUTE_RESUME } from '@/constants/routes.constants';
 import { motion } from 'motion/react';
-import Magnetic from '@/components/magnetic-item';
+import Magnetic from '@/components/magnetic';
 
 const variant = {
   rest: { scale: 0.95 },

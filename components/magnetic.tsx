@@ -16,10 +16,15 @@ const MAX_DIST = 200;
 export default function Magnetic(
   props: PropsWithChildren<{
     spring?: SpringOptions;
+    maxDistance?: number;
   }>,
 ) {
   const ref = useRef<HTMLDivElement>(null);
-  const { x, y } = useMagneticPointer(ref, props.spring ?? springDefault);
+  const { x, y } = useMagneticPointer({
+    ref,
+    spring: props.spring ?? springDefault,
+    maxDistance: props.maxDistance ?? MAX_DIST,
+  });
 
   return (
     <motion.div ref={ref} style={{ x, y }}>
@@ -28,16 +33,17 @@ export default function Magnetic(
   );
 }
 
-export function useMagneticPointer(
-  ref: RefObject<HTMLDivElement | null>,
-  spring: SpringOptions,
-) {
+export function useMagneticPointer(props: {
+  ref: RefObject<HTMLDivElement | null>;
+  spring: SpringOptions;
+  maxDistance: number;
+}) {
   const xPoint = useMotionValue(0);
   const yPoint = useMotionValue(0);
-  const x = useSpring(xPoint, spring);
-  const y = useSpring(yPoint, spring);
+  const x = useSpring(xPoint, props.spring);
+  const y = useSpring(yPoint, props.spring);
 
-  const rect = useBoundingClientRect(ref);
+  const rect = useBoundingClientRect(props.ref);
 
   const handlePointerMove = ({ clientX, clientY }: MouseEvent) => {
     frame.read(() => {
@@ -52,23 +58,15 @@ export function useMagneticPointer(
       let dx = a.x - b.x;
       let dy = a.y - b.y;
 
-      const absDeltaX = Math.abs(dx);
-      const absDeltaY = Math.abs(dy);
+      const distance = distance2D(a, b);
+      const power = 1 / (distance * 0.05 + 1);
 
-      const powerX = 1 / (absDeltaX * 0.05 + 1);
-      const powerY = 1 / (absDeltaY * 0.05 + 1);
+      let x = dx * power;
+      let y = dy * power;
 
-      let x = dx * powerX;
-      let y = dy * powerY;
-
-      if (absDeltaX > MAX_DIST || absDeltaY > MAX_DIST) {
-        // cheaper check
-
-        if (distance2D(a, b) > MAX_DIST) {
-          // more expensive
-          x = 0;
-          y = 0;
-        }
+      if (distance > props.maxDistance) {
+        x = 0;
+        y = 0;
       }
 
       xPoint.set(x);
