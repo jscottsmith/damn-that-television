@@ -20,7 +20,7 @@ export function TitleAndSubtitle(props: {
       </span>
       {hasSub && (
         <>
-          <span className="mx-md my-1 inline-block border-r-2 border-solid border-peach dark:border-pepto" />
+          <span className="mx-md my-1 inline-block border-r-2 border-solid border-peach dark:border-club-700" />
           <span className="inline-block font-light italic">
             <RichText render={props.subtitle} />
           </span>

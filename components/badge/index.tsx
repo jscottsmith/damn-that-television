@@ -19,7 +19,7 @@ const MAP_TYPE_TO_CLASS = {
   [BadgeType.default]:
     'border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800',
   [BadgeType.primary]:
-    'border-none text-slate-800 dark:text-slate-100 bg-soft-pink-400 dark:bg-pepto-900',
+    'border-none text-slate-800 dark:text-slate-100 bg-soft-pink-400 dark:bg-club-800',
 };
 
 const MAP_SIZE_TO_CLASS = {
