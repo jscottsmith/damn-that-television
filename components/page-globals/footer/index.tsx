@@ -1,5 +1,11 @@
 import { Button, ButtonName } from '@/components/buttons/button';
-import { METADATA, NAVIGATION_LINKS, SECONDARY_LINKS } from '@/constants/app';
+import {
+  GITHUB_REPO_URL,
+  ISC_LICENSE_LINK,
+  METADATA,
+  NAVIGATION_LINKS,
+  SECONDARY_LINKS,
+} from '@/constants/app';
 import Link from 'next/link';
 import {
   SurfacePattern,
@@ -13,6 +19,8 @@ import { ThemeOptions } from './ThemeOptions';
 import { Title } from '@/components/typography/title';
 import { Prose } from '@/components/typography/prose';
 import { Eyebrow } from '@/components/typography/eyebrow';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
+import { IconContainer } from '@/components/icon-container';
 
 export function Footer() {
   return (
@@ -39,12 +47,34 @@ export function Footer() {
               <ThemeOptions />
             </nav>
 
-            <Prose className="prose-sm w-full max-w-none items-center gap-2 self-end justify-self-stretch pt-8 text-center">
-              <Title asChild>
-                <h4 className="my-0 whitespace-nowrap">{METADATA.title}</h4>
-              </Title>
-              <p className="w-full">{METADATA.description}</p>
-            </Prose>
+            <section className="flex w-full flex-wrap items-end justify-center md:justify-between">
+              <Prose className="prose-sm max-w-none gap-2 self-end justify-self-stretch pt-8">
+                <Title asChild>
+                  <h4 className="my-0 whitespace-nowrap text-center md:text-left">
+                    {METADATA.title}
+                  </h4>
+                </Title>
+                <p className="w-full">{METADATA.description}</p>
+              </Prose>
+              <Prose className="prose-sm flex gap-2">
+                <span>
+                  <span>{new Date().getFullYear()}</span>{' '}
+                  <a target="_blank" href={ISC_LICENSE_LINK}>
+                    ISC
+                  </a>
+                </span>
+                <span>It&apos;s OK</span>
+                <span>
+                  <a
+                    target="_blank"
+                    href={GITHUB_REPO_URL}
+                    className="align-middle"
+                  >
+                    Under the hood
+                  </a>
+                </span>
+              </Prose>
+            </section>
           </footer>
         </SurfacePrimary>
       </Wrapper>

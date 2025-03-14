@@ -29,6 +29,12 @@ export const SECONDARY_LINKS: NavLinks = [
   },
 ];
 
+export const GITHUB_REPO_URL =
+  'https://github.com/jscottsmith/damn-that-television';
+
+export const ISC_LICENSE_LINK =
+  'https://opensource.org/license/isc-license-txt';
+
 export const COLORS = {
   white: '#ffffff',
   ghost: '#edf8ff',
