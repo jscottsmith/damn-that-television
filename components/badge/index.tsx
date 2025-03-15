@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import clsx from 'clsx';
 import { SlotComponent, SlotComponentProps } from '../slot';
+import { SURFACE_BACKGROUND_CLASS } from '../surface';
 
 export enum BadgeSize {
   default = 'default',
@@ -16,8 +17,10 @@ type BadgeTypes = keyof typeof BadgeType;
 type BadgeSizes = keyof typeof BadgeSize;
 
 const MAP_TYPE_TO_CLASS = {
-  [BadgeType.default]:
-    'border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800',
+  [BadgeType.default]: clsx(
+    SURFACE_BACKGROUND_CLASS,
+    'text-slate-600 dark:text-slate-300',
+  ),
   [BadgeType.primary]:
     'border-none text-slate-800 dark:text-slate-100 bg-soft-pink-400 dark:bg-club-800',
 };

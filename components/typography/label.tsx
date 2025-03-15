@@ -3,7 +3,7 @@ import { AsChildProps, Slot } from '../slot';
 import { SHARED_TEXT_CLASSNAME } from './constants';
 import clsx from 'clsx';
 
-type LabelProps = AsChildProps<HTMLAttributes<HTMLParagraphElement>> & {
+export type LabelProps = AsChildProps<HTMLAttributes<HTMLParagraphElement>> & {
   className?: string;
 };
 
