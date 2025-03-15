@@ -19,8 +19,6 @@ import { ThemeOptions } from './ThemeOptions';
 import { Title } from '@/components/typography/title';
 import { Prose } from '@/components/typography/prose';
 import { Eyebrow } from '@/components/typography/eyebrow';
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
-import { IconContainer } from '@/components/icon-container';
 
 export function Footer() {
   return (
