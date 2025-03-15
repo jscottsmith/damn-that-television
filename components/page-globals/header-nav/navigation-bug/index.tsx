@@ -1,27 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useScroll,
-} from 'motion/react';
+import { motion, useMotionValueEvent, useScroll } from 'motion/react';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { Button, ButtonName } from '@/components/buttons/button';
+import { Button } from '@/components/buttons/button';
 import { EyeMan } from '@/components/buttons/eye-button/eye-man';
 import { PRIMARY_SURFACE_CLASS } from '@/components/surface';
 import { SurfaceInteractive } from '@/components/surface-interactive';
-import { NAVIGATION_LINKS, SECONDARY_LINKS } from '@/constants/app';
-import { ThemeToggle } from './components/theme-toggle';
-import { IconButton, IconButtonProps } from '@/components/buttons/icon-button';
-import {
-  Bars3Icon,
-  EllipsisVerticalIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline';
+import { NAVIGATION_LINKS } from '@/constants/app';
+import { IconButton } from '@/components/buttons/icon-button';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { usePathname } from 'next/navigation';
 import { useMediaQuery } from 'usehooks-ts';
-import { Label } from '@/components/typography/label';
 import { ROUTE_HOME } from '@/constants/routes.constants';
 
 const NAV_VARIANTS = {
@@ -73,31 +62,9 @@ function useNavScrollVariants() {
   return { navVariant };
 }
 
-/*
-function BackdropSurface() {
-  return (
-    <motion.div
-      layout
-      transition={{
-        type: 'spring',
-        bounce: 0.25,
-        duration: 0.3,
-      }}
-      className={clsx(
-        'absolute inset-0 rounded-[2.3rem]',
-        'bg-opacity-60 backdrop-blur-lg dark:bg-opacity-60',
-        'shadow-lg shadow-slate-950/5',
-        PRIMARY_SURFACE_CLASS,
-      )}
-    />
-  );
-}
-**/
-
 function useMenuController() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const [expanded, setExpanded] = useState(false);
   const closeMenu = useCallback(() => {
     if (open) {
       setOpen(false);
@@ -111,14 +78,9 @@ function useMenuController() {
 
   return {
     open,
-    expanded,
     toggleOpen: () => {
       setOpen((prev) => !prev);
-      if (expanded) {
-        setExpanded(false);
-      }
     },
-    toggleExpand: () => setExpanded((prev) => !prev),
   };
 }
 
@@ -149,28 +111,17 @@ export default function NavigationBug() {
             'bg-opacity-60 backdrop-blur-lg dark:bg-opacity-60',
             'shadow-lg shadow-slate-950/5',
             PRIMARY_SURFACE_CLASS,
-            menu.expanded && 'h-auto w-full',
           )}
         >
-          {/* 
-          issues with this approach -- how can we make a fluid animated responsive container... 
-          <BackdropSurface /> 
-          */}
           <div
             className={clsx(
               menu.open ? 'flex' : 'hidden sm:flex',
-              'relative w-full flex-wrap items-start gap-1 self-start p-1 pr-2.5 sm:items-center',
+              'relative w-full flex-wrap items-center gap-1 self-start p-1 pr-2.5',
             )}
           >
             <HomeLink />
             <MainLinks />
-            <MoreButton
-              onClick={menu.toggleExpand}
-              isActive={menu.expanded}
-              className="ml-auto mt-2.5 sm:mt-0"
-            />
           </div>
-          <ExpandedMenu show={menu.expanded} />
           <div className="relative flex justify-center self-end p-1 sm:hidden">
             <IconButton size="md" onClick={menu.toggleOpen}>
               {menu.open ? <XMarkIcon /> : <Bars3Icon />}
@@ -179,17 +130,6 @@ export default function NavigationBug() {
         </motion.nav>
       </div>
     </>
-  );
-}
-
-function MoreButton({
-  isActive,
-  ...props
-}: IconButtonProps & { isActive: boolean }) {
-  return (
-    <IconButton {...props}>
-      {isActive ? <XMarkIcon /> : <EllipsisVerticalIcon />}
-    </IconButton>
   );
 }
 
@@ -212,44 +152,12 @@ function HomeLink() {
 
 function MainLinks() {
   return (
-    <div
-      className={clsx(
-        'relative order-last flex w-full flex-wrap items-center gap-1 sm:order-none sm:w-auto',
-      )}
-    >
+    <div className={clsx('relative flex w-auto flex-wrap items-center gap-1')}>
       {NAVIGATION_LINKS.map((link) => (
         <Link href={link.href} key={link.href}>
           <Button>{link.label}</Button>
         </Link>
       ))}
-      <ThemeToggle />
     </div>
-  );
-}
-
-function ExpandedMenu(props: { show: boolean }) {
-  return (
-    <AnimatePresence>
-      {props.show && (
-        <div className="relative flex w-full items-center justify-items-center gap-3 p-4">
-          <ul className="flex flex-row gap-1">
-            <div>
-              <Label asChild>
-                <h3>Elsewhere:</h3>
-              </Label>
-            </div>
-            {SECONDARY_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href}>
-                  <Button name={ButtonName.secondary} size="sm">
-                    {link.label}
-                  </Button>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </AnimatePresence>
   );
 }
