@@ -34,7 +34,7 @@ export function Footer() {
               <EyeMan />
             </Link>
 
-            <nav className="flex w-full flex-wrap justify-between gap-2 self-start justify-self-stretch">
+            <nav className="my-8 flex w-full flex-wrap justify-center gap-8 self-start justify-self-stretch sm:justify-between">
               <div>
                 <Eyebrow className="pb-2 text-center">Navigation</Eyebrow>
                 <SurfaceSecondary className="flex flex-col gap-2 rounded-xl p-4">
@@ -45,16 +45,16 @@ export function Footer() {
               <ThemeOptions />
             </nav>
 
-            <section className="flex w-full flex-wrap items-end justify-center md:justify-between">
+            <section className="flex w-full flex-wrap items-end justify-center sm:justify-between">
               <Prose className="prose-sm max-w-none gap-2 self-end justify-self-stretch pt-8">
                 <Title asChild>
-                  <h4 className="my-0 whitespace-nowrap text-center md:text-left">
+                  <h4 className="my-0 whitespace-nowrap text-center sm:text-left">
                     {METADATA.title}
                   </h4>
                 </Title>
-                <p className="w-full">{METADATA.description}</p>
+                <p className="w-full text-center">{METADATA.description}</p>
               </Prose>
-              <Prose className="prose-sm flex gap-2">
+              <Prose className="prose-sm flex gap-4">
                 <span>
                   <span>{new Date().getFullYear()}</span>{' '}
                   <a target="_blank" href={ISC_LICENSE_LINK}>
