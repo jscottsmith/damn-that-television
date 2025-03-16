@@ -19,64 +19,75 @@ import { ThemeOptions } from './ThemeOptions';
 import { Title } from '@/components/typography/title';
 import { Prose } from '@/components/typography/prose';
 import { Eyebrow } from '@/components/typography/eyebrow';
+import { Marquee } from '@/components/marquee';
+import { FOUND_A_JOB_LYRICS } from '@/constants/found-a-job-lyrics';
 
 export function Footer() {
   return (
-    <SurfacePattern className="px-4 pb-4">
-      <Wrapper asChild>
-        <SurfacePrimary asChild>
-          <footer className="flex flex-wrap gap-2 rounded-b-3xl pb-4 pt-4 md:gap-6 md:pb-10">
-            <Link
-              href={APP_ROUTES.home}
-              className="group mx-auto block w-14 justify-self-center text-slate-800 hover:text-pepto-500 dark:text-miami dark:hover:text-club md:w-24"
-            >
-              <span className="sr-only">Go Home</span>
-              <EyeMan />
-            </Link>
+    <>
+      <Marquee duration={30} id="ok" className="absolute left-0">
+        {FOUND_A_JOB_LYRICS.map((text, i) => (
+          <span key={i} className="inline-flex pr-8">
+            {text}
+          </span>
+        ))}
+      </Marquee>
+      <SurfacePattern className="px-4 pb-4">
+        <Wrapper asChild>
+          <SurfacePrimary asChild>
+            <footer className="flex flex-wrap gap-2 rounded-b-3xl pb-4 pt-4 md:gap-6 md:pb-10">
+              <Link
+                href={APP_ROUTES.home}
+                className="group mx-auto block w-14 justify-self-center text-slate-800 hover:text-pepto-500 dark:text-miami dark:hover:text-club md:w-24"
+              >
+                <span className="sr-only">Go Home</span>
+                <EyeMan />
+              </Link>
 
-            <nav className="my-8 flex w-full flex-wrap justify-center gap-8 self-start justify-self-stretch sm:justify-between">
-              <div>
-                <Eyebrow className="pb-2 text-center">Navigation</Eyebrow>
-                <SurfaceSecondary className="flex flex-col gap-2 rounded-xl p-4">
-                  <MainLinks />
-                  <SecondaryLinks />
-                </SurfaceSecondary>
-              </div>
-              <ThemeOptions />
-            </nav>
+              <nav className="my-8 flex w-full flex-wrap justify-center gap-8 self-start justify-self-stretch sm:justify-between">
+                <div>
+                  <Eyebrow className="pb-2 text-center">Navigation</Eyebrow>
+                  <SurfaceSecondary className="flex flex-col gap-2 rounded-xl p-4">
+                    <MainLinks />
+                    <SecondaryLinks />
+                  </SurfaceSecondary>
+                </div>
+                <ThemeOptions />
+              </nav>
 
-            <section className="flex w-full flex-wrap items-end justify-center sm:justify-between">
-              <Prose className="prose-sm max-w-none gap-2 self-end justify-self-stretch pt-8">
-                <Title asChild>
-                  <h4 className="my-0 whitespace-nowrap text-center sm:text-left">
-                    {METADATA.title}
-                  </h4>
-                </Title>
-                <p className="w-full text-center">{METADATA.description}</p>
-              </Prose>
-              <Prose className="prose-sm flex gap-4">
-                <span>
-                  <span>{new Date().getFullYear()}</span>{' '}
-                  <a target="_blank" href={ISC_LICENSE_LINK}>
-                    ISC
-                  </a>
-                </span>
-                <span>It&apos;s OK</span>
-                <span>
-                  <a
-                    target="_blank"
-                    href={GITHUB_REPO_URL}
-                    className="align-middle"
-                  >
-                    Under the hood
-                  </a>
-                </span>
-              </Prose>
-            </section>
-          </footer>
-        </SurfacePrimary>
-      </Wrapper>
-    </SurfacePattern>
+              <section className="flex w-full flex-wrap items-end justify-center sm:justify-between">
+                <Prose className="prose-sm max-w-none gap-2 self-end justify-self-stretch pt-8">
+                  <Title asChild>
+                    <h4 className="my-0 whitespace-nowrap text-center sm:text-left">
+                      {METADATA.title}
+                    </h4>
+                  </Title>
+                  <p className="w-full text-center">{METADATA.description}</p>
+                </Prose>
+                <Prose className="prose-sm flex gap-4">
+                  <span>
+                    <span>{new Date().getFullYear()}</span>{' '}
+                    <a target="_blank" href={ISC_LICENSE_LINK}>
+                      ISC
+                    </a>
+                  </span>
+                  <span>It&apos;s OK</span>
+                  <span>
+                    <a
+                      target="_blank"
+                      href={GITHUB_REPO_URL}
+                      className="align-middle"
+                    >
+                      Under the hood
+                    </a>
+                  </span>
+                </Prose>
+              </section>
+            </footer>
+          </SurfacePrimary>
+        </Wrapper>
+      </SurfacePattern>
+    </>
   );
 }
 

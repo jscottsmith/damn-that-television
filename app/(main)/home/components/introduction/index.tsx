@@ -4,6 +4,7 @@ import { RichText } from 'prismic-reactjs';
 import styles from './index.module.scss';
 import { CardSecondary } from '@/components/card';
 import { Prose } from '@/components/typography/prose';
+import { Marquee } from '@/components/marquee';
 
 export const INTRO_ID = 'who';
 

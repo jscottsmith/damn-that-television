@@ -1,59 +1,91 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+'use client';
 import clsx from 'clsx';
-import { IconButton } from '../icon-button';
+import { ReactNode, useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { useToggle } from 'hooks/use-toggle';
-import { isServer } from '@/helpers/ssr';
-
-export function getAnimationDuration(): number {
-  if (isServer()) {
-    return 0;
-  }
-
-  return window.innerWidth / 50;
-}
+import { useBoundingClientRect } from 'hooks/use-client-bounding-rect';
+import { CardPrimary } from '../card';
+import { SurfacePrimary } from '../surface';
+import { useToggleSessionStorage } from 'hooks/use-toggle-session-storage';
 
 type MarqueeProps = {
-  content: string[];
   className?: string;
-  duration: number;
+  duration?: number;
   id: string;
+  children: ReactNode[];
 };
 
 export const Marquee = (props: MarqueeProps) => {
-  const [index, setIndex] = useState(0);
-  const toggle = useToggle(false);
-  const handleEnd = () => {
-    const nextIndex = (index + 1) % props.content.length;
-    setIndex(nextIndex);
-  };
+  const toggle = useToggleSessionStorage('marquee-' + props.id);
+  const ref = useRef<HTMLDivElement>(null);
+  const [list, setList] = useState<ReactNode[]>([]);
+  const rect = useBoundingClientRect(ref);
+  const isVisible = !toggle.isToggled;
+  useEffect(() => {
+    const w = rect?.width ?? 1;
+    const amount = Math.ceil(window.innerWidth / w) * 2;
+
+    if (w > 1) {
+      setList(
+        Array.from({ length: amount }).fill(props.children) as ReactNode[],
+      );
+    }
+  }, [rect, props.children]);
+  const duration = (rect?.width ?? 0) / 100;
+  const sharedClassName = 'whitespace-nowrap pr-4';
 
   return (
-    <div
-      className={clsx('flex h-12 bg-deep text-xl text-ghost', props.className, {
-        hidden: toggle.isToggled,
-      })}
-    >
-      <motion.div
-        key={index}
-        className="flex w-[200vw] items-center justify-center whitespace-nowrap border-b-4 border-t-4 border-b-pepto border-t-fab text-center"
-        initial={{ x: '100%' }}
-        transition={{
-          onComplete: handleEnd,
-          duration: props.duration,
-          ease: 'linear',
-        }}
-        animate={{ x: '-100%' }}
-      >
-        {props.content[index]}
-      </motion.div>
-      <IconButton
-        className="absolute right-2 top-2"
-        onClick={() => toggle.setToggleState(true)}
-      >
-        <XMarkIcon className="h-4 w-4" />
-      </IconButton>
-    </div>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          exit={{ height: 0, opacity: 0 }}
+          animate={{ height: 32, opacity: 1 }}
+        >
+          <CardPrimary
+            key={list.length}
+            className={clsx(
+              'flex w-full items-center font-futura text-lg font-bold uppercase italic',
+              props.className,
+            )}
+          >
+            {/* el to measure */}
+            <div
+              ref={ref}
+              className={clsx(
+                'pointer-events-none invisible absolute',
+                sharedClassName,
+              )}
+            >
+              {props.children}
+            </div>
+            {list.map((text, i) => (
+              <motion.div
+                key={i}
+                className={clsx('inline-flex', sharedClassName)}
+                initial={{ x: '0%' }}
+                transition={{
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                  ease: 'linear',
+                  duration,
+                }}
+                animate={{ x: '-100%' }}
+              >
+                {text}
+              </motion.div>
+            ))}
+            <SurfacePrimary asChild>
+              <button
+                className="absolute right-2 top-1/2 z-10 block -translate-y-1/2"
+                onClick={() => toggle.toggle()}
+              >
+                <XMarkIcon className="h-4 w-4" />
+              </button>
+            </SurfacePrimary>
+          </CardPrimary>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
