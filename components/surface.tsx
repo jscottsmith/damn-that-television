@@ -6,6 +6,8 @@ export const SECONDARY_SURFACE_CLASS = 'bg-slate-100 dark:bg-slate-700';
 export const SURFACE_BACKGROUND_CLASS = 'bg-slate-200 dark:bg-slate-900';
 export const SURFACE_GROUP_CLASS =
   'border border-slate-200 dark:border-slate-800';
+export const SURFACE_GLASS =
+  'bg-opacity-60 backdrop-blur-lg dark:bg-opacity-60';
 
 export function SurfacePrimary({ className, ...props }: SlotComponentProps) {
   return (
@@ -13,6 +15,15 @@ export function SurfacePrimary({ className, ...props }: SlotComponentProps) {
       className={clsx(PRIMARY_SURFACE_CLASS, className)}
       {...props}
     />
+  );
+}
+
+export function SurfacePrimaryGlass({
+  className,
+  ...props
+}: SlotComponentProps) {
+  return (
+    <SurfacePrimary className={clsx(SURFACE_GLASS, className)} {...props} />
   );
 }
 
