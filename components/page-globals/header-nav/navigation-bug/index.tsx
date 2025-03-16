@@ -147,7 +147,9 @@ function HomeLink() {
         )}
       >
         <span className="sr-only">Go Home</span>
-        <EyeMan />
+        <div className="w-full">
+          <EyeMan />
+        </div>
       </Link>
     </SurfaceInteractive>
   );
