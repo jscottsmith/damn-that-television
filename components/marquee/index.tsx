@@ -40,7 +40,8 @@ export const Marquee = (props: MarqueeProps) => {
         <motion.div
           initial={{ height: 0, opacity: 0 }}
           exit={{ height: 0, opacity: 0 }}
-          animate={{ height: 32, opacity: 1 }}
+          animate={{ height: 36, opacity: 1 }}
+          className="relative overflow-x-hidden"
         >
           <CardPrimary
             key={list.length}
