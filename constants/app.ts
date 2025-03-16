@@ -1,5 +1,9 @@
 import { NavLinks } from '@/components/types';
-import { ROUTE_DAMN_GAME, ROUTE_RESUME } from '@/constants/routes.constants';
+import {
+  ROUTE_DAMN_GAME,
+  ROUTE_GIFS,
+  ROUTE_RESUME,
+} from '@/constants/routes.constants';
 import { INTRO_ID } from 'app/(main)/home/components/introduction';
 
 export const OBSERVER_OPTIONS = {
@@ -10,6 +14,7 @@ export const OBSERVER_OPTIONS = {
 
 export const NAVIGATION_LINKS: NavLinks = [
   { label: 'Who?', href: `/#${INTRO_ID}` },
+  { label: 'Gifs', href: ROUTE_GIFS },
   { label: 'Play', href: ROUTE_DAMN_GAME },
   { label: 'Résumé', href: ROUTE_RESUME },
 ];

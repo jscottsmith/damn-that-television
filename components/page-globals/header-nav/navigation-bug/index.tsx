@@ -4,7 +4,10 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { Button } from '@/components/buttons/button';
 import { EyeMan } from '@/components/buttons/eye-button/eye-man';
-import { PRIMARY_SURFACE_CLASS } from '@/components/surface';
+import {
+  PRIMARY_SURFACE_CLASS,
+  SurfacePrimaryGlass,
+} from '@/components/surface';
 import { SurfaceInteractive } from '@/components/surface-interactive';
 import { NAVIGATION_LINKS } from '@/constants/app';
 import { IconButton } from '@/components/buttons/icon-button';
@@ -97,37 +100,37 @@ export default function NavigationBug() {
           'fixed inset-2',
         )}
       >
-        <motion.nav
-          variants={NAV_VARIANTS}
-          animate={navVariant}
-          initial={NAV_VARIANTS.visible}
-          transition={{
-            type: 'spring',
-            bounce: 0.25,
-          }}
-          className={clsx(
-            'pointer-events-auto relative grid',
-            'rounded-[2.3rem]',
-            'bg-opacity-60 backdrop-blur-lg dark:bg-opacity-60',
-            'shadow-lg shadow-slate-950/5',
-            PRIMARY_SURFACE_CLASS,
-          )}
-        >
-          <div
+        <SurfacePrimaryGlass asChild>
+          <motion.nav
+            variants={NAV_VARIANTS}
+            animate={navVariant}
+            initial={NAV_VARIANTS.visible}
+            transition={{
+              type: 'spring',
+              bounce: 0.25,
+            }}
             className={clsx(
-              menu.open ? 'flex' : 'hidden sm:flex',
-              'relative w-full flex-wrap items-center gap-1 self-start p-1 pr-2.5',
+              'pointer-events-auto relative grid',
+              'rounded-[2.3rem]',
+              'shadow-lg shadow-slate-950/5',
             )}
           >
-            <HomeLink />
-            <MainLinks />
-          </div>
-          <div className="relative flex justify-center self-end p-1 sm:hidden">
-            <IconButton size="md" onClick={menu.toggleOpen}>
-              {menu.open ? <XMarkIcon /> : <Bars3Icon />}
-            </IconButton>
-          </div>
-        </motion.nav>
+            <div
+              className={clsx(
+                menu.open ? 'flex' : 'hidden sm:flex',
+                'relative w-full flex-wrap items-center gap-1 self-start p-1 pr-2.5',
+              )}
+            >
+              <HomeLink />
+              <MainLinks />
+            </div>
+            <div className="relative flex justify-center self-end p-1 sm:hidden">
+              <IconButton size="md" onClick={menu.toggleOpen}>
+                {menu.open ? <XMarkIcon /> : <Bars3Icon />}
+              </IconButton>
+            </div>
+          </motion.nav>
+        </SurfacePrimaryGlass>
       </div>
     </>
   );
