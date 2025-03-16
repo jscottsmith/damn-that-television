@@ -1,18 +1,16 @@
-import {
-  addToSessionStorage,
-  getFromSessionStorage,
-} from '@/helpers/session-storage';
-import { useState } from 'react';
+import { useIsMounted, useSessionStorage } from 'usehooks-ts';
 
-export function useToggleSessionStorage(key: string) {
-  const sessionToggleState = getFromSessionStorage(key);
+export function useToggleSessionStorage(key: string, initialValue?: string) {
+  const [value, setValue, removeValue] = useSessionStorage(key, initialValue);
 
-  const [isToggled, setToggled] = useState<boolean>(sessionToggleState);
-
-  function setToggleState(isToggled: boolean) {
-    addToSessionStorage(key, isToggled);
-    setToggled(isToggled);
+  const isMounted = useIsMounted();
+  function toggle() {
+    if (value) {
+      removeValue();
+    } else {
+      setValue('true');
+    }
   }
 
-  return { isToggled, setToggleState };
+  return { isToggled: isMounted() ? !!value : initialValue, toggle };
 }
