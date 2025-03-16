@@ -30,7 +30,7 @@ export function GalleryRoute() {
   if (!currentImage) return null;
 
   return (
-    <section className="select-none">
+    <section className="fixed inset-0 h-full w-full select-none">
       <HeaderNav
         title={currentImage.title || currentImage.username}
         externalLink={currentImage.url}
@@ -38,7 +38,7 @@ export function GalleryRoute() {
         length={images.length}
       />
       <SurfaceBackground asChild>
-        <div className="absolute inset-0 flex h-screen items-center justify-center overflow-hidden p-2">
+        <div className="fixed inset-0 flex items-center justify-center overflow-hidden p-2">
           <AnimatePresence>
             <motion.div
               key={currentImage.id}
