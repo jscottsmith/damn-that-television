@@ -23,6 +23,12 @@ dependencies:
   clsx:
     specifier: ^2.1.1
     version: 2.1.1
+  embla-carousel:
+    specifier: ^8.5.2
+    version: 8.5.2
+  embla-carousel-react:
+    specifier: ^8.5.2
+    version: 8.5.2(react@19.0.0)
   lodash.throttle:
     specifier: ^4.1.1
     version: 4.1.1
@@ -84,7 +90,7 @@ devDependencies:
     version: 9.21.0
   eslint-config-next:
     specifier: latest
-    version: 15.2.0(eslint@9.21.0)(typescript@5.8.2)
+    version: 15.2.3(eslint@9.21.0)(typescript@5.8.2)
   jest:
     specifier: ^29.7.0
     version: 29.7.0(@types/node@17.0.45)
@@ -1054,8 +1060,8 @@ packages:
     resolution: {integrity: sha512-eMgJu1RBXxxqqnuRJQh5RozhskoNUDHBFybvi+Z+yK9qzKeG7dadhv/Vp1YooSZmCnegf7JxWuapV77necLZNA==}
     dev: false
 
-  /@next/eslint-plugin-next@15.2.0:
-    resolution: {integrity: sha512-jHFUG2OwmAuOASqq253RAEG/5BYcPHn27p1NoWZDCf4OdvdK0yRYWX92YKkL+Mk2s+GyJrmd/GATlL5b2IySpw==}
+  /@next/eslint-plugin-next@15.2.3:
+    resolution: {integrity: sha512-eNSOIMJtjs+dp4Ms1tB1PPPJUQHP3uZK+OQ7iFY9qXpGO6ojT6imCL+KcUOqE/GXGidWbBZJzYdgAdPHqeCEPA==}
     dependencies:
       fast-glob: 3.3.1
     dev: true
@@ -2531,6 +2537,28 @@ packages:
   /electron-to-chromium@1.5.109:
     resolution: {integrity: sha512-AidaH9JETVRr9DIPGfp1kAarm/W6hRJTPuCnkF+2MqhF4KaAgRIcBc8nvjk+YMXZhwfISof/7WG29eS4iGxQLQ==}
 
+  /embla-carousel-react@8.5.2(react@19.0.0):
+    resolution: {integrity: sha512-Tmx+uY3MqseIGdwp0ScyUuxpBgx5jX1f7od4Cm5mDwg/dptEiTKf9xp6tw0lZN2VA9JbnVMl/aikmbc53c6QFA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    dependencies:
+      embla-carousel: 8.5.2
+      embla-carousel-reactive-utils: 8.5.2(embla-carousel@8.5.2)
+      react: 19.0.0
+    dev: false
+
+  /embla-carousel-reactive-utils@8.5.2(embla-carousel@8.5.2):
+    resolution: {integrity: sha512-QC8/hYSK/pEmqEdU1IO5O+XNc/Ptmmq7uCB44vKplgLKhB/l0+yvYx0+Cv0sF6Ena8Srld5vUErZkT+yTahtDg==}
+    peerDependencies:
+      embla-carousel: 8.5.2
+    dependencies:
+      embla-carousel: 8.5.2
+    dev: false
+
+  /embla-carousel@8.5.2:
+    resolution: {integrity: sha512-xQ9oVLrun/eCG/7ru3R+I5bJ7shsD8fFwLEY7yPe27/+fDHCNj0OT5EoG5ZbFyOxOcG6yTwW8oTz/dWyFnyGpg==}
+    dev: false
+
   /emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
     engines: {node: '>=12'}
@@ -2711,8 +2739,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-next@15.2.0(eslint@9.21.0)(typescript@5.8.2):
-    resolution: {integrity: sha512-LkG0KKpinAoNPk2HXSx0fImFb/hQ6RnhSxTkpJFTkQ0SmnzsbRsjjN95WC/mDY34nKOenpptYEVvfkCR/h+VjA==}
+  /eslint-config-next@15.2.3(eslint@9.21.0)(typescript@5.8.2):
+    resolution: {integrity: sha512-VDQwbajhNMFmrhLWVyUXCqsGPN+zz5G8Ys/QwFubfsxTIrkqdx3N3x3QPW+pERz8bzGPP0IgEm8cNbZcd8PFRQ==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0 || ^9.0.0
       typescript: '>=3.3.1'
@@ -2720,7 +2748,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@next/eslint-plugin-next': 15.2.0
+      '@next/eslint-plugin-next': 15.2.3
       '@rushstack/eslint-patch': 1.10.5
       '@typescript-eslint/eslint-plugin': 8.25.0(@typescript-eslint/parser@8.25.0)(eslint@9.21.0)(typescript@5.8.2)
       '@typescript-eslint/parser': 8.25.0(eslint@9.21.0)(typescript@5.8.2)

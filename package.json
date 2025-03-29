@@ -34,6 +34,8 @@
     "@prismicio/client": "^7.16.1",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
+    "embla-carousel": "^8.5.2",
+    "embla-carousel-react": "^8.5.2",
     "lodash.throttle": "^4.1.1",
     "motion": "^12.4.7",
     "next": "latest",
