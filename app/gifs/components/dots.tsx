@@ -1,60 +1,59 @@
 import clsx from 'clsx';
-import { motion, AnimatePresence } from 'motion/react';
-
-function limitedListRange(
-  list: unknown[],
-  currentIndex: number,
-  max: number,
-): [number, number] {
-  const halfMax = Math.floor(max / 2);
-  const start = currentIndex - halfMax;
-  const end = start + max - 1;
-  if (list.length > max) {
-    if (start < 0) {
-      return [0, max - 1];
-    }
-    return [start, end];
-  }
-  return [0, list.length - 1];
-}
-
-function isWithinRange(currentIndex: number, range: [number, number]) {
-  return currentIndex >= range[0] && currentIndex <= range[1];
-}
+import useEmblaCarousel from 'embla-carousel-react';
+import { UseCycleIndex } from 'hooks/use-cycle-index';
+import { useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
 
 export function Dots({
   max = 9,
   ...props
 }: {
-  current: number;
+  indexController: UseCycleIndex;
   length: number;
   max?: number;
 }) {
+  const container = useRef(null);
   const dots = Array(props.length).fill(0);
+  const [ref, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: 'center',
+    watchDrag: false,
+  });
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi?.scrollTo(props.indexController.index);
+  }, [props.indexController.index, emblaApi]);
 
   return (
-    <div className="flex gap-1">
-      <AnimatePresence>
+    <div ref={ref} className="relative w-28 overflow-hidden">
+      <div className="flex" ref={container}>
         {dots.map((_, index) => {
-          const range = limitedListRange(dots, props.current, max);
-          const displayed = isWithinRange(index, range);
-          return displayed ? (
+          return (
             <motion.button
               key={index}
-              layout
-              initial={{ scale: 0 }}
-              exit={{ scale: 0 }}
-              animate={{ scale: 1, transition: { delay: 0.2 } }}
+              // viewport={{
+              //   root: container,
+              //   margin: '0px -20px 0px -20px',
+              //   amount: 0.99,
+              // }}
+              // whileInView={{ scale: 1, transition: { delay: 0.2 } }}
+              // initial={{ scale: 0 }}
+              // exit={{ scale: 0 }}
+              onClick={() => {
+                emblaApi?.scrollTo(index);
+                props.indexController.goTo(index);
+              }}
               className={clsx(
-                'inline-block h-2 w-2 rounded-full',
-                props.current === index
+                'mx-0.5 inline-block h-2 w-2 min-w-0 shrink-0 rounded-full',
+                props.indexController.index === index
                   ? 'bg-club-500 dark:bg-miami'
                   : 'bg-slate-200 dark:bg-slate-600',
               )}
             />
-          ) : null;
+          );
         })}
-      </AnimatePresence>
+      </div>
     </div>
   );
 }

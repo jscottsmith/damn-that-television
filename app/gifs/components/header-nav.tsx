@@ -7,10 +7,11 @@ import {
   ArrowTopRightOnSquareIcon,
 } from '@heroicons/react/24/outline';
 import { SurfacePrimaryGlass } from '@/components/surface';
+import { UseCycleIndex } from 'hooks/use-cycle-index';
 
 export function HeaderNav(props: {
   title: string;
-  current: number;
+  indexController: UseCycleIndex;
   length: number;
   externalLink: string;
 }) {
@@ -35,10 +36,10 @@ export function HeaderNav(props: {
           <div>
             <h2 className="text-xs font-bold uppercase">{props.title}</h2>
             <p className="text-xs font-medium tabular-nums">
-              {props.current + 1}/{props.length + 1}
+              {props.indexController.index + 1}/{props.length}
             </p>
           </div>
-          <Dots current={props.current} length={props.length} />
+          <Dots indexController={props.indexController} length={props.length} />
         </div>
         <div>
           <a

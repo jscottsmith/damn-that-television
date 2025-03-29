@@ -34,7 +34,7 @@ export function GalleryRoute() {
       <HeaderNav
         title={currentImage.title || currentImage.username}
         externalLink={currentImage.url}
-        current={indexController.index}
+        indexController={indexController}
         length={images.length}
       />
       <SurfaceBackground asChild>
