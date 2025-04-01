@@ -89,6 +89,7 @@ export function GalleryRoute() {
         )}
       </AnimatePresence>
       <FooterNav
+        url={currentImage.images.original.url}
         isTrashed={currentDirection === Directions.LEFT}
         isLiked={currentDirection === Directions.RIGHT}
       />
