@@ -9,6 +9,7 @@ import { FooterNav } from './components/footer-nav';
 import { ActionIndicator } from './components/action-indicator';
 import { HeaderNav } from './components/header-nav';
 import { SurfaceBackground } from '@/components/surface';
+import { useEventListener } from 'usehooks-ts';
 
 export function GalleryRoute() {
   const images = useGalleryContext();
@@ -16,6 +17,16 @@ export function GalleryRoute() {
   const [currentDirection, setCurrentDirection] = useState<Directions>();
   const [decidedDirection, setDecidedDirection] = useState<Directions>();
   const currentImage = images?.[indexController.index];
+
+  function onKeyDown(e: KeyboardEvent) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+      indexController.next();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+      indexController.previous();
+    }
+  }
+  useEventListener('keydown', onKeyDown);
 
   const resetDirections = () => {
     setCurrentDirection(undefined);
