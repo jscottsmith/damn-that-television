@@ -52,7 +52,7 @@ export default class Letter {
 
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.font = `900 ${radius * 1.3}px futura-pt `;
+    ctx.font = `900 ${radius * 1.3}px futura`;
     ctx.fillStyle = COLORS.cream;
     ctx.fillText(this.letter, 0, 0);
 
