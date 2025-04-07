@@ -112,7 +112,7 @@ module.exports = {
         'spin-slow': 'spin 40s linear infinite',
       },
       fontFamily: {
-        futura: 'futura-pt, sans-serif',
+        futura: 'var(--font-futura)',
         poppins: 'poppins, sans-serif',
       },
       boxShadow: {

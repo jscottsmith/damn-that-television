@@ -1,9 +1,77 @@
+import clsx from 'clsx';
 import type { Metadata, Viewport } from 'next';
 import { Providers } from './providers';
 import { Poppins } from 'next/font/google';
+import localFont from 'next/font/local';
 import Script from 'next/script';
 import '/sass/root.scss';
 import '/sass/globals.css';
+
+const futura = localFont({
+  variable: '--font-futura',
+  src: [
+    {
+      path: '../fonts/fpt/fpt_light.woff',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/fpt/fpt_light-oblique.woff',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../fonts/fpt/fpt_book.woff',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/fpt/fpt_book-oblique.woff',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../fonts/fpt/fpt_medium.woff',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/fpt/fpt_medium-oblique.woff',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: '../fonts/fpt/fpt_demi.woff',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/fpt/fpt_demi-oblique.woff',
+      weight: '600',
+      style: 'italic',
+    },
+    {
+      path: '../fonts/fpt/fpt_bold.woff',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/fpt/fpt_bold-oblique.woff',
+      weight: '700',
+      style: 'italic',
+    },
+    {
+      path: '../fonts/fpt/fpt_extrabold.woff',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/fpt/fpt_extrabold-oblique.woff',
+      weight: '800',
+      style: 'italic',
+    },
+  ],
+});
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -38,9 +106,12 @@ export default function RootLayout({
   // only applies one level deep, so it won't block hydration warnings on other elements.
   // @see https://github.com/pacocoursey/next-themes#with-app
   return (
-    <html lang="en" className={poppins.className} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={clsx(poppins.className, futura.variable)}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="stylesheet" href="https://use.typekit.net/bwo5nqc.css" />
         <link rel="manifest" href="/site.webmanifest" />
         {/* TODO: pathname */}
         {/* <link rel="canonical" href={`https://damnthat.tv${router.pathname}`} /> */}
