@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 
-function Eye({ className }) {
+function Eye(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg className={className} version="1.1" viewBox="0 0 200 100">
+    <svg {...props} version="1.1" viewBox="0 0 200 100">
       <path
         fill="currentColor"
         d=" M200,0h-16.7c0,12.4-2.7,24.2-7.6,34.7C157.4,13.5,130.2,0,100,0C69.8,0,42.6,13.5,24.3,34.7
