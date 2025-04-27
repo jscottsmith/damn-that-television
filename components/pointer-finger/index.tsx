@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 
-export const PointerFinger = (props) => {
+export const PointerFinger = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       viewBox="0 0 117 146"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={props.className}
+      {...props}
     >
       <mask
         id="path-1-outside-1_101_2"
