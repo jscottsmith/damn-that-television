@@ -47,7 +47,7 @@ export default async function Image() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          padding: '48px 0 0 48px',
+          padding: '48px 96px 0 0',
         }}
         className="bg-gray-950"
       >
@@ -56,6 +56,7 @@ export default async function Image() {
             display: 'flex',
             alignItems: 'center',
             width: '100%',
+            marginLeft: 48,
             marginBottom: 32,
             paddingRight: 48,
           }}
@@ -85,10 +86,10 @@ export default async function Image() {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
             flexGrow: 1,
+            paddingLeft: 48,
             background: 'white',
-            borderRadius: '64px 0 0 0',
+            borderRadius: '0 64px 0 0',
           }}
         >
           <div
@@ -117,7 +118,7 @@ export default async function Image() {
             style={{
               display: 'flex',
               flexGrow: 0,
-              // alignSelf: 'flex-start',
+              alignSelf: 'flex-start',
               padding: 45,
               fontSize: 48,
               textTransform: 'uppercase',
