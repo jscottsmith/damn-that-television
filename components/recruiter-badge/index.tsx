@@ -66,9 +66,8 @@ export const RecruiterBadge = (props) => {
         />
         <text
           dy="70"
-          fontFamily="futura-pt, sans-serif"
           fontWeight="600"
-          className="uppercase text-deep"
+          className="futura font-bold uppercase text-deep"
           fill="currentColor"
         >
           <textPath
