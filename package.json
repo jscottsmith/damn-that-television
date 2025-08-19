@@ -4,7 +4,7 @@
   "description": "Damn that television. The personal website of J Scott Smith",
   "main": "index.js",
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
