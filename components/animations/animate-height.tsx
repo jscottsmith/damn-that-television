@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react';
 const hidden = {
   height: 0,
   transition: {
-    type: 'spring',
+    type: 'spring' as const,
     damping: 18,
     stiffness: 100,
   },
@@ -12,7 +12,7 @@ const hidden = {
 const visible = {
   height: 'auto',
   transition: {
-    type: 'spring',
+    type: 'spring' as const,
     damping: 15,
     stiffness: 100,
   },
@@ -40,7 +40,7 @@ export function AnimateFlipDown(props: PropsWithChildren<{ key: string }>) {
       <motion.div
         className="origin-top"
         transition={{
-          type: 'spring',
+          type: 'spring' as const,
           damping: 15,
           stiffness: 100,
         }}
