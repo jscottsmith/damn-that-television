@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 import { METADATA } from '@/constants/app';
 
 export const metadata: Metadata = {
-  title: `Résumé | ${METADATA.title}`,
+  title: `Résumé | J Scott Smith | ${METADATA.title}`,
   description:
     'Résumé of J Scott Smith, engineering leader and creative developer.',
 };
