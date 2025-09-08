@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useCountdown } from 'usehooks-ts';
 import {
   HandThumbUpIcon,
   HandThumbDownIcon,
@@ -15,6 +16,7 @@ import { Prose } from '@/components/typography/prose';
 import { DismissibleBanner } from '@/components/dismissible-banner';
 import { AnimatePresence } from 'motion/react';
 import { AnimateHeight } from '@/components/animations/animate-height';
+import { Button, ButtonName, ButtonSize } from '@/components/buttons/button';
 
 type WorkTogetherProps = {
   primary: {
@@ -27,85 +29,156 @@ type WorkTogetherProps = {
 
 export const WORK_TOGETHER_ID = 'work-together';
 
-function useShowInterest() {
+type WorkTogetherMessageProps = {
+  primary: {
+    body_yes: RichTextBlock[];
+    body_no: RichTextBlock[];
+    note: RichTextBlock[];
+    title: RichTextBlock[];
+  };
+  dismiss: () => void;
+};
+
+const WorkTogetherMessage = ({
+  primary,
+  dismiss,
+}: WorkTogetherMessageProps) => {
+  const showInterest = useShowInterest(dismiss);
+
+  return (
+    <section className="flex flex-row flex-wrap items-center justify-center">
+      <div className="font-futura text-xl font-normal md:text-2xl">
+        <RichText render={primary.title} />
+      </div>
+      <div className="mt-md flex w-full justify-center gap-sm">
+        <SelectionButton
+          isSelected={showInterest.isInterested}
+          onClick={showInterest.onClickInterested}
+          icon={<HandThumbUpIcon />}
+          className="min-w-[9rem]"
+        >
+          Yep!
+        </SelectionButton>
+        <SelectionButton
+          isSelected={showInterest.isNotInterested}
+          onClick={showInterest.onClickNotInterested}
+          icon={<HandThumbDownIcon />}
+          className="min-w-[9rem]"
+        >
+          No Thanks
+        </SelectionButton>
+      </div>
+      <AnimatePresence initial={false}>
+        {showInterest.isInterested && (
+          <AnimateHeight key="interested">
+            <div className="mt-lg w-full text-center">
+              <Prose className={clsx('mx-auto max-w-md')}>
+                <RichText render={primary.body_yes} />
+              </Prose>
+              <div className="my-lg flex justify-center">
+                <a href="mailto:jscsmith@gmail.com">
+                  <CTAButton
+                    buttonSize={CTAButtonSizes.default}
+                    buttonType={CTAButtonTypes.pepto}
+                  >
+                    Email me!
+                  </CTAButton>
+                </a>
+              </div>
+              <Prose className="text-xs">
+                <RichText render={primary.note} />
+              </Prose>
+            </div>
+          </AnimateHeight>
+        )}
+        {showInterest.isNotInterested && (
+          <AnimateHeight key="not-interested">
+            <div className="mt-lg w-full text-center">
+              <Prose className={clsx('mx-auto max-w-md')}>
+                <p className="text-gray-600">No worries, carry on.</p>
+                <p className="text-sm text-gray-600">
+                  This message will self destruct in:
+                </p>
+                <div className="my-md text-4xl font-bold text-rose-500">
+                  {showInterest.countdown}
+                </div>
+              </Prose>
+              <div className="mt-md">
+                <Button
+                  size={ButtonSize.sm}
+                  name={ButtonName.danger}
+                  onClick={showInterest.onCancel}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          </AnimateHeight>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+};
+
+function useShowInterest(dismissBanner?: () => void) {
   const [interest, setInterest] = useState<boolean | null>(null);
+  const [count, { startCountdown, stopCountdown, resetCountdown }] =
+    useCountdown({
+      countStart: 10,
+      intervalMs: 1000,
+      isIncrement: false,
+    });
   const isInterested = interest === true;
   const isNotInterested = interest === false;
   const isNull = interest === null;
 
+  // Auto-dismiss when countdown reaches 0
+  useEffect(() => {
+    if (count === 0 && isNotInterested) {
+      dismissBanner?.();
+      stopCountdown();
+    }
+  }, [count, isNotInterested, dismissBanner, stopCountdown]);
+
   function onClickInterested() {
     isNull || isNotInterested ? setInterest(true) : setInterest(null);
+    stopCountdown(); // Stop countdown if switching to interested
+    resetCountdown(); // Reset counter to 10
   }
   function onClickNotInterested() {
-    isNull || isInterested ? setInterest(false) : setInterest(null);
+    if (isNull || isInterested) {
+      setInterest(false);
+      resetCountdown(); // Reset counter to 10
+      startCountdown(); // Start countdown
+    } else {
+      setInterest(null);
+      stopCountdown();
+      resetCountdown();
+    }
+  }
+
+  function onCancel() {
+    setInterest(null);
+    stopCountdown();
+    resetCountdown();
   }
 
   return {
     onClickInterested,
     onClickNotInterested,
+    onCancel,
     isInterested,
     isNotInterested,
+    countdown: isNotInterested ? count : null,
   };
 }
 
 export const WorkTogether = (props: WorkTogetherProps) => {
-  const showInterest = useShowInterest();
   return (
     <DismissibleBanner id={WORK_TOGETHER_ID} className="my-xl rounded-lg">
-      <section className="flex flex-row flex-wrap items-center justify-center">
-        <div className="font-futura text-xl font-normal md:text-2xl">
-          <RichText render={props.primary.title} />
-        </div>
-        <div className="mt-md flex w-full justify-center gap-sm">
-          <SelectionButton
-            isSelected={showInterest.isInterested}
-            onClick={showInterest.onClickInterested}
-            icon={<HandThumbUpIcon />}
-            className="min-w-[9rem]"
-          >
-            Yep!
-          </SelectionButton>
-          <SelectionButton
-            isSelected={showInterest.isNotInterested}
-            onClick={showInterest.onClickNotInterested}
-            icon={<HandThumbDownIcon />}
-            className="min-w-[9rem]"
-          >
-            No Thanks
-          </SelectionButton>
-        </div>
-        <AnimatePresence initial={false}>
-          {showInterest.isInterested && (
-            <AnimateHeight key="interested">
-              <div className="mt-lg w-full text-center">
-                <Prose className={clsx('mx-auto max-w-md')}>
-                  <RichText render={props.primary.body_yes} />
-                </Prose>
-                <div className="my-lg flex justify-center">
-                  <a href="mailto:jscsmith@gmail.com">
-                    <CTAButton
-                      buttonSize={CTAButtonSizes.default}
-                      buttonType={CTAButtonTypes.pepto}
-                    >
-                      Email me!
-                    </CTAButton>
-                  </a>
-                </div>
-                <Prose className="text-xs">
-                  <RichText render={props.primary.note} />
-                </Prose>
-              </div>
-            </AnimateHeight>
-          )}
-          {showInterest.isNotInterested && (
-            <AnimateHeight key="not-interested">
-              <Prose className={clsx('mt-lg w-full text-center')}>
-                <p>No worries, carry on.</p>
-              </Prose>
-            </AnimateHeight>
-          )}
-        </AnimatePresence>
-      </section>
+      {({ dismiss }) => (
+        <WorkTogetherMessage primary={props.primary} dismiss={dismiss} />
+      )}
     </DismissibleBanner>
   );
 };

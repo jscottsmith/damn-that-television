@@ -9,10 +9,18 @@ import { SlotComponentProps } from './slot';
 import { AnimatePresence } from 'motion/react';
 import { AnimateHeight, AnimateFlipDown } from './animations/animate-height';
 
-type DismissibleBannerProps = PropsWithChildren<{
+type DismissibleBannerState = {
+  dismiss: () => void;
+  isDismissed: boolean;
+};
+
+type DismissibleBannerProps = {
   id: string;
-}> &
-  SlotComponentProps;
+  onDismiss?: () => void;
+  children:
+    | React.ReactNode
+    | ((state: DismissibleBannerState) => React.ReactNode);
+} & Omit<SlotComponentProps, 'children'>;
 
 function useDismissStorage(id: string) {
   const [isDismissed, setDismissed] = useSessionStorage(id, false);
@@ -34,8 +42,28 @@ export function DismissibleBanner({
   children,
   className,
   id,
+  onDismiss,
 }: DismissibleBannerProps) {
   const { dismiss, isDismissed } = useDismissStorage(id);
+
+  const handleDismiss = () => {
+    dismiss();
+    onDismiss?.();
+  };
+
+  const bannerState: DismissibleBannerState = {
+    dismiss: handleDismiss,
+    isDismissed,
+  };
+
+  // Check if children is a function (render prop) or regular React children
+  const renderChildren = () => {
+    if (typeof children === 'function') {
+      return children(bannerState);
+    }
+    return children;
+  };
+
   return (
     <AnimatePresence initial={false}>
       {!isDismissed && (
@@ -46,11 +74,11 @@ export function DismissibleBanner({
                 <IconButton
                   size={IconContainerSize.sm}
                   className="absolute right-base top-base"
-                  onClick={() => dismiss()}
+                  onClick={handleDismiss}
                 >
                   <XMarkIcon />
                 </IconButton>
-                {children}
+                {renderChildren()}
               </CardPadding>
             </SurfaceSecondary>
           </AnimateFlipDown>
