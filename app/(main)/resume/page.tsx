@@ -1,9 +1,9 @@
 import React from 'react';
 import { Resume } from 'app/(main)/resume/Resume';
-import * as prismic from '@prismicio/client';
-import { prismicConfiguration, repoName } from 'prismicConfiguration';
+import { createClient } from 'lib/prismicio';
 import { Metadata } from 'next';
 import { METADATA } from '@/constants/app';
+import type { Content } from '@prismicio/client';
 
 export const metadata: Metadata = {
   title: `Résumé | J Scott Smith | ${METADATA.title}`,
@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 async function Page() {
-  const client = prismic.createClient(repoName, prismicConfiguration);
-  const document = await client.getSingle('resume', {});
+  const client = createClient();
+  const document = await client.getSingle<Content.ResumeDocument>('resume', {});
   return <Resume document={document} />;
 }
 
