@@ -11,10 +11,10 @@ import { ResumeEducation } from './components/resume-education';
 import { CardPrimary } from '@/components/card';
 import { SurfaceBackground } from '@/components/surface';
 import { SiteWrapper } from '@/components/site-wrapper';
-import type { Content } from '@prismicio/client';
+import type { ResumeDocument } from 'types/prismic-generated';
 
 interface ResumeProps {
-  document: Content.ResumeDocument;
+  document: ResumeDocument;
 }
 
 export const Resume = (props: ResumeProps) => {

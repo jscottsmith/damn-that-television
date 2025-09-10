@@ -3,7 +3,7 @@ import { Resume } from 'app/(main)/resume/Resume';
 import { createClient } from 'lib/prismicio';
 import { Metadata } from 'next';
 import { METADATA } from '@/constants/app';
-import type { Content } from '@prismicio/client';
+import type { ResumeDocument } from 'types/prismic-generated';
 
 export const metadata: Metadata = {
   title: `Résumé | J Scott Smith | ${METADATA.title}`,
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 async function Page() {
   const client = createClient();
-  const document = await client.getSingle<Content.ResumeDocument>('resume', {});
+  const document = await client.getSingle<ResumeDocument>('resume', {});
   return <Resume document={document} />;
 }
 
