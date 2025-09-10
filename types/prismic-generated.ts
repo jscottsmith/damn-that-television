@@ -160,7 +160,7 @@ export interface ResumeDocumentDataBodyLinksSliceItem {
 	 * - **API ID Path**: resume.body[].links.items.type
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
-	type: prismic.SelectField<"website" | "phone" | "email" | "document" | "external">;
+	type: prismic.SelectField<"website" | "phone" | "email" | "document" | "external" | "project" | "user" | "user_plus" | "users" | "code" | "command">;
 }
 
 /**
