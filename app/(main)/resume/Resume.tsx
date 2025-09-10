@@ -11,8 +11,13 @@ import { ResumeEducation } from './components/resume-education';
 import { CardPrimary } from '@/components/card';
 import { SurfaceBackground } from '@/components/surface';
 import { SiteWrapper } from '@/components/site-wrapper';
+import type { Content } from '@prismicio/client';
 
-export const Resume = (props) => {
+interface ResumeProps {
+  document: Content.ResumeDocument;
+}
+
+export const Resume = (props: ResumeProps) => {
   return (
     <SurfaceBackground asChild>
       <SiteWrapper padY>
