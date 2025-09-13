@@ -1,10 +1,11 @@
 import { Badge, BadgeType } from 'components/badge';
 import React from 'react';
 import { formatterYear } from '../../helpers/format-date';
+import type { DateField } from '@prismicio/client';
 
 type Props = {
-  startDate: string;
-  endDate?: string;
+  startDate: DateField;
+  endDate?: DateField;
   presentRole?: boolean;
   dateFormatter: {
     format: (date: Date) => ReturnType<typeof formatterYear.format>;

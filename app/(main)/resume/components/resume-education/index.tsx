@@ -1,26 +1,14 @@
-import { RichText, RichTextBlock } from 'prismic-reactjs';
 import React from 'react';
 import { formatterYear } from 'app/(main)/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import { TitleAndSubtitle } from '../TitleAndSubtitle';
+import type { ResumeDocumentDataBodyResumeEducationSlice } from 'types/prismic-generated';
 
-type ResumeEducationSliceType = {
-  institution: RichTextBlock[];
-  copy?: RichTextBlock[];
-  start_date: string;
-  end_date: string;
-};
-
-type ResumeEducationType = {
-  primary: {
-    title: RichTextBlock[];
-  };
-  items: ResumeEducationSliceType[];
-};
-
-export const ResumeEducation = (props: ResumeEducationType) => {
+export const ResumeEducation = (
+  props: ResumeDocumentDataBodyResumeEducationSlice,
+) => {
   return (
     <div>
       <SectionTitle text={props.primary.title} />

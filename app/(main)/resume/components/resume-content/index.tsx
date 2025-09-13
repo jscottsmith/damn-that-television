@@ -1,15 +1,18 @@
-import { RichText } from 'prismic-reactjs';
 import clsx from 'clsx';
 import React from 'react';
+import { PrismicRichText } from '@prismicio/react';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
+import type { ResumeDocumentDataBodyResumeContentSlice } from 'types/prismic-generated';
 
-export const ResumeContent = (props) => {
+export const ResumeContent = (
+  props: ResumeDocumentDataBodyResumeContentSlice,
+) => {
   return (
     <>
       <SectionTitle text={props.primary.title} />
       <Prose className={clsx({ 'prose-xl': props.primary.large_copy })}>
-        <RichText render={props.primary.content} />
+        <PrismicRichText field={props.primary.content} />
       </Prose>
     </>
   );

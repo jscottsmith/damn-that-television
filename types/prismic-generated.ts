@@ -285,6 +285,16 @@ export interface ResumeDocumentDataBodyResumeWorkHistorySlicePrimary {
  */
 export interface ResumeDocumentDataBodyResumeWorkHistorySliceItem {
 	/**
+	 * Company Logo field in *Resume → Slice zone → Resume Work History → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: resume.body[].resume_work_history.items.company_logo
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	company_logo: prismic.ImageField<never>;
+	
+	/**
 	 * Company field in *Resume → Slice zone → Resume Work History → Items*
 	 *
 	 * - **Field Type**: Rich Text

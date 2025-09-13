@@ -1,5 +1,5 @@
 import { Prose } from '@/components/typography/prose';
-import { RichText } from 'prismic-reactjs';
+import { PrismicRichText } from '@prismicio/react';
 import React from 'react';
 import {
   GlobeAltIcon,
@@ -47,7 +47,7 @@ const getIconForLinkType = (type: string) => {
 export const Links = (props) => {
   return (
     <Prose>
-      <RichText render={props.links.primary.title} />
+      <PrismicRichText field={props.links.primary.title} />
       <ul>
         {props.links.items.map((item, i) => {
           const IconComponent = getIconForLinkType(item.type);

@@ -1,12 +1,14 @@
-import { RichText } from 'prismic-reactjs';
 import React from 'react';
 import { formatterYear } from 'app/(main)/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import { TitleAndSubtitle } from '../TitleAndSubtitle';
+import type { ResumeDocumentDataBodyResumeWorkHistoryCondensedSlice } from 'types/prismic-generated';
 
-export const ResumeWorkHistoryCondensed = (props) => {
+export const ResumeWorkHistoryCondensed = (
+  props: ResumeDocumentDataBodyResumeWorkHistoryCondensedSlice,
+) => {
   return (
     <div>
       <SectionTitle text={props.primary.title} />

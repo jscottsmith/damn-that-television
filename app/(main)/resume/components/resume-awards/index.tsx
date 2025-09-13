@@ -1,9 +1,12 @@
 import React from 'react';
-import { RichText } from 'prismic-reactjs';
+import { PrismicRichText } from '@prismicio/react';
 import { Badge, BadgeType } from 'components/badge';
 import { SectionTitle } from '../SectionTitle';
+import type { ResumeDocumentDataBodyResumeAwardsSlice } from 'types/prismic-generated';
 
-export const ResumeAwards = (props) => {
+export const ResumeAwards = (
+  props: ResumeDocumentDataBodyResumeAwardsSlice,
+) => {
   return (
     <section>
       <SectionTitle text={props.primary.title} />
@@ -12,7 +15,7 @@ export const ResumeAwards = (props) => {
         {props.items.map((item, i) => (
           <li key={i} className="mb-md">
             <div className="mb-1 font-futura text-xl font-normal italic">
-              <RichText render={item.title} />
+              <PrismicRichText field={item.title} />
             </div>
             <Badge type={BadgeType.primary}>{item.dates}</Badge>
           </li>

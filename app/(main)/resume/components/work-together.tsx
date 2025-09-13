@@ -11,31 +11,18 @@ import {
   CTAButtonSizes,
   CTAButtonTypes,
 } from '@/components/buttons/cta-button';
-import { RichText, RichTextBlock } from 'prismic-reactjs';
+import { PrismicRichText } from '@prismicio/react';
 import { Prose } from '@/components/typography/prose';
 import { DismissibleBanner } from '@/components/dismissible-banner';
 import { AnimatePresence } from 'motion/react';
 import { AnimateHeight } from '@/components/animations/animate-height';
 import { Button, ButtonName, ButtonSize } from '@/components/buttons/button';
-
-type WorkTogetherProps = {
-  primary: {
-    body_yes: RichTextBlock[];
-    body_no: RichTextBlock[];
-    note: RichTextBlock[];
-    title: RichTextBlock[];
-  };
-};
+import type { ResumeDocumentDataBodyWorkTogetherSlice } from 'types/prismic-generated';
 
 export const WORK_TOGETHER_ID = 'work-together';
 
 type WorkTogetherMessageProps = {
-  primary: {
-    body_yes: RichTextBlock[];
-    body_no: RichTextBlock[];
-    note: RichTextBlock[];
-    title: RichTextBlock[];
-  };
+  primary: ResumeDocumentDataBodyWorkTogetherSlice['primary'];
   dismiss: () => void;
 };
 
@@ -48,7 +35,7 @@ const WorkTogetherMessage = ({
   return (
     <section className="flex flex-row flex-wrap items-center justify-center">
       <div className="font-futura text-xl font-normal md:text-2xl">
-        <RichText render={primary.title} />
+        <PrismicRichText field={primary.title} />
       </div>
       <div className="mt-md flex w-full justify-center gap-sm">
         <SelectionButton
@@ -73,7 +60,7 @@ const WorkTogetherMessage = ({
           <AnimateHeight key="interested">
             <div className="mt-lg w-full text-center">
               <Prose className={clsx('mx-auto max-w-md')}>
-                <RichText render={primary.body_yes} />
+                <PrismicRichText field={primary.body_yes} />
               </Prose>
               <div className="my-lg flex justify-center">
                 <a href="mailto:jscsmith@gmail.com">
@@ -86,7 +73,7 @@ const WorkTogetherMessage = ({
                 </a>
               </div>
               <Prose className="text-xs">
-                <RichText render={primary.note} />
+                <PrismicRichText field={primary.note} />
               </Prose>
             </div>
           </AnimateHeight>
@@ -173,7 +160,9 @@ function useShowInterest(dismissBanner?: () => void) {
   };
 }
 
-export const WorkTogether = (props: WorkTogetherProps) => {
+export const WorkTogether = (
+  props: ResumeDocumentDataBodyWorkTogetherSlice,
+) => {
   return (
     <DismissibleBanner id={WORK_TOGETHER_ID} className="my-xl rounded-lg">
       {({ dismiss }) => (
