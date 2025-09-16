@@ -7,10 +7,7 @@ import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import Image from 'next/image';
-import type {
-  ResumeDocumentDataBodyResumeWorkHistorySlice,
-  ResumeDocumentDataBodyResumeWorkHistorySliceItem,
-} from 'types/prismic-generated';
+import type { ResumeDocumentDataBodyResumeWorkHistorySlice } from 'types/prismic-generated';
 import clsx from 'clsx';
 import { AnchorLinkCopy } from '@/components/anchor-link-copy';
 import { createSlug } from 'helpers/create-slug';
