@@ -31,14 +31,13 @@ export const ResumeWorkHistory = (
       {groupedItems.map((group, groupIndex) => {
         const companySlug = createSlug(asText(group.company));
         return (
-          <section
-            id={companySlug}
-            className="relative mb-3xl scroll-mt-20"
-            key={groupIndex}
-          >
+          <section className="relative mb-3xl scroll-mt-20" key={groupIndex}>
             {/* Company name - shown only once per group */}
             <AnchorLinkCopy id={companySlug} className="mb-base">
-              <header className="flex items-center gap-2 md:gap-4">
+              <header
+                id={companySlug}
+                className="flex items-center gap-2 md:gap-4"
+              >
                 {group.company_logo?.url && (
                   <Image
                     className="h-14 w-14 rounded-md"
