@@ -11,7 +11,7 @@ import { ResumeEducation } from './components/resume-education';
 import { CardPrimary } from '@/components/card';
 import { SurfaceBackground } from '@/components/surface';
 import { SiteWrapper } from '@/components/site-wrapper';
-import type { ResumeDocument } from 'types/prismic-generated';
+import type { ResumeDocument } from '../../../prismicio-types';
 
 interface ResumeProps {
   document: ResumeDocument;

@@ -4,10 +4,10 @@ import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import { TitleAndSubtitle } from '../TitleAndSubtitle';
-import type { ResumeDocumentDataBodyResumeWorkHistoryCondensedSlice } from 'types/prismic-generated';
+import type { ResumeWorkHistoryCondensedSlice } from '../../../../../prismicio-types';
 
 export const ResumeWorkHistoryCondensed = (
-  props: ResumeDocumentDataBodyResumeWorkHistoryCondensedSlice,
+  props: ResumeWorkHistoryCondensedSlice,
 ) => {
   return (
     <div>

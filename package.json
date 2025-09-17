@@ -16,7 +16,6 @@
     "test": "jest --watch",
     "typeCheck": "tsc --noEmit",
     "prettier": "prettier --config ./.prettierrc --write \"./**/*.*\"",
-    "prismic:codegen": "prismic-ts-codegen",
     "slicemachine": "start-slicemachine"
   },
   "repository": {
@@ -69,7 +68,6 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.2",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "prismic-ts-codegen": "^0.1.28",
     "slice-machine-ui": "^2.18.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.2"

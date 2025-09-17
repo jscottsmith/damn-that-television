@@ -7,7 +7,7 @@ import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import Image from 'next/image';
-import type { ResumeDocumentDataBodyResumeWorkHistorySlice } from 'types/prismic-generated';
+import type { ResumeWorkHistorySlice } from '../../../../../prismicio-types';
 import clsx from 'clsx';
 import { AnchorLinkCopy } from '@/components/anchor-link-copy';
 import { createSlug } from 'helpers/create-slug';
@@ -17,9 +17,7 @@ import ExpandContent from '../expand-content';
 
 export const RECENT_WORK_HISTORY_ID = 'recent-work-history';
 
-export const ResumeWorkHistory = (
-  props: ResumeDocumentDataBodyResumeWorkHistorySlice,
-) => {
+export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
   // Group items by company when they appear sequentially
   const groupedItems = useGroupedWorkHistory(props.items);
 
