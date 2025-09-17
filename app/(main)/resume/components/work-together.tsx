@@ -17,12 +17,12 @@ import { DismissibleBanner } from '@/components/dismissible-banner';
 import { AnimatePresence } from 'motion/react';
 import { AnimateHeight } from '@/components/animations/animate-height';
 import { Button, ButtonName, ButtonSize } from '@/components/buttons/button';
-import type { ResumeDocumentDataBodyWorkTogetherSlice } from 'types/prismic-generated';
+import type { WorkTogetherSlice } from '../../../../prismicio-types';
 
 export const WORK_TOGETHER_ID = 'work-together';
 
 type WorkTogetherMessageProps = {
-  primary: ResumeDocumentDataBodyWorkTogetherSlice['primary'];
+  primary: WorkTogetherSlice['primary'];
   dismiss: () => void;
 };
 
@@ -160,9 +160,7 @@ function useShowInterest(dismissBanner?: () => void) {
   };
 }
 
-export const WorkTogether = (
-  props: ResumeDocumentDataBodyWorkTogetherSlice,
-) => {
+export const WorkTogether = (props: WorkTogetherSlice) => {
   return (
     <DismissibleBanner id={WORK_TOGETHER_ID} className="my-xl rounded-lg">
       {({ dismiss }) => (

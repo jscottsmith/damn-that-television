@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import { asText } from '@prismicio/client';
 import { createSlug } from 'helpers/create-slug';
-import type { ResumeDocumentDataBodyResumeWorkHistorySliceItem } from 'types/prismic-generated';
+import type { ResumeWorkHistorySliceDefaultItem } from '../../../../../prismicio-types';
 
 interface WorkGroup {
-  company: ResumeDocumentDataBodyResumeWorkHistorySliceItem['company'];
-  company_logo: ResumeDocumentDataBodyResumeWorkHistorySliceItem['company_logo'];
-  jobs: ResumeDocumentDataBodyResumeWorkHistorySliceItem[];
+  company: ResumeWorkHistorySliceDefaultItem['company'];
+  company_logo: ResumeWorkHistorySliceDefaultItem['company_logo'];
+  jobs: ResumeWorkHistorySliceDefaultItem[];
 }
 
 /**
@@ -16,7 +16,7 @@ interface WorkGroup {
  * @returns Array of grouped work history items
  */
 export const useGroupedWorkHistory = (
-  items: ResumeDocumentDataBodyResumeWorkHistorySliceItem[],
+  items: ResumeWorkHistorySliceDefaultItem[],
 ): WorkGroup[] => {
   return useMemo(() => {
     return items.reduce<WorkGroup[]>((groups, item, i) => {

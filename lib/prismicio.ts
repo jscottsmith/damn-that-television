@@ -13,4 +13,4 @@ export const createClient = (config = {}) => {
 
 // Re-export types for convenience
 export type { Content } from '@prismicio/client';
-export type { AllDocumentTypes } from '../types/prismic-generated';
+export type { AllDocumentTypes } from '../prismicio-types';

@@ -4,11 +4,9 @@ import { DateRange } from '../date-range';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import { TitleAndSubtitle } from '../TitleAndSubtitle';
-import type { ResumeDocumentDataBodyResumeEducationSlice } from 'types/prismic-generated';
+import type { ResumeEducationSlice } from '../../../../../prismicio-types';
 
-export const ResumeEducation = (
-  props: ResumeDocumentDataBodyResumeEducationSlice,
-) => {
+export const ResumeEducation = (props: ResumeEducationSlice) => {
   return (
     <div>
       <SectionTitle text={props.primary.title} />

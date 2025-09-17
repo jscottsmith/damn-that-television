@@ -2,11 +2,9 @@ import React from 'react';
 import { PrismicRichText } from '@prismicio/react';
 import { Badge, BadgeType } from 'components/badge';
 import { SectionTitle } from '../SectionTitle';
-import type { ResumeDocumentDataBodyResumeAwardsSlice } from 'types/prismic-generated';
+import type { ResumeAwardsSlice } from '../../../../../prismicio-types';
 
-export const ResumeAwards = (
-  props: ResumeDocumentDataBodyResumeAwardsSlice,
-) => {
+export const ResumeAwards = (props: ResumeAwardsSlice) => {
   return (
     <section>
       <SectionTitle text={props.primary.title} />

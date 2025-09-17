@@ -3,7 +3,7 @@ import { Resume } from 'app/(main)/resume/Resume';
 import { createClient } from 'lib/prismicio';
 import { Metadata } from 'next';
 import { METADATA } from '@/constants/app';
-import type { ResumeDocument } from 'types/prismic-generated';
+import type { ResumeDocument } from '../../../prismicio-types';
 
 export const metadata: Metadata = {
   title: `Résumé | J Scott Smith | ${METADATA.title}`,

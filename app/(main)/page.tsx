@@ -1,7 +1,7 @@
 import React from 'react';
 import { createClient } from 'lib/prismicio';
 import { Home } from 'app/(main)/home';
-import type { HomepageDocument } from 'types/prismic-generated';
+import type { HomepageDocument } from '../../prismicio-types';
 
 export default async function Page() {
   const client = createClient();
