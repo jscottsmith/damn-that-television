@@ -1,0 +1,135 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Wooden"
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"company_logo",
+						{
+							"__TYPE__": "ImageContent",
+							"origin": {
+								"id": "main",
+								"url": "https://images.unsplash.com/photo-1551739440-5dd934d3a94a",
+								"width": 3456,
+								"height": 4320
+							},
+							"url": "https://images.unsplash.com/photo-1551739440-5dd934d3a94a?rect=0%2C432%2C3456%2C3456&w=256&h=256",
+							"width": 256,
+							"height": 256,
+							"edit": {
+								"zoom": 1,
+								"crop": {
+									"x": 0,
+									"y": 432
+								},
+								"background": "transparent"
+							},
+							"alt": "quietly",
+							"thumbnails": {}
+						}
+					],
+					[
+						"company",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "heading1",
+									"content": {
+										"text": "Location"
+									}
+								}
+							]
+						}
+					],
+					[
+						"job_title",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "heading1",
+									"content": {
+										"text": "Victory"
+									}
+								}
+							]
+						}
+					],
+					[
+						"content",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Cillum fugiat adipisicing ex dolore labore nisi reprehenderit exercitation quis sit eiusmod do cillum ex. Aliqua sunt sit aute eiusmod veniam non nostrud magna."
+									}
+								}
+							]
+						}
+					],
+					[
+						"present_role",
+						{
+							"__TYPE__": "BooleanContent",
+							"value": true
+						}
+					],
+					[
+						"start_date",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Date",
+							"value": "2015-12-27"
+						}
+					],
+					[
+						"end_date",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Date",
+							"value": "2015-11-24"
+						}
+					],
+					[
+						"company_website",
+						{
+							"__TYPE__": "LinkContent",
+							"key": "af583153-ce1e-40a1-86e7-c28f52fbcfb9",
+							"value": {
+								"__TYPE__": "ExternalLink",
+								"url": "http://google.com"
+							}
+						}
+					],
+					[
+						"keywords",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "sunlight",
+							"type": "Text"
+						}
+					]
+				]
+			}
+		]
+	}
+]

@@ -1,0 +1,49 @@
+{
+  "id": "WorkTogether",
+  "type": "SharedSlice",
+  "name": "WorkTogether",
+  "legacyPaths": {
+    "resume::body::work_together": "default"
+  },
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Title"
+          }
+        },
+        "body_yes": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "label": "Body: Yes"
+          }
+        },
+        "body_no": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "label": "Body: No"
+          }
+        },
+        "note": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "label": "note"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

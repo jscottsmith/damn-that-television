@@ -1,0 +1,64 @@
+{
+  "id": "resume",
+  "label": "Resume",
+  "repeatable": false,
+  "status": true,
+  "format": "page",
+  "json": {
+    "Main": {
+      "name": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading2",
+          "label": "Name"
+        }
+      },
+      "current_job_title": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading3,heading4,heading5,heading6",
+          "label": "Current Job Title"
+        }
+      },
+      "current_role_location": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph,strong,em,hyperlink",
+          "label": "Current Role Location"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "Links": {
+              "type": "SharedSlice"
+            },
+            "ResumeContent": {
+              "type": "SharedSlice"
+            },
+            "ResumeList": {
+              "type": "SharedSlice"
+            },
+            "ResumeWorkHistory": {
+              "type": "SharedSlice"
+            },
+            "ResumeWorkHistoryCondensed": {
+              "type": "SharedSlice"
+            },
+            "ResumeAwards": {
+              "type": "SharedSlice"
+            },
+            "WorkTogether": {
+              "type": "SharedSlice"
+            },
+            "ResumeEducation": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

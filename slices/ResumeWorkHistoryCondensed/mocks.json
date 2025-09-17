@@ -1,0 +1,70 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Owner"
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"company",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "heading1",
+									"content": {
+										"text": "Distance"
+									}
+								}
+							]
+						}
+					],
+					[
+						"job_title",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "heading1",
+									"content": {
+										"text": "Jungle"
+									}
+								}
+							]
+						}
+					],
+					[
+						"start_date",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Date",
+							"value": "2014-02-20"
+						}
+					],
+					[
+						"end_date",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Date",
+							"value": "2025-05-22"
+						}
+					]
+				]
+			}
+		]
+	}
+]

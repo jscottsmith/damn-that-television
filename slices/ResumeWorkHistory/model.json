@@ -1,0 +1,93 @@
+{
+  "id": "ResumeWorkHistory",
+  "type": "SharedSlice",
+  "name": "ResumeWorkHistory",
+  "legacyPaths": {
+    "resume::body::resume_work_history": "default"
+  },
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Title"
+          }
+        }
+      },
+      "items": {
+        "company_logo": {
+          "type": "Image",
+          "config": {
+            "constraint": {
+              "width": 256,
+              "height": 256
+            },
+            "thumbnails": [],
+            "label": "Company Logo"
+          }
+        },
+        "company": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Company"
+          }
+        },
+        "job_title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Job Title"
+          }
+        },
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item",
+            "label": "Content"
+          }
+        },
+        "present_role": {
+          "type": "Boolean",
+          "config": {
+            "default_value": false,
+            "label": "Present Role"
+          }
+        },
+        "start_date": {
+          "type": "Date",
+          "config": {
+            "label": "Start Date"
+          }
+        },
+        "end_date": {
+          "type": "Date",
+          "config": {
+            "label": "End Date"
+          }
+        },
+        "company_website": {
+          "type": "Link",
+          "config": {
+            "label": "Company Website",
+            "select": null
+          }
+        },
+        "keywords": {
+          "type": "Text",
+          "config": {
+            "label": "Keywords"
+          }
+        }
+      }
+    }
+  ]
+}

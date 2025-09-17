@@ -1,0 +1,49 @@
+{
+  "id": "ResumeContent",
+  "type": "SharedSlice",
+  "name": "ResumeContent",
+  "legacyPaths": {
+    "resume::body::resume_content": "default"
+  },
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Title"
+          }
+        },
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item",
+            "label": "Content"
+          }
+        },
+        "large_copy": {
+          "type": "Boolean",
+          "config": {
+            "default_value": false,
+            "label": "Large Copy"
+          }
+        },
+        "include_in_print": {
+          "type": "Boolean",
+          "config": {
+            "default_value": false,
+            "label": "Include in Print"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

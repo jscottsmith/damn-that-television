@@ -1,0 +1,62 @@
+{
+  "id": "Links",
+  "type": "SharedSlice",
+  "name": "Links",
+  "legacyPaths": {
+    "resume::body::links": "default"
+  },
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Title"
+          }
+        }
+      },
+      "items": {
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "label"
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "link",
+            "select": null,
+            "allowTargetBlank": true
+          }
+        },
+        "type": {
+          "type": "Select",
+          "config": {
+            "options": [
+              "website",
+              "phone",
+              "email",
+              "document",
+              "external",
+              "project",
+              "user",
+              "user_plus",
+              "users",
+              "code",
+              "command"
+            ],
+            "label": "type"
+          }
+        }
+      }
+    }
+  ]
+}

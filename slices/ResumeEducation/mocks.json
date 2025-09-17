@@ -1,0 +1,70 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Cause"
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"institution",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "heading1",
+									"content": {
+										"text": "Welcome"
+									}
+								}
+							]
+						}
+					],
+					[
+						"copy",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Duis sint dolor officia voluptate amet officia est commodo do nisi consequat sit deserunt. Id aliqua ullamco laboris velit qui aliqua."
+									}
+								}
+							]
+						}
+					],
+					[
+						"start_date",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Date",
+							"value": "2023-10-06"
+						}
+					],
+					[
+						"end_date",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Date",
+							"value": "2020-11-10"
+						}
+					]
+				]
+			}
+		]
+	}
+]
