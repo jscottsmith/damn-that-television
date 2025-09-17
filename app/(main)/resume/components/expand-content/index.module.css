@@ -11,18 +11,18 @@
 }
 
 .hideMask {
+  /* change the transparent color to solid */
   --transparent: rgba(0, 0, 0, 1);
 }
 
 .mask {
-  transition:
-    --solid 3s,
-    --transparent 3s;
+  /* transition the mask-image color */
+  transition: --transparent 1s;
 
   mask-image: linear-gradient(
     to bottom,
-    var(--solid) calc(100% - 100px),
-    var(--transparent) 100%
+    var(--solid) calc(100% - 150px),
+    var(--transparent) calc(100% - 50px)
   );
   mask-size: 100% 100%;
   mask-repeat: no-repeat;

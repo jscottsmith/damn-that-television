@@ -26,7 +26,7 @@ const expanded = {
 export default function ExpandContent(props: PropsWithChildren) {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
-    <>
+    <div className="relative">
       <motion.div
         className={clsx(
           'overflow-hidden',
@@ -47,7 +47,7 @@ export default function ExpandContent(props: PropsWithChildren) {
             initial={{ opacity: 1, scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
             className={clsx(
-              'flex w-full items-center justify-center gap-sm rounded-lg p-sm font-medium transition-colors',
+              'absolute bottom-0 left-0 right-0 flex w-full items-center justify-center gap-sm rounded-lg p-sm font-medium transition-colors',
               'hover:bg-slate-100',
               'dark:hover:bg-slate-600',
             )}
@@ -57,6 +57,6 @@ export default function ExpandContent(props: PropsWithChildren) {
           </motion.button>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 }
