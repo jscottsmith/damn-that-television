@@ -1,0 +1,55 @@
+{
+  "id": "ResumeWorkHistoryCondensed",
+  "type": "SharedSlice",
+  "name": "ResumeWorkHistoryCondensed",
+  "legacyPaths": {
+    "resume::body::resume_work_history_condensed": "default"
+  },
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Title"
+          }
+        }
+      },
+      "items": {
+        "company": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Company"
+          }
+        },
+        "job_title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Job Title"
+          }
+        },
+        "start_date": {
+          "type": "Date",
+          "config": {
+            "label": "Start Date"
+          }
+        },
+        "end_date": {
+          "type": "Date",
+          "config": {
+            "label": "End Date"
+          }
+        }
+      }
+    }
+  ]
+}

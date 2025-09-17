@@ -1,0 +1,55 @@
+{
+  "id": "ResumeEducation",
+  "type": "SharedSlice",
+  "name": "ResumeEducation",
+  "legacyPaths": {
+    "resume::body::resume_education": "default"
+  },
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Title"
+          }
+        }
+      },
+      "items": {
+        "institution": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+            "label": "Institution"
+          }
+        },
+        "copy": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em,hyperlink,rtl",
+            "label": "Copy"
+          }
+        },
+        "start_date": {
+          "type": "Date",
+          "config": {
+            "label": "Start Date"
+          }
+        },
+        "end_date": {
+          "type": "Date",
+          "config": {
+            "label": "End Date"
+          }
+        }
+      }
+    }
+  ]
+}
