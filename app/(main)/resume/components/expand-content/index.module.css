@@ -1,0 +1,29 @@
+@property --solid {
+  syntax: '<color>';
+  initial-value: rgba(0, 0, 0, 1);
+  inherits: false;
+}
+
+@property --transparent {
+  syntax: '<color>';
+  initial-value: rgba(0, 0, 0, 0);
+  inherits: false;
+}
+
+.hideMask {
+  --transparent: rgba(0, 0, 0, 1);
+}
+
+.mask {
+  transition:
+    --solid 3s,
+    --transparent 3s;
+
+  mask-image: linear-gradient(
+    to bottom,
+    var(--solid) calc(100% - 100px),
+    var(--transparent) 100%
+  );
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}

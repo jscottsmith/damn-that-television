@@ -12,6 +12,8 @@ import clsx from 'clsx';
 import { AnchorLinkCopy } from '@/components/anchor-link-copy';
 import { createSlug } from 'helpers/create-slug';
 import { useGroupedWorkHistory } from './useGroupWorkHistory';
+import { AnimateHeight } from '@/components/animations/animate-height';
+import ExpandContent from '../expand-content';
 
 export const RECENT_WORK_HISTORY_ID = 'recent-work-history';
 
@@ -76,8 +78,11 @@ export const ResumeWorkHistory = (
                     </AnchorLinkCopy>
 
                     <Prose className="mb-lg mt-base md:mb-xl md:mt-lg">
-                      <PrismicRichText field={item.content} />
+                      <ExpandContent>
+                        <PrismicRichText field={item.content} />
+                      </ExpandContent>
                     </Prose>
+
                     <footer className="mt-md">
                       {item.keywords && (
                         <ul>
