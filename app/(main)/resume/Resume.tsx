@@ -29,25 +29,25 @@ export const Resume = (props: ResumeProps) => {
             />
             <div className="md:w-2/3">
               {props.document.data.body.map((slice, i) => {
-                if (slice.slice_type === 'resume_work_history') {
+                if (slice.slice_type === 'ResumeWorkHistory') {
                   return <ResumeWorkHistory {...slice} key={i} />;
                 }
-                if (slice.slice_type === 'resume_education') {
+                if (slice.slice_type === 'ResumeEducation') {
                   return <ResumeEducation {...slice} key={i} />;
                 }
-                if (slice.slice_type === 'resume_work_history_condensed') {
+                if (slice.slice_type === 'ResumeWorkHistoryCondensed') {
                   return <ResumeWorkHistoryCondensed {...slice} key={i} />;
                 }
-                if (slice.slice_type === 'work_together') {
+                if (slice.slice_type === 'WorkTogether') {
                   return <WorkTogether {...slice} key={i} />;
                 }
-                if (slice.slice_type === 'resume_content') {
+                if (slice.slice_type === 'ResumeContent') {
                   return <ResumeContent {...slice} key={i} />;
                 }
-                if (slice.slice_type === 'resume_list') {
+                if (slice.slice_type === 'ResumeList') {
                   return <ResumeList {...slice} key={i} />;
                 }
-                if (slice.slice_type === 'resume_awards') {
+                if (slice.slice_type === 'ResumeAwards') {
                   return <ResumeAwards {...slice} key={i} />;
                 }
 
