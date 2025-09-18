@@ -25,7 +25,7 @@ export const ResumeHeader = (props) => {
 
       <div className="grid-cols-3 sm:grid md:block">
         {props.document.data.body.map((slice, i) => {
-          if (slice.slice_type === 'links') {
+          if (slice.slice_type === 'Links') {
             return <Links links={slice} key={i} />;
           }
           return null;
