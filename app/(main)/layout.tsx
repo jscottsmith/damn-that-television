@@ -2,6 +2,7 @@ import { Footer } from '@/components/page-globals/footer';
 import { HeaderNav } from '@/components/page-globals/header-nav';
 import { METADATA } from '@/constants/app';
 import React, { PropsWithChildren } from 'react';
+import HashRoute from './HashRoute';
 
 export async function generateMetadata({ params }) {
   const currentPath = params?.slug ? `/${params.slug}` : '';
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }) {
 export default function Layout(props: PropsWithChildren) {
   return (
     <>
+      <HashRoute />
       <HeaderNav />
       {props.children}
       <Footer />
