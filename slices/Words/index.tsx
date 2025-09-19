@@ -3,14 +3,14 @@ import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 
 /**
- * Props for `Content`.
+ * Props for `Words`.
  */
-export type ContentProps = SliceComponentProps<Content.ContentSlice>;
+export type WordsProps = SliceComponentProps<Content.ContentSlice>;
 
 /**
- * Component for "Content" Slices.
+ * Component for "Words" Slices.
  */
-const Content: FC<ContentProps> = ({ slice }) => {
+const Words: FC<WordsProps> = ({ slice }) => {
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -49,4 +49,4 @@ const Content: FC<ContentProps> = ({ slice }) => {
   );
 };
 
-export default Content;
+export default Words;
