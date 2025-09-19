@@ -1,5 +1,5 @@
 import React from 'react';
-import { createClient } from 'lib/prismicio';
+import { createClient } from 'prismicio';
 import { Home } from 'app/(main)/home';
 import type { HomepageDocument } from '../../prismicio-types';
 
