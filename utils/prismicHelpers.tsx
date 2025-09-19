@@ -1,6 +1,6 @@
 // ~/utils/prismicHelpers.tsx
 import Link from 'next/link';
-import { linkResolver } from '../prismicConfiguration';
+import { linkResolver } from '../prismicio';
 
 // Helper function to convert Prismic Rich Text links to Next/Link components
 export const customLink = (
