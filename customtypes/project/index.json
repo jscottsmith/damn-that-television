@@ -28,6 +28,23 @@
           "multi": "paragraph,strong,em"
         }
       },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Image",
+          "constraint": {
+            "width": 1200,
+            "height": 400
+          },
+          "thumbnails": [
+            {
+              "name": "thumb",
+              "width": 500,
+              "height": 500
+            }
+          ]
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
