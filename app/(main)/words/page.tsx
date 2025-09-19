@@ -1,10 +1,11 @@
 import { Prose } from '@/components/typography/prose';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import { PrismicNextLink } from '@prismicio/next';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 import clsx from 'clsx';
 import { createClient } from 'prismicio';
 import { ProjectDocument } from 'prismicio-types';
+import Tags from './component/tags';
 
 export default async function Page() {
   const client = createClient();
@@ -35,7 +36,10 @@ export default async function Page() {
                   )}
                 >
                   <div className="flex aspect-square w-48 shrink-0 items-center justify-center rounded-md bg-slate-500/20">
-                    img
+                    <PrismicNextImage
+                      field={document.data.image.thumb}
+                      className="aspect-square w-48 shrink-0 rounded-md"
+                    />
                   </div>
                   <div className="flex grow items-center">
                     <div className="grow">
@@ -45,6 +49,11 @@ export default async function Page() {
                       <Prose className="prose-md md:prose-lg">
                         <PrismicRichText field={document.data.description} />
                       </Prose>
+                      {document.tags.length > 0 && (
+                        <div className="mt-base">
+                          <Tags tags={document.tags} />
+                        </div>
+                      )}
                     </div>
                     <ArrowRightIcon className="mr-2 h-6 w-6 shrink-0 text-slate-500 transition-transform duration-300 group-hover:translate-x-2" />
                   </div>

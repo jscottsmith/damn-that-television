@@ -199,6 +199,17 @@ interface ProjectDocumentData {
   description: prismic.RichTextField;
 
   /**
+   * Image field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<'thumb'>;
+
+  /**
    * Slice Zone field in *Project*
    *
    * - **Field Type**: Slice Zone

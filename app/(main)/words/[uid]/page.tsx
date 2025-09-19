@@ -1,9 +1,10 @@
-import { SiteWrapper } from '@/components/site-wrapper';
-import { SurfaceBackground, SurfacePrimary } from '@/components/surface';
 import { Prose } from '@/components/typography/prose';
-import { PrismicRichText } from '@prismicio/react';
+import { PrismicNextImage } from '@prismicio/next';
+import { PrismicRichText, SliceZone } from '@prismicio/react';
 import { createClient } from 'prismicio';
 import { ProjectDocument } from 'prismicio-types';
+import { components } from 'slices';
+import Tags from '../component/tags';
 
 interface PageProps {
   params: Promise<{ uid: string }>;
@@ -16,10 +17,22 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <h1 className="text-2xl font-bold">{document.data.title}</h1>
-      <Prose className="prose-xl">
-        <PrismicRichText field={document.data.description} />
-      </Prose>
+      <header className="mb-xl xl:mb-2xl">
+        <PrismicNextImage field={document.data.image} className="w-full" />
+        <div className="my-xl xl:my-2xl">
+          <h1 className="mb-base text-center font-futura text-4xl font-medium text-slate-700 dark:text-slate-300 md:text-6xl">
+            {document.data.title}
+          </h1>
+          <div className="mb-base flex justify-center">
+            <Tags tags={document.tags} />
+          </div>
+          {/* <Prose className="prose mx-auto text-center md:prose-xl">
+            <PrismicRichText field={document.data.description} />
+          </Prose> */}
+        </div>
+        <hr />
+      </header>
+      <SliceZone slices={document.data.slices} components={components} />
     </>
   );
 }
