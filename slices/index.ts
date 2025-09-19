@@ -13,4 +13,6 @@ export const components = {
     () => import('./ResumeWorkHistoryCondensed'),
   ),
   WorkTogether: dynamic(() => import('./WorkTogether')),
+  content: dynamic(() => import('./Words')),
+  gallery: dynamic(() => import('./Gallery')),
 };
