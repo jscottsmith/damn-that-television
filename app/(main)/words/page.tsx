@@ -34,15 +34,15 @@ export default async function Page() {
                     'flex flex-row flex-wrap items-center gap-2 md:gap-4',
                   )}
                 >
-                  <div className="flex aspect-square w-24 shrink-0 items-center justify-center rounded-md bg-slate-500/20">
+                  <div className="flex aspect-square w-48 shrink-0 items-center justify-center rounded-md bg-slate-500/20">
                     img
                   </div>
                   <div className="flex grow items-center">
                     <div className="grow">
-                      <h2 className="text-lg font-medium md:text-xl">
+                      <h2 className="text-xl font-medium md:text-2xl">
                         {document.data.title}
                       </h2>
-                      <Prose className="md:prose-md prose-sm">
+                      <Prose className="prose-md md:prose-lg">
                         <PrismicRichText field={document.data.description} />
                       </Prose>
                     </div>
