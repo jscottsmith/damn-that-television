@@ -61,6 +61,7 @@ export type SurfaceInteractiveProps = SlotComponentProps & {
   name?: SurfaceInteractiveNames;
 };
 
+// TODO: rename to ButtonSurface
 export function SurfaceInteractive({
   name = SurfaceInteractiveName.secondary,
   className,
@@ -81,6 +82,20 @@ export function SurfaceInteractive({
         'active:duration-100 hover:active:translate-x-0 hover:active:translate-y-0 hover:active:shadow-none',
         // transition
         'transition-[box-shadow,color,transform] duration-200',
+      )}
+      {...props}
+    />
+  );
+}
+
+export function SurfaceInteractiveSimple(props: SlotComponentProps) {
+  return (
+    <SlotComponent
+      className={clsx(
+        props.className,
+        'rounded-md',
+        'transition-colors duration-200',
+        'hover:bg-slate-100 dark:hover:bg-slate-700',
       )}
       {...props}
     />

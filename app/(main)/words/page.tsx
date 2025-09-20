@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { createClient } from 'prismicio';
 import { ProjectDocument } from 'prismicio-types';
 import Tags from './component/tags';
+import { SurfaceInteractiveSimple } from '@/components/surface-interactive';
 
 export default async function Page() {
   const client = createClient();
@@ -27,37 +28,35 @@ export default async function Page() {
           (document) =>
             document.url && (
               <li key={document.id} className="text-xl font-light">
-                <PrismicNextLink
-                  href={document.url ?? ''}
-                  className={clsx(
-                    'group relative -m-2 block rounded-md p-2 text-xs transition-colors',
-                    'hover:bg-slate-100 dark:hover:bg-slate-700',
-                    'flex flex-row flex-wrap items-center gap-2 md:gap-4',
-                  )}
-                >
-                  <div className="flex aspect-square w-48 shrink-0 items-center justify-center rounded-md bg-slate-500/20">
-                    <PrismicNextImage
-                      field={document.data.image.thumb}
-                      className="aspect-square w-48 shrink-0 rounded-md"
-                    />
-                  </div>
-                  <div className="flex grow items-center">
-                    <div className="grow">
-                      <h2 className="text-xl font-medium md:text-2xl">
-                        {document.data.title}
-                      </h2>
-                      <Prose className="prose-md md:prose-lg">
-                        <PrismicRichText field={document.data.description} />
-                      </Prose>
-                      {document.tags.length > 0 && (
-                        <div className="mt-base">
-                          <Tags tags={document.tags} />
-                        </div>
-                      )}
+                <SurfaceInteractiveSimple asChild>
+                  <PrismicNextLink
+                    href={document.url ?? ''}
+                    className="-m-2 flex flex-row flex-wrap items-center gap-2 p-2 md:gap-4"
+                  >
+                    <div className="flex aspect-square w-48 shrink-0 items-center justify-center rounded-md bg-slate-500/20">
+                      <PrismicNextImage
+                        field={document.data.image.thumb}
+                        className="aspect-square w-48 shrink-0 rounded-md"
+                      />
                     </div>
-                    <ArrowRightIcon className="mr-2 h-6 w-6 shrink-0 text-slate-500 transition-transform duration-300 group-hover:translate-x-2" />
-                  </div>
-                </PrismicNextLink>
+                    <div className="flex grow items-center">
+                      <div className="grow">
+                        <h2 className="text-xl font-medium md:text-2xl">
+                          {document.data.title}
+                        </h2>
+                        <Prose className="prose-md md:prose-lg">
+                          <PrismicRichText field={document.data.description} />
+                        </Prose>
+                        {document.tags.length > 0 && (
+                          <div className="mt-base">
+                            <Tags tags={document.tags} />
+                          </div>
+                        )}
+                      </div>
+                      <ArrowRightIcon className="mr-2 h-6 w-6 shrink-0 text-slate-500 transition-transform duration-300 group-hover:translate-x-2" />
+                    </div>
+                  </PrismicNextLink>
+                </SurfaceInteractiveSimple>
               </li>
             ),
         )}
