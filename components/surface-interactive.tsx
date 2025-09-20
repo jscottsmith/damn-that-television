@@ -101,3 +101,17 @@ export function SurfaceInteractiveSimple(props: SlotComponentProps) {
     />
   );
 }
+
+export function SurfaceInteractiveGlass(props: SlotComponentProps) {
+  return (
+    <SlotComponent
+      className={clsx(
+        props.className,
+        'bg-opacity-20 backdrop-blur-lg dark:bg-opacity-20',
+        'bg-white dark:bg-slate-800',
+        'transition-all duration-200 hover:bg-opacity-60 hover:dark:bg-opacity-60',
+      )}
+      {...props}
+    />
+  );
+}
