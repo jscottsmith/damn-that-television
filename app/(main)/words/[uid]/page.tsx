@@ -1,10 +1,10 @@
-import { Prose } from '@/components/typography/prose';
 import { PrismicNextImage } from '@prismicio/next';
-import { PrismicRichText, SliceZone } from '@prismicio/react';
+import { SliceZone } from '@prismicio/react';
 import { createClient } from 'prismicio';
-import { ProjectDocument } from 'prismicio-types';
+import { PostDocument } from 'prismicio-types';
 import { components } from 'slices';
 import Tags from '../component/tags';
+import { notFound } from 'next/navigation';
 
 interface PageProps {
   params: Promise<{ uid: string }>;
@@ -13,7 +13,11 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const { uid } = await params;
   const client = createClient();
-  const document = await client.getByUID<ProjectDocument>('project', uid);
+  const document = await client
+    .getByUID<PostDocument>('post', uid)
+    .catch(() => {
+      return notFound();
+    });
 
   return (
     <>

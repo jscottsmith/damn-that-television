@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "project",
-  "label": "Project",
+  "id": "post",
+  "label": "Post",
   "repeatable": true,
   "status": true,
   "json": {
@@ -25,7 +25,7 @@
           "label": "Description",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,strong,em"
+          "multi": "paragraph,strong,em,hyperlink"
         }
       },
       "image": {
@@ -34,7 +34,7 @@
           "label": "Image",
           "constraint": {
             "width": 1200,
-            "height": 400
+            "height": 500
           },
           "thumbnails": [
             {
@@ -50,10 +50,10 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "content": {
+            "gallery": {
               "type": "SharedSlice"
             },
-            "gallery": {
+            "content": {
               "type": "SharedSlice"
             }
           }
