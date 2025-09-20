@@ -23,14 +23,8 @@ const Gallery: FC<GalleryProps> = ({ slice }) => {
     if (slice.variation === 'grid') {
       return (
         <MediaGrid columns={parseInt(slice.primary.columns || '1')}>
-          {slice.primary.media.map((item, index) => (
-            <MediaAsset
-              key={index}
-              image={item.image}
-              title={item.title}
-              description={item.description}
-              showOverlay={false}
-            />
+          {slice.primary.media.map((media, index) => (
+            <MediaAsset key={index} media={media} showOverlay={false} />
           ))}
         </MediaGrid>
       );
@@ -38,13 +32,7 @@ const Gallery: FC<GalleryProps> = ({ slice }) => {
     return (
       <Carousel showArrows={true} showDots={true} loop={true}>
         {slice.primary.media.map((item, index) => (
-          <MediaAsset
-            key={index}
-            image={item.image}
-            title={item.title}
-            description={item.description}
-            showOverlay={false}
-          />
+          <MediaAsset key={index} media={item} showOverlay={false} />
         ))}
       </Carousel>
     );
