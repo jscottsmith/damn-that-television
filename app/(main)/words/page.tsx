@@ -22,7 +22,7 @@ export default async function Page() {
       <header className="mb-base md:mb-lg xl:mb-xl">
         <h2 className="text-center text-2xl font-medium">Words belong here</h2>
       </header>
-      <ul>
+      <ul className="space-y-2 md:space-y-4">
         {documents.map(
           (document) =>
             document.url && (
