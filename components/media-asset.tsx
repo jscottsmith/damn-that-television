@@ -11,6 +11,7 @@ import clsx from 'clsx';
 import { Prose } from './typography/prose';
 import { AnimatePresence } from 'motion/react';
 import { AnimateSlide } from './animations/animate-slide';
+import { useHandleClickOutside } from '../hooks/use-handle-click-outside';
 
 interface MediaAssetProps {
   image?: any;
@@ -28,14 +29,21 @@ const MediaAsset: React.FC<MediaAssetProps> = ({
   description,
   showOverlay = false,
 }) => {
+  const shouldShowOverlay = title || (description && description.length > 0);
   const [isOverlayVisible, setIsOverlayVisible] = useState(showOverlay);
 
   const toggleOverlay = () => {
     setIsOverlayVisible(!isOverlayVisible);
   };
 
+  const closeOverlay = () => {
+    setIsOverlayVisible(false);
+  };
+
+  const overlayRef = useHandleClickOutside(closeOverlay, isOverlayVisible);
+
   return (
-    <figure className="relative overflow-hidden rounded-xl">
+    <figure ref={overlayRef} className="relative overflow-hidden rounded-xl">
       {image && (
         <PrismicNextImage
           field={image}
@@ -46,7 +54,7 @@ const MediaAsset: React.FC<MediaAssetProps> = ({
       {/* TODD: Support Video */}
 
       {/* Toggle button */}
-      {(title || description) && (
+      {shouldShowOverlay && (
         <div className="absolute right-2 top-2 z-10 flex h-6 w-6 items-center justify-center">
           {isOverlayVisible ? (
             <SurfaceInteractiveGlass asChild>
@@ -71,7 +79,7 @@ const MediaAsset: React.FC<MediaAssetProps> = ({
       )}
 
       <AnimatePresence>
-        {isOverlayVisible && (title || description) && (
+        {isOverlayVisible && shouldShowOverlay && (
           <AnimateSlide
             direction="up"
             key="overlay"
