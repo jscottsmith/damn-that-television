@@ -12,11 +12,10 @@ import { Prose } from './typography/prose';
 import { AnimatePresence } from 'motion/react';
 import { AnimateSlide } from './animations/animate-slide';
 import { useHandleClickOutside } from '../hooks/use-handle-click-outside';
+import { GallerySliceDefaultPrimaryMediaItem } from 'prismicio-types';
 
 interface MediaAssetProps {
-  image?: any;
-  title?: string;
-  description?: any;
+  media: GallerySliceDefaultPrimaryMediaItem;
   showOverlay?: boolean;
 }
 
@@ -24,11 +23,10 @@ interface MediaAssetProps {
  * Component for rendering a single media asset with optional title and description overlay.
  */
 const MediaAsset: React.FC<MediaAssetProps> = ({
-  image,
-  title,
-  description,
+  media,
   showOverlay = false,
 }) => {
+  const { image, title, description } = media;
   const shouldShowOverlay = title || (description && description.length > 0);
   const [isOverlayVisible, setIsOverlayVisible] = useState(showOverlay);
 
