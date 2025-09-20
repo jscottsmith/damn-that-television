@@ -1101,48 +1101,63 @@ export type ContentSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *Gallery → Default → Primary*
+ * Item in *Gallery → Default → Primary → Media*
  */
-export interface GallerySliceDefaultPrimary {
+export interface GallerySliceDefaultPrimaryMediaItem {
   /**
-   * Image field in *Gallery → Default → Primary*
+   * Image field in *Gallery → Default → Primary → Media*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.default.primary.image
+   * - **API ID Path**: gallery.default.primary.media[].image
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
   /**
-   * Media field in *Gallery → Default → Primary*
+   * Asset field in *Gallery → Default → Primary → Media*
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.default.primary.media
+   * - **API ID Path**: gallery.default.primary.media[].asset
    * - **Documentation**: https://prismic.io/docs/fields/link-to-media
    */
-  media: prismic.LinkToMediaField<prismic.FieldState, never>;
+  asset: prismic.LinkToMediaField<prismic.FieldState, never>;
 
   /**
-   * Title field in *Gallery → Default → Primary*
+   * Title field in *Gallery → Default → Primary → Media*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.default.primary.title
+   * - **API ID Path**: gallery.default.primary.media[].title
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Content field in *Gallery → Default → Primary*
+   * Description field in *Gallery → Default → Primary → Media*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.default.primary.content
+   * - **API ID Path**: gallery.default.primary.media[].description
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  content: prismic.RichTextField;
+  description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Gallery → Default → Primary*
+ */
+export interface GallerySliceDefaultPrimary {
+  /**
+   * Media field in *Gallery → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.default.primary.media[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  media: prismic.GroupField<Simplify<GallerySliceDefaultPrimaryMediaItem>>;
 }
 
 /**
@@ -1252,6 +1267,7 @@ declare module '@prismicio/client' {
       ContentSliceVariation,
       ContentSliceDefault,
       GallerySlice,
+      GallerySliceDefaultPrimaryMediaItem,
       GallerySliceDefaultPrimary,
       GallerySliceVariation,
       GallerySliceDefault,
