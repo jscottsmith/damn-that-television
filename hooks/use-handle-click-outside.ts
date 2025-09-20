@@ -14,6 +14,7 @@ export const useHandleClickOutside = <T extends HTMLElement = HTMLElement>(
   enabled: boolean = true,
 ) => {
   const ref = useRef<T>(null);
+  const documentRef = useRef<Document>(document);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (ref.current && !ref.current.contains(event.target as Node)) {
@@ -21,7 +22,7 @@ export const useHandleClickOutside = <T extends HTMLElement = HTMLElement>(
     }
   };
 
-  useEventListener('mousedown', handleClickOutside, enabled);
+  useEventListener('mousedown', handleClickOutside, documentRef, enabled);
 
   return ref;
 };

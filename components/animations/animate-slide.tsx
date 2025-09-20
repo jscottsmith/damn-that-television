@@ -1,11 +1,11 @@
 import { motion, MotionProps } from 'motion/react';
-import { PropsWithChildren } from 'react';
+import React from 'react';
 
 type SlideDirection = 'up' | 'down' | 'left' | 'right';
 
 interface AnimateSlideProps
-  extends PropsWithChildren,
-    Omit<MotionProps, 'initial' | 'animate' | 'exit'> {
+  extends Omit<MotionProps, 'initial' | 'animate' | 'exit' | 'children'> {
+  children?: React.ReactNode;
   key: string;
   direction?: SlideDirection;
 }
