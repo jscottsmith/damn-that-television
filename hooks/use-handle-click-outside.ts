@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { useEventListener } from 'usehooks-ts';
 
 /**
@@ -14,7 +14,6 @@ export const useHandleClickOutside = <T extends HTMLElement = HTMLElement>(
   enabled: boolean = true,
 ) => {
   const ref = useRef<T>(null);
-  const documentRef = useRef<Document>(document);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (ref.current && !ref.current.contains(event.target as Node)) {
@@ -22,7 +21,7 @@ export const useHandleClickOutside = <T extends HTMLElement = HTMLElement>(
     }
   };
 
-  useEventListener('mousedown', handleClickOutside, documentRef, enabled);
+  useEventListener('mousedown', handleClickOutside, undefined, enabled);
 
   return ref;
 };
