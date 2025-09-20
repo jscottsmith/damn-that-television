@@ -22,9 +22,9 @@ export function SectionSpacing({
     <SlotComponent
       className={clsx(
         className,
-        marginY && 'my-base md:my-lg lg:my-xl xl:my-2xl 2xl:my-4xl',
-        marginT && 'mt-base md:mt-lg lg:mt-xl xl:mt-2xl 2xl:mt-4xl',
-        marginB && 'mb-base md:mb-lg lg:mb-xl xl:mb-2xl 2xl:mb-4xl',
+        marginY && 'my-xl lg:my-2xl xl:my-3xl 2xl:my-4xl',
+        marginT && 'mt-xl lg:mt-2xl xl:mt-3xl 2xl:mt-4xl',
+        marginB && 'mb-xl lg:mb-2xl xl:mb-3xl 2xl:mb-4xl',
       )}
       {...props}
     >
