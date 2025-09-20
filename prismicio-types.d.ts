@@ -1146,6 +1146,51 @@ export interface GallerySliceDefaultPrimaryMediaItem {
 }
 
 /**
+ * Item in *Gallery → Grid → Primary → Media*
+ */
+export interface GallerySliceGridPrimaryMediaItem {
+  /**
+   * Image field in *Gallery → Grid → Primary → Media*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.grid.primary.media[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Asset field in *Gallery → Grid → Primary → Media*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.grid.primary.media[].asset
+   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+   */
+  asset: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * Title field in *Gallery → Grid → Primary → Media*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.grid.primary.media[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Gallery → Grid → Primary → Media*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.grid.primary.media[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+}
+
+/**
  * Primary content in *Gallery → Default → Primary*
  */
 export interface GallerySliceDefaultPrimary {
@@ -1174,9 +1219,49 @@ export type GallerySliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Gallery → Grid → Primary*
+ */
+export interface GallerySliceGridPrimary {
+  /**
+   * Columns field in *Gallery → Grid → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.grid.primary.columns
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  columns: prismic.SelectField<
+    '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12'
+  >;
+
+  /**
+   * Media field in *Gallery → Grid → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.grid.primary.media[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  media: prismic.GroupField<Simplify<GallerySliceGridPrimaryMediaItem>>;
+}
+
+/**
+ * Grid variation for Gallery Slice
+ *
+ * - **API ID**: `grid`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type GallerySliceGrid = prismic.SharedSliceVariation<
+  'grid',
+  Simplify<GallerySliceGridPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Gallery*
  */
-type GallerySliceVariation = GallerySliceDefault;
+type GallerySliceVariation = GallerySliceDefault | GallerySliceGrid;
 
 /**
  * Gallery Shared Slice
@@ -1269,8 +1354,11 @@ declare module '@prismicio/client' {
       GallerySlice,
       GallerySliceDefaultPrimaryMediaItem,
       GallerySliceDefaultPrimary,
+      GallerySliceGridPrimaryMediaItem,
+      GallerySliceGridPrimary,
       GallerySliceVariation,
       GallerySliceDefault,
+      GallerySliceGrid,
     };
   }
 }

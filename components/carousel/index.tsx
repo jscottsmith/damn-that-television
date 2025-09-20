@@ -64,12 +64,9 @@ const Carousel: FC<CarouselProps> = ({
   return (
     <div className={clsx(`relative w-full`, className)}>
       <div className="overflow-hidden rounded-xl" ref={emblaRef}>
-        <div className="-ml-base flex gap-2">
+        <div className="-ml-base flex">
           {children.map((child, index) => (
-            <div
-              key={index}
-              className="ml-base min-w-0 flex-[0_0_100%] overflow-hidden rounded-xl"
-            >
+            <div key={index} className="min-w-0 flex-[0_0_100%] pl-base">
               {child}
             </div>
           ))}
