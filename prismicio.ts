@@ -38,7 +38,7 @@ const routes: Route[] = [
     path: '/:uid',
   },
   {
-    type: 'project',
+    type: 'post',
     path: '/words/:uid',
   },
 ];

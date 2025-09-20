@@ -2,15 +2,14 @@ import { Prose } from '@/components/typography/prose';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
-import clsx from 'clsx';
 import { createClient } from 'prismicio';
-import { ProjectDocument } from 'prismicio-types';
+import { PostDocument } from 'prismicio-types';
 import Tags from './component/tags';
 import { SurfaceInteractiveSimple } from '@/components/surface-interactive';
 
 export default async function Page() {
   const client = createClient();
-  const documents = await client.getAllByType<ProjectDocument>('project', {
+  const documents = await client.getAllByType<PostDocument>('post', {
     orderings: [
       //  todo
       //   { field: 'my.blog_post.publication_date', direction: 'desc' },

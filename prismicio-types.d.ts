@@ -170,82 +170,82 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-type ProjectDocumentDataSlicesSlice = ContentSlice | GallerySlice;
+type PostDocumentDataSlicesSlice = GallerySlice | ContentSlice;
 
 /**
- * Content for Project documents
+ * Content for Post documents
  */
-interface ProjectDocumentData {
+interface PostDocumentData {
   /**
-   * Title field in *Project*
+   * Title field in *Post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.title
+   * - **API ID Path**: post.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Description field in *Project*
+   * Description field in *Post*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.description
+   * - **API ID Path**: post.description
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 
   /**
-   * Image field in *Project*
+   * Image field in *Post*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.image
+   * - **API ID Path**: post.image
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<'thumb'>;
 
   /**
-   * Slice Zone field in *Project*
+   * Slice Zone field in *Post*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.slices[]
+   * - **API ID Path**: post.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice> /**
-   * Meta Title field in *Project*
+  slices: prismic.SliceZone<PostDocumentDataSlicesSlice> /**
+   * Meta Title field in *Post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: project.meta_title
+   * - **API ID Path**: post.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/text
    */;
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Project*
+   * Meta Description field in *Post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: project.meta_description
+   * - **API ID Path**: post.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Project*
+   * Meta Image field in *Post*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.meta_image
+   * - **API ID Path**: post.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
@@ -253,20 +253,16 @@ interface ProjectDocumentData {
 }
 
 /**
- * Project document from Prismic
+ * Post document from Prismic
  *
- * - **API ID**: `project`
+ * - **API ID**: `post`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type ProjectDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<ProjectDocumentData>,
-    'project',
-    Lang
-  >;
+export type PostDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<PostDocumentData>, 'post', Lang>;
 
 type ResumeDocumentDataBodySlice =
   | LinksSlice
@@ -346,7 +342,7 @@ export type ResumeDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | EmployersRecruitersDocument
   | HomepageDocument
-  | ProjectDocument
+  | PostDocument
   | ResumeDocument;
 
 /**
@@ -1206,9 +1202,9 @@ declare module '@prismicio/client' {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
-      ProjectDocument,
-      ProjectDocumentData,
-      ProjectDocumentDataSlicesSlice,
+      PostDocument,
+      PostDocumentData,
+      PostDocumentDataSlicesSlice,
       ResumeDocument,
       ResumeDocumentData,
       ResumeDocumentDataBodySlice,
