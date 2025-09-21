@@ -1,6 +1,11 @@
 {
   "repositoryName": "damn-that-television",
-  "adapter": "@slicemachine/adapter-next",
+  "adapter": {
+    "resolve": "@slicemachine/adapter-next",
+    "options": {
+      "lazyLoadSlices": false
+    }
+  },
   "libraries": ["./slices"],
   "localSliceSimulatorURL": "http://localhost:3000/slice-simulator",
   "labs": {

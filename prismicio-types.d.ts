@@ -170,7 +170,11 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-type PostDocumentDataSlicesSlice = GallerySlice | ContentSlice;
+type PostDocumentDataSlicesSlice =
+  | EmbedSlice
+  | CodeBlockSlice
+  | GallerySlice
+  | ContentSlice;
 
 /**
  * Content for Post documents
@@ -1068,6 +1072,62 @@ export type WorkTogetherSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *CodeBlock → Default → Primary*
+ */
+export interface CodeBlockSliceDefaultPrimary {
+  /**
+   * Language field in *CodeBlock → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: ts
+   * - **API ID Path**: code_block.default.primary.language
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  language: prismic.SelectField<'ts' | 'tsx' | 'js' | 'jsx', 'filled'>;
+
+  /**
+   * Code field in *CodeBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: code_block.default.primary.code
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  code: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for CodeBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CodeBlockSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<CodeBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CodeBlock*
+ */
+type CodeBlockSliceVariation = CodeBlockSliceDefault;
+
+/**
+ * CodeBlock Shared Slice
+ *
+ * - **API ID**: `code_block`
+ * - **Description**: CodeBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CodeBlockSlice = prismic.SharedSlice<
+  'code_block',
+  CodeBlockSliceVariation
+>;
+
+/**
  * Primary content in *Words → Default → Primary*
  */
 export interface ContentSliceDefaultPrimary {
@@ -1111,6 +1171,58 @@ export type ContentSlice = prismic.SharedSlice<
   'content',
   ContentSliceVariation
 >;
+
+/**
+ * Primary content in *Embed → Default → Primary*
+ */
+export interface EmbedSliceDefaultPrimary {
+  /**
+   * Embed field in *Embed → Default → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: embed.default.primary.embed
+   * - **Documentation**: https://prismic.io/docs/fields/embed
+   */
+  embed: prismic.EmbedField;
+
+  /**
+   * HTML field in *Embed → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: embed.default.primary.html
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  html: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Embed Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type EmbedSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<EmbedSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Embed*
+ */
+type EmbedSliceVariation = EmbedSliceDefault;
+
+/**
+ * Embed Shared Slice
+ *
+ * - **API ID**: `embed`
+ * - **Description**: Embed
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type EmbedSlice = prismic.SharedSlice<'embed', EmbedSliceVariation>;
 
 /**
  * Item in *Gallery → Default → Primary → Media*
@@ -1379,10 +1491,18 @@ declare module '@prismicio/client' {
       WorkTogetherSliceDefaultPrimary,
       WorkTogetherSliceVariation,
       WorkTogetherSliceDefault,
+      CodeBlockSlice,
+      CodeBlockSliceDefaultPrimary,
+      CodeBlockSliceVariation,
+      CodeBlockSliceDefault,
       ContentSlice,
       ContentSliceDefaultPrimary,
       ContentSliceVariation,
       ContentSliceDefault,
+      EmbedSlice,
+      EmbedSliceDefaultPrimary,
+      EmbedSliceVariation,
+      EmbedSliceDefault,
       GallerySlice,
       GallerySliceDefaultPrimaryMediaItem,
       GallerySliceDefaultPrimary,

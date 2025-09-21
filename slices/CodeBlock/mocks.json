@@ -1,0 +1,19 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"language": {
+				"__TYPE__": "FieldContent",
+				"value": "tsx",
+				"type": "Select"
+			},
+			"code": {
+				"__TYPE__": "FieldContent",
+				"value": "according",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]
