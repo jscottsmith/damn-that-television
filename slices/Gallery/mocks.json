@@ -76,6 +76,17 @@
 						]
 					}
 				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Mollit nisi labore ea deserunt magna eu nulla non amet consectetur ad. In fugiat pariatur veniam. Minim nostrud enim sunt cupidatat enim nulla."
+						}
+					}
+				]
 			}
 		},
 		"items": []
@@ -162,6 +173,17 @@
 				"__TYPE__": "FieldContent",
 				"value": "1",
 				"type": "Select"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Voluptate veniam sint reprehenderit reprehenderit. Enim non aliquip Lorem esse id non aliqua culpa. Quis ipsum id qui cupidatat Lorem in incididunt ut aliquip in aute amet."
+						}
+					}
+				]
 			}
 		},
 		"items": [

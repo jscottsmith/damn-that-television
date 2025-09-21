@@ -63,7 +63,8 @@ const Carousel: FC<CarouselProps> = ({
 
   return (
     <div className={clsx(`relative w-full`, className)}>
-      <div className="overflow-hidden rounded-xl" ref={emblaRef}>
+      {/* match media-asset rounding */}
+      <div className="overflow-hidden rounded-lg md:rounded-xl" ref={emblaRef}>
         <div className="-ml-base flex">
           {children.map((child, index) => (
             <div key={index} className="min-w-0 flex-[0_0_100%] pl-base">
@@ -99,7 +100,7 @@ const Carousel: FC<CarouselProps> = ({
 
       {/* Dot Indicators */}
       {showDots && (
-        <div className="absolute -bottom-6 left-0 right-0 mt-4 flex justify-center space-x-2">
+        <div className="absolute -bottom-4 left-0 right-0 mt-4 flex justify-center space-x-2">
           {scrollSnaps.map((_, index) => (
             <Button
               key={index}
