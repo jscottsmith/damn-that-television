@@ -59,6 +59,7 @@ export default async function Page({ params }: PageProps) {
         <PrismicNextImage
           field={document.data.image}
           className="w-full rounded-lg"
+          priority
         />
         <div className="my-xl xl:my-2xl">
           <h1 className="mb-base text-balance text-center font-futura text-4xl font-medium text-slate-700 dark:text-slate-300 md:text-6xl">

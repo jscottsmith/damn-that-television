@@ -30,7 +30,7 @@ export default async function Page() {
                 <SurfaceInteractiveSimple asChild>
                   <PrismicNextLink
                     href={document.url ?? ''}
-                    className="-m-2 flex flex-row flex-wrap items-center gap-2 p-2 md:gap-4"
+                    className="-m-2 flex flex-row flex-wrap items-center gap-2 p-2 md:gap-4 lg:flex-nowrap"
                   >
                     <div className="flex aspect-square w-48 shrink-0 items-center justify-center rounded-md bg-slate-500/20">
                       <PrismicNextImage
@@ -38,7 +38,7 @@ export default async function Page() {
                         className="aspect-square w-48 shrink-0 rounded-md"
                       />
                     </div>
-                    <div className="flex grow items-center">
+                    <div className="flex w-full grow items-center">
                       <div className="grow">
                         <h2 className="text-xl font-medium md:text-2xl">
                           {document.data.title}
