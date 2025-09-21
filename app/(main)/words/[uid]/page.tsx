@@ -53,6 +53,13 @@ export default async function Page({ params }: PageProps) {
       return notFound();
     });
 
+  if (
+    document.data.is_live === false &&
+    process.env.NODE_ENV === 'production'
+  ) {
+    return notFound();
+  }
+
   return (
     <>
       <header className="mb-xl xl:mb-2xl">

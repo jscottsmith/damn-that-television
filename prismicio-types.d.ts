@@ -210,6 +210,18 @@ interface PostDocumentData {
   image: prismic.ImageField<'thumb'>;
 
   /**
+   * Live in Production field in *Post*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: post.is_live
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  is_live: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *Post*
    *
    * - **Field Type**: Slice Zone

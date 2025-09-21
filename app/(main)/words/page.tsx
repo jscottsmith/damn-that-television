@@ -17,13 +17,20 @@ export default async function Page() {
     ],
   });
 
+  const liveDocuments = documents.filter(
+    (document) =>
+      process.env.NODE_ENV !== 'production'
+        ? true // show all documents in other environments
+        : document.data.is_live === true, // show only live documents in production
+  );
+
   return (
     <nav>
       <header className="mb-base md:mb-lg xl:mb-xl">
         <h2 className="text-center text-2xl font-medium">Words belong here</h2>
       </header>
       <ul className="space-y-2 md:space-y-4">
-        {documents.map(
+        {liveDocuments.map(
           (document) =>
             document.url && (
               <li key={document.id} className="text-xl font-light">
