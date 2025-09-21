@@ -226,6 +226,17 @@ interface PostDocumentData {
   is_live: prismic.BooleanField;
 
   /**
+   * Published On field in *Post*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.published_on
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/timestamp
+   */
+  published_on: prismic.TimestampField;
+
+  /**
    * Slice Zone field in *Post*
    *
    * - **Field Type**: Slice Zone

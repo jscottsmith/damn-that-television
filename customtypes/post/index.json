@@ -54,6 +54,13 @@
           "default_value": true
         }
       },
+      "published_on": {
+        "type": "Timestamp",
+        "config": {
+          "label": "Published On",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

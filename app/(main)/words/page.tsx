@@ -12,7 +12,7 @@ export default async function Page() {
   const documents = await client.getAllByType<PostDocument>('post', {
     orderings: [
       //  todo
-      //   { field: 'my.blog_post.publication_date', direction: 'desc' },
+      { field: 'document.published_on', direction: 'desc' },
       //   { field: 'document.first_publication_date', direction: 'desc' },
     ],
   });
@@ -50,7 +50,7 @@ export default async function Page() {
                         <h2 className="text-xl font-medium md:text-2xl">
                           {document.data.title}
                         </h2>
-                        <Prose className="prose-md md:prose-lg">
+                        <Prose className="prose-md text-pretty md:prose-lg">
                           <PrismicRichText field={document.data.description} />
                         </Prose>
                         {document.tags.length > 0 && (
