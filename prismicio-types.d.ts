@@ -1203,6 +1203,16 @@ export interface GallerySliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   media: prismic.GroupField<Simplify<GallerySliceDefaultPrimaryMediaItem>>;
+
+  /**
+   * Description field in *Gallery → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
 }
 
 /**
@@ -1243,6 +1253,16 @@ export interface GallerySliceGridPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   media: prismic.GroupField<Simplify<GallerySliceGridPrimaryMediaItem>>;
+
+  /**
+   * Description field in *Gallery → Grid → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.grid.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
 }
 
 /**

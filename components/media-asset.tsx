@@ -41,7 +41,10 @@ const MediaAsset: React.FC<MediaAssetProps> = ({
   const overlayRef = useHandleClickOutside(closeOverlay, isOverlayVisible);
 
   return (
-    <figure ref={overlayRef} className="relative overflow-hidden rounded-xl">
+    <figure
+      ref={overlayRef}
+      className="relative overflow-hidden rounded-lg md:rounded-xl"
+    >
       {image && (
         <PrismicNextImage
           field={image}

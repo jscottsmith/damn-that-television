@@ -32,7 +32,7 @@ export function MediaGrid({ columns, children }: MediaGridProps) {
     const baseClasses = 'grid gap-4';
 
     // Mobile: 1 column
-    const mobileClasses = 'grid-cols-1';
+    const mobileClasses = validColumns >= 2 ? 'grid-cols-2' : 'grid-cols-1';
 
     // Tablet: 2 columns (if columns >= 2)
     const tabletClasses = validColumns >= 2 ? 'md:grid-cols-2' : '';
