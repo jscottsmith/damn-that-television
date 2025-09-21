@@ -49,11 +49,12 @@
     "react-redux": "^9.2.0",
     "redux": "^5.0.1",
     "sass": "^1.85.1",
+    "shiki": "^3.13.0",
     "tailwind-merge": "^2.6.0",
     "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
-    "@slicemachine/adapter-next": "^0.3.83",
+    "@slicemachine/adapter-next": "^0.3.84",
     "@tailwindcss/typography": "^0.5.16",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
@@ -68,7 +69,7 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.2",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "slice-machine-ui": "^2.18.1",
+    "slice-machine-ui": "^2.18.2",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.2"
   }
