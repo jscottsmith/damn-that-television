@@ -107,7 +107,7 @@ function MainLinks() {
 
 function SecondaryLinks() {
   return (
-    <ul className="flex w-full flex-wrap items-center gap-1">
+    <ul className="flex w-full flex-wrap items-center gap-1 sm:justify-between">
       {SECONDARY_LINKS.map((link) => (
         <li key={link.href}>
           <Link href={link.href}>

@@ -32,6 +32,10 @@ export const SECONDARY_LINKS: NavLinks = [
     label: 'Codepen',
     href: 'https://codepen.io/jscottsmith/',
   },
+  {
+    label: 'Linktree',
+    href: 'https://linktr.ee/Damntv',
+  },
 ];
 
 export const GITHUB_REPO_URL =
