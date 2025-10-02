@@ -42,11 +42,19 @@ class Eraser {
   }
 
   handleMousemove({ pointer: { position, lastPosition }, ctx, dpr, bounds }) {
-    if (!this.pattern || !this.eraser) return;
+    if (
+      !this.pattern ||
+      !this.eraser ||
+      position?.x === null ||
+      position?.y === null ||
+      !lastPosition
+    ) {
+      return;
+    }
+    // const tempPoint = new Point(bounds.w / 2, bounds.h / 2);
+    const currentPoint = position;
+    this.prevPoint = lastPosition;
 
-    const tempPoint = new Point(bounds.w / 2, bounds.h / 2);
-    const currentPoint = position || tempPoint;
-    this.prevPoint = lastPosition || tempPoint;
     const dist = this.prevPoint.distance(currentPoint);
     const angle = this.prevPoint.angleRadians(currentPoint);
 
@@ -72,8 +80,16 @@ class Eraser {
     ctx.drawImage(this.canvas, ...bounds.params);
   }
 
-  drawPencil({ ctx, dpr, bounds }) {
-    if (!this.pattern || !this.eraser) return;
+  drawPencil({ ctx, dpr, bounds, pointer: { position, lastPosition } }) {
+    if (
+      !this.pattern ||
+      !this.eraser ||
+      position?.x === null ||
+      position?.y === null ||
+      !lastPosition
+    ) {
+      return;
+    }
     const scale = bounds.w / (1300 * dpr);
     const r = dpr * 50 * scale;
     const w = this.eraser.width * dpr * scale;
@@ -124,13 +140,24 @@ class Eraser {
       this.shadow = image;
     });
 
-    window.addEventListener('mousedown', this.handleMouseDown);
-    window.addEventListener('mouseup', this.handleMouseUp);
+    ['mousedown', 'touchstart'].forEach((event, touch) => {
+      window.addEventListener(event, this.handleMouseDown, false);
+    });
+    ['mouseup', 'touchend', 'touchendoutside'].forEach((event, touch) => {
+      window.addEventListener(event, this.handleMouseUp, false);
+    });
+
+    // window.addEventListener('mousedown', this.handleMouseDown);
+    // window.addEventListener('mouseup', this.handleMouseUp);
   };
 
   destroy = () => {
-    window.removeEventListener('mousedown', this.handleMouseDown);
-    window.removeEventListener('mouseup', this.handleMouseUp);
+    ['mousedown', 'touchstart'].forEach((event, touch) => {
+      window.removeEventListener(event, this.handleMouseDown, false);
+    });
+    ['mouseup', 'touchend', 'touchendoutside'].forEach((event, touch) => {
+      window.removeEventListener(event, this.handleMouseUp, false);
+    });
   };
 
   draw = (context) => {
