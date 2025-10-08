@@ -56,6 +56,12 @@ export function AfterDark() {
       >
         <motion.div
           className="fixed inset-0 bg-[#111]"
+          transition={{
+            type: 'spring',
+            stiffness: 50,
+            damping: 10,
+            mass: 1,
+          }}
           variants={{
             open: { clipPath: 'polygon(0% 0%, 0% 200%, 200% 0%)' },
             closed: { clipPath: 'polygon(0% 0%, 0% 0px, 0px 0%)' },
