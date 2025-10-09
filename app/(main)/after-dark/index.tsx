@@ -1,28 +1,26 @@
 'use client';
 
 import { useIsNotTouch } from 'hooks/use-media';
-import { AnimatePresence, motion } from 'motion/react';
-import React, { useState } from 'react';
-import { useEventListener } from 'usehooks-ts';
+import { motion } from 'motion/react';
+import clsx from 'clsx';
+import React, { useRef, useState } from 'react';
+import { useEventListener, useTimeout } from 'usehooks-ts';
 
 export const MESSAGE_TYPES = {
+  WAIT_FOR_INTERACTION: 'wait_for_interaction',
   SCENE_LOADED: 'scene_loaded',
   USER_CLICK: 'user_click',
 } as const;
 
-const WINGS_URL = 'https://wings-mu.vercel.app';
+const WINGS_URL = 'http://localhost:5174';
+const URL_SEARCH_PARAM = '?waitForInteraction=true';
 
 export function AfterDark() {
   const isNotTouch = useIsNotTouch();
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [screenSaverOpen, setScreenSaverOpen] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
 
-  // Add window click listener to close screen saver
-  useEventListener('click', () => {
-    if (screenSaverOpen) {
-      setScreenSaverOpen(false);
-    }
-  });
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   // Listen for postMessage events from the iframe
   useEventListener('message', (event: MessageEvent) => {
@@ -31,10 +29,29 @@ export function AfterDark() {
 
     if (event.data.type === MESSAGE_TYPES.SCENE_LOADED) {
       setHasLoaded(true);
-    } else if (event.data.type === MESSAGE_TYPES.USER_CLICK) {
-      setScreenSaverOpen(false);
+    }
+    if (event.data.type === MESSAGE_TYPES.USER_CLICK) {
+      if (screenSaverOpen) {
+        setScreenSaverOpen(false);
+      } else {
+        setScreenSaverOpen(true);
+      }
     }
   });
+
+  // stop the scene from playing after 1 second if the screen saver is not open so the wipe out animation can play through
+  useTimeout(
+    () => {
+      // stop the scene from playing
+      if (iframeRef.current?.contentWindow) {
+        iframeRef.current?.contentWindow.postMessage(
+          { type: MESSAGE_TYPES.WAIT_FOR_INTERACTION },
+          '*',
+        );
+      }
+    },
+    !screenSaverOpen ? 2000 : null,
+  );
 
   // disable this feature on touch devices
   if (!isNotTouch) return null;
@@ -42,49 +59,27 @@ export function AfterDark() {
   return (
     <>
       <motion.div
-        aria-label="Screen Saver"
-        role="button"
+        className={clsx('fixed left-0 top-0 z-[999999] h-full w-full bg-deep')}
+        transition={{
+          bounce: 0.1,
+        }}
         initial="closed"
         animate={screenSaverOpen ? 'open' : 'closed'}
         whileHover={!screenSaverOpen ? 'hover' : 'open'}
-        whileFocus={!screenSaverOpen ? 'hover' : 'open'}
-        onClick={(e) => {
-          e.stopPropagation();
-          setScreenSaverOpen(true);
+        variants={{
+          open: { clipPath: 'polygon(0% 0%, 0% 200%, 200% 0%)', opacity: 1 },
+          closed: { clipPath: 'polygon(0% 0%, 0% 18px, 18px 0%)', opacity: 0 },
+          hover: { clipPath: 'polygon(0% 0%, 0% 32px, 32px 0%)', opacity: 1 },
         }}
-        className="fixed left-0 top-0 z-[9999] h-12 w-12 cursor-help"
       >
-        <motion.div
-          className="fixed inset-0 bg-[#111]"
-          transition={{
-            type: 'spring',
-            stiffness: 50,
-            damping: 10,
-            mass: 1,
-          }}
-          variants={{
-            open: { clipPath: 'polygon(0% 0%, 0% 200%, 200% 0%)' },
-            closed: { clipPath: 'polygon(0% 0%, 0% 0px, 0px 0%)' },
-            hover: { clipPath: 'polygon(0% 0%, 0% 12px, 12px 0%)' },
-          }}
-        >
-          <AnimatePresence>
-            {screenSaverOpen && (
-              <motion.div
-                key="screen-saver"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 1, duration: 1 } }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[99999]"
-              >
-                <iframe
-                  src={WINGS_URL}
-                  className="absolute inset-0 h-full w-full"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+        <iframe
+          className={clsx(
+            'absolute inset-0 h-full w-full transition-opacity duration-300 ease-out',
+            hasLoaded ? 'opacity-100' : 'opacity-0',
+          )}
+          ref={iframeRef}
+          src={WINGS_URL + URL_SEARCH_PARAM}
+        />
       </motion.div>
     </>
   );
