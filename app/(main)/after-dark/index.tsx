@@ -75,7 +75,7 @@ export function AfterDark() {
         <iframe
           className={clsx(
             'absolute inset-0 h-full w-full transition-opacity duration-300 ease-out',
-            hasLoaded ? 'opacity-100' : 'opacity-0',
+            hasLoaded ? 'opacity-100' : 'opacity-10',
           )}
           ref={iframeRef}
           src={WINGS_URL + URL_SEARCH_PARAM}
