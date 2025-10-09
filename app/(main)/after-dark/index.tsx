@@ -12,7 +12,7 @@ export const MESSAGE_TYPES = {
   USER_CLICK: 'user_click',
 } as const;
 
-const WINGS_URL = 'http://localhost:5174';
+const WINGS_URL = 'https://wings-mu.vercel.app';
 const URL_SEARCH_PARAM = '?waitForInteraction=true';
 
 export function AfterDark() {
