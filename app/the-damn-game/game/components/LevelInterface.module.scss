@@ -1,5 +1,6 @@
-@import 'sass/variables';
-@import 'sass/mixins';
+@use 'sass:math';
+@use '../sass/variables' as *;
+@use '../sass/mixins' as *;
 
 $scoreWidth: 190px;
 $playerWidth: 240px;
@@ -23,7 +24,7 @@ $playerWidth: 240px;
 
 .playerInterface {
   width: $playerWidth;
-  margin-right: -$playerWidth / 2;
+  margin-right: math.div(-$playerWidth, 2);
   padding: 0.4rem 1rem 0.5rem 1rem;
   border-radius: 0 0 0.8rem 0.8rem;
 
@@ -35,7 +36,7 @@ $playerWidth: 240px;
 .scoreInterface {
   bottom: 0;
   width: $scoreWidth;
-  margin-right: -$scoreWidth / 2;
+  margin-right: math.div(-$scoreWidth, 2);
   border-radius: 0.8rem 0.8rem 0 0;
   padding: 0.5rem 1rem 0.4rem 1rem;
 
@@ -52,11 +53,11 @@ $playerWidth: 240px;
   $playerWidth: 340px;
   .playerInterface {
     width: $playerWidth;
-    margin-right: -$playerWidth / 2;
+    margin-right: math.div(-$playerWidth, 2);
   }
 
   .scoreInterface {
     width: $scoreWidth;
-    margin-right: -$scoreWidth / 2;
+    margin-right: math.div(-$scoreWidth, 2);
   }
 }

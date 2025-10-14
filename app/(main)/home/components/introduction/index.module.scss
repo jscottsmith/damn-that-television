@@ -1,5 +1,5 @@
-@import 'sass/variables';
-@import 'sass/mixins';
+@use '../../../../the-damn-game/game/sass/variables' as *;
+@use '../../../../the-damn-game/game/sass/mixins' as *;
 
 .welcome {
   position: relative;
