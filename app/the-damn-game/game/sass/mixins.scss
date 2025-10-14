@@ -1,8 +1,4 @@
-$mobileWidth: '480px';
-$largeMobileWidth: '600px';
-$tabletWidth: '768px';
-$desktopWidth: '992px';
-$largeDesktopWidth: '1392px';
+@use 'variables' as *;
 
 @mixin spread {
   position: absolute;
