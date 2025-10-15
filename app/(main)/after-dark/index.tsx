@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 import { useEventListener, useTimeout } from 'usehooks-ts';
+import { isServer } from '@/helpers/ssr';
 
 export const MESSAGE_TYPES = {
   WAIT_FOR_INTERACTION: 'wait_for_interaction',
@@ -54,7 +55,7 @@ export function AfterDark() {
   );
 
   // disable this feature on touch devices
-  if (!isNotTouch) return null;
+  if (!isNotTouch && isServer()) return null;
 
   return (
     <>
