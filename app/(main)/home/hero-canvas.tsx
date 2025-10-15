@@ -1,17 +1,42 @@
 'use client';
-import { SurfacePattern } from '@/components/surface';
-import { useScroll, motion, useTransform } from 'motion/react';
+import { SurfacePattern, SurfacePrimary } from '@/components/surface';
+import { useScroll, motion, useTransform, useSpring } from 'motion/react';
 import { CanvasHero } from '@/components/canvas-hero';
 import Letters from 'canvas/letters/LetterDrop';
 import { useRef } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
+
+const CLIPS = {
+  desktop: 'inset(128px 128px 0 128px round 48px 48px 0 0)',
+  mobile: 'inset(48px 48px 0 48px round 48px 48px 0 0)',
+  end: 'inset(-48px -48px 0 -48px round 24px 24px 0 0)',
+};
 
 function Background() {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['end start', 'end end'],
+  });
+  const isSm = useMediaQuery('(min-width: 640px)');
+
+  // Add spring effect to the scroll progress
+  const springProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 20,
+    mass: 1,
+  });
+
+  const y = useTransform(scrollYProgress, [1, 0], [0, 400]);
+  const t = useTransform(
+    springProgress,
+    [1, 0],
+    [isSm ? CLIPS.desktop : CLIPS.mobile, CLIPS.end],
+  );
 
   return (
-    <SurfacePattern className="fixed inset-0 -z-10" asChild>
-      <motion.div style={{ y }} />
+    <SurfacePattern className="absolute inset-0 -z-10" asChild>
+      <motion.div style={{ y, clipPath: t }} ref={ref} />
     </SurfacePattern>
   );
 }
@@ -24,9 +49,9 @@ export function HeroCanvas() {
   }
 
   return (
-    <>
+    <SurfacePrimary className="relative z-0 overflow-hidden">
       <Background />
       <CanvasHero entities={[letters.current]} />
-    </>
+    </SurfacePrimary>
   );
 }
