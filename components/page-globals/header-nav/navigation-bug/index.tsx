@@ -1,104 +1,36 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { motion, useMotionValueEvent, useScroll } from 'motion/react';
+import React from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { Button } from '@/components/buttons/button';
 import { EyeMan } from '@/components/buttons/eye-button/eye-man';
-import {
-  PRIMARY_SURFACE_CLASS,
-  SurfacePrimaryGlass,
-} from '@/components/surface';
+import { SurfacePrimaryGlass } from '@/components/surface';
 import { SurfaceInteractive } from '@/components/surface-interactive';
 import { NAVIGATION_LINKS } from '@/constants/app';
 import { IconButton } from '@/components/buttons/icon-button';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { usePathname } from 'next/navigation';
-import { useMediaQuery } from 'usehooks-ts';
 import { ROUTE_HOME } from '@/constants/routes.constants';
+import {
+  NAV_MOBILE_MENU_VARIANTS,
+  NAV_VARIANTS,
+  useMenuController,
+  useNavScrollVariantsDesktop,
+  useNavScrollVariantsMobileMenu,
+} from '../hooks';
 
-const NAV_VARIANTS = {
-  visible: {
-    y: '0',
-    scale: 1,
-  },
-  hidden: {
-    y: 'calc((100% + 1rem) * -1)',
-    scale: 0.8,
-  },
-  hiddenMobile: {
-    y: 'calc(100% + 1rem)',
-    scale: 0.8,
-  },
-};
-
-const DELTA = 5;
-const MIN_TO_SHOW = 10;
-
-function useNavScrollVariants() {
-  const [navVariant, setNavVariant] = useState(NAV_VARIANTS.visible);
-  const isSmMobile = useMediaQuery('(max-width: 639px)');
-
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, 'change', (current: number) => {
-    const prevY = scrollY.getPrevious() ?? 0;
-    const deltaY = current - prevY;
-
-    // show at the top of the page always
-    if (navVariant !== NAV_VARIANTS.visible && current <= MIN_TO_SHOW) {
-      return setNavVariant(NAV_VARIANTS.visible);
-    }
-
-    if (navVariant !== NAV_VARIANTS.visible && deltaY < -DELTA) {
-      setNavVariant(NAV_VARIANTS.visible);
-    }
-
-    if (navVariant === NAV_VARIANTS.visible && deltaY > DELTA) {
-      if (isSmMobile) {
-        setNavVariant(NAV_VARIANTS.hiddenMobile);
-      } else {
-        setNavVariant(NAV_VARIANTS.hidden);
-      }
-    }
-  });
-
-  return { navVariant };
-}
-
-function useMenuController() {
-  const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-  const closeMenu = useCallback(() => {
-    if (open) {
-      setOpen(false);
-    }
-  }, [setOpen, open]);
-
-  useEffect(() => {
-    closeMenu();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
-
-  return {
-    open,
-    toggleOpen: () => {
-      setOpen((prev) => !prev);
-    },
-  };
-}
-
-export default function NavigationBug() {
-  const { navVariant } = useNavScrollVariants();
-  const menu = useMenuController();
+export function NavigationBugDesktop() {
+  const { navVariant } = useNavScrollVariantsDesktop();
 
   return (
     <>
       <div
         className={clsx(
+          'hidden sm:flex', // hide on mobile, use the mobile version instead
           'pointer-events-none',
-          'flex items-end justify-center sm:items-start',
+          'items-start justify-center',
           'fixed inset-2',
         )}
+        id="desktop-menu"
       >
         <SurfacePrimaryGlass asChild>
           <motion.nav
@@ -117,17 +49,21 @@ export default function NavigationBug() {
           >
             <div
               className={clsx(
-                menu.open ? 'flex' : 'hidden sm:flex',
-                'relative w-full flex-wrap items-center gap-1 self-start p-1 pr-2.5',
+                'relative flex w-full flex-wrap items-center gap-1 self-start p-1 pr-2.5',
               )}
             >
               <HomeLink />
-              <MainLinks />
-            </div>
-            <div className="relative flex justify-center self-end p-1 sm:hidden">
-              <IconButton size="md" onClick={menu.toggleOpen}>
-                {menu.open ? <XMarkIcon /> : <Bars3Icon />}
-              </IconButton>
+              <div
+                className={clsx(
+                  'relative flex w-auto flex-wrap items-center gap-1',
+                )}
+              >
+                {NAVIGATION_LINKS.map((link) => (
+                  <Link href={link.href} key={link.href}>
+                    <Button>{link.label}</Button>
+                  </Link>
+                ))}
+              </div>
             </div>
           </motion.nav>
         </SurfacePrimaryGlass>
@@ -136,14 +72,106 @@ export default function NavigationBug() {
   );
 }
 
-function HomeLink() {
+const NAV_VARIANTS_MOBILE = {
+  visible: {
+    y: '0',
+    scale: 1,
+  },
+  hidden: {
+    y: 'calc(100% + 1rem)',
+    scale: 0.8,
+  },
+};
+
+export function NavigationBugMobile() {
+  const menu = useMenuController();
+  const { navVariant } = useNavScrollVariantsMobileMenu();
+
   return (
-    <SurfaceInteractive>
+    <>
+      <div
+        onClick={() => menu.closeMenu()}
+        className={clsx(
+          'pointer-events-none sm:hidden', // hide on desktop, use the desktop version instead
+          'flex items-end justify-center',
+          'fixed inset-2',
+        )}
+        id="mobile-menu"
+      >
+        <AnimatePresence>
+          {menu.open && (
+            <SurfacePrimaryGlass asChild>
+              <motion.nav
+                key="mobile-menu"
+                variants={NAV_VARIANTS_MOBILE}
+                exit={NAV_VARIANTS_MOBILE.hidden}
+                initial={NAV_VARIANTS_MOBILE.hidden}
+                animate={NAV_VARIANTS_MOBILE.visible}
+                transition={{
+                  type: 'spring',
+                  bounce: 0.4,
+                }}
+                className={clsx(
+                  'pointer-events-auto relative grid w-full',
+                  'rounded-[2.3rem]',
+                  'shadow-lg shadow-slate-950/5',
+                )}
+              >
+                <div
+                  className={clsx(
+                    'relative flex w-full flex-col gap-4 self-start p-base pb-16',
+                  )}
+                >
+                  <HomeLink className="grow-0 self-center" />
+                  <div
+                    className={clsx(
+                      'relative flex w-auto flex-col items-center gap-2',
+                    )}
+                  >
+                    {NAVIGATION_LINKS.map((link) => (
+                      <Link
+                        className="w-full max-w-xs self-center"
+                        href={link.href}
+                        key={link.href}
+                      >
+                        <Button
+                          size="md"
+                          className="w-full justify-center justify-items-center text-center"
+                        >
+                          {link.label}
+                        </Button>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </motion.nav>
+            </SurfacePrimaryGlass>
+          )}
+        </AnimatePresence>
+      </div>
+      <motion.div
+        className="fixed bottom-0 flex justify-center self-end p-1 sm:hidden"
+        variants={NAV_MOBILE_MENU_VARIANTS}
+        animate={menu.open ? NAV_MOBILE_MENU_VARIANTS.visible : navVariant}
+        initial={NAV_MOBILE_MENU_VARIANTS.visible}
+      >
+        <IconButton size="md" onClick={menu.toggleOpen}>
+          {menu.open ? <XMarkIcon /> : <Bars3Icon />}
+        </IconButton>
+      </motion.div>
+    </>
+  );
+}
+
+function HomeLink(props: { className?: string }) {
+  return (
+    <SurfaceInteractive asChild>
       <Link
         href={ROUTE_HOME}
         className={clsx(
           'group flex h-16 w-16 items-center justify-center rounded-full p-3.5',
           'text-deep transition-colors duration-150 hover:text-club dark:text-miami',
+          props.className,
         )}
       >
         <span className="sr-only">Go Home</span>
@@ -152,17 +180,5 @@ function HomeLink() {
         </div>
       </Link>
     </SurfaceInteractive>
-  );
-}
-
-function MainLinks() {
-  return (
-    <div className={clsx('relative flex w-auto flex-wrap items-center gap-1')}>
-      {NAVIGATION_LINKS.map((link) => (
-        <Link href={link.href} key={link.href}>
-          <Button>{link.label}</Button>
-        </Link>
-      ))}
-    </div>
   );
 }
