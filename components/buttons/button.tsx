@@ -4,6 +4,7 @@ import { Label } from '../typography/label';
 import { IconContainer, IconContainerSize } from '../icon-container';
 import { SurfaceInteractive } from '../surface-interactive';
 import { SystemStatus } from '../types';
+import { twMerge } from 'tailwind-merge';
 
 export enum ButtonSize {
   sm = 'sm',
@@ -66,10 +67,12 @@ export const Button = (props: ButtonProps) => {
     <SurfaceInteractive name={name} asChild>
       <Label asChild>
         <button
-          className={clsx(
-            className,
-            mapSizeToClassName(size),
-            'inline-flex items-center justify-between whitespace-nowrap rounded-full',
+          className={twMerge(
+            clsx(
+              mapSizeToClassName(size),
+              'inline-flex items-center justify-between whitespace-nowrap rounded-full',
+              className,
+            ),
           )}
           {...rest}
         >

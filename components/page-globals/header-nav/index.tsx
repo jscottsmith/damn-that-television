@@ -2,7 +2,7 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import { ROUTE_DAMN_GAME } from '@/constants/routes.constants';
-import NavigationBug from './navigation-bug';
+import { NavigationBugDesktop, NavigationBugMobile } from './navigation-bug';
 
 export const HeaderNav = () => {
   const pathname = usePathname();
@@ -12,7 +12,8 @@ export const HeaderNav = () => {
   }
   return (
     <header className="fixed left-1/2 top-4 z-50 flex justify-center">
-      <NavigationBug />
+      <NavigationBugDesktop />
+      <NavigationBugMobile />
     </header>
   );
 };
