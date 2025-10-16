@@ -1,6 +1,12 @@
 'use client';
 import { SurfacePattern, SurfacePrimary } from '@/components/surface';
-import { useScroll, motion, useTransform, useSpring } from 'motion/react';
+import {
+  useScroll,
+  motion,
+  useTransform,
+  useSpring,
+  // useMotionValueEvent,
+} from 'motion/react';
 import { CanvasHero } from '@/components/canvas-hero';
 import Letters from 'canvas/letters/LetterDrop';
 import { useRef } from 'react';
@@ -16,7 +22,7 @@ function Background() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['end start', 'end end'],
+    offset: ['end end', 'end start'],
   });
   const isSm = useMediaQuery('(min-width: 640px)');
 
@@ -27,16 +33,22 @@ function Background() {
     mass: 1,
   });
 
-  const y = useTransform(scrollYProgress, [1, 0], [0, 400]);
+  const y = useTransform(() => springProgress.get() * 100);
   const t = useTransform(
     springProgress,
-    [1, 0],
+    [0, 1],
     [isSm ? CLIPS.desktop : CLIPS.mobile, CLIPS.end],
   );
 
   return (
     <SurfacePattern className="absolute inset-0 -z-10" asChild>
-      <motion.div style={{ y, clipPath: t }} ref={ref} />
+      <motion.div
+        style={{
+          y,
+          clipPath: t,
+        }}
+        ref={ref}
+      />
     </SurfacePattern>
   );
 }
