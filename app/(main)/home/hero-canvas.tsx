@@ -1,22 +1,10 @@
 'use client';
 import { SurfacePattern, SurfacePrimary } from '@/components/surface';
-import {
-  useScroll,
-  motion,
-  useTransform,
-  useSpring,
-  // useMotionValueEvent,
-} from 'motion/react';
+import { useScroll, motion, useSpring } from 'motion/react';
 import { CanvasHero } from '@/components/canvas-hero';
 import Letters from 'canvas/letters/LetterDrop';
 import { useRef } from 'react';
-import { useMediaQuery } from 'usehooks-ts';
-
-const CLIPS = {
-  desktop: 'inset(128px 128px 0 128px round 48px 48px 0 0)',
-  mobile: 'inset(48px 48px 0 48px round 48px 48px 0 0)',
-  end: 'inset(-48px -48px 0 -48px round 24px 24px 0 0)',
-};
+import styles from './hero-canvas.module.css';
 
 function Background() {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,7 +12,6 @@ function Background() {
     target: ref,
     offset: ['end end', 'end start'],
   });
-  const isSm = useMediaQuery('(min-width: 640px)');
 
   // Add spring effect to the scroll progress
   const springProgress = useSpring(scrollYProgress, {
@@ -33,19 +20,13 @@ function Background() {
     mass: 1,
   });
 
-  const y = useTransform(() => springProgress.get() * 100);
-  const t = useTransform(
-    springProgress,
-    [0, 1],
-    [isSm ? CLIPS.desktop : CLIPS.mobile, CLIPS.end],
-  );
-
   return (
     <SurfacePattern className="absolute inset-0 -z-10" asChild>
       <motion.div
+        className={styles.hero}
         style={{
-          y,
-          clipPath: t,
+          // @ts-expect-error
+          ['--p']: springProgress,
         }}
         ref={ref}
       />

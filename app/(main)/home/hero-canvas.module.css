@@ -1,0 +1,19 @@
+@property --x {
+  syntax: '<length>';
+  initial-value: 0;
+  inherits: false;
+}
+
+.hero {
+  --x: calc((1 - var(--p)) * 96px - 48px); /* -48px to 48px */
+  --r: 32px;
+  translate: 0 calc((var(--p)) * 150px);
+  clip-path: inset(var(--x) var(--x) 0 var(--x) round var(--r) var(--r) 0 0);
+}
+
+@screen sm {
+  .hero {
+    --x: calc((1 - var(--p)) * 172px - 48px); /* -48px to 128px */
+    --r: 48px;
+  }
+}
