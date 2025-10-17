@@ -10,7 +10,7 @@ export const SelectionButton = (props: SelectionButtonProps) => {
   const { className, isSelected, icon, ...rest } = props;
   return (
     <Button
-      icon={isSelected ? <CheckIcon /> : icon ?? <XMarkIcon />}
+      icon={isSelected ? <CheckIcon /> : (icon ?? <XMarkIcon />)}
       iconContainerClassName={isSelected ? 'bg-club-700' : undefined}
       className={clsx(
         className,

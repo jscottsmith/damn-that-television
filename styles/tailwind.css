@@ -1,0 +1,329 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Dark mode configuration */
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Screens */
+  --breakpoint-xs: 475px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Font families */
+  --font-futura: var(--font-futura);
+  --font-poppins: poppins, sans-serif;
+
+  /* Custom spacing */
+  --spacing-sidemenu: 18rem;
+  --spacing-2xs: 0.125rem;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-base: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+  --spacing-5xl: 8rem;
+  --spacing-6xl: 10rem;
+  --spacing-7xl: 12rem;
+  --spacing-8xl: 14rem;
+  --spacing-10xl: 16rem;
+  --spacing-11xl: 18rem;
+  --spacing-12xl: 20rem;
+
+  /* Custom box shadows */
+  --shadow-hard-xs: 0.125rem 0.125rem 0 0 var(--tw-shadow-color);
+  --shadow-hard-sm: 0.25rem 0.25rem 0 0 var(--tw-shadow-color);
+  --shadow-hard: 0.5rem 0.5rem 0 0 var(--tw-shadow-color);
+
+  /* Custom animations */
+  --animate-spin-slow: spin 40s linear infinite;
+
+  /* Slate color palette */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd3e1;
+  --color-slate-400: #9ba5b8;
+  --color-slate-500: #656e83;
+  --color-slate-600: #3a4155;
+  --color-slate-700: #232839;
+  --color-slate-800: #141826;
+  --color-slate-900: #0c0e19;
+  --color-slate-950: #060710;
+
+  /* Salmon color palette */
+  --color-salmon-50: #fdf9f9;
+  --color-salmon-100: #faf3f3;
+  --color-salmon-200: #f3e0e0;
+  --color-salmon-300: #ebcdce;
+  --color-salmon-400: #dda8a9;
+  --color-salmon-500: #ce8284;
+  --color-salmon-600: #b97577;
+  --color-salmon-700: #9b6263;
+  --color-salmon-800: #7c4e4f;
+  --color-salmon-900: #654041;
+
+  /* Plum color palette */
+  --color-plum-50: #f5f5f6;
+  --color-plum-100: #ecebed;
+  --color-plum-200: #cfced3;
+  --color-plum-300: #b3b1b9;
+  --color-plum-400: #797684;
+  --color-plum-500: #403b4f;
+  --color-plum-600: #3a3547;
+  --color-plum-700: #302c3b;
+  --color-plum-800: #26232f;
+  --color-plum-900: #1f1d27;
+
+  /* Pepto color palette */
+  --color-pepto-50: #fefafc;
+  --color-pepto-100: #fdf4f8;
+  --color-pepto-200: #fae4ee;
+  --color-pepto-300: #f7d4e3;
+  --color-pepto-400: #f0b4cf;
+  --color-pepto-500: #ea94ba;
+  --color-pepto-600: #d385a7;
+  --color-pepto-700: #b06f8c;
+  --color-pepto-800: #8c5970;
+  --color-pepto-900: #73495b;
+
+  /* Lunar color palette */
+  --color-lunar-50: #f7f7f9;
+  --color-lunar-100: #f0eff3;
+  --color-lunar-200: #d9d6e1;
+  --color-lunar-300: #c2bdce;
+  --color-lunar-400: #948caa;
+  --color-lunar-500: #665b85;
+  --color-lunar-600: #5c5278;
+  --color-lunar-700: #4d4464;
+  --color-lunar-800: #3d3750;
+  --color-lunar-900: #322d41;
+
+  /* Lit color palette */
+  --color-lit-50: #fff8f6;
+  --color-lit-100: #fff1ed;
+  --color-lit-200: #ffdcd2;
+  --color-lit-300: #ffc6b7;
+  --color-lit-400: #ff9c82;
+  --color-lit-500: #ff714c;
+  --color-lit-600: #e66644;
+  --color-lit-700: #bf5539;
+  --color-lit-800: #99442e;
+  --color-lit-900: #7d3725;
+
+  /* Miami color palette */
+  --color-miami-50: #f8fdfd;
+  --color-miami-100: #f1fbfc;
+  --color-miami-200: #dcf6f7;
+  --color-miami-300: #c7f1f2;
+  --color-miami-400: #9ce6e8;
+  --color-miami-500: #72dbde;
+  --color-miami-600: #67c5c8;
+  --color-miami-700: #56a4a7;
+  --color-miami-800: #448385;
+  --color-miami-900: #386b6d;
+
+  /* Club color palette */
+  --color-club-50: #f7f8ff;
+  --color-club-100: #f0f1ff;
+  --color-club-200: #d9dcff;
+  --color-club-300: #c1c7ff;
+  --color-club-400: #939eff;
+  --color-club-500: #6574ff;
+  --color-club-600: #5b68e6;
+  --color-club-700: #4c57bf;
+  --color-club-800: #3d4699;
+  --color-club-900: #31397d;
+
+  /* Lavender color palette */
+  --color-lavender-50: #f9faff;
+  --color-lavender-100: #f4f5ff;
+  --color-lavender-200: #e3e5fe;
+  --color-lavender-300: #d1d6fe;
+  --color-lavender-400: #afb7fd;
+  --color-lavender-500: #8d98fc;
+  --color-lavender-600: #7f89e3;
+  --color-lavender-700: #6a72bd;
+  --color-lavender-800: #555b97;
+  --color-lavender-900: #454a7b;
+
+  /* Cream color palette */
+  --color-cream-50: #fffefb;
+  --color-cream-100: #fefdf7;
+  --color-cream-200: #fdf9ec;
+  --color-cream-300: #fcf5e1;
+  --color-cream-400: #f9eeca;
+  --color-cream-500: #f7e7b3;
+  --color-cream-600: #ded0a1;
+  --color-cream-700: #b9ad86;
+  --color-cream-800: #948b6b;
+  --color-cream-900: #797158;
+
+  /* Fab color palette */
+  --color-fab-50: #fffff8;
+  --color-fab-100: #fffff1;
+  --color-fab-200: #fffedc;
+  --color-fab-300: #fffdc7;
+  --color-fab-400: #fffc9e;
+  --color-fab-500: #fffb74;
+  --color-fab-600: #e6e268;
+  --color-fab-700: #bfbc57;
+  --color-fab-800: #999746;
+  --color-fab-900: #7d7b39;
+
+  /* Ghost color palette */
+  --color-ghost-50: #fbfcfc;
+  --color-ghost-100: #f7f8f9;
+  --color-ghost-200: #eceeef;
+  --color-ghost-300: #e0e3e5;
+  --color-ghost-400: #c9cfd2;
+  --color-ghost-500: #b2babf;
+  --color-ghost-600: #a0a7ac;
+  --color-ghost-700: #868c8f;
+  --color-ghost-800: #6b7073;
+  --color-ghost-900: #575b5e;
+
+  /* Soft pink color palette */
+  --color-soft-pink-50: #fffbfb;
+  --color-soft-pink-100: #fef8f8;
+  --color-soft-pink-200: #fdeded;
+  --color-soft-pink-300: #fbe3e1;
+  --color-soft-pink-400: #f8cdcb;
+  --color-soft-pink-500: #f5b8b5;
+  --color-soft-pink-600: #dda6a3;
+  --color-soft-pink-700: #b88a88;
+  --color-soft-pink-800: #936e6d;
+  --color-soft-pink-900: #785a59;
+
+  /* DEFAULT colors (base color names without numbers) */
+  --color-slate: #656e83;
+  --color-salmon: #ce8284;
+  --color-plum: #403b4f;
+  --color-pepto: #ea94ba;
+  --color-lunar: #665b85;
+  --color-lit: #ff714c;
+  --color-miami: #72dbde;
+  --color-club: #6574ff;
+  --color-lavender: #8d98fc;
+  --color-cream: #f7e7b3;
+  --color-fab: #fffb74;
+  --color-ghost: #edf8ff;
+  --color-soft-pink: #f5b8b5;
+
+  /* Custom colors */
+  --color-softy: #f5b8b5;
+  --color-miami-old: #4eb1b6;
+  --color-deep: #2c2f34;
+  --color-night: #635e7f;
+  --color-peach: #f6d0d0;
+}
+
+@theme inline {
+  /* 
+    Custom spacing is overriding the container width.
+    @see https://github.com/tailwindlabs/tailwindcss/discussions/17777#discussioncomment-12937263 
+  **/
+  --width-3xs: var(--container-3xs);
+  --width-2xs: var(--container-2xs);
+  --width-xs: var(--container-xs);
+  --width-sm: var(--container-sm);
+  --width-md: var(--container-md);
+  --width-lg: var(--container-lg);
+  --width-xl: var(--container-xl);
+  --width-2xl: var(--container-2xl);
+  --width-3xl: var(--container-3xl);
+  --width-4xl: var(--container-4xl);
+  --width-5xl: var(--container-5xl);
+  --width-6xl: var(--container-6xl);
+  --width-7xl: var(--container-7xl);
+
+  --min-width-3xs: var(--container-3xs);
+  --min-width-2xs: var(--container-2xs);
+  --min-width-xs: var(--container-xs);
+  --min-width-sm: var(--container-sm);
+  --min-width-md: var(--container-md);
+  --min-width-lg: var(--container-lg);
+  --min-width-xl: var(--container-xl);
+  --min-width-2xl: var(--container-2xl);
+  --min-width-3xl: var(--container-3xl);
+  --min-width-4xl: var(--container-4xl);
+  --min-width-5xl: var(--container-5xl);
+  --min-width-6xl: var(--container-6xl);
+  --min-width-7xl: var(--container-7xl);
+
+  --max-width-3xs: var(--container-3xs);
+  --max-width-2xs: var(--container-2xs);
+  --max-width-xs: var(--container-xs);
+  --max-width-sm: var(--container-sm);
+  --max-width-md: var(--container-md);
+  --max-width-lg: var(--container-lg);
+  --max-width-xl: var(--container-xl);
+  --max-width-2xl: var(--container-2xl);
+  --max-width-3xl: var(--container-3xl);
+  --max-width-4xl: var(--container-4xl);
+  --max-width-5xl: var(--container-5xl);
+  --max-width-6xl: var(--container-6xl);
+  --max-width-7xl: var(--container-7xl);
+}
+
+/* Custom variant for hover and focus */
+@variant hocus (&:hover, &:focus);
+
+/* Dark mode configuration */
+@variant dark (.dark &);
+
+/* Typography plugin configuration */
+@plugin "@tailwindcss/typography";
+
+/* Prose styles */
+@utility prose-slate {
+  --tw-prose-links: var(--color-miami-old);
+  --tw-prose-invert-links: var(--color-miami-old);
+  --tw-prose-body: var(--color-slate-600);
+  --tw-prose-invert-body: var(--color-slate-400);
+  --tw-prose-headings: var(--color-slate-700);
+  --tw-prose-invert-headings: var(--color-slate-300);
+  --tw-prose-code: var(--color-slate-700);
+  --tw-prose-invert-code: var(--color-slate-300);
+  --tw-prose-bold: var(--color-slate-700);
+  --tw-prose-invert-bold: var(--color-slate-300);
+}
+
+@utility prose {
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    font-family: var(--font-futura);
+    font-weight: 700;
+  }
+
+  h2 {
+    font-family: var(--font-futura);
+    font-weight: 700;
+  }
+
+  h3 {
+    font-family: var(--font-futura);
+    font-weight: 400;
+  }
+
+  blockquote {
+    font-size: 1.5em;
+    font-family: var(--font-futura);
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  li {
+    margin: 0.25em 0;
+  }
+}

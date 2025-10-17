@@ -26,8 +26,8 @@ export const SURFACE_INTERACTIVE = clsx(
 
 const SURFACE_INTERACTIVE_NAME_MAP = {
   [SurfaceInteractiveName.primary]: clsx(
-    'text-white bg-slate-800 hocus:bg-club',
-    'dark:text-slate-800 dark:bg-slate-200 dark:hocus:bg-club',
+    'text-white bg-slate-800',
+    'dark:text-slate-800 dark:bg-slate-200',
     'shadow-club',
   ),
   [SurfaceInteractiveName.secondary]: SURFACE_INTERACTIVE,
@@ -75,13 +75,13 @@ export function SurfaceInteractive({
         'inline-flex items-center rounded-full',
 
         // hover
-        'hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-xs',
+        'hover:shadow-hard-xs hover:-translate-x-0.5 hover:-translate-y-0.5',
         // focus
-        'focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-hard-xs focus:outline-none',
+        'focus:shadow-hard-xs focus:-translate-x-0.5 focus:-translate-y-0.5 focus:outline-none',
         // active
         'active:duration-100 hover:active:translate-x-0 hover:active:translate-y-0 hover:active:shadow-none',
         // transition
-        'transition-[box-shadow,color,transform] duration-200',
+        'transition-all duration-200',
       )}
       {...props}
     />
