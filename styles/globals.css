@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './tailwind.css';
 
 :root {
   --scroll-duration: 0.5s;
@@ -10,4 +8,9 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px; /* Account for fixed headers */
+}
+
+[role='button'],
+button {
+  cursor: pointer;
 }
