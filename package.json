@@ -29,7 +29,7 @@
   },
   "homepage": "https://damnthat.tv/",
   "dependencies": {
-    "@gush/candybar": "0.0.2",
+    "@gush/candybar": "0.1.1",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@prismicio/client": "^7.20.1",
