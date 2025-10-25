@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@gush/candybar':
-        specifier: 0.0.2
-        version: 0.0.2
+        specifier: 0.1.1
+        version: 0.1.1
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -387,8 +387,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@gush/candybar@0.0.2':
-    resolution: {integrity: sha512-/VgsoOPQKKEvPMHIdJWeIpgpAEnxtBCIF5o6MP/lHSBhcxm2SRtHmSw+A7WPU3znWn5UzoX6QKqnLup1f+7hXQ==}
+  '@gush/candybar@0.1.1':
+    resolution: {integrity: sha512-nSfO8acw44zvHrKq7NqDBVePjMskq5s7bSgdgyw6e+01ZuzDPh9LswfXaYzrPBEOh1Iq/PvaS6yht75FTJ+N5w==}
 
   '@hapi/hoek@9.3.0':
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
@@ -4711,7 +4711,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@gush/candybar@0.0.2': {}
+  '@gush/candybar@0.1.1': {}
 
   '@hapi/hoek@9.3.0': {}
 

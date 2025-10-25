@@ -3,7 +3,7 @@ import { Canvas } from '@gush/candybar';
 import { useIntersectionObserver } from 'usehooks-ts';
 import { mergeRef } from 'helpers/merge-ref';
 
-export const CanvasHero = (props: { entities: unknown[] }) => {
+export const CanvasHero = (props: { entities: any[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvas = useRef<Canvas | null>(null);
@@ -23,6 +23,10 @@ export const CanvasHero = (props: { entities: unknown[] }) => {
   // Create the canvas when the component is mounted
   useEffect(() => {
     if (canvas.current) {
+      return;
+    }
+
+    if (!canvasRef.current || !containerRef.current) {
       return;
     }
 
