@@ -1,5 +1,10 @@
+const path = require('path');
+
 module.exports = {
-  outputFileTracingRoot: __dirname,
+  outputFileTracingRoot: path.join(__dirname, '../../'),
+  turbopack: {
+    root: path.join(__dirname, '../../'),
+  },
   images: {
     remotePatterns: [
       {
