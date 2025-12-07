@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { PrismicRichText } from '@prismicio/react';
 import React from 'react';
 import { Links } from 'app/(main)/resume/components/resume-header/components/links';
-import avatar from '/public/static/avatar.jpg';
+import avatar from '../../../../../public/static/avatar.jpg';
 
 export const ResumeHeader = (props) => {
   return (
