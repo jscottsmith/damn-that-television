@@ -1,0 +1,4 @@
+{
+  "buildCommand": "cd ../.. && pnpm build --filter=@damn-that-television/damnthat.tv",
+  "installCommand": "cd ../.. && pnpm install"
+}
