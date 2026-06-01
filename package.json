@@ -16,7 +16,8 @@
     "lint:fix": "turbo run lint:fix",
     "test": "turbo run test",
     "typeCheck": "turbo run typeCheck",
-    "prettier": "turbo run prettier",
+    "format": "turbo run format",
+    "format:check": "turbo run format:check",
     "slicemachine": "turbo run slicemachine"
   },
   "repository": {
@@ -30,7 +31,8 @@
   },
   "homepage": "https://damnthat.tv/",
   "devDependencies": {
-    "prettier": "^3.5.2",
+    "oxfmt": "^0.52.0",
+    "oxlint": "^1.67.0",
     "turbo": "^2.3.3"
   }
 }

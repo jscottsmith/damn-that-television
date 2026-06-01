@@ -56,7 +56,7 @@ const MediaAsset: React.FC<MediaAssetProps> = ({
 
       {/* Toggle button */}
       {shouldShowOverlay && (
-        <div className="absolute right-2 top-2 z-10 flex h-6 w-6 items-center justify-center">
+        <div className="absolute top-2 right-2 z-10 flex h-6 w-6 items-center justify-center">
           {isOverlayVisible ? (
             <SurfaceInteractiveGlass asChild>
               <button

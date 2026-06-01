@@ -78,7 +78,7 @@ export const Marquee = (props: MarqueeProps) => {
             ))}
             <SurfacePrimary asChild>
               <button
-                className="absolute right-2 top-1/2 z-10 block -translate-y-1/2"
+                className="absolute top-1/2 right-2 z-10 block -translate-y-1/2"
                 onClick={() => toggle.toggle()}
               >
                 <XMarkIcon className="h-4 w-4" />

@@ -13,7 +13,7 @@ export function CommandOverlay(
           exit={{ opacity: 0, scale: 0.5 }}
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="fixed left-1/2 top-1/2 z-50 flex h-0 w-0 select-none items-center justify-center"
+          className="fixed top-1/2 left-1/2 z-50 flex h-0 w-0 items-center justify-center select-none"
         >
           <SurfaceBackground
             className={clsx(

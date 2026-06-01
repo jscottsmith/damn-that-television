@@ -11,7 +11,7 @@ export function Custom404() {
       <HeaderNav />
       <div className="bg-peach">
         <h1
-          className="font-futura text-lunar absolute inset-0 left-0 top-0 flex select-none items-center justify-center font-medium"
+          className="font-futura text-lunar absolute inset-0 top-0 left-0 flex items-center justify-center font-medium select-none"
           style={{ fontSize: '15vw' }}
         >
           404

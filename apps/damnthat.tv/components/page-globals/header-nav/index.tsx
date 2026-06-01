@@ -11,7 +11,7 @@ export const HeaderNav = () => {
     return null;
   }
   return (
-    <header className="fixed left-1/2 top-4 z-50 flex justify-center">
+    <header className="fixed top-4 left-1/2 z-50 flex justify-center">
       <NavigationBugDesktop />
       <NavigationBugMobile />
     </header>

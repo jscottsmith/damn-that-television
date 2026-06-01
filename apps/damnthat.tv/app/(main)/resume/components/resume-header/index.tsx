@@ -15,7 +15,7 @@ export const ResumeHeader = (props) => {
         <div className="mb-base font-futura text-4xl text-slate-700 dark:text-slate-300">
           <PrismicRichText field={props.document.data.name} />
         </div>
-        <div className="mb-xs font-futura text-xl font-medium italic text-slate-700 dark:text-slate-300">
+        <div className="mb-xs font-futura text-xl font-medium text-slate-700 italic dark:text-slate-300">
           <PrismicRichText field={props.document.data.current_job_title} />
         </div>
         <div className="text-slate-500">
