@@ -60,7 +60,7 @@ export function AfterDark() {
   return (
     <>
       <motion.div
-        className={clsx('fixed left-0 top-0 z-[999999] h-full w-full bg-deep')}
+        className={clsx('bg-deep fixed left-0 top-0 z-[999999] h-full w-full')}
         transition={{
           bounce: 0.1,
         }}

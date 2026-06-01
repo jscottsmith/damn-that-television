@@ -15,7 +15,7 @@ export const SelectionButton = (props: SelectionButtonProps) => {
       className={clsx(
         className,
         { selected: isSelected },
-        '[&.selected]:-translate-x-1 [&.selected]:-translate-y-1 [&.selected]:bg-club [&.selected]:text-white [&.selected]:shadow-hard-sm [&.selected]:hover:bg-club-600',
+        '[&.selected]:bg-club [&.selected]:shadow-hard-sm [&.selected]:hover:bg-club-600 [&.selected]:-translate-x-1 [&.selected]:-translate-y-1 [&.selected]:text-white',
       )}
       {...rest}
     >

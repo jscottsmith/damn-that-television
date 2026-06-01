@@ -9,7 +9,7 @@ export function PageLoader() {
   return (
     <div
       className={clsx(
-        'fixed inset-0 flex items-center justify-center bg-pepto text-deep transition-opacity duration-500 ease-out',
+        'bg-pepto text-deep fixed inset-0 flex items-center justify-center transition-opacity duration-500 ease-out',
         { 'opacity-0': !hasMounted },
       )}
     >

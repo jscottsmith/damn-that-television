@@ -17,12 +17,7 @@
           "config": {
             "label": "Language",
             "placeholder": "",
-            "options": [
-              "ts",
-              "tsx",
-              "js",
-              "jsx"
-            ],
+            "options": ["ts", "tsx", "js", "jsx"],
             "default_value": "ts"
           }
         },

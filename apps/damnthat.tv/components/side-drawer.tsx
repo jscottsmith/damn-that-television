@@ -34,7 +34,7 @@ export function SideDrawer(props: SideDrawerProps) {
             <BackdropOverlay />
           </AnimateFadeIn>
 
-          <div className="fixed inset-0 flex h-screen w-screen justify-end overflow-hidden pl-base">
+          <div className="pl-base fixed inset-0 flex h-screen w-screen justify-end overflow-hidden">
             <SurfacePrimary asChild>
               <CardPadding asChild>
                 <motion.div
@@ -44,7 +44,7 @@ export function SideDrawer(props: SideDrawerProps) {
                   animate={{ x: '0%', opacity: 1 }}
                   exit={{ x: '100%', opacity: 1 }}
                 >
-                  <Dialog.Panel className="flex flex-col justify-center py-xl">
+                  <Dialog.Panel className="py-xl flex flex-col justify-center">
                     <header className="mb-xl flex items-center justify-between">
                       <Dialog.Title>
                         <Title asChild>
@@ -61,7 +61,7 @@ export function SideDrawer(props: SideDrawerProps) {
                       </Dialog.Description>
                       {props.body}
                     </Prose>
-                    <footer className="mt-auto flex w-full gap-sm">
+                    <footer className="gap-sm mt-auto flex w-full">
                       {props.actions}
                     </footer>
                   </Dialog.Panel>

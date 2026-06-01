@@ -6,3 +6,4 @@ yarn.lock
 *.jpg
 *.jpeg
 *.svg
+*.tsbuildinfo

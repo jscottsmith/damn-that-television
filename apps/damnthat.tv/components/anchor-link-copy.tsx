@@ -48,7 +48,7 @@ export const AnchorLinkCopy = (props: AnchorLinkCopyProps) => {
             )}
           >
             {isCopied ? (
-              <CheckCircleIcon className="h-5 w-5 text-miami-500" />
+              <CheckCircleIcon className="text-miami-500 h-5 w-5" />
             ) : (
               <LinkIcon className="h-4 w-4" />
             )}

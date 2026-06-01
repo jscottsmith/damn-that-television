@@ -119,7 +119,7 @@ export function NavigationBugMobile() {
               >
                 <div
                   className={clsx(
-                    'relative flex w-full flex-col gap-4 self-start p-base pb-16',
+                    'p-base relative flex w-full flex-col gap-4 self-start pb-16',
                   )}
                 >
                   <HomeLink className="grow-0 self-center" />
@@ -170,7 +170,7 @@ function HomeLink(props: { className?: string }) {
         href={ROUTE_HOME}
         className={clsx(
           'group flex h-16 w-16 items-center justify-center rounded-full p-3.5',
-          'text-deep transition-colors duration-150 hover:text-club dark:text-miami',
+          'text-deep hover:text-club dark:text-miami transition-colors duration-150',
           props.className,
         )}
       >

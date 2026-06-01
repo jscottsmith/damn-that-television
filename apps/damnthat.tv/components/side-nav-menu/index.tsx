@@ -22,17 +22,17 @@ function mapObject<T extends { [key: string]: any }>(
 
 function renderLinksRecursively(routes) {
   return (
-    <ul className="flex flex-col gap-sm">
+    <ul className="gap-sm flex flex-col">
       {mapObject<SideNavMenuRoutes>(routes, ([path, route]) => {
         return (
-          <li key={path} className="flex flex-col gap-sm">
+          <li key={path} className="gap-sm flex flex-col">
             <Link
               href={route.absolutePath}
               className={clsx(
                 'transition-colors',
-                'block rounded-sm px-base py-sm font-bold',
-                'hover:bg-slate-50 hover:text-club',
-                'dark:hover:bg-slate-950 dark:hover:text-club-300',
+                'px-base py-sm block rounded-sm font-bold',
+                'hover:text-club hover:bg-slate-50',
+                'dark:hover:text-club-300 dark:hover:bg-slate-950',
                 'focus:outline-none',
               )}
             >
@@ -95,7 +95,7 @@ export function SideNavMenu(props: SideNavMenuProps) {
         initial={'open'}
         variants={menuButtonVariants}
         animate={sideMenu.open ? 'open' : 'closed'}
-        className="fixed left-lg top-lg z-[60]"
+        className="left-lg top-lg fixed z-[60]"
       >
         <MenuButton
           onClick={() => sideMenu.toggle()}
@@ -113,7 +113,7 @@ export function SideNavMenu(props: SideNavMenuProps) {
           id={SIDE_NAV_ID}
           className={clsx(
             'z-50',
-            'h-screen w-sidemenu flex-shrink',
+            'w-sidemenu h-screen flex-shrink',
             'p-base pt-3xl',
             'fixed left-0 top-0',
             'shadow-lg',

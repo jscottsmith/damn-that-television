@@ -3,8 +3,10 @@ import React from 'react';
 
 type SlideDirection = 'up' | 'down' | 'left' | 'right';
 
-interface AnimateSlideProps
-  extends Omit<MotionProps, 'initial' | 'animate' | 'exit' | 'children'> {
+interface AnimateSlideProps extends Omit<
+  MotionProps,
+  'initial' | 'animate' | 'exit' | 'children'
+> {
   children?: React.ReactNode;
   key: string;
   direction?: SlideDirection;

@@ -37,7 +37,7 @@ const WorkTogetherMessage = ({
       <div className="font-futura text-xl font-normal md:text-2xl">
         <PrismicRichText field={primary.title} />
       </div>
-      <div className="mt-md flex w-full justify-center gap-sm">
+      <div className="mt-md gap-sm flex w-full justify-center">
         <SelectionButton
           isSelected={showInterest.isInterested}
           onClick={showInterest.onClickInterested}

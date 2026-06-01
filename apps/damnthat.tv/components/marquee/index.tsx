@@ -46,7 +46,7 @@ export const Marquee = (props: MarqueeProps) => {
           <CardPrimary
             key={list.length}
             className={clsx(
-              'flex w-full items-center font-futura text-lg font-bold uppercase italic',
+              'font-futura flex w-full items-center text-lg font-bold uppercase italic',
               props.className,
             )}
           >
