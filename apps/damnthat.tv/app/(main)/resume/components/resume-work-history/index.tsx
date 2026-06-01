@@ -55,8 +55,8 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
             {/* Jobs under this company */}
             <div className="pl-md md:pl-lg relative ml-2">
               {/* bottom must match the date range line */}
-              <span className="absolute bottom-2 left-0 top-3 border-l-2 border-dotted border-slate-300 dark:border-slate-600">
-                <span className="absolute right-0 top-0 block h-1.5 w-1.5 -translate-y-1/2 translate-x-1/2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+              <span className="absolute top-3 bottom-2 left-0 border-l-2 border-dotted border-slate-300 dark:border-slate-600">
+                <span className="absolute top-0 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
               </span>
 
               {group.jobs.map((item, jobIndex) => {
@@ -96,7 +96,7 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
                       )}
                       <div className="my-4 flex h-0 items-center pb-2">
                         <span className="absolute left-0 w-2 border-t-2 border-dotted border-slate-300 md:w-3 dark:border-slate-600">
-                          <span className="absolute right-0 top-1/2 block h-1.5 w-1.5 -translate-y-1/2 translate-x-1/2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                          <span className="absolute top-1/2 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
                         </span>
                         <DateRange
                           dateFormatter={formatterMonthYear}

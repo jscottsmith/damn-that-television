@@ -13,7 +13,7 @@ export const GameIntro = (props: Props) => {
       <div className="max-w-2xl">
         <div className="">
           <h2 className="relative pb-[5%] text-center">
-            <span className="font-futura block text-6xl font-black uppercase italic leading-none md:text-7xl lg:text-8xl xl:text-9xl">
+            <span className="font-futura block text-6xl leading-none font-black uppercase italic md:text-7xl lg:text-8xl xl:text-9xl">
               Damn TV!
             </span>
             <span className="text-md bg-cream px-sm font-futura md:px-md lg:px-lg absolute bottom-2 left-[30%] inline-block -rotate-6 rounded-sm font-bold italic md:text-xl lg:text-3xl xl:text-5xl">

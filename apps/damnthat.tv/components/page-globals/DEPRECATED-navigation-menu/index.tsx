@@ -140,7 +140,7 @@ export const NavigationMenu = (props: {
                 >
                   <Link
                     href={current.href}
-                    className="font-futura text-cream hover:text-ghost whitespace-nowrap font-bold uppercase italic"
+                    className="font-futura text-cream hover:text-ghost font-bold whitespace-nowrap uppercase italic"
                   >
                     {current.label}
                   </Link>

@@ -23,7 +23,10 @@
       "cache": false,
       "persistent": true
     },
-    "prettier": {
+    "format": {
+      "cache": false
+    },
+    "format:check": {
       "cache": false
     },
     "slicemachine": {

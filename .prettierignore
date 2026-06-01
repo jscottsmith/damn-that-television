@@ -1,9 +1,0 @@
-node_modules
-.next
-.yarn
-yarn.lock
-*.png
-*.jpg
-*.jpeg
-*.svg
-*.tsbuildinfo

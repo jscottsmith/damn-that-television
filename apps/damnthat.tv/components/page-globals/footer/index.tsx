@@ -34,10 +34,10 @@ export function Footer() {
         ))}
       </Marquee>
       <FooterBody>
-        <div className="z-1 relative px-4">
+        <div className="relative z-1 px-4">
           <Wrapper asChild>
             <SurfacePrimary asChild>
-              <footer className="flex flex-wrap gap-2 rounded-b-3xl pb-4 pt-4 md:gap-6 md:pb-10">
+              <footer className="flex flex-wrap gap-2 rounded-b-3xl pt-4 pb-4 md:gap-6 md:pb-10">
                 <Link
                   href={APP_ROUTES.home}
                   className="hover:text-pepto-500 dark:text-miami dark:hover:text-club group mx-auto block w-14 justify-self-center text-slate-800 md:w-24"
@@ -60,7 +60,7 @@ export function Footer() {
                 <section className="flex w-full flex-wrap items-end justify-center sm:justify-between">
                   <Prose className="prose-sm max-w-none gap-2 self-end justify-self-stretch pt-8">
                     <Title asChild>
-                      <h4 className="my-0 whitespace-nowrap text-center sm:text-left">
+                      <h4 className="my-0 text-center whitespace-nowrap sm:text-left">
                         {METADATA.title}
                       </h4>
                     </Title>

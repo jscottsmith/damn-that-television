@@ -69,7 +69,7 @@ export default async function Page({ params }: PageProps) {
           priority
         />
         <div className="my-xl xl:my-2xl">
-          <h1 className="mb-base font-futura text-balance text-center text-4xl font-medium text-slate-700 md:text-6xl dark:text-slate-300">
+          <h1 className="mb-base font-futura text-center text-4xl font-medium text-balance text-slate-700 md:text-6xl dark:text-slate-300">
             {document.data.title}
           </h1>
           <div className="mb-base flex justify-center">

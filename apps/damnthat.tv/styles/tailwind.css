@@ -280,7 +280,7 @@
 @variant dark (.dark &);
 
 /* Typography plugin configuration */
-@plugin "@tailwindcss/typography";
+@plugin '@tailwindcss/typography';
 
 /* Prose styles */
 @utility prose-slate {

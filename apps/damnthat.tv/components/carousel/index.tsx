@@ -100,7 +100,7 @@ const Carousel: FC<CarouselProps> = ({
 
       {/* Dot Indicators */}
       {showDots && (
-        <div className="absolute -bottom-4 left-0 right-0 mt-4 flex justify-center space-x-2">
+        <div className="absolute right-0 -bottom-4 left-0 mt-4 flex justify-center space-x-2">
           {scrollSnaps.map((_, index) => (
             <Button
               key={index}
