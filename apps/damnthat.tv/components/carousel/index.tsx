@@ -67,7 +67,7 @@ const Carousel: FC<CarouselProps> = ({
       <div className="overflow-hidden rounded-lg md:rounded-xl" ref={emblaRef}>
         <div className="-ml-base flex">
           {children.map((child, index) => (
-            <div key={index} className="min-w-0 flex-[0_0_100%] pl-base">
+            <div key={index} className="pl-base min-w-0 flex-[0_0_100%]">
               {child}
             </div>
           ))}

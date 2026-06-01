@@ -11,7 +11,7 @@ export default function Components() {
   return (
     <SurfacePrimary asChild>
       <CardPadding asChild>
-        <form autoComplete="off" className="flex max-w-lg flex-col gap-lg">
+        <form autoComplete="off" className="gap-lg flex max-w-lg flex-col">
           <TextField label="Test 1" placeholder="Testing" pattern=".*\S.*" />
           <TextField label="Test 2" placeholder="Testing" pattern=".*\S.*" />
           <PasswordField

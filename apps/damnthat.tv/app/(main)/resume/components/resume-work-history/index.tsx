@@ -28,7 +28,7 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
       {groupedItems.map((group, groupIndex) => {
         const companySlug = createSlug(asText(group.company));
         return (
-          <section className="relative mb-3xl scroll-mt-20" key={groupIndex}>
+          <section className="mb-3xl relative scroll-mt-20" key={groupIndex}>
             {/* Company name - shown only once per group */}
             <AnchorLinkCopy id={companySlug} className="mb-base">
               <header
@@ -53,7 +53,7 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
             </AnchorLinkCopy>
 
             {/* Jobs under this company */}
-            <div className="relative ml-2 pl-md md:pl-lg">
+            <div className="pl-md md:pl-lg relative ml-2">
               {/* bottom must match the date range line */}
               <span className="absolute bottom-2 left-0 top-3 border-l-2 border-dotted border-slate-300 dark:border-slate-600">
                 <span className="absolute right-0 top-0 block h-1.5 w-1.5 -translate-y-1/2 translate-x-1/2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
@@ -95,7 +95,7 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
                         </ul>
                       )}
                       <div className="my-4 flex h-0 items-center pb-2">
-                        <span className="absolute left-0 w-2 border-t-2 border-dotted border-slate-300 dark:border-slate-600 md:w-3">
+                        <span className="absolute left-0 w-2 border-t-2 border-dotted border-slate-300 md:w-3 dark:border-slate-600">
                           <span className="absolute right-0 top-1/2 block h-1.5 w-1.5 -translate-y-1/2 translate-x-1/2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
                         </span>
                         <DateRange

@@ -12,7 +12,7 @@ export const Introduction = (props) => {
   return (
     <article className={clsx(styles.welcome)} id={INTRO_ID}>
       <CardSecondary className={clsx('p-md md:p-lg')}>
-        <Prose className="prose-lg max-w-2xl lg:prose-xl xl:prose-2xl">
+        <Prose className="prose-lg lg:prose-xl xl:prose-2xl max-w-2xl">
           <PrismicRichText field={props.document?.data?.introduction} />
         </Prose>
       </CardSecondary>

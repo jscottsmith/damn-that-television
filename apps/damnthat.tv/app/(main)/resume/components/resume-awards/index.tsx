@@ -12,7 +12,7 @@ export const ResumeAwards = (props: ResumeAwardsSlice) => {
       <ul>
         {props.items.map((item, i) => (
           <li key={i} className="mb-md">
-            <div className="mb-1 font-futura text-xl font-normal italic">
+            <div className="font-futura mb-1 text-xl font-normal italic">
               <PrismicRichText field={item.title} />
             </div>
             <Badge type={BadgeType.primary}>{item.dates}</Badge>

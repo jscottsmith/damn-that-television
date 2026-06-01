@@ -73,7 +73,7 @@ export function DismissibleBanner({
               <CardPadding className="relative">
                 <IconButton
                   size={IconContainerSize.sm}
-                  className="absolute right-base top-base"
+                  className="right-base top-base absolute"
                   onClick={handleDismiss}
                 >
                   <XMarkIcon />

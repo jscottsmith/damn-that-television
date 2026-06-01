@@ -20,12 +20,12 @@ function InputToggleUI({ label, ...props }: InputToggleProps, ref) {
           // dark defaults
           'dark:border-slate-600 dark:bg-slate-700 dark:hover:bg-slate-600',
           // checked
-          'peer peer-checked:bg-club-600 peer-checked:after:translate-x-full peer-checked:hover:bg-club-500',
+          'peer-checked:bg-club-600 peer-checked:hover:bg-club-500 peer peer-checked:after:translate-x-full',
           // focus
           // 'peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-club-300 dark:peer-focus:ring-club-800',
           // circle
           'after:absolute after:bg-white after:transition-all',
-          'hover:after:-translate-x-0.5 hover:after:-translate-y-0.5 hover:after:shadow-hard-xs',
+          'hover:after:shadow-hard-xs hover:after:-translate-x-0.5 hover:after:-translate-y-0.5',
         )}
       ></div>
       <Label className="ml-3">{label}</Label>

@@ -8,7 +8,7 @@ export default function ProseExample() {
       <Code>
         <pre className="my-base">{'prose'}</pre>
       </Code>
-      <Prose className="mt-8 lg:prose-lg">
+      <Prose className="lg:prose-lg mt-8">
         <h1>Prose Typography</h1>
         <h2>Prose Typography</h2>
         <h3>Prose Typography</h3>

@@ -10,7 +10,7 @@ export function SectionTitle(props: { text: RichTextField }) {
     <AnchorLinkCopy id={slug} className="mb-lg mt-2xl pb-2 ">
       <div
         id={slug}
-        className="border-b-2 border-peach font-futura text-4xl font-normal italic text-miami-old dark:border-club-700"
+        className="border-peach font-futura text-miami-old dark:border-club-700 border-b-2 text-4xl font-normal italic"
       >
         <PrismicRichText field={props.text} />
       </div>

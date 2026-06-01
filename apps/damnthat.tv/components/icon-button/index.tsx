@@ -18,7 +18,7 @@ export const IconButton = (props: IconButtonProps) => {
       className={clsx(
         className,
         background,
-        'flex items-center justify-center rounded-full p-sm',
+        'p-sm flex items-center justify-center rounded-full',
       )}
       {...rest}
     >

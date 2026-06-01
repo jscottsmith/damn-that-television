@@ -30,8 +30,8 @@ export default function Page() {
   return (
     <>
       <HeaderNav />
-      <div className="z-10 bg-lunar">
-        <div className="absolute inset-0 flex items-center justify-center text-deep">
+      <div className="bg-lunar z-10">
+        <div className="text-deep absolute inset-0 flex items-center justify-center">
           <Swoosh />
         </div>
         <CanvasHero entities={[eraser]} />

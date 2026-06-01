@@ -7,7 +7,7 @@ export function BaseInput({ className, ...rest }: BaseInputProps) {
     <input
       {...rest}
       className={clsx(
-        'w-full block',
+        'block w-full',
         'py-base px-md',
         'rounded-lg',
         // bg
@@ -15,7 +15,7 @@ export function BaseInput({ className, ...rest }: BaseInputProps) {
         // text
         'text-lg text-slate-900 dark:text-slate-200',
         // disabled
-        'disabled:text-slate-400 dark:disabled:text-slate-600 disabled:pointer-events-none',
+        'disabled:pointer-events-none disabled:text-slate-400 dark:disabled:text-slate-600',
         // placeholder
         'placeholder:text-slate-400 dark:placeholder:text-slate-600',
 

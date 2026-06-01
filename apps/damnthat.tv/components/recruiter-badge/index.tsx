@@ -67,13 +67,13 @@ export const RecruiterBadge = (props) => {
         <text
           dy="70"
           fontWeight="600"
-          className="futura font-bold uppercase text-deep"
+          className="futura text-deep font-bold uppercase"
           fill="currentColor"
         >
           <textPath
             xlinkHref="#textcircle"
             textLength="1220"
-            className="origin-center animate-spin-slow"
+            className="animate-spin-slow origin-center"
           >
             {'Employers & Recruiters • Employers & Recruiters • '}
           </textPath>

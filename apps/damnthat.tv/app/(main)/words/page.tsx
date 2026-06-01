@@ -50,7 +50,7 @@ export default async function Page() {
                         <h2 className="text-xl font-medium md:text-2xl">
                           {document.data.title}
                         </h2>
-                        <Prose className="prose-md text-pretty md:prose-lg">
+                        <Prose className="prose-md md:prose-lg text-pretty">
                           <PrismicRichText field={document.data.description} />
                         </Prose>
                         {document.tags.length > 0 && (

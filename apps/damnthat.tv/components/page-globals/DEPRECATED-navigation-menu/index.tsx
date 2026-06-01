@@ -72,10 +72,10 @@ export const NavigationMenu = (props: {
       variants={container}
       transition={{ type: 'spring', damping: 25, stiffness: 300 }}
       animate={animate}
-      className={clsx('fixed -inset-20 z-40 flex select-none bg-plum p-20')}
+      className={clsx('bg-plum fixed -inset-20 z-40 flex select-none p-20')}
     >
       <div className="relative flex h-full items-center justify-center">
-        <nav className="max-w-4xl flex-grow p-lg md:p-2xl">
+        <nav className="p-lg md:p-2xl max-w-4xl flex-grow">
           <motion.ul
             variants={primaryContainer}
             initial="hidden"
@@ -93,7 +93,7 @@ export const NavigationMenu = (props: {
               >
                 <span
                   className={clsx(
-                    'mr-sm inline-block w-6 rounded-md border-t-4 border-solid md:mr-md md:w-24 xl:w-32',
+                    'mr-sm md:mr-md inline-block w-6 rounded-md border-t-4 border-solid md:w-24 xl:w-32',
                     pathName === current.href ? 'border-cream' : 'border-lunar',
                   )}
                 />
@@ -102,7 +102,7 @@ export const NavigationMenu = (props: {
                     href={current.href}
                     className={clsx(
                       pathName === current.href ? 'text-softy' : 'text-pepto',
-                      'whitespace-nowrap hover:text-cream',
+                      'hover:text-cream whitespace-nowrap',
                     )}
                   >
                     {current.label}
@@ -111,17 +111,17 @@ export const NavigationMenu = (props: {
               </motion.li>
             ))}
           </motion.ul>
-          <section className="mt-xl md:mt-2xl md:flex md:flex-row lg:mt-3xl xl:mt-4xl">
+          <section className="mt-xl md:mt-2xl lg:mt-3xl xl:mt-4xl md:flex md:flex-row">
             <motion.h3
               variants={secondaryHeadline}
               initial="hidden"
               animate={animate}
-              className="mb-sm font-futura text-xl font-bold uppercase italic text-lunar md:mb-0 md:text-2xl"
+              className="mb-sm font-futura text-lunar text-xl font-bold uppercase italic md:mb-0 md:text-2xl"
             >
               Elsewhere{' '}
               <span
                 className={clsx(
-                  'md:w-18 mx-sm inline-block w-6 rounded-md border-t-4 border-solid border-lunar md:mr-md xl:w-24',
+                  'md:w-18 mx-sm border-lunar md:mr-md inline-block w-6 rounded-md border-t-4 border-solid xl:w-24',
                 )}
               />
             </motion.h3>
@@ -129,7 +129,7 @@ export const NavigationMenu = (props: {
               variants={secondaryContainer}
               initial="hidden"
               animate={animate}
-              className="md:flex md:flex-row md:gap-lg"
+              className="md:gap-lg md:flex md:flex-row"
             >
               {props.secondaryLinks.map((current, i) => (
                 <motion.li
@@ -140,7 +140,7 @@ export const NavigationMenu = (props: {
                 >
                   <Link
                     href={current.href}
-                    className="whitespace-nowrap font-futura font-bold uppercase italic text-cream hover:text-ghost"
+                    className="font-futura text-cream hover:text-ghost whitespace-nowrap font-bold uppercase italic"
                   >
                     {current.label}
                   </Link>

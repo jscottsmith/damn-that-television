@@ -15,7 +15,7 @@
     "lint:fix": "eslint . --fix",
     "test": "jest --watch",
     "typeCheck": "tsc --noEmit",
-    "prettier": "prettier --config ./.prettierrc --write \"./**/*.*\"",
+    "prettier": "prettier --write .",
     "slicemachine": "start-slicemachine"
   },
   "repository": {

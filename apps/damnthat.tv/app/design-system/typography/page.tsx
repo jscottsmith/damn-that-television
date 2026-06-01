@@ -10,12 +10,12 @@ const titleSizes = Object.values(TitleSize);
 
 export default function Components() {
   return (
-    <div className="flex min-h-screen flex-col gap-xl">
+    <div className="gap-xl flex min-h-screen flex-col">
       <section>
         <Code>
           <pre className="my-base">{'Fonts'}</pre>
         </Code>
-        <div className="flex flex-col gap-4 font-futura text-4xl">
+        <div className="font-futura flex flex-col gap-4 text-4xl">
           <p className="font-light">Futura Light 300</p>
           <p className="font-light italic">Futura Light Oblique 300</p>
           <p className="font-normal">Futura Regular 400</p>

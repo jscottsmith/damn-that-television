@@ -17,7 +17,7 @@ const Words: FC<WordsProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <Prose className="prose mx-auto xl:prose-lg">
+      <Prose className="prose xl:prose-lg mx-auto">
         <PrismicRichText field={slice.primary.content} />
       </Prose>
     </section>

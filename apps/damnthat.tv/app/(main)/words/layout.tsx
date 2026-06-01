@@ -5,10 +5,10 @@ import React, { PropsWithChildren } from 'react';
 
 export default function Layout(props: PropsWithChildren) {
   return (
-    <SurfaceBackground className="flex min-h-screen items-center justify-center py-4xl md:py-6xl">
+    <SurfaceBackground className="py-4xl md:py-6xl flex min-h-screen items-center justify-center">
       <SiteWrapper className="w-full max-w-screen-2xl">
         <CardPrimary>
-          <article className="max-w-none p-base md:p-2xl xl:p-4xl">
+          <article className="p-base md:p-2xl xl:p-4xl max-w-none">
             {props.children}
           </article>
         </CardPrimary>

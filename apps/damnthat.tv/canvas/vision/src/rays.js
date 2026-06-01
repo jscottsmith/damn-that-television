@@ -1,4 +1,3 @@
- 
 // https://github.com/ncase/sight-and-light
 
 // Find intersection of RAY & SEGMENT

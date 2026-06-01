@@ -60,15 +60,15 @@ export default function Components() {
         }
       />
 
-      <section className="grid gap-lg md:grid-cols-3 md:gap-xl lg:gap-2xl">
-        <CardSecondary className="h-96 p-base md:p-lg" />
-        <CardSecondary className="h-96 p-base md:p-lg" />
-        <CardSecondary className="h-96 p-base md:p-lg" />
+      <section className="gap-lg md:gap-xl lg:gap-2xl grid md:grid-cols-3">
+        <CardSecondary className="p-base md:p-lg h-96" />
+        <CardSecondary className="p-base md:p-lg h-96" />
+        <CardSecondary className="p-base md:p-lg h-96" />
       </section>
 
       <section className="grid grid-cols-1">
         <SurfacePattern asChild>
-          <CardPrimary className="h-96 p-base md:p-lg" />
+          <CardPrimary className="p-base md:p-lg h-96" />
         </SurfacePattern>
       </section>
     </>
