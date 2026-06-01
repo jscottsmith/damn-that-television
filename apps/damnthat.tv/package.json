@@ -12,6 +12,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "oxlint .",
+    "lint:ci": "oxlint --format github .",
     "lint:fix": "oxlint --fix .",
     "test": "jest --watch",
     "typeCheck": "tsc --noEmit",
