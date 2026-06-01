@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
+import { twMerge } from '@/helpers/tailwind-merge';
 
 type SiteWrapperProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>> & {
   /**
@@ -19,12 +20,14 @@ export function SiteWrapper({
 }: SiteWrapperProps) {
   return (
     <div
-      className={clsx(
+      className={twMerge(
+        clsx(
+          'px-base md:px-lg lg:px-xl xl:px-2xl 2xl:px-4xl',
+          padY && 'py-base md:py-lg lg:py-xl xl:py-2xl 2xl:py-4xl',
+          padT && 'pt-base md:pt-lg lg:pt-xl xl:pt-2xl 2xl:pt-4xl',
+          padB && 'pb-base md:pb-lg lg:pb-xl xl:pb-2xl 2xl:pb-4xl',
+        ),
         className,
-        'px-base md:px-lg lg:px-xl xl:px-2xl 2xl:px-4xl',
-        padY && 'py-base md:py-lg lg:py-xl xl:py-2xl 2xl:py-4xl',
-        padT && 'pt-base md:pt-lg lg:pt-xl xl:pt-2xl 2xl:pt-4xl',
-        padB && 'pb-base md:pb-lg lg:pb-xl xl:pb-2xl 2xl:pb-4xl',
       )}
       {...props}
     >

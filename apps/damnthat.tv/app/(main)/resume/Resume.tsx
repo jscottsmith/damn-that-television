@@ -20,9 +20,9 @@ interface ResumeProps {
 export const Resume = (props: ResumeProps) => {
   return (
     <SurfaceBackground asChild>
-      <SiteWrapper padY>
+      <SiteWrapper padY className="px-0">
         <article className="pt-4xl">
-          <CardPrimary className="p-sm md:gap-md md:p-md lg:gap-lg lg:p-lg xl:p-xl 2xl:p-2xl mx-auto max-w-screen-lg md:flex">
+          <CardPrimary className="p-base md:gap-md md:p-md lg:gap-lg lg:p-lg xl:p-xl 2xl:p-2xl mx-auto max-w-screen-lg md:flex">
             <ResumeHeader
               document={props.document}
               className="-mt-3xl md:top-xl md:sticky md:mt-0 md:w-1/3 md:self-start"

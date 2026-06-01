@@ -34,7 +34,7 @@ export function Footer() {
         ))}
       </Marquee>
       <FooterBody>
-        <div className="relative z-1 px-4">
+        <div className="relative z-1 px-base">
           <Wrapper asChild>
             <SurfacePrimary asChild>
               <footer className="flex flex-wrap gap-2 rounded-b-3xl pt-4 pb-4 md:gap-6 md:pb-10">
