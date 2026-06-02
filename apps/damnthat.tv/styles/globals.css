@@ -1,4 +1,5 @@
 @import './tailwind.css';
+@import '@workspace/ui/globals.css';
 
 :root {
   --scroll-duration: 0.5s;

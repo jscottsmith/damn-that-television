@@ -19,7 +19,8 @@
     "typeCheck": "turbo run typeCheck",
     "format": "turbo run format",
     "format:check": "turbo run format:check",
-    "slicemachine": "turbo run slicemachine"
+    "slicemachine": "turbo run slicemachine",
+    "ui:add": "pnpm dlx shadcn@latest add --cwd apps/damnthat.tv"
   },
   "repository": {
     "type": "git",
