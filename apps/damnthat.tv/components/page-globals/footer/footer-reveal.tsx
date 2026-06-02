@@ -1,6 +1,7 @@
 'use client';
 
-import { SurfacePattern } from '@/components/surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import clsx from 'clsx';
 import { motion, useScroll, useTransform } from 'motion/react';
 import type { RefObject } from 'react';
@@ -18,10 +19,12 @@ export function FooterReveal({ scrollTargetRef }: FooterRevealProps) {
 
   return (
     <div className="sticky bottom-0 z-0 flex min-h-[50vh] items-end">
-      <SurfacePattern
-        className={clsx(
+      <div
+        className={cn(
+          surfaceVariants({ variant: 'pattern' }),
           '-z-1 pointer-events-none absolute bottom-0 left-0 right-0 top-[-50vh]',
         )}
+        style={{ backgroundSize: '5rem 5rem' }}
       />
       <motion.div
         className={clsx(

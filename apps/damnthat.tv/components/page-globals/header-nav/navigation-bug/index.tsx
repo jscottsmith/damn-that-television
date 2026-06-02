@@ -4,7 +4,8 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { Button } from '@/components/buttons/button';
 import { EyeMan } from '@/components/buttons/eye-button/eye-man';
-import { SurfacePrimaryGlass } from '@/components/surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { SurfaceInteractive } from '@/components/surface-interactive';
 import { NAVIGATION_LINKS } from '@/constants/app';
 import { IconButton } from '@/components/buttons/icon-button';
@@ -32,21 +33,23 @@ export function NavigationBugDesktop() {
         )}
         id="desktop-menu"
       >
-        <SurfacePrimaryGlass asChild>
-          <motion.nav
-            variants={NAV_VARIANTS}
-            animate={navVariant}
-            initial={NAV_VARIANTS.visible}
-            transition={{
-              type: 'spring',
-              bounce: 0.25,
-            }}
-            className={clsx(
+        <motion.nav
+          variants={NAV_VARIANTS}
+          animate={navVariant}
+          initial={NAV_VARIANTS.visible}
+          transition={{
+            type: 'spring',
+            bounce: 0.25,
+          }}
+          className={cn(
+            surfaceVariants({ variant: 'glass' }),
+            clsx(
               'pointer-events-auto relative grid',
               'rounded-[2.3rem]',
               'shadow-lg shadow-slate-950/5',
-            )}
-          >
+            ),
+          )}
+        >
             <div
               className={clsx(
                 'relative flex w-full flex-wrap items-center gap-1 self-start p-1 pr-2.5',
@@ -65,8 +68,7 @@ export function NavigationBugDesktop() {
                 ))}
               </div>
             </div>
-          </motion.nav>
-        </SurfacePrimaryGlass>
+        </motion.nav>
       </div>
     </>
   );
@@ -100,23 +102,25 @@ export function NavigationBugMobile() {
       >
         <AnimatePresence>
           {menu.open && (
-            <SurfacePrimaryGlass asChild>
-              <motion.nav
-                key="mobile-menu"
-                variants={NAV_VARIANTS_MOBILE}
-                exit={NAV_VARIANTS_MOBILE.hidden}
-                initial={NAV_VARIANTS_MOBILE.hidden}
-                animate={NAV_VARIANTS_MOBILE.visible}
-                transition={{
-                  type: 'spring',
-                  bounce: 0.4,
-                }}
-                className={clsx(
+            <motion.nav
+              key="mobile-menu"
+              variants={NAV_VARIANTS_MOBILE}
+              exit={NAV_VARIANTS_MOBILE.hidden}
+              initial={NAV_VARIANTS_MOBILE.hidden}
+              animate={NAV_VARIANTS_MOBILE.visible}
+              transition={{
+                type: 'spring',
+                bounce: 0.4,
+              }}
+              className={cn(
+                surfaceVariants({ variant: 'glass' }),
+                clsx(
                   'pointer-events-auto relative grid w-full',
                   'rounded-[2.3rem]',
                   'shadow-lg shadow-slate-950/5',
-                )}
-              >
+                ),
+              )}
+            >
                 <div
                   className={clsx(
                     'p-base relative flex w-full flex-col gap-4 self-start pb-16',
@@ -144,8 +148,7 @@ export function NavigationBugMobile() {
                     ))}
                   </div>
                 </div>
-              </motion.nav>
-            </SurfacePrimaryGlass>
+            </motion.nav>
           )}
         </AnimatePresence>
       </div>

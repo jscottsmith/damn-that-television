@@ -6,7 +6,8 @@ import {
   ArrowLeftIcon,
   ArrowTopRightOnSquareIcon,
 } from '@heroicons/react/24/outline';
-import { SurfacePrimaryGlass } from '@/components/surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { UseCycleIndex } from 'hooks/use-cycle-index';
 
 export function HeaderNav(props: {
@@ -16,15 +17,17 @@ export function HeaderNav(props: {
   externalLink: string;
 }) {
   return (
-    <SurfacePrimaryGlass asChild>
-      <header
-        className={clsx(
+    <header
+      className={cn(
+        surfaceVariants({ variant: 'glass' }),
+        clsx(
           'absolute left-0 right-0 top-0 z-50',
           'md:top-12',
           'mx-auto flex items-center justify-between gap-4',
           'md:max-w-lg md:rounded-full md:p-4',
-        )}
-      >
+        ),
+      )}
+    >
         <nav>
           <Link href="/">
             <IconButton>
@@ -52,7 +55,6 @@ export function HeaderNav(props: {
             </IconButton>
           </a>
         </div>
-      </header>
-    </SurfacePrimaryGlass>
+    </header>
   );
 }

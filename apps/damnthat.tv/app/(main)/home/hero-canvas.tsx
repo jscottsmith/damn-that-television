@@ -1,5 +1,6 @@
 'use client';
-import { SurfacePattern, SurfacePrimary } from '@/components/surface';
+import { Surface, surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { useScroll, motion, useSpring } from 'motion/react';
 import { CanvasHero } from '@/components/canvas-hero';
 import Letters from 'canvas/letters/LetterDrop';
@@ -21,16 +22,19 @@ function Background() {
   });
 
   return (
-    <SurfacePattern className="absolute inset-0 -z-10" asChild>
-      <motion.div
-        className={styles.hero}
-        style={{
-          // @ts-expect-error
-          ['--p']: springProgress,
-        }}
-        ref={ref}
-      />
-    </SurfacePattern>
+    <motion.div
+      className={cn(
+        surfaceVariants({ variant: 'pattern' }),
+        styles.hero,
+        'absolute inset-0 -z-10',
+      )}
+      style={{
+        backgroundSize: '5rem 5rem',
+        // @ts-expect-error
+        ['--p']: springProgress,
+      }}
+      ref={ref}
+    />
   );
 }
 
@@ -42,9 +46,9 @@ export function HeroCanvas() {
   }
 
   return (
-    <SurfacePrimary className="relative z-0 overflow-hidden">
+    <Surface variant="primary" className="relative z-0 overflow-hidden">
       <Background />
       <CanvasHero entities={[letters.current]} />
-    </SurfacePrimary>
+    </Surface>
   );
 }

@@ -5,7 +5,8 @@ import { AnimatePresence, motion } from 'motion/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useBoundingClientRect } from 'hooks/use-client-bounding-rect';
 import { CardPrimary } from '../card';
-import { SurfacePrimary } from '../surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { useToggleSessionStorage } from 'hooks/use-toggle-session-storage';
 
 type MarqueeProps = {
@@ -76,14 +77,16 @@ export const Marquee = (props: MarqueeProps) => {
                 {text}
               </motion.div>
             ))}
-            <SurfacePrimary asChild>
-              <button
-                className="absolute top-1/2 right-2 z-10 block -translate-y-1/2"
-                onClick={() => toggle.toggle()}
-              >
-                <XMarkIcon className="h-4 w-4" />
-              </button>
-            </SurfacePrimary>
+            <button
+              type="button"
+              className={cn(
+                surfaceVariants({ variant: 'primary' }),
+                'absolute top-1/2 right-2 z-10 block -translate-y-1/2',
+              )}
+              onClick={() => toggle.toggle()}
+            >
+              <XMarkIcon className="h-4 w-4" />
+            </button>
           </CardPrimary>
         </motion.div>
       )}

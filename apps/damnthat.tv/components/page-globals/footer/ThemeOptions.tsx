@@ -1,5 +1,6 @@
 'use client';
-import { SurfaceSecondary } from '@/components/surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { ThemeToggle } from '../header-nav/navigation-bug/components/theme-toggle';
 import { useTheme } from 'next-themes';
 import { Eyebrow } from '@/components/typography/eyebrow';
@@ -16,9 +17,14 @@ export function ThemeOptions() {
       <Eyebrow className="text-center">
         <span>Theme:</span> <span>{mounted ? theme.theme : ''}</span>
       </Eyebrow>
-      <SurfaceSecondary className="rounded-xl p-4">
+      <div
+        className={cn(
+          surfaceVariants({ variant: 'secondary' }),
+          'rounded-xl p-4',
+        )}
+      >
         <ThemeToggle />
-      </SurfaceSecondary>
+      </div>
       {mounted && isNotTouch && (
         <Eyebrow className="text-center" asChild>
           <p>

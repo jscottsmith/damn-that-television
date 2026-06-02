@@ -7,7 +7,8 @@ import {
   SECONDARY_LINKS,
 } from '@/constants/app';
 import Link from 'next/link';
-import { SurfacePrimary, SurfaceSecondary } from '@/components/surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { Wrapper } from '../wrapper';
 import { EyeMan } from '@/components/buttons/eye-button/eye-man';
 import { APP_ROUTES } from '@/constants/routes.constants';
@@ -36,8 +37,12 @@ export function Footer() {
       <FooterBody>
         <div className="relative z-1 px-base">
           <Wrapper asChild>
-            <SurfacePrimary asChild>
-              <footer className="flex flex-wrap gap-2 rounded-b-3xl pt-4 pb-4 md:gap-6 md:pb-10">
+            <footer
+              className={cn(
+                surfaceVariants({ variant: 'primary' }),
+                'flex flex-wrap gap-2 rounded-b-3xl pt-4 pb-4 md:gap-6 md:pb-10',
+              )}
+            >
                 <Link
                   href={APP_ROUTES.home}
                   className="hover:text-pepto-500 dark:text-miami dark:hover:text-club group mx-auto block w-14 justify-self-center text-slate-800 md:w-24"
@@ -49,10 +54,15 @@ export function Footer() {
                 <nav className="my-8 flex w-full flex-wrap justify-center gap-8 self-start justify-self-stretch sm:justify-between">
                   <div>
                     <Eyebrow className="pb-2 text-center">Navigation</Eyebrow>
-                    <SurfaceSecondary className="flex flex-col gap-2 rounded-xl p-4">
+                    <div
+                      className={cn(
+                        surfaceVariants({ variant: 'secondary' }),
+                        'flex flex-col gap-2 rounded-xl p-4',
+                      )}
+                    >
                       <MainLinks />
                       <SecondaryLinks />
-                    </SurfaceSecondary>
+                    </div>
                   </div>
                   <ThemeOptions />
                 </nav>
@@ -85,8 +95,7 @@ export function Footer() {
                     </span>
                   </Prose>
                 </section>
-              </footer>
-            </SurfacePrimary>
+            </footer>
           </Wrapper>
         </div>
       </FooterBody>

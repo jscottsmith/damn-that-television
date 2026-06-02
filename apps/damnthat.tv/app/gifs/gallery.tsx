@@ -8,7 +8,8 @@ import { Directions, DraggableSlide } from './components/draggable-slide';
 import { FooterNav } from './components/footer-nav';
 import { ActionIndicator } from './components/action-indicator';
 import { HeaderNav } from './components/header-nav';
-import { SurfaceBackground } from '@/components/surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { useEventListener } from 'usehooks-ts';
 
 export function GalleryRoute() {
@@ -48,8 +49,12 @@ export function GalleryRoute() {
         indexController={indexController}
         length={images.length}
       />
-      <SurfaceBackground asChild>
-        <div className="fixed inset-0 flex items-center justify-center overflow-hidden p-2">
+      <div
+        className={cn(
+          surfaceVariants({ variant: 'background' }),
+          'fixed inset-0 flex items-center justify-center overflow-hidden p-2',
+        )}
+      >
           <AnimatePresence>
             <motion.div
               key={currentImage.id}
@@ -89,8 +94,7 @@ export function GalleryRoute() {
               </DraggableSlide>
             </motion.div>
           </AnimatePresence>
-        </div>
-      </SurfaceBackground>
+      </div>
       <AnimatePresence>
         {decidedDirection && (
           <ActionIndicator

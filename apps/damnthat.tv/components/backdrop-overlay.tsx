@@ -1,10 +1,15 @@
 import React from 'react';
-import { SurfaceBackground } from './surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 
 export default function BackdropOverlay() {
   return (
-    <SurfaceBackground asChild>
-      <div className="fixed inset-0 opacity-90" aria-hidden="true" />
-    </SurfaceBackground>
+    <div
+      className={cn(
+        surfaceVariants({ variant: 'background' }),
+        'fixed inset-0 opacity-90',
+      )}
+      aria-hidden="true"
+    />
   );
 }

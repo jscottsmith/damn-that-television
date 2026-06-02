@@ -9,7 +9,8 @@ import { ResumeAwards } from './components/resume-awards';
 import { WorkTogether } from './components/work-together';
 import { ResumeEducation } from './components/resume-education';
 import { CardPrimary } from '@/components/card';
-import { SurfaceBackground } from '@/components/surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { SiteWrapper } from '@/components/site-wrapper';
 import type { ResumeDocument } from '../../../prismicio-types';
 
@@ -19,8 +20,10 @@ interface ResumeProps {
 
 export const Resume = (props: ResumeProps) => {
   return (
-    <SurfaceBackground asChild>
-      <SiteWrapper padY className="px-0">
+    <SiteWrapper
+      padY
+      className={cn(surfaceVariants({ variant: 'background' }), 'px-0')}
+    >
         <article className="pt-4xl">
           <CardPrimary className="p-base md:gap-md md:p-md lg:gap-lg lg:p-lg xl:p-xl 2xl:p-2xl mx-auto max-w-screen-lg md:flex">
             <ResumeHeader
@@ -56,7 +59,6 @@ export const Resume = (props: ResumeProps) => {
             </div>
           </CardPrimary>
         </article>
-      </SiteWrapper>
-    </SurfaceBackground>
+    </SiteWrapper>
   );
 };
