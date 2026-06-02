@@ -6,7 +6,8 @@ import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 import { useState } from 'react';
 import { SurfaceInteractiveGlass } from './surface-interactive';
-import { SURFACE_GLASS, SurfacePrimary } from './surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import clsx from 'clsx';
 import { Prose } from './typography/prose';
 import { AnimatePresence } from 'motion/react';
@@ -86,21 +87,19 @@ const MediaAsset: React.FC<MediaAssetProps> = ({
             key="overlay"
             transition={{ type: 'spring', bounce: 0.1 }}
           >
-            <SurfacePrimary asChild>
-              <figcaption
-                className={clsx(
-                  'absolute bottom-0 right-0 w-full p-4',
-                  SURFACE_GLASS,
-                )}
-              >
+            <figcaption
+              className={cn(
+                surfaceVariants({ variant: 'glass' }),
+                'absolute bottom-0 right-0 w-full p-4',
+              )}
+            >
                 {title && <h3 className="mb-2 font-medium">{title}</h3>}
                 {description && (
                   <Prose className="prose-sm text-xs">
                     <PrismicRichText field={description} />
                   </Prose>
                 )}
-              </figcaption>
-            </SurfacePrimary>
+            </figcaption>
           </AnimateSlide>
         )}
       </AnimatePresence>

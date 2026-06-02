@@ -2,11 +2,8 @@
 import { CardPrimary, CardSecondary } from '@/components/card';
 import { SiteWrapper } from '@/components/site-wrapper';
 import { InputToggle } from '@/components/input-toggle';
-import {
-  SurfaceBackground,
-  SurfacePattern,
-  SurfaceSecondary,
-} from '@/components/surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { useTheme } from 'next-themes';
 import { Title } from '@/components/typography/title';
 import { HeroTitle } from '@/components/typography/hero-title';
@@ -67,9 +64,13 @@ export default function Components() {
       </section>
 
       <section className="grid grid-cols-1">
-        <SurfacePattern asChild>
-          <CardPrimary className="p-base md:p-lg h-96" />
-        </SurfacePattern>
+        <CardPrimary
+          className={cn(
+            surfaceVariants({ variant: 'pattern' }),
+            'p-base md:p-lg h-96',
+          )}
+          style={{ backgroundSize: '5rem 5rem' }}
+        />
       </section>
     </>
   );

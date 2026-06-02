@@ -5,13 +5,19 @@ import { CardPadding } from '@/components/card';
 import { InputToggle } from '@/components/input-toggle';
 import { PasswordField } from '@/components/inputs/password-field';
 import { TextField } from '@/components/inputs/text-field';
-import { SurfacePrimary } from '@/components/surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 
 export default function Components() {
   return (
-    <SurfacePrimary asChild>
-      <CardPadding asChild>
-        <form autoComplete="off" className="gap-lg flex max-w-lg flex-col">
+    <CardPadding asChild>
+      <form
+        autoComplete="off"
+        className={cn(
+          surfaceVariants({ variant: 'primary' }),
+          'gap-lg flex max-w-lg flex-col',
+        )}
+      >
           <TextField label="Test 1" placeholder="Testing" pattern=".*\S.*" />
           <TextField label="Test 2" placeholder="Testing" pattern=".*\S.*" />
           <PasswordField
@@ -23,8 +29,7 @@ export default function Components() {
           <Button name={ButtonName.primary} size={ButtonSize.md}>
             Submit
           </Button>
-        </form>
-      </CardPadding>
-    </SurfacePrimary>
+      </form>
+    </CardPadding>
   );
 }

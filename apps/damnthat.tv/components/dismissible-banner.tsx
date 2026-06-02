@@ -1,7 +1,8 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { useSessionStorage } from 'usehooks-ts';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { SurfaceSecondary } from './surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { CardPadding } from './card';
 import { IconButton } from './buttons/icon-button';
 import { IconContainerSize } from './icon-container';
@@ -69,8 +70,13 @@ export function DismissibleBanner({
       {!isDismissed && (
         <AnimateHeight key="height">
           <AnimateFlipDown key="flip">
-            <SurfaceSecondary className={className} asChild>
-              <CardPadding className="relative">
+            <CardPadding
+              className={cn(
+                surfaceVariants({ variant: 'secondary' }),
+                'relative',
+                className,
+              )}
+            >
                 <IconButton
                   size={IconContainerSize.sm}
                   className="right-base top-base absolute"
@@ -79,8 +85,7 @@ export function DismissibleBanner({
                   <XMarkIcon />
                 </IconButton>
                 {renderChildren()}
-              </CardPadding>
-            </SurfaceSecondary>
+            </CardPadding>
           </AnimateFlipDown>
         </AnimateHeight>
       )}

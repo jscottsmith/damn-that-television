@@ -4,7 +4,8 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { motion } from 'motion/react';
 import { SideNavMenuRoutes } from './types';
-import { SurfacePrimary } from '../surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { useMediaQuery } from 'usehooks-ts';
 import { MenuButton } from '../buttons/menu-button';
 
@@ -103,15 +104,16 @@ export function SideNavMenu(props: SideNavMenuProps) {
           aria-controls={SIDE_NAV_ID}
         />
       </motion.div>
-      <SurfacePrimary asChild>
-        <motion.div
-          key="menu"
-          initial={'open'}
-          animate={sideMenu.open ? 'open' : 'closed'}
-          variants={menuVariants}
-          aria-hidden={!sideMenu.open}
-          id={SIDE_NAV_ID}
-          className={clsx(
+      <motion.div
+        key="menu"
+        initial={'open'}
+        animate={sideMenu.open ? 'open' : 'closed'}
+        variants={menuVariants}
+        aria-hidden={!sideMenu.open}
+        id={SIDE_NAV_ID}
+        className={cn(
+          surfaceVariants({ variant: 'primary' }),
+          clsx(
             'z-50',
             'w-sidemenu h-screen flex-shrink',
             'p-base pt-3xl',
@@ -121,11 +123,11 @@ export function SideNavMenu(props: SideNavMenuProps) {
             'border-r border-slate-200 dark:border-slate-900',
             // after element to add extra space for the menu animation
             'after:absolute after:bottom-0 after:right-full after:top-0 after:w-24 after:bg-white dark:after:bg-slate-800',
-          )}
-        >
-          <nav>{renderLinksRecursively(props.routes)}</nav>
-        </motion.div>
-      </SurfacePrimary>
+          ),
+        )}
+      >
+        <nav>{renderLinksRecursively(props.routes)}</nav>
+      </motion.div>
       <motion.div
         key="content"
         layout

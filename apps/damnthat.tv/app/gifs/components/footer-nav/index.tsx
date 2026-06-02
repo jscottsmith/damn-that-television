@@ -5,7 +5,8 @@ import {
 } from '@heroicons/react/24/outline';
 import { IconBadge } from '../icon-badge';
 import clsx from 'clsx';
-import { SurfacePrimaryGlass } from '@/components/surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { IconButton } from '../icon-button';
 import { CommandOverlay } from '@/components/command-overlay';
 import { useTimeout } from 'usehooks-ts';
@@ -36,13 +37,15 @@ export function FooterNav(props: {
           'md:bottom-12',
         )}
       >
-        <SurfacePrimaryGlass asChild>
-          <div
-            className={clsx(
+        <div
+          className={cn(
+            surfaceVariants({ variant: 'glass' }),
+            clsx(
               'mx-auto flex items-center justify-between',
               'md:max-w-lg md:rounded-full md:p-4',
-            )}
-          >
+            ),
+          )}
+        >
             <IconBadge isActive={props.isTrashed} activeBgColor="bg-lit-500">
               <TrashIcon className="w-6" />
             </IconBadge>
@@ -64,8 +67,7 @@ export function FooterNav(props: {
             <IconBadge isActive={props.isLiked} activeBgColor="bg-club-500">
               <HeartIcon className="w-6" />
             </IconBadge>
-          </div>
-        </SurfacePrimaryGlass>
+        </div>
       </footer>
       <CommandOverlay>{controller.copied && 'GIF URL Copied'}</CommandOverlay>
     </>

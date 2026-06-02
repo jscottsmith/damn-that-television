@@ -3,7 +3,8 @@ import { ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
-import { SurfaceBackground, SurfacePrimary } from './surface';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 import { AnimateFadeIn } from './animations/animate-fade-in';
 import { CardPadding } from './card';
 import { Title } from './typography/title';
@@ -35,11 +36,13 @@ export function SideDrawer(props: SideDrawerProps) {
           </AnimateFadeIn>
 
           <div className="pl-base fixed inset-0 flex h-screen w-screen justify-end overflow-hidden">
-            <SurfacePrimary asChild>
-              <CardPadding asChild>
-                <motion.div
-                  key="panel"
-                  className="z-10 flex min-h-full w-full max-w-2xl"
+            <CardPadding asChild>
+              <motion.div
+                key="panel"
+                className={cn(
+                  surfaceVariants({ variant: 'primary' }),
+                  'z-10 flex min-h-full w-full max-w-2xl',
+                )}
                   initial={{ x: '100%', opacity: 1 }}
                   animate={{ x: '0%', opacity: 1 }}
                   exit={{ x: '100%', opacity: 1 }}
@@ -66,8 +69,7 @@ export function SideDrawer(props: SideDrawerProps) {
                     </footer>
                   </Dialog.Panel>
                 </motion.div>
-              </CardPadding>
-            </SurfacePrimary>
+            </CardPadding>
           </div>
         </Dialog>
       )}
