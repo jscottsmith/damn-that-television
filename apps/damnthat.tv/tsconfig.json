@@ -2,15 +2,32 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/routes/*": ["routes/*"],
-      "@/constants/*": ["constants/*"],
-      "@/pages/*": ["pages/*"],
-      "@/helpers/*": ["helpers/*"],
-      "@/sass/*": ["sass/*"]
+      "@workspace/ui/*": ["../../packages/ui/src/*"],
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/routes/*": [
+        "routes/*"
+      ],
+      "@/constants/*": [
+        "constants/*"
+      ],
+      "@/pages/*": [
+        "pages/*"
+      ],
+      "@/helpers/*": [
+        "helpers/*"
+      ],
+      "@/sass/*": [
+        "sass/*"
+      ]
     },
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -18,7 +35,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -29,7 +46,10 @@
       }
     ],
     "strictNullChecks": true,
-    "types": ["jest", "@testing-library/jest-dom"]
+    "types": [
+      "jest",
+      "@testing-library/jest-dom"
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -39,5 +59,7 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

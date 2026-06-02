@@ -76,6 +76,7 @@ const poppins = Poppins({
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   display: 'swap',
+  variable: '--font-poppins',
 });
 
 export const metadata: Metadata = {
@@ -107,7 +108,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={clsx(poppins.className, futura.variable)}
+      className={clsx(poppins.variable, poppins.className, futura.variable)}
       suppressHydrationWarning
     >
       <head>

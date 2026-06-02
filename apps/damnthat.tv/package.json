@@ -39,6 +39,7 @@
     "@prismicio/react": "^3.2.1",
     "@tailwindcss/postcss": "^4.0.0",
     "@vercel/og": "^0.6.8",
+    "@workspace/ui": "workspace:*",
     "clsx": "^2.1.1",
     "embla-carousel": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
