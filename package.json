@@ -4,7 +4,7 @@
   "description": "Damn that television. The personal website of J Scott Smith",
   "private": true,
   "engines": {
-    "node": "22.x"
+    "node": "24.x"
   },
   "packageManager": "pnpm@9.0.0",
   "scripts": {
