@@ -127,9 +127,18 @@ export default function Buttons() {
 
           <ComponentSection title="Button with Icon">
             <div className="gap-sm flex items-end">
-              <Button icon={<EyeIcon />}>Reveal</Button>
-              <Button icon={<MagnifyingGlassIcon />}>Search</Button>
-              <Button icon={<TrashIcon />}>Delete</Button>
+              <Button>
+                Reveal
+                <EyeIcon />
+              </Button>
+              <Button>
+                Search
+                <MagnifyingGlassIcon />
+              </Button>
+              <Button>
+                Delete
+                <TrashIcon />
+              </Button>
             </div>
           </ComponentSection>
 
