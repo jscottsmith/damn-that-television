@@ -1,7 +1,7 @@
-import { cva, type VariantProps } from "class-variance-authority"
-import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@workspace/ui/lib/utils";
 
 const surfaceVariants = cva("", {
   variants: {
@@ -12,30 +12,26 @@ const surfaceVariants = cva("", {
       glass: "bg-secondary/60 text-secondary-foreground backdrop-blur-lg",
       pattern: [
         "bg-background text-foreground",
-        "bg-[url('/static/pattern-1.svg')] dark:bg-[url('/static/pattern-0.svg')]",
+        "bg-[url('/static/pattern-1.svg')] bg-[length:5rem_5rem] dark:bg-[url('/static/pattern-0.svg')]",
       ],
     },
   },
   defaultVariants: {
     variant: "background",
   },
-})
+});
 
 type SurfaceProps = React.ComponentProps<"div"> &
-  VariantProps<typeof surfaceVariants>
+  VariantProps<typeof surfaceVariants>;
 
-function Surface({ className, variant, style, ...props }: SurfaceProps) {
+function Surface({ className, variant, ...props }: SurfaceProps) {
   return (
     <div
+      data-slot="surface"
       className={cn(surfaceVariants({ variant }), className)}
-      style={
-        variant === "pattern"
-          ? { backgroundSize: "5rem 5rem", ...style }
-          : style
-      }
       {...props}
     />
-  )
+  );
 }
 
-export { Surface, surfaceVariants }
+export { Surface, surfaceVariants };

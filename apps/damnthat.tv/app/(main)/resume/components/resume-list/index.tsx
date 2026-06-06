@@ -2,7 +2,7 @@ import React from 'react';
 import { PrismicRichText } from '@prismicio/react';
 import { Prose } from '@/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
-import { Badge } from '@/components/badge';
+import { Badge } from '@workspace/ui/components/badge';
 import type { ResumeListSlice } from '../../../../../prismicio-types';
 
 export const ResumeList = (props: ResumeListSlice) => {
@@ -15,7 +15,7 @@ export const ResumeList = (props: ResumeListSlice) => {
       <ul className="flex flex-wrap gap-2">
         {props.items.map((item, i) => (
           <li key={i}>
-            <Badge size="lg" as="span">
+            <Badge size="lg">
               <PrismicRichText field={item.content} />
             </Badge>
           </li>

@@ -1,11 +1,11 @@
 'use client';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
+import { badgeVariants } from '@workspace/ui/components/badge';
 import { ThemeToggle } from '../header-nav/navigation-bug/components/theme-toggle';
 import { useTheme } from 'next-themes';
 import { Eyebrow } from '@/components/typography/eyebrow';
 import { useHasMounted } from 'hooks/use-has-mounted';
-import { Badge } from '@/components/badge';
 import { useIsNotTouch } from 'hooks/use-media';
 
 export function ThemeOptions() {
@@ -28,9 +28,7 @@ export function ThemeOptions() {
       {mounted && isNotTouch && (
         <Eyebrow className="text-center" asChild>
           <p>
-            <Badge asChild>
-              <span>⌘ K</span>
-            </Badge>{' '}
+            <span className={cn(badgeVariants(), 'inline-flex')}>⌘ K</span>{' '}
             to Switch
           </p>
         </Eyebrow>

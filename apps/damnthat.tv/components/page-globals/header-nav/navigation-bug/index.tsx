@@ -2,13 +2,12 @@ import React from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { Button } from '@/components/buttons/button';
-import { EyeMan } from '@/components/buttons/eye-button/eye-man';
+import { Button } from '@workspace/ui/components/button';
+import { EyeMan } from '@workspace/ui/components/eye-button';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
 import { SurfaceInteractive } from '@/components/surface-interactive';
 import { NAVIGATION_LINKS } from '@/constants/app';
-import { IconButton } from '@/components/buttons/icon-button';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ROUTE_HOME } from '@/constants/routes.constants';
 import {
@@ -158,9 +157,9 @@ export function NavigationBugMobile() {
         animate={menu.open ? NAV_MOBILE_MENU_VARIANTS.visible : navVariant}
         initial={NAV_MOBILE_MENU_VARIANTS.visible}
       >
-        <IconButton size="md" onClick={menu.toggleOpen}>
+        <Button presentation="icon" size="md" onClick={menu.toggleOpen}>
           {menu.open ? <XMarkIcon /> : <Bars3Icon />}
-        </IconButton>
+        </Button>
       </motion.div>
     </>
   );

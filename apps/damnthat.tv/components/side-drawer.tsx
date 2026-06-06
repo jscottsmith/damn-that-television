@@ -5,10 +5,10 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
+import { Button } from '@workspace/ui/components/button';
 import { AnimateFadeIn } from './animations/animate-fade-in';
 import { CardPadding } from './card';
 import { Title } from './typography/title';
-import { IconButton } from './buttons/icon-button';
 import { Prose } from './typography/prose';
 import BackdropOverlay from './backdrop-overlay';
 
@@ -54,9 +54,9 @@ export function SideDrawer(props: SideDrawerProps) {
                           <span>{props.title}</span>
                         </Title>
                       </Dialog.Title>
-                      <IconButton onClick={() => props.onClose()}>
+                      <Button presentation="icon" onClick={() => props.onClose()}>
                         <XMarkIcon />
-                      </IconButton>
+                      </Button>
                     </header>
                     <Prose>
                       <Dialog.Description>

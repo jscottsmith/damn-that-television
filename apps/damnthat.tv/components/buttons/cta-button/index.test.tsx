@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { CTAButton } from '.';
+import { CTAButton } from '@workspace/ui/components/cta-button';
 
 describe('given a <CTAButton>', () => {
   test('then it renders an accessible button', () => {

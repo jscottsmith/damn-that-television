@@ -8,7 +8,7 @@ import { useTheme } from 'next-themes';
 import { Title } from '@/components/typography/title';
 import { HeroTitle } from '@/components/typography/hero-title';
 import { SideDrawer } from '@/components/side-drawer';
-import { Button, ButtonName } from '@/components/buttons/button';
+import { Button } from '@workspace/ui/components/button';
 import { useState } from 'react';
 
 export default function Components() {
@@ -49,7 +49,7 @@ export default function Components() {
         }
         actions={
           <>
-            <Button name={ButtonName.primary} onClick={() => setOpen(false)}>
+            <Button variant="primary" onClick={() => setOpen(false)}>
               Deactivate
             </Button>
             <Button onClick={() => setOpen(false)}>Cancel</Button>

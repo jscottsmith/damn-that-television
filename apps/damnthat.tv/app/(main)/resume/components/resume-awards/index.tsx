@@ -1,6 +1,6 @@
 import React from 'react';
 import { PrismicRichText } from '@prismicio/react';
-import { Badge, BadgeType } from 'components/badge';
+import { Badge } from '@workspace/ui/components/badge';
 import { SectionTitle } from '../SectionTitle';
 import type { ResumeAwardsSlice } from '../../../../../prismicio-types';
 
@@ -15,7 +15,7 @@ export const ResumeAwards = (props: ResumeAwardsSlice) => {
             <div className="font-futura mb-1 text-xl font-normal italic">
               <PrismicRichText field={item.title} />
             </div>
-            <Badge type={BadgeType.primary}>{item.dates}</Badge>
+            <Badge variant="primary">{item.dates}</Badge>
           </li>
         ))}
       </ul>

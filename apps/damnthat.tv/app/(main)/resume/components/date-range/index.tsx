@@ -1,4 +1,4 @@
-import { Badge, BadgeType } from 'components/badge';
+import { Badge } from '@workspace/ui/components/badge';
 import React from 'react';
 import { formatterYear } from '../../helpers/format-date';
 import type { DateField } from '@prismicio/client';
@@ -14,7 +14,7 @@ type Props = {
 
 export const DateRange = (props: Props) => {
   return (
-    <Badge className="mt-1" type={BadgeType.primary}>
+    <Badge className="mt-1" variant="primary">
       {props.startDate && (
         <span>
           {props.dateFormatter.format(new Date(props.startDate))}

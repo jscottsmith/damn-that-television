@@ -2,7 +2,7 @@
 import { FC, useCallback, useEffect, useState, ReactNode } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
-import { Button } from '../buttons/button';
+import { Button } from '@workspace/ui/components/button';
 import clsx from 'clsx';
 import { SurfaceInteractiveGlass } from '../surface-interactive';
 
@@ -105,7 +105,7 @@ const Carousel: FC<CarouselProps> = ({
             <Button
               key={index}
               className={clsx(
-                `h-2 w-2 rounded-full !p-0`,
+                `h-2 w-2 rounded-full p-0!`,
                 index === selectedIndex && 'bg-gray-800 dark:bg-gray-200',
               )}
               onClick={() => scrollTo(index)}

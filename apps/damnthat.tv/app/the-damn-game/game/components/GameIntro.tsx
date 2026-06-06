@@ -1,8 +1,6 @@
 import {
   CTAButton,
-  CTAButtonSizes,
-  CTAButtonTypes,
-} from '@/components/buttons/cta-button';
+} from '@workspace/ui/components/cta-button';
 import React from 'react';
 
 type Props = { handleStart: () => void };
@@ -38,8 +36,8 @@ export const GameIntro = (props: Props) => {
         <div className="text-center">
           <CTAButton
             className="w-10xl"
-            buttonType={CTAButtonTypes.deep}
-            buttonSize={CTAButtonSizes.lg}
+            buttonType="deep"
+            buttonSize="lg"
             onClick={props.handleStart}
           >
             Hit it!

@@ -2,7 +2,7 @@
 
 import { HeroTitle } from '@/components/typography/hero-title';
 import { SelectionButtonExample } from './components/selection-button-example';
-import { Button, ButtonName, ButtonSize } from '@/components/buttons/button';
+import { Button } from '@workspace/ui/components/button';
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
@@ -15,9 +15,7 @@ import {
 import { ComponentSection } from '../component-section';
 
 import CTAButtons from './components/cta-buttons';
-import { IconButton, IconButtonName } from '@/components/buttons/icon-button';
-import { IconContainerSize } from '@/components/icon-container';
-import { ButtonGroup } from '@/components/buttons/button-group';
+import { ButtonGroup } from '@workspace/ui/components/button-group';
 
 export default function Buttons() {
   return (
@@ -32,41 +30,41 @@ export default function Buttons() {
           <ComponentSection title="Standard Buttons - Primary/Secondary">
             <div className="gap-lg flex flex-col">
               <div className="gap-sm flex items-end">
-                <Button size={ButtonSize.sm} name={ButtonName.primary}>
+                <Button size="sm" variant="primary">
                   Primary
                 </Button>
-                <Button size={ButtonSize.sm}>Secondary</Button>
-                <Button size={ButtonSize.sm}>Follow</Button>
-                <Button size={ButtonSize.sm}>Like</Button>
+                <Button size="sm">Secondary</Button>
+                <Button size="sm">Follow</Button>
+                <Button size="sm">Like</Button>
               </div>
               <div className="gap-sm flex items-end">
-                <Button name={ButtonName.primary}>Primary</Button>
+                <Button variant="primary">Primary</Button>
                 <Button>Secondary</Button>
                 <Button>Follow</Button>
                 <Button>Like</Button>
               </div>
               <div className="gap-sm flex items-end">
-                <Button size={ButtonSize.md} name={ButtonName.primary}>
+                <Button size="md" variant="primary">
                   Primary
                 </Button>
-                <Button size={ButtonSize.md}>Secondary</Button>
-                <Button size={ButtonSize.md}>Follow</Button>
-                <Button size={ButtonSize.md}>Like</Button>
+                <Button size="md">Secondary</Button>
+                <Button size="md">Follow</Button>
+                <Button size="md">Like</Button>
               </div>
             </div>
           </ComponentSection>
 
           <ComponentSection title="Selection Button">
             <div className="gap-sm flex items-end">
-              <SelectionButtonExample size={ButtonSize.sm}>
+              <SelectionButtonExample size="sm">
                 Filters
               </SelectionButtonExample>
-              <SelectionButtonExample name={ButtonName.primary}>
+              <SelectionButtonExample variant="primary">
                 Activate
               </SelectionButtonExample>
               <SelectionButtonExample
-                size={ButtonSize.md}
-                name={ButtonName.danger}
+                size="md"
+                variant="danger"
               >
                 Enable Cookies
               </SelectionButtonExample>
@@ -75,24 +73,24 @@ export default function Buttons() {
 
           <ComponentSection title="Standard Button">
             <div className="gap-sm flex items-end">
-              <Button size={ButtonSize.sm}>Hello</Button>
-              <Button size={ButtonSize.base}>Tap Me</Button>
-              <Button size={ButtonSize.md}>Open Menu</Button>
+              <Button size="sm">Hello</Button>
+              <Button size="base">Tap Me</Button>
+              <Button size="md">Open Menu</Button>
             </div>
           </ComponentSection>
 
           <ComponentSection title="System Buttons">
             <div className="gap-sm flex items-end">
-              <Button name={ButtonName.warning} size={ButtonSize.md}>
+              <Button variant="warning" size="md">
                 Warning Button
               </Button>
-              <Button name={ButtonName.danger} size={ButtonSize.md}>
+              <Button variant="danger" size="md">
                 Danger Button
               </Button>
-              <Button name={ButtonName.info} size={ButtonSize.md}>
+              <Button variant="info" size="md">
                 Info Button
               </Button>
-              <Button name={ButtonName.success} size={ButtonSize.md}>
+              <Button variant="success" size="md">
                 Info Button
               </Button>
             </div>
@@ -114,14 +112,14 @@ export default function Buttons() {
               </div>
               <div className="gap-lg flex items-center">
                 <ButtonGroup>
-                  <Button name={ButtonName.primary}>Hello</Button>
-                  <Button name={ButtonName.primary}>Tap Me</Button>
-                  <Button name={ButtonName.primary}>Open Menu</Button>
+                  <Button variant="primary">Hello</Button>
+                  <Button variant="primary">Tap Me</Button>
+                  <Button variant="primary">Open Menu</Button>
                 </ButtonGroup>
 
                 <ButtonGroup>
-                  <Button name={ButtonName.primary}>Tap Me</Button>
-                  <Button name={ButtonName.primary}>Open Menu</Button>
+                  <Button variant="primary">Tap Me</Button>
+                  <Button variant="primary">Open Menu</Button>
                 </ButtonGroup>
               </div>
             </div>
@@ -138,37 +136,37 @@ export default function Buttons() {
           <ComponentSection title="Icon Button">
             <div className="gap-lg flex items-center">
               <div className="gap-sm flex">
-                <IconButton size={IconContainerSize.sm}>
+                <Button presentation="icon" size="sm">
                   <EyeIcon />
-                </IconButton>
-                <IconButton size={IconContainerSize.sm}>
+                </Button>
+                <Button presentation="icon" size="sm">
                   <MagnifyingGlassIcon />
-                </IconButton>
-                <IconButton size={IconContainerSize.sm}>
+                </Button>
+                <Button presentation="icon" size="sm">
                   <TrashIcon />
-                </IconButton>
+                </Button>
               </div>
               <div className="gap-sm flex">
-                <IconButton>
+                <Button presentation="icon">
                   <EyeIcon />
-                </IconButton>
-                <IconButton>
+                </Button>
+                <Button presentation="icon">
                   <MagnifyingGlassIcon />
-                </IconButton>
-                <IconButton>
+                </Button>
+                <Button presentation="icon">
                   <TrashIcon />
-                </IconButton>
+                </Button>
               </div>
               <div className="gap-sm flex">
-                <IconButton size={IconContainerSize.md}>
+                <Button presentation="icon" size="md">
                   <EyeIcon />
-                </IconButton>
-                <IconButton size={IconContainerSize.md}>
+                </Button>
+                <Button presentation="icon" size="md">
                   <MagnifyingGlassIcon />
-                </IconButton>
-                <IconButton size={IconContainerSize.md}>
+                </Button>
+                <Button presentation="icon" size="md">
                   <TrashIcon />
-                </IconButton>
+                </Button>
               </div>
             </div>
           </ComponentSection>
@@ -176,24 +174,24 @@ export default function Buttons() {
           <ComponentSection title="Icon Button Group">
             <div className="gap-lg flex items-center">
               <ButtonGroup>
-                <IconButton>
+                <Button presentation="icon">
                   <EyeIcon />
-                </IconButton>
-                <IconButton>
+                </Button>
+                <Button presentation="icon">
                   <MagnifyingGlassIcon />
-                </IconButton>
-                <IconButton>
+                </Button>
+                <Button presentation="icon">
                   <TrashIcon />
-                </IconButton>
+                </Button>
               </ButtonGroup>
 
               <ButtonGroup>
-                <IconButton>
+                <Button presentation="icon">
                   <ChevronLeftIcon />
-                </IconButton>
-                <IconButton>
+                </Button>
+                <Button presentation="icon">
                   <ChevronRightIcon />
-                </IconButton>
+                </Button>
               </ButtonGroup>
             </div>
           </ComponentSection>
@@ -201,24 +199,36 @@ export default function Buttons() {
           <ComponentSection title="Icon Button Group Vertical">
             <div className="gap-lg flex">
               <ButtonGroup vertical>
-                <IconButton name={IconButtonName.primary} size="md">
+                <Button
+                  presentation="icon"
+                  variant="primary"
+                  size="md"
+                >
                   <EyeIcon />
-                </IconButton>
-                <IconButton name={IconButtonName.secondary} size="md">
+                </Button>
+                <Button
+                  presentation="icon"
+                  variant="secondary"
+                  size="md"
+                >
                   <MagnifyingGlassIcon />
-                </IconButton>
-                <IconButton name={IconButtonName.danger} size="md">
+                </Button>
+                <Button
+                  presentation="icon"
+                  variant="danger"
+                  size="md"
+                >
                   <TrashIcon />
-                </IconButton>
+                </Button>
               </ButtonGroup>
 
               <ButtonGroup vertical>
-                <IconButton>
+                <Button presentation="icon">
                   <ChevronUpIcon />
-                </IconButton>
-                <IconButton>
+                </Button>
+                <Button presentation="icon">
                   <ChevronDownIcon />
-                </IconButton>
+                </Button>
               </ButtonGroup>
             </div>
           </ComponentSection>

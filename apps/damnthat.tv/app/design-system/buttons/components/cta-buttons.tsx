@@ -2,12 +2,12 @@ import React from 'react';
 import { ComponentSection } from '../../component-section';
 import {
   CTAButton,
-  CTAButtonSizes,
-  CTAButtonTypes,
-} from '@/components/buttons/cta-button';
+  type CTAButtonSize,
+  type CTAButtonType,
+} from '@workspace/ui/components/cta-button';
 
-const sizes = [CTAButtonSizes.default]; // Object.values(CTAButtonSizes);
-const types = Object.values(CTAButtonTypes);
+const sizes: CTAButtonSize[] = ['default']; // ["sm", "default", "md", "lg"]
+const types: CTAButtonType[] = ['pepto', 'blue', 'gray', 'deep'];
 
 export default function CTAButtons() {
   return (
