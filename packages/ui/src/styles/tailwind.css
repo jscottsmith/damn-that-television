@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@source '../../../packages/ui/src/**/*.{ts,tsx}';
+@source '../**/*.{ts,tsx}';
 
 @theme {
   /* Dark mode configuration */
@@ -228,9 +228,9 @@
 }
 
 @theme inline {
-  /* 
+  /*
     Custom spacing is overriding the container width.
-    @see https://github.com/tailwindlabs/tailwindcss/discussions/17777#discussioncomment-12937263 
+    @see https://github.com/tailwindlabs/tailwindcss/discussions/17777#discussioncomment-12937263
   **/
   --width-3xs: var(--container-3xs);
   --width-2xs: var(--container-2xs);

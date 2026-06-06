@@ -11,7 +11,10 @@
   },
   "settings": {
     "next": {
-      "rootDir": "apps/damnthat.tv/"
+      "rootDir": [
+        "apps/damnthat.tv/",
+        "apps/design-system/"
+      ]
     }
   },
   "ignorePatterns": [

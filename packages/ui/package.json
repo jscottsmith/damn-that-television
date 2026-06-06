@@ -14,6 +14,7 @@
     "@heroicons/react": "^2.2.0",
     "@hugeicons/core-free-icons": "^4.2.0",
     "@hugeicons/react": "^1.1.6",
+    "@tailwindcss/typography": "^0.5.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "react": "latest",
@@ -26,6 +27,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "oxlint": "^1.67.0",
+    "tailwindcss": "^4.0.0",
     "typescript": "^5.8.2"
   },
   "exports": {
