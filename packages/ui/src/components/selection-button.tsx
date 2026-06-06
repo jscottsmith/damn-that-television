@@ -1,46 +1,60 @@
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline"
-import { cva } from "class-variance-authority"
+import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { cva } from "class-variance-authority";
+import * as React from "react";
 
-import { Button, type ButtonProps } from "@workspace/ui/components/button"
-import { cn } from "@workspace/ui/lib/utils"
+import { Button, type ButtonProps } from "@workspace/ui/components/button";
+import { cn } from "@workspace/ui/lib/utils";
 
-const selectionButtonVariants = cva("", {
+const selectionButtonIconVariants = cva("ml-1 shrink-0 rounded-full", {
   variants: {
-    selected: {
-      true: [
-        "bg-club text-white",
-        "shadow-hard-sm -translate-x-1 -translate-y-1",
-        "hover:bg-club-600",
-      ],
-      false: "",
+    size: {
+      sm: "size-4",
+      base: "size-5",
+      md: "size-6",
     },
   },
   defaultVariants: {
-    selected: false,
+    size: "base",
   },
-})
+});
 
 type SelectionButtonProps = ButtonProps & {
-  isSelected: boolean
-}
+  isSelected: boolean;
+  icon?: React.ReactNode;
+  iconContainerClassName?: string;
+};
 
 function SelectionButton({
   className,
   isSelected,
+  size,
+  variant = "selection",
   icon,
   iconContainerClassName,
+  children,
   ...props
 }: SelectionButtonProps) {
   return (
     <Button
       data-slot="selection-button"
-      icon={isSelected ? <CheckIcon /> : icon ?? <XMarkIcon />}
-      iconContainerClassName={cn(isSelected && "bg-club-700", iconContainerClassName)}
-      className={cn(selectionButtonVariants({ selected: isSelected }), className)}
+      data-selected={isSelected}
+      variant={variant}
+      className={className}
+      size={size}
       {...props}
-    />
-  )
+    >
+      {children}
+      <span
+        className={cn(
+          selectionButtonIconVariants({ size }),
+          iconContainerClassName
+        )}
+      >
+        {isSelected ? <CheckIcon /> : (icon ?? <XMarkIcon />)}
+      </span>
+    </Button>
+  );
 }
 
-export { SelectionButton, selectionButtonVariants }
-export type { SelectionButtonProps }
+export { SelectionButton };
+export type { SelectionButtonProps };

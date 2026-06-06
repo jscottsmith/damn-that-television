@@ -7,6 +7,7 @@ type ButtonSize = "sm" | "base" | "md";
 type ButtonVariant =
   | "primary"
   | "secondary"
+  | "selection"
   | "warning"
   | "success"
   | "info"
@@ -22,7 +23,6 @@ const buttonVariants = cva(
     "focus:shadow-hard-xs focus:-translate-x-0.5 focus:-translate-y-0.5 focus:outline-none",
     "active:duration-100 hover:active:translate-x-0 hover:active:translate-y-0 hover:active:shadow-none",
     "disabled:pointer-events-none disabled:opacity-50",
-    "[&_svg:not([class*='size-'])]:size-5",
   ],
   {
     variants: {
@@ -31,6 +31,8 @@ const buttonVariants = cva(
           "text-white bg-slate-800 dark:text-slate-800 dark:bg-slate-200 shadow-club",
         secondary:
           "bg-slate-200 hocus:bg-slate-300 dark:bg-slate-900 dark:hocus:bg-slate-600 shadow-slate-700 dark:shadow-slate-600",
+        selection:
+          "bg-slate-200 hocus:bg-slate-300 dark:bg-slate-900 dark:hocus:bg-slate-600 shadow-slate-700 dark:shadow-slate-600 data-[selected=true]:bg-club data-[selected=true]:text-white data-[selected=true]:hocus:bg-club-600 data-[selected=true]:dark:bg-club data-[selected=true]:dark:text-white data-[selected=true]:dark:hocus:bg-club-600 data-[selected=true]:shadow-hard-sm data-[selected=true]:-translate-x-1 data-[selected=true]:-translate-y-1",
         warning:
           "text-white bg-orange-500 hocus:bg-orange-600 dark:text-orange-950 dark:hocus:bg-orange-400 shadow-slate-700 dark:shadow-slate-600",
         danger:
@@ -40,9 +42,9 @@ const buttonVariants = cva(
           "text-white bg-teal-500 hocus:bg-teal-600 dark:text-teal-950 dark:hocus:bg-teal-400 shadow-slate-700 dark:shadow-slate-600",
       },
       size: {
-        sm: "text-sm",
-        base: "text-base",
-        md: "text-lg",
+        sm: "text-sm [&_svg:not([class*='size-'])]:size-4",
+        base: "text-base [&_svg:not([class*='size-'])]:size-5",
+        md: "text-lg [&_svg:not([class*='size-'])]:size-6",
       },
       presentation: {
         button: "",
@@ -89,32 +91,14 @@ const buttonVariants = cva(
   }
 );
 
-const buttonIconVariants = cva("ml-1 shrink-0 rounded-full", {
-  variants: {
-    size: {
-      sm: "size-4",
-      base: "size-5",
-      md: "size-6",
-    },
-  },
-  defaultVariants: {
-    size: "base",
-  },
-});
-
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants> & {
-    icon?: React.ReactNode;
-    iconContainerClassName?: string;
-  };
+  VariantProps<typeof buttonVariants>;
 
 function Button({
   className,
   variant = "secondary",
   size = "base",
   presentation = "button",
-  icon,
-  iconContainerClassName,
   children,
   ...props
 }: ButtonProps) {
@@ -125,16 +109,9 @@ function Button({
       {...props}
     >
       {children}
-      {presentation === "button" && icon ? (
-        <span
-          className={cn(buttonIconVariants({ size }), iconContainerClassName)}
-        >
-          {icon}
-        </span>
-      ) : null}
     </button>
   );
 }
 
-export { Button, buttonVariants, buttonIconVariants };
+export { Button, buttonVariants };
 export type { ButtonPresentation, ButtonProps, ButtonSize, ButtonVariant };
