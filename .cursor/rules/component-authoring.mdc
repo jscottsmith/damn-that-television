@@ -1,0 +1,33 @@
+---
+description: Component authoring conventions for stateful styles and composition
+globs: **/*.tsx
+alwaysApply: false
+---
+
+# Component authoring conventions
+
+- Style interactive state with **data attributes** on the rendered element (`data-selected`, `data-open`, `data-active`, `data-state`, etc.).
+- Prefer Tailwind state selectors such as `data-[selected=true]:...` and `data-[state=open]:...` over class toggling that relies on source-order wins.
+- Avoid `!important` for state precedence unless there is no structural alternative.
+- Keep stateful visuals in the **base primitive variant** (`button`, `input`, etc.) rather than wrapper-only overrides when those visuals are part of shared UX.
+- Keep wrapper components focused on behavior and composition (event handling, default props, slots).
+- Prefer icon composition as children for flexible button APIs unless an icon-only primitive is being built.
+
+## Example
+
+```tsx
+<Button data-selected={isSelected} variant="selection">
+  Choose me
+</Button>
+```
+
+```tsx
+const buttonVariants = cva("", {
+  variants: {
+    variant: {
+      selection:
+        "bg-slate-200 data-[selected=true]:bg-club data-[selected=true]:text-white",
+    },
+  },
+})
+```
