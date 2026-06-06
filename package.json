@@ -20,7 +20,8 @@
     "format": "turbo run format",
     "format:check": "turbo run format:check",
     "slicemachine": "turbo run slicemachine",
-    "ui:add": "pnpm dlx shadcn@latest add --cwd apps/damnthat.tv"
+    "ui:add": "pnpm dlx shadcn@latest add --cwd apps/damnthat.tv",
+    "ui:add:design-system": "pnpm dlx shadcn@latest add --cwd apps/design-system"
   },
   "repository": {
     "type": "git",

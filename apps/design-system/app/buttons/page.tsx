@@ -56,16 +56,11 @@ export default function Buttons() {
 
           <ComponentSection title="Selection Button">
             <div className="gap-sm flex items-end">
-              <SelectionButtonExample size="sm">
-                Filters
-              </SelectionButtonExample>
+              <SelectionButtonExample size="sm">Filters</SelectionButtonExample>
               <SelectionButtonExample variant="primary">
                 Activate
               </SelectionButtonExample>
-              <SelectionButtonExample
-                size="md"
-                variant="danger"
-              >
+              <SelectionButtonExample size="md" variant="danger">
                 Enable Cookies
               </SelectionButtonExample>
             </div>
@@ -208,25 +203,13 @@ export default function Buttons() {
           <ComponentSection title="Icon Button Group Vertical">
             <div className="gap-lg flex">
               <ButtonGroup vertical>
-                <Button
-                  presentation="icon"
-                  variant="primary"
-                  size="md"
-                >
+                <Button presentation="icon" variant="primary" size="md">
                   <EyeIcon />
                 </Button>
-                <Button
-                  presentation="icon"
-                  variant="secondary"
-                  size="md"
-                >
+                <Button presentation="icon" variant="secondary" size="md">
                   <MagnifyingGlassIcon />
                 </Button>
-                <Button
-                  presentation="icon"
-                  variant="danger"
-                  size="md"
-                >
+                <Button presentation="icon" variant="danger" size="md">
                   <TrashIcon />
                 </Button>
               </ButtonGroup>
