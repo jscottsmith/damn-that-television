@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, ButtonName, ButtonSize } from '@/components/buttons/button';
+import { Button } from '@workspace/ui/components/button';
 import { CardPadding } from '@/components/card';
 import { InputToggle } from '@/components/input-toggle';
 import { PasswordField } from '@/components/inputs/password-field';
@@ -26,7 +26,7 @@ export default function Components() {
             pattern=".*\S.*"
           />
           <InputToggle label="hello" />
-          <Button name={ButtonName.primary} size={ButtonSize.md}>
+          <Button variant="primary" size="md">
             Submit
           </Button>
       </form>

@@ -1,7 +1,7 @@
 import {
   SelectionButton,
   SelectionButtonProps,
-} from '@/components/buttons/selection-button';
+} from '@workspace/ui/components/selection-button';
 import React, { useState } from 'react';
 
 export function SelectionButtonExample(

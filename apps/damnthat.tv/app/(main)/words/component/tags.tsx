@@ -1,4 +1,4 @@
-import { Badge } from '@/components/badge';
+import { Badge } from '@workspace/ui/components/badge';
 import { PrismicDocument } from '@prismicio/client';
 import React from 'react';
 

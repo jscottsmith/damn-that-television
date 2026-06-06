@@ -1,11 +1,10 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { useSessionStorage } from 'usehooks-ts';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { Button } from '@workspace/ui/components/button';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
 import { CardPadding } from './card';
-import { IconButton } from './buttons/icon-button';
-import { IconContainerSize } from './icon-container';
 import { SlotComponentProps } from './slot';
 import { AnimatePresence } from 'motion/react';
 import { AnimateHeight, AnimateFlipDown } from './animations/animate-height';
@@ -77,13 +76,14 @@ export function DismissibleBanner({
                 className,
               )}
             >
-                <IconButton
-                  size={IconContainerSize.sm}
+                <Button
+                  presentation="icon"
+                  size="sm"
                   className="right-base top-base absolute"
                   onClick={handleDismiss}
                 >
                   <XMarkIcon />
-                </IconButton>
+                </Button>
                 {renderChildren()}
             </CardPadding>
           </AnimateFlipDown>

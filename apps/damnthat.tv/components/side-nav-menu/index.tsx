@@ -7,7 +7,7 @@ import { SideNavMenuRoutes } from './types';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
 import { useMediaQuery } from 'usehooks-ts';
-import { MenuButton } from '../buttons/menu-button';
+import { MenuButton } from '@workspace/ui/components/menu-button';
 
 type SideNavMenuProps = PropsWithChildren<{
   routes: SideNavMenuRoutes;
@@ -96,7 +96,7 @@ export function SideNavMenu(props: SideNavMenuProps) {
         initial={'open'}
         variants={menuButtonVariants}
         animate={sideMenu.open ? 'open' : 'closed'}
-        className="left-lg top-lg fixed z-[60]"
+        className="left-lg top-lg fixed z-60"
       >
         <MenuButton
           onClick={() => sideMenu.toggle()}
@@ -115,7 +115,7 @@ export function SideNavMenu(props: SideNavMenuProps) {
           surfaceVariants({ variant: 'primary' }),
           clsx(
             'z-50',
-            'w-sidemenu h-screen flex-shrink',
+            'w-sidemenu h-screen shrink',
             'p-base pt-3xl',
             'fixed left-0 top-0',
             'shadow-lg',

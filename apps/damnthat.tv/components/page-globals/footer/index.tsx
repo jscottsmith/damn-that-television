@@ -1,4 +1,4 @@
-import { Button, ButtonName } from '@/components/buttons/button';
+import { Button } from '@workspace/ui/components/button';
 import {
   GITHUB_REPO_URL,
   ISC_LICENSE_LINK,
@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
 import { Wrapper } from '../wrapper';
-import { EyeMan } from '@/components/buttons/eye-button/eye-man';
+import { EyeMan } from '@workspace/ui/components/eye-button';
 import { APP_ROUTES } from '@/constants/routes.constants';
 import { ThemeOptions } from './ThemeOptions';
 import { Title } from '@/components/typography/title';
@@ -123,7 +123,7 @@ function SecondaryLinks() {
       {SECONDARY_LINKS.map((link) => (
         <li key={link.href}>
           <Link href={link.href}>
-            <Button name={ButtonName.secondary} size="sm">
+            <Button variant="secondary" size="sm">
               {link.label}
             </Button>
           </Link>

@@ -5,18 +5,16 @@ import {
   HandThumbUpIcon,
   HandThumbDownIcon,
 } from '@heroicons/react/24/outline';
-import { SelectionButton } from '@/components/buttons/selection-button';
+import { SelectionButton } from '@workspace/ui/components/selection-button';
 import {
   CTAButton,
-  CTAButtonSizes,
-  CTAButtonTypes,
-} from '@/components/buttons/cta-button';
+} from '@workspace/ui/components/cta-button';
 import { PrismicRichText } from '@prismicio/react';
 import { Prose } from '@/components/typography/prose';
 import { DismissibleBanner } from '@/components/dismissible-banner';
 import { AnimatePresence } from 'motion/react';
 import { AnimateHeight } from '@/components/animations/animate-height';
-import { Button, ButtonName, ButtonSize } from '@/components/buttons/button';
+import { Button } from '@workspace/ui/components/button';
 import type { WorkTogetherSlice } from '../../../../prismicio-types';
 
 export const WORK_TOGETHER_ID = 'work-together';
@@ -42,7 +40,7 @@ const WorkTogetherMessage = ({
           isSelected={showInterest.isInterested}
           onClick={showInterest.onClickInterested}
           icon={<HandThumbUpIcon />}
-          className="min-w-[9rem]"
+          className="min-w-36"
         >
           Yep!
         </SelectionButton>
@@ -50,7 +48,7 @@ const WorkTogetherMessage = ({
           isSelected={showInterest.isNotInterested}
           onClick={showInterest.onClickNotInterested}
           icon={<HandThumbDownIcon />}
-          className="min-w-[9rem]"
+          className="min-w-36"
         >
           No Thanks
         </SelectionButton>
@@ -65,8 +63,8 @@ const WorkTogetherMessage = ({
               <div className="my-lg flex justify-center">
                 <a href="mailto:jscsmith@gmail.com">
                   <CTAButton
-                    buttonSize={CTAButtonSizes.default}
-                    buttonType={CTAButtonTypes.pepto}
+                    buttonSize="default"
+                    buttonType="pepto"
                   >
                     Email me!
                   </CTAButton>
@@ -92,8 +90,8 @@ const WorkTogetherMessage = ({
               </Prose>
               <div className="mt-md">
                 <Button
-                  size={ButtonSize.sm}
-                  name={ButtonName.danger}
+                  size="sm"
+                  variant="danger"
                   onClick={showInterest.onCancel}
                 >
                   Cancel
