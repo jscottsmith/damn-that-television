@@ -1,6 +1,6 @@
-import { SideNavMenuRoutes } from '@/components/side-nav-menu/types';
+import { AppChromeRoutes } from '@/components/app-chrome/types';
 
-export const routes: SideNavMenuRoutes = {
+export const routes: AppChromeRoutes = {
   'design-system': {
     title: 'Design System',
     absolutePath: '/',

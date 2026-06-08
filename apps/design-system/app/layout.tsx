@@ -2,10 +2,9 @@ import clsx from 'clsx';
 import type { Metadata, Viewport } from 'next';
 import { Poppins } from 'next/font/google';
 import localFont from 'next/font/local';
-import { SideNavMenu } from '@/components/side-nav-menu';
-import { SiteWrapper } from '@/components/site-wrapper';
-import { Surface, surfaceVariants } from '@workspace/ui/components/surface';
-import { cn } from '@workspace/ui/lib/utils';
+import { AppChrome } from '@/components/app-chrome';
+import { AppPage } from '@/components/app-page';
+import { Surface } from '@workspace/ui/components/surface';
 import { routes } from 'app/routes.constants';
 import { Providers } from './providers';
 import '../styles/globals.css';
@@ -108,17 +107,9 @@ export default function RootLayout({
       <body>
         <Providers>
           <Surface variant="background">
-            <SideNavMenu routes={routes}>
-              <SiteWrapper
-                className={cn(
-                  surfaceVariants({ variant: 'secondary' }),
-                  'min-h-screen',
-                )}
-                padY
-              >
-                {children}
-              </SiteWrapper>
-            </SideNavMenu>
+            <AppChrome routes={routes}>
+              <AppPage>{children}</AppPage>
+            </AppChrome>
           </Surface>
         </Providers>
       </body>

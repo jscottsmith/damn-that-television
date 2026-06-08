@@ -171,7 +171,7 @@ function HomeLink(props: { className?: string }) {
       <Link
         href={ROUTE_HOME}
         className={clsx(
-          'group flex h-16 w-16 items-center justify-center rounded-full p-3.5',
+          'group/eye-man flex h-16 w-16 items-center justify-center rounded-full p-3.5',
           'text-deep hover:text-club dark:text-miami transition-colors duration-150',
           props.className,
         )}
