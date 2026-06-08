@@ -1,16 +1,20 @@
-import { Dialog } from '@headlessui/react';
-import { ReactNode } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+'use client';
 
+import { ReactNode } from 'react';
+
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@workspace/ui/components/sheet';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
-import { Button } from '@workspace/ui/components/button';
-import { AnimateFadeIn } from './animations/animate-fade-in';
-import { CardPadding } from './card';
-import { Title } from './typography/title';
+
+import { DEFAULT_TEXT_CLASSNAME, MAP_TITLE_SIZE_CLASSNAME, TitleSize } from './typography/title';
 import { Prose } from './typography/prose';
-import BackdropOverlay from './backdrop-overlay';
 
 export type SideDrawerProps = {
   isOpen: boolean;
@@ -23,54 +27,39 @@ export type SideDrawerProps = {
 
 export function SideDrawer(props: SideDrawerProps) {
   return (
-    <AnimatePresence initial={false}>
-      {props.isOpen && (
-        <Dialog
-          static
-          className="relative z-50"
-          open={props.isOpen}
-          onClose={() => props.onClose()}
-        >
-          <AnimateFadeIn key="background">
-            <BackdropOverlay />
-          </AnimateFadeIn>
-
-          <div className="pl-base fixed inset-0 flex h-screen w-screen justify-end overflow-hidden">
-            <CardPadding asChild>
-              <motion.div
-                key="panel"
-                className={cn(
-                  surfaceVariants({ variant: 'primary' }),
-                  'z-10 flex min-h-full w-full max-w-2xl',
-                )}
-                initial={{ x: '100%', opacity: 1 }}
-                animate={{ x: '0%', opacity: 1 }}
-                exit={{ x: '100%', opacity: 1 }}
-              >
-                <Dialog.Panel className="py-xl flex flex-col justify-center">
-                  <header className="mb-xl flex items-center justify-between">
-                    <Dialog.Title>
-                      <Title asChild>
-                        <span>{props.title}</span>
-                      </Title>
-                    </Dialog.Title>
-                    <Button presentation="icon" onClick={() => props.onClose()}>
-                      <XMarkIcon />
-                    </Button>
-                  </header>
-                  <Prose>
-                    <Dialog.Description>{props.description}</Dialog.Description>
-                    {props.body}
-                  </Prose>
-                  <footer className="gap-sm mt-auto flex w-full">
-                    {props.actions}
-                  </footer>
-                </Dialog.Panel>
-              </motion.div>
-            </CardPadding>
-          </div>
-        </Dialog>
-      )}
-    </AnimatePresence>
+    <Sheet
+      open={props.isOpen}
+      onOpenChange={(open) => {
+        if (!open) props.onClose();
+      }}
+    >
+      <SheetContent
+        side="right"
+        className={cn(
+          surfaceVariants({ variant: 'primary' }),
+          'w-full sm:max-w-2xl',
+        )}
+      >
+        <SheetHeader className="mb-xl gap-0 p-0">
+          <SheetTitle
+            className={cn(
+              MAP_TITLE_SIZE_CLASSNAME[TitleSize.default],
+              DEFAULT_TEXT_CLASSNAME,
+            )}
+          >
+            {props.title}
+          </SheetTitle>
+        </SheetHeader>
+        <Prose className="flex flex-1 flex-col">
+          <SheetDescription>{props.description}</SheetDescription>
+          {props.body}
+        </Prose>
+        {props.actions ? (
+          <SheetFooter className="gap-sm mt-auto flex-row p-0">
+            {props.actions}
+          </SheetFooter>
+        ) : null}
+      </SheetContent>
+    </Sheet>
   );
 }
