@@ -28,6 +28,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Package build output
+packages/damn-tv-terminal/dist
+
 # Yarn
 .yarn/*
 !.yarn/cache

@@ -1,6 +1,7 @@
-import type { Cell } from './types.js';
+import type { Cell } from "./types.js";
+import { backgroundBlock } from "./backgroundPattern.js";
 
-const EMPTY: Cell = { char: ' ', fg: 252, bg: 233 };
+const EMPTY: Cell = { char: " ", fg: 252, bg: 233 };
 
 function fgCode(color: number): string {
   if (color >= 0 && color <= 7) return `\x1b[3${color}m`;
@@ -21,28 +22,21 @@ function styleFor(cell: Cell, prev: Cell | null): string {
     prev.bg === cell.bg &&
     !!prev.bold === !!cell.bold
   ) {
-    return '';
+    return "";
   }
 
-  const parts = ['\x1b[0m'];
-  if (cell.bold) parts.push('\x1b[1m');
+  const parts = ["\x1b[0m"];
+  if (cell.bold) parts.push("\x1b[1m");
   parts.push(fgCode(cell.fg), bgCode(cell.bg));
-  return parts.join('');
+  return parts.join("");
 }
 
-function marginCell(
-  x: number,
-  y: number,
-  frameTime: number,
-): Cell {
-  const star = (x * 31 + y * 17 + Math.floor(frameTime * 0.02)) % 97 === 0;
-  if (star) {
-    return { char: '*', fg: 240, bg: 233 };
-  }
-  if ((x + y) % 11 === 0) {
-    return { char: '.', fg: 236, bg: 233 };
-  }
-  return { char: ' ', fg: 252, bg: 233 };
+function marginCell(x: number, y: number): Cell {
+  return {
+    char: backgroundBlock(x, y),
+    fg: 236,
+    bg: 233,
+  };
 }
 
 function cellAt(
@@ -52,8 +46,7 @@ function cellAt(
   viewportWidth: number,
   viewportHeight: number,
   offsetX: number,
-  offsetY: number,
-  frameTime: number,
+  offsetY: number
 ): Cell {
   const localX = termX - offsetX;
   const localY = termY - offsetY;
@@ -67,7 +60,7 @@ function cellAt(
     return viewportCells[localY * viewportWidth + localX] ?? EMPTY;
   }
 
-  return marginCell(termX, termY, frameTime);
+  return marginCell(termX, termY);
 }
 
 /** Render the full terminal in one pass — viewport centered, margins filled. */
@@ -77,7 +70,7 @@ export function composeFrame(
   viewportHeight: number,
   termCols: number,
   termRows: number,
-  frameTime: number,
+  frameTime: number
 ): string {
   const offsetX = Math.max(0, Math.floor((termCols - viewportWidth) / 2));
   const offsetY = Math.max(0, Math.floor((termRows - viewportHeight) / 2));
@@ -95,8 +88,7 @@ export function composeFrame(
         viewportWidth,
         viewportHeight,
         offsetX,
-        offsetY,
-        frameTime,
+        offsetY
       );
       chunks.push(styleFor(cell, prev));
       chunks.push(cell.char);
@@ -104,8 +96,8 @@ export function composeFrame(
     }
   }
 
-  chunks.push('\x1b[0m');
-  return chunks.join('');
+  chunks.push("\x1b[0m");
+  return chunks.join("");
 }
 
 // Kept for tests / direct viewport rendering
@@ -114,7 +106,7 @@ export function frameToAnsi(
   width: number,
   height: number,
   offsetX = 0,
-  offsetY = 0,
+  offsetY = 0
 ): string {
   const chunks: string[] = [];
   let prev: Cell | null = null;
@@ -131,6 +123,6 @@ export function frameToAnsi(
     }
   }
 
-  chunks.push('\x1b[0m');
-  return chunks.join('');
+  chunks.push("\x1b[0m");
+  return chunks.join("");
 }

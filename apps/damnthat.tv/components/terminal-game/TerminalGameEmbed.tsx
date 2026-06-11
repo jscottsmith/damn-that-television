@@ -1,6 +1,6 @@
 "use client";
 
-import { runGame, XtermTerminal } from "@damnthat/damn-tv";
+import { runGame, XtermTerminal, type GameController } from "@damnthat/damn-tv";
 import { FitAddon } from "@xterm/addon-fit";
 import { Terminal } from "@xterm/xterm";
 import { useEffect, useRef } from "react";
@@ -14,29 +14,55 @@ export function TerminalGameEmbed() {
     const container = containerRef.current;
     if (!container) return;
 
+    let disposed = false;
+    let controller: GameController | null = null;
+
     const terminal = new Terminal({
       cursorBlink: false,
       fontFamily:
         "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-      fontSize: 14,
+      fontSize: 16,
       lineHeight: 1.1,
       theme: {
         background: "#0a0a0f",
         foreground: "#f5f5f5",
         cursor: "#6574ff",
       },
-      allowProposedApi: true,
+      scrollback: 0,
     });
 
     const fitAddon = new FitAddon();
     terminal.loadAddon(fitAddon);
     terminal.open(container);
-    fitAddon.fit();
 
-    const xtermAdapter = new XtermTerminal(terminal);
-    const controller = runGame(xtermAdapter, { theme: "club", targetFps: 60 });
+    const fitTerminal = () => {
+      if (
+        disposed ||
+        container.clientWidth === 0 ||
+        container.clientHeight === 0
+      ) {
+        return false;
+      }
+      fitAddon.fit();
+      return terminal.cols >= 2 && terminal.rows >= 1;
+    };
 
-    const handleResize = () => fitAddon.fit();
+    const startGame = () => {
+      if (disposed || controller || !fitTerminal()) return;
+      controller = runGame(new XtermTerminal(terminal), {
+        theme: "neon",
+        targetFps: 60,
+      });
+    };
+
+    const resizeObserver = new ResizeObserver(() => startGame());
+    resizeObserver.observe(container);
+
+    const rafId = requestAnimationFrame(() => {
+      requestAnimationFrame(startGame);
+    });
+
+    const handleResize = () => fitTerminal();
     window.addEventListener("resize", handleResize);
 
     const focusTerminal = () => terminal.focus();
@@ -44,10 +70,18 @@ export function TerminalGameEmbed() {
     focusTerminal();
 
     return () => {
+      disposed = true;
+      cancelAnimationFrame(rafId);
+      resizeObserver.disconnect();
       window.removeEventListener("resize", handleResize);
       container.removeEventListener("click", focusTerminal);
-      controller.destroy();
-      terminal.dispose();
+
+      // xterm queues viewport sync on a macrotask; defer disposal so the
+      // renderer is still alive when that callback runs (React strict mode).
+      window.setTimeout(() => {
+        controller?.destroy();
+        terminal.dispose();
+      }, 0);
     };
   }, []);
 

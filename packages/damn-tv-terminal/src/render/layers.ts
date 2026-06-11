@@ -21,7 +21,7 @@ import {
   TV_SPRITE,
 } from './sprites.js';
 
-function drawPlayfieldBackground(fb: FrameBuffer, world: World, theme: Theme): void {
+function drawPlayfieldBackground(fb: FrameBuffer, theme: Theme): void {
   fb.fillRect(
     PLAYFIELD_X,
     PLAYFIELD_Y,
@@ -31,64 +31,32 @@ function drawPlayfieldBackground(fb: FrameBuffer, world: World, theme: Theme): v
     theme.playfieldStars,
     theme.playfieldBg,
   );
-
-  for (let y = 0; y < PLAYFIELD_HEIGHT; y++) {
-    for (let x = 0; x < PLAYFIELD_WIDTH; x++) {
-      const star =
-        (Math.floor(x * 13 + y * 7 + world.scrollOffset * 2) % 53) === 0;
-      if (star) {
-        fb.set(PLAYFIELD_X + x, PLAYFIELD_Y + y, {
-          char: '.',
-          fg: theme.playfieldStars,
-          bg: theme.playfieldBg,
-        });
-      }
-    }
-  }
-
-  for (let x = 0; x < PLAYFIELD_WIDTH; x += 8) {
-    const lane = Math.floor((x + world.scrollOffset * 4) / 8) % 3;
-    const char = lane === 0 ? ':' : lane === 1 ? '|' : ':';
-    fb.set(PLAYFIELD_X + x, PLAYFIELD_Y + PLAYFIELD_HEIGHT - 2, {
-      char,
-      fg: theme.borderAccent,
-      bg: theme.playfieldBg,
-    });
-  }
 }
 
 function drawBorder(fb: FrameBuffer, theme: Theme): void {
-  fb.fill(' ', theme.border, theme.background);
+  const { border, borderAccent, background: bg } = theme;
+  const lastX = VIEWPORT_WIDTH - 1;
+  const lastY = VIEWPORT_HEIGHT - 1;
+  const hudY = 35;
+
+  fb.fill(' ', border, bg);
 
   for (let x = 0; x < VIEWPORT_WIDTH; x++) {
-    fb.set(x, 0, { char: '═', fg: theme.border, bg: theme.background, bold: true });
-    fb.set(x, 35, { char: '─', fg: theme.borderAccent, bg: theme.background });
-    fb.set(x, VIEWPORT_HEIGHT - 1, {
-      char: '═',
-      fg: theme.border,
-      bg: theme.background,
-      bold: true,
-    });
+    const corner = x === 0 || x === lastX;
+
+    fb.set(x, 0, { char: corner ? '█' : '▀', fg: border, bg, bold: true });
+    fb.set(x, hudY, { char: '▂', fg: border, bg });
+    fb.set(x, lastY, { char: corner ? '█' : '▄', fg: border, bg, bold: true });
   }
 
-  for (let y = 0; y < VIEWPORT_HEIGHT; y++) {
-    fb.set(0, y, { char: '║', fg: theme.border, bg: theme.background, bold: true });
-    fb.set(1, y, { char: '│', fg: theme.borderAccent, bg: theme.background });
-    fb.set(VIEWPORT_WIDTH - 2, y, {
-      char: '│',
-      fg: theme.borderAccent,
-      bg: theme.background,
-    });
-    fb.set(VIEWPORT_WIDTH - 1, y, {
-      char: '║',
-      fg: theme.border,
-      bg: theme.background,
-      bold: true,
-    });
+  for (let y = 1; y < lastY; y++) {
+    if (y === hudY) continue;
+    fb.set(0, y, { char: '▌', fg: border, bg, bold: true });
+    fb.set(lastX, y, { char: '▐', fg: border, bg, bold: true });
   }
 
-  fb.drawText(3, 0, ' DAMN TV ', theme.borderAccent, theme.background, true);
-  fb.drawText(VIEWPORT_WIDTH - 12, 0, ' TERMINAL ', theme.borderAccent, theme.background, true);
+  fb.drawText(3, 0, ' DAMN TV ', borderAccent, bg, true);
+  fb.drawText(VIEWPORT_WIDTH - 12, 0, ' TERMINAL ', borderAccent, bg, true);
 }
 
 function drawEntities(fb: FrameBuffer, world: World, theme: Theme, now: number): void {
@@ -206,7 +174,7 @@ function drawPaused(fb: FrameBuffer, theme: Theme): void {
 
 export function renderWorld(fb: FrameBuffer, world: World, theme: Theme, now: number): void {
   drawBorder(fb, theme);
-  drawPlayfieldBackground(fb, world, theme);
+  drawPlayfieldBackground(fb, theme);
 
   if (world.phase === 'menu') {
     drawMenu(fb, theme);
