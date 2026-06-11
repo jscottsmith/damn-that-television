@@ -19,12 +19,7 @@ export function createPowerUp(x: number, y: number, type: PowerUpType): PowerUp 
     w: size.w,
     h: size.h,
     type,
-    vy: 0.6,
   };
-}
-
-export function updatePowerUp(powerUp: PowerUp, dt: number, scrollSpeed: number): void {
-  powerUp.y += (powerUp.vy + scrollSpeed * 0.5) * dt;
 }
 
 export function applyPowerUp(

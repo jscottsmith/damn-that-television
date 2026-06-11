@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup';
 
 const asciiLoader = {
   esbuildOptions(options: { loader?: Record<string, string> }) {
-    options.loader = { ...options.loader, '.ascii': 'text' };
+    options.loader = { ...options.loader, '.ascii': 'text', '.level': 'text' };
   },
 };
 

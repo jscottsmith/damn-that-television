@@ -23,10 +23,25 @@ export function createPlayer(lives = 3): Player {
 }
 
 export function updatePlayer(player: Player, actions: DamnTvActions, dt: number, now: number): void {
-  if (actions.moveLeft) player.x -= PLAYER_SPEED * dt;
-  if (actions.moveRight) player.x += PLAYER_SPEED * dt;
+  let dx = 0;
+  let dy = 0;
+
+  if (actions.moveLeft) dx -= 1;
+  if (actions.moveRight) dx += 1;
+  if (actions.moveUp) dy -= 1;
+  if (actions.moveDown) dy += 1;
+
+  if (dx !== 0 && dy !== 0) {
+    const scale = 1 / Math.SQRT2;
+    dx *= scale;
+    dy *= scale;
+  }
+
+  player.x += dx * PLAYER_SPEED * dt;
+  player.y += dy * PLAYER_SPEED * dt;
 
   player.x = Math.max(0, Math.min(PLAYFIELD_WIDTH - player.w, player.x));
+  player.y = Math.max(0, Math.min(PLAYFIELD_HEIGHT - player.h, player.y));
 
   if (player.fireCooldown > 0) {
     player.fireCooldown -= dt * 1000;

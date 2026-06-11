@@ -5,6 +5,8 @@ import { createDamnTvActions } from './actions.js';
 export const DAMN_TV_BINDINGS: Record<DamnTvAction, readonly string[]> = {
   moveLeft: ['ArrowLeft', 'KeyA'],
   moveRight: ['ArrowRight', 'KeyD'],
+  moveUp: ['ArrowUp', 'KeyW'],
+  moveDown: ['ArrowDown', 'KeyS'],
   fire: ['Space'],
   pause: ['KeyP'],
   quit: ['KeyQ', 'ControlC'],
@@ -22,15 +24,20 @@ function hadEdge(events: readonly InputEvent[], action: DamnTvAction): boolean {
   );
 }
 
-function applyHorizontalExclusive(source: InputSource, events: readonly InputEvent[]): void {
+function applyAxisExclusive(
+  source: InputSource,
+  events: readonly InputEvent[],
+  left: DamnTvAction,
+  right: DamnTvAction,
+): void {
   for (const event of events) {
     if (event.type !== 'keydown') continue;
 
-    if (DAMN_TV_BINDINGS.moveLeft.includes(event.key)) {
-      for (const key of DAMN_TV_BINDINGS.moveRight) source.clearHold(key);
+    if (DAMN_TV_BINDINGS[left].includes(event.key)) {
+      for (const key of DAMN_TV_BINDINGS[right]) source.clearHold(key);
     }
-    if (DAMN_TV_BINDINGS.moveRight.includes(event.key)) {
-      for (const key of DAMN_TV_BINDINGS.moveLeft) source.clearHold(key);
+    if (DAMN_TV_BINDINGS[right].includes(event.key)) {
+      for (const key of DAMN_TV_BINDINGS[left]) source.clearHold(key);
     }
   }
 }
@@ -40,11 +47,14 @@ export function buildDamnTvActions(
   events: readonly InputEvent[],
   time: number,
 ): DamnTvActions {
-  applyHorizontalExclusive(source, events);
+  applyAxisExclusive(source, events, 'moveLeft', 'moveRight');
+  applyAxisExclusive(source, events, 'moveUp', 'moveDown');
 
   const actions = createDamnTvActions();
   actions.moveLeft = isBoundHeld(source, time, 'moveLeft');
   actions.moveRight = isBoundHeld(source, time, 'moveRight');
+  actions.moveUp = isBoundHeld(source, time, 'moveUp');
+  actions.moveDown = isBoundHeld(source, time, 'moveDown');
   actions.fire = isBoundHeld(source, time, 'fire');
   actions.pause = hadEdge(events, 'pause');
   actions.quit = hadEdge(events, 'quit');

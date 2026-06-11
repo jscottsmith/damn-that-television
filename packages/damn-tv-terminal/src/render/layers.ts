@@ -13,12 +13,14 @@ import {
   VIEWPORT_WIDTH,
 } from './types.js';
 import type { World } from '../core/World.js';
+import { worldToScreenY } from '../core/coordinates.js';
+import { getEnemyThemeColor } from '../core/config/enemies.js';
 import {
   BULLET_CHAR,
   EXPLOSION_FRAMES,
   PLAYER_SPRITE,
   POWERUP_SPRITES,
-  TV_SPRITE,
+  ENEMY_SPRITES,
 } from './sprites.js';
 
 function drawPlayfieldBackground(fb: FrameBuffer, theme: Theme): void {
@@ -59,13 +61,32 @@ function drawBorder(fb: FrameBuffer, theme: Theme): void {
   fb.drawText(VIEWPORT_WIDTH - 12, 0, ' TERMINAL ', borderAccent, bg, true);
 }
 
+function drawFinishMarkers(fb: FrameBuffer, world: World, theme: Theme): void {
+  for (const cell of world.finishCells) {
+    const screenY = worldToScreenY(cell.y, world.cameraY);
+    if (screenY < 0 || screenY >= PLAYFIELD_HEIGHT) continue;
+
+    fb.set(PLAYFIELD_X + cell.x, PLAYFIELD_Y + Math.floor(screenY), {
+      char: '=',
+      fg: theme.borderAccent,
+      bg: theme.playfieldBg,
+      bold: true,
+    });
+  }
+}
+
 function drawEntities(fb: FrameBuffer, world: World, theme: Theme, now: number): void {
+  drawFinishMarkers(fb, world, theme);
+
   for (const enemy of world.enemies) {
+    const screenY = worldToScreenY(enemy.y, world.cameraY);
+    if (screenY + enemy.h < 0 || screenY > PLAYFIELD_HEIGHT) continue;
+
     fb.drawSprite(
       PLAYFIELD_X + Math.floor(enemy.x),
-      PLAYFIELD_Y + Math.floor(enemy.y),
-      TV_SPRITE,
-      theme.enemy,
+      PLAYFIELD_Y + Math.floor(screenY),
+      ENEMY_SPRITES[enemy.movementType],
+      getEnemyThemeColor(theme, enemy.movementType),
       theme.playfieldBg,
     );
   }
@@ -80,9 +101,12 @@ function drawEntities(fb: FrameBuffer, world: World, theme: Theme, now: number):
   }
 
   for (const powerUp of world.powerUps) {
+    const screenY = worldToScreenY(powerUp.y, world.cameraY);
+    if (screenY + powerUp.h < 0 || screenY > PLAYFIELD_HEIGHT) continue;
+
     fb.drawSprite(
       PLAYFIELD_X + Math.floor(powerUp.x),
-      PLAYFIELD_Y + Math.floor(powerUp.y),
+      PLAYFIELD_Y + Math.floor(screenY),
       POWERUP_SPRITES[powerUp.type],
       theme.powerUp,
       theme.playfieldBg,
@@ -133,7 +157,8 @@ function drawHud(fb: FrameBuffer, world: World, theme: Theme): void {
 
   const config = world.levelConfig;
   const lives = '♥'.repeat(Math.max(0, world.player.lives));
-  const line1 = ` SCORE ${String(world.stats.score).padStart(8, '0')}   KILLS ${String(world.stats.kills).padStart(4, '0')}/${config.killsToAdvance === Infinity ? '∞' : config.killsToAdvance}   LEVEL ${config.level} `;
+  const progress = String(Math.round(world.levelProgress * 100)).padStart(3, '0');
+  const line1 = ` SCORE ${String(world.stats.score).padStart(8, '0')}   KILLS ${String(world.stats.kills).padStart(4, '0')}   LEVEL ${config.level}   ${progress}% `;
   const line2 = ` LIVES ${lives.padEnd(8, '·')}   HI ${String(world.stats.highScore).padStart(8, '0')}   ARROWS MOVE · SPACE SHOOT · P PAUSE `;
 
   fb.drawText(HUD_X, HUD_Y, line1, theme.hudAccent, theme.hudBg, true);
@@ -144,9 +169,11 @@ function drawHud(fb: FrameBuffer, world: World, theme: Theme): void {
       ? 'PAUSED'
       : world.phase === 'levelcomplete'
         ? 'LEVEL COMPLETE!'
-        : world.player.dead
-          ? ''
-          : 'KILL THE TVs! *';
+        : world.phase === 'gamecomplete'
+          ? 'YOU WIN!'
+          : world.player.dead
+            ? ''
+            : 'REACH THE FINISH LINE!';
 
   fb.drawText(HUD_X, HUD_Y + 2, status.padEnd(HUD_WIDTH - 2, ' '), theme.hudAccent, theme.hudBg, true);
 }
@@ -154,9 +181,9 @@ function drawHud(fb: FrameBuffer, world: World, theme: Theme): void {
 function drawMenu(fb: FrameBuffer, theme: Theme): void {
   fb.drawTextCentered(10, 'DAMN TV!', theme.title, theme.background, true);
   fb.drawTextCentered(12, '(the Terminal Game)', theme.subtitle, theme.background);
-  fb.drawTextCentered(16, 'Kill the TVs to survive.', theme.subtitle, theme.background);
-  fb.drawTextCentered(18, '* You still cannot win a game with no end.', theme.borderAccent, theme.background);
-  fb.drawTextCentered(22, '← → MOVE    SPACE SHOOT', theme.hudText, theme.background);
+  fb.drawTextCentered(16, 'Reach the finish line to survive.', theme.subtitle, theme.background);
+  fb.drawTextCentered(18, 'Clear both levels to win the game.', theme.borderAccent, theme.background);
+  fb.drawTextCentered(22, '↑ ↓ ← → MOVE    SPACE SHOOT', theme.hudText, theme.background);
   fb.drawTextCentered(24, 'PRESS ENTER TO START', theme.title, theme.background, true);
 }
 
@@ -165,6 +192,14 @@ function drawGameOver(fb: FrameBuffer, world: World, theme: Theme): void {
   fb.drawTextCentered(16, `SCORE: ${world.stats.score}`, theme.subtitle, theme.background);
   fb.drawTextCentered(18, `HIGH SCORE: ${world.stats.highScore}`, theme.title, theme.background);
   fb.drawTextCentered(22, 'PRESS ENTER TO RETRY', theme.title, theme.background, true);
+}
+
+function drawGameComplete(fb: FrameBuffer, world: World, theme: Theme): void {
+  fb.drawTextCentered(12, 'GAME COMPLETE!', theme.title, theme.background, true);
+  fb.drawTextCentered(14, 'You cleared every level.', theme.subtitle, theme.background);
+  fb.drawTextCentered(16, `FINAL SCORE: ${world.stats.score}`, theme.subtitle, theme.background);
+  fb.drawTextCentered(18, `HIGH SCORE: ${world.stats.highScore}`, theme.title, theme.background);
+  fb.drawTextCentered(22, 'PRESS ENTER TO CONTINUE', theme.title, theme.background, true);
 }
 
 function drawPaused(fb: FrameBuffer, theme: Theme): void {
@@ -178,6 +213,13 @@ export function renderWorld(fb: FrameBuffer, world: World, theme: Theme, now: nu
 
   if (world.phase === 'menu') {
     drawMenu(fb, theme);
+    return;
+  }
+
+  if (world.phase === 'gamecomplete') {
+    drawEntities(fb, world, theme, now);
+    drawHud(fb, world, theme);
+    drawGameComplete(fb, world, theme);
     return;
   }
 

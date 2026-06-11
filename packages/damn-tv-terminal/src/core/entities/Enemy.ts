@@ -1,5 +1,5 @@
 import type { EnemyMovementType } from '../config/levels.js';
-import { TV_SIZE } from '../../render/sprites.js';
+import { getEnemySize } from '../../render/sprites.js';
 import type { Enemy } from '../types.js';
 import { createId } from '../types.js';
 
@@ -8,15 +8,16 @@ export function createEnemy(
   y: number,
   movementType: EnemyMovementType,
 ): Enemy {
+  const size = getEnemySize(movementType);
   return {
     id: createId(),
     dead: false,
     x,
     y,
-    w: TV_SIZE.w,
-    h: TV_SIZE.h,
+    w: size.w,
+    h: size.h,
     vx: 0,
-    vy: 0.8,
+    vy: 0,
     movementType,
     sinePhase: Math.random() * Math.PI * 2,
     hp: 1,
@@ -26,13 +27,9 @@ export function createEnemy(
 export function updateEnemy(
   enemy: Enemy,
   dt: number,
-  scrollSpeed: number,
   playerX: number,
-  _playerY: number,
   playfieldWidth: number,
 ): void {
-  enemy.y += (enemy.vy + scrollSpeed) * dt;
-
   switch (enemy.movementType) {
     case 'DUNCE':
       break;

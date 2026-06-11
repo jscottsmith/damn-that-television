@@ -48,7 +48,6 @@ export interface PowerUp extends Entity {
   w: number;
   h: number;
   type: import('../render/sprites.js').PowerUpType;
-  vy: number;
 }
 
 export interface Explosion extends Entity {
@@ -58,7 +57,13 @@ export interface Explosion extends Entity {
   maxFrames: number;
 }
 
-export type GamePhase = 'menu' | 'playing' | 'paused' | 'gameover' | 'levelcomplete';
+export type GamePhase =
+  | 'menu'
+  | 'playing'
+  | 'paused'
+  | 'gameover'
+  | 'levelcomplete'
+  | 'gamecomplete';
 
 export interface GameStats {
   score: number;

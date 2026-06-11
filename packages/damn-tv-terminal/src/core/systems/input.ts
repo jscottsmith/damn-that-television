@@ -13,6 +13,10 @@ export function normalizeKey(raw: string): string | null {
       return 'ArrowLeft';
     case '\x1b[C':
       return 'ArrowRight';
+    case '\x1b[A':
+      return 'ArrowUp';
+    case '\x1b[B':
+      return 'ArrowDown';
     case ' ':
       return 'Space';
     case 'a':
@@ -21,6 +25,12 @@ export function normalizeKey(raw: string): string | null {
     case 'd':
     case 'D':
       return 'KeyD';
+    case 'w':
+    case 'W':
+      return 'KeyW';
+    case 's':
+    case 'S':
+      return 'KeyS';
     case 'p':
     case 'P':
       return 'KeyP';
