@@ -31,6 +31,7 @@
   },
   "homepage": "https://damnthat.tv/",
   "dependencies": {
+    "@damnthat/damn-tv": "workspace:*",
     "@gush/candybar": "0.1.1",
     "@heroicons/react": "^2.2.0",
     "@prismicio/client": "^7.20.1",
@@ -39,6 +40,8 @@
     "@tailwindcss/postcss": "^4.0.0",
     "@vercel/og": "^0.6.8",
     "@workspace/ui": "workspace:*",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/xterm": "^5.5.0",
     "clsx": "^2.1.1",
     "embla-carousel": "^8.5.2",
     "embla-carousel-react": "^8.5.2",

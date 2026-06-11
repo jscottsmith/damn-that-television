@@ -1,0 +1,53 @@
+{
+  "name": "@damnthat/damn-tv",
+  "version": "0.1.0",
+  "description": "Damn TV — ASCII terminal shooter. Play in your terminal or embed with xterm.js.",
+  "type": "module",
+  "license": "ISC",
+  "author": "J Scott Smith",
+  "homepage": "https://damnthat.tv/damn-tv-terminal",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jscottsmith/damn-that-television.git",
+    "directory": "packages/damn-tv-terminal"
+  },
+  "bin": {
+    "damn-tv": "./dist/bin.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "node dist/bin.js",
+    "typeCheck": "tsc --noEmit",
+    "lint": "oxlint .",
+    "lint:ci": "oxlint --format github .",
+    "prepublishOnly": "pnpm build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "oxlint": "^1.67.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "@xterm/xterm": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@xterm/xterm": {
+      "optional": true
+    }
+  }
+}

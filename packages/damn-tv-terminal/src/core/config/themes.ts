@@ -1,0 +1,70 @@
+import type { Theme } from '../../render/types.js';
+
+export const themes: Record<string, Theme> = {
+  club: {
+    name: 'club',
+    background: 233,
+    border: 201,
+    borderAccent: 213,
+    playfieldBg: 235,
+    playfieldStars: 240,
+    hudBg: 236,
+    hudText: 252,
+    hudAccent: 213,
+    player: 51,
+    playerBullet: 226,
+    enemy: 203,
+    enemyAccent: 199,
+    powerUp: 82,
+    explosion: 208,
+    title: 213,
+    subtitle: 252,
+    danger: 196,
+  },
+  retro: {
+    name: 'retro',
+    background: 16,
+    border: 46,
+    borderAccent: 82,
+    playfieldBg: 234,
+    playfieldStars: 22,
+    hudBg: 235,
+    hudText: 46,
+    hudAccent: 82,
+    player: 46,
+    playerBullet: 226,
+    enemy: 196,
+    enemyAccent: 160,
+    powerUp: 51,
+    explosion: 208,
+    title: 46,
+    subtitle: 250,
+    danger: 196,
+  },
+  neon: {
+    name: 'neon',
+    background: 17,
+    border: 45,
+    borderAccent: 51,
+    playfieldBg: 18,
+    playfieldStars: 25,
+    hudBg: 17,
+    hudText: 51,
+    hudAccent: 45,
+    player: 51,
+    playerBullet: 231,
+    enemy: 201,
+    enemyAccent: 213,
+    powerUp: 46,
+    explosion: 214,
+    title: 45,
+    subtitle: 255,
+    danger: 203,
+  },
+};
+
+export function getTheme(name?: string): Theme {
+  return themes[name ?? 'club'] ?? themes.club!;
+}
+
+export const DEFAULT_THEME = 'club';

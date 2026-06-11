@@ -1,0 +1,3 @@
+# Preserve intentional trailing spaces in sprite art
+[*.ascii]
+trim_trailing_whitespace = false

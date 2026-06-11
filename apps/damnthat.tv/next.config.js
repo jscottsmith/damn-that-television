@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  transpilePackages: ['@workspace/ui'],
+  transpilePackages: ['@workspace/ui', '@damnthat/damn-tv'],
   outputFileTracingRoot: path.join(__dirname, '../../'),
   turbopack: {
     root: path.join(__dirname, '../../'),
