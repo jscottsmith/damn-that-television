@@ -35,6 +35,7 @@ import {
   getThemeMenuItem,
   getThemeMenuItemCount,
   MAIN_MENU_ITEMS,
+  QUIT_CONFIRM_ITEMS,
 } from '../core/menu.js';
 
 const MENU_FOOTER = '↑↓ SELECT   ENTER';
@@ -102,7 +103,7 @@ function drawGameOver(fb: FrameBuffer, world: World, theme: Theme): void {
       `SCORE: ${world.stats.score}`,
       `HIGH SCORE: ${world.stats.highScore}`,
     ],
-    footer: 'ENTER TO RETRY',
+    footer: 'ENTER TO RETRY   ESC/Q TO QUIT',
   });
 }
 
@@ -114,7 +115,7 @@ function drawGameComplete(fb: FrameBuffer, world: World, theme: Theme): void {
       `FINAL SCORE: ${world.stats.score}`,
       `HIGH SCORE: ${world.stats.highScore}`,
     ],
-    footer: 'ENTER TO CONTINUE',
+    footer: 'ENTER TO CONTINUE   ESC/Q TO QUIT',
   });
 }
 
@@ -123,15 +124,53 @@ function drawLevelComplete(fb: FrameBuffer, world: World, theme: Theme): void {
   drawDialogOverlay(fb, theme, {
     title: `LEVEL ${config.level} COMPLETE`,
     bodyLines: [`+${config.winBonus} POINTS`],
-    footer: 'ENTER TO CONTINUE',
+    footer: 'ENTER TO CONTINUE   ESC/Q TO QUIT',
   });
 }
 
 function drawPaused(fb: FrameBuffer, theme: Theme): void {
   drawDialogOverlay(fb, theme, {
     title: 'PAUSED',
-    footer: 'P OR ENTER TO RESUME',
+    footer: 'P OR ENTER TO RESUME   ESC/Q TO QUIT',
   });
+}
+
+function drawQuitConfirm(fb: FrameBuffer, world: World, theme: Theme): void {
+  const menuItems: DialogMenuItem[] = QUIT_CONFIRM_ITEMS.map((label, index) => ({
+    label,
+    selected: index === world.quitConfirmIndex,
+    accent: index === 0,
+  }));
+
+  drawDialogOverlay(fb, theme, {
+    title: 'QUIT TO MENU?',
+    bodyLines: ['Your progress will be lost.'],
+    menuItems,
+    footer: '↑↓ SELECT   ENTER   ESC TO CANCEL',
+  });
+}
+
+function drawPhaseOverlay(
+  fb: FrameBuffer,
+  world: World,
+  theme: Theme,
+): void {
+  switch (world.phaseBeforeQuit) {
+    case 'paused':
+      drawPaused(fb, theme);
+      break;
+    case 'gameover':
+      drawGameOver(fb, world, theme);
+      break;
+    case 'levelcomplete':
+      drawLevelComplete(fb, world, theme);
+      break;
+    case 'gamecomplete':
+      drawGameComplete(fb, world, theme);
+      break;
+    default:
+      break;
+  }
 }
 
 function drawPlayfieldBackground(fb: FrameBuffer, theme: Theme): void {
@@ -297,6 +336,14 @@ export function renderWorld(
   }
 
   drawPlayfield(fb, world, theme, cellAspectRatio);
+
+  if (world.phase === 'quitconfirm') {
+    drawEntities(fb, world, theme, now);
+    drawHud(fb, world, theme);
+    drawPhaseOverlay(fb, world, theme);
+    drawQuitConfirm(fb, world, theme);
+    return;
+  }
 
   if (world.phase === 'gamecomplete') {
     drawEntities(fb, world, theme, now);

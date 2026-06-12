@@ -137,16 +137,21 @@ export class Game implements GameController {
     const events = this.inputSource.poll();
     this.actions = buildDamnTvActions(this.inputSource, events, time);
 
+    if (this.actions.quit) {
+      this.destroy();
+      return;
+    }
+
     if (!this.paused) {
       this.world.update(this.actions, dt, time);
       if (this.world.themeName !== this.themeName) {
         this.themeName = this.world.themeName;
         this.theme = getTheme(this.themeName);
       }
-      if (this.actions.quit) {
-        this.destroy();
-        return;
-      }
+    }
+
+    if (this.world.phase === 'menu') {
+      this.paused = false;
     }
 
     this.render(time);

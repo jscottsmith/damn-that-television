@@ -37,6 +37,8 @@ export function normalizeKey(raw: string): string | null {
     case 'q':
     case 'Q':
       return 'KeyQ';
+    case '\x1b':
+      return 'Escape';
     case '\x03':
       return 'ControlC';
     case '\r':

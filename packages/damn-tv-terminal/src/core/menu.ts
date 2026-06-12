@@ -4,6 +4,8 @@ export type MenuScreen = 'main' | 'theme';
 
 export const MAIN_MENU_ITEMS = ['Play', 'Theme'] as const;
 
+export const QUIT_CONFIRM_ITEMS = ['Yes', 'No'] as const;
+
 export const THEME_MENU_BACK = 'Back';
 
 export function getThemeMenuItemCount(): number {

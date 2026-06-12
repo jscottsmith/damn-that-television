@@ -71,6 +71,7 @@ export type GamePhase =
   | 'menu'
   | 'playing'
   | 'paused'
+  | 'quitconfirm'
   | 'gameover'
   | 'levelcomplete'
   | 'gamecomplete';

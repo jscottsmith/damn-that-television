@@ -2,14 +2,18 @@ import type { InputEvent, InputSource } from '../core/systems/input.js';
 import type { DamnTvAction, DamnTvActions } from './actions.js';
 import { createDamnTvActions } from './actions.js';
 
-export const DAMN_TV_BINDINGS: Record<DamnTvAction, readonly string[]> = {
+export const DAMN_TV_BINDINGS: Record<
+  Exclude<DamnTvAction, 'menuUp' | 'menuDown'>,
+  readonly string[]
+> = {
   moveLeft: ['ArrowLeft', 'KeyA'],
   moveRight: ['ArrowRight', 'KeyD'],
   moveUp: ['ArrowUp', 'KeyW'],
   moveDown: ['ArrowDown', 'KeyS'],
   fire: ['Space'],
   pause: ['KeyP'],
-  quit: ['KeyQ', 'ControlC'],
+  quit: ['ControlC'],
+  backToMenu: ['Escape', 'KeyQ'],
   confirm: ['Enter'],
 };
 
@@ -58,6 +62,7 @@ export function buildDamnTvActions(
   actions.fire = isBoundHeld(source, time, 'fire');
   actions.pause = hadEdge(events, 'pause');
   actions.quit = hadEdge(events, 'quit');
+  actions.backToMenu = hadEdge(events, 'backToMenu');
   actions.confirm = hadEdge(events, 'confirm');
   actions.menuUp = hadEdge(events, 'moveUp');
   actions.menuDown = hadEdge(events, 'moveDown');

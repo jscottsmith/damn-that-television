@@ -30,13 +30,16 @@ import {
   getThemeMenuItemCount,
   isThemeMenuBack,
   MAIN_MENU_ITEMS,
+  QUIT_CONFIRM_ITEMS,
   stepMenuIndex,
 } from './menu.js';
 
 export class World {
   phase: GamePhase = 'menu';
+  phaseBeforeQuit: GamePhase | null = null;
   menuScreen: MenuScreen = 'main';
   menuIndex = 0;
+  quitConfirmIndex = 1;
   themeName = 'club';
   player: Player = createPlayer();
   projectiles: Projectile[] = [];
@@ -84,10 +87,56 @@ export class World {
   returnToMainMenu(): void {
     this.menuScreen = 'main';
     this.menuIndex = 0;
+    this.phaseBeforeQuit = null;
+    this.quitConfirmIndex = 1;
     this.phase = 'menu';
   }
 
+  private openQuitConfirm(): void {
+    this.phaseBeforeQuit = this.phase;
+    this.quitConfirmIndex = 1;
+    this.phase = 'quitconfirm';
+  }
+
+  private cancelQuitConfirm(): void {
+    const previous = this.phaseBeforeQuit;
+    this.phaseBeforeQuit = null;
+    if (previous) {
+      this.phase = previous;
+    }
+  }
+
+  private updateQuitConfirm(actions: DamnTvActions): void {
+    const itemCount = QUIT_CONFIRM_ITEMS.length;
+
+    if (actions.menuUp) {
+      this.quitConfirmIndex = stepMenuIndex(this.quitConfirmIndex, -1, itemCount);
+    }
+    if (actions.menuDown) {
+      this.quitConfirmIndex = stepMenuIndex(this.quitConfirmIndex, 1, itemCount);
+    }
+
+    if (actions.backToMenu) {
+      this.cancelQuitConfirm();
+      return;
+    }
+
+    if (!actions.confirm) return;
+
+    if (this.quitConfirmIndex === 0) {
+      this.returnToMainMenu();
+    } else {
+      this.cancelQuitConfirm();
+    }
+  }
+
   private updateMenu(actions: DamnTvActions): void {
+    if (actions.backToMenu && this.menuScreen === 'theme') {
+      this.menuScreen = 'main';
+      this.menuIndex = 0;
+      return;
+    }
+
     const itemCount =
       this.menuScreen === 'main' ? MAIN_MENU_ITEMS.length : getThemeMenuItemCount();
 
@@ -155,6 +204,16 @@ export class World {
 
     if (this.phase === 'menu') {
       this.updateMenu(actions);
+      return;
+    }
+
+    if (this.phase === 'quitconfirm') {
+      this.updateQuitConfirm(actions);
+      return;
+    }
+
+    if (actions.backToMenu) {
+      this.openQuitConfirm();
       return;
     }
 
