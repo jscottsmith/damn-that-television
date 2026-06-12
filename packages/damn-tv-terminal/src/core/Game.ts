@@ -1,7 +1,7 @@
 import type { TerminalAdapter } from '../io/TerminalAdapter.js';
 import { composeFrame } from '../render/ansi.js';
 import type { Theme } from '../render/types.js';
-import { getTheme } from './config/themes.js';
+import { DEFAULT_THEME, getTheme } from './config/themes.js';
 import { InputSource } from './systems/input.js';
 import { World } from './World.js';
 import { ANSI, DEFAULT_CELL_ASPECT_RATIO, VIEWPORT_HEIGHT, VIEWPORT_WIDTH } from '../render/types.js';
@@ -39,12 +39,15 @@ export class Game implements GameController {
   private targetFps: number;
   private useAnimationFrame: boolean;
   private cellAspectRatio: number;
+  private themeName: string;
 
   constructor(
     private terminal: TerminalAdapter,
     options: GameOptions = {},
   ) {
-    this.theme = getTheme(options.theme);
+    this.themeName = options.theme ?? DEFAULT_THEME;
+    this.theme = getTheme(this.themeName);
+    this.world.themeName = this.themeName;
     this.targetFps = options.targetFps ?? 60;
     this.cellAspectRatio = options.cellAspectRatio ?? DEFAULT_CELL_ASPECT_RATIO;
     this.useAnimationFrame = typeof globalThis.requestAnimationFrame === 'function';
@@ -136,6 +139,10 @@ export class Game implements GameController {
 
     if (!this.paused) {
       this.world.update(this.actions, dt, time);
+      if (this.world.themeName !== this.themeName) {
+        this.themeName = this.world.themeName;
+        this.theme = getTheme(this.themeName);
+      }
       if (this.actions.quit) {
         this.destroy();
         return;

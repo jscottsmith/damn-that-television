@@ -24,9 +24,20 @@ import { getLevelByIndex, LEVEL_COUNT } from '../levels/levelCatalog.js';
 import type { ParsedLevel } from '../levels/parseLevelTemplate.js';
 import { PLAYFIELD_HEIGHT, PLAYFIELD_WIDTH } from '../render/types.js';
 import { rectsOverlap, resetIds } from './types.js';
+import { THEME_NAMES } from './config/themes.js';
+import type { MenuScreen } from './menu.js';
+import {
+  getThemeMenuItemCount,
+  isThemeMenuBack,
+  MAIN_MENU_ITEMS,
+  stepMenuIndex,
+} from './menu.js';
 
 export class World {
   phase: GamePhase = 'menu';
+  menuScreen: MenuScreen = 'main';
+  menuIndex = 0;
+  themeName = 'club';
   player: Player = createPlayer();
   projectiles: Projectile[] = [];
   enemies: Enemy[] = [];
@@ -70,6 +81,45 @@ export class World {
     this.reset();
   }
 
+  returnToMainMenu(): void {
+    this.menuScreen = 'main';
+    this.menuIndex = 0;
+    this.phase = 'menu';
+  }
+
+  private updateMenu(actions: DamnTvActions): void {
+    const itemCount =
+      this.menuScreen === 'main' ? MAIN_MENU_ITEMS.length : getThemeMenuItemCount();
+
+    if (actions.menuUp) {
+      this.menuIndex = stepMenuIndex(this.menuIndex, -1, itemCount);
+    }
+    if (actions.menuDown) {
+      this.menuIndex = stepMenuIndex(this.menuIndex, 1, itemCount);
+    }
+
+    if (!actions.confirm) return;
+
+    if (this.menuScreen === 'main') {
+      if (this.menuIndex === 0) {
+        this.startGame();
+      } else {
+        this.menuScreen = 'theme';
+        const themeIndex = THEME_NAMES.indexOf(this.themeName as (typeof THEME_NAMES)[number]);
+        this.menuIndex = themeIndex >= 0 ? themeIndex : 0;
+      }
+      return;
+    }
+
+    if (isThemeMenuBack(this.menuIndex)) {
+      this.menuScreen = 'main';
+      this.menuIndex = 0;
+      return;
+    }
+
+    this.themeName = THEME_NAMES[this.menuIndex]!;
+  }
+
   loadLevel(
     index: number,
     options: { preservePlayer?: boolean; preserveScore?: boolean } = {},
@@ -104,26 +154,26 @@ export class World {
     this.frameTime = now;
 
     if (this.phase === 'menu') {
-      if (actions.confirm || actions.fire) this.startGame();
+      this.updateMenu(actions);
       return;
     }
 
     if (this.phase === 'gameover') {
-      if (actions.confirm || actions.fire) this.startGame();
+      if (actions.confirm) this.startGame();
       return;
     }
 
     if (this.phase === 'gamecomplete') {
-      if (actions.confirm || actions.fire) {
+      if (actions.confirm) {
         this.stats.highScore = Math.max(this.stats.highScore, this.stats.score);
-        this.phase = 'menu';
+        this.returnToMainMenu();
       }
       return;
     }
 
     if (this.phase === 'levelcomplete') {
       this.levelCompleteTimer -= dt * 1000;
-      if (this.levelCompleteTimer <= 0 || actions.confirm || actions.fire) {
+      if (this.levelCompleteTimer <= 0 || actions.confirm) {
         const nextIndex = this.stats.levelIndex + 1;
         if (nextIndex >= LEVEL_COUNT) {
           this.stats.highScore = Math.max(this.stats.highScore, this.stats.score);

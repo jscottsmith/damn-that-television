@@ -6,7 +6,9 @@ export type DamnTvAction =
   | 'fire'
   | 'pause'
   | 'quit'
-  | 'confirm';
+  | 'confirm'
+  | 'menuUp'
+  | 'menuDown';
 
 export interface DamnTvActions {
   moveLeft: boolean;
@@ -17,6 +19,8 @@ export interface DamnTvActions {
   pause: boolean;
   quit: boolean;
   confirm: boolean;
+  menuUp: boolean;
+  menuDown: boolean;
 }
 
 export function createDamnTvActions(): DamnTvActions {
@@ -29,5 +33,7 @@ export function createDamnTvActions(): DamnTvActions {
     pause: false,
     quit: false,
     confirm: false,
+    menuUp: false,
+    menuDown: false,
   };
 }

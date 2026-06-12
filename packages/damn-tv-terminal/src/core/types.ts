@@ -75,6 +75,8 @@ export type GamePhase =
   | 'levelcomplete'
   | 'gamecomplete';
 
+export type { MenuScreen } from './menu.js';
+
 export interface GameStats {
   score: number;
   kills: number;

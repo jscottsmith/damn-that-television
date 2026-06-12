@@ -59,5 +59,7 @@ export function buildDamnTvActions(
   actions.pause = hadEdge(events, 'pause');
   actions.quit = hadEdge(events, 'quit');
   actions.confirm = hadEdge(events, 'confirm');
+  actions.menuUp = hadEdge(events, 'moveUp');
+  actions.menuDown = hadEdge(events, 'moveDown');
   return actions;
 }

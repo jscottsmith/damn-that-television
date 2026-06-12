@@ -24,6 +24,115 @@ import {
   POWERUP_SPRITES,
   ENEMY_SPRITES,
 } from './sprites.js';
+import {
+  centerDialogInRect,
+  drawDialogWindow,
+  measureDialogWindow,
+  type DialogMenuItem,
+  type DialogWindowContent,
+} from './dialogWindow.js';
+import {
+  getThemeMenuItem,
+  getThemeMenuItemCount,
+  MAIN_MENU_ITEMS,
+} from '../core/menu.js';
+
+const MENU_FOOTER = '↑↓ SELECT   ENTER';
+const PLAYFIELD_BOUNDS = {
+  x: PLAYFIELD_X,
+  y: PLAYFIELD_Y,
+  w: PLAYFIELD_WIDTH,
+  h: PLAYFIELD_HEIGHT,
+};
+
+function drawDialogOverlay(
+  fb: FrameBuffer,
+  theme: Theme,
+  content: DialogWindowContent,
+): void {
+  const size = measureDialogWindow(content);
+  const rect = centerDialogInRect(PLAYFIELD_BOUNDS, size);
+  drawDialogWindow(fb, rect, theme, content);
+}
+
+function drawMainMenu(fb: FrameBuffer, world: World, theme: Theme): void {
+  const menuItems: DialogMenuItem[] = MAIN_MENU_ITEMS.map((label, index) => ({
+    label,
+    selected: index === world.menuIndex,
+  }));
+
+  drawDialogOverlay(fb, theme, {
+    title: 'DAMN TV',
+    bodyLines: [
+      '(the Terminal Game)',
+      'Reach the finish line to survive.',
+      'Clear both levels to win the game.',
+    ],
+    menuItems,
+    footer: MENU_FOOTER,
+  });
+}
+
+function drawThemeMenu(fb: FrameBuffer, world: World, theme: Theme): void {
+  const count = getThemeMenuItemCount();
+  const menuItems: DialogMenuItem[] = Array.from({ length: count }, (_, index) => ({
+    label: getThemeMenuItem(index, world.themeName),
+    selected: index === world.menuIndex,
+  }));
+
+  drawDialogOverlay(fb, theme, {
+    title: 'THEME',
+    menuItems,
+    footer: MENU_FOOTER,
+  });
+}
+
+function drawMenu(fb: FrameBuffer, world: World, theme: Theme): void {
+  if (world.menuScreen === 'theme') {
+    drawThemeMenu(fb, world, theme);
+  } else {
+    drawMainMenu(fb, world, theme);
+  }
+}
+
+function drawGameOver(fb: FrameBuffer, world: World, theme: Theme): void {
+  drawDialogOverlay(fb, theme, {
+    title: 'GAME OVER',
+    bodyLines: [
+      `SCORE: ${world.stats.score}`,
+      `HIGH SCORE: ${world.stats.highScore}`,
+    ],
+    footer: 'ENTER TO RETRY',
+  });
+}
+
+function drawGameComplete(fb: FrameBuffer, world: World, theme: Theme): void {
+  drawDialogOverlay(fb, theme, {
+    title: 'GAME COMPLETE',
+    bodyLines: [
+      'You cleared every level.',
+      `FINAL SCORE: ${world.stats.score}`,
+      `HIGH SCORE: ${world.stats.highScore}`,
+    ],
+    footer: 'ENTER TO CONTINUE',
+  });
+}
+
+function drawLevelComplete(fb: FrameBuffer, world: World, theme: Theme): void {
+  const config = world.levelConfig;
+  drawDialogOverlay(fb, theme, {
+    title: `LEVEL ${config.level} COMPLETE`,
+    bodyLines: [`+${config.winBonus} POINTS`],
+    footer: 'ENTER TO CONTINUE',
+  });
+}
+
+function drawPaused(fb: FrameBuffer, theme: Theme): void {
+  drawDialogOverlay(fb, theme, {
+    title: 'PAUSED',
+    footer: 'P OR ENTER TO RESUME',
+  });
+}
 
 function drawPlayfieldBackground(fb: FrameBuffer, theme: Theme): void {
   fb.fillRect(
@@ -160,46 +269,11 @@ function drawHud(fb: FrameBuffer, world: World, theme: Theme): void {
   fb.drawText(HUD_X, HUD_Y + 1, line2, theme.hudText, theme.hudBg);
 
   const status =
-    world.phase === 'paused'
-      ? 'PAUSED'
-      : world.phase === 'levelcomplete'
-        ? 'LEVEL COMPLETE!'
-        : world.phase === 'gamecomplete'
-          ? 'YOU WIN!'
-          : world.player.dead
-            ? ''
-            : 'REACH THE FINISH LINE!';
+    world.phase === 'playing' && !world.player.dead
+      ? 'REACH THE FINISH LINE!'
+      : '';
 
   fb.drawText(HUD_X, HUD_Y + 2, status.padEnd(HUD_WIDTH - 2, ' '), theme.hudAccent, theme.hudBg, true);
-}
-
-function drawMenu(fb: FrameBuffer, theme: Theme): void {
-  fb.drawTextCentered(10, 'DAMN TV!', theme.title, theme.background, true);
-  fb.drawTextCentered(12, '(the Terminal Game)', theme.subtitle, theme.background);
-  fb.drawTextCentered(16, 'Reach the finish line to survive.', theme.subtitle, theme.background);
-  fb.drawTextCentered(18, 'Clear both levels to win the game.', theme.borderAccent, theme.background);
-  fb.drawTextCentered(22, '↑ ↓ ← → MOVE    SPACE SHOOT', theme.hudText, theme.background);
-  fb.drawTextCentered(24, 'PRESS ENTER TO START', theme.title, theme.background, true);
-}
-
-function drawGameOver(fb: FrameBuffer, world: World, theme: Theme): void {
-  fb.drawTextCentered(14, 'GAME OVER', theme.danger, theme.background, true);
-  fb.drawTextCentered(16, `SCORE: ${world.stats.score}`, theme.subtitle, theme.background);
-  fb.drawTextCentered(18, `HIGH SCORE: ${world.stats.highScore}`, theme.title, theme.background);
-  fb.drawTextCentered(22, 'PRESS ENTER TO RETRY', theme.title, theme.background, true);
-}
-
-function drawGameComplete(fb: FrameBuffer, world: World, theme: Theme): void {
-  fb.drawTextCentered(12, 'GAME COMPLETE!', theme.title, theme.background, true);
-  fb.drawTextCentered(14, 'You cleared every level.', theme.subtitle, theme.background);
-  fb.drawTextCentered(16, `FINAL SCORE: ${world.stats.score}`, theme.subtitle, theme.background);
-  fb.drawTextCentered(18, `HIGH SCORE: ${world.stats.highScore}`, theme.title, theme.background);
-  fb.drawTextCentered(22, 'PRESS ENTER TO CONTINUE', theme.title, theme.background, true);
-}
-
-function drawPaused(fb: FrameBuffer, theme: Theme): void {
-  fb.drawTextCenteredFg(PLAYFIELD_Y + 16, 'PAUSED', theme.title, true);
-  fb.drawTextCenteredFg(PLAYFIELD_Y + 18, 'PRESS P TO RESUME', theme.subtitle);
 }
 
 function drawPlayfield(fb: FrameBuffer, world: World, theme: Theme, cellAspectRatio: number): void {
@@ -218,7 +292,7 @@ export function renderWorld(
 
   if (world.phase === 'menu') {
     drawPlayfieldBackground(fb, theme);
-    drawMenu(fb, theme);
+    drawMenu(fb, world, theme);
     return;
   }
 
@@ -236,14 +310,7 @@ export function renderWorld(
 
   if (world.phase === 'paused') drawPaused(fb, theme);
   if (world.phase === 'gameover') drawGameOver(fb, world, theme);
-  if (world.phase === 'levelcomplete') {
-    fb.drawTextCenteredFg(
-      PLAYFIELD_Y + 14,
-      `LEVEL ${world.levelConfig.level} COMPLETE! +${world.levelConfig.winBonus}`,
-      theme.title,
-      true,
-    );
-  }
+  if (world.phase === 'levelcomplete') drawLevelComplete(fb, world, theme);
 }
 
 export function createViewportBuffer(): FrameBuffer {

@@ -76,6 +76,9 @@ export const themes: Record<string, Theme> = {
   },
 };
 
+export const THEME_NAMES = ['club', 'retro', 'neon'] as const;
+export type ThemeName = (typeof THEME_NAMES)[number];
+
 export function getTheme(name?: string): Theme {
   return themes[name ?? 'club'] ?? themes.club!;
 }
