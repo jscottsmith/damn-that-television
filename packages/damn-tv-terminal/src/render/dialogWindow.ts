@@ -24,7 +24,25 @@ export interface DialogWindowRect {
 const MIN_WIDTH = 40;
 const PADDING_X = 2;
 const PADDING_Y = 1;
+const MENU_PAD_X = 1;
+const ARROW_GAP = 1;
 const SELECTOR = '▶';
+
+function getMenuRowBounds(rect: DialogWindowRect): {
+  left: number;
+  right: number;
+  width: number;
+  labelStart: number;
+  labelWidth: number;
+} {
+  const left = rect.x + PADDING_X + MENU_PAD_X;
+  const right = rect.x + rect.w - PADDING_X - MENU_PAD_X - 1;
+  const width = right - left + 1;
+  const labelStart = left + 1 + ARROW_GAP;
+  const labelWidth = right - labelStart + 1;
+
+  return { left, right, width, labelStart, labelWidth };
+}
 
 function maxLineWidth(content: DialogWindowContent): number {
   let max = content.title.length + 2;
@@ -34,7 +52,7 @@ function maxLineWidth(content: DialogWindowContent): number {
   }
 
   for (const item of content.menuItems ?? []) {
-    max = Math.max(max, item.label.length + 2);
+    max = Math.max(max, 1 + ARROW_GAP + item.label.length + MENU_PAD_X * 2);
   }
 
   if (content.footer) {
@@ -110,16 +128,26 @@ function drawMenuRow(
   item: DialogMenuItem,
   theme: Theme,
 ): void {
-  const bg = theme.hudBg;
-  const prefix = item.selected ? SELECTOR : ' ';
-  const text = `${prefix} ${item.label}`;
-  const fg = item.accent
-    ? theme.danger
-    : item.selected
-      ? theme.title
-      : theme.hudText;
-  const x = rect.x + PADDING_X;
-  fb.drawText(x, y, text.padEnd(rect.w - PADDING_X * 2, ' '), fg, bg, item.selected || item.accent);
+  const { left, labelStart, labelWidth } = getMenuRowBounds(rect);
+  const normalFg = item.accent ? theme.danger : theme.hudText;
+  const normalBg = theme.hudBg;
+  const arrowChar = item.selected ? SELECTOR : ' ';
+
+  fb.set(left, y, { char: arrowChar, fg: normalFg, bg: normalBg });
+  fb.set(left + 1, y, { char: ' ', fg: normalFg, bg: normalBg });
+
+  const label = item.label.slice(0, labelWidth);
+
+  if (item.selected) {
+    const fg = normalBg;
+    const bg = normalFg;
+    fb.fillRect(labelStart, y, labelWidth, 1, ' ', fg, bg);
+    fb.drawText(labelStart, y, label, fg, bg);
+    return;
+  }
+
+  fb.fillRect(labelStart, y, labelWidth, 1, ' ', normalFg, normalBg);
+  fb.drawText(labelStart, y, label, normalFg, normalBg, item.accent ?? false);
 }
 
 export function drawDialogWindow(
