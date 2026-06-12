@@ -3,6 +3,10 @@ import type { Theme } from './types.js';
 import { PLAYFIELD_HEIGHT, PLAYFIELD_WIDTH, PLAYFIELD_X, PLAYFIELD_Y } from './types.js';
 import type { World } from '../core/World.js';
 import type { Explosion } from '../core/types.js';
+import {
+  EXPLOSION_SHOCKWAVE_MAX_FRAMES,
+  getExplosionShockwaveFrame,
+} from '../core/entities/Explosion.js';
 import { EXPLOSION_SIZE } from './sprites.js';
 
 const SHOCKWAVE_SPEED = 0.75;
@@ -109,7 +113,8 @@ export function applyCircularBgRing(
 }
 
 function shockwaveRingWidth(explosion: Explosion): number {
-  const t = Math.min(1, explosion.frame / explosion.maxFrames);
+  const shockwaveFrame = getExplosionShockwaveFrame(explosion);
+  const t = Math.min(1, shockwaveFrame / EXPLOSION_SHOCKWAVE_MAX_FRAMES);
   return lerp(SHOCKWAVE_RING_WIDTH_START, SHOCKWAVE_RING_WIDTH_END, t);
 }
 
@@ -124,7 +129,7 @@ export function drawShockwaves(
 
     const centerX = explosion.x + EXPLOSION_SIZE.w / 2;
     const centerY = explosion.y + EXPLOSION_SIZE.h / 2;
-    const radius = explosion.frame * SHOCKWAVE_SPEED;
+    const radius = getExplosionShockwaveFrame(explosion) * SHOCKWAVE_SPEED;
 
     applyCircularBgRing(
       fb,

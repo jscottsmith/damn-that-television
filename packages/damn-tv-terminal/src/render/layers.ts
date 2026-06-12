@@ -260,10 +260,10 @@ function drawEntities(fb: FrameBuffer, world: World, theme: Theme, now: number):
   }
 
   for (const explosion of world.explosions) {
-    const frame = EXPLOSION_FRAMES[Math.min(
-      Math.floor(explosion.frame),
-      EXPLOSION_FRAMES.length - 1,
-    )]!;
+    const frameIndex = Math.floor(explosion.frame);
+    if (frameIndex < 0 || frameIndex >= EXPLOSION_FRAMES.length) continue;
+
+    const frame = EXPLOSION_FRAMES[frameIndex]!;
     fb.drawSpriteFg(
       PLAYFIELD_X + Math.floor(explosion.x),
       PLAYFIELD_Y + Math.floor(explosion.y),
