@@ -1,3 +1,4 @@
+import { DEFAULT_CELL_ASPECT_RATIO } from './types.js';
 import type { Theme } from './types.js';
 import { FrameBuffer } from './FrameBuffer.js';
 import {
@@ -15,6 +16,7 @@ import {
 import type { World } from '../core/World.js';
 import { worldToScreenY } from '../core/coordinates.js';
 import { getEnemyThemeColor } from '../core/config/enemies.js';
+import { drawShockwaves, drawTerrain } from './terrain.js';
 import {
   BULLET_CHAR,
   EXPLOSION_FRAMES,
@@ -66,10 +68,9 @@ function drawFinishMarkers(fb: FrameBuffer, world: World, theme: Theme): void {
     const screenY = worldToScreenY(cell.y, world.cameraY);
     if (screenY < 0 || screenY >= PLAYFIELD_HEIGHT) continue;
 
-    fb.set(PLAYFIELD_X + cell.x, PLAYFIELD_Y + Math.floor(screenY), {
+    fb.setFg(PLAYFIELD_X + cell.x, PLAYFIELD_Y + Math.floor(screenY), {
       char: '=',
       fg: theme.borderAccent,
-      bg: theme.playfieldBg,
       bold: true,
     });
   }
@@ -82,20 +83,18 @@ function drawEntities(fb: FrameBuffer, world: World, theme: Theme, now: number):
     const screenY = worldToScreenY(enemy.y, world.cameraY);
     if (screenY + enemy.h < 0 || screenY > PLAYFIELD_HEIGHT) continue;
 
-    fb.drawSprite(
+    fb.drawSpriteFg(
       PLAYFIELD_X + Math.floor(enemy.x),
       PLAYFIELD_Y + Math.floor(screenY),
       ENEMY_SPRITES[enemy.movementType],
       getEnemyThemeColor(theme, enemy.movementType),
-      theme.playfieldBg,
     );
   }
 
   for (const projectile of world.projectiles) {
-    fb.set(PLAYFIELD_X + Math.floor(projectile.x), PLAYFIELD_Y + Math.floor(projectile.y), {
+    fb.setFg(PLAYFIELD_X + Math.floor(projectile.x), PLAYFIELD_Y + Math.floor(projectile.y), {
       char: BULLET_CHAR,
       fg: theme.playerBullet,
-      bg: theme.playfieldBg,
       bold: true,
     });
   }
@@ -104,12 +103,11 @@ function drawEntities(fb: FrameBuffer, world: World, theme: Theme, now: number):
     const screenY = worldToScreenY(powerUp.y, world.cameraY);
     if (screenY + powerUp.h < 0 || screenY > PLAYFIELD_HEIGHT) continue;
 
-    fb.drawSprite(
+    fb.drawSpriteFg(
       PLAYFIELD_X + Math.floor(powerUp.x),
       PLAYFIELD_Y + Math.floor(screenY),
       POWERUP_SPRITES[powerUp.type],
       theme.powerUp,
-      theme.playfieldBg,
     );
   }
 
@@ -118,12 +116,11 @@ function drawEntities(fb: FrameBuffer, world: World, theme: Theme, now: number):
       Math.floor(explosion.frame),
       EXPLOSION_FRAMES.length - 1,
     )]!;
-    fb.drawSprite(
+    fb.drawSpriteFg(
       PLAYFIELD_X + Math.floor(explosion.x),
       PLAYFIELD_Y + Math.floor(explosion.y),
       frame,
       theme.explosion,
-      theme.playfieldBg,
     );
   }
 
@@ -131,22 +128,20 @@ function drawEntities(fb: FrameBuffer, world: World, theme: Theme, now: number):
   const hasShield = now < world.player.shieldUntil;
 
   if (!blink) {
-    fb.drawSprite(
+    fb.drawSpriteFg(
       PLAYFIELD_X + Math.floor(world.player.x),
       PLAYFIELD_Y + Math.floor(world.player.y),
       PLAYER_SPRITE,
       hasShield ? theme.hudAccent : theme.player,
-      theme.playfieldBg,
     );
   }
 
   if (hasShield) {
-    fb.drawText(
+    fb.drawTextFg(
       PLAYFIELD_X + Math.floor(world.player.x),
       PLAYFIELD_Y + Math.floor(world.player.y) - 1,
       'SHIELD',
       theme.hudAccent,
-      theme.playfieldBg,
       true,
     );
   }
@@ -203,18 +198,31 @@ function drawGameComplete(fb: FrameBuffer, world: World, theme: Theme): void {
 }
 
 function drawPaused(fb: FrameBuffer, theme: Theme): void {
-  fb.drawTextCentered(16, 'PAUSED', theme.title, theme.playfieldBg, true);
-  fb.drawTextCentered(18, 'PRESS P TO RESUME', theme.subtitle, theme.playfieldBg);
+  fb.drawTextCenteredFg(PLAYFIELD_Y + 16, 'PAUSED', theme.title, true);
+  fb.drawTextCenteredFg(PLAYFIELD_Y + 18, 'PRESS P TO RESUME', theme.subtitle);
 }
 
-export function renderWorld(fb: FrameBuffer, world: World, theme: Theme, now: number): void {
+function drawPlayfield(fb: FrameBuffer, world: World, theme: Theme, cellAspectRatio: number): void {
+  drawTerrain(fb, world, theme);
+  drawShockwaves(fb, world, theme, cellAspectRatio);
+}
+
+export function renderWorld(
+  fb: FrameBuffer,
+  world: World,
+  theme: Theme,
+  now: number,
+  cellAspectRatio = DEFAULT_CELL_ASPECT_RATIO,
+): void {
   drawBorder(fb, theme);
-  drawPlayfieldBackground(fb, theme);
 
   if (world.phase === 'menu') {
+    drawPlayfieldBackground(fb, theme);
     drawMenu(fb, theme);
     return;
   }
+
+  drawPlayfield(fb, world, theme, cellAspectRatio);
 
   if (world.phase === 'gamecomplete') {
     drawEntities(fb, world, theme, now);
@@ -229,11 +237,10 @@ export function renderWorld(fb: FrameBuffer, world: World, theme: Theme, now: nu
   if (world.phase === 'paused') drawPaused(fb, theme);
   if (world.phase === 'gameover') drawGameOver(fb, world, theme);
   if (world.phase === 'levelcomplete') {
-    fb.drawTextCentered(
+    fb.drawTextCenteredFg(
       PLAYFIELD_Y + 14,
       `LEVEL ${world.levelConfig.level} COMPLETE! +${world.levelConfig.winBonus}`,
       theme.title,
-      theme.playfieldBg,
       true,
     );
   }

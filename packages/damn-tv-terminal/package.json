@@ -6,6 +6,9 @@
   "type": "module",
   "license": "ISC",
   "author": "J Scott Smith",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

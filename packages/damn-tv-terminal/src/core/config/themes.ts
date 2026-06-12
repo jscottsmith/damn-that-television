@@ -1,5 +1,15 @@
 import type { Theme } from '../../render/types.js';
 
+function terrainFromBase(playfieldBg: number) {
+  const terrainHigh = Math.min(255, playfieldBg + 1);
+  return {
+    terrainLow: Math.max(0, playfieldBg - 1),
+    terrainMid: playfieldBg,
+    terrainHigh,
+    terrainShock: Math.min(255, terrainHigh + 1),
+  };
+}
+
 export const themes: Record<string, Theme> = {
   club: {
     name: 'club',
@@ -8,6 +18,7 @@ export const themes: Record<string, Theme> = {
     borderAccent: 213,
     playfieldBg: 235,
     playfieldStars: 240,
+    ...terrainFromBase(235),
     hudBg: 236,
     hudText: 252,
     hudAccent: 213,
@@ -16,7 +27,7 @@ export const themes: Record<string, Theme> = {
     enemy: 203,
     enemyAccent: 199,
     powerUp: 82,
-    explosion: 208,
+    explosion: 250,
     title: 213,
     subtitle: 252,
     danger: 196,
@@ -28,6 +39,7 @@ export const themes: Record<string, Theme> = {
     borderAccent: 82,
     playfieldBg: 234,
     playfieldStars: 22,
+    ...terrainFromBase(234),
     hudBg: 235,
     hudText: 46,
     hudAccent: 82,
@@ -36,7 +48,7 @@ export const themes: Record<string, Theme> = {
     enemy: 196,
     enemyAccent: 160,
     powerUp: 51,
-    explosion: 208,
+    explosion: 250,
     title: 46,
     subtitle: 250,
     danger: 196,
@@ -48,6 +60,7 @@ export const themes: Record<string, Theme> = {
     borderAccent: 51,
     playfieldBg: 18,
     playfieldStars: 25,
+    ...terrainFromBase(18),
     hudBg: 17,
     hudText: 51,
     hudAccent: 45,
@@ -56,7 +69,7 @@ export const themes: Record<string, Theme> = {
     enemy: 201,
     enemyAccent: 213,
     powerUp: 46,
-    explosion: 214,
+    explosion: 252,
     title: 45,
     subtitle: 255,
     danger: 203,

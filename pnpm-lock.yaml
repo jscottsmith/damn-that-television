@@ -216,10 +216,6 @@ importers:
         version: 5.9.3
 
   packages/damn-tv-terminal:
-    dependencies:
-      '@xterm/xterm':
-        specifier: '>=5.0.0'
-        version: 6.0.0
     devDependencies:
       '@types/node':
         specifier: ^22.13.10
@@ -2199,9 +2195,6 @@ packages:
 
   '@xterm/xterm@5.5.0':
     resolution: {integrity: sha512-hqJHYaQb5OptNunnyAnkHyM8aCjZ1MEIDTQu1iIbbTD/xops91NB5yq1ZK/dC2JDbVWtF23zUtl9JE2NqwT87A==}
-
-  '@xterm/xterm@6.0.0':
-    resolution: {integrity: sha512-TQwDdQGtwwDt+2cgKDLn0IRaSxYu1tSUjgKarSDkUM0ZNiSRXFpjxEsvc/Zgc5kq5omJ+V0a8/kIM2WD3sMOYg==}
 
   abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
@@ -7109,8 +7102,6 @@ snapshots:
       '@xterm/xterm': 5.5.0
 
   '@xterm/xterm@5.5.0': {}
-
-  '@xterm/xterm@6.0.0': {}
 
   abab@2.0.6: {}
 

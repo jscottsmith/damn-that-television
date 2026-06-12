@@ -9,4 +9,5 @@ export {
   VIEWPORT_HEIGHT,
   PLAYFIELD_WIDTH,
   PLAYFIELD_HEIGHT,
+  DEFAULT_CELL_ASPECT_RATIO,
 } from './render/types.js';

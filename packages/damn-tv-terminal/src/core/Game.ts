@@ -4,7 +4,7 @@ import type { Theme } from '../render/types.js';
 import { getTheme } from './config/themes.js';
 import { InputSource } from './systems/input.js';
 import { World } from './World.js';
-import { ANSI, VIEWPORT_HEIGHT, VIEWPORT_WIDTH } from '../render/types.js';
+import { ANSI, DEFAULT_CELL_ASPECT_RATIO, VIEWPORT_HEIGHT, VIEWPORT_WIDTH } from '../render/types.js';
 import { createViewportBuffer, renderWorld } from '../render/layers.js';
 import type { DamnTvActions } from '../game/actions.js';
 import { createDamnTvActions } from '../game/actions.js';
@@ -13,12 +13,15 @@ import { buildDamnTvActions } from '../game/bindings.js';
 export interface GameOptions {
   theme?: string;
   targetFps?: number;
+  /** Screen height ÷ width of one terminal cell. Web embed should measure. */
+  cellAspectRatio?: number;
 }
 
 export interface GameController {
   pause(): void;
   resume(): void;
   destroy(): void;
+  setCellAspectRatio(ratio: number): void;
 }
 
 export class Game implements GameController {
@@ -35,6 +38,7 @@ export class Game implements GameController {
   private unsubs: Array<() => void> = [];
   private targetFps: number;
   private useAnimationFrame: boolean;
+  private cellAspectRatio: number;
 
   constructor(
     private terminal: TerminalAdapter,
@@ -42,7 +46,14 @@ export class Game implements GameController {
   ) {
     this.theme = getTheme(options.theme);
     this.targetFps = options.targetFps ?? 60;
+    this.cellAspectRatio = options.cellAspectRatio ?? DEFAULT_CELL_ASPECT_RATIO;
     this.useAnimationFrame = typeof globalThis.requestAnimationFrame === 'function';
+  }
+
+  setCellAspectRatio(ratio: number): void {
+    if (ratio > 0 && Number.isFinite(ratio)) {
+      this.cellAspectRatio = ratio;
+    }
   }
 
   start(): GameController {
@@ -139,7 +150,7 @@ export class Game implements GameController {
   }
 
   private render(time: number): void {
-    renderWorld(this.buffer, this.world, this.theme, time);
+    renderWorld(this.buffer, this.world, this.theme, time, this.cellAspectRatio);
     const { cols, rows } = this.terminal.getSize();
     const output = composeFrame(
       this.buffer.getCells(),

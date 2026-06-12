@@ -57,6 +57,16 @@ export interface Explosion extends Entity {
   maxFrames: number;
 }
 
+/** Future bg-only terrain interactions (bombs, etc.). V1 shockwaves use Explosion directly. */
+export interface TerrainBgEffect {
+  x: number;
+  y: number;
+  radius: number;
+  color: number;
+  createdAt: number;
+  durationMs: number;
+}
+
 export type GamePhase =
   | 'menu'
   | 'playing'

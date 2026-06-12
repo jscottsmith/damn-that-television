@@ -70,7 +70,7 @@ export function composeFrame(
   viewportHeight: number,
   termCols: number,
   termRows: number,
-  frameTime: number
+  _frameTime: number
 ): string {
   const offsetX = Math.max(0, Math.floor((termCols - viewportWidth) / 2));
   const offsetY = Math.max(0, Math.floor((termRows - viewportHeight) / 2));

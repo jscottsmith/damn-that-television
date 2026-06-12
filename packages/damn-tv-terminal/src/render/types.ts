@@ -12,6 +12,10 @@ export interface Theme {
   borderAccent: number;
   playfieldBg: number;
   playfieldStars: number;
+  terrainLow: number;
+  terrainMid: number;
+  terrainHigh: number;
+  terrainShock: number;
   hudBg: number;
   hudText: number;
   hudAccent: number;
@@ -46,3 +50,6 @@ export const HUD_X = 2;
 export const HUD_Y = 36;
 export const HUD_WIDTH = 76;
 export const HUD_HEIGHT = 4;
+
+/** Default screen height ÷ width for one terminal cell (typical monospace). */
+export const DEFAULT_CELL_ASPECT_RATIO = 2;

@@ -48,6 +48,7 @@ export function getSpriteSize(lines: readonly string[]): { w: number; h: number 
 
 export const PLAYER_SIZE = getSpriteSize(PLAYER_SPRITE);
 export const TV_SIZE = getSpriteSize(TV_SPRITE);
+export const EXPLOSION_SIZE = getSpriteSize(EXPLOSION_FRAMES[0] ?? ['*']);
 
 export function getEnemySize(type: EnemyMovementType): { w: number; h: number } {
   return getSpriteSize(ENEMY_SPRITES[type]);
