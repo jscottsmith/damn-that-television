@@ -20,7 +20,9 @@ import { drawShockwaves, drawTerrain } from './terrain.js';
 import {
   BULLET_CHAR,
   EXPLOSION_FRAMES,
-  PLAYER_SPRITE,
+  getPlayerSprite,
+  getPlayerSpriteMode,
+  PLAYER_IDLE_ANIM_MS,
   POWERUP_SPRITES,
   ENEMY_SPRITES,
 } from './sprites.js';
@@ -274,23 +276,16 @@ function drawEntities(fb: FrameBuffer, world: World, theme: Theme, now: number):
 
   const blink = now < world.player.invincibleUntil && Math.floor(now / 150) % 2 === 0;
   const hasShield = now < world.player.shieldUntil;
+  const spriteMode = getPlayerSpriteMode(world.player, now);
+  const animFrame = Math.floor(now / PLAYER_IDLE_ANIM_MS);
+  const playerSprite = getPlayerSprite(spriteMode, world.player.facing, animFrame);
 
   if (!blink) {
     fb.drawSpriteFg(
       PLAYFIELD_X + Math.floor(world.player.x),
       PLAYFIELD_Y + Math.floor(world.player.y),
-      PLAYER_SPRITE,
+      playerSprite,
       hasShield ? theme.hudAccent : theme.player,
-    );
-  }
-
-  if (hasShield) {
-    fb.drawTextFg(
-      PLAYFIELD_X + Math.floor(world.player.x),
-      PLAYFIELD_Y + Math.floor(world.player.y) - 1,
-      'SHIELD',
-      theme.hudAccent,
-      true,
     );
   }
 }

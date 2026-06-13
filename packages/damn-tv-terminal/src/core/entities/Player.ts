@@ -16,6 +16,7 @@ export function createPlayer(lives = 3): Player {
     w: PLAYER_SIZE.w,
     h: PLAYER_SIZE.h,
     lives,
+    facing: 'center',
     invincibleUntil: 0,
     shieldUntil: 0,
     fireCooldown: 0,
@@ -42,6 +43,14 @@ export function updatePlayer(player: Player, actions: DamnTvActions, dt: number,
 
   player.x = Math.max(0, Math.min(PLAYFIELD_WIDTH - player.w, player.x));
   player.y = Math.max(0, Math.min(PLAYFIELD_HEIGHT - player.h, player.y));
+
+  if (actions.moveLeft && !actions.moveRight) {
+    player.facing = 'left';
+  } else if (actions.moveRight && !actions.moveLeft) {
+    player.facing = 'right';
+  } else {
+    player.facing = 'center';
+  }
 
   if (player.fireCooldown > 0) {
     player.fireCooldown -= dt * 1000;

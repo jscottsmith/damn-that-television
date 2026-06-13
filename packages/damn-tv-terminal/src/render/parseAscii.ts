@@ -23,6 +23,34 @@ export function parseSprite(text: string): readonly string[] {
   return trimmed.split('\n').map(normalizeLine);
 }
 
+const STATE_MARKER = /^---\s*state:\s*(\S+)\s*---\s*$/im;
+
+/** Parse a sprite sheet with named states, each containing one or more animation frames. */
+export function parseSpriteSheet(
+  text: string,
+): Readonly<Record<string, readonly (readonly string[])[]>> {
+  const parts = text.split(STATE_MARKER);
+  const sheet: Record<string, readonly (readonly string[])[]> = {};
+
+  for (let i = 1; i < parts.length; i += 2) {
+    const name = parts[i]!.toLowerCase();
+    const content = parts[i + 1] ?? '';
+    const frames = parseAnimation(content);
+    if (frames.length > 0) {
+      sheet[name] = frames;
+    }
+  }
+
+  if (Object.keys(sheet).length === 0) {
+    const fallback = parseAnimation(text);
+    if (fallback.length > 0) {
+      sheet.default = fallback;
+    }
+  }
+
+  return sheet;
+}
+
 /** Parse a multi-frame animation delimited by `--- frame ---` markers. */
 export function parseAnimation(text: string): readonly (readonly string[])[] {
   const blocks = text

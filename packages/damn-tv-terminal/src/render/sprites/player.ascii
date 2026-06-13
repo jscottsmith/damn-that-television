@@ -1,3 +1,73 @@
-# player ship
+# player ship sprite sheet
+#
+# States combine flight mode with horizontal facing:
+#   idle-*    default flight (blink animation)
+#   shoot-*   firing recoil / engine flare
+#   shield-*  energy barrier active
+#
+# Facing suffix: center (level), left (banking port), right (banking starboard)
+# Frames within each state are separated by --- frame ---
+#
+--- state: idle-center ---
+--- frame ---
  (◎/\◎)  
-╙ \░░/ ╜
+  \░░/ 
+--- frame ---
+ (◓/\◓)  
+  \░░/ 
+--- state: idle-left ---
+--- frame ---
+◖(◎\\◎)   
+  \░░/
+--- frame ---
+◖(◓\\◓)   
+  \░░/
+--- state: idle-right ---
+--- frame ---
+ (◎//◎)◗  
+  \░░/
+--- frame ---
+ (◓//◓)◗  
+  \░░/
+--- state: shoot-center ---
+--- frame ---
+╞(◎!!◎)╡  
+╙ ║░░║ ╜
+--- frame ---
+ (●!!●)  
+ ╙║▓▓║╜
+--- state: shoot-left ---
+--- frame ---
+◖(◎!◎)   
+╙ ║██║ ╜
+--- frame ---
+◖(◎!◎)   
+╙ ║▓▓║ ╜
+--- state: shoot-right ---
+--- frame ---
+  (◎!◎)◗  
+╙ ║██║ ╜
+--- frame ---
+  (◎!◎)◗  
+╙ ║▓▓║ ╜
+--- state: shield-center ---
+--- frame ---
+○(◎/\◎)○ 
+╙═\░░/═╝
+--- frame ---
+○(◓/\◓)○ 
+╙═\░░/═╝
+--- state: shield-left ---
+--- frame ---
+○◖(◎\◎)  
+╙═\░░/═╝
+--- frame ---
+○◖(◓\◓)  
+╙═\░░/═╝
+--- state: shield-right ---
+--- frame ---
+ (◎/◎)◗○ 
+╙═\░░/═╝
+--- frame ---
+ (◓/◓)◗○ 
+╙═\░░/═╝

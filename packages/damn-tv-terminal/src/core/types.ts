@@ -10,12 +10,17 @@ export interface Entity {
   dead: boolean;
 }
 
+export type PlayerFacing = 'left' | 'center' | 'right';
+
+export type PlayerSpriteMode = 'idle' | 'shoot' | 'shield';
+
 export interface Player extends Entity {
   x: number;
   y: number;
   w: number;
   h: number;
   lives: number;
+  facing: PlayerFacing;
   invincibleUntil: number;
   shieldUntil: number;
   fireCooldown: number;
