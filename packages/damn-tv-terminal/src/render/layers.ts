@@ -23,6 +23,7 @@ import {
   getPlayerSprite,
   getPlayerSpriteMode,
   PLAYER_IDLE_ANIM_MS,
+  PLAYER_SHIELD_SHIMMER_MS,
   POWERUP_SPRITES,
   ENEMY_SPRITES,
 } from './sprites.js';
@@ -281,12 +282,22 @@ function drawEntities(fb: FrameBuffer, world: World, theme: Theme, now: number):
   const playerSprite = getPlayerSprite(spriteMode, world.player.facing, animFrame);
 
   if (!blink) {
-    fb.drawSpriteFg(
-      PLAYFIELD_X + Math.floor(world.player.x),
-      PLAYFIELD_Y + Math.floor(world.player.y),
-      playerSprite,
-      hasShield ? theme.hudAccent : theme.player,
-    );
+    const playerX = PLAYFIELD_X + Math.floor(world.player.x);
+    const playerY = PLAYFIELD_Y + Math.floor(world.player.y);
+
+    if (hasShield) {
+      const shimmerPhase = (now % PLAYER_SHIELD_SHIMMER_MS) / PLAYER_SHIELD_SHIMMER_MS;
+      fb.drawSpriteFgWave(
+        playerX,
+        playerY,
+        playerSprite,
+        theme.playerShield,
+        theme.playerShieldShimmer,
+        shimmerPhase,
+      );
+    } else {
+      fb.drawSpriteFg(playerX, playerY, playerSprite, theme.player);
+    }
   }
 }
 

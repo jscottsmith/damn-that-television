@@ -153,6 +153,34 @@ export class FrameBuffer {
     }
   }
 
+  /** Draw sprite with a horizontal wave alternating between two foreground colors. */
+  drawSpriteFgWave(
+    x: number,
+    y: number,
+    lines: readonly string[],
+    fgBase: number,
+    fgShimmer: number,
+    phase: number,
+    transparentChar = ' ',
+    bold = false,
+  ): void {
+    const spriteWidth = Math.max(1, ...lines.map((line) => line.length));
+
+    for (let row = 0; row < lines.length; row++) {
+      const line = lines[row]!;
+      for (let col = 0; col < line.length; col++) {
+        const char = line[col]!;
+        if (char === transparentChar) continue;
+
+        const xNorm = col / Math.max(1, spriteWidth - 1);
+        const wave = Math.sin((xNorm - phase) * Math.PI * 4);
+        const fg = wave > 0 ? fgShimmer : fgBase;
+
+        this.setFg(x + col, y + row, { char, fg, bold });
+      }
+    }
+  }
+
   clone(): FrameBuffer {
     const copy = new FrameBuffer(this.width, this.height);
     for (let i = 0; i < this.cells.length; i++) {

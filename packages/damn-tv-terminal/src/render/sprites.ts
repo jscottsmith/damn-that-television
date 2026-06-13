@@ -19,6 +19,7 @@ export const PLAYER_SPRITE_SHEET = parseSpriteSheet(playerAscii);
 
 export const PLAYER_SHOOT_ANIM_MS = 150;
 export const PLAYER_IDLE_ANIM_MS = 200;
+export const PLAYER_SHIELD_SHIMMER_MS = 2000;
 
 export const TV_SPRITE = parseSprite(tvAscii);
 

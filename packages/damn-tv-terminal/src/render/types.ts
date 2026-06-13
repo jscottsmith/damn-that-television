@@ -20,6 +20,8 @@ export interface Theme {
   hudText: number;
   hudAccent: number;
   player: number;
+  playerShield: number;
+  playerShieldShimmer: number;
   playerBullet: number;
   enemy: number;
   enemyAccent: number;
