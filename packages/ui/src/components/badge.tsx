@@ -11,8 +11,8 @@ const badgeVariants = cva("inline-block rounded-md text-xs font-medium md:text-s
         "border-none bg-soft-pink-400 text-slate-800 dark:bg-club-800 dark:text-slate-100",
     },
     size: {
-      default: "px-sm py-0.5",
-      lg: "px-base py-1",
+      default: "px-2 py-0.5",
+      lg: "px-3 py-1",
     },
   },
   defaultVariants: {

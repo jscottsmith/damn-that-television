@@ -75,7 +75,7 @@ export const NavigationMenu = (props: {
       className={clsx('bg-plum fixed -inset-20 z-40 flex select-none p-20')}
     >
       <div className="relative flex h-full items-center justify-center">
-        <nav className="p-lg md:p-2xl max-w-4xl flex-grow">
+        <nav className="p-6 md:p-12 max-w-4xl flex-grow">
           <motion.ul
             variants={primaryContainer}
             initial="hidden"
@@ -93,7 +93,7 @@ export const NavigationMenu = (props: {
               >
                 <span
                   className={clsx(
-                    'mr-sm md:mr-md inline-block w-6 rounded-md border-t-4 border-solid md:w-24 xl:w-32',
+                    'mr-2 md:mr-4 inline-block w-6 rounded-md border-t-4 border-solid md:w-24 xl:w-32',
                     pathName === current.href ? 'border-cream' : 'border-lunar',
                   )}
                 />
@@ -111,17 +111,17 @@ export const NavigationMenu = (props: {
               </motion.li>
             ))}
           </motion.ul>
-          <section className="mt-xl md:mt-2xl lg:mt-3xl xl:mt-4xl md:flex md:flex-row">
+          <section className="mt-8 md:mt-12 lg:mt-16 xl:mt-24 md:flex md:flex-row">
             <motion.h3
               variants={secondaryHeadline}
               initial="hidden"
               animate={animate}
-              className="mb-sm font-futura text-lunar text-xl font-bold uppercase italic md:mb-0 md:text-2xl"
+              className="mb-2 font-futura text-lunar text-xl font-bold uppercase italic md:mb-0 md:text-2xl"
             >
               Elsewhere{' '}
               <span
                 className={clsx(
-                  'md:w-18 mx-sm border-lunar md:mr-md inline-block w-6 rounded-md border-t-4 border-solid xl:w-24',
+                  'md:w-18 mx-2 border-lunar md:mr-4 inline-block w-6 rounded-md border-t-4 border-solid xl:w-24',
                 )}
               />
             </motion.h3>
@@ -129,7 +129,7 @@ export const NavigationMenu = (props: {
               variants={secondaryContainer}
               initial="hidden"
               animate={animate}
-              className="md:gap-lg md:flex md:flex-row"
+              className="md:gap-6 md:flex md:flex-row"
             >
               {props.secondaryLinks.map((current, i) => (
                 <motion.li

@@ -18,9 +18,9 @@ export default function Components() {
   return (
     <>
       <HeroTitle asChild>
-        <h1 className="pb-lg">Components</h1>
+        <h1 className="pb-6">Components</h1>
       </HeroTitle>
-      <section className="py-md">
+      <section className="py-4">
         <Title asChild>
           <h2>Toggle</h2>
         </Title>
@@ -57,17 +57,17 @@ export default function Components() {
         }
       />
 
-      <section className="gap-lg md:gap-xl lg:gap-2xl grid md:grid-cols-3">
-        <CardSecondary className="p-base md:p-lg h-96" />
-        <CardSecondary className="p-base md:p-lg h-96" />
-        <CardSecondary className="p-base md:p-lg h-96" />
+      <section className="gap-6 md:gap-8 lg:gap-12 grid md:grid-cols-3">
+        <CardSecondary className="p-3 md:p-6 h-96" />
+        <CardSecondary className="p-3 md:p-6 h-96" />
+        <CardSecondary className="p-3 md:p-6 h-96" />
       </section>
 
       <section className="grid grid-cols-1">
         <CardPrimary
           className={cn(
             surfaceVariants({ variant: 'pattern' }),
-            'p-base md:p-lg h-96',
+            'p-3 md:p-6 h-96',
           )}
           style={{ backgroundSize: '5rem 5rem' }}
         />

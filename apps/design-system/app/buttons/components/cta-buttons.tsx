@@ -12,9 +12,9 @@ const types: CTAButtonType[] = ['pepto', 'blue', 'gray', 'deep'];
 export default function CTAButtons() {
   return (
     <ComponentSection title="CTA Buttons">
-      <div className="gap-lg flex flex-row">
+      <div className="gap-6 flex flex-row">
         {types.map((type) => (
-          <div className="gap-sm flex items-end" key={type}>
+          <div className="gap-2 flex items-end" key={type}>
             {sizes.map((size) => (
               <CTAButton buttonSize={size} buttonType={type} key={size}>
                 Wake Up!

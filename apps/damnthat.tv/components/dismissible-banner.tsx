@@ -79,7 +79,7 @@ export function DismissibleBanner({
                 <Button
                   presentation="icon"
                   size="sm"
-                  className="right-base top-base absolute"
+                  className="right-3 top-3 absolute"
                   onClick={handleDismiss}
                 >
                   <XMarkIcon />

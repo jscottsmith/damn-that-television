@@ -13,7 +13,7 @@ export const ResumeEducation = (props: ResumeEducationSlice) => {
 
       {props.items.map((item, i) => {
         return (
-          <section className="mb-xl" key={i}>
+          <section className="mb-8" key={i}>
             <TitleAndSubtitle
               className="text-xl"
               title={item.institution}

@@ -3,7 +3,7 @@ import { Prose } from '@/components/typography/prose';
 
 export default function Page() {
   return (
-    <div className="gap-lg flex max-w-3xl flex-col">
+    <div className="gap-6 flex max-w-3xl flex-col">
       <HeroTitle asChild>
         <h1>Design System</h1>
       </HeroTitle>

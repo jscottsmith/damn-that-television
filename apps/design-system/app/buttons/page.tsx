@@ -21,15 +21,15 @@ export default function Buttons() {
   return (
     <>
       <HeroTitle asChild>
-        <h1 className="pb-lg">Buttons</h1>
+        <h1 className="pb-6">Buttons</h1>
       </HeroTitle>
 
-      <section className="py-md">
-        <div className="gap-sm flex flex-col">
+      <section className="py-4">
+        <div className="gap-2 flex flex-col">
           <CTAButtons />
           <ComponentSection title="Standard Buttons - Primary/Secondary">
-            <div className="gap-lg flex flex-col">
-              <div className="gap-sm flex items-end">
+            <div className="gap-6 flex flex-col">
+              <div className="gap-2 flex items-end">
                 <Button size="sm" variant="primary">
                   Primary
                 </Button>
@@ -37,13 +37,13 @@ export default function Buttons() {
                 <Button size="sm">Follow</Button>
                 <Button size="sm">Like</Button>
               </div>
-              <div className="gap-sm flex items-end">
+              <div className="gap-2 flex items-end">
                 <Button variant="primary">Primary</Button>
                 <Button>Secondary</Button>
                 <Button>Follow</Button>
                 <Button>Like</Button>
               </div>
-              <div className="gap-sm flex items-end">
+              <div className="gap-2 flex items-end">
                 <Button size="md" variant="primary">
                   Primary
                 </Button>
@@ -55,7 +55,7 @@ export default function Buttons() {
           </ComponentSection>
 
           <ComponentSection title="Selection Button">
-            <div className="gap-sm flex items-end">
+            <div className="gap-2 flex items-end">
               <SelectionButtonExample size="sm">Filters</SelectionButtonExample>
               <SelectionButtonExample variant="primary">
                 Activate
@@ -67,7 +67,7 @@ export default function Buttons() {
           </ComponentSection>
 
           <ComponentSection title="Standard Button">
-            <div className="gap-sm flex items-end">
+            <div className="gap-2 flex items-end">
               <Button size="sm">Hello</Button>
               <Button size="base">Tap Me</Button>
               <Button size="md">Open Menu</Button>
@@ -75,7 +75,7 @@ export default function Buttons() {
           </ComponentSection>
 
           <ComponentSection title="System Buttons">
-            <div className="gap-sm flex items-end">
+            <div className="gap-2 flex items-end">
               <Button variant="warning" size="md">
                 Warning Button
               </Button>
@@ -92,8 +92,8 @@ export default function Buttons() {
           </ComponentSection>
 
           <ComponentSection title="Standard Button Group">
-            <div className="gap-lg flex flex-col">
-              <div className="gap-lg flex items-center">
+            <div className="gap-6 flex flex-col">
+              <div className="gap-6 flex items-center">
                 <ButtonGroup>
                   <Button>Hello</Button>
                   <Button>Tap Me</Button>
@@ -105,7 +105,7 @@ export default function Buttons() {
                   <Button>Open Menu</Button>
                 </ButtonGroup>
               </div>
-              <div className="gap-lg flex items-center">
+              <div className="gap-6 flex items-center">
                 <ButtonGroup>
                   <Button variant="primary">Hello</Button>
                   <Button variant="primary">Tap Me</Button>
@@ -121,7 +121,7 @@ export default function Buttons() {
           </ComponentSection>
 
           <ComponentSection title="Button with Icon">
-            <div className="gap-sm flex items-end">
+            <div className="gap-2 flex items-end">
               <Button>
                 Reveal
                 <EyeIcon />
@@ -138,8 +138,8 @@ export default function Buttons() {
           </ComponentSection>
 
           <ComponentSection title="Icon Button">
-            <div className="gap-lg flex items-center">
-              <div className="gap-sm flex">
+            <div className="gap-6 flex items-center">
+              <div className="gap-2 flex">
                 <Button presentation="icon" size="sm">
                   <EyeIcon />
                 </Button>
@@ -150,7 +150,7 @@ export default function Buttons() {
                   <TrashIcon />
                 </Button>
               </div>
-              <div className="gap-sm flex">
+              <div className="gap-2 flex">
                 <Button presentation="icon">
                   <EyeIcon />
                 </Button>
@@ -161,7 +161,7 @@ export default function Buttons() {
                   <TrashIcon />
                 </Button>
               </div>
-              <div className="gap-sm flex">
+              <div className="gap-2 flex">
                 <Button presentation="icon" size="md">
                   <EyeIcon />
                 </Button>
@@ -176,7 +176,7 @@ export default function Buttons() {
           </ComponentSection>
 
           <ComponentSection title="Icon Button Group">
-            <div className="gap-lg flex items-center">
+            <div className="gap-6 flex items-center">
               <ButtonGroup>
                 <Button presentation="icon">
                   <EyeIcon />
@@ -201,7 +201,7 @@ export default function Buttons() {
           </ComponentSection>
 
           <ComponentSection title="Icon Button Group Vertical">
-            <div className="gap-lg flex">
+            <div className="gap-6 flex">
               <ButtonGroup vertical>
                 <Button presentation="icon" variant="primary" size="md">
                   <EyeIcon />

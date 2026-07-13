@@ -50,7 +50,7 @@ const Gallery: FC<GalleryProps> = ({ slice }) => {
         {getVariation()}
         <footer
           className={clsx(
-            slice.variation === 'grid' ? 'py-base' : 'py-lg',
+            slice.variation === 'grid' ? 'py-3' : 'py-6',
             'flex justify-center',
           )}
         >

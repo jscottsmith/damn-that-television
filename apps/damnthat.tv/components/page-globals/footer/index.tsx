@@ -35,7 +35,7 @@ export function Footer() {
         ))}
       </Marquee>
       <FooterBody>
-        <div className="relative z-1 px-base">
+        <div className="relative z-1 px-3">
           <Wrapper asChild>
             <footer
               className={cn(

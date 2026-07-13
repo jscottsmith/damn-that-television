@@ -15,7 +15,7 @@ export default function Components() {
         autoComplete="off"
         className={cn(
           surfaceVariants({ variant: 'primary' }),
-          'gap-lg flex max-w-lg flex-col',
+          'gap-6 flex max-w-lg flex-col',
         )}
       >
         <TextField label="Test 1" placeholder="Testing" pattern=".*\S.*" />

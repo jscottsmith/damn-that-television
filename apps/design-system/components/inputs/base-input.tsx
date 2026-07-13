@@ -8,7 +8,7 @@ export function BaseInput({ className, ...rest }: BaseInputProps) {
       {...rest}
       className={clsx(
         'block w-full',
-        'py-base px-md',
+        'py-3 px-4',
         'rounded-lg',
         // bg
         'bg-slate-200 dark:bg-slate-900',

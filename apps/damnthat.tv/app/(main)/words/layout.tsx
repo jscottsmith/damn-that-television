@@ -7,11 +7,11 @@ export default function Layout(props: PropsWithChildren) {
   return (
     <Surface
       variant="background"
-      className="py-4xl md:py-6xl flex min-h-screen items-center justify-center"
+      className="py-24 md:py-40 flex min-h-screen items-center justify-center"
     >
       <SiteWrapper className="w-full max-w-screen-2xl">
         <CardPrimary>
-          <article className="p-base md:p-2xl xl:p-4xl max-w-none">
+          <article className="p-3 md:p-12 xl:p-24 max-w-none">
             {props.children}
           </article>
         </CardPrimary>
