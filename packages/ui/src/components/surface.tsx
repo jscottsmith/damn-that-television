@@ -6,9 +6,14 @@ import { cn } from "@workspace/ui/lib/utils";
 const surfaceVariants = cva("", {
   variants: {
     variant: {
+      default: "bg-background text-foreground",
+      card: "bg-card text-card-foreground",
+      popover: "bg-popover text-popover-foreground",
       primary: "bg-primary text-primary-foreground",
       secondary: "bg-secondary text-secondary-foreground",
-      background: "bg-background text-foreground",
+      muted: "bg-muted text-muted-foreground",
+      accent: "bg-accent text-accent-foreground",
+      sidebar: "bg-sidebar text-sidebar-foreground",
       glass: "bg-secondary/60 text-secondary-foreground backdrop-blur-lg",
       pattern: [
         "bg-background text-foreground",
@@ -17,7 +22,7 @@ const surfaceVariants = cva("", {
     },
   },
   defaultVariants: {
-    variant: "background",
+    variant: "default",
   },
 });
 

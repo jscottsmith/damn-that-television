@@ -17,7 +17,7 @@ export function CommandOverlay(
         >
           <div
             className={cn(
-              surfaceVariants({ variant: 'background' }),
+              surfaceVariants({ variant: 'default' }),
               'bg-slate-200/85 dark:bg-slate-900/85',
               'whitespace-nowrap rounded-2xl p-3 text-4xl font-bold',
             )}

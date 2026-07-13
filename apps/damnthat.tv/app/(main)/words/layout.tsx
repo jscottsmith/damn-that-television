@@ -6,7 +6,7 @@ import React, { PropsWithChildren } from 'react';
 export default function Layout(props: PropsWithChildren) {
   return (
     <Surface
-      variant="background"
+      variant="default"
       className="py-24 md:py-40 flex min-h-screen items-center justify-center"
     >
       <SiteWrapper className="w-full max-w-screen-2xl">
