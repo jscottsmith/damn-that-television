@@ -3,6 +3,8 @@ import * as React from "react";
 
 import { cn } from "@workspace/ui/lib/utils";
 
+import styles from "./surface.module.css";
+
 const surfaceVariants = cva("", {
   variants: {
     variant: {
@@ -15,10 +17,7 @@ const surfaceVariants = cva("", {
       accent: "bg-accent text-accent-foreground",
       sidebar: "bg-sidebar text-sidebar-foreground",
       glass: "bg-secondary/60 text-secondary-foreground backdrop-blur-lg",
-      pattern: [
-        "bg-background text-foreground",
-        "bg-[url('/static/pattern-1.svg')] bg-[length:5rem_5rem] dark:bg-[url('/static/pattern-0.svg')]",
-      ],
+      pattern: ["bg-background text-foreground", styles.pattern],
     },
   },
   defaultVariants: {

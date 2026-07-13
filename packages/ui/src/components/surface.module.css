@@ -1,0 +1,8 @@
+.pattern {
+  background-image: url("../assets/pattern-light.svg");
+  background-size: 5rem 5rem;
+}
+
+:global(.dark) .pattern {
+  background-image: url("../assets/pattern-dark.svg");
+}
