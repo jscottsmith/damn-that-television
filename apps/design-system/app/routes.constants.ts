@@ -21,6 +21,10 @@ export const routes: AppChromeRoutes = {
         title: 'Inputs',
         absolutePath: '/inputs',
       },
+      surfaces: {
+        title: 'Surfaces',
+        absolutePath: '/surfaces',
+      },
       typography: {
         title: 'Typography',
         absolutePath: '/typography',

@@ -22,7 +22,7 @@ export const Resume = (props: ResumeProps) => {
   return (
     <SiteWrapper
       padY
-      className={cn(surfaceVariants({ variant: 'background' }), 'px-0')}
+      className={cn(surfaceVariants({ variant: 'default' }), 'px-0')}
     >
         <article className="pt-24">
           <CardPrimary className="p-3 md:gap-4 md:p-4 lg:gap-6 lg:p-6 xl:p-8 2xl:p-12 mx-auto max-w-screen-lg md:flex">

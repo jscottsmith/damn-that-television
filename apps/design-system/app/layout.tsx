@@ -106,7 +106,7 @@ export default function RootLayout({
     >
       <body>
         <Providers>
-          <Surface variant="background">
+          <Surface variant="default">
             <AppChrome routes={routes}>
               <AppPage>{children}</AppPage>
             </AppChrome>

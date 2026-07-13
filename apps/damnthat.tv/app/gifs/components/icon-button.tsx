@@ -16,7 +16,7 @@ export function IconButton(
         whileHover={{ scale: 1, opacity: 1 }}
         initial={{ scale: 0.9, opacity: 0 }}
         className={cn(
-          surfaceVariants({ variant: 'background' }),
+          surfaceVariants({ variant: 'default' }),
           'absolute inset-0 block rounded-full',
         )}
       />

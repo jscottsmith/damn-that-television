@@ -51,7 +51,7 @@ export function GalleryRoute() {
       />
       <div
         className={cn(
-          surfaceVariants({ variant: 'background' }),
+          surfaceVariants({ variant: 'default' }),
           'fixed inset-0 flex items-center justify-center overflow-hidden p-2',
         )}
       >
