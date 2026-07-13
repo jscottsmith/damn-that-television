@@ -65,9 +65,9 @@ const Carousel: FC<CarouselProps> = ({
     <div className={clsx(`relative w-full`, className)}>
       {/* match media-asset rounding */}
       <div className="overflow-hidden rounded-lg md:rounded-xl" ref={emblaRef}>
-        <div className="-ml-base flex">
+        <div className="-ml-3 flex">
           {children.map((child, index) => (
-            <div key={index} className="pl-base min-w-0 flex-[0_0_100%]">
+            <div key={index} className="pl-3 min-w-0 flex-[0_0_100%]">
               {child}
             </div>
           ))}

@@ -5,8 +5,8 @@ import { PropsWithChildren } from 'react';
 
 export function ComponentSection(props: PropsWithChildren<{ title: string }>) {
   return (
-    <div className="py-4xl">
-      <Title asChild className="mb-xl">
+    <div className="py-24">
+      <Title asChild className="mb-8">
         <h2>{props.title}</h2>
       </Title>
       <Surface variant="primary" className="w-fit">

@@ -9,7 +9,7 @@ export const ResumeList = (props: ResumeListSlice) => {
   return (
     <section>
       <SectionTitle text={props.primary.title} />
-      <Prose className="mb-base">
+      <Prose className="mb-3">
         <PrismicRichText field={props.primary.content} />
       </Prose>
       <ul className="flex flex-wrap gap-2">

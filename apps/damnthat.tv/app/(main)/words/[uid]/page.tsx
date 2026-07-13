@@ -62,17 +62,17 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <header className="mb-xl xl:mb-2xl">
+      <header className="mb-8 xl:mb-12">
         <PrismicNextImage
           field={document.data.image}
           className="w-full rounded-lg"
           priority
         />
-        <div className="my-xl xl:my-2xl">
-          <h1 className="mb-base font-futura text-center text-4xl font-medium text-balance text-slate-700 md:text-6xl dark:text-slate-300">
+        <div className="my-8 xl:my-12">
+          <h1 className="mb-3 font-futura text-center text-4xl font-medium text-balance text-slate-700 md:text-6xl dark:text-slate-300">
             {document.data.title}
           </h1>
-          <div className="mb-base flex justify-center">
+          <div className="mb-3 flex justify-center">
             <Tags tags={document.tags} />
           </div>
           {/* <Prose className="prose mx-auto text-center md:prose-xl">

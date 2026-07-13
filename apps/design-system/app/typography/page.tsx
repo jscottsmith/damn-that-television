@@ -10,10 +10,10 @@ const titleSizes = Object.values(TitleSize);
 
 export default function Components() {
   return (
-    <div className="gap-xl flex min-h-screen flex-col">
+    <div className="gap-8 flex min-h-screen flex-col">
       <section>
         <Code>
-          <pre className="my-base">{'Fonts'}</pre>
+          <pre className="my-3">{'Fonts'}</pre>
         </Code>
         <div className="font-futura flex flex-col gap-4 text-4xl">
           <p className="font-light">Futura Light 300</p>
@@ -32,10 +32,10 @@ export default function Components() {
       </section>
       <section>
         <Code>
-          <pre className="my-base">{'<HeroTitle>'}</pre>
+          <pre className="my-3">{'<HeroTitle>'}</pre>
         </Code>
         {heroTitleSizes.map((size) => (
-          <div key={size} className="mt-base">
+          <div key={size} className="mt-3">
             <Code>
               <pre className="text-xs">{size}</pre>
             </Code>
@@ -47,10 +47,10 @@ export default function Components() {
       </section>
       <section>
         <Code>
-          <pre className="my-base">{'<Title>'}</pre>
+          <pre className="my-3">{'<Title>'}</pre>
         </Code>
         {titleSizes.map((size) => (
-          <div key={size} className="mt-base">
+          <div key={size} className="mt-3">
             <Code>
               <pre className="text-xs">{size}</pre>
             </Code>

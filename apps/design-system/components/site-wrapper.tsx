@@ -22,10 +22,10 @@ export function SiteWrapper({
     <div
       className={twMerge(
         clsx(
-          'px-base md:px-lg lg:px-xl xl:px-2xl 2xl:px-4xl',
-          padY && 'py-base md:py-lg lg:py-xl xl:py-2xl 2xl:py-4xl',
-          padT && 'pt-base md:pt-lg lg:pt-xl xl:pt-2xl 2xl:pt-4xl',
-          padB && 'pb-base md:pb-lg lg:pb-xl xl:pb-2xl 2xl:pb-4xl',
+          'px-3 md:px-6 lg:px-8 xl:px-12 2xl:px-24',
+          padY && 'py-3 md:py-6 lg:py-8 xl:py-12 2xl:py-24',
+          padT && 'pt-3 md:pt-6 lg:pt-8 xl:pt-12 2xl:pt-24',
+          padB && 'pb-3 md:pb-6 lg:pb-8 xl:pb-12 2xl:pb-24',
         ),
         className,
       )}

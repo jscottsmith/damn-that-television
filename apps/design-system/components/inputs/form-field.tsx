@@ -9,7 +9,7 @@ export type FormFieldProps = BaseInputProps & {
 export function FormField({ label, ...input }: FormFieldProps) {
   return (
     <label>
-      <Label className="mb-sm">{label}</Label>
+      <Label className="mb-2">{label}</Label>
       <BaseInput type="text" {...input} />
     </label>
   );

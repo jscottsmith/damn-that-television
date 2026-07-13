@@ -40,7 +40,7 @@ export function SideDrawer(props: SideDrawerProps) {
           'w-full sm:max-w-2xl',
         )}
       >
-        <SheetHeader className="mb-xl gap-0 p-0">
+        <SheetHeader className="mb-8 gap-0 p-0">
           <SheetTitle
             className={cn(
               MAP_TITLE_SIZE_CLASSNAME[TitleSize.default],
@@ -55,7 +55,7 @@ export function SideDrawer(props: SideDrawerProps) {
           {props.body}
         </Prose>
         {props.actions ? (
-          <SheetFooter className="gap-sm mt-auto flex-row p-0">
+          <SheetFooter className="gap-2 mt-auto flex-row p-0">
             {props.actions}
           </SheetFooter>
         ) : null}

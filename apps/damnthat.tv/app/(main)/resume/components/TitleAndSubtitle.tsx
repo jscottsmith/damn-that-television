@@ -21,7 +21,7 @@ export function TitleAndSubtitle(props: {
       </span>
       {hasSub && (
         <>
-          <span className="mx-md border-peach dark:border-club-700 my-1 inline-block border-r-2 border-solid" />
+          <span className="mx-4 border-peach dark:border-club-700 my-1 inline-block border-r-2 border-solid" />
           <span className="inline-block font-light italic">
             <PrismicRichText field={props.subtitle} />
           </span>

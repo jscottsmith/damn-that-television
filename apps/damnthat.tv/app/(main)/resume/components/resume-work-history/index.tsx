@@ -28,9 +28,9 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
       {groupedItems.map((group, groupIndex) => {
         const companySlug = createSlug(asText(group.company));
         return (
-          <section className="mb-3xl relative scroll-mt-20" key={groupIndex}>
+          <section className="mb-16 relative scroll-mt-20" key={groupIndex}>
             {/* Company name - shown only once per group */}
-            <AnchorLinkCopy id={companySlug} className="mb-base">
+            <AnchorLinkCopy id={companySlug} className="mb-3">
               <header
                 id={companySlug}
                 className="flex items-center gap-2 md:gap-4"
@@ -53,7 +53,7 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
             </AnchorLinkCopy>
 
             {/* Jobs under this company */}
-            <div className="pl-md md:pl-lg relative ml-2">
+            <div className="pl-4 md:pl-6 relative ml-2">
               {/* bottom must match the date range line */}
               <span className="absolute top-3 bottom-2 left-0 border-l-2 border-dotted border-slate-300 dark:border-slate-600">
                 <span className="absolute top-0 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
@@ -66,28 +66,28 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
                 return (
                   <div
                     key={jobIndex}
-                    className={clsx(jobIndex > 0 && 'mt-lg')}
+                    className={clsx(jobIndex > 0 && 'mt-6')}
                     id={jobTitleSlug}
                   >
-                    <AnchorLinkCopy id={jobTitleSlug} className="mb-base">
+                    <AnchorLinkCopy id={jobTitleSlug} className="mb-3">
                       <div className="text-xl font-medium text-slate-600 dark:text-slate-300">
                         <PrismicRichText field={item.job_title} />
                       </div>
                     </AnchorLinkCopy>
 
-                    <Prose className="mb-lg mt-base md:mb-xl md:mt-lg">
+                    <Prose className="mb-6 mt-3 md:mb-8 md:mt-6">
                       <ExpandContent>
                         <PrismicRichText field={item.content} />
                       </ExpandContent>
                     </Prose>
 
-                    <footer className="mt-md">
+                    <footer className="mt-4">
                       {item.keywords && (
                         <ul>
                           {item.keywords.split(', ').map((keyword) => (
                             <li
                               key={keyword}
-                              className="mb-sm mr-sm inline-block"
+                              className="mb-2 mr-2 inline-block"
                             >
                               <Badge>{keyword}</Badge>
                             </li>

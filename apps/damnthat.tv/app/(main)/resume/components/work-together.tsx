@@ -35,7 +35,7 @@ const WorkTogetherMessage = ({
       <div className="font-futura text-xl font-normal md:text-2xl">
         <PrismicRichText field={primary.title} />
       </div>
-      <div className="mt-md gap-sm flex w-full justify-center">
+      <div className="mt-4 gap-2 flex w-full justify-center">
         <SelectionButton
           isSelected={showInterest.isInterested}
           onClick={showInterest.onClickInterested}
@@ -56,11 +56,11 @@ const WorkTogetherMessage = ({
       <AnimatePresence initial={false}>
         {showInterest.isInterested && (
           <AnimateHeight key="interested">
-            <div className="mt-lg w-full text-center">
+            <div className="mt-6 w-full text-center">
               <Prose className={clsx('mx-auto max-w-md')}>
                 <PrismicRichText field={primary.body_yes} />
               </Prose>
-              <div className="my-lg flex justify-center">
+              <div className="my-6 flex justify-center">
                 <a href="mailto:jscsmith@gmail.com">
                   <CTAButton
                     buttonSize="default"
@@ -78,17 +78,17 @@ const WorkTogetherMessage = ({
         )}
         {showInterest.isNotInterested && (
           <AnimateHeight key="not-interested">
-            <div className="mt-lg w-full text-center">
+            <div className="mt-6 w-full text-center">
               <Prose className={clsx('mx-auto max-w-md')}>
                 <p className="text-gray-600">No worries, carry on.</p>
                 <p className="text-sm text-gray-600">
                   This message will self destruct in:
                 </p>
-                <div className="my-md text-4xl font-bold text-rose-500">
+                <div className="my-4 text-4xl font-bold text-rose-500">
                   {showInterest.countdown}
                 </div>
               </Prose>
-              <div className="mt-md">
+              <div className="mt-4">
                 <Button
                   size="sm"
                   variant="danger"
@@ -160,7 +160,7 @@ function useShowInterest(dismissBanner?: () => void) {
 
 export const WorkTogether = (props: WorkTogetherSlice) => {
   return (
-    <DismissibleBanner id={WORK_TOGETHER_ID} className="my-xl rounded-lg">
+    <DismissibleBanner id={WORK_TOGETHER_ID} className="my-8 rounded-lg">
       {({ dismiss }) => (
         <WorkTogetherMessage primary={props.primary} dismiss={dismiss} />
       )}

@@ -5,7 +5,7 @@ import React, { PropsWithChildren } from 'react';
 export default function Layout(props: PropsWithChildren) {
   return (
     <>
-      <header className="mb-base md:mb-lg xl:mb-xl">
+      <header className="mb-3 md:mb-6 xl:mb-8">
         <nav>
           <Link href="/words" className="text-md flex items-center gap-2">
             <ArrowLeftIcon className="w-6" />

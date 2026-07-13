@@ -26,7 +26,7 @@ export default async function Page() {
 
   return (
     <nav>
-      <header className="mb-base md:mb-lg xl:mb-xl">
+      <header className="mb-3 md:mb-6 xl:mb-8">
         <h2 className="text-center text-2xl font-medium">Words belong here</h2>
       </header>
       <ul className="space-y-2 md:space-y-4">
@@ -54,7 +54,7 @@ export default async function Page() {
                           <PrismicRichText field={document.data.description} />
                         </Prose>
                         {document.tags.length > 0 && (
-                          <div className="mt-base">
+                          <div className="mt-3">
                             <Tags tags={document.tags} />
                           </div>
                         )}

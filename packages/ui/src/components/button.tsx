@@ -55,32 +55,32 @@ const buttonVariants = cva(
       {
         presentation: "button",
         size: "sm",
-        className: "py-xs px-sm gap-1",
+        className: "py-1 px-2 gap-1",
       },
       {
         presentation: "button",
         size: "base",
-        className: "py-sm px-md gap-sm",
+        className: "py-2 px-4 gap-2",
       },
       {
         presentation: "button",
         size: "md",
-        className: "py-base px-lg gap-base",
+        className: "py-3 px-6 gap-3",
       },
       {
         presentation: "icon",
         size: "sm",
-        className: "p-sm",
+        className: "p-2",
       },
       {
         presentation: "icon",
         size: "base",
-        className: "p-base",
+        className: "p-3",
       },
       {
         presentation: "icon",
         size: "md",
-        className: "p-md",
+        className: "p-4",
       },
     ],
     defaultVariants: {

@@ -14,7 +14,7 @@ export const ResumeWorkHistoryCondensed = (
       <SectionTitle text={props.primary.title} />
 
       {props.items.map((item, i) => (
-        <section className="mb-xl text-slate-700" key={i}>
+        <section className="mb-8 text-slate-700" key={i}>
           <TitleAndSubtitle
             className="text-xl"
             title={item.company}

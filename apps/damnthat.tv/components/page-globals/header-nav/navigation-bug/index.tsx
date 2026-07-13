@@ -122,7 +122,7 @@ export function NavigationBugMobile() {
             >
                 <div
                   className={clsx(
-                    'p-base relative flex w-full flex-col gap-4 self-start pb-16',
+                    'p-3 relative flex w-full flex-col gap-4 self-start pb-16',
                   )}
                 >
                   <HomeLink className="grow-0 self-center" />

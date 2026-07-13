@@ -24,11 +24,11 @@ export const Resume = (props: ResumeProps) => {
       padY
       className={cn(surfaceVariants({ variant: 'background' }), 'px-0')}
     >
-        <article className="pt-4xl">
-          <CardPrimary className="p-base md:gap-md md:p-md lg:gap-lg lg:p-lg xl:p-xl 2xl:p-2xl mx-auto max-w-screen-lg md:flex">
+        <article className="pt-24">
+          <CardPrimary className="p-3 md:gap-4 md:p-4 lg:gap-6 lg:p-6 xl:p-8 2xl:p-12 mx-auto max-w-screen-lg md:flex">
             <ResumeHeader
               document={props.document}
-              className="-mt-3xl md:top-xl md:sticky md:mt-0 md:w-1/3 md:self-start"
+              className="-mt-16 md:top-8 md:sticky md:mt-0 md:w-1/3 md:self-start"
             />
             <div className="md:w-2/3">
               {props.document.data.body.map((slice, i) => {
