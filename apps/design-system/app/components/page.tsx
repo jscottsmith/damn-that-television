@@ -4,7 +4,7 @@ import { SiteWrapper } from '@/components/site-wrapper';
 import { InputToggle } from '@/components/input-toggle';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
-import { useTheme } from 'next-themes';
+import { useTheme } from '@workspace/ui/components/theme-provider';
 import { Title } from '@/components/typography/title';
 import { HeroTitle } from '@/components/typography/hero-title';
 import { SideDrawer } from '@/components/side-drawer';

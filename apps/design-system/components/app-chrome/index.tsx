@@ -6,6 +6,7 @@ import Link from "next/link";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarHeader,
@@ -17,6 +18,7 @@ import {
   useSidebar,
 } from "@workspace/ui/components/sidebar";
 import { EyeMan } from "@workspace/ui/components/eye-button";
+import { ThemeToggle } from "@workspace/ui/components/theme-toggle";
 
 import { AppChromeRoutes } from "./types";
 
@@ -86,6 +88,9 @@ function AppChromeLayout({ routes, children }: AppChromeProps) {
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
+        <SidebarFooter className="items-start">
+          <ThemeToggle />
+        </SidebarFooter>
       </Sidebar>
       <SidebarInset>{children}</SidebarInset>
     </>
