@@ -1,5 +1,5 @@
 'use client';
-import { useTheme } from 'next-themes';
+import { useTheme } from '@workspace/ui/components/theme-provider';
 import { useState } from 'react';
 import { useEventListener, useIsClient, useTimeout } from 'usehooks-ts';
 import { CommandOverlay } from '@/components/command-overlay';

@@ -1,8 +1,8 @@
 'use client';
 
-import { ThemeProvider } from 'next-themes';
-import { PropsWithChildren } from 'react';
+import { type PropsWithChildren } from 'react';
+import { ThemeProvider } from '@workspace/ui/components/theme-provider';
 
 export function Providers({ children }: PropsWithChildren) {
-  return <ThemeProvider attribute="class">{children}</ThemeProvider>;
+  return <ThemeProvider>{children}</ThemeProvider>;
 }
