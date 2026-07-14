@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
-import { useHasMounted } from 'hooks/use-has-mounted';
+import { useHasMounted } from '@workspace/ui/hooks/use-has-mounted';
 import Eye from './eye';
 
 export function PageLoader() {
