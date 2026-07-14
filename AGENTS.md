@@ -16,3 +16,4 @@
 - Keep state on the **actual interactive element** when possible (for buttons, the `button` node) so styles, focus, and hover behavior resolve in one place.
 - Treat wrapper components as **composition layers**. Put shared visuals in the base primitive variant system, and keep wrappers focused on behavior and slot composition.
 - When adding icon support, prefer **children composition** over dedicated `icon` props unless the API truly needs strict icon-only ergonomics.
+- Always **named-import** React APIs (`useState`, `useEffect`, etc.). Do not call them off a `React` namespace (`React.useState`).

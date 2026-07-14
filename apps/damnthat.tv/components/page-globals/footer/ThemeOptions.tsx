@@ -2,10 +2,10 @@
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
 import { badgeVariants } from '@workspace/ui/components/badge';
-import { ThemeToggle } from '../header-nav/navigation-bug/components/theme-toggle';
+import { ThemeToggle } from '@workspace/ui/components/theme-toggle';
 import { useTheme } from 'next-themes';
 import { Eyebrow } from '@/components/typography/eyebrow';
-import { useHasMounted } from 'hooks/use-has-mounted';
+import { useHasMounted } from '@workspace/ui/hooks/use-has-mounted';
 import { useIsNotTouch } from 'hooks/use-media';
 
 export function ThemeOptions() {
