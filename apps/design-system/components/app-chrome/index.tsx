@@ -41,7 +41,12 @@ function AppChromeLayout({ routes, children }: AppChromeProps) {
 
   return (
     <>
-      <Sidebar id={APP_CHROME_SIDEBAR_ID} side="left" collapsible="icon">
+      <Sidebar
+        id={APP_CHROME_SIDEBAR_ID}
+        side="left"
+        variant="floating"
+        collapsible="icon"
+      >
         <SidebarHeader>
           <Link href="/" className="block group/eye-man">
             <span

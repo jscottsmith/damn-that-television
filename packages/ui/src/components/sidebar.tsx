@@ -188,7 +188,13 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+          data-variant={variant}
+          className={cn(
+            "group w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden",
+            "data-[variant=floating]:border-0 data-[variant=floating]:bg-transparent data-[variant=floating]:shadow-none",
+            "data-[variant=floating]:data-[side=left]:inset-y-2 data-[variant=floating]:data-[side=left]:left-2 data-[variant=floating]:data-[side=left]:h-auto data-[variant=floating]:data-[side=left]:border-r-0",
+            "data-[variant=floating]:data-[side=right]:inset-y-2 data-[variant=floating]:data-[side=right]:right-2 data-[variant=floating]:data-[side=right]:h-auto data-[variant=floating]:data-[side=right]:border-l-0"
+          )}
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -200,7 +206,9 @@ function Sidebar({
             <SheetTitle>Sidebar</SheetTitle>
             <SheetDescription>Displays the mobile sidebar.</SheetDescription>
           </SheetHeader>
-          <div className="flex h-full w-full flex-col">{children}</div>
+          <div className="flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:bg-sidebar group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border">
+            {children}
+          </div>
         </SheetContent>
       </Sheet>
     );

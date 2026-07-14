@@ -1,4 +1,4 @@
-@import '@workspace/ui/globals.css';
+@import "@workspace/ui/globals.css";
 
 :root {
   --scroll-duration: 0.5s;
@@ -10,7 +10,12 @@ html {
   scroll-padding-top: 80px; /* Account for fixed headers */
 }
 
-[role='button'],
+html,
+body {
+  @apply bg-background;
+}
+
+[role="button"],
 button {
   cursor: pointer;
 }
