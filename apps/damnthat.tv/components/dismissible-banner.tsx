@@ -1,13 +1,13 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
-import { useSessionStorage } from 'usehooks-ts';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import { Button } from '@workspace/ui/components/button';
-import { surfaceVariants } from '@workspace/ui/components/surface';
-import { cn } from '@workspace/ui/lib/utils';
-import { CardPadding } from './card';
-import { SlotComponentProps } from './slot';
-import { AnimatePresence } from 'motion/react';
-import { AnimateHeight, AnimateFlipDown } from './animations/animate-height';
+import React, { PropsWithChildren, useEffect, useState } from "react";
+import { useSessionStorage } from "usehooks-ts";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Button } from "@workspace/ui/components/button";
+import { surfaceVariants } from "@workspace/ui/components/surface";
+import { cn } from "@workspace/ui/lib/utils";
+import { CardPadding } from "./card";
+import { SlotComponentProps } from "./slot";
+import { AnimatePresence } from "motion/react";
+import { AnimateHeight, AnimateFlipDown } from "./animations/animate-height";
 
 type DismissibleBannerState = {
   dismiss: () => void;
@@ -20,7 +20,7 @@ type DismissibleBannerProps = {
   children:
     | React.ReactNode
     | ((state: DismissibleBannerState) => React.ReactNode);
-} & Omit<SlotComponentProps, 'children'>;
+} & Omit<SlotComponentProps, "children">;
 
 function useDismissStorage(id: string) {
   const [isDismissed, setDismissed] = useSessionStorage(id, false);
@@ -58,7 +58,7 @@ export function DismissibleBanner({
 
   // Check if children is a function (render prop) or regular React children
   const renderChildren = () => {
-    if (typeof children === 'function') {
+    if (typeof children === "function") {
       return children(bannerState);
     }
     return children;
@@ -71,20 +71,20 @@ export function DismissibleBanner({
           <AnimateFlipDown key="flip">
             <CardPadding
               className={cn(
-                surfaceVariants({ variant: 'secondary' }),
-                'relative',
-                className,
+                surfaceVariants({ variant: "muted" }),
+                "relative",
+                className
               )}
             >
-                <Button
-                  presentation="icon"
-                  size="sm"
-                  className="right-3 top-3 absolute"
-                  onClick={handleDismiss}
-                >
-                  <XMarkIcon />
-                </Button>
-                {renderChildren()}
+              <Button
+                presentation="icon"
+                size="sm"
+                className="right-3 top-3 absolute"
+                onClick={handleDismiss}
+              >
+                <XMarkIcon />
+              </Button>
+              {renderChildren()}
             </CardPadding>
           </AnimateFlipDown>
         </AnimateHeight>

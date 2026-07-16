@@ -1,5 +1,5 @@
 'use client';
-import { CardPrimary, CardSecondary } from '@/components/card';
+import { Card } from '@/components/card';
 import { SiteWrapper } from '@/components/site-wrapper';
 import { InputToggle } from '@/components/input-toggle';
 import { surfaceVariants } from '@workspace/ui/components/surface';
@@ -58,13 +58,28 @@ export default function Components() {
       />
 
       <section className="gap-6 md:gap-8 lg:gap-12 grid md:grid-cols-3">
-        <CardSecondary className="p-3 md:p-6 h-96" />
-        <CardSecondary className="p-3 md:p-6 h-96" />
-        <CardSecondary className="p-3 md:p-6 h-96" />
+        <Card
+          className={cn(
+            surfaceVariants({ variant: 'secondary' }),
+            'p-3 md:p-6 h-96',
+          )}
+        />
+        <Card
+          className={cn(
+            surfaceVariants({ variant: 'secondary' }),
+            'p-3 md:p-6 h-96',
+          )}
+        />
+        <Card
+          className={cn(
+            surfaceVariants({ variant: 'secondary' }),
+            'p-3 md:p-6 h-96',
+          )}
+        />
       </section>
 
       <section className="grid grid-cols-1">
-        <CardPrimary
+        <Card
           className={cn(
             surfaceVariants({ variant: 'pattern' }),
             'p-3 md:p-6 h-96',

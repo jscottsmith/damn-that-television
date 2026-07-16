@@ -1,7 +1,7 @@
-import { CardPadding } from '@/components/card';
-import { Surface } from '@workspace/ui/components/surface';
-import { Title } from '@/components/typography/title';
-import { PropsWithChildren } from 'react';
+import { CardPadding } from "@/components/card";
+import { Surface } from "@workspace/ui/components/surface";
+import { Title } from "@/components/typography/title";
+import { PropsWithChildren } from "react";
 
 export function ComponentSection(props: PropsWithChildren<{ title: string }>) {
   return (
@@ -9,7 +9,7 @@ export function ComponentSection(props: PropsWithChildren<{ title: string }>) {
       <Title asChild className="mb-8">
         <h2>{props.title}</h2>
       </Title>
-      <Surface variant="primary" className="w-fit">
+      <Surface variant="card" className="w-fit">
         <CardPadding>{props.children}</CardPadding>
       </Surface>
     </div>
