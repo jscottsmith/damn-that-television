@@ -46,7 +46,7 @@
   --chroma: 0.003;
   --hue: 67;
 
-  --background: oklch(0.929 var(--chroma) var(--hue));
+  --background: oklch(0.956 var(--chroma) var(--hue));
   --foreground: oklch(0.129 var(--chroma) var(--hue));
   --card: oklch(1 var(--chroma) var(--hue));
   --card-foreground: oklch(0.129 var(--chroma) var(--hue));
@@ -78,6 +78,7 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+  --sidebar-floating-inset: 1rem;
 }
 
 .dark {
@@ -92,7 +93,7 @@
   --popover-foreground: oklch(0.984 var(--chroma) var(--hue));
   --primary: oklch(0.929 var(--chroma) var(--hue));
   --primary-foreground: oklch(0.208 var(--chroma) var(--hue));
-  --secondary: oklch(0.239 var(--chroma) var(--hue));
+  --secondary: oklch(0.275 var(--chroma) var(--hue));
   --secondary-foreground: oklch(0.984 var(--chroma) var(--hue));
   --muted: oklch(0.179 var(--chroma) var(--hue));
   --muted-foreground: oklch(0.704 var(--chroma) var(--hue));
