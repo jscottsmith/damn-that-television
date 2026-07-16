@@ -4,14 +4,7 @@ import * as React from "react";
 import { cn } from "@workspace/ui/lib/utils";
 
 type ButtonSize = "sm" | "base" | "md";
-type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "selection"
-  | "warning"
-  | "success"
-  | "info"
-  | "danger";
+type ButtonVariant = "primary" | "secondary" | "destructive";
 type ButtonPresentation = "button" | "icon";
 
 const buttonVariants = cva(
@@ -27,19 +20,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary:
-          "text-white bg-slate-800 dark:text-slate-800 dark:bg-slate-200 shadow-club",
+        primary: "bg-primary text-primary-foreground shadow-accent",
         secondary:
-          "bg-slate-200 hocus:bg-slate-300 dark:bg-slate-900 dark:hocus:bg-slate-600 shadow-slate-700 dark:shadow-slate-600",
-        selection:
-          "bg-slate-200 hocus:bg-slate-300 dark:bg-slate-900 dark:hocus:bg-slate-600 shadow-slate-700 dark:shadow-slate-600 data-[selected=true]:bg-club data-[selected=true]:text-white data-[selected=true]:hocus:bg-club-600 data-[selected=true]:dark:bg-club data-[selected=true]:dark:text-white data-[selected=true]:dark:hocus:bg-club-600 data-[selected=true]:shadow-hard-sm data-[selected=true]:-translate-x-1 data-[selected=true]:-translate-y-1",
-        warning:
-          "text-white bg-orange-500 hocus:bg-orange-600 dark:text-orange-950 dark:hocus:bg-orange-400 shadow-slate-700 dark:shadow-slate-600",
-        danger:
-          "text-white bg-rose-500 hocus:bg-rose-600 dark:text-rose-950 dark:hocus:bg-rose-400 shadow-slate-700 dark:shadow-slate-600",
-        info: "text-white bg-sky-500 hocus:bg-sky-600 dark:text-sky-950 dark:hocus:bg-sky-400 shadow-slate-700 dark:shadow-slate-600",
-        success:
-          "text-white bg-teal-500 hocus:bg-teal-600 dark:text-teal-950 dark:hocus:bg-teal-400 shadow-slate-700 dark:shadow-slate-600",
+          "bg-secondary text-secondary-foreground hocus:bg-accent hocus:text-accent-foreground shadow-secondary",
+        destructive: "bg-destructive text-white hocus:bg-destructive/90",
       },
       size: {
         sm: "text-sm [&_svg:not([class*='size-'])]:size-4",
