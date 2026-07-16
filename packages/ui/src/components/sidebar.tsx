@@ -192,8 +192,8 @@ function Sidebar({
           className={cn(
             "group w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden",
             "data-[variant=floating]:border-0 data-[variant=floating]:bg-transparent data-[variant=floating]:shadow-none",
-            "data-[variant=floating]:data-[side=left]:inset-y-2 data-[variant=floating]:data-[side=left]:left-2 data-[variant=floating]:data-[side=left]:h-auto data-[variant=floating]:data-[side=left]:border-r-0",
-            "data-[variant=floating]:data-[side=right]:inset-y-2 data-[variant=floating]:data-[side=right]:right-2 data-[variant=floating]:data-[side=right]:h-auto data-[variant=floating]:data-[side=right]:border-l-0"
+            "data-[variant=floating]:data-[side=left]:inset-y-(--sidebar-floating-inset) data-[variant=floating]:data-[side=left]:left-(--sidebar-floating-inset) data-[variant=floating]:data-[side=left]:h-auto data-[variant=floating]:data-[side=left]:border-r-0",
+            "data-[variant=floating]:data-[side=right]:inset-y-(--sidebar-floating-inset) data-[variant=floating]:data-[side=right]:right-(--sidebar-floating-inset) data-[variant=floating]:data-[side=right]:h-auto data-[variant=floating]:data-[side=right]:border-l-0"
           )}
           style={
             {
@@ -231,7 +231,7 @@ function Sidebar({
           "group-data-[collapsible=offcanvas]:w-0",
           "group-data-[side=right]:rotate-180",
           variant === "floating" || variant === "inset"
-            ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
+            ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(var(--sidebar-floating-inset)*2))]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
         )}
       />
@@ -242,7 +242,7 @@ function Sidebar({
           "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] data-[side=right]:right-0 data-[side=right]:group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)] md:flex",
           // Adjust the padding for floating and inset variants.
           variant === "floating" || variant === "inset"
-            ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
+            ? "p-(--sidebar-floating-inset) group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(var(--sidebar-floating-inset)*2)+2px)]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
           className
         )}
