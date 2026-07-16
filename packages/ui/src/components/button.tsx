@@ -22,7 +22,7 @@ const buttonVariants = cva(
       variant: {
         primary: "bg-primary text-primary-foreground shadow-accent",
         secondary:
-          "bg-secondary text-secondary-foreground hocus:bg-accent hocus:text-accent-foreground shadow-secondary",
+          "bg-secondary text-secondary-foreground hocus:bg-accent hocus:text-accent-foreground shadow-primary",
         destructive: "bg-destructive text-white hocus:bg-destructive/90",
       },
       size: {
