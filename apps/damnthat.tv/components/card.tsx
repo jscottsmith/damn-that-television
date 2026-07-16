@@ -1,6 +1,6 @@
-import React, { HTMLAttributes, PropsWithChildren } from 'react';
-import clsx from 'clsx';
-import { SlotComponent, SlotComponentProps } from './slot';
+import React, { HTMLAttributes, PropsWithChildren } from "react";
+import clsx from "clsx";
+import { SlotComponent, SlotComponentProps } from "./slot";
 
 type CardProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>;
 
@@ -10,7 +10,7 @@ export function Card({ className, ...props }: CardProps) {
       className={clsx(
         className,
         // text-color controls shadow color
-        'shadow-hard shadow-slate-700 dark:shadow-slate-950',
+        "bg-card shadow-hard shadow-slate-700 dark:shadow-slate-950"
       )}
       {...props}
     >
@@ -25,10 +25,7 @@ export function CardPadding({
   ...props
 }: SlotComponentProps) {
   return (
-    <SlotComponent
-      className={clsx(className, 'p-3 md:p-6 lg:p-8')}
-      {...props}
-    >
+    <SlotComponent className={clsx(className, "p-3 md:p-6 lg:p-8")} {...props}>
       {children}
     </SlotComponent>
   );
