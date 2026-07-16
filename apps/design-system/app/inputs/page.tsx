@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { Button } from '@workspace/ui/components/button';
-import { CardPadding } from '@/components/card';
-import { InputToggle } from '@/components/input-toggle';
-import { PasswordField } from '@/components/inputs/password-field';
-import { TextField } from '@/components/inputs/text-field';
-import { surfaceVariants } from '@workspace/ui/components/surface';
-import { cn } from '@workspace/ui/lib/utils';
+import { Button } from "@workspace/ui/components/button";
+import { CardPadding } from "@/components/card";
+import { InputToggle } from "@/components/input-toggle";
+import { PasswordField } from "@/components/inputs/password-field";
+import { TextField } from "@/components/inputs/text-field";
+import { surfaceVariants } from "@workspace/ui/components/surface";
+import { cn } from "@workspace/ui/lib/utils";
 
 export default function Components() {
   return (
@@ -14,8 +14,8 @@ export default function Components() {
       <form
         autoComplete="off"
         className={cn(
-          surfaceVariants({ variant: 'primary' }),
-          'gap-6 flex max-w-lg flex-col',
+          surfaceVariants({ variant: "card" }),
+          "gap-6 flex max-w-lg flex-col"
         )}
       >
         <TextField label="Test 1" placeholder="Testing" pattern=".*\S.*" />

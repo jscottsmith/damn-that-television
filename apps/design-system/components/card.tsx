@@ -1,7 +1,5 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
 import clsx from 'clsx';
-import { surfaceVariants } from '@workspace/ui/components/surface';
-import { cn } from '@workspace/ui/lib/utils';
 import { SlotComponent, SlotComponentProps } from './slot';
 
 type CardProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>;
@@ -18,28 +16,6 @@ export function Card({ className, ...props }: CardProps) {
     >
       {props.children}
     </div>
-  );
-}
-
-export function CardPrimary({ children, className, ...props }: CardProps) {
-  return (
-    <Card
-      className={cn(surfaceVariants({ variant: 'primary' }), className)}
-      {...props}
-    >
-      {children}
-    </Card>
-  );
-}
-
-export function CardSecondary({ children, className, ...props }: CardProps) {
-  return (
-    <Card
-      className={cn(surfaceVariants({ variant: 'secondary' }), className)}
-      {...props}
-    >
-      {children}
-    </Card>
   );
 }
 

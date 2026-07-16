@@ -1,13 +1,13 @@
-'use client';
-import clsx from 'clsx';
-import { ReactNode, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import { useBoundingClientRect } from 'hooks/use-client-bounding-rect';
-import { CardPrimary } from '../card';
-import { surfaceVariants } from '@workspace/ui/components/surface';
-import { cn } from '@workspace/ui/lib/utils';
-import { useToggleSessionStorage } from 'hooks/use-toggle-session-storage';
+"use client";
+import clsx from "clsx";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useBoundingClientRect } from "hooks/use-client-bounding-rect";
+import { Card } from "../card";
+import { surfaceVariants } from "@workspace/ui/components/surface";
+import { cn } from "@workspace/ui/lib/utils";
+import { useToggleSessionStorage } from "hooks/use-toggle-session-storage";
 
 type MarqueeProps = {
   className?: string;
@@ -17,7 +17,7 @@ type MarqueeProps = {
 };
 
 export const Marquee = (props: MarqueeProps) => {
-  const toggle = useToggleSessionStorage('marquee-' + props.id);
+  const toggle = useToggleSessionStorage("marquee-" + props.id);
   const ref = useRef<HTMLDivElement>(null);
   const [list, setList] = useState<ReactNode[]>([]);
   const rect = useBoundingClientRect(ref);
@@ -28,12 +28,12 @@ export const Marquee = (props: MarqueeProps) => {
 
     if (w > 1) {
       setList(
-        Array.from({ length: amount }).fill(props.children) as ReactNode[],
+        Array.from({ length: amount }).fill(props.children) as ReactNode[]
       );
     }
   }, [rect, props.children]);
   const duration = (rect?.width ?? 0) / 100;
-  const sharedClassName = 'whitespace-nowrap pr-4';
+  const sharedClassName = "whitespace-nowrap pr-4";
 
   return (
     <AnimatePresence>
@@ -44,19 +44,20 @@ export const Marquee = (props: MarqueeProps) => {
           animate={{ height: 36, opacity: 1 }}
           className="relative overflow-x-hidden"
         >
-          <CardPrimary
+          <Card
             key={list.length}
-            className={clsx(
-              'font-futura flex w-full items-center text-lg font-bold uppercase italic',
-              props.className,
+            className={cn(
+              surfaceVariants({ variant: "card" }),
+              "font-futura flex w-full items-center text-lg font-bold uppercase italic",
+              props.className
             )}
           >
             {/* el to measure */}
             <div
               ref={ref}
               className={clsx(
-                'pointer-events-none invisible absolute',
-                sharedClassName,
+                "pointer-events-none invisible absolute",
+                sharedClassName
               )}
             >
               {props.children}
@@ -64,15 +65,15 @@ export const Marquee = (props: MarqueeProps) => {
             {list.map((text, i) => (
               <motion.div
                 key={i}
-                className={clsx('inline-flex', sharedClassName)}
-                initial={{ x: '0%' }}
+                className={clsx("inline-flex", sharedClassName)}
+                initial={{ x: "0%" }}
                 transition={{
                   repeat: Infinity,
-                  repeatType: 'loop',
-                  ease: 'linear',
+                  repeatType: "loop",
+                  ease: "linear",
                   duration,
                 }}
-                animate={{ x: '-100%' }}
+                animate={{ x: "-100%" }}
               >
                 {text}
               </motion.div>
@@ -80,14 +81,14 @@ export const Marquee = (props: MarqueeProps) => {
             <button
               type="button"
               className={cn(
-                surfaceVariants({ variant: 'primary' }),
-                'absolute top-1/2 right-2 z-10 block -translate-y-1/2',
+                surfaceVariants({ variant: "card" }),
+                "absolute top-1/2 right-2 z-10 block -translate-y-1/2"
               )}
               onClick={() => toggle.toggle()}
             >
               <XMarkIcon className="h-4 w-4" />
             </button>
-          </CardPrimary>
+          </Card>
         </motion.div>
       )}
     </AnimatePresence>
