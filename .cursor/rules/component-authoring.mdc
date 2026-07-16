@@ -17,20 +17,14 @@ alwaysApply: true
 ## Example
 
 ```tsx
-import { useState, type ReactNode } from "react"
+import { useState } from "react"
 
-<Button data-selected={isSelected} variant="selection">
-  Choose me
-</Button>
+<ButtonToggle isSelected={isSelected} onClick={() => setIsSelected(!isSelected)}>
+ Choose me
+</ButtonToggle>
 ```
 
 ```tsx
-const buttonVariants = cva("", {
-  variants: {
-    variant: {
-      selection:
-        "bg-slate-200 data-[selected=true]:bg-club data-[selected=true]:text-white",
-    },
-  },
-})
+const buttonToggleStyles =
+ "data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground"
 ```

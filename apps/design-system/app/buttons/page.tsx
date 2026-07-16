@@ -1,7 +1,7 @@
 'use client';
 
 import { HeroTitle } from '@/components/typography/hero-title';
-import { SelectionButtonExample } from './components/selection-button-example';
+import { ButtonToggleExample } from './components/button-toggle-example';
 import { Button } from '@workspace/ui/components/button';
 import {
   ChevronDownIcon,
@@ -27,42 +27,31 @@ export default function Buttons() {
       <section className="py-4">
         <div className="gap-2 flex flex-col">
           <CTAButtons />
-          <ComponentSection title="Standard Buttons - Primary/Secondary">
+          <ComponentSection title="Standard Buttons">
             <div className="gap-6 flex flex-col">
-              <div className="gap-2 flex items-end">
-                <Button size="sm" variant="primary">
-                  Primary
-                </Button>
-                <Button size="sm">Secondary</Button>
-                <Button size="sm">Follow</Button>
-                <Button size="sm">Like</Button>
-              </div>
-              <div className="gap-2 flex items-end">
-                <Button variant="primary">Primary</Button>
-                <Button>Secondary</Button>
-                <Button>Follow</Button>
-                <Button>Like</Button>
-              </div>
-              <div className="gap-2 flex items-end">
-                <Button size="md" variant="primary">
-                  Primary
-                </Button>
-                <Button size="md">Secondary</Button>
-                <Button size="md">Follow</Button>
-                <Button size="md">Like</Button>
-              </div>
+              {(['sm', 'base', 'md'] as const).map((size) => (
+                <div key={size} className="gap-2 flex flex-wrap items-end">
+                  <Button size={size} variant="primary">
+                    Primary
+                  </Button>
+                  <Button size={size} variant="secondary">
+                    Secondary
+                  </Button>
+                  <Button size={size} variant="destructive">
+                    Destructive
+                  </Button>
+                </div>
+              ))}
             </div>
           </ComponentSection>
 
-          <ComponentSection title="Selection Button">
-            <div className="gap-2 flex items-end">
-              <SelectionButtonExample size="sm">Filters</SelectionButtonExample>
-              <SelectionButtonExample variant="primary">
-                Activate
-              </SelectionButtonExample>
-              <SelectionButtonExample size="md" variant="danger">
+          <ComponentSection title="Button Toggle">
+            <div className="gap-2 flex flex-wrap items-end">
+              <ButtonToggleExample size="sm">Filters</ButtonToggleExample>
+              <ButtonToggleExample>Activate</ButtonToggleExample>
+              <ButtonToggleExample size="md">
                 Enable Cookies
-              </SelectionButtonExample>
+              </ButtonToggleExample>
             </div>
           </ComponentSection>
 
@@ -76,17 +65,8 @@ export default function Buttons() {
 
           <ComponentSection title="System Buttons">
             <div className="gap-2 flex items-end">
-              <Button variant="warning" size="md">
-                Warning Button
-              </Button>
-              <Button variant="danger" size="md">
-                Danger Button
-              </Button>
-              <Button variant="info" size="md">
-                Info Button
-              </Button>
-              <Button variant="success" size="md">
-                Info Button
+              <Button variant="destructive" size="md">
+                Destructive Button
               </Button>
             </div>
           </ComponentSection>
@@ -209,7 +189,7 @@ export default function Buttons() {
                 <Button presentation="icon" variant="secondary" size="md">
                   <MagnifyingGlassIcon />
                 </Button>
-                <Button presentation="icon" variant="danger" size="md">
+                <Button presentation="icon" variant="destructive" size="md">
                   <TrashIcon />
                 </Button>
               </ButtonGroup>

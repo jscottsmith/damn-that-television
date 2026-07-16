@@ -5,7 +5,7 @@ import {
   HandThumbUpIcon,
   HandThumbDownIcon,
 } from '@heroicons/react/24/outline';
-import { SelectionButton } from '@workspace/ui/components/selection-button';
+import { ButtonToggle } from '@workspace/ui/components/button-toggle';
 import {
   CTAButton,
 } from '@workspace/ui/components/cta-button';
@@ -36,22 +36,22 @@ const WorkTogetherMessage = ({
         <PrismicRichText field={primary.title} />
       </div>
       <div className="mt-4 gap-2 flex w-full justify-center">
-        <SelectionButton
+        <ButtonToggle
           isSelected={showInterest.isInterested}
           onClick={showInterest.onClickInterested}
           icon={<HandThumbUpIcon />}
           className="min-w-36"
         >
           Yep!
-        </SelectionButton>
-        <SelectionButton
+        </ButtonToggle>
+        <ButtonToggle
           isSelected={showInterest.isNotInterested}
           onClick={showInterest.onClickNotInterested}
           icon={<HandThumbDownIcon />}
           className="min-w-36"
         >
           No Thanks
-        </SelectionButton>
+        </ButtonToggle>
       </div>
       <AnimatePresence initial={false}>
         {showInterest.isInterested && (
@@ -91,7 +91,7 @@ const WorkTogetherMessage = ({
               <div className="mt-4">
                 <Button
                   size="sm"
-                  variant="danger"
+                  variant="destructive"
                   onClick={showInterest.onCancel}
                 >
                   Cancel
