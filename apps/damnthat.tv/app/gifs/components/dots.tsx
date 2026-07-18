@@ -48,7 +48,7 @@ export function Dots({
                 'mx-0.5 inline-block h-2 w-2 min-w-0 shrink-0 rounded-full',
                 props.indexController.index === index
                   ? 'bg-club-500 dark:bg-miami'
-                  : 'bg-slate-200 dark:bg-slate-600',
+                  : 'bg-border',
               )}
             />
           );

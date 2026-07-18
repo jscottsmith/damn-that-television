@@ -6,10 +6,10 @@ import { cn } from "@workspace/ui/lib/utils";
 const eyeButtonVariants = cva(
   [
     "group/eye-man h-16 w-16 px-2.5",
-    "text-slate-800 dark:text-slate-100",
+    "text-foreground",
     "transition-all duration-300",
     "hover:bg-cream hover:shadow-hard hover:scale-[1.05]",
-    "shadow-slate-800 dark:shadow-slate-950 dark:hover:bg-slate-600",
+    "shadow-foreground dark:shadow-background dark:hover:bg-secondary",
   ],
   {
     variants: {

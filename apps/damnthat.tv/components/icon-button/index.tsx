@@ -10,7 +10,7 @@ type IconButtonProps = PropsWithChildren<
 export const IconButton = (props: IconButtonProps) => {
   const {
     className,
-    background = 'bg-gray-500 hover:bg-gray-700',
+    background = 'bg-muted hover:bg-secondary',
     ...rest
   } = props;
   return (

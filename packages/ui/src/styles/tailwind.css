@@ -19,19 +19,6 @@
   /* Custom animations */
   --animate-spin-slow: spin 40s linear infinite;
 
-  /* Slate color palette */
-  --color-slate-50: #f8fafc;
-  --color-slate-100: #f1f5f9;
-  --color-slate-200: #e2e8f0;
-  --color-slate-300: #cbd3e1;
-  --color-slate-400: #9ba5b8;
-  --color-slate-500: #656e83;
-  --color-slate-600: #3a4155;
-  --color-slate-700: #232839;
-  --color-slate-800: #141826;
-  --color-slate-900: #0c0e19;
-  --color-slate-950: #060710;
-
   /* Salmon color palette */
   --color-salmon-50: #fdf9f9;
   --color-salmon-100: #faf3f3;
@@ -177,7 +164,6 @@
   --color-soft-pink-900: #785a59;
 
   /* DEFAULT colors (base color names without numbers) */
-  --color-slate: #656e83;
   --color-salmon: #ce8284;
   --color-plum: #403b4f;
   --color-pepto: #ea94ba;
@@ -212,14 +198,14 @@
 @utility prose-slate {
   --tw-prose-links: var(--color-miami-old);
   --tw-prose-invert-links: var(--color-miami-old);
-  --tw-prose-body: var(--color-slate-600);
-  --tw-prose-invert-body: var(--color-slate-400);
-  --tw-prose-headings: var(--color-slate-700);
-  --tw-prose-invert-headings: var(--color-slate-300);
-  --tw-prose-code: var(--color-slate-700);
-  --tw-prose-invert-code: var(--color-slate-300);
-  --tw-prose-bold: var(--color-slate-700);
-  --tw-prose-invert-bold: var(--color-slate-300);
+  --tw-prose-body: var(--muted-foreground);
+  --tw-prose-invert-body: var(--muted-foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-invert-headings: var(--foreground);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-invert-code: var(--foreground);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-invert-bold: var(--foreground);
 }
 
 @utility prose {

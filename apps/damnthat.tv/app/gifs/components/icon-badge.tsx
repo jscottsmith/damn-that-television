@@ -9,7 +9,7 @@ export function IconBadge(
     activeIconColor?: string;
   }>,
 ) {
-  const { activeBgColor = 'bg-gray-500', activeIconColor = 'text-white' } =
+  const { activeBgColor = 'bg-muted', activeIconColor = 'text-white' } =
     props;
 
   return (

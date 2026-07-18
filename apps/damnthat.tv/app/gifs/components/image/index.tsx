@@ -13,7 +13,7 @@ export function GalleryImage(props: GalleryImageProps) {
   const onLoad = () => setIsLoaded(true);
 
   return (
-    <div className="relative overflow-hidden bg-gray-100">
+    <div className="relative overflow-hidden bg-muted">
       <Image
         onDragStart={(e) => {
           e.preventDefault();

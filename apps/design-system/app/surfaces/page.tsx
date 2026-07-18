@@ -5,12 +5,12 @@ import { Surface } from "@workspace/ui/components/surface";
 
 const semanticVariants = [
   "default",
-  "card",
-  "popover",
   "primary",
   "secondary",
   "muted",
   "accent",
+  "card",
+  "popover",
   "sidebar",
 ] as const;
 
@@ -26,7 +26,7 @@ function SurfaceSwatch({
   return (
     <Surface
       variant={variant}
-      className="flex min-h-36 flex-col justify-between gap-4 p-6"
+      className="flex min-h-36 flex-col justify-between gap-4 p-6 border border-border"
     >
       <p className="font-poppins text-sm font-bold">{variant}</p>
     </Surface>
@@ -46,7 +46,22 @@ export default function Surfaces() {
         </Title>
         <Surface variant="card" className="w-fit">
           <CardPadding>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {semanticVariants.map((variant) => (
+                <SurfaceSwatch key={variant} variant={variant} />
+              ))}
+            </div>
+          </CardPadding>
+        </Surface>
+      </section>
+
+      <section className="py-8">
+        <Title asChild className="mb-8">
+          <h2>Surfaces Recipes</h2>
+        </Title>
+        <Surface variant="card" className="w-fit">
+          <CardPadding>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {semanticVariants.map((variant) => (
                 <SurfaceSwatch key={variant} variant={variant} />
               ))}

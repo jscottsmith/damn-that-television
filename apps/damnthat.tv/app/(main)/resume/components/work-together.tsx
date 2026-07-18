@@ -80,8 +80,8 @@ const WorkTogetherMessage = ({
           <AnimateHeight key="not-interested">
             <div className="mt-6 w-full text-center">
               <Prose className={clsx('mx-auto max-w-md')}>
-                <p className="text-gray-600">No worries, carry on.</p>
-                <p className="text-sm text-gray-600">
+                <p className="text-muted-foreground">No worries, carry on.</p>
+                <p className="text-sm text-muted-foreground">
                   This message will self destruct in:
                 </p>
                 <div className="my-4 text-4xl font-bold text-rose-500">

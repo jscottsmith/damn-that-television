@@ -53,7 +53,7 @@ export const Links = (props) => {
           const IconComponent = getIconForLinkType(item.type);
           return (
             <li key={i} className="flex list-none items-center gap-2">
-              <IconComponent className="inline-block h-4 w-4 text-slate-500" />
+              <IconComponent className="inline-block h-4 w-4 text-muted-foreground" />
               <a href={item.link.url}>{item.label}</a>
             </li>
           );

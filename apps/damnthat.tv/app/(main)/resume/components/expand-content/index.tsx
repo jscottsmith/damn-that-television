@@ -92,8 +92,7 @@ export default function ExpandContent(props: PropsWithChildren) {
             animate={{ opacity: 1, scale: 1 }}
             className={clsx(
               'gap-2 p-2 absolute bottom-0 left-0 right-0 flex w-full items-center justify-center rounded-lg font-medium transition-colors',
-              'hover:bg-slate-100',
-              'dark:hover:bg-slate-600',
+              'hover:bg-muted',
             )}
             onClick={() => setIsExpanded(!isExpanded)}
           >

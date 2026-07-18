@@ -11,10 +11,10 @@ const ctaButtonVariants = cva(
   {
     variants: {
       buttonType: {
-        deep: "bg-slate-800 text-slate-100 disabled:bg-gray-700 disabled:text-gray-200 hover:text-club",
-        gray: "bg-gray-300 text-gray-900 disabled:bg-gray-700 disabled:text-gray-200 hover:bg-gray-700 hover:text-gray-50",
-        blue: "bg-blue-700 text-gray-100 disabled:bg-gray-700 disabled:text-gray-200 hover:bg-blue-900 hover:text-gray-50",
-        pepto: "bg-pepto text-deep disabled:bg-gray-700 disabled:text-gray-200 hover:bg-lunar hover:text-white",
+        deep: "bg-primary text-primary-foreground disabled:bg-muted disabled:text-muted-foreground hover:text-club",
+        gray: "bg-secondary text-secondary-foreground disabled:bg-muted disabled:text-muted-foreground hover:bg-primary hover:text-primary-foreground",
+        blue: "bg-blue-700 text-white disabled:bg-muted disabled:text-muted-foreground hover:bg-blue-900 hover:text-white",
+        pepto: "bg-pepto text-deep disabled:bg-muted disabled:text-muted-foreground hover:bg-lunar hover:text-white",
       },
       buttonSize: {
         sm: "px-3 py-0 rounded text-lg md:px-4 md:py-1",
