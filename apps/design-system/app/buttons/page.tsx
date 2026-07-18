@@ -1,6 +1,6 @@
 'use client';
 
-import { HeroTitle } from '@/components/typography/hero-title';
+import { AppContent, AppHeader, AppPage } from '@/components/app-chrome';
 import { ButtonToggleExample } from './components/button-toggle-example';
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -19,11 +19,11 @@ import { ButtonGroup } from '@workspace/ui/components/button-group';
 
 export default function Buttons() {
   return (
-    <>
-      <HeroTitle asChild>
-        <h1 className="pb-6">Buttons</h1>
-      </HeroTitle>
-
+    <AppPage>
+      <AppHeader>
+        <h1>Buttons</h1>
+      </AppHeader>
+      <AppContent>
       <section className="py-4">
         <div className="gap-2 flex flex-col">
           <CTAButtons />
@@ -206,6 +206,7 @@ export default function Buttons() {
           </ComponentSection>
         </div>
       </section>
-    </>
+      </AppContent>
+    </AppPage>
   );
 }

@@ -1,4 +1,4 @@
-import { HeroTitle } from '@/components/typography/hero-title';
+import { AppContent, AppHeader, AppPage } from '@/components/app-chrome';
 
 const sections = [
   [
@@ -160,19 +160,21 @@ function ColorSwatch(props: { color: string; name: string }) {
 
 export default function Colors() {
   return (
-    <>
-      <HeroTitle asChild>
+    <AppPage>
+      <AppHeader>
         <h1>Colors</h1>
-      </HeroTitle>
-      {sections.map((colors, i) => {
-        return (
-          <section key={i}>
-            {colors.map((entry, i) => {
-              return <ColorSwatch key={i} color={entry[1]} name={entry[0]} />;
-            })}
-          </section>
-        );
-      })}
-    </>
+      </AppHeader>
+      <AppContent>
+        {sections.map((colors, i) => {
+          return (
+            <section key={i}>
+              {colors.map((entry, i) => {
+                return <ColorSwatch key={i} color={entry[1]} name={entry[0]} />;
+              })}
+            </section>
+          );
+        })}
+      </AppContent>
+    </AppPage>
   );
 }

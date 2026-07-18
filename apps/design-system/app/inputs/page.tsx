@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@workspace/ui/components/button";
+import { AppContent, AppHeader, AppPage } from "@/components/app-chrome";
 import { CardPadding } from "@/components/card";
 import { InputToggle } from "@/components/input-toggle";
 import { PasswordField } from "@/components/inputs/password-field";
@@ -10,26 +11,33 @@ import { cn } from "@workspace/ui/lib/utils";
 
 export default function Components() {
   return (
-    <CardPadding asChild>
-      <form
-        autoComplete="off"
-        className={cn(
-          surfaceVariants({ variant: "card" }),
-          "gap-6 flex max-w-lg flex-col"
-        )}
-      >
-        <TextField label="Test 1" placeholder="Testing" pattern=".*\S.*" />
-        <TextField label="Test 2" placeholder="Testing" pattern=".*\S.*" />
-        <PasswordField
-          label="Password"
-          placeholder="Testing"
-          pattern=".*\S.*"
-        />
-        <InputToggle label="hello" />
-        <Button variant="primary" size="md">
-          Submit
-        </Button>
-      </form>
-    </CardPadding>
+    <AppPage>
+      <AppHeader>
+        <h1>Inputs</h1>
+      </AppHeader>
+      <AppContent>
+        <CardPadding asChild>
+          <form
+            autoComplete="off"
+            className={cn(
+              surfaceVariants({ variant: "card" }),
+              "gap-6 flex max-w-lg flex-col"
+            )}
+          >
+            <TextField label="Test 1" placeholder="Testing" pattern=".*\S.*" />
+            <TextField label="Test 2" placeholder="Testing" pattern=".*\S.*" />
+            <PasswordField
+              label="Password"
+              placeholder="Testing"
+              pattern=".*\S.*"
+            />
+            <InputToggle label="hello" />
+            <Button variant="primary" size="md">
+              Submit
+            </Button>
+          </form>
+        </CardPadding>
+      </AppContent>
+    </AppPage>
   );
 }
