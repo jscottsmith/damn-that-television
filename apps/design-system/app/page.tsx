@@ -1,18 +1,22 @@
-import { HeroTitle } from '@/components/typography/hero-title';
+import { AppContent, AppHeader, AppPage } from '@/components/app-chrome';
 import { Prose } from '@/components/typography/prose';
 
 export default function Page() {
   return (
-    <div className="gap-6 flex max-w-3xl flex-col">
-      <HeroTitle asChild>
+    <AppPage>
+      <AppHeader>
         <h1>Design System</h1>
-      </HeroTitle>
-      <Prose>
-        <p>
-          Shared foundations, components, and interaction examples for Damn that
-          television.
-        </p>
-      </Prose>
-    </div>
+      </AppHeader>
+      <AppContent>
+        <div className="gap-6 flex max-w-3xl flex-col">
+          <Prose>
+            <p>
+              Shared foundations, components, and interaction examples for Damn that
+              television.
+            </p>
+          </Prose>
+        </div>
+      </AppContent>
+    </AppPage>
   );
 }
