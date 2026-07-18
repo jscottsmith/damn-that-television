@@ -4,6 +4,7 @@ import * as React from "react";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
+import { motion } from "motion/react";
 
 import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 import { cn } from "@workspace/ui/lib/utils";
@@ -31,7 +32,15 @@ const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
+/** Matches `--sidebar-width-icon` + 2×`--sidebar-floating-inset` (3rem + 1rem). */
+const SIDEBAR_WIDTH_ICON_FLOATING = "4rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
+const SIDEBAR_TRANSITION = {
+  type: "spring" as const,
+  // Width is layout; avoid bounce overshoot (crushes padded floating/inset panels).
+  bounce: 0,
+  duration: 0.5,
+};
 
 type SidebarContextProps = {
   state: "expanded" | "collapsed";
@@ -151,7 +160,6 @@ function SidebarProvider({
 }
 
 function Sidebar({
-  side = "left",
   variant = "sidebar",
   collapsible = "offcanvas",
   className,
@@ -159,7 +167,6 @@ function Sidebar({
   dir,
   ...props
 }: React.ComponentProps<"div"> & {
-  side?: "left" | "right";
   variant?: "sidebar" | "floating" | "inset";
   collapsible?: "offcanvas" | "icon" | "none";
 }) {
@@ -192,15 +199,14 @@ function Sidebar({
           className={cn(
             "group w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden",
             "data-[variant=floating]:border-0 data-[variant=floating]:bg-transparent data-[variant=floating]:shadow-none",
-            "data-[variant=floating]:data-[side=left]:inset-y-(--sidebar-floating-inset) data-[variant=floating]:data-[side=left]:left-(--sidebar-floating-inset) data-[variant=floating]:data-[side=left]:h-auto data-[variant=floating]:data-[side=left]:border-r-0",
-            "data-[variant=floating]:data-[side=right]:inset-y-(--sidebar-floating-inset) data-[variant=floating]:data-[side=right]:right-(--sidebar-floating-inset) data-[variant=floating]:data-[side=right]:h-auto data-[variant=floating]:data-[side=right]:border-l-0"
+            "data-[variant=floating]:inset-y-(--sidebar-floating-inset) data-[variant=floating]:left-(--sidebar-floating-inset) data-[variant=floating]:h-auto data-[variant=floating]:border-r-0"
           )}
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
             } as React.CSSProperties
           }
-          side={side}
+          side="left"
         >
           <SheetHeader className="sr-only">
             <SheetTitle>Sidebar</SheetTitle>
@@ -214,39 +220,56 @@ function Sidebar({
     );
   }
 
+  const isCollapsed = state === "collapsed";
+  const isFloatingOrInset = variant === "floating" || variant === "inset";
+  const iconWidth = isFloatingOrInset
+    ? SIDEBAR_WIDTH_ICON_FLOATING
+    : SIDEBAR_WIDTH_ICON;
+
+  const gapWidth = !isCollapsed
+    ? SIDEBAR_WIDTH
+    : collapsible === "offcanvas"
+      ? 0
+      : iconWidth;
+  const containerWidth = !isCollapsed
+    ? SIDEBAR_WIDTH
+    : collapsible === "icon"
+      ? iconWidth
+      : SIDEBAR_WIDTH;
+  const containerX = isCollapsed && collapsible === "offcanvas" ? "-100%" : 0;
+  // Spring bounce can overshoot below the icon target; padded floating/inset
+  // panels crush when width dips under horizontal padding.
+  const iconMinWidth = collapsible === "icon" ? iconWidth : undefined;
+
   return (
     <div
       className="group peer hidden text-sidebar-foreground md:block"
       data-state={state}
       data-collapsible={state === "collapsed" ? collapsible : ""}
       data-variant={variant}
-      data-side={side}
       data-slot="sidebar"
+      {...props}
     >
       {/* This is what handles the sidebar gap on desktop */}
-      <div
+      <motion.div
         data-slot="sidebar-gap"
-        className={cn(
-          "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
-          "group-data-[collapsible=offcanvas]:w-0",
-          "group-data-[side=right]:rotate-180",
-          variant === "floating" || variant === "inset"
-            ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(var(--sidebar-floating-inset)*2))]"
-            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
-        )}
+        initial={false}
+        animate={{ width: gapWidth }}
+        transition={SIDEBAR_TRANSITION}
+        style={iconMinWidth ? { minWidth: iconMinWidth } : undefined}
+        className="relative bg-transparent"
       />
-      <div
+      <motion.div
         data-slot="sidebar-container"
-        data-side={side}
+        initial={false}
+        animate={{ width: containerWidth, x: containerX }}
+        transition={SIDEBAR_TRANSITION}
+        style={iconMinWidth ? { minWidth: iconMinWidth } : undefined}
         className={cn(
-          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] data-[side=right]:right-0 data-[side=right]:group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)] md:flex",
-          // Adjust the padding for floating and inset variants.
-          variant === "floating" || variant === "inset"
-            ? "p-(--sidebar-floating-inset) group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(var(--sidebar-floating-inset)*2)+2px)]"
-            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
+          "fixed inset-y-0 left-0 z-10 hidden h-svh md:flex",
+          isFloatingOrInset ? "p-(--sidebar-floating-inset)" : "border-r",
           className
         )}
-        {...props}
       >
         <div
           data-sidebar="sidebar"
@@ -255,7 +278,7 @@ function Sidebar({
         >
           {children}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -298,12 +321,10 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        "absolute inset-y-0 z-20 hidden w-4 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:start-1/2 after:w-[2px] hover:after:bg-sidebar-border sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
-        "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
-        "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
+        "absolute inset-y-0 -right-4 z-20 hidden w-4 transition-all ease-linear after:absolute after:inset-y-0 after:start-1/2 after:w-[2px] hover:after:bg-sidebar-border sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
+        "cursor-w-resize [[data-state=collapsed]_&]:cursor-e-resize",
         "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar",
-        "[[data-side=left][data-collapsible=offcanvas]_&]:-right-2",
-        "[[data-side=right][data-collapsible=offcanvas]_&]:-left-2",
+        "[[data-collapsible=offcanvas]_&]:-right-2",
         className
       )}
       {...props}

@@ -37,7 +37,6 @@ import { TooltipProvider } from "@workspace/ui/components/tooltip";
 import { routes } from "app/routes.constants";
 
 import {
-  ArrowsRightLeftIcon,
   Cog6ToothIcon,
   EllipsisHorizontalIcon,
   RectangleGroupIcon,
@@ -59,11 +58,9 @@ export { AppPage } from "./app-page";
 
 const SIDEBAR_VARIANTS = ["floating", "sidebar", "inset"] as const;
 const SIDEBAR_COLLAPSIBLES = ["icon", "offcanvas", "none"] as const;
-const SIDEBAR_SIDES = ["left", "right"] as const;
 
 type SidebarVariant = (typeof SIDEBAR_VARIANTS)[number];
 type SidebarCollapsible = (typeof SIDEBAR_COLLAPSIBLES)[number];
-type SidebarSide = (typeof SIDEBAR_SIDES)[number];
 
 const SIDEBAR_VARIANT_ICONS = {
   floating: Square2StackIcon,
@@ -87,7 +84,6 @@ function AppChromeLayout({ children }: PropsWithChildren) {
   const { setOpen, isMobile } = useSidebar();
   const [variant, setVariant] = useState<SidebarVariant>("inset");
   const [collapsible, setCollapsible] = useState<SidebarCollapsible>("icon");
-  const [side, setSide] = useState<SidebarSide>("left");
   const [query, setQuery] = useState("");
 
   const VariantIcon = SIDEBAR_VARIANT_ICONS[variant];
@@ -104,7 +100,6 @@ function AppChromeLayout({ children }: PropsWithChildren) {
     <>
       <Sidebar
         id={APP_CHROME_SIDEBAR_ID}
-        side={side}
         variant={variant}
         collapsible={collapsible}
       >
@@ -246,15 +241,6 @@ function AppChromeLayout({ children }: PropsWithChildren) {
               }
             >
               <CollapsibleIcon />
-            </Button>
-            <Button
-              presentation="icon"
-              size="sm"
-              variant="secondary"
-              aria-label={`Sidebar side: ${side}. Click to switch.`}
-              onClick={() => setSide(nextInCycle(SIDEBAR_SIDES, side))}
-            >
-              <ArrowsRightLeftIcon />
             </Button>
             <ThemeToggle />
           </div>
