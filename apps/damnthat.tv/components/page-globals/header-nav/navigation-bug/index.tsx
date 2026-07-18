@@ -45,7 +45,7 @@ export function NavigationBugDesktop() {
             clsx(
               'pointer-events-auto relative grid',
               'rounded-[2.3rem]',
-              'shadow-lg shadow-slate-950/5',
+              'shadow-lg shadow-foreground/5',
             ),
           )}
         >
@@ -116,7 +116,7 @@ export function NavigationBugMobile() {
                 clsx(
                   'pointer-events-auto relative grid w-full',
                   'rounded-[2.3rem]',
-                  'shadow-lg shadow-slate-950/5',
+                  'shadow-lg shadow-foreground/5',
                 ),
               )}
             >

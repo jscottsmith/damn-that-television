@@ -14,11 +14,10 @@ function InputToggleUI({ label, ...props }: InputToggleProps, ref) {
         className={clsx(
           // sizing
           'h-11 w-20 rounded-full after:rounded-full',
-          'after:left-[4px] after:top-[4px] after:h-9 after:w-9 after:border-0 after:shadow-slate-900',
+          'after:left-[4px] after:top-[4px] after:h-9 after:w-9 after:border-0 after:shadow-foreground dark:after:shadow-background',
           // default
-          'bg-slate-300 transition-colors duration-500 hover:bg-slate-400',
-          // dark defaults
-          'dark:border-slate-600 dark:bg-slate-700 dark:hover:bg-slate-600',
+          'bg-border transition-colors duration-500 hover:bg-muted-foreground/40',
+          'dark:bg-secondary dark:hover:bg-muted',
           // checked
           'peer-checked:bg-club-600 peer-checked:hover:bg-club-500 peer peer-checked:after:translate-x-full',
           // focus

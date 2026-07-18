@@ -39,7 +39,7 @@ export default async function Page() {
                     href={document.url ?? ''}
                     className="-m-2 flex flex-row flex-wrap items-center gap-2 p-2 md:gap-4 lg:flex-nowrap"
                   >
-                    <div className="flex aspect-square w-48 shrink-0 items-center justify-center rounded-md bg-slate-500/20">
+                    <div className="flex aspect-square w-48 shrink-0 items-center justify-center rounded-md bg-muted">
                       <PrismicNextImage
                         field={document.data.image.thumb}
                         className="aspect-square w-48 shrink-0 rounded-md"
@@ -59,7 +59,7 @@ export default async function Page() {
                           </div>
                         )}
                       </div>
-                      <ArrowRightIcon className="mr-2 h-6 w-6 shrink-0 text-slate-500 transition-transform duration-300 group-hover:translate-x-2" />
+                      <ArrowRightIcon className="mr-2 h-6 w-6 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:translate-x-2" />
                     </div>
                   </PrismicNextLink>
                 </SurfaceInteractiveSimple>

@@ -11,18 +11,18 @@ export function BaseInput({ className, ...rest }: BaseInputProps) {
         'py-3 px-4',
         'rounded-lg',
         // bg
-        'bg-slate-200 dark:bg-slate-900',
+        'bg-secondary',
         // text
-        'text-lg text-slate-900 dark:text-slate-200',
+        'text-lg text-foreground',
         // disabled
-        'disabled:pointer-events-none disabled:text-slate-400 dark:disabled:text-slate-600',
+        'disabled:pointer-events-none disabled:text-muted-foreground',
         // placeholder
-        'placeholder:text-slate-400 dark:placeholder:text-slate-600',
+        'placeholder:text-muted-foreground',
 
-        'focus:outline-club focus:bg-slate-100 focus:dark:bg-slate-950',
+        'focus:outline-club focus:bg-muted',
 
         // shadow color
-        // 'shadow-slate-700 dark:shadow-slate-950',
+        // 'shadow-foreground dark:shadow-background',
         // 'valid:-translate-y-0.5 valid:-translate-x-0.5 valid:shadow-hard-xs',
         // focus
         // 'focus:outline-none focus:shadow-hard-xs focus:-translate-x-0.5 focus:-translate-y-0.5',

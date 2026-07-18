@@ -55,8 +55,8 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
             {/* Jobs under this company */}
             <div className="pl-4 md:pl-6 relative ml-2">
               {/* bottom must match the date range line */}
-              <span className="absolute top-3 bottom-2 left-0 border-l-2 border-dotted border-slate-300 dark:border-slate-600">
-                <span className="absolute top-0 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+              <span className="absolute top-3 bottom-2 left-0 border-l-2 border-dotted border-border">
+                <span className="absolute top-0 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-border"></span>
               </span>
 
               {group.jobs.map((item, jobIndex) => {
@@ -70,7 +70,7 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
                     id={jobTitleSlug}
                   >
                     <AnchorLinkCopy id={jobTitleSlug} className="mb-3">
-                      <div className="text-xl font-medium text-slate-600 dark:text-slate-300">
+                      <div className="text-xl font-medium text-muted-foreground">
                         <PrismicRichText field={item.job_title} />
                       </div>
                     </AnchorLinkCopy>
@@ -95,8 +95,8 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
                         </ul>
                       )}
                       <div className="my-4 flex h-0 items-center pb-2">
-                        <span className="absolute left-0 w-2 border-t-2 border-dotted border-slate-300 md:w-3 dark:border-slate-600">
-                          <span className="absolute top-1/2 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        <span className="absolute left-0 w-2 border-t-2 border-dotted border-border md:w-3">
+                          <span className="absolute top-1/2 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-border"></span>
                         </span>
                         <DateRange
                           dateFormatter={formatterMonthYear}

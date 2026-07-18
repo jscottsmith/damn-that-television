@@ -13,7 +13,7 @@ export function TitleAndSubtitle(props: {
     <div
       className={clsx(
         props.className,
-        'font-futura flex flex-wrap text-slate-700 dark:text-slate-200',
+        'font-futura flex flex-wrap text-foreground',
       )}
     >
       <span className="inline-block font-medium">

@@ -45,7 +45,7 @@ export function Footer() {
             >
               <Link
                 href={APP_ROUTES.home}
-                className="hover:text-pepto-500 dark:text-miami dark:hover:text-club group/eye-man mx-auto block w-14 justify-self-center text-slate-800 md:w-24"
+                className="hover:text-pepto-500 dark:text-miami dark:hover:text-club group/eye-man mx-auto block w-14 justify-self-center text-foreground md:w-24"
               >
                 <span className="sr-only">Go Home</span>
                 <EyeMan />

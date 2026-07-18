@@ -48,7 +48,7 @@ export default async function Image() {
         flexDirection: 'column',
         padding: '48px 96px 0 0',
       }}
-      className="bg-gray-950"
+      className="bg-background"
     >
       <div
         style={{

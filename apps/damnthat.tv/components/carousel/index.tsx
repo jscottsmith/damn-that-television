@@ -106,7 +106,7 @@ const Carousel: FC<CarouselProps> = ({
               key={index}
               className={clsx(
                 `h-2 w-2 rounded-full p-0!`,
-                index === selectedIndex && 'bg-gray-800 dark:bg-gray-200',
+                index === selectedIndex && 'bg-foreground',
               )}
               onClick={() => scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
