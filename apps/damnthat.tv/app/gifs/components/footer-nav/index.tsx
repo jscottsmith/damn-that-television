@@ -46,7 +46,7 @@ export function FooterNav(props: {
             ),
           )}
         >
-            <IconBadge isActive={props.isTrashed} activeBgColor="bg-lit-500">
+            <IconBadge isActive={props.isTrashed} activeBgColor="bg-lit">
               <TrashIcon className="w-6" />
             </IconBadge>
 
@@ -64,7 +64,7 @@ export function FooterNav(props: {
               <Square2StackIcon className="w-6" />
             </IconButton>
 
-            <IconBadge isActive={props.isLiked} activeBgColor="bg-club-500">
+            <IconBadge isActive={props.isLiked} activeBgColor="bg-club">
               <HeartIcon className="w-6" />
             </IconBadge>
         </div>

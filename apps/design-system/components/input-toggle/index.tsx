@@ -19,7 +19,7 @@ function InputToggleUI({ label, ...props }: InputToggleProps, ref) {
           'bg-border transition-colors duration-500 hover:bg-muted-foreground/40',
           'dark:bg-secondary dark:hover:bg-muted',
           // checked
-          'peer-checked:bg-club-600 peer-checked:hover:bg-club-500 peer peer-checked:after:translate-x-full',
+          'peer-checked:bg-club-600 peer-checked:hover:bg-club peer peer-checked:after:translate-x-full',
           // focus
           // 'peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-club-300 dark:peer-focus:ring-club-800',
           // circle
