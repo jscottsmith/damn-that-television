@@ -1,0 +1,73 @@
+---
+description: Use Conventional Commits for all git commit messages in this project
+alwaysApply: true
+---
+
+# Conventional Commits
+
+All commit messages MUST follow [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).
+
+## Format
+
+```
+<type>[optional scope][optional !]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+- **type**: required noun (`feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`, etc.)
+- **scope**: optional area in parentheses, e.g. `feat(ui):`
+- **!**: mark breaking changes before the colon, e.g. `feat(api)!:`
+- **description**: short summary immediately after `: ` (imperative mood, no trailing period)
+- **body / footers**: optional; blank line before body; blank line before footers
+
+## Types (common)
+
+| Type | Use when |
+|------|----------|
+| `feat` | New user-facing capability (MINOR) |
+| `fix` | Bug fix (PATCH) |
+| `docs` | Documentation only |
+| `style` | Formatting / non-semantic style |
+| `refactor` | Code change that is not a fix or feature |
+| `perf` | Performance improvement |
+| `test` | Adding or updating tests |
+| `build` | Build system or dependencies |
+| `ci` | CI configuration |
+| `chore` | Maintenance that does not fit above |
+| `revert` | Reverting a previous commit |
+
+## Breaking changes
+
+Indicate with `!` after type/scope **and/or** a footer:
+
+```
+BREAKING CHANGE: <description of what breaks>
+```
+
+## Examples
+
+```
+feat(ui): add Surface elevation tokens
+
+fix(nav): prevent header bug from overlapping content
+
+docs: correct Conventional Commits link in AGENTS.md
+
+feat(api)!: drop support for legacy theme keys
+
+BREAKING CHANGE: `--color-surface-legacy` is removed; use `--color-surface` instead.
+```
+
+## Do
+
+- Prefer one logical change per commit when practical
+- Keep the subject line concise and specific
+- Use a scope when it clarifies the area (`ui`, `nav`, `design-system`, etc.)
+
+## Do not
+
+- Use free-form subjects without a type prefix (`Updated styles`, `WIP`, `fix stuff`)
+- Put Cursor or other tool attribution in commit messages (see no-cursor-attribution rule)
