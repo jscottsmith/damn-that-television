@@ -60,7 +60,7 @@ export const RecruiterBadge = (props) => {
           cx={250}
           cy={250}
           r={158}
-          className="fill-cream-500"
+          className="fill-cream"
           transition={{ type: 'spring', bounce: 0.4 }}
           variants={BG_VARIANT}
         />

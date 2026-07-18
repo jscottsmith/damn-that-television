@@ -25,7 +25,7 @@ export function ActionIndicator(
           'absolute aspect-square w-full rounded-full',
           props.direction === Directions.LEFT
             ? 'bg-pepto-600 dark:bg-salmon-800'
-            : 'bg-miami-500 dark:bg-miami-700',
+            : 'bg-miami dark:bg-miami-700',
         )}
       />
 
