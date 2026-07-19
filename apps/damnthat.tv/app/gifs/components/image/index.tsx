@@ -7,10 +7,14 @@ type GalleryImageProps = ImageProps & {
 };
 
 export function GalleryImage(props: GalleryImageProps) {
-  const { smallImageSrc, className, alt, ...rest } = props;
+  const { smallImageSrc, className, alt, src, ...rest } = props;
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   const onLoad = () => setIsLoaded(true);
+
+  if (!src) return null;
+
+  const placeholderSrc = smallImageSrc || undefined;
 
   return (
     <div className="relative overflow-hidden bg-muted">
@@ -22,18 +26,21 @@ export function GalleryImage(props: GalleryImageProps) {
         onLoad={onLoad}
         alt={alt}
         {...rest}
+        src={src}
       />
 
-      <Image
-        onDragStart={(e) => e.preventDefault()}
-        className={clsx(
-          'absolute inset-0 z-10 w-full max-w-none scale-125 blur-xl transition-all duration-1000',
-          isLoaded ? 'hidden opacity-0' : 'opacity-100',
-        )}
-        alt={alt}
-        {...rest}
-        src={props.smallImageSrc}
-      />
+      {placeholderSrc ? (
+        <Image
+          onDragStart={(e) => e.preventDefault()}
+          className={clsx(
+            'absolute inset-0 z-10 w-full max-w-none scale-125 blur-xl transition-all duration-1000',
+            isLoaded ? 'hidden opacity-0' : 'opacity-100',
+          )}
+          alt={alt}
+          {...rest}
+          src={placeholderSrc}
+        />
+      ) : null}
     </div>
   );
 }

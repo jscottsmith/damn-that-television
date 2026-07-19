@@ -85,7 +85,8 @@ export function GalleryRoute() {
                 <GalleryImage
                   src={currentImage.images.original.url}
                   smallImageSrc={
-                    currentImage.images.fixed_width_small_still.url
+                    currentImage.images.fixed_width_small_still.url ||
+                    currentImage.images.original_still.url
                   }
                   width={parseInt(currentImage.images.original.width)}
                   height={parseInt(currentImage.images.original.height)}
