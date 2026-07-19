@@ -41,7 +41,8 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
+:root,
+.light {
   /* Shared cool gray tint — tweak these to recolor all neutrals */
   --chroma: 0.003;
   --hue: 67;
