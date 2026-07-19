@@ -2,6 +2,7 @@ import type { AppChromeRoutes } from "@/components/app-chrome/types";
 import {
   CursorArrowRaysIcon,
   LanguageIcon,
+  PaintBrushIcon,
   PencilSquareIcon,
   PuzzlePieceIcon,
   SparklesIcon,
@@ -39,6 +40,11 @@ export const routes: AppChromeRoutes = {
         title: "Surfaces",
         absolutePath: "/surfaces",
         icon: Square2StackIcon,
+      },
+      theme: {
+        title: "Theme",
+        absolutePath: "/theme",
+        icon: PaintBrushIcon,
       },
       typography: {
         title: "Typography",
