@@ -34,7 +34,7 @@
     "@workspace/ui": "workspace:*",
     "clsx": "^2.1.1",
     "motion": "^12.4.7",
-    "next": "^16.2.6",
+    "next": "^16.2.11",
     "react": "latest",
     "react-dom": "latest",
     "tailwind-merge": "^3.6.0",

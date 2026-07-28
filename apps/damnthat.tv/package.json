@@ -44,7 +44,7 @@
     "embla-carousel-react": "^8.5.2",
     "lodash.throttle": "^4.1.1",
     "motion": "^12.4.7",
-    "next": "^16.2.6",
+    "next": "^16.2.11",
     "react": "latest",
     "react-dom": "latest",
     "react-redux": "^9.2.0",
