@@ -46,7 +46,7 @@
     "@types/react-dom": "latest",
     "oxfmt": "^0.52.0",
     "oxlint": "^1.67.0",
-    "postcss": "^8.5.10",
+    "postcss": "^8.5.18",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.8.2"
   }
