@@ -55,46 +55,46 @@ export function GalleryRoute() {
           'fixed inset-0 flex items-center justify-center overflow-hidden p-2',
         )}
       >
-          <AnimatePresence>
-            <motion.div
-              key={currentImage.id}
-              initial={{ scale: 0 }}
-              animate={{
-                scale: 1,
-                transition: {
-                  delay: 0.5,
-                  type: 'spring',
-                  damping: 50,
-                  stiffness: 200,
-                },
+        <AnimatePresence>
+          <motion.div
+            key={currentImage.id}
+            initial={{ scale: 0 }}
+            animate={{
+              scale: 1,
+              transition: {
+                delay: 0.5,
+                type: 'spring',
+                damping: 50,
+                stiffness: 200,
+              },
+            }}
+            exit={{ opacity: 0, scale: 1.25, position: 'absolute' }}
+          >
+            <DraggableSlide
+              onNoThrow={() => setCurrentDirection(undefined)}
+              onDecidedDrag={(direction) => {
+                // console.log("decided drag", direction);
+                setCurrentDirection(direction);
               }}
-              exit={{ opacity: 0, scale: 1.25, position: 'absolute' }}
+              onThrowBegin={(direction) => {
+                // console.log("throw begin", direction);
+                setDecidedDirection(direction);
+              }}
+              minXDragDistance={50}
             >
-              <DraggableSlide
-                onNoThrow={() => setCurrentDirection(undefined)}
-                onDecidedDrag={(direction) => {
-                  // console.log("decided drag", direction);
-                  setCurrentDirection(direction);
-                }}
-                onThrowBegin={(direction) => {
-                  // console.log("throw begin", direction);
-                  setDecidedDirection(direction);
-                }}
-                minXDragDistance={50}
-              >
-                <GalleryImage
-                  src={currentImage.images.original.url}
-                  smallImageSrc={
-                    currentImage.images.fixed_width_small_still.url ||
-                    currentImage.images.original_still.url
-                  }
-                  width={parseInt(currentImage.images.original.width)}
-                  height={parseInt(currentImage.images.original.height)}
-                  alt={currentImage.title}
-                />
-              </DraggableSlide>
-            </motion.div>
-          </AnimatePresence>
+              <GalleryImage
+                src={currentImage.images.original.url}
+                smallImageSrc={
+                  currentImage.images.fixed_width_small_still.url ||
+                  currentImage.images.original_still.url
+                }
+                width={parseInt(currentImage.images.original.width)}
+                height={parseInt(currentImage.images.original.height)}
+                alt={currentImage.title}
+              />
+            </DraggableSlide>
+          </motion.div>
+        </AnimatePresence>
       </div>
       <AnimatePresence>
         {decidedDirection && (

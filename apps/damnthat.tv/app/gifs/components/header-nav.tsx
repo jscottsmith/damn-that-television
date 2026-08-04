@@ -28,33 +28,29 @@ export function HeaderNav(props: {
         ),
       )}
     >
-        <nav>
-          <Link href="/">
-            <IconButton>
-              <ArrowLeftIcon className="w-6" />
-            </IconButton>
-          </Link>
-        </nav>
-        <div className="flex grow items-center justify-between">
-          <div>
-            <h2 className="text-xs font-bold uppercase">{props.title}</h2>
-            <p className="text-xs font-medium tabular-nums">
-              {props.indexController.index + 1}/{props.length}
-            </p>
-          </div>
-          <Dots indexController={props.indexController} length={props.length} />
-        </div>
+      <nav>
+        <Link href="/">
+          <IconButton>
+            <ArrowLeftIcon className="w-6" />
+          </IconButton>
+        </Link>
+      </nav>
+      <div className="flex grow items-center justify-between">
         <div>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={props.externalLink}
-          >
-            <IconButton>
-              <ArrowTopRightOnSquareIcon className="w-6" />
-            </IconButton>
-          </a>
+          <h2 className="text-xs font-bold uppercase">{props.title}</h2>
+          <p className="text-xs font-medium tabular-nums">
+            {props.indexController.index + 1}/{props.length}
+          </p>
         </div>
+        <Dots indexController={props.indexController} length={props.length} />
+      </div>
+      <div>
+        <a target="_blank" rel="noopener noreferrer" href={props.externalLink}>
+          <IconButton>
+            <ArrowTopRightOnSquareIcon className="w-6" />
+          </IconButton>
+        </a>
+      </div>
     </header>
   );
 }

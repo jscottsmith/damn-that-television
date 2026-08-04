@@ -25,10 +25,7 @@ export function CardPadding({
   ...props
 }: SlotComponentProps) {
   return (
-    <SlotComponent
-      className={clsx(className, 'p-3 md:p-6 lg:p-8')}
-      {...props}
-    >
+    <SlotComponent className={clsx(className, 'p-3 md:p-6 lg:p-8')} {...props}>
       {children}
     </SlotComponent>
   );

@@ -1,4 +1,4 @@
-import type { AppChromeRoutes } from "@/components/app-chrome/types";
+import type { AppChromeRoutes } from '@/components/app-chrome/types';
 import {
   CursorArrowRaysIcon,
   LanguageIcon,
@@ -8,47 +8,47 @@ import {
   SparklesIcon,
   Square2StackIcon,
   SwatchIcon,
-} from "@heroicons/react/16/solid";
+} from '@heroicons/react/16/solid';
 
 export const routes: AppChromeRoutes = {
-  "design-system": {
-    title: "Design System",
-    absolutePath: "/",
+  'design-system': {
+    title: 'Design System',
+    absolutePath: '/',
     icon: SparklesIcon,
     children: {
       buttons: {
-        title: "Buttons",
-        absolutePath: "/buttons",
+        title: 'Buttons',
+        absolutePath: '/buttons',
         icon: CursorArrowRaysIcon,
       },
       colors: {
-        title: "Colors",
-        absolutePath: "/colors",
+        title: 'Colors',
+        absolutePath: '/colors',
         icon: SwatchIcon,
       },
       components: {
-        title: "Components",
-        absolutePath: "/components",
+        title: 'Components',
+        absolutePath: '/components',
         icon: PuzzlePieceIcon,
       },
       inputs: {
-        title: "Inputs",
-        absolutePath: "/inputs",
+        title: 'Inputs',
+        absolutePath: '/inputs',
         icon: PencilSquareIcon,
       },
       surfaces: {
-        title: "Surfaces",
-        absolutePath: "/surfaces",
+        title: 'Surfaces',
+        absolutePath: '/surfaces',
         icon: Square2StackIcon,
       },
       theme: {
-        title: "Theme",
-        absolutePath: "/theme",
+        title: 'Theme',
+        absolutePath: '/theme',
         icon: PaintBrushIcon,
       },
       typography: {
-        title: "Typography",
-        absolutePath: "/typography",
+        title: 'Typography',
+        absolutePath: '/typography',
         icon: LanguageIcon,
       },
     },

@@ -16,7 +16,7 @@ export default function Components() {
         <h1>Typography</h1>
       </AppHeader>
       <AppContent>
-        <div className="gap-8 flex min-h-screen flex-col">
+        <div className="flex min-h-screen flex-col gap-8">
           <section>
             <Code>
               <pre className="my-3">{'Fonts'}</pre>

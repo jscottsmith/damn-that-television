@@ -1,4 +1,4 @@
-import type { ComponentType, SVGProps } from "react";
+import type { ComponentType, SVGProps } from 'react';
 
 export type AppChromeRouteIcon = ComponentType<SVGProps<SVGSVGElement>>;
 

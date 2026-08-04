@@ -17,7 +17,7 @@ export function GalleryImage(props: GalleryImageProps) {
   const placeholderSrc = smallImageSrc || undefined;
 
   return (
-    <div className="relative overflow-hidden bg-muted">
+    <div className="bg-muted relative overflow-hidden">
       <Image
         onDragStart={(e) => {
           e.preventDefault();

@@ -49,24 +49,24 @@ export function NavigationBugDesktop() {
             ),
           )}
         >
+          <div
+            className={clsx(
+              'relative flex w-full flex-wrap items-center gap-1 self-start p-1 pr-2.5',
+            )}
+          >
+            <HomeLink />
             <div
               className={clsx(
-                'relative flex w-full flex-wrap items-center gap-1 self-start p-1 pr-2.5',
+                'relative flex w-auto flex-wrap items-center gap-1',
               )}
             >
-              <HomeLink />
-              <div
-                className={clsx(
-                  'relative flex w-auto flex-wrap items-center gap-1',
-                )}
-              >
-                {NAVIGATION_LINKS.map((link) => (
-                  <Link href={link.href} key={link.href}>
-                    <Button>{link.label}</Button>
-                  </Link>
-                ))}
-              </div>
+              {NAVIGATION_LINKS.map((link) => (
+                <Link href={link.href} key={link.href}>
+                  <Button>{link.label}</Button>
+                </Link>
+              ))}
             </div>
+          </div>
         </motion.nav>
       </div>
     </>
@@ -120,33 +120,33 @@ export function NavigationBugMobile() {
                 ),
               )}
             >
+              <div
+                className={clsx(
+                  'p-3 relative flex w-full flex-col gap-4 self-start pb-16',
+                )}
+              >
+                <HomeLink className="grow-0 self-center" />
                 <div
                   className={clsx(
-                    'p-3 relative flex w-full flex-col gap-4 self-start pb-16',
+                    'relative flex w-auto flex-col items-center gap-2',
                   )}
                 >
-                  <HomeLink className="grow-0 self-center" />
-                  <div
-                    className={clsx(
-                      'relative flex w-auto flex-col items-center gap-2',
-                    )}
-                  >
-                    {NAVIGATION_LINKS.map((link) => (
-                      <Link
-                        className="w-full max-w-xs self-center"
-                        href={link.href}
-                        key={link.href}
+                  {NAVIGATION_LINKS.map((link) => (
+                    <Link
+                      className="w-full max-w-xs self-center"
+                      href={link.href}
+                      key={link.href}
+                    >
+                      <Button
+                        size="md"
+                        className="w-full justify-center justify-items-center text-center"
                       >
-                        <Button
-                          size="md"
-                          className="w-full justify-center justify-items-center text-center"
-                        >
-                          {link.label}
-                        </Button>
-                      </Link>
-                    ))}
-                  </div>
+                        {link.label}
+                      </Button>
+                    </Link>
+                  ))}
                 </div>
+              </div>
             </motion.nav>
           )}
         </AnimatePresence>

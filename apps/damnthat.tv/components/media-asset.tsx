@@ -93,12 +93,12 @@ const MediaAsset: React.FC<MediaAssetProps> = ({
                 'absolute bottom-0 right-0 w-full p-4',
               )}
             >
-                {title && <h3 className="mb-2 font-medium">{title}</h3>}
-                {description && (
-                  <Prose className="prose-sm text-xs">
-                    <PrismicRichText field={description} />
-                  </Prose>
-                )}
+              {title && <h3 className="mb-2 font-medium">{title}</h3>}
+              {description && (
+                <Prose className="prose-sm text-xs">
+                  <PrismicRichText field={description} />
+                </Prose>
+              )}
             </figcaption>
           </AnimateSlide>
         )}

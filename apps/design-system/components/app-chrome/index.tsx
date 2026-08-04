@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useState, type PropsWithChildren } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useEffect, useState, type PropsWithChildren } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import {
   Sidebar,
@@ -28,13 +28,13 @@ import {
   SidebarRail,
   SidebarSeparator,
   useSidebar,
-} from "@workspace/ui/components/sidebar";
-import { Button } from "@workspace/ui/components/button";
-import { EyeMan } from "@workspace/ui/components/eye-button";
-import { ThemeToggle } from "@workspace/ui/components/theme-toggle";
-import { TooltipProvider } from "@workspace/ui/components/tooltip";
+} from '@workspace/ui/components/sidebar';
+import { Button } from '@workspace/ui/components/button';
+import { EyeMan } from '@workspace/ui/components/eye-button';
+import { ThemeToggle } from '@workspace/ui/components/theme-toggle';
+import { TooltipProvider } from '@workspace/ui/components/tooltip';
 
-import { routes } from "app/routes.constants";
+import { routes } from 'app/routes.constants';
 
 import {
   Cog6ToothIcon,
@@ -42,22 +42,22 @@ import {
   RectangleGroupIcon,
   Square2StackIcon,
   ViewColumnsIcon,
-} from "@heroicons/react/24/outline";
+} from '@heroicons/react/24/outline';
 import {
   Bars3BottomLeftIcon,
   LockClosedIcon,
   RectangleStackIcon,
-} from "@heroicons/react/16/solid";
+} from '@heroicons/react/16/solid';
 
-import { APP_CHROME_SIDEBAR_ID } from "./constants";
+import { APP_CHROME_SIDEBAR_ID } from './constants';
 
-export { APP_CHROME_SIDEBAR_ID } from "./constants";
-export { AppContent } from "./app-content";
-export { AppHeader } from "./app-header";
-export { AppPage } from "./app-page";
+export { APP_CHROME_SIDEBAR_ID } from './constants';
+export { AppContent } from './app-content';
+export { AppHeader } from './app-header';
+export { AppPage } from './app-page';
 
-const SIDEBAR_VARIANTS = ["floating", "sidebar", "inset"] as const;
-const SIDEBAR_COLLAPSIBLES = ["icon", "offcanvas", "none"] as const;
+const SIDEBAR_VARIANTS = ['floating', 'sidebar', 'inset'] as const;
+const SIDEBAR_COLLAPSIBLES = ['icon', 'offcanvas', 'none'] as const;
 
 type SidebarVariant = (typeof SIDEBAR_VARIANTS)[number];
 type SidebarCollapsible = (typeof SIDEBAR_COLLAPSIBLES)[number];
@@ -82,9 +82,9 @@ function nextInCycle<T extends string>(values: readonly T[], current: T): T {
 function AppChromeLayout({ children }: PropsWithChildren) {
   const pathname = usePathname();
   const { setOpen, isMobile } = useSidebar();
-  const [variant, setVariant] = useState<SidebarVariant>("inset");
-  const [collapsible, setCollapsible] = useState<SidebarCollapsible>("icon");
-  const [query, setQuery] = useState("");
+  const [variant, setVariant] = useState<SidebarVariant>('inset');
+  const [collapsible, setCollapsible] = useState<SidebarCollapsible>('icon');
+  const [query, setQuery] = useState('');
 
   const VariantIcon = SIDEBAR_VARIANT_ICONS[variant];
   const CollapsibleIcon = SIDEBAR_COLLAPSIBLE_ICONS[collapsible];
@@ -113,11 +113,11 @@ function AppChromeLayout({ children }: PropsWithChildren) {
                 render={<Link href="/" />}
               >
                 <span
-                  className="block size-6 rounded-full shrink-0 [&_svg]:size-full bg-sidebar-accent"
+                  className="bg-sidebar-accent block size-6 shrink-0 rounded-full [&_svg]:size-full"
                   aria-hidden
                 >
                   <EyeMan />
-                </span>{" "}
+                </span>{' '}
                 Design System
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -135,7 +135,7 @@ function AppChromeLayout({ children }: PropsWithChildren) {
               ? Object.entries(route.children).filter(([, childRoute]) =>
                   normalizedQuery
                     ? childRoute.title.toLowerCase().includes(normalizedQuery)
-                    : true
+                    : true,
                 )
               : [];
 

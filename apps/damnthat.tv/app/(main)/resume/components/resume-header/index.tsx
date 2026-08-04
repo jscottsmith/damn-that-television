@@ -11,11 +11,11 @@ export const ResumeHeader = (props) => {
         <Image src={avatar} alt="J Scott Smith" placeholder="blur" />
       </div>
 
-      <section className="mb-6 mt-3 text-center">
-        <div className="mb-3 font-futura text-4xl text-foreground">
+      <section className="mt-3 mb-6 text-center">
+        <div className="font-futura text-foreground mb-3 text-4xl">
           <PrismicRichText field={props.document.data.name} />
         </div>
-        <div className="mb-1 font-futura text-xl font-medium text-foreground italic">
+        <div className="font-futura text-foreground mb-1 text-xl font-medium italic">
           <PrismicRichText field={props.document.data.current_job_title} />
         </div>
         <div className="text-muted-foreground">

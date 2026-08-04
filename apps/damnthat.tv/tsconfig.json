@@ -3,31 +3,15 @@
     "baseUrl": ".",
     "paths": {
       "@workspace/ui/*": ["../../packages/ui/src/*"],
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/routes/*": [
-        "routes/*"
-      ],
-      "@/constants/*": [
-        "constants/*"
-      ],
-      "@/pages/*": [
-        "pages/*"
-      ],
-      "@/helpers/*": [
-        "helpers/*"
-      ],
-      "@/sass/*": [
-        "sass/*"
-      ]
+      "@/components/*": ["components/*"],
+      "@/routes/*": ["routes/*"],
+      "@/constants/*": ["constants/*"],
+      "@/pages/*": ["pages/*"],
+      "@/helpers/*": ["helpers/*"],
+      "@/sass/*": ["sass/*"]
     },
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -46,10 +30,7 @@
       }
     ],
     "strictNullChecks": true,
-    "types": [
-      "jest",
-      "@testing-library/jest-dom"
-    ]
+    "types": ["jest", "@testing-library/jest-dom"]
   },
   "include": [
     "next-env.d.ts",
@@ -59,7 +40,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

@@ -1,4 +1,4 @@
-import { type PropsWithChildren } from "react";
+import { type PropsWithChildren } from 'react';
 
 export function AppPage({ children }: PropsWithChildren) {
   return (

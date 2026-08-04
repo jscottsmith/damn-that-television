@@ -13,7 +13,11 @@ import {
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
 
-import { DEFAULT_TEXT_CLASSNAME, MAP_TITLE_SIZE_CLASSNAME, TitleSize } from './typography/title';
+import {
+  DEFAULT_TEXT_CLASSNAME,
+  MAP_TITLE_SIZE_CLASSNAME,
+  TitleSize,
+} from './typography/title';
 import { Prose } from './typography/prose';
 
 export type SideDrawerProps = {
@@ -55,7 +59,7 @@ export function SideDrawer(props: SideDrawerProps) {
           {props.body}
         </Prose>
         {props.actions ? (
-          <SheetFooter className="gap-2 mt-auto flex-row p-0">
+          <SheetFooter className="mt-auto flex-row gap-2 p-0">
             {props.actions}
           </SheetFooter>
         ) : null}
