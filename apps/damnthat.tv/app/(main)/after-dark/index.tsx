@@ -3,9 +3,8 @@
 import { useIsNotTouch } from 'hooks/use-media';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
-import React, { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useEventListener, useTimeout } from 'usehooks-ts';
-import { isServer } from '@/helpers/ssr';
 
 export const MESSAGE_TYPES = {
   WAIT_FOR_INTERACTION: 'wait_for_interaction',
@@ -14,74 +13,108 @@ export const MESSAGE_TYPES = {
 } as const;
 
 const WINGS_URL = 'https://wings-mu.vercel.app';
-const URL_SEARCH_PARAM = '?waitForInteraction=true';
+const IDLE_MS = 30_000;
+const UNLOAD_DELAY_MS = 2000;
+
+function useUserIsIdle(idleMs = IDLE_MS) {
+  const [isIdle, setIsIdle] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const resetIdleTimer = useCallback(() => {
+    setIsIdle(false);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => setIsIdle(true), idleMs);
+  }, [idleMs]);
+
+  useEffect(() => {
+    resetIdleTimer();
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [resetIdleTimer]);
+
+  useEventListener('mousemove', resetIdleTimer);
+  useEventListener('keydown', resetIdleTimer);
+  useEventListener('click', resetIdleTimer);
+  useEventListener('scroll', resetIdleTimer);
+  useEventListener('touchstart', resetIdleTimer);
+
+  return isIdle;
+}
 
 export function AfterDark() {
   const isNotTouch = useIsNotTouch();
-  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [screenSaverOpen, setScreenSaverOpen] = useState(false);
-
   const [hasLoaded, setHasLoaded] = useState(false);
+  // Defer iframe mount until first open. Wings with ?waitForInteraction=true only
+  // mounts its R3F scene after a click *inside* the iframe, and exposes no
+  // postMessage to start — only WAIT_FOR_INTERACTION to pause. Loading without
+  // that param lets the scene start on its own.
+  const [iframeSrc, setIframeSrc] = useState<string | null>(null);
+  const [iframeKey, setIframeKey] = useState(0);
 
-  // Listen for postMessage events from the iframe
+  const isUserIdle = useUserIsIdle();
+
+  useEffect(() => {
+    setScreenSaverOpen(isUserIdle);
+  }, [isUserIdle]);
+
+  useEffect(() => {
+    if (!screenSaverOpen) return;
+    setHasLoaded(false);
+    setIframeSrc(WINGS_URL);
+    setIframeKey((key) => key + 1);
+  }, [screenSaverOpen]);
+
   useEventListener('message', (event: MessageEvent) => {
-    // Only listen to messages from the iframe origin
     if (event.origin !== WINGS_URL) return;
 
-    if (event.data.type === MESSAGE_TYPES.SCENE_LOADED) {
+    if (event.data?.type === MESSAGE_TYPES.SCENE_LOADED) {
       setHasLoaded(true);
     }
-    if (event.data.type === MESSAGE_TYPES.USER_CLICK) {
-      if (screenSaverOpen) {
-        setScreenSaverOpen(false);
-      } else {
-        setScreenSaverOpen(true);
-      }
+    if (event.data?.type === MESSAGE_TYPES.USER_CLICK) {
+      setScreenSaverOpen(false);
     }
   });
 
-  // stop the scene from playing after 1 second if the screen saver is not open so the wipe out animation can play through
+  // Tear down after the wipe-out animation so WebGL isn't left running
   useTimeout(
     () => {
-      // stop the scene from playing
-      if (iframeRef.current?.contentWindow) {
-        iframeRef.current?.contentWindow.postMessage(
-          { type: MESSAGE_TYPES.WAIT_FOR_INTERACTION },
-          '*',
-        );
-      }
+      setIframeSrc(null);
+      setHasLoaded(false);
     },
-    !screenSaverOpen ? 2000 : null,
+    !screenSaverOpen && iframeSrc ? UNLOAD_DELAY_MS : null,
   );
 
-  // disable this feature on touch devices
-  if (!isNotTouch && isServer()) return null;
+  if (!isNotTouch) return null;
 
   return (
-    <>
-      <motion.div
-        className={clsx('bg-deep fixed left-0 top-0 z-[999999] h-full w-full')}
-        transition={{
-          bounce: 0.1,
-        }}
-        initial="closed"
-        animate={screenSaverOpen ? 'open' : 'closed'}
-        whileHover={!screenSaverOpen ? 'hover' : 'open'}
-        variants={{
-          open: { clipPath: 'polygon(0% 0%, 0% 200%, 200% 0%)', opacity: 1 },
-          closed: { clipPath: 'polygon(0% 0%, 0% 18px, 18px 0%)', opacity: 0 },
-          hover: { clipPath: 'polygon(0% 0%, 0% 32px, 32px 0%)', opacity: 1 },
-        }}
-      >
+    <motion.div
+      className={clsx('bg-deep fixed left-0 top-0 z-[999999] h-full w-full')}
+      transition={{
+        bounce: 0.1,
+      }}
+      initial="closed"
+      animate={screenSaverOpen ? 'open' : 'closed'}
+      whileHover={!screenSaverOpen ? 'hover' : 'open'}
+      variants={{
+        open: { clipPath: 'polygon(0% 0%, 0% 200%, 200% 0%)', opacity: 1 },
+        closed: { clipPath: 'polygon(0% 0%, 0% 18px, 18px 0%)', opacity: 0 },
+        hover: { clipPath: 'polygon(0% 0%, 0% 32px, 32px 0%)', opacity: 1 },
+      }}
+    >
+      {iframeSrc ? (
         <iframe
+          key={iframeKey}
           className={clsx(
-            'absolute inset-0 h-full w-full transition-opacity duration-300 ease-out',
+            'absolute inset-0 h-full w-full border-0 transition-opacity duration-300 ease-out',
             hasLoaded ? 'opacity-100' : 'opacity-10',
           )}
-          ref={iframeRef}
-          src={WINGS_URL + URL_SEARCH_PARAM}
+          src={iframeSrc}
+          title="After Dark"
+          allow="autoplay"
         />
-      </motion.div>
-    </>
+      ) : null}
+    </motion.div>
   );
 }
