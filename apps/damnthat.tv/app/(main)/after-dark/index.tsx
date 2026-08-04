@@ -16,6 +16,8 @@ const WINGS_URL = 'https://wings-mu.vercel.app';
 const IDLE_MS = 30_000;
 const UNLOAD_DELAY_MS = 2000;
 
+type OpenMode = 'manual' | 'idle';
+
 function useUserIsIdle(idleMs = IDLE_MS) {
   const [isIdle, setIsIdle] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -39,12 +41,12 @@ function useUserIsIdle(idleMs = IDLE_MS) {
   useEventListener('scroll', resetIdleTimer);
   useEventListener('touchstart', resetIdleTimer);
 
-  return isIdle;
+  return { isIdle, resetIdleTimer };
 }
 
 export function AfterDark() {
   const isNotTouch = useIsNotTouch();
-  const [screenSaverOpen, setScreenSaverOpen] = useState(false);
+  const [openMode, setOpenMode] = useState<OpenMode | null>(null);
   const [hasLoaded, setHasLoaded] = useState(false);
   // Defer iframe mount until first open. Wings with ?waitForInteraction=true only
   // mounts its R3F scene after a click *inside* the iframe, and exposes no
@@ -53,11 +55,20 @@ export function AfterDark() {
   const [iframeSrc, setIframeSrc] = useState<string | null>(null);
   const [iframeKey, setIframeKey] = useState(0);
 
-  const isUserIdle = useUserIsIdle();
+  const screenSaverOpen = openMode !== null;
+  const { isIdle, resetIdleTimer } = useUserIsIdle();
 
   useEffect(() => {
-    setScreenSaverOpen(isUserIdle);
-  }, [isUserIdle]);
+    if (isIdle && openMode === null) {
+      setOpenMode('idle');
+      return;
+    }
+    // Idle-opened saver wakes as soon as the user is active again.
+    // Manual opens stay up until the scene is clicked.
+    if (!isIdle && openMode === 'idle') {
+      setOpenMode(null);
+    }
+  }, [isIdle, openMode]);
 
   useEffect(() => {
     if (!screenSaverOpen) return;
@@ -73,7 +84,8 @@ export function AfterDark() {
       setHasLoaded(true);
     }
     if (event.data?.type === MESSAGE_TYPES.USER_CLICK) {
-      setScreenSaverOpen(false);
+      setOpenMode(null);
+      resetIdleTimer();
     }
   });
 
@@ -102,6 +114,11 @@ export function AfterDark() {
         closed: { clipPath: 'polygon(0% 0%, 0% 18px, 18px 0%)', opacity: 0 },
         hover: { clipPath: 'polygon(0% 0%, 0% 32px, 32px 0%)', opacity: 1 },
       }}
+      onClick={() => {
+        if (openMode === null) setOpenMode('manual');
+      }}
+      role={screenSaverOpen ? undefined : 'button'}
+      aria-label={screenSaverOpen ? undefined : 'Open After Dark screensaver'}
     >
       {iframeSrc ? (
         <iframe
@@ -109,6 +126,7 @@ export function AfterDark() {
           className={clsx(
             'absolute inset-0 h-full w-full border-0 transition-opacity duration-300 ease-out',
             hasLoaded ? 'opacity-100' : 'opacity-10',
+            !screenSaverOpen && 'pointer-events-none',
           )}
           src={iframeSrc}
           title="After Dark"
