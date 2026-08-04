@@ -8,11 +8,11 @@ export default function Page() {
         <h1>Design System</h1>
       </AppHeader>
       <AppContent>
-        <div className="gap-6 flex max-w-3xl flex-col">
+        <div className="flex max-w-3xl flex-col gap-6">
           <Prose>
             <p>
-              Shared foundations, components, and interaction examples for Damn that
-              television.
+              Shared foundations, components, and interaction examples for Damn
+              that television.
             </p>
           </Prose>
         </div>

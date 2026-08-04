@@ -1,24 +1,24 @@
-import { Button } from "@workspace/ui/components/button";
+import { Button } from '@workspace/ui/components/button';
 import {
   GITHUB_REPO_URL,
   ISC_LICENSE_LINK,
   METADATA,
   NAVIGATION_LINKS,
   SECONDARY_LINKS,
-} from "@/constants/app";
-import Link from "next/link";
-import { surfaceVariants } from "@workspace/ui/components/surface";
-import { cn } from "@workspace/ui/lib/utils";
-import { Wrapper } from "../wrapper";
-import { EyeMan } from "@workspace/ui/components/eye-button";
-import { APP_ROUTES } from "@/constants/routes.constants";
-import { ThemeOptions } from "./ThemeOptions";
-import { Title } from "@/components/typography/title";
-import { Prose } from "@/components/typography/prose";
-import { Eyebrow } from "@/components/typography/eyebrow";
-import { Marquee } from "@/components/marquee";
-import { FOUND_A_JOB_LYRICS } from "@/constants/found-a-job-lyrics";
-import { FooterBody } from "./footer-body";
+} from '@/constants/app';
+import Link from 'next/link';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
+import { Wrapper } from '../wrapper';
+import { EyeMan } from '@workspace/ui/components/eye-button';
+import { APP_ROUTES } from '@/constants/routes.constants';
+import { ThemeOptions } from './ThemeOptions';
+import { Title } from '@/components/typography/title';
+import { Prose } from '@/components/typography/prose';
+import { Eyebrow } from '@/components/typography/eyebrow';
+import { Marquee } from '@/components/marquee';
+import { FOUND_A_JOB_LYRICS } from '@/constants/found-a-job-lyrics';
+import { FooterBody } from './footer-body';
 
 export function Footer() {
   return (
@@ -39,13 +39,13 @@ export function Footer() {
           <Wrapper asChild>
             <footer
               className={cn(
-                surfaceVariants({ variant: "card" }),
-                "flex flex-wrap gap-2 rounded-b-3xl pt-4 pb-4 md:gap-6 md:pb-10"
+                surfaceVariants({ variant: 'card' }),
+                'flex flex-wrap gap-2 rounded-b-3xl pt-4 pb-4 md:gap-6 md:pb-10',
               )}
             >
               <Link
                 href={APP_ROUTES.home}
-                className="hover:text-pepto dark:text-miami dark:hover:text-club group/eye-man mx-auto block w-14 justify-self-center text-foreground md:w-24"
+                className="hover:text-pepto dark:text-miami dark:hover:text-club group/eye-man text-foreground mx-auto block w-14 justify-self-center md:w-24"
               >
                 <span className="sr-only">Go Home</span>
                 <EyeMan />
@@ -56,8 +56,8 @@ export function Footer() {
                   <Eyebrow className="pb-2 text-center">Navigation</Eyebrow>
                   <div
                     className={cn(
-                      surfaceVariants({ variant: "muted" }),
-                      "flex flex-col gap-2 rounded-xl p-4"
+                      surfaceVariants({ variant: 'muted' }),
+                      'flex flex-col gap-2 rounded-xl p-4',
                     )}
                   >
                     <MainLinks />
@@ -78,7 +78,7 @@ export function Footer() {
                 </Prose>
                 <Prose className="prose-sm flex gap-4">
                   <span>
-                    <span>{new Date().getFullYear()}</span>{" "}
+                    <span>{new Date().getFullYear()}</span>{' '}
                     <a target="_blank" href={ISC_LICENSE_LINK}>
                       ISC
                     </a>

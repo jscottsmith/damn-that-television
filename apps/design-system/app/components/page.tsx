@@ -41,10 +41,11 @@ export default function Components() {
           body={
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Malesuada
-              at ultricies tincidunt elit et, enim. Habitant nunc, adipiscing non
-              fermentum, sed est, duis. Volutpat elementum, sed risus, sagittis,
-              ut egestas enim. Nunc commodo, pretium massa sit dignissim. Orci,
-              mauris sit in ut. Tristique viverra mauris in sit.
+              at ultricies tincidunt elit et, enim. Habitant nunc, adipiscing
+              non fermentum, sed est, duis. Volutpat elementum, sed risus,
+              sagittis, ut egestas enim. Nunc commodo, pretium massa sit
+              dignissim. Orci, mauris sit in ut. Tristique viverra mauris in
+              sit.
             </p>
           }
           actions={
@@ -57,7 +58,7 @@ export default function Components() {
           }
         />
 
-        <section className="gap-6 md:gap-8 lg:gap-12 grid md:grid-cols-3">
+        <section className="grid gap-6 md:grid-cols-3 md:gap-8 lg:gap-12">
           <Card
             className={cn(
               surfaceVariants({ variant: 'secondary' }),

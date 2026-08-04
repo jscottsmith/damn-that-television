@@ -1,17 +1,17 @@
-"use client";
-import { Surface, surfaceVariants } from "@workspace/ui/components/surface";
-import { cn } from "@workspace/ui/lib/utils";
-import { useScroll, motion, useSpring } from "motion/react";
-import { CanvasHero } from "@/components/canvas-hero";
-import Letters from "canvas/letters/LetterDrop";
-import { useRef } from "react";
-import styles from "./hero-canvas.module.css";
+'use client';
+import { Surface, surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
+import { useScroll, motion, useSpring } from 'motion/react';
+import { CanvasHero } from '@/components/canvas-hero';
+import Letters from 'canvas/letters/LetterDrop';
+import { useRef } from 'react';
+import styles from './hero-canvas.module.css';
 
 function Background() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["end end", "end start"],
+    offset: ['end end', 'end start'],
   });
 
   // Add spring effect to the scroll progress
@@ -24,14 +24,14 @@ function Background() {
   return (
     <motion.div
       className={cn(
-        surfaceVariants({ variant: "pattern" }),
+        surfaceVariants({ variant: 'pattern' }),
         styles.hero,
-        "absolute inset-0 -z-10"
+        'absolute inset-0 -z-10',
       )}
       style={{
-        backgroundSize: "5rem 5rem",
+        backgroundSize: '5rem 5rem',
         // @ts-expect-error
-        ["--p"]: springProgress,
+        ['--p']: springProgress,
       }}
       ref={ref}
     />

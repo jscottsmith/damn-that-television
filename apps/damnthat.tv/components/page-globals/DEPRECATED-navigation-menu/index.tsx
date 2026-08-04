@@ -75,7 +75,7 @@ export const NavigationMenu = (props: {
       className={clsx('bg-plum fixed -inset-20 z-40 flex select-none p-20')}
     >
       <div className="relative flex h-full items-center justify-center">
-        <nav className="p-6 md:p-12 max-w-4xl flex-grow">
+        <nav className="max-w-4xl flex-grow p-6 md:p-12">
           <motion.ul
             variants={primaryContainer}
             initial="hidden"
@@ -111,12 +111,12 @@ export const NavigationMenu = (props: {
               </motion.li>
             ))}
           </motion.ul>
-          <section className="mt-8 md:mt-12 lg:mt-16 xl:mt-24 md:flex md:flex-row">
+          <section className="mt-8 md:mt-12 md:flex md:flex-row lg:mt-16 xl:mt-24">
             <motion.h3
               variants={secondaryHeadline}
               initial="hidden"
               animate={animate}
-              className="mb-2 font-futura text-lunar text-xl font-bold uppercase italic md:mb-0 md:text-2xl"
+              className="font-futura text-lunar mb-2 text-xl font-bold uppercase italic md:mb-0 md:text-2xl"
             >
               Elsewhere{' '}
               <span
@@ -129,7 +129,7 @@ export const NavigationMenu = (props: {
               variants={secondaryContainer}
               initial="hidden"
               animate={animate}
-              className="md:gap-6 md:flex md:flex-row"
+              className="md:flex md:flex-row md:gap-6"
             >
               {props.secondaryLinks.map((current, i) => (
                 <motion.li

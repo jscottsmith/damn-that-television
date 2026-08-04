@@ -1,20 +1,20 @@
-import { AppContent, AppHeader, AppPage } from "@/components/app-chrome";
-import { CardPadding } from "@/components/card";
-import { Title } from "@/components/typography/title";
-import { Surface } from "@workspace/ui/components/surface";
+import { AppContent, AppHeader, AppPage } from '@/components/app-chrome';
+import { CardPadding } from '@/components/card';
+import { Title } from '@/components/typography/title';
+import { Surface } from '@workspace/ui/components/surface';
 
 const semanticVariants = [
-  "default",
-  "primary",
-  "secondary",
-  "muted",
-  "accent",
-  "card",
-  "popover",
-  "sidebar",
+  'default',
+  'primary',
+  'secondary',
+  'muted',
+  'accent',
+  'card',
+  'popover',
+  'sidebar',
 ] as const;
 
-const decorativeVariants = ["glass", "pattern"] as const;
+const decorativeVariants = ['glass', 'pattern'] as const;
 
 function SurfaceSwatch({
   variant,

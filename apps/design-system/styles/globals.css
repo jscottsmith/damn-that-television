@@ -1,4 +1,4 @@
-@import "@workspace/ui/globals.css";
+@import '@workspace/ui/globals.css';
 
 :root {
   --scroll-duration: 0.5s;
@@ -15,7 +15,7 @@ body {
   @apply bg-background;
 }
 
-[role="button"],
+[role='button'],
 button {
   cursor: pointer;
 }

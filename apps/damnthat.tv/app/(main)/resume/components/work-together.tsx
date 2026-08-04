@@ -6,9 +6,7 @@ import {
   HandThumbDownIcon,
 } from '@heroicons/react/24/outline';
 import { ButtonToggle } from '@workspace/ui/components/button-toggle';
-import {
-  CTAButton,
-} from '@workspace/ui/components/cta-button';
+import { CTAButton } from '@workspace/ui/components/cta-button';
 import { PrismicRichText } from '@prismicio/react';
 import { Prose } from '@/components/typography/prose';
 import { DismissibleBanner } from '@/components/dismissible-banner';
@@ -35,7 +33,7 @@ const WorkTogetherMessage = ({
       <div className="font-futura text-xl font-normal md:text-2xl">
         <PrismicRichText field={primary.title} />
       </div>
-      <div className="mt-4 gap-2 flex w-full justify-center">
+      <div className="mt-4 flex w-full justify-center gap-2">
         <ButtonToggle
           isSelected={showInterest.isInterested}
           onClick={showInterest.onClickInterested}
@@ -62,10 +60,7 @@ const WorkTogetherMessage = ({
               </Prose>
               <div className="my-6 flex justify-center">
                 <a href="mailto:jscsmith@gmail.com">
-                  <CTAButton
-                    buttonSize="default"
-                    buttonType="pepto"
-                  >
+                  <CTAButton buttonSize="default" buttonType="pepto">
                     Email me!
                   </CTAButton>
                 </a>
@@ -81,7 +76,7 @@ const WorkTogetherMessage = ({
             <div className="mt-6 w-full text-center">
               <Prose className={clsx('mx-auto max-w-md')}>
                 <p className="text-muted-foreground">No worries, carry on.</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   This message will self destruct in:
                 </p>
                 <div className="my-4 text-4xl font-bold text-rose-500">

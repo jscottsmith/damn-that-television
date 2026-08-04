@@ -46,27 +46,27 @@ export function FooterNav(props: {
             ),
           )}
         >
-            <IconBadge isActive={props.isTrashed} activeBgColor="bg-lit">
-              <TrashIcon className="w-6" />
-            </IconBadge>
+          <IconBadge isActive={props.isTrashed} activeBgColor="bg-lit">
+            <TrashIcon className="w-6" />
+          </IconBadge>
 
-            <IconButton
-              onClick={async () => {
-                const type = 'text/plain';
-                const clipboardItemData = {
-                  [type]: props.url,
-                };
-                const clipboardItem = new ClipboardItem(clipboardItemData);
-                await navigator.clipboard.write([clipboardItem]);
-                controller.setCopied(true);
-              }}
-            >
-              <Square2StackIcon className="w-6" />
-            </IconButton>
+          <IconButton
+            onClick={async () => {
+              const type = 'text/plain';
+              const clipboardItemData = {
+                [type]: props.url,
+              };
+              const clipboardItem = new ClipboardItem(clipboardItemData);
+              await navigator.clipboard.write([clipboardItem]);
+              controller.setCopied(true);
+            }}
+          >
+            <Square2StackIcon className="w-6" />
+          </IconButton>
 
-            <IconBadge isActive={props.isLiked} activeBgColor="bg-club">
-              <HeartIcon className="w-6" />
-            </IconBadge>
+          <IconBadge isActive={props.isLiked} activeBgColor="bg-club">
+            <HeartIcon className="w-6" />
+          </IconBadge>
         </div>
       </footer>
       <CommandOverlay>{controller.copied && 'GIF URL Copied'}</CommandOverlay>

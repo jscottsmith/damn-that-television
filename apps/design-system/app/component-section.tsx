@@ -1,7 +1,7 @@
-import { CardPadding } from "@/components/card";
-import { Surface } from "@workspace/ui/components/surface";
-import { Title } from "@/components/typography/title";
-import { PropsWithChildren } from "react";
+import { CardPadding } from '@/components/card';
+import { Surface } from '@workspace/ui/components/surface';
+import { Title } from '@/components/typography/title';
+import { PropsWithChildren } from 'react';
 
 export function ComponentSection(props: PropsWithChildren<{ title: string }>) {
   return (

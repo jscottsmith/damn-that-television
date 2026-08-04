@@ -1,14 +1,14 @@
-import React from "react";
-import clsx from "clsx";
-import { PrismicRichText } from "@prismicio/react";
-import styles from "./index.module.scss";
-import { Card } from "@/components/card";
-import { Prose } from "@/components/typography/prose";
-import { Marquee } from "@/components/marquee";
-import { surfaceVariants } from "@workspace/ui/components/surface";
-import { cn } from "@workspace/ui/lib/utils";
+import React from 'react';
+import clsx from 'clsx';
+import { PrismicRichText } from '@prismicio/react';
+import styles from './index.module.scss';
+import { Card } from '@/components/card';
+import { Prose } from '@/components/typography/prose';
+import { Marquee } from '@/components/marquee';
+import { surfaceVariants } from '@workspace/ui/components/surface';
+import { cn } from '@workspace/ui/lib/utils';
 
-export const INTRO_ID = "who";
+export const INTRO_ID = 'who';
 
 export const Introduction = (props) => {
   return (

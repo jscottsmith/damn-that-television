@@ -28,7 +28,7 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
       {groupedItems.map((group, groupIndex) => {
         const companySlug = createSlug(asText(group.company));
         return (
-          <section className="mb-16 relative scroll-mt-20" key={groupIndex}>
+          <section className="relative mb-16 scroll-mt-20" key={groupIndex}>
             {/* Company name - shown only once per group */}
             <AnchorLinkCopy id={companySlug} className="mb-3">
               <header
@@ -53,10 +53,10 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
             </AnchorLinkCopy>
 
             {/* Jobs under this company */}
-            <div className="pl-4 md:pl-6 relative ml-2">
+            <div className="relative ml-2 pl-4 md:pl-6">
               {/* bottom must match the date range line */}
-              <span className="absolute top-3 bottom-2 left-0 border-l-2 border-dotted border-border">
-                <span className="absolute top-0 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-border"></span>
+              <span className="border-border absolute top-3 bottom-2 left-0 border-l-2 border-dotted">
+                <span className="bg-border absolute top-0 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full"></span>
               </span>
 
               {group.jobs.map((item, jobIndex) => {
@@ -70,12 +70,12 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
                     id={jobTitleSlug}
                   >
                     <AnchorLinkCopy id={jobTitleSlug} className="mb-3">
-                      <div className="text-xl font-medium text-muted-foreground">
+                      <div className="text-muted-foreground text-xl font-medium">
                         <PrismicRichText field={item.job_title} />
                       </div>
                     </AnchorLinkCopy>
 
-                    <Prose className="mb-6 mt-3 md:mb-8 md:mt-6">
+                    <Prose className="mt-3 mb-6 md:mt-6 md:mb-8">
                       <ExpandContent>
                         <PrismicRichText field={item.content} />
                       </ExpandContent>
@@ -87,7 +87,7 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
                           {item.keywords.split(', ').map((keyword) => (
                             <li
                               key={keyword}
-                              className="mb-2 mr-2 inline-block"
+                              className="mr-2 mb-2 inline-block"
                             >
                               <Badge>{keyword}</Badge>
                             </li>
@@ -95,8 +95,8 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
                         </ul>
                       )}
                       <div className="my-4 flex h-0 items-center pb-2">
-                        <span className="absolute left-0 w-2 border-t-2 border-dotted border-border md:w-3">
-                          <span className="absolute top-1/2 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-border"></span>
+                        <span className="border-border absolute left-0 w-2 border-t-2 border-dotted md:w-3">
+                          <span className="bg-border absolute top-1/2 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full"></span>
                         </span>
                         <DateRange
                           dateFormatter={formatterMonthYear}
