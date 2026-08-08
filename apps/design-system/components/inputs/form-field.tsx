@@ -1,6 +1,4 @@
-import React from 'react';
-import { BaseInput, BaseInputProps } from './base-input';
-import { Label } from '../typography/label';
+import { BaseInput, type BaseInputProps } from './base-input';
 
 export type FormFieldProps = BaseInputProps & {
   label: string;
@@ -9,7 +7,9 @@ export type FormFieldProps = BaseInputProps & {
 export function FormField({ label, ...input }: FormFieldProps) {
   return (
     <label>
-      <Label className="mb-2">{label}</Label>
+      <span className="mb-2 block font-bold font-poppins text-base text-foreground">
+        {label}
+      </span>
       <BaseInput type="text" {...input} />
     </label>
   );

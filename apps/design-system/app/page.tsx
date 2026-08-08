@@ -1,5 +1,5 @@
 import { AppContent, AppHeader, AppPage } from '@/components/app-chrome';
-import { Prose } from '@/components/typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
 
 export default function Page() {
   return (

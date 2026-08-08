@@ -5,8 +5,7 @@ import Carousel from '../../components/carousel';
 import { SectionSpacing } from '@/components/section-spacing';
 import MediaAsset from '../../components/media-asset';
 import { MediaGrid } from '../../components/media-grid';
-import { Prose } from '@/components/typography/prose';
-import { SHARED_TEXT_LIGHT_CLASSNAME } from '@/components/typography/constants';
+import { Prose } from '@workspace/ui/components/typography/prose';
 import clsx from 'clsx';
 
 /**
@@ -54,12 +53,7 @@ const Gallery: FC<GalleryProps> = ({ slice }) => {
             'flex justify-center',
           )}
         >
-          <Prose
-            className={clsx(
-              'prose-sm mx-auto text-balance',
-              SHARED_TEXT_LIGHT_CLASSNAME,
-            )}
-          >
+          <Prose className="prose-sm text-muted-foreground mx-auto text-balance">
             <PrismicRichText field={slice.primary.description} />
           </Prose>
         </footer>

@@ -3,7 +3,8 @@ import { motion } from 'motion/react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { NavLinks } from '../../types';
-import { HeroTitle, HeroTitleSize } from '../../typography/hero-title';
+import { heroTitleVariants } from '@workspace/ui/components/typography/hero-title';
+import { cn } from '@workspace/ui/lib/utils';
 import { usePathname } from 'next/navigation';
 // import { Marquee } from '../marquee';
 // import { FOUND_A_JOB_LYRICS } from '@/constants/found-a-job-lyrics';
@@ -97,17 +98,16 @@ export const NavigationMenu = (props: {
                     pathName === current.href ? 'border-cream' : 'border-lunar',
                   )}
                 />
-                <HeroTitle size={HeroTitleSize.lg} asChild>
-                  <Link
-                    href={current.href}
-                    className={clsx(
-                      pathName === current.href ? 'text-softy' : 'text-pepto',
-                      'hover:text-cream whitespace-nowrap',
-                    )}
-                  >
-                    {current.label}
-                  </Link>
-                </HeroTitle>
+                <Link
+                  href={current.href}
+                  className={cn(
+                    heroTitleVariants({ size: 'lg' }),
+                    pathName === current.href ? 'text-softy' : 'text-pepto',
+                    'hover:text-cream whitespace-nowrap',
+                  )}
+                >
+                  {current.label}
+                </Link>
               </motion.li>
             ))}
           </motion.ul>

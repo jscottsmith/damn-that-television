@@ -1,13 +1,16 @@
 'use client';
 
 import { AppContent, AppHeader, AppPage } from '@/components/app-chrome';
-import { Code } from '@/components/typography/code';
-import { HeroTitle, HeroTitleSize } from '@/components/typography/hero-title';
-import { Title, TitleSize } from '@/components/typography/title';
+import { HeroTitle } from '@workspace/ui/components/typography/hero-title';
+import { Title } from '@workspace/ui/components/typography/title';
 import ProseExample from './prose-example';
 
-const heroTitleSizes = Object.values(HeroTitleSize);
-const titleSizes = Object.values(TitleSize);
+const heroTitleSizes = ['sm', 'default', 'md', 'lg'] as const;
+const titleSizes = ['default', 'md', 'lg', 'xl'] as const;
+
+function CodeSample({ children }: { children: string }) {
+  return <pre className="font-mono text-foreground my-3 text-sm">{children}</pre>;
+}
 
 export default function Components() {
   return (
@@ -18,9 +21,7 @@ export default function Components() {
       <AppContent>
         <div className="flex min-h-screen flex-col gap-8">
           <section>
-            <Code>
-              <pre className="my-3">{'Fonts'}</pre>
-            </Code>
+            <CodeSample>Fonts</CodeSample>
             <div className="font-futura flex flex-col gap-4 text-4xl">
               <p className="font-light">Futura Light 300</p>
               <p className="font-light italic">Futura Light Oblique 300</p>
@@ -37,32 +38,20 @@ export default function Components() {
             </div>
           </section>
           <section>
-            <Code>
-              <pre className="my-3">{'<HeroTitle>'}</pre>
-            </Code>
+            <CodeSample>{'<HeroTitle>'}</CodeSample>
             {heroTitleSizes.map((size) => (
               <div key={size} className="mt-3">
-                <Code>
-                  <pre className="text-xs">{size}</pre>
-                </Code>
-                <HeroTitle size={size} asChild>
-                  <h1>Typography</h1>
-                </HeroTitle>
+                <CodeSample>{size}</CodeSample>
+                <HeroTitle size={size}>Typography</HeroTitle>
               </div>
             ))}
           </section>
           <section>
-            <Code>
-              <pre className="my-3">{'<Title>'}</pre>
-            </Code>
+            <CodeSample>{'<Title>'}</CodeSample>
             {titleSizes.map((size) => (
               <div key={size} className="mt-3">
-                <Code>
-                  <pre className="text-xs">{size}</pre>
-                </Code>
-                <Title size={size} asChild>
-                  <h1>Typography</h1>
-                </Title>
+                <CodeSample>{size}</CodeSample>
+                <Title size={size}>Typography</Title>
               </div>
             ))}
           </section>

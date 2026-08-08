@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatterYear } from 'app/(main)/resume/helpers/format-date';
 import { DateRange } from '../date-range';
-import { Prose } from '@/components/typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import { TitleAndSubtitle } from '../TitleAndSubtitle';
 import type { ResumeWorkHistoryCondensedSlice } from '../../../../../prismicio-types';

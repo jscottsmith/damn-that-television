@@ -13,12 +13,8 @@ import {
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
 
-import {
-  DEFAULT_TEXT_CLASSNAME,
-  MAP_TITLE_SIZE_CLASSNAME,
-  TitleSize,
-} from './typography/title';
-import { Prose } from './typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
+import { titleVariants } from '@workspace/ui/components/typography/title';
 
 export type SideDrawerProps = {
   isOpen: boolean;
@@ -45,12 +41,7 @@ export function SideDrawer(props: SideDrawerProps) {
         )}
       >
         <SheetHeader className="mb-8 gap-0 p-0">
-          <SheetTitle
-            className={cn(
-              MAP_TITLE_SIZE_CLASSNAME[TitleSize.default],
-              DEFAULT_TEXT_CLASSNAME,
-            )}
-          >
+          <SheetTitle className={cn(titleVariants({ size: 'default' }))}>
             {props.title}
           </SheetTitle>
         </SheetHeader>

@@ -4,7 +4,7 @@ import { cn } from '@workspace/ui/lib/utils';
 import { badgeVariants } from '@workspace/ui/components/badge';
 import { ThemeSwitch } from '@workspace/ui/components/theme-switch';
 import { useTheme } from '@workspace/ui/components/theme-provider';
-import { Eyebrow } from '@/components/typography/eyebrow';
+import { Eyebrow } from '@workspace/ui/components/typography/eyebrow';
 import { useHasMounted } from '@workspace/ui/hooks/use-has-mounted';
 import { useIsNotTouch } from 'hooks/use-media';
 
@@ -23,11 +23,9 @@ export function ThemeOptions() {
         <ThemeSwitch />
       </div>
       {mounted && isNotTouch && (
-        <Eyebrow className="text-center" asChild>
-          <p>
-            <span className={cn(badgeVariants(), 'inline-flex')}>⌘ K</span> to
-            Switch
-          </p>
+        <Eyebrow className="text-center">
+          <span className={cn(badgeVariants(), 'inline-flex')}>⌘ K</span> to
+          Switch
         </Eyebrow>
       )}
     </div>

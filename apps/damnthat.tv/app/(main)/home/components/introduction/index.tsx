@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { PrismicRichText } from '@prismicio/react';
 import styles from './index.module.scss';
 import { Card } from '@/components/card';
-import { Prose } from '@/components/typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
 import { Marquee } from '@/components/marquee';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';

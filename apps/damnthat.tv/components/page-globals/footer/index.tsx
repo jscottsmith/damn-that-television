@@ -13,9 +13,9 @@ import { Wrapper } from '../wrapper';
 import { EyeMan } from '@workspace/ui/components/eye-button';
 import { APP_ROUTES } from '@/constants/routes.constants';
 import { ThemeOptions } from './ThemeOptions';
-import { Title } from '@/components/typography/title';
-import { Prose } from '@/components/typography/prose';
-import { Eyebrow } from '@/components/typography/eyebrow';
+import { Title } from '@workspace/ui/components/typography/title';
+import { Prose } from '@workspace/ui/components/typography/prose';
+import { Eyebrow } from '@workspace/ui/components/typography/eyebrow';
 import { Marquee } from '@/components/marquee';
 import { FOUND_A_JOB_LYRICS } from '@/constants/found-a-job-lyrics';
 import { FooterBody } from './footer-body';
@@ -69,10 +69,11 @@ export function Footer() {
 
               <section className="flex w-full flex-wrap items-end justify-center sm:justify-between">
                 <Prose className="prose-sm max-w-none gap-2 self-end justify-self-stretch pt-8">
-                  <Title asChild>
-                    <h4 className="my-0 text-center whitespace-nowrap sm:text-left">
-                      {METADATA.title}
-                    </h4>
+                  <Title
+                    as="h4"
+                    className="my-0 text-center whitespace-nowrap sm:text-left"
+                  >
+                    {METADATA.title}
                   </Title>
                   <p className="w-full text-center">{METADATA.description}</p>
                 </Prose>

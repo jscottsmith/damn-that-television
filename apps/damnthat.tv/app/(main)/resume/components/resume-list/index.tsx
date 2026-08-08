@@ -1,6 +1,6 @@
 import React from 'react';
 import { PrismicRichText } from '@prismicio/react';
-import { Prose } from '@/components/typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import { Badge } from '@workspace/ui/components/badge';
 import type { ResumeListSlice } from '../../../../../prismicio-types';

@@ -4,7 +4,7 @@ import { asText } from '@prismicio/client';
 import React from 'react';
 import { formatterMonthYear } from 'app/(main)/resume/helpers/format-date';
 import { DateRange } from '../date-range';
-import { Prose } from '@/components/typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import Image from 'next/image';
 import type { ResumeWorkHistorySlice } from '../../../../../prismicio-types';

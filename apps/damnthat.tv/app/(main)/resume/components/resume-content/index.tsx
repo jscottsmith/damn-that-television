@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import { PrismicRichText } from '@prismicio/react';
-import { Prose } from '@/components/typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import type { ResumeContentSlice } from '../../../../../prismicio-types';
 

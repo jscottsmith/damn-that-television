@@ -1,4 +1,4 @@
-import { Prose } from '@/components/typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';

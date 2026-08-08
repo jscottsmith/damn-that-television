@@ -5,7 +5,7 @@ import { InputToggle } from '@/components/input-toggle';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
 import { useTheme } from '@workspace/ui/components/theme-provider';
-import { Title } from '@/components/typography/title';
+import { Title } from '@workspace/ui/components/typography/title';
 import { SideDrawer } from '@/components/side-drawer';
 import { Button } from '@workspace/ui/components/button';
 import { useState } from 'react';
@@ -21,9 +21,7 @@ export default function Components() {
       </AppHeader>
       <AppContent>
         <section className="py-4">
-          <Title asChild>
-            <h2>Toggle</h2>
-          </Title>
+          <Title as="h2">Toggle</Title>
           <InputToggle
             label="Dark Mode"
             checked={theme.resolvedTheme === 'dark'}

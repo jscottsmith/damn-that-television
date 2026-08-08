@@ -1,13 +1,9 @@
-import { Code } from '@/components/typography/code';
-import { Prose } from '@/components/typography/prose';
-import React from 'react';
+import { Prose } from '@workspace/ui/components/typography/prose';
 
 export default function ProseExample() {
   return (
     <section>
-      <Code>
-        <pre className="my-3">{'prose'}</pre>
-      </Code>
+      <pre className="font-mono text-foreground my-3 text-sm">prose</pre>
       <Prose className="lg:prose-lg mt-8">
         <h1>Prose Typography</h1>
         <h2>Prose Typography</h2>

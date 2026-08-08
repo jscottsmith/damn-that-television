@@ -1,4 +1,4 @@
-import { Prose } from '@/components/typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
 import { PrismicRichText } from '@prismicio/react';
 import React from 'react';
 import {

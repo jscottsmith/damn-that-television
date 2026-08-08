@@ -9,7 +9,7 @@ import { SurfaceInteractiveGlass } from './surface-interactive';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
 import clsx from 'clsx';
-import { Prose } from './typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
 import { AnimatePresence } from 'motion/react';
 import { AnimateSlide } from './animations/animate-slide';
 import { useHandleClickOutside } from '../hooks/use-handle-click-outside';

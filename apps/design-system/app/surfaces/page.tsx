@@ -1,6 +1,6 @@
 import { AppContent, AppHeader, AppPage } from '@/components/app-chrome';
 import { CardPadding } from '@/components/card';
-import { Title } from '@/components/typography/title';
+import { Title } from '@workspace/ui/components/typography/title';
 import { Surface } from '@workspace/ui/components/surface';
 
 const semanticVariants = [
@@ -41,8 +41,8 @@ export default function Surfaces() {
       </AppHeader>
       <AppContent>
         <section className="py-8">
-          <Title asChild className="mb-8">
-            <h2>Semantic Surfaces</h2>
+          <Title as="h2" className="mb-8">
+            Semantic Surfaces
           </Title>
           <Surface variant="card" className="w-fit">
             <CardPadding>
@@ -64,8 +64,8 @@ export default function Surfaces() {
         </section>
 
         <section className="py-8">
-          <Title asChild className="mb-8">
-            <h2>Decorative Surfaces</h2>
+          <Title as="h2" className="mb-8">
+            Decorative Surfaces
           </Title>
           <div className="grid gap-4 sm:grid-cols-2">
             {decorativeVariants.map((variant) => (

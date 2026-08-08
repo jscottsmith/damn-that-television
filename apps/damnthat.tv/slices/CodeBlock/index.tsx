@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import { CodeBlock as CodeBlockComponent } from '@/components/code-block';
-import { Prose } from '@/components/typography/prose';
+import { Prose } from '@workspace/ui/components/typography/prose';
 
 /**
  * Props for `CodeBlock`.

@@ -36,6 +36,7 @@
     "./globals.css": "./src/styles/globals.css",
     "./lib/*": "./src/lib/*.ts",
     "./components/*": "./src/components/*.tsx",
+    "./components/typography/*": "./src/components/typography/*.tsx",
     "./hooks/*": "./src/hooks/*.ts"
   }
 }

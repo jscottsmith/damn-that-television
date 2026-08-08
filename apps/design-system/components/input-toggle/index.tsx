@@ -1,6 +1,5 @@
 import clsx from 'clsx';
-import React, { InputHTMLAttributes, forwardRef } from 'react';
-import { Label } from '../typography/label';
+import { type InputHTMLAttributes, forwardRef } from 'react';
 
 type InputToggleProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
@@ -27,7 +26,9 @@ function InputToggleUI({ label, ...props }: InputToggleProps, ref) {
           'hover:after:shadow-hard-xs hover:after:-translate-x-0.5 hover:after:-translate-y-0.5',
         )}
       ></div>
-      <Label className="ml-3">{label}</Label>
+      <span className="ml-3 font-bold font-poppins text-base text-foreground">
+        {label}
+      </span>
     </label>
   );
 }
