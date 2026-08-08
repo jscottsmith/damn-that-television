@@ -3,7 +3,7 @@ import { Prose } from '@workspace/ui/components/typography/prose';
 export default function ProseExample() {
   return (
     <section>
-      <pre className="font-mono text-foreground my-3 text-sm">prose</pre>
+      <pre className="text-foreground my-3 font-mono text-sm">prose</pre>
       <Prose className="lg:prose-lg mt-8">
         <h1>Prose Typography</h1>
         <h2>Prose Typography</h2>

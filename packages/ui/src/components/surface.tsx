@@ -16,6 +16,7 @@ const surfaceVariants = cva("", {
       muted: "bg-muted text-muted-foreground",
       accent: "bg-accent text-accent-foreground",
       sidebar: "bg-sidebar text-sidebar-foreground",
+      code: "bg-code text-code-foreground",
       glass: "bg-card/60 text-card-foreground backdrop-blur-lg",
       pattern: ["bg-background text-foreground", styles.pattern],
     },

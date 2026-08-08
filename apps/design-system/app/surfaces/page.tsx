@@ -12,6 +12,7 @@ const semanticVariants = [
   'card',
   'popover',
   'sidebar',
+  'code',
 ] as const;
 
 const decorativeVariants = ['glass', 'pattern'] as const;

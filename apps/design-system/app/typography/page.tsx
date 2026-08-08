@@ -9,7 +9,9 @@ const heroTitleSizes = ['sm', 'default', 'md', 'lg'] as const;
 const titleSizes = ['default', 'md', 'lg', 'xl'] as const;
 
 function CodeSample({ children }: { children: string }) {
-  return <pre className="font-mono text-foreground my-3 text-sm">{children}</pre>;
+  return (
+    <pre className="text-foreground my-3 font-mono text-sm">{children}</pre>
+  );
 }
 
 export default function Components() {

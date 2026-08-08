@@ -7,7 +7,7 @@ export type FormFieldProps = BaseInputProps & {
 export function FormField({ label, ...input }: FormFieldProps) {
   return (
     <label>
-      <span className="mb-2 block font-bold font-poppins text-base text-foreground">
+      <span className="font-poppins text-foreground mb-2 block text-base font-bold">
         {label}
       </span>
       <BaseInput type="text" {...input} />

@@ -76,8 +76,8 @@
     transparent
   );
   --tw-prose-code: var(--foreground);
-  --tw-prose-pre-code: var(--muted-foreground);
-  --tw-prose-pre-bg: var(--primary);
+  --tw-prose-pre-code: var(--code-foreground);
+  --tw-prose-pre-bg: var(--code);
   --tw-prose-th-borders: var(--border);
   --tw-prose-td-borders: var(--border);
   /* Invert mirrors theme tokens (theme already flips under .dark) */
@@ -99,8 +99,8 @@
     transparent
   );
   --tw-prose-invert-code: var(--foreground);
-  --tw-prose-invert-pre-code: var(--muted-foreground);
-  --tw-prose-invert-pre-bg: var(--muted);
+  --tw-prose-invert-pre-code: var(--code-foreground);
+  --tw-prose-invert-pre-bg: var(--code);
   --tw-prose-invert-th-borders: var(--border);
   --tw-prose-invert-td-borders: var(--border);
 }

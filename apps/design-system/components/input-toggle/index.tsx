@@ -26,7 +26,7 @@ function InputToggleUI({ label, ...props }: InputToggleProps, ref) {
           'hover:after:shadow-hard-xs hover:after:-translate-x-0.5 hover:after:-translate-y-0.5',
         )}
       ></div>
-      <span className="ml-3 font-bold font-poppins text-base text-foreground">
+      <span className="font-poppins text-foreground ml-3 text-base font-bold">
         {label}
       </span>
     </label>
