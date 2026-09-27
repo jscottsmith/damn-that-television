@@ -1,11 +1,9 @@
 import { Badge } from '@workspace/ui/components/badge';
-import React from 'react';
-import { formatterYear } from '../../helpers/format-date';
-import type { DateField } from '@prismicio/client';
+import { formatterYear, parseResumeDate } from '../../helpers/format-date';
 
 type Props = {
-  startDate: DateField;
-  endDate?: DateField;
+  startDate?: string | null;
+  endDate?: string | null;
   presentRole?: boolean;
   dateFormatter: {
     format: (date: Date) => ReturnType<typeof formatterYear.format>;
@@ -17,12 +15,12 @@ export const DateRange = (props: Props) => {
     <Badge className="mt-1" variant="primary">
       {props.startDate && (
         <span>
-          {props.dateFormatter.format(new Date(props.startDate))}
+          {props.dateFormatter.format(parseResumeDate(props.startDate))}
           {(!!props.endDate || !!props.presentRole) && ' – '}
         </span>
       )}
       {props.endDate && (
-        <span>{props.dateFormatter.format(new Date(props.endDate))}</span>
+        <span>{props.dateFormatter.format(parseResumeDate(props.endDate))}</span>
       )}
       {props.presentRole && <span>Present</span>}
     </Badge>

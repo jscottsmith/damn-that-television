@@ -1,9 +1,10 @@
-import React from 'react';
-import { Resume } from 'app/(main)/resume/Resume';
-import { createClient } from 'prismicio';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { METADATA } from '@/constants/app';
-import type { ResumeDocument } from '../../../prismicio-types';
+import { defaultContentRoot } from '../../../lib/content/images';
+import { getResume } from '../../../lib/content/read';
+import { renderContentMdx } from '../../../lib/content/render';
+import { Resume } from './Resume';
+import { createResumeMdxComponents } from './mdx';
 
 export const metadata: Metadata = {
   title: `Résumé | J Scott Smith | ${METADATA.title}`,
@@ -11,10 +12,27 @@ export const metadata: Metadata = {
     'Résumé of J Scott Smith, engineering leader and creative developer.',
 };
 
-async function Page() {
-  const client = createClient();
-  const document = await client.getSingle<ResumeDocument>('resume', {});
-  return <Resume document={document} />;
-}
+export default async function Page() {
+  const resume = getResume();
+  const contentRoot = defaultContentRoot();
+  const body = await renderContentMdx(resume.body, {
+    contentRoot,
+    directory: resume.directory,
+    prose: false,
+    components: createResumeMdxComponents({
+      contentRoot,
+      directory: resume.directory,
+    }),
+  });
 
-export default Page;
+  return (
+    <Resume
+      name={resume.name}
+      jobTitle={resume.jobTitle}
+      location={resume.location}
+      links={resume.links}
+    >
+      {body}
+    </Resume>
+  );
+}

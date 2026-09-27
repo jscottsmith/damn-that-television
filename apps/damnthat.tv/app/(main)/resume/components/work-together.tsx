@@ -1,5 +1,7 @@
+'use client';
+
 import clsx from 'clsx';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
 import { useCountdown } from 'usehooks-ts';
 import {
   HandThumbUpIcon,
@@ -7,23 +9,27 @@ import {
 } from '@heroicons/react/24/outline';
 import { ButtonToggle } from '@workspace/ui/components/button-toggle';
 import { CTAButton } from '@workspace/ui/components/cta-button';
-import { PrismicRichText } from '@prismicio/react';
 import { Prose } from '@workspace/ui/components/typography/prose';
 import { DismissibleBanner } from '@/components/dismissible-banner';
 import { AnimatePresence } from 'motion/react';
 import { AnimateHeight } from '@/components/animations/animate-height';
 import { Button } from '@workspace/ui/components/button';
-import type { WorkTogetherSlice } from '../../../../prismicio-types';
 
 export const WORK_TOGETHER_ID = 'work-together';
 
 type WorkTogetherMessageProps = {
-  primary: WorkTogetherSlice['primary'];
+  title?: string;
+  note?: string;
+  declined?: string;
+  children?: ReactNode;
   dismiss: () => void;
 };
 
 const WorkTogetherMessage = ({
-  primary,
+  title,
+  note,
+  declined = 'No worries, carry on.',
+  children,
   dismiss,
 }: WorkTogetherMessageProps) => {
   const showInterest = useShowInterest(dismiss);
@@ -31,7 +37,7 @@ const WorkTogetherMessage = ({
   return (
     <section className="flex flex-row flex-wrap items-center justify-center">
       <div className="font-futura text-xl font-normal md:text-2xl">
-        <PrismicRichText field={primary.title} />
+        {title}
       </div>
       <div className="mt-4 flex w-full justify-center gap-2">
         <ButtonToggle
@@ -56,7 +62,7 @@ const WorkTogetherMessage = ({
           <AnimateHeight key="interested">
             <div className="mt-6 w-full text-center">
               <Prose className={clsx('mx-auto max-w-md')}>
-                <PrismicRichText field={primary.body_yes} />
+                {children}
               </Prose>
               <div className="my-6 flex justify-center">
                 <a href="mailto:jscsmith@gmail.com">
@@ -66,7 +72,7 @@ const WorkTogetherMessage = ({
                 </a>
               </div>
               <Prose className="text-xs">
-                <PrismicRichText field={primary.note} />
+                {note ? <p>{note}</p> : null}
               </Prose>
             </div>
           </AnimateHeight>
@@ -75,7 +81,7 @@ const WorkTogetherMessage = ({
           <AnimateHeight key="not-interested">
             <div className="mt-6 w-full text-center">
               <Prose className={clsx('mx-auto max-w-md')}>
-                <p className="text-muted-foreground">No worries, carry on.</p>
+                <p className="text-muted-foreground">{declined}</p>
                 <p className="text-muted-foreground text-sm">
                   This message will self destruct in:
                 </p>
@@ -153,11 +159,23 @@ function useShowInterest(dismissBanner?: () => void) {
   };
 }
 
-export const WorkTogether = (props: WorkTogetherSlice) => {
+export const WorkTogether = (props: {
+  title?: string;
+  note?: string;
+  declined?: string;
+  children?: ReactNode;
+}) => {
   return (
     <DismissibleBanner id={WORK_TOGETHER_ID} className="my-8 rounded-lg">
       {({ dismiss }) => (
-        <WorkTogetherMessage primary={props.primary} dismiss={dismiss} />
+        <WorkTogetherMessage
+          title={props.title}
+          note={props.note}
+          declined={props.declined}
+          dismiss={dismiss}
+        >
+          {props.children}
+        </WorkTogetherMessage>
       )}
     </DismissibleBanner>
   );

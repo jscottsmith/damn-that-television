@@ -1,21 +1,34 @@
-import React from 'react';
-import { PrismicRichText } from '@prismicio/react';
+import type { ReactNode } from 'react';
 import { Badge } from '@workspace/ui/components/badge';
 import { SectionTitle } from '../SectionTitle';
-import type { ResumeAwardsSlice } from '../../../../../prismicio-types';
+import { elementsOfType } from '../children';
 
-export const ResumeAwards = (props: ResumeAwardsSlice) => {
+export type AwardProps = {
+  title: string;
+  dates?: string;
+};
+
+export function Award(_props: AwardProps) {
+  return null;
+}
+
+export const ResumeAwards = (props: {
+  title?: string;
+  children?: ReactNode;
+}) => {
+  const awards = elementsOfType<AwardProps>(props.children, Award);
+
   return (
     <section>
-      <SectionTitle text={props.primary.title} />
+      <SectionTitle text={props.title} />
 
       <ul>
-        {props.items.map((item, i) => (
-          <li key={i} className="mb-4">
+        {awards.map((award, index) => (
+          <li key={index} className="mb-4">
             <div className="font-futura mb-1 text-xl font-normal italic">
-              <PrismicRichText field={item.title} />
+              {award.props.title}
             </div>
-            <Badge variant="primary">{item.dates}</Badge>
+            <Badge variant="primary">{award.props.dates}</Badge>
           </li>
         ))}
       </ul>

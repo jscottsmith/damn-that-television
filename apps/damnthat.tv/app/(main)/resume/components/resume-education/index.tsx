@@ -1,32 +1,45 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { formatterYear } from 'app/(main)/resume/helpers/format-date';
 import { DateRange } from '../date-range';
-import { Prose } from '@workspace/ui/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import { TitleAndSubtitle } from '../TitleAndSubtitle';
-import type { ResumeEducationSlice } from '../../../../../prismicio-types';
+import { elementsOfType } from '../children';
 
-export const ResumeEducation = (props: ResumeEducationSlice) => {
+export type SchoolProps = {
+  institution: string;
+  copy?: string;
+  start?: string;
+  end?: string;
+};
+
+export function School(_props: SchoolProps) {
+  return null;
+}
+
+export const ResumeEducation = (props: {
+  title?: string;
+  children?: ReactNode;
+}) => {
+  const schools = elementsOfType<SchoolProps>(props.children, School);
+
   return (
     <div>
-      <SectionTitle text={props.primary.title} />
+      <SectionTitle text={props.title} />
 
-      {props.items.map((item, i) => {
-        return (
-          <section className="mb-8" key={i}>
-            <TitleAndSubtitle
-              className="text-xl"
-              title={item.institution}
-              subtitle={item.copy}
-            />
-            <DateRange
-              dateFormatter={formatterYear}
-              startDate={item.start_date}
-              endDate={item.end_date}
-            />
-          </section>
-        );
-      })}
+      {schools.map((school, index) => (
+        <section className="mb-8" key={index}>
+          <TitleAndSubtitle
+            className="text-xl"
+            title={school.props.institution}
+            subtitle={school.props.copy}
+          />
+          <DateRange
+            dateFormatter={formatterYear}
+            startDate={school.props.start}
+            endDate={school.props.end}
+          />
+        </section>
+      ))}
     </div>
   );
 };

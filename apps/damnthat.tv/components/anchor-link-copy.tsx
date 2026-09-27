@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+'use client';
+
+import { useState, type ReactNode } from 'react';
 import clsx from 'clsx';
 import { LinkIcon, CheckCircleIcon } from '@heroicons/react/24/solid';
 import { useCopyToClipboard, useTimeout } from 'usehooks-ts';
@@ -7,7 +9,7 @@ import { SurfaceInteractiveSimple } from './surface-interactive';
 
 interface AnchorLinkCopyProps {
   id: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 

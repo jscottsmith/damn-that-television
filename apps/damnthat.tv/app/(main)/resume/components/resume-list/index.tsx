@@ -1,23 +1,29 @@
-import React from 'react';
-import { PrismicRichText } from '@prismicio/react';
+import type { ReactNode } from 'react';
 import { Prose } from '@workspace/ui/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import { Badge } from '@workspace/ui/components/badge';
-import type { ResumeListSlice } from '../../../../../prismicio-types';
+import { contentBeside, elementsOfType } from '../children';
 
-export const ResumeList = (props: ResumeListSlice) => {
+export type ResumeListItemProps = {
+  children?: ReactNode;
+};
+
+export function Item({ children }: ResumeListItemProps) {
+  return children;
+}
+
+export const ResumeList = (props: { title?: string; children?: ReactNode }) => {
+  const items = elementsOfType<ResumeListItemProps>(props.children, Item);
+  const intro = contentBeside<ResumeListItemProps>(props.children, Item);
+
   return (
     <section>
-      <SectionTitle text={props.primary.title} />
-      <Prose className="mb-3">
-        <PrismicRichText field={props.primary.content} />
-      </Prose>
+      <SectionTitle text={props.title} />
+      {intro.length > 0 && <Prose className="mb-3">{intro}</Prose>}
       <ul className="flex flex-wrap gap-2">
-        {props.items.map((item, i) => (
-          <li key={i}>
-            <Badge size="lg">
-              <PrismicRichText field={item.content} />
-            </Badge>
+        {items.map((item, index) => (
+          <li key={index}>
+            <Badge size="lg">{item.props.children}</Badge>
           </li>
         ))}
       </ul>
