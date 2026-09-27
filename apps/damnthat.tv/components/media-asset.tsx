@@ -2,33 +2,40 @@
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { InformationCircleIcon } from '@heroicons/react/24/solid';
-import { PrismicNextImage } from '@prismicio/next';
-import { PrismicRichText } from '@prismicio/react';
-import { useState } from 'react';
+import Image from 'next/image';
+import { useState, type ReactNode } from 'react';
 import { SurfaceInteractiveGlass } from './surface-interactive';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
-import clsx from 'clsx';
 import { Prose } from '@workspace/ui/components/typography/prose';
 import { AnimatePresence } from 'motion/react';
 import { AnimateSlide } from './animations/animate-slide';
 import { useHandleClickOutside } from '../hooks/use-handle-click-outside';
-import { GallerySliceDefaultPrimaryMediaItem } from 'prismicio-types';
+
+export interface MediaAssetImage {
+  src: string;
+  alt?: string | null;
+  width?: number | null;
+  height?: number | null;
+}
 
 interface MediaAssetProps {
-  media: GallerySliceDefaultPrimaryMediaItem;
+  image?: MediaAssetImage | null;
+  title?: string | null;
+  description?: ReactNode;
   showOverlay?: boolean;
 }
 
 /**
  * Component for rendering a single media asset with optional title and description overlay.
  */
-const MediaAsset: React.FC<MediaAssetProps> = ({
-  media,
+const MediaAsset = ({
+  image,
+  title,
+  description,
   showOverlay = false,
-}) => {
-  const { image, title, description } = media;
-  const shouldShowOverlay = title || (description && description.length > 0);
+}: MediaAssetProps) => {
+  const shouldShowOverlay = Boolean(title) || Boolean(description);
   const [isOverlayVisible, setIsOverlayVisible] = useState(showOverlay);
 
   const toggleOverlay = () => {
@@ -40,18 +47,23 @@ const MediaAsset: React.FC<MediaAssetProps> = ({
   };
 
   const overlayRef = useHandleClickOutside(closeOverlay, isOverlayVisible);
+  const width = image?.width ?? undefined;
+  const height = image?.height ?? undefined;
 
   return (
     <figure
       ref={overlayRef}
       className="relative overflow-hidden rounded-lg md:rounded-xl"
     >
-      {image && (
-        <PrismicNextImage
-          field={image}
+      {image?.src && width && height ? (
+        <Image
+          src={image.src}
+          alt={image.alt ?? ''}
+          width={width}
+          height={height}
           className="h-auto w-full object-cover"
         />
-      )}
+      ) : null}
 
       {/* TODD: Support Video */}
 
@@ -90,15 +102,13 @@ const MediaAsset: React.FC<MediaAssetProps> = ({
             <figcaption
               className={cn(
                 surfaceVariants({ variant: 'glass' }),
-                'absolute bottom-0 right-0 w-full p-4',
+                'absolute right-0 bottom-0 w-full p-4',
               )}
             >
-              {title && <h3 className="mb-2 font-medium">{title}</h3>}
-              {description && (
-                <Prose className="prose-sm text-xs">
-                  <PrismicRichText field={description} />
-                </Prose>
-              )}
+              {title ? <h3 className="mb-2 font-medium">{title}</h3> : null}
+              {description ? (
+                <Prose className="prose-sm text-xs">{description}</Prose>
+              ) : null}
             </figcaption>
           </AnimateSlide>
         )}

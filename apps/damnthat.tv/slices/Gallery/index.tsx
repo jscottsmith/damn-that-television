@@ -1,9 +1,13 @@
-import { FC } from 'react';
-import { Content } from '@prismicio/client';
+import { type ReactNode } from 'react';
+import {
+  type Content,
+  type ImageField,
+  type RichTextField,
+} from '@prismicio/client';
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
 import Carousel from '../../components/carousel';
 import { SectionSpacing } from '@/components/section-spacing';
-import MediaAsset from '../../components/media-asset';
+import MediaAsset, { type MediaAssetImage } from '../../components/media-asset';
 import { MediaGrid } from '../../components/media-grid';
 import { Prose } from '@workspace/ui/components/typography/prose';
 import clsx from 'clsx';
@@ -13,29 +17,56 @@ import clsx from 'clsx';
  */
 export type GalleryProps = SliceComponentProps<Content.GallerySlice>;
 
+function galleryImage(image: ImageField<never>): MediaAssetImage | null {
+  if (!image.url || !image.dimensions) {
+    return null;
+  }
+
+  return {
+    src: image.url,
+    alt: image.alt,
+    width: image.dimensions.width,
+    height: image.dimensions.height,
+  };
+}
+
+function galleryDescription(description: RichTextField): ReactNode {
+  if (!description || description.length === 0) {
+    return null;
+  }
+
+  return <PrismicRichText field={description} />;
+}
+
 /**
  * Component for "Gallery" Slices.
  */
-const Gallery: FC<GalleryProps> = ({ slice }) => {
+const Gallery = ({ slice }: GalleryProps) => {
   if (!slice.primary.media || slice.primary.media.length === 0) {
     return null;
   }
+
+  const media = slice.primary.media.map((item, index) => (
+    <MediaAsset
+      key={index}
+      image={galleryImage(item.image)}
+      title={item.title}
+      description={galleryDescription(item.description)}
+      showOverlay={false}
+    />
+  ));
 
   function getVariation() {
     if (slice.variation === 'grid') {
       return (
         <MediaGrid columns={parseInt(slice.primary.columns || '1')}>
-          {slice.primary.media.map((media, index) => (
-            <MediaAsset key={index} media={media} showOverlay={false} />
-          ))}
+          {media}
         </MediaGrid>
       );
     }
     return (
       <Carousel showArrows={true} showDots={true} loop={true}>
-        {slice.primary.media.map((item, index) => (
-          <MediaAsset key={index} media={item} showOverlay={false} />
-        ))}
+        {media}
       </Carousel>
     );
   }
