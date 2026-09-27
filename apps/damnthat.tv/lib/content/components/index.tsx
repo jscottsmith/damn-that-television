@@ -4,7 +4,9 @@ import { readImageSize, resolveContentImageSrc } from '../images';
 import { CodeBlock } from './code-block';
 import { Embed } from './embed';
 import { Gallery } from './gallery';
+import { MarkdownPre } from './markdown-code';
 import { Media } from './media';
+import { proseBlocks } from './prose-blocks';
 
 type ImageProps = {
   src?: string;
@@ -16,18 +18,21 @@ type ImageProps = {
 export function createContentMdxComponents(input: {
   contentRoot: string;
   directory: string;
+  prose?: boolean;
 }) {
   function resolve(src: string) {
     return resolveContentImageSrc(input.contentRoot, input.directory, src);
   }
 
   return {
+    ...(input.prose === false ? {} : proseBlocks),
     Gallery,
     Media: (props: Parameters<typeof Media>[0]) => (
       <Media {...props} src={resolve(props.src)} />
     ),
     CodeBlock,
     Embed,
+    pre: MarkdownPre,
     img: ({ src, alt, width, height }: ImageProps) => {
       if (!src) {
         return null;

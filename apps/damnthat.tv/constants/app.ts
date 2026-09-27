@@ -4,7 +4,7 @@ import {
   ROUTE_GIFS,
   ROUTE_RESUME,
 } from '@/constants/routes.constants';
-import { INTRO_ID } from 'app/(main)/home/components/introduction';
+import { INTRO_ID } from 'app/(main)/home/components/introduction/id';
 
 export const OBSERVER_OPTIONS = {
   root: null,

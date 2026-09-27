@@ -14,9 +14,9 @@
 
 ## 3. Homepage and writing pages
 
-- [ ] 3.1 Render the homepage introduction from the reader inside the existing introduction section. Verify the homepage module no longer imports `prismicio` and the introduction text from `content/` is what the page passes through.
-- [ ] 3.2 Render `/words` from the reader with title, description, thumbnail, tags, and links, newest first. Verify the page source uses the reader and a test or fixture asserts draft posts are excluded when `NODE_ENV` is `production`.
-- [ ] 3.3 Render `/words/[uid]` from MDX, including hero, title, tags, and metadata (`metaTitle` falling back to `title`, plus description and meta image). Verify `generateMetadata` reads frontmatter and a missing uid or a production draft calls `notFound()`.
+- [x] 3.1 Render the homepage introduction from the reader inside the existing introduction section. Verify the homepage module no longer imports `prismicio` and the introduction text from `content/` is what the page passes through.
+- [x] 3.2 Render `/words` from the reader with title, description, thumbnail, tags, and links, newest first. Verify the page source uses the reader and a test or fixture asserts draft posts are excluded when `NODE_ENV` is `production`.
+- [x] 3.3 Render `/words/[uid]` from MDX, including hero, title, tags, and metadata (`metaTitle` falling back to `title`, plus description and meta image). Verify `generateMetadata` reads frontmatter and a missing uid or a production draft calls `notFound()`.
 
 ## 4. Résumé page
 

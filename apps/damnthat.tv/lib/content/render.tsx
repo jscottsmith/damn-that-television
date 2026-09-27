@@ -3,7 +3,7 @@ import { createContentMdxComponents } from './components';
 
 export async function renderContentMdx(
   source: string,
-  input: { contentRoot: string; directory: string },
+  input: { contentRoot: string; directory: string; prose?: boolean },
 ) {
   const { content } = await compileMDX({
     source,

@@ -67,6 +67,33 @@ export function resolveContentImageSrc(
   return `${CONTENT_IMAGE_PREFIX}/${urlPath}`;
 }
 
+export function contentImageAbsolutePath(
+  src: string,
+  contentRoot = defaultContentRoot(),
+): string | null {
+  const prefix = `${CONTENT_IMAGE_PREFIX}/`;
+  if (!src.startsWith(prefix)) {
+    return null;
+  }
+
+  return resolveContentImageFile(
+    contentRoot,
+    src.slice(prefix.length).split('/'),
+  );
+}
+
+export function contentImageDimensions(
+  src: string,
+  contentRoot = defaultContentRoot(),
+): { width: number; height: number } | null {
+  const filePath = contentImageAbsolutePath(src, contentRoot);
+  if (!filePath) {
+    return null;
+  }
+
+  return readImageSize(filePath);
+}
+
 export function resolveContentImageFile(
   contentRoot: string,
   segments: string[],

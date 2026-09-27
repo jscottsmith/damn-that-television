@@ -1,10 +1,7 @@
-import React from 'react';
-import { createClient } from 'prismicio';
+import { getHomepage } from '../../lib/content/read';
 import { Home } from 'app/(main)/home';
-import type { HomepageDocument } from '../../prismicio-types';
 
-export default async function Page() {
-  const client = createClient();
-  const document = await client.getSingle<HomepageDocument>('homepage', {});
-  return <Home document={document} />;
+export default function Page() {
+  const homepage = getHomepage();
+  return <Home introduction={homepage.body} />;
 }

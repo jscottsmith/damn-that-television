@@ -2,11 +2,11 @@ import { Introduction } from './components/introduction';
 import { RecruiterLink } from './components/recruiter-link';
 import { HeroCanvas } from './hero-canvas';
 
-export function Home(props) {
+export function Home({ introduction }: { introduction: string }) {
   return (
     <>
       <HeroCanvas />
-      <Introduction document={props.document} />
+      <Introduction source={introduction} />
       <RecruiterLink />
     </>
   );
