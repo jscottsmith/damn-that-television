@@ -31,22 +31,25 @@ Today `apps/damnthat.tv` reads three live documents through `createClient()` in 
 
 ## Decisions
 
-### 1. Content shape: MDX for writing, markdown for the intro, structured data for the résumé
+### 1. Content shape: MDX for writing and the résumé, markdown for the intro
 
-Writing posts become MDX because the body is prose plus React sections (gallery, code, embed). The homepage introduction is a single markdown file. The résumé stays structured data (YAML) consumed by the existing section components, because dates, booleans, logos, and repeated jobs do not map cleanly onto a prose document.
+Writing posts become MDX because the body is prose plus React sections (gallery, code, embed). The homepage introduction is a single markdown file. The résumé is one MDX file, `content/resume/index.mdx`, so the site does not grow a second format or a directory of data files.
 
-Frontmatter replaces Prismic fields:
+Résumé frontmatter holds the page-level fields: name, current job title, current role location, and link groups. The body is the ordered column. Prose sections stay markdown. Repeated structured sections (work history, education, awards, lists, work-together) are MDX components whose props carry dates, booleans, logos, keywords, and websites. Job writeups are the markdown children of those components, so they are not buried in frontmatter.
+
+Frontmatter replaces Prismic fields on posts:
 
 - `title`, `description`, `tags`, `publishedOn`, `draft` (`draft: true` replaces `is_live: false`)
 - `metaTitle`, `metaDescription`, `metaImage`
 - Hero image and thumb are files next to the post; the thumb may be the hero until a separate crop exists
 
-MDX components replace slice renderers: `Gallery`, `CodeBlock`, `Embed`. Prose is the MDX body, so the Words slice wrapper goes away. Résumé section components stay and take plain props instead of Prismic slice objects.
+MDX components replace slice renderers: `Gallery`, `CodeBlock`, `Embed`, and the résumé section components. Prose is the MDX body, so the Words slice wrapper goes away. Résumé section components stay and take plain props instead of Prismic slice objects.
 
 **Alternatives:**
 
 - Markdown only, with shortcodes for galleries and embeds. Weaker typing and a second template language beside React components that already exist.
-- MDX for the résumé as well. Possible, but the page is data-driven sections, not an article. YAML keeps the section components as they are.
+- One `resume.yaml`, or one YAML file per section. A single YAML file keeps order, but it is a second format, and job prose ends up inside literal blocks. Several YAML files need an index to preserve section order.
+- Putting the job list in résumé frontmatter. Frontmatter is a map, so the column sequence and the writeups become one long data block.
 - Keep Slice Machine models and only swap the data source. The models exist to talk to Prismic and would be dead weight.
 
 ### 2. Content media: three options
@@ -59,7 +62,7 @@ Content images today are only on `images.prismic.io` (post heroes, gallery items
 apps/damnthat.tv/content/
   homepage.md
   resume/
-    resume.yaml
+    index.mdx
     logos/
   words/
     <uid>/
@@ -97,7 +100,7 @@ Markdown stores absolute URLs (Cloudinary, Vercel Blob, S3, or similar). `next.c
 
 ### 3. Load content with a local reader, not a page-level MDX integration
 
-Use `gray-matter` to read frontmatter and `next-mdx-remote/rsc` (or `@mdx-js` compiled for RSC, if that is the smaller dependency at implementation time) to render post bodies in server components. Résumé YAML is parsed in the same reader. Pages call that reader instead of `createClient()`.
+Use `gray-matter` to read frontmatter and `next-mdx-remote/rsc` (or `@mdx-js` compiled for RSC, if that is the smaller dependency at implementation time) to render post and résumé bodies in server components. The same reader loads résumé frontmatter for the header. Pages call that reader instead of `createClient()`.
 
 Draft filtering and date ordering happen in the reader so `/words` and the post page share one rule: production hides `draft: true`; other environments show drafts; missing uids call `notFound()`.
 

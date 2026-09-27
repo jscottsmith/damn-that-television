@@ -7,7 +7,7 @@ damnthat.tv loads the homepage introduction, writing, and résumé from Prismic 
 ## What Changes
 
 - Replace Prismic documents with in-repo content for the homepage introduction, `/words` posts, and the résumé.
-- Use MDX for writing, where posts today mix prose with gallery, code, and embed slices. Use markdown or structured local data for the homepage intro and résumé, which are not freeform prose.
+- Use MDX for writing, where posts today mix prose with gallery, code, and embed slices. The homepage introduction is one markdown file. The résumé is one MDX file: frontmatter holds the name, job title, location, and link groups, and the body holds the ordered sections.
 - Keep the current public URLs and the existing visual sections (work history, education, awards, galleries, code blocks, embeds).
 - Hide unpublished writing in production the way `is_live` does today, using frontmatter instead of a CMS flag.
 - **BREAKING**: Remove the Prismic client, Slice Machine, custom types, generated Prismic types, the slice simulator, and the preview, exit-preview, and revalidate API routes.

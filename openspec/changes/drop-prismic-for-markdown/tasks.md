@@ -2,13 +2,13 @@
 
 ## 1. Export content into the repo
 
-- [ ] 1.1 Export the homepage introduction, every post, and the résumé from Prismic into `apps/damnthat.tv/content/` using the layout in design.md (markdown intro, MDX posts, résumé YAML). Record whether `employers_recruiters` has content used by a route. Verify the three content types exist on disk and the employers note is in the change or a code comment next to the export.
+- [ ] 1.1 Export the homepage introduction, every post, and the résumé from Prismic into `apps/damnthat.tv/content/` using the layout in design.md (markdown intro, MDX posts, one résumé MDX file with frontmatter for name, title, location, and links, and body sections as markdown plus components). Record whether `employers_recruiters` has content used by a route. Verify the three content types exist on disk and the employers note is in the change or a code comment next to the export.
 - [ ] 1.2 Download content images next to the files that reference them (Option A): post heroes, thumbs if a separate crop exists, gallery media, meta images, and résumé logos. Leave `public/static` files where they are. Verify content files contain no `images.prismic.io` URLs.
 - [ ] 1.3 Map `is_live: false` to `draft: true`, and carry `published_on`, tags, and SEO fields into frontmatter. Verify at least one known unpublished post is `draft: true` and published posts sort by `publishedOn` descending in the exported data.
 
 ## 2. Local content reader
 
-- [ ] 2.1 Add a repository reader that loads the homepage markdown, post MDX (frontmatter plus body), and résumé YAML, and resolves relative image paths for `next/image`. Verify a unit test loads a fixture post and returns its title, hero path, and body.
+- [ ] 2.1 Add a repository reader that loads the homepage markdown, post MDX (frontmatter plus body), and résumé MDX (frontmatter plus body), and resolves relative image paths for `next/image`. Verify a unit test loads a fixture post and returns its title, hero path, and body.
 - [ ] 2.2 Implement draft filtering and ordering in the reader: production omits `draft: true`; other environments include drafts; posts order by `publishedOn` descending; an unknown uid is a missing result. Verify unit tests cover all four cases.
 - [ ] 2.3 Add MDX components for gallery, code block, and embed that reuse the current presentation components with plain props. Verify a fixture MDX body renders those three components without `@prismicio` types.
 
@@ -20,7 +20,7 @@
 
 ## 4. Résumé page
 
-- [ ] 4.1 Feed the résumé header and body sections (links, work history, condensed work history, education, awards, lists, prose, work-together) from résumé YAML, including company logos. Verify the résumé route no longer imports `prismicio` and each section still receives the fields it renders today.
+- [ ] 4.1 Feed the résumé header from MDX frontmatter and the body sections (links, work history, condensed work history, education, awards, lists, prose, work-together) from the MDX body, including company logos. Verify the résumé route no longer imports `prismicio` and each section still receives the fields it renders today.
 
 ## 5. Remove Prismic
 
