@@ -1,34 +1,42 @@
-import { PrismicNextImage } from '@prismicio/next';
-import { SliceZone } from '@prismicio/react';
-import { createClient } from 'prismicio';
-import { PostDocument } from 'prismicio-types';
-import { components } from 'slices';
-import Tags from '../component/tags';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import Tags from '../component/tags';
+import {
+  contentImageDimensions,
+  defaultContentRoot,
+} from '../../../../lib/content/images';
+import { getPost } from '../../../../lib/content/read';
+import { renderContentMdx } from '../../../../lib/content/render';
+import type { ContentPost } from '../../../../lib/content/types';
 
 interface PageProps {
   params: Promise<{ uid: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { uid } = await params;
-  const client = createClient();
-  const document = await client.getByUID<PostDocument>('post', uid);
+function imageSize(src: string) {
+  return contentImageDimensions(src) ?? { width: 1200, height: 800 };
+}
 
-  const title = (document.data.meta_title || document.data.title) ?? undefined;
-  const description = document.data.meta_description ?? undefined;
-  const image = document.data.meta_image ?? undefined;
+export function postOrNotFound(post: ContentPost | null): ContentPost {
+  if (!post) {
+    notFound();
+  }
 
-  const images = image.url
+  return post;
+}
+
+export function buildPostMetadata(post: ContentPost): Metadata {
+  const title = post.metaTitle || post.title;
+  const description = post.metaDescription || post.description || undefined;
+  const size = post.metaImage ? imageSize(post.metaImage) : null;
+  const images = post.metaImage
     ? [
         {
-          url: image.url,
-          width: image.dimensions.width,
-          height: image.dimensions.height,
-          alt: image.alt ?? undefined,
+          url: post.metaImage,
+          width: size?.width,
+          height: size?.height,
+          alt: post.heroAlt || title,
         },
       ]
     : undefined;
@@ -44,44 +52,50 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { uid } = await params;
-  const client = createClient();
-  const document = await client
-    .getByUID<PostDocument>('post', uid)
-    .catch(() => {
-      return notFound();
-    });
+  return buildPostMetadata(postOrNotFound(getPost(uid)));
+}
 
-  if (
-    document.data.is_live === false &&
-    process.env.NODE_ENV === 'production'
-  ) {
-    return notFound();
-  }
+export async function PostArticle({ post }: { post: ContentPost }) {
+  const contentRoot = defaultContentRoot();
+  const body = await renderContentMdx(post.body, {
+    contentRoot,
+    directory: post.directory,
+  });
+  const hero = imageSize(post.hero);
 
   return (
     <>
       <header className="mb-8 xl:mb-12">
-        <PrismicNextImage
-          field={document.data.image}
-          className="w-full rounded-lg"
-          priority
-        />
+        {post.hero ? (
+          <Image
+            src={post.hero}
+            alt={post.heroAlt || post.title}
+            width={hero.width}
+            height={hero.height}
+            className="h-auto w-full rounded-lg"
+            priority
+          />
+        ) : null}
         <div className="my-8 xl:my-12">
           <h1 className="font-futura text-foreground mb-3 text-center text-4xl font-medium text-balance md:text-6xl">
-            {document.data.title}
+            {post.title}
           </h1>
           <div className="mb-3 flex justify-center">
-            <Tags tags={document.tags} />
+            <Tags tags={post.tags} />
           </div>
-          {/* <Prose className="prose mx-auto text-center md:prose-xl">
-            <PrismicRichText field={document.data.description} />
-          </Prose> */}
         </div>
         <hr />
       </header>
-      <SliceZone slices={document.data.slices} components={components} />
+      {body}
     </>
   );
+}
+
+export default async function Page({ params }: PageProps) {
+  const { uid } = await params;
+  return <PostArticle post={postOrNotFound(getPost(uid))} />;
 }
