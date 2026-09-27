@@ -2,8 +2,8 @@
 
 ## 1. Export content into the repo
 
-- [ ] 1.1 Export the homepage introduction, every post, and the résumé from Prismic into `apps/damnthat.tv/content/` using the layout in design.md (markdown intro, MDX posts, one résumé MDX file with frontmatter for name, title, location, and links, and body sections as markdown plus components). Record whether `employers_recruiters` has content used by a route. Verify the three content types exist on disk and the employers note is in the change or a code comment next to the export.
-- [ ] 1.2 Download content images next to the files that reference them (Option A): post heroes, thumbs if a separate crop exists, gallery media, meta images, and résumé logos. Leave `public/static` files where they are. Verify content files contain no `images.prismic.io` URLs.
+- [x] 1.1 Export the homepage introduction, every post, and the résumé from Prismic into `apps/damnthat.tv/content/` using the layout in design.md (markdown intro, MDX posts, one résumé MDX file with frontmatter for name, title, location, and links, and body sections as markdown plus components). Record whether `employers_recruiters` has content used by a route. Verify the three content types exist on disk and the employers note is in the change or a code comment next to the export.
+- [x] 1.2 Download content images next to the files that reference them (Option A): post heroes, thumbs if a separate crop exists, gallery media, meta images, and résumé logos. Leave `public/static` files where they are. Verify content files contain no `images.prismic.io` URLs.
 - [ ] 1.3 Map `is_live: false` to `draft: true`, and carry `published_on`, tags, and SEO fields into frontmatter. Verify at least one known unpublished post is `draft: true` and published posts sort by `publishedOn` descending in the exported data.
 
 ## 2. Local content reader
