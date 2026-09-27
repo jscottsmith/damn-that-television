@@ -1,90 +1,121 @@
 import { Badge } from '@workspace/ui/components/badge';
-import { PrismicRichText } from '@prismicio/react';
-import { asText } from '@prismicio/client';
-import React from 'react';
+import type { ReactNode } from 'react';
 import { formatterMonthYear } from 'app/(main)/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 import { Prose } from '@workspace/ui/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import Image from 'next/image';
-import type { ResumeWorkHistorySlice } from '../../../../../prismicio-types';
 import clsx from 'clsx';
 import { AnchorLinkCopy } from '@/components/anchor-link-copy';
-import { createSlug } from 'helpers/create-slug';
-import { useGroupedWorkHistory } from './useGroupWorkHistory';
-import { AnimateHeight } from '@/components/animations/animate-height';
+import { createSlug } from '@/helpers/create-slug';
+import { groupWorkHistory } from './useGroupWorkHistory';
 import ExpandContent from '../expand-content';
+import { elementsOfType } from '../children';
 
 export const RECENT_WORK_HISTORY_ID = 'recent-work-history';
 
-export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
-  // Group items by company when they appear sequentially
-  const groupedItems = useGroupedWorkHistory(props.items);
+export type WorkHistoryJobProps = {
+  company: string;
+  role: string;
+  logo?: string;
+  logoAlt?: string;
+  logoWidth?: number;
+  logoHeight?: number;
+  website?: string;
+  start?: string;
+  end?: string;
+  present?: boolean;
+  keywords?: string[];
+  children?: ReactNode;
+};
+
+export function Job(_props: WorkHistoryJobProps) {
+  return null;
+}
+
+export const ResumeWorkHistory = (props: {
+  title?: string;
+  children?: ReactNode;
+}) => {
+  const jobs = elementsOfType<WorkHistoryJobProps>(props.children, Job).map(
+    (job) => ({
+      company: job.props.company,
+      role: job.props.role,
+      logo: job.props.logo,
+      logoAlt: job.props.logoAlt,
+      logoWidth: job.props.logoWidth,
+      logoHeight: job.props.logoHeight,
+      website: job.props.website,
+      start: job.props.start,
+      end: job.props.end,
+      present: job.props.present,
+      keywords: job.props.keywords,
+      description: job.props.children,
+    }),
+  );
+  const groupedItems = groupWorkHistory(jobs);
 
   return (
     <div id={RECENT_WORK_HISTORY_ID}>
-      <SectionTitle text={props.primary.title} />
+      <SectionTitle text={props.title} />
 
-      {groupedItems.map((group, groupIndex) => {
-        const companySlug = createSlug(asText(group.company));
+      {groupedItems.map((group) => {
+        const companySlug = createSlug(group.company);
         return (
-          <section className="relative mb-16 scroll-mt-20" key={groupIndex}>
-            {/* Company name - shown only once per group */}
+          <section className="relative mb-16 scroll-mt-20" key={companySlug}>
             <AnchorLinkCopy id={companySlug} className="mb-3">
               <header
                 id={companySlug}
                 className="flex items-center gap-2 md:gap-4"
+                data-website={group.website || undefined}
               >
-                {group.company_logo?.url && (
+                {group.logo && (
                   <Image
                     className="h-14 w-14 rounded-md"
-                    src={group.company_logo.url}
-                    width={group.company_logo.dimensions.width}
-                    height={group.company_logo.dimensions.height}
-                    alt={group.company_logo.alt || ''}
+                    src={group.logo}
+                    width={group.logoWidth ?? 256}
+                    height={group.logoHeight ?? 256}
+                    alt={group.logoAlt || ''}
                   />
                 )}
                 <div className="flex items-center">
                   <div className="text-2xl font-semibold md:text-3xl">
-                    <PrismicRichText field={group.company} />
+                    {group.company}
                   </div>
                 </div>
               </header>
             </AnchorLinkCopy>
 
-            {/* Jobs under this company */}
             <div className="relative ml-2 pl-4 md:pl-6">
-              {/* bottom must match the date range line */}
               <span className="border-border absolute top-3 bottom-2 left-0 border-l-2 border-dotted">
                 <span className="bg-border absolute top-0 right-0 block h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full"></span>
               </span>
 
               {group.jobs.map((item, jobIndex) => {
                 const jobTitleSlug = createSlug(
-                  companySlug + '-' + asText(item.job_title),
+                  `${companySlug}-${item.role}`,
                 );
                 return (
                   <div
-                    key={jobIndex}
+                    key={jobTitleSlug}
                     className={clsx(jobIndex > 0 && 'mt-6')}
                     id={jobTitleSlug}
+                    data-website={item.website || undefined}
                   >
                     <AnchorLinkCopy id={jobTitleSlug} className="mb-3">
                       <div className="text-muted-foreground text-xl font-medium">
-                        <PrismicRichText field={item.job_title} />
+                        {item.role}
                       </div>
                     </AnchorLinkCopy>
 
                     <Prose className="mt-3 mb-6 md:mt-6 md:mb-8">
-                      <ExpandContent>
-                        <PrismicRichText field={item.content} />
-                      </ExpandContent>
+                      <ExpandContent>{item.description}</ExpandContent>
                     </Prose>
 
                     <footer className="mt-4">
-                      {item.keywords && (
+                      {item.keywords && item.keywords.length > 0 && (
                         <ul>
-                          {item.keywords.split(', ').map((keyword) => (
+                          {item.keywords.map((keyword) => (
                             <li
                               key={keyword}
                               className="mr-2 mb-2 inline-block"
@@ -100,9 +131,9 @@ export const ResumeWorkHistory = (props: ResumeWorkHistorySlice) => {
                         </span>
                         <DateRange
                           dateFormatter={formatterMonthYear}
-                          startDate={item.start_date}
-                          endDate={item.end_date || null}
-                          presentRole={item.present_role}
+                          startDate={item.start}
+                          endDate={item.end || null}
+                          presentRole={item.present}
                         />
                       </div>
                     </footer>

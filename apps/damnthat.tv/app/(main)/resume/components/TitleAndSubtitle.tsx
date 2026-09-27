@@ -1,14 +1,11 @@
 import clsx from 'clsx';
-import React from 'react';
-import { PrismicRichText } from '@prismicio/react';
-import type { RichTextField } from '@prismicio/client';
 
 export function TitleAndSubtitle(props: {
-  title: RichTextField;
-  subtitle?: RichTextField;
+  title: string;
+  subtitle?: string;
   className?: string;
 }) {
-  const hasSub = !!props.subtitle?.length;
+  const hasSub = !!props.subtitle;
   return (
     <div
       className={clsx(
@@ -16,15 +13,11 @@ export function TitleAndSubtitle(props: {
         'font-futura flex flex-wrap text-foreground',
       )}
     >
-      <span className="inline-block font-medium">
-        <PrismicRichText field={props.title} />
-      </span>
+      <span className="inline-block font-medium">{props.title}</span>
       {hasSub && (
         <>
           <span className="border-peach dark:border-club-700 mx-4 my-1 inline-block border-r-2 border-solid" />
-          <span className="inline-block font-light italic">
-            <PrismicRichText field={props.subtitle} />
-          </span>
+          <span className="inline-block font-light italic">{props.subtitle}</span>
         </>
       )}
     </div>

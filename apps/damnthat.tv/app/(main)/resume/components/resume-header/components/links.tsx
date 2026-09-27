@@ -1,6 +1,5 @@
+import type { ResumeLinkGroup } from '../../../../../../lib/content/types';
 import { Prose } from '@workspace/ui/components/typography/prose';
-import { PrismicRichText } from '@prismicio/react';
-import React from 'react';
 import {
   GlobeAltIcon,
   PhoneIcon,
@@ -44,17 +43,17 @@ const getIconForLinkType = (type: string) => {
   }
 };
 
-export const Links = (props) => {
+export const Links = ({ group }: { group: ResumeLinkGroup }) => {
   return (
     <Prose>
-      <PrismicRichText field={props.links.primary.title} />
+      <h4>{group.title}</h4>
       <ul>
-        {props.links.items.map((item, i) => {
+        {group.items.map((item) => {
           const IconComponent = getIconForLinkType(item.type);
           return (
-            <li key={i} className="flex list-none items-center gap-2">
+            <li key={item.href} className="flex list-none items-center gap-2">
               <IconComponent className="text-muted-foreground inline-block h-4 w-4" />
-              <a href={item.link.url}>{item.label}</a>
+              <a href={item.href}>{item.label}</a>
             </li>
           );
         })}

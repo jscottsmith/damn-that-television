@@ -20,7 +20,7 @@
 
 ## 4. Résumé page
 
-- [ ] 4.1 Feed the résumé header from MDX frontmatter and the body sections (links, work history, condensed work history, education, awards, lists, prose, work-together) from the MDX body, including company logos. Verify the résumé route no longer imports `prismicio` and each section still receives the fields it renders today.
+- [x] 4.1 Feed the résumé header from MDX frontmatter and the body sections (links, work history, condensed work history, education, awards, lists, prose, work-together) from the MDX body, including company logos. Verify the résumé route no longer imports `prismicio` and each section still receives the fields it renders today.
 
 ## 5. Remove Prismic
 

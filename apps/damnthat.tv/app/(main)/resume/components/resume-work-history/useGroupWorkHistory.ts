@@ -1,43 +1,49 @@
-import { useMemo } from 'react';
-import { asText } from '@prismicio/client';
-import { createSlug } from 'helpers/create-slug';
-import type { ResumeWorkHistorySliceDefaultItem } from '../../../../../prismicio-types';
+import type { ReactNode } from 'react';
 
-interface WorkGroup {
-  company: ResumeWorkHistorySliceDefaultItem['company'];
-  company_logo: ResumeWorkHistorySliceDefaultItem['company_logo'];
-  jobs: ResumeWorkHistorySliceDefaultItem[];
+export type WorkHistoryJob = {
+  company: string;
+  role: string;
+  logo?: string;
+  logoAlt?: string;
+  logoWidth?: number;
+  logoHeight?: number;
+  website?: string;
+  start?: string;
+  end?: string;
+  present?: boolean;
+  keywords?: string[];
+  description?: ReactNode;
+};
+
+export interface WorkGroup {
+  company: string;
+  logo?: string;
+  logoAlt?: string;
+  logoWidth?: number;
+  logoHeight?: number;
+  website?: string;
+  jobs: WorkHistoryJob[];
 }
 
-/**
- * Custom hook to group work history items by company
- *
- * @param items - Array of work history items from Prismic
- * @returns Array of grouped work history items
- */
-export const useGroupedWorkHistory = (
-  items: ResumeWorkHistorySliceDefaultItem[],
-): WorkGroup[] => {
-  return useMemo(() => {
-    return items.reduce<WorkGroup[]>((groups, item, i) => {
-      const currentCompanyText = asText(item.company);
-      const previousCompanyText = i > 0 ? asText(items[i - 1].company) : '';
-      const isNewCompany =
-        i === 0 || currentCompanyText !== previousCompanyText;
+export function groupWorkHistory(jobs: WorkHistoryJob[]): WorkGroup[] {
+  return jobs.reduce<WorkGroup[]>((groups, job, index) => {
+    const previous = index > 0 ? jobs[index - 1] : undefined;
+    const isNewCompany = !previous || previous.company !== job.company;
 
-      if (isNewCompany) {
-        groups.push({
-          company: item.company,
-          company_logo: item.company_logo,
-          jobs: [item],
-        });
-      } else {
-        // Add to existing group
-        const lastGroup = groups[groups.length - 1];
-        lastGroup.jobs.push(item);
-      }
-
+    if (isNewCompany) {
+      groups.push({
+        company: job.company,
+        logo: job.logo,
+        logoAlt: job.logoAlt,
+        logoWidth: job.logoWidth,
+        logoHeight: job.logoHeight,
+        website: job.website,
+        jobs: [job],
+      });
       return groups;
-    }, []);
-  }, [items]);
-};
+    }
+
+    groups[groups.length - 1]?.jobs.push(job);
+    return groups;
+  }, []);
+}

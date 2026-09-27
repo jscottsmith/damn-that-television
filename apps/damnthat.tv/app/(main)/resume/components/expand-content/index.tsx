@@ -1,4 +1,6 @@
-import React, { PropsWithChildren, useState, useRef, useEffect } from 'react';
+'use client';
+
+import { type PropsWithChildren, useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { AnimatePresence } from 'motion/react';
 import { useDebounceCallback } from 'usehooks-ts';

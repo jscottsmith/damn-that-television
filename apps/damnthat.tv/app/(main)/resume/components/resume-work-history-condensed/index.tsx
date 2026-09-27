@@ -1,29 +1,42 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { formatterYear } from 'app/(main)/resume/helpers/format-date';
 import { DateRange } from '../date-range';
-import { Prose } from '@workspace/ui/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import { TitleAndSubtitle } from '../TitleAndSubtitle';
-import type { ResumeWorkHistoryCondensedSlice } from '../../../../../prismicio-types';
+import { elementsOfType } from '../children';
 
-export const ResumeWorkHistoryCondensed = (
-  props: ResumeWorkHistoryCondensedSlice,
-) => {
+export type CondensedJobProps = {
+  company: string;
+  role: string;
+  start?: string;
+  end?: string;
+};
+
+export function CondensedJob(_props: CondensedJobProps) {
+  return null;
+}
+
+export const ResumeWorkHistoryCondensed = (props: {
+  title?: string;
+  children?: ReactNode;
+}) => {
+  const jobs = elementsOfType<CondensedJobProps>(props.children, CondensedJob);
+
   return (
     <div>
-      <SectionTitle text={props.primary.title} />
+      <SectionTitle text={props.title} />
 
-      {props.items.map((item, i) => (
-        <section className="text-foreground mb-8" key={i}>
+      {jobs.map((job, index) => (
+        <section className="text-foreground mb-8" key={index}>
           <TitleAndSubtitle
             className="text-xl"
-            title={item.company}
-            subtitle={item.job_title}
+            title={job.props.company}
+            subtitle={job.props.role}
           />
           <DateRange
             dateFormatter={formatterYear}
-            startDate={item.start_date}
-            endDate={item.end_date}
+            startDate={job.props.start}
+            endDate={job.props.end}
           />
         </section>
       ))}

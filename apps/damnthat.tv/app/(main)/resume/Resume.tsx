@@ -1,24 +1,18 @@
-'use client';
-import React from 'react';
+import type { ReactNode } from 'react';
 import { ResumeHeader } from './components/resume-header';
-import { ResumeContent } from './components/resume-content';
-import { ResumeWorkHistory } from './components/resume-work-history';
-import { ResumeWorkHistoryCondensed } from './components/resume-work-history-condensed';
-import { ResumeList } from './components/resume-list';
-import { ResumeAwards } from './components/resume-awards';
-import { WorkTogether } from './components/work-together';
-import { ResumeEducation } from './components/resume-education';
 import { Card } from '@/components/card';
 import { surfaceVariants } from '@workspace/ui/components/surface';
 import { cn } from '@workspace/ui/lib/utils';
 import { SiteWrapper } from '@/components/site-wrapper';
-import type { ResumeDocument } from '../../../prismicio-types';
+import type { ResumeLinkGroup } from '../../../lib/content/types';
 
-interface ResumeProps {
-  document: ResumeDocument;
-}
-
-export const Resume = (props: ResumeProps) => {
+export const Resume = (props: {
+  name: string;
+  jobTitle: string;
+  location: string;
+  links: ResumeLinkGroup[];
+  children: ReactNode;
+}) => {
   return (
     <SiteWrapper
       padY
@@ -32,36 +26,13 @@ export const Resume = (props: ResumeProps) => {
           )}
         >
           <ResumeHeader
-            document={props.document}
+            name={props.name}
+            jobTitle={props.jobTitle}
+            location={props.location}
+            links={props.links}
             className="-mt-16 md:sticky md:top-8 md:mt-0 md:w-1/3 md:self-start"
           />
-          <div className="md:w-2/3">
-            {props.document.data.body.map((slice, i) => {
-              if (slice.slice_type === 'ResumeWorkHistory') {
-                return <ResumeWorkHistory {...slice} key={i} />;
-              }
-              if (slice.slice_type === 'ResumeEducation') {
-                return <ResumeEducation {...slice} key={i} />;
-              }
-              if (slice.slice_type === 'ResumeWorkHistoryCondensed') {
-                return <ResumeWorkHistoryCondensed {...slice} key={i} />;
-              }
-              if (slice.slice_type === 'WorkTogether') {
-                return <WorkTogether {...slice} key={i} />;
-              }
-              if (slice.slice_type === 'ResumeContent') {
-                return <ResumeContent {...slice} key={i} />;
-              }
-              if (slice.slice_type === 'ResumeList') {
-                return <ResumeList {...slice} key={i} />;
-              }
-              if (slice.slice_type === 'ResumeAwards') {
-                return <ResumeAwards {...slice} key={i} />;
-              }
-
-              return null;
-            })}
-          </div>
+          <div className="md:w-2/3">{props.children}</div>
         </Card>
       </article>
     </SiteWrapper>
