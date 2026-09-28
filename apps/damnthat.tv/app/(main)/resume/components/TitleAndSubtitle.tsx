@@ -17,7 +17,9 @@ export function TitleAndSubtitle(props: {
       {hasSub && (
         <>
           <span className="border-peach dark:border-club-700 mx-4 my-1 inline-block border-r-2 border-solid" />
-          <span className="inline-block font-light italic">{props.subtitle}</span>
+          <span className="inline-block font-light italic">
+            {props.subtitle}
+          </span>
         </>
       )}
     </div>

@@ -20,7 +20,9 @@ export const DateRange = (props: Props) => {
         </span>
       )}
       {props.endDate && (
-        <span>{props.dateFormatter.format(parseResumeDate(props.endDate))}</span>
+        <span>
+          {props.dateFormatter.format(parseResumeDate(props.endDate))}
+        </span>
       )}
       {props.presentRole && <span>Present</span>}
     </Badge>

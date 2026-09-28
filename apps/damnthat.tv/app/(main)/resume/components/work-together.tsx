@@ -36,9 +36,7 @@ const WorkTogetherMessage = ({
 
   return (
     <section className="flex flex-row flex-wrap items-center justify-center">
-      <div className="font-futura text-xl font-normal md:text-2xl">
-        {title}
-      </div>
+      <div className="font-futura text-xl font-normal md:text-2xl">{title}</div>
       <div className="mt-4 flex w-full justify-center gap-2">
         <ButtonToggle
           isSelected={showInterest.isInterested}
@@ -61,9 +59,7 @@ const WorkTogetherMessage = ({
         {showInterest.isInterested && (
           <AnimateHeight key="interested">
             <div className="mt-6 w-full text-center">
-              <Prose className={clsx('mx-auto max-w-md')}>
-                {children}
-              </Prose>
+              <Prose className={clsx('mx-auto max-w-md')}>{children}</Prose>
               <div className="my-6 flex justify-center">
                 <a href="mailto:jscsmith@gmail.com">
                   <CTAButton buttonSize="default" buttonType="pepto">
@@ -71,9 +67,7 @@ const WorkTogetherMessage = ({
                   </CTAButton>
                 </a>
               </div>
-              <Prose className="text-xs">
-                {note ? <p>{note}</p> : null}
-              </Prose>
+              <Prose className="text-xs">{note ? <p>{note}</p> : null}</Prose>
             </div>
           </AnimateHeight>
         )}

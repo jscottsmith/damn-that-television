@@ -173,7 +173,9 @@ describe('given the résumé route', () => {
     expect(screen.getByText('J Scott Smith')).toBeInTheDocument();
     expect(screen.getByText('Engineering Manager')).toBeInTheDocument();
     expect(screen.getByText(/Los Angeles/)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Connect' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'Connect' }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole('link', { name: 'jscsmith@gmail.com' }),
     ).toHaveAttribute('href', 'mailto:jscsmith@gmail.com');
@@ -185,12 +187,14 @@ describe('given the résumé route', () => {
 
     expect(screen.getByText('Who')).toBeInTheDocument();
     expect(
-      screen.getByText('Senior engineer with frontend expertise.').closest(
-        '[data-slot="prose"]',
-      )?.className,
+      screen
+        .getByText('Senior engineer with frontend expertise.')
+        .closest('[data-slot="prose"]')?.className,
     ).toContain('prose-xl');
 
-    expect(await screen.findByText('Interested in working together?')).toBeInTheDocument();
+    expect(
+      await screen.findByText('Interested in working together?'),
+    ).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /Yep/ }));
     expect(screen.getByText("That's Nice to hear!")).toBeInTheDocument();
     expect(screen.getByText(/copypasta job descriptions/)).toBeInTheDocument();
@@ -210,9 +214,7 @@ describe('given the résumé route', () => {
     expect(screen.getByText(/April 2024/)).toBeInTheDocument();
     expect(screen.getByText('Leadership')).toBeInTheDocument();
     expect(screen.getByText('Senior Full Stack Engineer')).toBeInTheDocument();
-    expect(
-      screen.getByText('Launched a new Nike brand.'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('Launched a new Nike brand.')).toBeInTheDocument();
     expect(
       document.querySelectorAll('[data-website="https://swoosh.nike"]'),
     ).toHaveLength(3);
@@ -223,8 +225,9 @@ describe('given the résumé route', () => {
     );
     expect(
       decodeURIComponent(
-        screen.getByRole('img', { name: 'dotSwoosh Logo' }).getAttribute('src') ??
-          '',
+        screen
+          .getByRole('img', { name: 'dotSwoosh Logo' })
+          .getAttribute('src') ?? '',
       ),
     ).toContain('nike-virtual-studios.jpg');
 
@@ -242,7 +245,9 @@ describe('given the résumé route', () => {
 
     expect(screen.getByText('Education')).toBeInTheDocument();
     expect(screen.getByText('Memorisely')).toBeInTheDocument();
-    expect(screen.getByText('Product Design UI/UX Bootcamp')).toBeInTheDocument();
+    expect(
+      screen.getByText('Product Design UI/UX Bootcamp'),
+    ).toBeInTheDocument();
     expect(screen.getAllByText(/2022/).length).toBeGreaterThan(0);
     expect(
       screen.getByText('California State University, Long Beach'),

@@ -92,9 +92,7 @@ export const ResumeWorkHistory = (props: {
               </span>
 
               {group.jobs.map((item, jobIndex) => {
-                const jobTitleSlug = createSlug(
-                  `${companySlug}-${item.role}`,
-                );
+                const jobTitleSlug = createSlug(`${companySlug}-${item.role}`);
                 return (
                   <div
                     key={jobTitleSlug}
