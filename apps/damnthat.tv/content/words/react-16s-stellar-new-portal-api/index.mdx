@@ -1,25 +1,26 @@
 ---
-title: "React 16’s ✨ Stellar New Portal 🔮 API"
-description: "React 16 landed with a helpful new API called *portals* which is a first-class way of rendering children into a DOM node outside of the parent component’s hierarchy."
-publishedOn: "2018-10-26T07:00:00+0000"
+title: 'React 16’s ✨ Stellar New Portal 🔮 API'
+description: 'React 16 landed with a helpful new API called *portals* which is a first-class way of rendering children into a DOM node outside of the parent component’s hierarchy.'
+publishedOn: '2018-10-26T07:00:00+0000'
 draft: false
 tags: []
-image: "./hero.jpg"
-imageAlt: "Portal demo"
-thumb: "./thumb.jpg"
-metaTitle: "React 16’s ✨ Stellar New Portal 🔮 API"
-metaDescription: "React 16 landed with a helpful new API called portals which is a first-class way of rendering children into a DOM node outside of the parent component’s hierarchy."
-metaImage: "./meta.jpg"
+image: './hero.jpg'
+imageAlt: 'Portal demo'
+thumb: './thumb.jpg'
+metaTitle: 'React 16’s ✨ Stellar New Portal 🔮 API'
+metaDescription: 'React 16 landed with a helpful new API called portals which is a first-class way of rendering children into a DOM node outside of the parent component’s hierarchy.'
+metaImage: './meta.jpg'
 ---
+
 ## The Portal API
 
-React 16 landed with a helpful <a href="https://reactjs.org/docs/portals.html" target="_blank" rel="noreferrer">new API</a> called *portals* which is a first-class way of rendering children into a DOM node outside of the parent component’s hierarchy. Before 16 you had to provide your own solution for breaking outside of this hierarchy – now it’s just as simple as calling:
+React 16 landed with a helpful <a href="https://reactjs.org/docs/portals.html" target="_blank" rel="noreferrer">new API</a> called _portals_ which is a first-class way of rendering children into a DOM node outside of the parent component’s hierarchy. Before 16 you had to provide your own solution for breaking outside of this hierarchy – now it’s just as simple as calling:
 
 ```tsx
 ReactDOM.createPortal(<Component>, domNode);
 ```
 
-Yup, just pass a \`\<Component>\` you’d like to render and *any* valid HTML DOM node that you’d like React to render the component into.
+Yup, just pass a \`\<Component>\` you’d like to render and _any_ valid HTML DOM node that you’d like React to render the component into.
 
 ## So what, who cares? 🤔 Why is this helpful?
 
@@ -33,7 +34,10 @@ All solutions have drawbacks: Prop callbacks can get old really fast if you’ve
 
 Enter the magic 🔮 of native Portals! Instead of moving the component we can “transport” it through a portal to render into a DOM node of our choosing. We’ll still be rendering in the same context and have access to all the parent props/state/data we may need but we’ll also be able to escape any parent styles that were proving problematic for our design.
 
-<a href="https://codepen.io/jscottsmith/pen/xYaawK">![Artboard context menu showing portal usage to break out of window](./gallery/inline-1.gif)</a>
+<a href="https://codepen.io/jscottsmith/pen/xYaawK">
+  ![Artboard context menu showing portal usage to break out of
+  window](./gallery/inline-1.gif)
+</a>
 
 See the live <a href="https://codepen.io/jscottsmith/pen/xYaawK">CodePen</a>
 
@@ -82,18 +86,20 @@ Now that we have a reference to the element we can create the portal. I’ve set
 
 ```tsx
 <div className="text-input">
-    <textarea />
-    {showEmoji &&
-        ReactDOM.createPortal(
-            <EmojiMenu />,
-            this.props.getRef() // the header element that exists outside this component
-        )}
+  <textarea />
+  {showEmoji &&
+    ReactDOM.createPortal(
+      <EmojiMenu />,
+      this.props.getRef(), // the header element that exists outside this component
+    )}
 </div>
 ```
 
 That’s really it. Again, it’s incredibly simple to setup and now we’re rendering part of our component markup into another DOM node (this time a node managed by React) outside of the parent.
 
-<a href="https://codepen.io/jscottsmith/pen/rJXwLd">![Chat window portal demo](./gallery/inline-1.gif)</a>
+<a href="https://codepen.io/jscottsmith/pen/rJXwLd">
+  ![Chat window portal demo](./gallery/inline-1.gif)
+</a>
 
 Here’s the <a href="https://codepen.io/jscottsmith/pen/rJXwLd">Demo</a>; type in the text area, insert a \`**:\`** and the shortcode name to see the menu pop up.
 
@@ -103,17 +109,15 @@ As you can see in the demo a menu will pop up at the top of the window even thou
 
 ## Portal Event Bubbling
 
-One interesting and sometimes unanticipated behaviors of portals is that event bubbling behaves as though the event is bubbling through the React component’s hierarchy and *NOT* the DOM hierarchy. Here’s a quick example of what this means.
+One interesting and sometimes unanticipated behaviors of portals is that event bubbling behaves as though the event is bubbling through the React component’s hierarchy and _NOT_ the DOM hierarchy. Here’s a quick example of what this means.
 
 A simple app with portal structure:
 
 ```tsx
 <App onClick={appClicks}>
-    <Portal>
-        <button onClick={buttonClicks}>
-            Click me
-        </button>
-    </Portal>
+  <Portal>
+    <button onClick={buttonClicks}>Click me</button>
+  </Portal>
 </App>
 ```
 
@@ -128,7 +132,7 @@ Here’s the markup **\<App>** will produce:
 
 Notice that the **#portal** isn’t a child of **#app** so we wouldn’t expect an event from the portal to bubble to the app.
 
-However, when clicking the **\<button>** inside the portal the event *will* bubble up through the portal into the **\<App>** and call any click handlers along the way. This can feel odd since the HTML hierarchy doesn’t represent our React component hierarchy, thus the bubbling up to the App would seem odd. But these are *synthetic* events native to React, not actual events in the DOM. To prevent this we can simple call **event.stopPropagation()** on the button click handler. Just don’t forget about this behavior as there’s the potential of introducing minor bugs by forgetting about this.
+However, when clicking the **\<button>** inside the portal the event _will_ bubble up through the portal into the **\<App>** and call any click handlers along the way. This can feel odd since the HTML hierarchy doesn’t represent our React component hierarchy, thus the bubbling up to the App would seem odd. But these are _synthetic_ events native to React, not actual events in the DOM. To prevent this we can simple call **event.stopPropagation()** on the button click handler. Just don’t forget about this behavior as there’s the potential of introducing minor bugs by forgetting about this.
 
 Depending on the complexity of what you are doing with portals you may encounter more issues with this bubbling. There’s some interesting discussion taking place by React team members regarding <a href="https://github.com/facebook/react/issues/11387" target="_blank" rel="noreferrer">portal bubbling</a>.
 
@@ -141,42 +145,46 @@ In each I’ll recursively render a component into itself that captures and runs
 Recursive component that renders itself and a given component, until the depth is 0:
 
 ```tsx
-const Recursive = ({ children, depth, component: Component }) => (
-    depth > 0 &&
-        <Component depth={depth - 1}>
-            <Recursive depth={depth - 1} component={Component} />
-        </Component>
-);
+const Recursive = ({ children, depth, component: Component }) =>
+  depth > 0 && (
+    <Component depth={depth - 1}>
+      <Recursive depth={depth - 1} component={Component} />
+    </Component>
+  );
 ```
 
 and with portals:
 
 ```tsx
-const RecursivePortal = ({ children, depth, component: Component }) => (
-    depth > 0 && ReactDOM.createPortal(
-        <Component depth={depth - 1}>
-            <RecursivePortal depth={depth - 1} component={Component} />
-        </Component>, 
-        document.body
-    ) 
-);
+const RecursivePortal = ({ children, depth, component: Component }) =>
+  depth > 0 &&
+  ReactDOM.createPortal(
+    <Component depth={depth - 1}>
+      <RecursivePortal depth={depth - 1} component={Component} />
+    </Component>,
+    document.body,
+  );
 ```
 
 Then in the **\<Component>** that is rendered recursively we’ll capture click events and add a class to the element to show when it receives an event.
 
-In each you can click an element and see the event propagate up the *React* hierarchy. I’ve also synthetically delayed the animation of the event by increasing the delay with each capture. The real event happens instantaneously but this far is more interesting to look at. 😉
+In each you can click an element and see the event propagate up the _React_ hierarchy. I’ve also synthetically delayed the animation of the event by increasing the delay with each capture. The real event happens instantaneously but this far is more interesting to look at. 😉
 
 It’s also interesting to check out the HTML tree vs the React tree using dev tools. I’ve included links to the actual HTML pages so that you can inspect them to see these differences.
 
 Bubbling in a normal component hierarchy:
 
-<a href="https://codepen.io/jscottsmith/pen/wyMPqz">![Bubbling in a normal component hierarchy](./gallery/inline-1.gif)</a>
+<a href="https://codepen.io/jscottsmith/pen/wyMPqz">
+  ![Bubbling in a normal component hierarchy](./gallery/inline-1.gif)
+</a>
 
 See the <a href="https://codepen.io/jscottsmith/pen/wyMPqz" target="_blank" rel="noreferrer">CodePen</a>
 
 Bubbling with portals:
 
-<a href="https://codepen.io/jscottsmith/pen/PQZaBg">![Bubbling with portals](./gallery/inline-2.gif)</a>
+<a href="https://codepen.io/jscottsmith/pen/PQZaBg">
+  ![Bubbling with portals](./gallery/inline-2.gif)
+</a>
 
 See the <a href="https://codepen.io/jscottsmith/pen/PQZaBg">CodePen</a>
 

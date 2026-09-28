@@ -1,9 +1,4 @@
-import {
-  Children,
-  cloneElement,
-  isValidElement,
-  type ReactNode,
-} from 'react';
+import { Children, cloneElement, isValidElement, type ReactNode } from 'react';
 import {
   contentImageDimensions,
   resolveContentImageSrc,

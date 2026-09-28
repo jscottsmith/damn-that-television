@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Canvas } from '@gush/candybar';
 import { useIntersectionObserver } from 'usehooks-ts';
 import { mergeRef } from 'helpers/merge-ref';
@@ -7,6 +7,7 @@ export const CanvasHero = (props: { entities: any[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvas = useRef<Canvas | null>(null);
+  const entitiesRef = useRef(props.entities);
 
   const { ref, isIntersecting } = useIntersectionObserver();
 
@@ -36,7 +37,7 @@ export const CanvasHero = (props: { entities: any[] }) => {
       container: containerRef.current,
       hasPointer: true,
       pauseInBackground: true,
-      entities: [...props.entities],
+      entities: [...entitiesRef.current],
     });
 
     return () => {
