@@ -1,0 +1,32 @@
+---
+description: Run lint, format, and knip before committing code
+alwaysApply: true
+---
+
+# Pre-commit checks
+
+Before committing code, run these from the repository root and require each to exit 0:
+
+```bash
+pnpm format
+pnpm lint
+pnpm exec knip
+```
+
+`pnpm format` rewrites files. Stage any files it changes in the same commit. Then run `pnpm format:check` if you need to confirm nothing is left unformatted.
+
+If a command fails, fix the reported issues and run the full sequence again. Do not commit while lint, format, or knip is failing.
+
+Skip this sequence only when the commit contains no code: markdown, OpenSpec docs, or other files those tools do not check.
+
+## Example
+
+```bash
+pnpm format && pnpm lint && pnpm exec knip
+git add -u
+git commit -m "$(cat <<'EOF'
+fix(nav): keep the header from overlapping content
+
+EOF
+)"
+```
