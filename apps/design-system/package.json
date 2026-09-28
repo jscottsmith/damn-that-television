@@ -34,7 +34,7 @@
     "@workspace/ui": "workspace:*",
     "clsx": "^2.1.1",
     "motion": "^12.43.0",
-    "next": "^16.2.12",
+    "next": "^16.3.6",
     "react": "latest",
     "react-dom": "latest",
     "tailwind-merge": "^3.6.0",
@@ -46,7 +46,7 @@
     "@types/react-dom": "latest",
     "oxfmt": "^0.52.0",
     "oxlint": "^1.67.0",
-    "postcss": "^8.5.25",
+    "postcss": "^8.5.28",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.8.2"
   }
