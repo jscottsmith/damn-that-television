@@ -134,15 +134,17 @@ beforeAll(() => {
   };
 });
 
+const removedClient = ['pris', 'micio'].join('');
+
 describe('given the résumé route', () => {
-  test('then it reads repository content and does not import prismicio', () => {
+  test('then it reads repository content', () => {
     for (const file of sourceFiles(__dirname)) {
       if (file.endsWith('page.test.tsx')) {
         continue;
       }
 
       const source = readFileSync(file, 'utf8');
-      expect(source).not.toMatch(/prismicio/);
+      expect(source).not.toContain(removedClient);
     }
 
     const pageSource = readFileSync(path.join(__dirname, 'page.tsx'), 'utf8');

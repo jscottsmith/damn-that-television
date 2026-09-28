@@ -31,10 +31,6 @@
     },
     "format:check": {
       "cache": false
-    },
-    "slicemachine": {
-      "cache": false,
-      "persistent": true
     }
   }
 }

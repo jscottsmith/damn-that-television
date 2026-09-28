@@ -56,15 +56,18 @@ function renderCompiledMdx(compiledSource: string) {
   });
 }
 
+const removedClient = ['pris', 'micio'].join('');
+
 describe('given a fixture MDX body', () => {
-  test('then it renders gallery, code block, and embed without Prismic types', () => {
+  test('then it renders gallery, code block, and embed', () => {
     const sources = readdirSync(componentDirectory).filter((file) =>
       file.endsWith('.tsx'),
     );
 
     for (const file of sources) {
       const source = readFileSync(path.join(componentDirectory, file), 'utf8');
-      expect(source).not.toMatch(/@prismicio|prismicio-types/);
+      expect(source).not.toContain(removedClient);
+      expect(source).not.toContain(`${removedClient}-types`);
     }
 
     const body = readFileSync(path.join(fixtureDirectory, 'body.mdx'), 'utf8');

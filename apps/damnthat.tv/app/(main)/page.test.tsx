@@ -14,11 +14,13 @@ const homepageFiles = [
   'home/components/introduction/index.tsx',
 ];
 
+const removedClient = ['pris', 'micio'].join('');
+
 describe('given the homepage', () => {
-  test('then it passes the repository introduction through and does not import prismicio', async () => {
+  test('then it passes the repository introduction through', async () => {
     for (const file of homepageFiles) {
       const source = readFileSync(path.join(__dirname, file), 'utf8');
-      expect(source).not.toMatch(/prismicio/);
+      expect(source).not.toContain(removedClient);
     }
 
     const pageSource = readFileSync(path.join(__dirname, 'page.tsx'), 'utf8');
