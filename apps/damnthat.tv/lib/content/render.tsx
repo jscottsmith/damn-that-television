@@ -19,7 +19,7 @@ export async function renderContentMdx(
       ...input.components,
     },
     options: {
-      // Posts and the résumé use JSX expressions such as `columns={2}` and `src={"./hero.jpg"}`.
+      // Posts and the résumé use JSX expressions such as `columns={2}` and `keywords={["React"]}`.
       parseFrontmatter: false,
       blockJS: false,
     },
