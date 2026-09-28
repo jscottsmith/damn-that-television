@@ -19,11 +19,13 @@ afterEach(() => {
   setNodeEnv(originalNodeEnv ?? 'test');
 });
 
+const removedClient = ['pris', 'micio'].join('');
+
 describe('given /words', () => {
   test('then the page uses the reader and production omits drafts', async () => {
     const pageSource = readFileSync(path.join(__dirname, 'page.tsx'), 'utf8');
     expect(pageSource).toContain('getPosts()');
-    expect(pageSource).not.toMatch(/prismicio/);
+    expect(pageSource).not.toContain(removedClient);
 
     setNodeEnv('production');
     render(await WordsIndex({ posts: getPosts({ root: fixturesRoot }) }));

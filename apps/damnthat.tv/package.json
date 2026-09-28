@@ -17,8 +17,7 @@
     "test": "jest --watch",
     "typeCheck": "tsc --noEmit",
     "format": "oxfmt .",
-    "format:check": "oxfmt --check .",
-    "slicemachine": "start-slicemachine"
+    "format:check": "oxfmt --check ."
   },
   "repository": {
     "type": "git",
@@ -33,9 +32,6 @@
   "dependencies": {
     "@gush/candybar": "0.1.1",
     "@heroicons/react": "^2.2.0",
-    "@prismicio/client": "^7.20.1",
-    "@prismicio/next": "^2.0.1",
-    "@prismicio/react": "^3.2.1",
     "@tailwindcss/postcss": "^4.0.0",
     "@vercel/og": "^0.6.8",
     "@workspace/ui": "workspace:*",
@@ -57,7 +53,6 @@
     "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
-    "@slicemachine/adapter-next": "^0.3.97",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/jest": "^30.0.0",
@@ -69,7 +64,6 @@
     "oxfmt": "^0.52.0",
     "oxlint": "^1.67.0",
     "postcss": "^8.5.25",
-    "slice-machine-ui": "^2.21.4",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.8.2"
   }
