@@ -29,6 +29,7 @@ export default async function Page() {
     <Resume
       name={resume.name}
       jobTitle={resume.jobTitle}
+      company={resume.company}
       location={resume.location}
       links={resume.links}
     >

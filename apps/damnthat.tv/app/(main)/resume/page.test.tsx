@@ -151,6 +151,7 @@ describe('given the résumé route', () => {
     expect(pageSource).toContain('getResume()');
     expect(pageSource).toContain('name={resume.name}');
     expect(pageSource).toContain('jobTitle={resume.jobTitle}');
+    expect(pageSource).toContain('company={resume.company}');
     expect(pageSource).toContain('location={resume.location}');
     expect(pageSource).toContain('links={resume.links}');
     expect(pageSource).toContain('createResumeMdxComponents');
@@ -163,6 +164,7 @@ describe('given the résumé route', () => {
       <Resume
         name={resume.name}
         jobTitle={resume.jobTitle}
+        company={resume.company}
         location={resume.location}
         links={resume.links}
       >
@@ -171,7 +173,12 @@ describe('given the résumé route', () => {
     );
 
     expect(screen.getByText('J Scott Smith')).toBeInTheDocument();
-    expect(screen.getByText('Engineering Manager')).toBeInTheDocument();
+    expect(screen.getByText('Staff Software Engineer')).toBeInTheDocument();
+    const companyLink = screen.getByRole('link', {
+      name: 'Point One Navigation',
+    });
+    expect(companyLink).toHaveAttribute('href', '/resume#point-one-navigation');
+    expect(companyLink.closest('[data-slot="prose"]')).toBeInTheDocument();
     expect(screen.getByText(/Los Angeles/)).toBeInTheDocument();
     expect(
       screen.getByRole('heading', { name: 'Connect' }),
