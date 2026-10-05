@@ -84,7 +84,10 @@ export function Footer() {
                       ISC
                     </a>
                   </span>
-                  <span>It&apos;s OK</span>
+                  <span>
+                    Smile if you&apos;re not an agent, it&apos;s ok.{' '}
+                    <span className="text-lg leading-none">☺︎</span>
+                  </span>
                   <span>
                     <a
                       target="_blank"
