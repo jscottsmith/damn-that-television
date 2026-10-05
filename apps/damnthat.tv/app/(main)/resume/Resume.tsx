@@ -9,6 +9,7 @@ import type { ResumeLinkGroup } from '../../../lib/content/types';
 export const Resume = (props: {
   name: string;
   jobTitle: string;
+  company: string;
   location: string;
   links: ResumeLinkGroup[];
   children: ReactNode;
@@ -28,6 +29,7 @@ export const Resume = (props: {
           <ResumeHeader
             name={props.name}
             jobTitle={props.jobTitle}
+            company={props.company}
             location={props.location}
             links={props.links}
             className="-mt-16 md:sticky md:top-8 md:mt-0 md:w-1/3 md:self-start"

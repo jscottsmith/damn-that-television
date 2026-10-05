@@ -29,6 +29,7 @@ export type ResumeLinkGroup = {
 export type ResumeDocument = {
   name: string;
   jobTitle: string;
+  company: string;
   location: string;
   links: ResumeLinkGroup[];
   body: string;

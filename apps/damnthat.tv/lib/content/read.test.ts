@@ -31,7 +31,8 @@ describe('given repository content', () => {
 
     expect(homepage.body).toContain("Hi there, I'm J");
     expect(resume.name).toBe('J Scott Smith');
-    expect(resume.jobTitle).toBe('Engineering Manager');
+    expect(resume.jobTitle).toBe('Staff Software Engineer');
+    expect(resume.company).toBe('Point One Navigation');
     expect(resume.body).toContain('<WorkHistory');
   });
 });

@@ -1,11 +1,15 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { Prose } from '@workspace/ui/components/typography/prose';
 import { Links } from 'app/(main)/resume/components/resume-header/components/links';
+import { createSlug } from '@/helpers/create-slug';
 import type { ResumeLinkGroup } from '../../../../../lib/content/types';
 import avatar from '../../../../../public/static/avatar.jpg';
 
 export const ResumeHeader = (props: {
   name: string;
   jobTitle: string;
+  company: string;
   location: string;
   links: ResumeLinkGroup[];
   className?: string;
@@ -20,9 +24,14 @@ export const ResumeHeader = (props: {
         <div className="font-futura text-foreground mb-3 text-4xl">
           {props.name}
         </div>
-        <div className="font-futura text-foreground mb-1 text-xl font-medium italic">
+        <div className="font-futura text-foreground text-xl font-medium italic">
           {props.jobTitle}
         </div>
+        <Prose className="mt-1 mb-1 max-w-none">
+          <Link href={`/resume#${createSlug(props.company)}`}>
+            {props.company}
+          </Link>
+        </Prose>
         <div className="text-muted-foreground">{props.location}</div>
       </section>
 

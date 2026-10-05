@@ -27,6 +27,7 @@ type PostFrontmatter = {
 type ResumeFrontmatter = {
   name?: string;
   jobTitle?: string;
+  company?: string;
   location?: string;
   links?: ResumeLinkGroup[];
 };
@@ -105,6 +106,7 @@ export function getResume(options?: ContentRootOptions): ResumeDocument {
   return {
     name: frontmatter.name ?? '',
     jobTitle: frontmatter.jobTitle ?? '',
+    company: frontmatter.company ?? '',
     location: frontmatter.location ?? '',
     links: frontmatter.links ?? [],
     body: content.trim(),
