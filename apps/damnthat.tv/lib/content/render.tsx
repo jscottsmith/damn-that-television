@@ -19,7 +19,7 @@ export async function renderContentMdx(
       ...input.components,
     },
     options: {
-      // Posts and the résumé use JSX expressions such as `columns={2}` and `keywords={["React"]}`.
+      // Posts use JSX expressions such as `columns={2}`. The résumé narrative uses MDX components.
       parseFrontmatter: false,
       blockJS: false,
     },

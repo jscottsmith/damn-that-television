@@ -1,42 +1,28 @@
-import type { ReactNode } from 'react';
 import { formatterYear } from 'app/(main)/resume/helpers/format-date';
+import type { ResumeSchool } from 'lib/content/types';
 import { DateRange } from '../date-range';
 import { SectionTitle } from '../SectionTitle';
 import { TitleAndSubtitle } from '../TitleAndSubtitle';
-import { elementsOfType } from '../children';
-
-export type SchoolProps = {
-  institution: string;
-  copy?: string;
-  start?: string;
-  end?: string;
-};
-
-export function School(_props: SchoolProps) {
-  return null;
-}
 
 export const ResumeEducation = (props: {
   title?: string;
-  children?: ReactNode;
+  schools: ResumeSchool[];
 }) => {
-  const schools = elementsOfType<SchoolProps>(props.children, School);
-
   return (
     <div>
       <SectionTitle text={props.title} />
 
-      {schools.map((school, index) => (
-        <section className="mb-8" key={index}>
+      {props.schools.map((school) => (
+        <section className="mb-8" key={school.institution}>
           <TitleAndSubtitle
             className="text-xl"
-            title={school.props.institution}
-            subtitle={school.props.copy}
+            title={school.institution}
+            subtitle={school.copy}
           />
           <DateRange
             dateFormatter={formatterYear}
-            startDate={school.props.start}
-            endDate={school.props.end}
+            startDate={school.start}
+            endDate={school.end}
           />
         </section>
       ))}

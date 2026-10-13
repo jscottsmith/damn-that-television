@@ -4,13 +4,15 @@ import path from 'node:path';
 import { createElement, type ComponentType } from 'react';
 import * as jsxRuntime from 'react/jsx-dev-runtime';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { defaultContentRoot } from '../../../lib/content/images';
 import { getResume } from '../../../lib/content/read';
+import { ResumeAwards } from './components/resume-awards';
+import { ResumeEducation } from './components/resume-education';
+import { ResumeList } from './components/resume-list';
+import { ResumeWorkHistory } from './components/resume-work-history';
 import { Resume } from './Resume';
 import { createResumeMdxComponents } from './mdx';
 
 const appRoot = path.join(__dirname, '../../..');
-const resumeDirectory = path.join(defaultContentRoot(), 'resume');
 
 const fixture = `
 <ResumeContent title="Who" large>
@@ -26,56 +28,6 @@ Senior engineer with frontend expertise.
 I'm always open to hear about new opportunities.
 
 </WorkTogether>
-
-<WorkHistory title="Experience">
-
-<Job company="Point One Navigation" role="Staff Software Engineer" logo="./logos/point-one-navigation.png" logoAlt="Point One Navigation" start="2025-11-02" present keywords={["GNSS"]}>
-
-Precision location for the real world.
-
-</Job>
-
-<Job company="Nike Virtual Studios" role="Engineering Manager" logo="./logos/nike-virtual-studios.jpg" logoAlt="dotSwoosh Logo" website="https://swoosh.nike" start="2024-04-01" end="2025-11-15" keywords={["Leadership"]}>
-
-Led a small but mighty frontend engineering team.
-
-</Job>
-
-<Job company="Nike Virtual Studios" role="Senior Full Stack Engineer" website="https://swoosh.nike" start="2022-08-15" end="2024-03-30">
-
-Launched a new Nike brand.
-
-</Job>
-
-</WorkHistory>
-
-<WorkHistoryCondensed title="Earlier Experience">
-
-<CondensedJob company="Big Storm Studio" role="Designer and Web Developer" start="2012-11-01" end="2015-06-01" />
-
-</WorkHistoryCondensed>
-
-<ResumeList title="Technologies">
-
-A non-exhaustive list of technologies.
-
-<Item>TypeScript</Item>
-
-</ResumeList>
-
-<Education title="Education">
-
-<School institution="Memorisely" copy="Product Design UI/UX Bootcamp" start="2022-05-01" />
-
-<School institution="California State University, Long Beach" copy="BFA Graphic Design" start="2008-01-01" end="2012-01-01" />
-
-</Education>
-
-<Awards title="Awards & Honors">
-
-<Award title="Magna Cum Laude" dates="2012" />
-
-</Awards>
 `;
 
 function sourceFiles(directory: string): string[] {
@@ -119,10 +71,7 @@ function renderCompiledMdx(compiledSource: string) {
   const Content = hydrate(...Object.values(scope)).default;
 
   return createElement(Content, {
-    components: createResumeMdxComponents({
-      contentRoot: defaultContentRoot(),
-      directory: resumeDirectory,
-    }),
+    components: createResumeMdxComponents(),
   });
 }
 
@@ -190,7 +139,79 @@ describe('given the résumé route', () => {
   });
 
   test('then each body section receives the fields it renders', async () => {
-    render(renderCompiledMdx(compiledMdx(fixture)));
+    const resume = getResume();
+    const pointOne = resume.jobs[0];
+    const nikeManager = resume.jobs[1];
+
+    render(
+      <>
+        {renderCompiledMdx(compiledMdx(fixture))}
+        <ResumeWorkHistory
+          title="Experience"
+          jobs={[
+            {
+              company: 'Point One Navigation',
+              role: 'Staff Software Engineer',
+              logo: pointOne?.logo,
+              logoAlt: 'Point One Navigation',
+              logoWidth: pointOne?.logoWidth,
+              logoHeight: pointOne?.logoHeight,
+              start: '2025-11-02',
+              present: true,
+              keywords: ['GNSS'],
+              description: 'Precision location for the real world.',
+            },
+            {
+              company: 'Nike Virtual Studios',
+              role: 'Engineering Manager',
+              logo: nikeManager?.logo,
+              logoAlt: 'dotSwoosh Logo',
+              logoWidth: nikeManager?.logoWidth,
+              logoHeight: nikeManager?.logoHeight,
+              website: 'https://swoosh.nike',
+              start: '2024-04-01',
+              end: '2025-11-15',
+              keywords: ['Leadership'],
+              description: 'Led a small but mighty frontend engineering team.',
+            },
+            {
+              company: 'Nike Virtual Studios',
+              role: 'Senior Full Stack Engineer',
+              website: 'https://swoosh.nike',
+              start: '2022-08-15',
+              end: '2024-03-30',
+              keywords: [],
+              description: 'Launched a new Nike brand.',
+            },
+          ]}
+        />
+        <ResumeList
+          title="Technologies"
+          intro="A non-exhaustive list of technologies."
+          items={['TypeScript']}
+        />
+        <ResumeEducation
+          title="Education"
+          schools={[
+            {
+              institution: 'Memorisely',
+              copy: 'Product Design UI/UX Bootcamp',
+              start: '2022-05-01',
+            },
+            {
+              institution: 'California State University, Long Beach',
+              copy: 'BFA Graphic Design',
+              start: '2008-01-01',
+              end: '2012-01-01',
+            },
+          ]}
+        />
+        <ResumeAwards
+          title="Awards & Honors"
+          awards={[{ title: 'Magna Cum Laude', dates: '2012' }]}
+        />
+      </>,
+    );
 
     expect(screen.getByText('Who')).toBeInTheDocument();
     expect(
@@ -237,12 +258,6 @@ describe('given the résumé route', () => {
           .getAttribute('src') ?? '',
       ),
     ).toContain('nike-virtual-studios.jpg');
-
-    expect(screen.getByText('Earlier Experience')).toBeInTheDocument();
-    expect(screen.getByText('Big Storm Studio')).toBeInTheDocument();
-    expect(screen.getByText('Designer and Web Developer')).toBeInTheDocument();
-    expect(screen.getAllByText(/2012/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/2015/).length).toBeGreaterThan(0);
 
     expect(screen.getByText('Technologies')).toBeInTheDocument();
     expect(

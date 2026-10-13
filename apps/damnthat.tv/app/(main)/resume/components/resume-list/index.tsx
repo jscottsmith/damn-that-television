@@ -1,29 +1,24 @@
-import type { ReactNode } from 'react';
 import { Prose } from '@workspace/ui/components/typography/prose';
 import { SectionTitle } from '../SectionTitle';
 import { Badge } from '@workspace/ui/components/badge';
-import { contentBeside, elementsOfType } from '../children';
 
-export type ResumeListItemProps = {
-  children?: ReactNode;
-};
-
-export function Item({ children }: ResumeListItemProps) {
-  return children;
-}
-
-export const ResumeList = (props: { title?: string; children?: ReactNode }) => {
-  const items = elementsOfType<ResumeListItemProps>(props.children, Item);
-  const intro = contentBeside<ResumeListItemProps>(props.children, Item);
-
+export const ResumeList = (props: {
+  title?: string;
+  intro?: string;
+  items: string[];
+}) => {
   return (
     <section>
       <SectionTitle text={props.title} />
-      {intro.length > 0 && <Prose className="mb-3">{intro}</Prose>}
+      {props.intro && (
+        <Prose className="mb-3">
+          <p>{props.intro}</p>
+        </Prose>
+      )}
       <ul className="flex flex-wrap gap-2">
-        {items.map((item, index) => (
-          <li key={index}>
-            <Badge size="lg">{item.props.children}</Badge>
+        {props.items.map((item) => (
+          <li key={item}>
+            <Badge size="lg">{item}</Badge>
           </li>
         ))}
       </ul>

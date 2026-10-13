@@ -1,5 +1,4 @@
 import { Badge } from '@workspace/ui/components/badge';
-import type { ReactNode } from 'react';
 import { formatterMonthYear } from 'app/(main)/resume/helpers/format-date';
 import { DateRange } from '../date-range';
 import { Prose } from '@workspace/ui/components/typography/prose';
@@ -8,52 +7,16 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import { AnchorLinkCopy } from '@/components/anchor-link-copy';
 import { createSlug } from '@/helpers/create-slug';
-import { groupWorkHistory } from './useGroupWorkHistory';
+import { groupWorkHistory, type WorkHistoryJob } from './useGroupWorkHistory';
 import ExpandContent from '../expand-content';
-import { elementsOfType } from '../children';
 
 export const RECENT_WORK_HISTORY_ID = 'recent-work-history';
 
-export type WorkHistoryJobProps = {
-  company: string;
-  role: string;
-  logo?: string;
-  logoAlt?: string;
-  logoWidth?: number;
-  logoHeight?: number;
-  website?: string;
-  start?: string;
-  end?: string;
-  present?: boolean;
-  keywords?: string[];
-  children?: ReactNode;
-};
-
-export function Job(_props: WorkHistoryJobProps) {
-  return null;
-}
-
 export const ResumeWorkHistory = (props: {
   title?: string;
-  children?: ReactNode;
+  jobs: WorkHistoryJob[];
 }) => {
-  const jobs = elementsOfType<WorkHistoryJobProps>(props.children, Job).map(
-    (job) => ({
-      company: job.props.company,
-      role: job.props.role,
-      logo: job.props.logo,
-      logoAlt: job.props.logoAlt,
-      logoWidth: job.props.logoWidth,
-      logoHeight: job.props.logoHeight,
-      website: job.props.website,
-      start: job.props.start,
-      end: job.props.end,
-      present: job.props.present,
-      keywords: job.props.keywords,
-      description: job.props.children,
-    }),
-  );
-  const groupedItems = groupWorkHistory(jobs);
+  const groupedItems = groupWorkHistory(props.jobs);
 
   return (
     <div id={RECENT_WORK_HISTORY_ID}>
