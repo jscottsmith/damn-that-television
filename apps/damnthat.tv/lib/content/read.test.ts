@@ -33,7 +33,38 @@ describe('given repository content', () => {
     expect(resume.name).toBe('J Scott Smith');
     expect(resume.jobTitle).toBe('Staff Software Engineer');
     expect(resume.company).toBe('Point One Navigation');
-    expect(resume.body).toContain('<WorkHistory');
+    expect(resume.body).toContain('<ResumeContent');
+    expect(resume.body).not.toContain('<WorkHistory');
+    expect(resume.jobs.map((job) => `${job.company} ${job.role}`)).toEqual([
+      'Point One Navigation Staff Software Engineer',
+      'Nike Virtual Studios Engineering Manager',
+      'Nike Virtual Studios Senior Full Stack Engineer',
+      'HMBradley Senior Software Engineer',
+      'Fair Senior Software Engineer',
+      'GumGum Senior Web Engineer',
+      'HAUS Lead Frontend Developer',
+      'Big Storm Studio Designer and Web Developer',
+      'CSU Chancellor’s Office Graphic Designer',
+      'California State University Summer Arts Graphic Designer',
+      'Visual Purple 3D Artist and Animator',
+    ]);
+    expect(resume.jobs[0]?.present).toBe(true);
+    expect(resume.jobs[0]?.logo).toContain('point-one-navigation.png');
+    expect(resume.jobs[0]?.body).toContain('centimeter-level positioning');
+    expect(resume.jobs[1]?.keywords).toContain('Leadership');
+    expect(resume.technologies.intro).toContain(
+      'non-exhaustive list of technologies',
+    );
+    expect(resume.technologies.items).toContain('TypeScript');
+    expect(resume.interests).toContain('Leadership');
+    expect(resume.education[0]).toMatchObject({
+      institution: 'Memorisely',
+      copy: 'Product Design UI/UX Bootcamp',
+      start: '2022-05-01',
+    });
+    expect(resume.awards.map((award) => award.title)).toContain(
+      'Magna Cum Laude',
+    );
   });
 });
 

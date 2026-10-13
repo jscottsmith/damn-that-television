@@ -1,34 +1,22 @@
-import type { ReactNode } from 'react';
 import { Badge } from '@workspace/ui/components/badge';
+import type { ResumeAward } from 'lib/content/types';
 import { SectionTitle } from '../SectionTitle';
-import { elementsOfType } from '../children';
-
-export type AwardProps = {
-  title: string;
-  dates?: string;
-};
-
-export function Award(_props: AwardProps) {
-  return null;
-}
 
 export const ResumeAwards = (props: {
   title?: string;
-  children?: ReactNode;
+  awards: ResumeAward[];
 }) => {
-  const awards = elementsOfType<AwardProps>(props.children, Award);
-
   return (
     <section>
       <SectionTitle text={props.title} />
 
       <ul>
-        {awards.map((award, index) => (
-          <li key={index} className="mb-4">
+        {props.awards.map((award) => (
+          <li key={award.title} className="mb-4">
             <div className="font-futura mb-1 text-xl font-normal italic">
-              {award.props.title}
+              {award.title}
             </div>
-            <Badge variant="primary">{award.props.dates}</Badge>
+            <Badge variant="primary">{award.dates}</Badge>
           </li>
         ))}
       </ul>
